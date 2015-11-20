@@ -1,0 +1,505 @@
+﻿Public Class ApplicationSettings
+    Public Sub New()
+        '-- Load settings from Data folder
+        Try
+            If System.IO.File.Exists(GetSettingsFilename()) Then
+                Dim xDoc As New Xml.XmlDocument()
+                xDoc.Load(GetSettingsFilename())
+                Dim xElement As Xml.XmlElement = xDoc.SelectSingleNode("//LastSemester")
+                If xElement IsNot Nothing Then
+                    LastSemesterFile = xElement.InnerText
+                Else
+                    LastSemesterFile = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AttendenceReportMarkPresent")
+                If xElement IsNot Nothing Then
+                    AttendenceReportMarkPresent = xElement.InnerText
+                Else
+                    AttendenceReportMarkPresent = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//AttendenceReportMarkLate")
+                If xElement IsNot Nothing Then
+                    AttendenceReportMarkLate = xElement.InnerText
+                Else
+                    AttendenceReportMarkLate = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//AttendenceReportMarkAbsent")
+                If xElement IsNot Nothing Then
+                    AttendenceReportMarkAbsent = xElement.InnerText
+                Else
+                    AttendenceReportMarkAbsent = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//AttendenceReportMarkRemoved")
+                If xElement IsNot Nothing Then
+                    AttendenceReportMarkRemoved = xElement.InnerText
+                Else
+                    AttendenceReportMarkRemoved = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//AttendenceReportMarkUnknown")
+                If xElement IsNot Nothing Then
+                    AttendenceReportMarkUnknown = xElement.InnerText
+                Else
+                    AttendenceReportMarkUnknown = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//AttendenceReportMarkExcused")
+                If xElement IsNot Nothing Then
+                    AttendenceReportMarkExcused = xElement.InnerText
+                Else
+                    AttendenceReportMarkExcused = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ShowHiddenStudents")
+                If xElement IsNot Nothing Then
+                    ShowHiddenStudents = ConvertToBool(xElement.InnerText, True)
+                Else
+                    ShowHiddenStudents = True
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ExamClockDuration")
+                If xElement IsNot Nothing Then
+                    ExamClockDuration = ConvertToInt32(xElement.InnerText, 120)
+                Else
+                    ExamClockDuration = 120
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ExamFailDefaultFeedback")
+                If xElement IsNot Nothing Then
+                    ExamFailDefaultFeedback = xElement.InnerText
+                Else
+                    ExamFailDefaultFeedback = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ExamPassWeakDefaultFeedback")
+                If xElement IsNot Nothing Then
+                    ExamPassWeakDefaultFeedback = xElement.InnerText
+                Else
+                    ExamPassWeakDefaultFeedback = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ExamPassDefaultFeedback")
+                If xElement IsNot Nothing Then
+                    ExamPassDefaultFeedback = xElement.InnerText
+                Else
+                    ExamPassDefaultFeedback = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//NoSubmitFeedback")
+                If xElement IsNot Nothing Then
+                    NoSubmitFeedback = xElement.InnerText
+                Else
+                    NoSubmitFeedback = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//CDDrive")
+                If xElement IsNot Nothing Then
+                    CDDrive = xElement.InnerText
+                Else
+                    CDDrive = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//EmailSendingAccount")
+                If xElement IsNot Nothing Then
+                    EmailSendingAccount = ConvertToInt32(xElement.InnerText, 0)
+                Else
+                    EmailSendingAccount = 0
+                End If
+
+                xElement = xDoc.SelectSingleNode("//PathToTrulyMailEXE")
+                If xElement IsNot Nothing Then
+                    PathToTrulyMailEXE = xElement.InnerText
+                Else
+                    PathToTrulyMailEXE = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//DataBackupsToRetain ")
+                If xElement IsNot Nothing Then
+                    DataBackupsToRetain = ConvertToInt32(xElement.InnerText, 20)
+                Else
+                    DataBackupsToRetain = 20
+                End If
+
+                xElement = xDoc.SelectSingleNode("//IncludeFeedbackWhenEmailing ")
+                If xElement IsNot Nothing Then
+                    IncludeFeedbackWhenEmailing = ConvertToBool(xElement.InnerText, False)
+                Else
+                    IncludeFeedbackWhenEmailing = False
+                End If
+
+                xElement = xDoc.SelectSingleNode("//EmailTrailingText")
+                If xElement IsNot Nothing Then
+                    EmailTrailingText = xElement.InnerText
+                Else
+                    EmailTrailingText = String.Empty
+                End If
+
+
+                xElement = xDoc.SelectSingleNode("//OutcomeExportMarkPass")
+                If xElement IsNot Nothing Then
+                    OutcomeExportMarkPass = xElement.InnerText
+                Else
+                    OutcomeExportMarkPass = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//OutcomeExportMarkFail")
+                If xElement IsNot Nothing Then
+                    OutcomeExportMarkFail = xElement.InnerText
+                Else
+                    OutcomeExportMarkFail = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//OutcomeExportMarkUnknown")
+                If xElement IsNot Nothing Then
+                    OutcomeExportMarkUnknown = xElement.InnerText
+                Else
+                    OutcomeExportMarkUnknown = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AssignmentNotSubmittedDefaultOutcomeComment")
+                If xElement IsNot Nothing Then
+                    AssignmentNotSubmittedDefaultOutcomeComment = xElement.InnerText
+                Else
+                    AssignmentNotSubmittedDefaultOutcomeComment = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//LoggingThreshold")
+                If xElement IsNot Nothing Then
+                    LoggingThreshold = ConvertToInt32(xElement.InnerText, 5)
+                Else
+                    LoggingThreshold = 5 '-- default
+                End If
+
+                xElement = xDoc.SelectSingleNode("//FeedbackTextPreviouslyPassed")
+                If xElement IsNot Nothing Then
+                    FeedbackTextPreviouslyPassed = xElement.InnerText
+                Else
+                    FeedbackTextPreviouslyPassed = "Passed previously"
+                End If
+
+                xElement = xDoc.SelectSingleNode("//RedoPassAllDefaultComment")
+                If xElement IsNot Nothing Then
+                    RedoPassAllDefaultComment = xElement.InnerText
+                Else
+                    RedoPassAllDefaultComment = String.Empty
+                End If
+                xElement = xDoc.SelectSingleNode("//LateSubmitDefaultComment")
+                If xElement IsNot Nothing Then
+                    LateSubmitDefaultComment = xElement.InnerText
+                Else
+                    LateSubmitDefaultComment = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//MarkingPageSaveFolder")
+                If xElement IsNot Nothing Then
+                    MarkingPageSaveFolder = xElement.InnerText
+                Else
+                    MarkingPageSaveFolder = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AutoSaveSeconds")
+                If xElement IsNot Nothing Then
+                    AutoSaveSeconds = ConvertToInt32(xElement.InnerText, 600)
+                Else
+                    AutoSaveSeconds = 600
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AutoSaveEnabled")
+                If xElement IsNot Nothing Then
+                    AutoSaveEnabled = ConvertToBool(xElement.InnerText, True)
+                Else
+                    AutoSaveEnabled = True
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AttendanceWindowMaximized")
+                If xElement IsNot Nothing Then
+                    AttendanceWindowMaximized = ConvertToBool(xElement.InnerText, False)
+                Else
+                    AttendanceWindowMaximized = False
+                End If
+
+                xElement = xDoc.SelectSingleNode("//OpenAssignmentDetailMaximized")
+                If xElement IsNot Nothing Then
+                    OpenAssignmentDetailMaximized = ConvertToBool(xElement.InnerText, False)
+                Else
+                    OpenAssignmentDetailMaximized = False
+                End If
+
+                xElement = xDoc.SelectSingleNode("//DisableColorsInAssignmentDetail")
+                If xElement IsNot Nothing Then
+                    DisableColorsInAssignmentDetail = ConvertToBool(xElement.InnerText, False)
+                Else
+                    DisableColorsInAssignmentDetail = False
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AssignmentMarkingWarning1")
+                If xElement IsNot Nothing Then
+                    AssignmentMarkingWarning1 = ConvertToInt32(xElement.InnerText, 15)
+                Else
+                    AssignmentMarkingWarning1 = 15
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AssignmentMarkingWarning2")
+                If xElement IsNot Nothing Then
+                    AssignmentMarkingWarning2 = ConvertToInt32(xElement.InnerText, 20)
+                Else
+                    AssignmentMarkingWarning2 = 20
+                End If
+
+                xElement = xDoc.SelectSingleNode("//MainFormStudentListViewState")
+                If xElement IsNot Nothing Then
+                    _mainFormStudentListViewStatePrivate = xElement.InnerText
+                Else
+                    _mainFormStudentListViewStatePrivate = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//PassResultsText")
+                If xElement IsNot Nothing Then
+                    PassResultsText = xElement.InnerText
+                Else
+                    PassResultsText = "Already"
+                End If
+                xElement = xDoc.SelectSingleNode("//FailResultsText")
+                If xElement IsNot Nothing Then
+                    FailResultsText = xElement.InnerText
+                Else
+                    FailResultsText = "Not yet"
+                End If
+                xElement = xDoc.SelectSingleNode("//UnknownResultsText ")
+                If xElement IsNot Nothing Then
+                    UnknownResultsText = xElement.InnerText
+                Else
+                    UnknownResultsText = "Did not submit"
+                End If
+
+                xElement = xDoc.SelectSingleNode("//HighlightAttendanceNoPresentationQuality")
+                If xElement IsNot Nothing Then
+                    HighlightAttendanceNoPresentationQuality = ConvertToBool(xElement.InnerText, False)
+                Else
+                    HighlightAttendanceNoPresentationQuality = False
+                End If
+
+                xElement = xDoc.SelectSingleNode("//HighlightAttendanceUnknownGender")
+                If xElement IsNot Nothing Then
+                    HighlightAttendanceUnknownGender = ConvertToBool(xElement.InnerText, False)
+                Else
+                    HighlightAttendanceUnknownGender = False
+                End If
+
+                xElement = xDoc.SelectSingleNode("//EmailQuizResultsIncorrectComments")
+                If xElement IsNot Nothing Then
+                    EmailQuizResultsIncorrectComments = xElement.InnerText
+                Else
+                    EmailQuizResultsIncorrectComments = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//EmailQuizTrailingText")
+                If xElement IsNot Nothing Then
+                    EmailQuizTrailingText = xElement.InnerText
+                Else
+                    EmailQuizTrailingText = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//StudentAssignmentNormalWindowHeight")
+                If xElement IsNot Nothing Then
+                    StudentAssignmentNormalWindowHeight = ConvertToInt32(xElement.InnerText, 400)
+                Else
+                    StudentAssignmentNormalWindowHeight = 400
+                End If
+
+                xElement = xDoc.SelectSingleNode("//StudentAssignmentNormalWindowWidth")
+                If xElement IsNot Nothing Then
+                    StudentAssignmentNormalWindowWidth = ConvertToInt32(xElement.InnerText, 400)
+                Else
+                    StudentAssignmentNormalWindowWidth = 400
+                End If
+
+                xElement = xDoc.SelectSingleNode("//StudentAssignmentNormalWindowX")
+                If xElement IsNot Nothing Then
+                    StudentAssignmentNormalWindowX = ConvertToInt32(xElement.InnerText, 50)
+                Else
+                    StudentAssignmentNormalWindowX = 50
+                End If
+
+                xElement = xDoc.SelectSingleNode("//StudentAssignmentNormalWindowY")
+                If xElement IsNot Nothing Then
+                    StudentAssignmentNormalWindowY = ConvertToInt32(xElement.InnerText, 50)
+                Else
+                    StudentAssignmentNormalWindowY = 50
+                End If
+
+                xElement = xDoc.SelectSingleNode("//Notes")
+                If xElement IsNot Nothing Then
+                    Notes = xElement.InnerText
+                Else
+                    Notes = String.Empty
+                End If
+
+
+                LoadAutoTexts(xDoc)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Public Sub Save()
+        '-- Save back to Data folder
+        Try
+            Dim xDoc As New Xml.XmlDocument()
+            xDoc.AppendChild(xDoc.CreateElement("settings"))
+            Dim xElement As Xml.XmlElement
+            xElement = xDoc.CreateElement("LastSemester")
+            xElement.InnerText = LastSemesterFile
+            xDoc.DocumentElement.AppendChild(xElement)
+
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendenceReportMarkPresent", AttendenceReportMarkPresent))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendenceReportMarkLate", AttendenceReportMarkLate))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendenceReportMarkAbsent", AttendenceReportMarkAbsent))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendenceReportMarkRemoved", AttendenceReportMarkRemoved))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendenceReportMarkUnknown", AttendenceReportMarkUnknown))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendenceReportMarkExcused", AttendenceReportMarkExcused))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ShowHiddenStudents", ShowHiddenStudents.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ExamClockDuration", ExamClockDuration.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ExamFailDefaultFeedback", ExamFailDefaultFeedback))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ExamPassWeakDefaultFeedback", ExamPassWeakDefaultFeedback))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ExamPassDefaultFeedback", ExamPassDefaultFeedback))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "NoSubmitFeedback", NoSubmitFeedback))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "CDDrive", CDDrive))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailSendingAccount", EmailSendingAccount))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PathToTrulyMailEXE", PathToTrulyMailEXE))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "DataBackupsToRetain", DataBackupsToRetain))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "IncludeFeedbackWhenEmailing", IncludeFeedbackWhenEmailing))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailTrailingText", EmailTrailingText))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "OutcomeExportMarkPass", OutcomeExportMarkPass))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "OutcomeExportMarkFail", OutcomeExportMarkFail))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "OutcomeExportMarkUnknown", OutcomeExportMarkUnknown))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentNotSubmittedDefaultOutcomeComment", AssignmentNotSubmittedDefaultOutcomeComment))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "LoggingThreshold", LoggingThreshold))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "FeedbackTextPreviouslyPassed", FeedbackTextPreviouslyPassed))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "RedoPassAllDefaultComment", RedoPassAllDefaultComment))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "LateSubmitDefaultComment", LateSubmitDefaultComment))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MarkingPageSaveFolder", MarkingPageSaveFolder))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AutoSaveEnabled", AutoSaveEnabled.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AutoSaveSeconds", AutoSaveSeconds.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendanceWindowMaximized", AttendanceWindowMaximized.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "OpenAssignmentDetailMaximized", OpenAssignmentDetailMaximized.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "DisableColorsInAssignmentDetail", DisableColorsInAssignmentDetail.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentMarkingWarning1", AssignmentMarkingWarning1.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentMarkingWarning2", AssignmentMarkingWarning2.ToString()))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MainFormStudentListViewState", _mainFormStudentListViewStatePrivate))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PassResultsText", PassResultsText))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "FailResultsText", FailResultsText))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UnknownResultsText", UnknownResultsText))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "HighlightAttendanceNoPresentationQuality", HighlightAttendanceNoPresentationQuality))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "HighlightAttendanceUnknownGender", HighlightAttendanceUnknownGender))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailQuizResultsIncorrectComments", EmailQuizResultsIncorrectComments))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailQuizTrailingText", EmailQuizTrailingText))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "StudentAssignmentNormalWindowHeight", StudentAssignmentNormalWindowHeight))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "StudentAssignmentNormalWindowWidth", StudentAssignmentNormalWindowWidth))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "StudentAssignmentNormalWindowX", StudentAssignmentNormalWindowX))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "StudentAssignmentNormalWindowY", StudentAssignmentNormalWindowY))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "Notes", Notes))
+
+            xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
+
+
+            xDoc.Save(GetSettingsFilename())
+        Catch ex As Exception
+            Log(ex)
+            Application.DoEvents()
+        End Try
+    End Sub
+    Private Function GetSettingsNode(xDoc As Xml.XmlDocument, name As String, value As String) As Xml.XmlElement
+        Dim xElement As Xml.XmlElement
+        xElement = xDoc.CreateElement(name)
+        xElement.InnerText = value
+
+        Return xElement
+    End Function
+    Private Function GetSettingsFilename() As String
+        Const SETTIGS_FILENAME As String = "settings.xml"
+        Return System.IO.Path.Combine(GetDataFolder(), SETTIGS_FILENAME)
+    End Function
+    Private Sub LoadAutoTexts(xDoc As Xml.XmlDocument)
+        Dim xList As Xml.XmlNodeList = xDoc.SelectNodes("//AutoText")
+        Dim item As New AutoTextSimple
+        For Each xElement As Xml.XmlElement In xList
+            item = New AutoTextSimple
+            item.Text = xElement.InnerText
+
+            ImprovementAutoTextList.Add(item)
+        Next
+    End Sub
+    Private Function GetAutoTextSettingsNode(xDoc As Xml.XmlDocument) As Xml.XmlElement
+        Dim root As Xml.XmlElement = xDoc.CreateElement("AutoTexts")
+        Dim xElement As Xml.XmlElement
+        For Each item As AutoTextSimple In ImprovementAutoTextList
+            xElement = xDoc.CreateElement("AutoText")
+            xElement.InnerText = item.Text
+
+            root.AppendChild(xElement)
+        Next
+
+        Return root
+    End Function
+#Region " Public Properties "
+    Public Property Notes As String
+    Public Property StudentAssignmentNormalWindowHeight As Integer
+    Public Property StudentAssignmentNormalWindowWidth As Integer
+    Public Property StudentAssignmentNormalWindowX As Integer
+    Public Property StudentAssignmentNormalWindowY As Integer
+
+    Public Property EmailQuizTrailingText As String
+    Public Property EmailQuizResultsIncorrectComments As String
+    Public Property HighlightAttendanceUnknownGender As Boolean
+    Public Property HighlightAttendanceNoPresentationQuality As Boolean
+    Public Property PassResultsText As String
+    Public Property FailResultsText As String
+    Public Property UnknownResultsText As String
+    Private Property _mainFormStudentListViewStatePrivate As String
+    Public Property MainFormStudentListViewState() As Byte()
+        Get
+            Return Convert.FromBase64String(_mainFormStudentListViewStatePrivate)
+        End Get
+        Set(ByVal value As Byte())
+            _mainFormStudentListViewStatePrivate = Convert.ToBase64String(value)
+        End Set
+    End Property
+    Public Property AssignmentMarkingWarning1 As Integer
+    Public Property AssignmentMarkingWarning2 As Integer
+    Public Property OpenAssignmentDetailMaximized As Boolean
+    Public Property DisableColorsInAssignmentDetail As Boolean
+    Public Property AttendanceWindowMaximized As Boolean
+    Public Property AutoSaveEnabled As Boolean
+    Public Property AutoSaveSeconds As Integer
+    Public Property MarkingPageSaveFolder As String
+    Public Property RedoPassAllDefaultComment As String
+    Public Property LateSubmitDefaultComment As String
+    Public Property ImprovementAutoTextList As New List(Of AutoTextSimple)
+    Public Property FeedbackTextPreviouslyPassed As String
+    Public Property OutcomeExportMarkPass As String
+    Public Property OutcomeExportMarkFail As String
+    Public Property OutcomeExportMarkUnknown As String
+    Public Property LastStudentDetailTab As Integer
+    Public Property EmailTrailingText As String
+    Public Property IncludeFeedbackWhenEmailing As Boolean
+    Public Property DataBackupsToRetain As Integer
+    Public Property PathToTrulyMailEXE As String
+    Public Property EmailSendingAccount As Integer
+    Public Property CDDrive As String
+    Public Property LastSemesterFile As String
+    Public Property AttendenceReportMarkPresent As String
+    Public Property AttendenceReportMarkLate As String
+    Public Property AttendenceReportMarkAbsent As String
+    Public Property AttendenceReportMarkRemoved As String
+    Public Property AttendenceReportMarkUnknown As String
+    Public Property AttendenceReportMarkExcused As String
+    Public Property ShowHiddenStudents As Boolean
+    Public Property ExamClockDuration As Integer '-- in seconds
+    Public Property ExamFailDefaultFeedback As String
+    Public Property ExamPassWeakDefaultFeedback As String
+    Public Property ExamPassDefaultFeedback As String
+    Public Property NoSubmitFeedback As String
+    Public Property AssignmentNotSubmittedDefaultOutcomeComment As String
+    Public Property LoggingThreshold As Integer
+#End Region
+End Class

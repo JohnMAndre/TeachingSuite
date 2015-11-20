@@ -1,0 +1,3 @@
+﻿For redo
+	enhance examclock for second and third try
+	enhance studentassignmentdetails for second and third try (checkboxes, etc.)

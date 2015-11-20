@@ -1,0 +1,229 @@
+Public Class ImportStudentsFromText
+
+    Private m_class As SchoolClass
+    Private m_dictHistoricalStudents As New Dictionary(Of String, Student)
+    Private m_boolCancel As Boolean
+    Private m_lstStudents As List(Of Student)
+
+    Public Sub New(schoolClass As SchoolClass)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        m_class = schoolClass
+        lblTitle.Text &= " " & schoolClass.Name
+    End Sub
+    Private Function GetStudentByID(studentID As String) As Student
+        If m_dictHistoricalStudents.ContainsKey(studentID.ToUpper()) Then
+            Return m_dictHistoricalStudents(studentID.ToUpper())
+        Else
+            Return Nothing
+        End If
+    End Function
+    Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
+        Try
+            Dim intStudentsImported As Integer
+            Dim objStud, stud As Student '-- stud is existing, objStud is importing
+            For Each objStud In m_lstStudents
+                '-- First, do we have this student in the system already
+                '   if so, keep nickname, email, notes but dump other things like activityLog
+                stud = GetStudentByID(objStud.StudentID)
+
+                If stud Is Nothing Then
+                    '-- No existing student with that ID
+
+                    objStud.SchoolClass = m_class
+                    m_class.Students.Add(objStud)
+                Else
+                    '-- Do have existing student
+                    '   update existing student with new data, if new data exists
+                    stud.SchoolClass = m_class
+                    stud.ClearStudentOfHistoricalData()
+                    If objStud.AdminNumber <> 0 Then
+                        stud.AdminNumber = objStud.AdminNumber
+                    End If
+
+                    If objStud.AltNumber <> 0 Then
+                        stud.AltNumber = objStud.AltNumber
+                    End If
+
+                    If objStud.EmailAddress.Trim.Length > 0 Then
+                        stud.EmailAddress = objStud.EmailAddress
+                    End If
+
+                    If objStud.ExtStudentID.Trim.Length > 0 Then
+                        stud.ExtStudentID = objStud.ExtStudentID
+                    End If
+
+                    stud.ActivityLog = String.Empty
+                    m_class.Students.Add(stud)
+                End If
+
+                intStudentsImported += 1
+            Next
+            'For Each strLine As String In txtImportText.Lines
+            '    Dim strData() As String = strLine.Split(vbTab)
+            '    If strData.Length >= 1 Then
+            '        '-- If student exists in history, we will use that data, otherwise, we will create a new student
+            '        stud = GetStudentByID(strData(0))
+            '        If stud Is Nothing Then
+            '            stud = New Student(m_class)
+            '            If strData.Length >= 3 Then
+            '                stud.StudentID = RemoveDoubleSpaces(strData(0))
+            '                stud.LocalName = RemoveDoubleSpaces(strData(1))
+            '                stud.AdminNumber = ConvertToInt32(strData(2), 0)
+            '            End If
+
+            '            If strData.Length >= 4 Then
+            '                stud.Nickname = RemoveDoubleSpaces(strData(3))
+            '            End If
+            '            If strData.Length >= 5 Then
+            '                stud.EmailAddress = strData(4)
+            '            End If
+            '            If strData.Length >= 6 Then
+            '                stud.AltNumber = ConvertToInt32(strData(5), 0)
+            '            End If
+            '        Else
+            '            stud.SchoolClass = m_class
+            '            stud.ClearSemesterSpecificData()
+            '            stud.AdminNumber = ConvertToInt32(strData(2), 0)
+            '        End If
+
+            '        m_class.Students.Add(stud)
+            '        stud.ActivityLog = String.Empty
+            '        intStudentsImported += 1
+            '    End If
+            'Next
+
+            If intStudentsImported > 0 Then
+                MessageBox.Show(intStudentsImported.ToString("#,##0") & " students imported.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+            Else
+                Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        End Try
+    End Sub
+
+    Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
+        Timer1.Stop()
+        Dim ht As New Hashtable() '-- key  = studentID, value = student object
+
+        Dim intStudentsAdded, intStudentsSearched As Integer
+        Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
+        Dim semCurrent As Semester
+        Dim strFilename As String
+        Do
+            For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
+                strFilename = lstSemesters(intCounter)
+                semCurrent = New Semester(strFilename)
+                For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+                    For Each clas As SchoolClass In clsgrp.Classes
+                        For Each stud In clas.Students
+                            intStudentsSearched += 1
+                            '-- add to collection, only if there IS a student ID
+                            If Not m_dictHistoricalStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
+                                m_dictHistoricalStudents.Add(stud.StudentID.ToUpper, stud)
+                                intStudentsAdded += 1
+                            End If
+
+                            lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+                            lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
+                            If m_boolCancel Then
+                                Exit Do
+                            End If
+                            Application.DoEvents()
+                        Next
+                    Next
+                Next
+            Next
+            Exit Do
+        Loop While True
+    End Sub
+
+    Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
+        m_boolCancel = True
+    End Sub
+
+    Private Sub PasteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasteToolStripMenuItem.Click
+        Try
+            m_lstStudents = New List(Of Student)
+            Dim objStud As Student
+
+            Dim strClipboard As String = Clipboard.GetText()
+            If strClipboard Is Nothing Then
+                MessageBox.Show("The clipboard is empty.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf Not strClipboard.Contains(vbTab) Then
+                MessageBox.Show("The clipboard data does not contain tabs. It must be spreadsheet data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf Not strClipboard.Contains(Environment.NewLine) Then
+                MessageBox.Show("The clipboard does not contain multiple lines but it needs to (you can manually enter one student, right?).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Dim objClass As New SchoolClass(New ClassGroup(New Semester("dummy"))) '-- just a dummy class
+                Dim stud As Student
+
+                Dim strRows() As String
+                strRows = strClipboard.Split(Environment.NewLine)
+                Dim row() As String
+                For intCounter As Integer = 0 To strRows.Count - 1
+                    row = strRows(intCounter).Split(vbTab)
+                    If row.Length < 7 Then
+                        If m_lstStudents.Count > 0 Then
+                            '-- we are done
+                            Exit For
+                        Else
+                            MessageBox.Show("There should be 7 columns of data: Admin, Alt, StudentID, Local name, Nickname, Email, and ExtID (the clipboard has " & row.Length & ").")
+                        End If
+                    End If
+                    objStud = New Student(objClass)
+                    If IsNumeric(row(0)) Then
+                        objStud.AdminNumber = row(0)
+                    Else
+                        objStud.AdminNumber = 0
+                    End If
+                    If IsNumeric(row(1)) Then
+                        objStud.AltNumber = row(1)
+                    Else
+                        objStud.AltNumber = 0
+                    End If
+                    objStud.StudentID = row(2).Trim()
+
+                    stud = GetStudentByID(objStud.StudentID)
+                    If stud IsNot Nothing Then
+                        If row(3).Trim().Length > 0 Then
+                            objStud.LocalName = row(3).Trim()
+                        Else
+                            objStud.LocalName = stud.LocalName
+                        End If
+                        If row(4).Trim().Length > 0 Then
+                            objStud.Nickname = row(4).Trim()
+                        Else
+                            objStud.Nickname = stud.Nickname
+                        End If
+                        If row(5).Trim().Length > 0 Then
+                            objStud.EmailAddress = row(5).Trim()
+                        Else
+                            objStud.EmailAddress = stud.EmailAddress
+                        End If
+                        If row(6).Trim().Length > 0 Then
+                            objStud.ExtStudentID = row(6).Trim()
+                        Else
+                            objStud.ExtStudentID = stud.ExtStudentID
+                        End If
+                    Else
+                        objStud.LocalName = row(3).Trim()
+                        objStud.Nickname = row(4).Trim()
+                        objStud.EmailAddress = row(5).Trim()
+                        objStud.ExtStudentID = row(6).Trim()
+                    End If
+
+                    m_lstStudents.Add(objStud)
+                Next
+                olvStudents.SetObjects(m_lstStudents)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+End Class

@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83A13431-BCBD-4BBF-9E92-D2E9B6E60981}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Teaching.My.MyApplication</StartupObject>
+    <RootNamespace>Teaching</RootNamespace>
+    <AssemblyName>Teaching</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Teaching.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DefineConstants>SUPPORT_ZIP=True</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Teaching.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C1.Data.2, Version=2.0.20101.236, Culture=neutral, PublicKeyToken=900b028620cd3a1b, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Editor.2, Version=2.0.20101.39, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1SpellChecker.2, Version=2.0.20101.64, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SupportFiles\C1.Win.C1SpellChecker.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL" />
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\SupportFiles\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectListView">
+      <HintPath>..\..\TrulyMail\SupportFiles\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Classes\ApplicationSettings.vb" />
+    <Compile Include="Classes\AutoTexts.vb" />
+    <Compile Include="Classes\OLVRenders.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\ClassAssignmentNormalDetails.Designer.vb">
+      <DependentUpon>ClassAssignmentNormalDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\ClassAssignmentNormalDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\EmailQuizResults.Designer.vb">
+      <DependentUpon>EmailQuizResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\EmailQuizResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\StudentAssignmentNormalDetails.Designer.vb">
+      <DependentUpon>StudentAssignmentNormalDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\StudentAssignmentNormalDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attendence\EitherOrAttendance.Designer.vb">
+      <DependentUpon>EitherOrAttendance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attendence\EitherOrAttendance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoSaveRecovery.Designer.vb">
+      <DependentUpon>AutoSaveRecovery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoSaveRecovery.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\InputBox.designer.vb">
+      <DependentUpon>InputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\InputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\HistoricalStudentFinder.Designer.vb">
+      <DependentUpon>HistoricalStudentFinder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\HistoricalStudentFinder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAddDropStudents.Designer.vb">
+      <DependentUpon>ImportAddDropStudents.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAddDropStudents.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAssignmentNormalGrades.Designer.vb">
+      <DependentUpon>ImportAssignmentNormalGrades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAssignmentNormalGrades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.Designer.vb">
+      <DependentUpon>ImportImprovementItemsFromOtherSemester.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImprovementItemManager.Designer.vb">
+      <DependentUpon>ImprovementItemManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImprovementItemManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ExcessiveAbsencesReport.Designer.vb">
+      <DependentUpon>ExcessiveAbsencesReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ExcessiveAbsencesReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\SemesterStatistics.Designer.vb">
+      <DependentUpon>SemesterStatistics.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\SemesterStatistics.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentGrades.Designer.vb">
+      <DependentUpon>StudentGrades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentGrades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentQualityReport.Designer.vb">
+      <DependentUpon>StudentQualityReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentQualityReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\AssignmentProcessingReport.Designer.vb">
+      <DependentUpon>AssignmentProcessingReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\AssignmentProcessingReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\PreperationStatus.Designer.vb">
+      <DependentUpon>PreperationStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\PreperationStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Schedule\ScheduleExport.Designer.vb">
+      <DependentUpon>ScheduleExport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Schedule\ScheduleExport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\SecheduleItemList.Designer.vb">
+      <DependentUpon>SecheduleItemList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\SecheduleItemList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StudentSelector.Designer.vb">
+      <DependentUpon>StudentSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StudentSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\DuplexSettings.vb" />
+    <Compile Include="Forms\Assignments\AssignmentDocumentSelector.Designer.vb">
+      <DependentUpon>AssignmentDocumentSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\AssignmentDocumentSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\OralExamDetails.Designer.vb">
+      <DependentUpon>OralExamDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\OralExamDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attendence\AttendenceImport.Designer.vb">
+      <DependentUpon>AttendenceImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attendence\AttendenceImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attendence\AttendencePublic.Designer.vb">
+      <DependentUpon>AttendencePublic.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attendence\AttendencePublic.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\ClassAssignmentDetails.Designer.vb">
+      <DependentUpon>ClassAssignmentDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\ClassAssignmentDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuildGroups.Designer.vb">
+      <DependentUpon>BuildGroups.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuildGroups.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BulkEmailer.Designer.vb">
+      <DependentUpon>BulkEmailer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BulkEmailer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ClassDetails.Designer.vb">
+      <DependentUpon>ClassDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ClassDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ClassGroupDetails.Designer.vb">
+      <DependentUpon>ClassGroupDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ClassGroupDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\ClassSelector.Designer.vb">
+      <DependentUpon>ClassSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\ClassSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddSemester.Designer.vb">
+      <DependentUpon>AddSemester.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddSemester.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attendence\AttendenceForm.Designer.vb">
+      <DependentUpon>AttendenceForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attendence\AttendenceForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\EmailModuleResults.Designer.vb">
+      <DependentUpon>EmailModuleResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\EmailModuleResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Schedule\EditManualScheduleItem.Designer.vb">
+      <DependentUpon>EditManualScheduleItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Schedule\EditManualScheduleItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAdditionalStudentData.Designer.vb">
+      <DependentUpon>ImportAdditionalStudentData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAdditionalStudentData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportClassFromSemester.Designer.vb">
+      <DependentUpon>ImportClassFromSemester.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportClassFromSemester.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportStudentsFromSemester.Designer.vb">
+      <DependentUpon>ImportStudentsFromSemester.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportStudentsFromSemester.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportStudentsFromText.Designer.vb">
+      <DependentUpon>ImportStudentsFromText.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportStudentsFromText.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionsForm.Designer.vb">
+      <DependentUpon>OptionsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\ExamClockForm.Designer.vb">
+      <DependentUpon>ExamClockForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\ExamClockForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\AssignmentResults.Designer.vb">
+      <DependentUpon>AssignmentResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\AssignmentResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\AttendenceErrors.Designer.vb">
+      <DependentUpon>AttendenceErrors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\AttendenceErrors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assignments\StudentAssignmentDetails.Designer.vb">
+      <DependentUpon>StudentAssignmentDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\StudentAssignmentDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\FailedOutcomes.Designer.vb">
+      <DependentUpon>FailedOutcomes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\FailedOutcomes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ModuleFeedbackVerification.Designer.vb">
+      <DependentUpon>ModuleFeedbackVerification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ModuleFeedbackVerification.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ModuleResults.Designer.vb">
+      <DependentUpon>ModuleResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ModuleResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentOutcomeResults.Designer.vb">
+      <DependentUpon>StudentOutcomeResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentOutcomeResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplashScreen.Designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateEmailAddressForm.Designer.vb">
+      <DependentUpon>UpdateEmailAddressForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateEmailAddressForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Conversion.vb" />
+    <Compile Include="Modules\ExportSupport.vb" />
+    <Compile Include="Modules\Globals.vb" />
+    <Compile Include="Forms\MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module1.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Classes\DataClasses.vb" />
+    <Compile Include="Forms\StudentDetail.Designer.vb">
+      <DependentUpon>StudentDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StudentDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Assignments\AssignmentDocumentSelector.resx">
+      <DependentUpon>AssignmentDocumentSelector.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\ClassAssignmentNormalDetails.resx">
+      <DependentUpon>ClassAssignmentNormalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\EmailQuizResults.resx">
+      <DependentUpon>EmailQuizResults.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\OralExamDetails.resx">
+      <DependentUpon>OralExamDetails.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\StudentAssignmentNormalDetails.resx">
+      <DependentUpon>StudentAssignmentNormalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attendence\AttendenceImport.resx">
+      <DependentUpon>AttendenceImport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attendence\AttendencePublic.resx">
+      <DependentUpon>AttendencePublic.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\ClassAssignmentDetails.resx">
+      <DependentUpon>ClassAssignmentDetails.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attendence\EitherOrAttendance.resx">
+      <DependentUpon>EitherOrAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuildGroups.resx">
+      <DependentUpon>BuildGroups.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BulkEmailer.resx">
+      <DependentUpon>BulkEmailer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ClassDetails.resx">
+      <DependentUpon>ClassDetails.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ClassGroupDetails.resx">
+      <DependentUpon>ClassGroupDetails.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoSaveRecovery.resx">
+      <DependentUpon>AutoSaveRecovery.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\ClassSelector.resx">
+      <DependentUpon>ClassSelector.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddSemester.resx">
+      <DependentUpon>AddSemester.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attendence\AttendenceForm.resx">
+      <DependentUpon>AttendenceForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\EmailModuleResults.resx">
+      <DependentUpon>EmailModuleResults.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\InputBox.resx">
+      <DependentUpon>InputBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportAddDropStudents.resx">
+      <DependentUpon>ImportAddDropStudents.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportAssignmentNormalGrades.resx">
+      <DependentUpon>ImportAssignmentNormalGrades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.resx">
+      <DependentUpon>ImportImprovementItemsFromOtherSemester.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImprovementItemManager.resx">
+      <DependentUpon>ImprovementItemManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ExcessiveAbsencesReport.resx">
+      <DependentUpon>ExcessiveAbsencesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\SemesterStatistics.resx">
+      <DependentUpon>SemesterStatistics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\StudentGrades.resx">
+      <DependentUpon>StudentGrades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\StudentQualityReport.resx">
+      <DependentUpon>StudentQualityReport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Schedule\EditManualScheduleItem.resx">
+      <DependentUpon>EditManualScheduleItem.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\HistoricalStudentFinder.resx">
+      <DependentUpon>HistoricalStudentFinder.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportAdditionalStudentData.resx">
+      <DependentUpon>ImportAdditionalStudentData.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportClassFromSemester.resx">
+      <DependentUpon>ImportClassFromSemester.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportStudentsFromSemester.resx">
+      <DependentUpon>ImportStudentsFromSemester.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportStudentsFromText.resx">
+      <DependentUpon>ImportStudentsFromText.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionsForm.resx">
+      <DependentUpon>OptionsForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\ExamClockForm.resx">
+      <DependentUpon>ExamClockForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\AssignmentProcessingReport.resx">
+      <DependentUpon>AssignmentProcessingReport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\AssignmentResults.resx">
+      <DependentUpon>AssignmentResults.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\AttendenceErrors.resx">
+      <DependentUpon>AttendenceErrors.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\StudentAssignmentDetails.resx">
+      <DependentUpon>StudentAssignmentDetails.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\FailedOutcomes.resx">
+      <DependentUpon>FailedOutcomes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ModuleFeedbackVerification.resx">
+      <DependentUpon>ModuleFeedbackVerification.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ModuleResults.resx">
+      <DependentUpon>ModuleResults.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\PreperationStatus.resx">
+      <DependentUpon>PreperationStatus.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\StudentOutcomeResults.resx">
+      <DependentUpon>StudentOutcomeResults.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Schedule\ScheduleExport.resx">
+      <DependentUpon>ScheduleExport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\SecheduleItemList.resx">
+      <DependentUpon>SecheduleItemList.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StudentSelector.resx">
+      <DependentUpon>StudentSelector.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateEmailAddressForm.resx">
+      <DependentUpon>UpdateEmailAddressForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StudentDetail.resx">
+      <DependentUpon>StudentDetail.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Classes\ClassDiagram1.cd" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.ico" />
+    <Content Include="Notes.txt" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\download_16.png" />
+    <None Include="Resources\download_32.png" />
+    <None Include="Resources\detective_32.png" />
+    <None Include="Resources\detective_16.png" />
+    <None Include="Resources\anchor_16.png" />
+    <None Include="Resources\eject_32.png" />
+    <None Include="Resources\notes_L_32.png" />
+    <None Include="Resources\calendar_A_32.png" />
+    <None Include="Resources\calendar_P_32.png" />
+    <None Include="Resources\calendar_X_32.png" />
+    <None Include="Resources\Copy_32.png" />
+    <None Include="Resources\play green button.png" />
+    <None Include="Resources\play_32.png" />
+    <None Include="Resources\Pause_32.png" />
+    <None Include="Resources\refresh_16.png" />
+    <None Include="Resources\favorite_add_32.png" />
+    <None Include="Resources\favorite_32.png" />
+    <None Include="Resources\paste_32.gif" />
+    <None Include="Resources\cut_32.gif" />
+    <None Include="Resources\save_32.png" />
+    <None Include="Resources\NoImage.png" />
+    <None Include="Resources\maybe_32.png" />
+    <None Include="Resources\Log_32.png" />
+    <None Include="Resources\address_book_32.png" />
+    <None Include="Resources\yellowball_32.png" />
+    <None Include="Resources\redball_32.png" />
+    <None Include="Resources\upload_32.png" />
+    <None Include="Resources\save_16.png" />
+    <None Include="Resources\upload_16.png" />
+    <None Include="Resources\down_16.png" />
+    <None Include="Resources\up_16.png" />
+    <None Include="Resources\no_16.png" />
+    <None Include="Resources\e-mail_16.png" />
+    <Content Include="ToDoList.txt" />
+    <None Include="Resources\userprofile_16.bmp" />
+    <None Include="Resources\Resend_32.png" />
+    <None Include="Resources\network_32.png" />
+    <None Include="Resources\profile_female.png" />
+    <None Include="Resources\adduser_32.bmp" />
+    <None Include="Resources\resumebutton_32.png" />
+    <None Include="Resources\backup_16.png" />
+    <None Include="Resources\backup_32.png" />
+    <None Include="Resources\smileystar_32.png" />
+    <None Include="Resources\smileystar_16.png" />
+    <None Include="Resources\notes_32.png" />
+    <None Include="Resources\notes_16.png" />
+    <None Include="Resources\smiley_32.png" />
+    <None Include="Resources\smileybig_32.png" />
+    <None Include="Resources\print %28printer%29.png" />
+    <None Include="Resources\print_32.png" />
+    <Content Include="settings.xml" />
+    <None Include="Resources\AutoText_16.png" />
+    <None Include="Resources\Arrow_left_16.png" />
+    <None Include="Resources\simpleX_16.png" />
+    <None Include="Resources\Import_16.png" />
+    <None Include="Resources\erase_16.png" />
+    <None Include="Resources\checkmark_16.png" />
+    <None Include="Resources\erase_32.bmp" />
+    <None Include="Resources\checkmark_32.png" />
+    <None Include="Resources\remove-icon_16.png" />
+    <None Include="Resources\add-icon_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

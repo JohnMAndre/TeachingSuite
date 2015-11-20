@@ -1,0 +1,8 @@
+Teaching: Add splash screen or load data in background...it is now not clear that it is starting up
+
+
+On import, remove double spaces until there are no more double spaces 
+	may require multiple passes
+
+Ability to import attendence records from alternate - add class-session record 
+	file - I use all the time when I forget my stick
