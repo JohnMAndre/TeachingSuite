@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace TeachingUpdater
 {
     class Conversion
     {
+        //public static int ConvertToInt32(string value, int valueIfCannotConvert)
+        //{
+
+        //}
         public static DateTime ConvertToDateFromXML(string value, DateTime valueIfCannotConvert)
         {
             if (value.Length < 5)

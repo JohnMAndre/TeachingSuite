@@ -34,17 +34,20 @@
             this.bgwDownloadUpdate = new System.ComponentModel.BackgroundWorker();
             this.bgwInstallUpdate = new System.ComponentModel.BackgroundWorker();
             this.KryptonManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.KryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonPalette2 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.KryptonPanel = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.lblOverall = new System.Windows.Forms.Label();
+            this.lblCurrent = new System.Windows.Forms.Label();
+            this.prgCurrentFile = new System.Windows.Forms.ProgressBar();
+            this.prgOverall = new System.Windows.Forms.ProgressBar();
             this.llblVersionsOnWebsite = new System.Windows.Forms.LinkLabel();
             this.btnDownload = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnInstall = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Label1 = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.TextBox();
-            this.kryptonPalette2 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.Timer1 = new System.Windows.Forms.Timer(this.components);
-            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.tmrDownloadAsynch = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.KryptonPanel)).BeginInit();
             this.KryptonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -54,17 +57,26 @@
             this.bgwCheckForUpdate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCheckForUpdate_DoWork);
             this.bgwCheckForUpdate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheckForUpdate_RunWorkerCompleted);
             // 
+            // bgwDownloadUpdate
+            // 
+            this.bgwDownloadUpdate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwDownloadUpdate_DoWork);
+            this.bgwDownloadUpdate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwDownloadUpdate_RunWorkerCompleted);
+            // 
             // KryptonManager
             // 
             this.KryptonManager.GlobalPalette = this.kryptonPalette2;
             this.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom;
             // 
-            // KryptonPalette1
+            // kryptonPalette2
             // 
-            this.KryptonPalette1.Common.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // KryptonPanel
             // 
+            this.KryptonPanel.Controls.Add(this.lblOverall);
+            this.KryptonPanel.Controls.Add(this.lblCurrent);
+            this.KryptonPanel.Controls.Add(this.prgCurrentFile);
+            this.KryptonPanel.Controls.Add(this.prgOverall);
             this.KryptonPanel.Controls.Add(this.llblVersionsOnWebsite);
             this.KryptonPanel.Controls.Add(this.btnDownload);
             this.KryptonPanel.Controls.Add(this.btnClose);
@@ -76,8 +88,56 @@
             this.KryptonPanel.Name = "KryptonPanel";
             this.KryptonPanel.Palette = this.kryptonPalette2;
             this.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.KryptonPanel.Size = new System.Drawing.Size(610, 227);
+            this.KryptonPanel.Size = new System.Drawing.Size(610, 339);
             this.KryptonPanel.TabIndex = 52;
+            // 
+            // lblOverall
+            // 
+            this.lblOverall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblOverall.AutoSize = true;
+            this.lblOverall.BackColor = System.Drawing.Color.Transparent;
+            this.lblOverall.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOverall.Location = new System.Drawing.Point(22, 272);
+            this.lblOverall.Name = "lblOverall";
+            this.lblOverall.Size = new System.Drawing.Size(51, 16);
+            this.lblOverall.TabIndex = 64;
+            this.lblOverall.Text = "Overall:";
+            this.lblOverall.Visible = false;
+            // 
+            // lblCurrent
+            // 
+            this.lblCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCurrent.AutoSize = true;
+            this.lblCurrent.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrent.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrent.Location = new System.Drawing.Point(22, 242);
+            this.lblCurrent.Name = "lblCurrent";
+            this.lblCurrent.Size = new System.Drawing.Size(54, 16);
+            this.lblCurrent.TabIndex = 64;
+            this.lblCurrent.Text = "Current:";
+            this.lblCurrent.Visible = false;
+            // 
+            // prgCurrentFile
+            // 
+            this.prgCurrentFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.prgCurrentFile.Location = new System.Drawing.Point(82, 240);
+            this.prgCurrentFile.Name = "prgCurrentFile";
+            this.prgCurrentFile.Size = new System.Drawing.Size(519, 23);
+            this.prgCurrentFile.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.prgCurrentFile.TabIndex = 63;
+            this.prgCurrentFile.Visible = false;
+            // 
+            // prgOverall
+            // 
+            this.prgOverall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.prgOverall.Location = new System.Drawing.Point(82, 269);
+            this.prgOverall.Name = "prgOverall";
+            this.prgOverall.Size = new System.Drawing.Size(519, 23);
+            this.prgOverall.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.prgOverall.TabIndex = 63;
+            this.prgOverall.Visible = false;
             // 
             // llblVersionsOnWebsite
             // 
@@ -85,7 +145,7 @@
             this.llblVersionsOnWebsite.AutoSize = true;
             this.llblVersionsOnWebsite.BackColor = System.Drawing.Color.Transparent;
             this.llblVersionsOnWebsite.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblVersionsOnWebsite.Location = new System.Drawing.Point(12, 195);
+            this.llblVersionsOnWebsite.Location = new System.Drawing.Point(15, 305);
             this.llblVersionsOnWebsite.Name = "llblVersionsOnWebsite";
             this.llblVersionsOnWebsite.Size = new System.Drawing.Size(152, 18);
             this.llblVersionsOnWebsite.TabIndex = 6;
@@ -97,33 +157,36 @@
             // 
             this.btnDownload.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDownload.Enabled = false;
-            this.btnDownload.Location = new System.Drawing.Point(178, 188);
+            this.btnDownload.Location = new System.Drawing.Point(181, 298);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(114, 29);
             this.btnDownload.TabIndex = 62;
             this.btnDownload.Values.ImageTransparentColor = System.Drawing.Color.White;
             this.btnDownload.Values.Text = "&Download";
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(481, 188);
+            this.btnClose.Location = new System.Drawing.Point(484, 298);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(114, 29);
             this.btnClose.TabIndex = 61;
             this.btnClose.Values.ImageTransparentColor = System.Drawing.Color.White;
             this.btnClose.Values.Text = "&Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnInstall
             // 
             this.btnInstall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnInstall.Enabled = false;
-            this.btnInstall.Location = new System.Drawing.Point(309, 188);
+            this.btnInstall.Location = new System.Drawing.Point(312, 298);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(114, 29);
             this.btnInstall.TabIndex = 60;
             this.btnInstall.Values.ImageTransparentColor = System.Drawing.Color.White;
             this.btnInstall.Values.Text = "&Install";
+            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // Label1
             // 
@@ -147,12 +210,8 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtStatus.Size = new System.Drawing.Size(583, 119);
+            this.txtStatus.Size = new System.Drawing.Size(583, 206);
             this.txtStatus.TabIndex = 0;
-            // 
-            // kryptonPalette2
-            // 
-            this.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // Timer1
             // 
@@ -160,16 +219,16 @@
             this.Timer1.Interval = 500;
             this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // kryptonManager1
+            // tmrDownloadAsynch
             // 
-            this.kryptonManager1.GlobalPalette = this.kryptonPalette2;
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom;
+            this.tmrDownloadAsynch.Interval = 500;
+            this.tmrDownloadAsynch.Tick += new System.EventHandler(this.tmrDownloadAsynch_Tick);
             // 
             // B
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 227);
+            this.ClientSize = new System.Drawing.Size(610, 339);
             this.Controls.Add(this.KryptonPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "B";
@@ -189,7 +248,6 @@
         private System.ComponentModel.BackgroundWorker bgwInstallUpdate;
         internal ComponentFactory.Krypton.Toolkit.KryptonManager KryptonManager;
         internal ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette2;
-        internal ComponentFactory.Krypton.Toolkit.KryptonPalette KryptonPalette1;
         internal ComponentFactory.Krypton.Toolkit.KryptonPanel KryptonPanel;
         internal System.Windows.Forms.LinkLabel llblVersionsOnWebsite;
         internal ComponentFactory.Krypton.Toolkit.KryptonButton btnDownload;
@@ -198,7 +256,11 @@
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.TextBox txtStatus;
         internal System.Windows.Forms.Timer Timer1;
-        internal ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
+        private System.Windows.Forms.ProgressBar prgOverall;
+        internal System.Windows.Forms.Label lblOverall;
+        internal System.Windows.Forms.Label lblCurrent;
+        private System.Windows.Forms.ProgressBar prgCurrentFile;
+        internal System.Windows.Forms.Timer tmrDownloadAsynch;
     }
 }
 
