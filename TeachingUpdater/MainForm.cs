@@ -28,6 +28,7 @@ namespace TeachingUpdater
         private XmlDocument _xDocVersionData = new XmlDocument();
         private XmlElement _xSelectedVersion;
         private string _strUpdateFolder;
+        private string _strInstallFolder;
 
         private const string BASE_URL = "http://trulymail.com/TeachingApp/";
         private List<FileDownloadData> _lstFilesToDownload = new List<FileDownloadData>() ;
@@ -57,7 +58,7 @@ namespace TeachingUpdater
             _wcDownloadFile.DownloadFileCompleted += _wcDownloadFile_DownloadFileCompleted;
 
             _strUpdateFolder = Path.GetDirectoryName(Application.ExecutablePath) + "\\Update\\";
-
+            _strInstallFolder = Path.GetDirectoryName(Application.ExecutablePath);
 
         }
 
@@ -296,7 +297,8 @@ namespace TeachingUpdater
             try
             {
                 string strSourceFilename, strDestinationFilename;
-                bool boolNeedToDownload;
+                FileHashMatchesEnum needToDownload;
+
 
                 // Ensure update folder exists
                 if (!Directory.Exists(_strUpdateFolder))
@@ -311,31 +313,34 @@ namespace TeachingUpdater
                     strSourceFilename = BASE_URL + xFile.GetAttribute("SourceLocation") + "/" + xFile.InnerText;
                     strDestinationFilename = _strUpdateFolder + xFile.InnerText;
 
+
                     // See if the file has been downloaded already
-                    if (File.Exists(strDestinationFilename))
-                    {
-                        // If downloaded already, check to see if the hash matches to avoid re-downloading unnecessarily
-                        if (Hashing.HashMatches(xFile.GetAttribute("Hash"), Hashing.GetFileHash(strDestinationFilename)))
-                            boolNeedToDownload = false;
-                        else
-                            boolNeedToDownload = true;
-                    }
-                    else
-                        boolNeedToDownload = true;
+                    // it could even be in use already (part of the current version)
+                    needToDownload = FileNeedsToBeDownloaded(xFile.InnerText.Trim(), xFile.GetAttribute("Hash"));
 
-
-                    // Download from the server
-                    //  actually just queue up so we can download asynch to keep the progress bars updated
-                    if (boolNeedToDownload)
+                    switch (needToDownload)
                     {
-                        FileDownloadData file = new FileDownloadData();
-                        file.SourceFilename = strSourceFilename + ".bin";
-                        file.DestinationFilename = strDestinationFilename;
-                        file.Size = Convert.ToInt32(xFile.GetAttribute("Size"));
-                        file.Hash = xFile.GetAttribute("Hash");
-                        _intTotalToDownload += file.Size;
-                        _lstFilesToDownload.Add(file);
+                        case FileHashMatchesEnum.MatchDownloaded:
+                            // no need to download, it was downloaded already and we have the right version
+                            // just need to install it
+                            break;
+                        case FileHashMatchesEnum.MatchInUse:
+                            // The current version (in use) is already correct, remove from update list
+                            xFile.ParentNode.RemoveChild(xFile);
+                            break;
+                        case FileHashMatchesEnum.NoMatchDownload:
+                            // Download from the server
+                            //  actually just queue up so we can download asynch to keep the progress bars updated
+                            FileDownloadData file = new FileDownloadData();
+                            file.SourceFilename = strSourceFilename + ".bin";
+                            file.DestinationFilename = strDestinationFilename;
+                            file.Size = Convert.ToInt32(xFile.GetAttribute("Size"));
+                            file.Hash = xFile.GetAttribute("Hash");
+                            _intTotalToDownload += file.Size;
+                            _lstFilesToDownload.Add(file);
+                            break;
                     }
+
                 }
 
             }
@@ -346,6 +351,70 @@ namespace TeachingUpdater
             }
         }
 
+        private enum FileHashMatchesEnum { MatchDownloaded, MatchInUse, NoMatchDownload}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename">The name of the file to check (ex: test.txt)</param>
+        /// <param name="hashExpected">The expected hash value of the file</param>
+        /// <returns></returns>
+        private FileHashMatchesEnum FileNeedsToBeDownloaded(string filename, string hashExpected)
+        {
+            string strDestinationFilename;
+
+            // first check the update folder to see if we downloaded it already
+            strDestinationFilename = Path.Combine(_strUpdateFolder, filename);
+
+            if (File.Exists(strDestinationFilename))
+            {
+                if (Hashing.HashMatches(hashExpected, Hashing.GetFileHash(strDestinationFilename)))
+                    return FileHashMatchesEnum.MatchDownloaded; // exists and hash value matches
+                else
+                {
+                    // exists but hash value is different, keep searching
+                }
+            }
+            else
+            {
+                // does not even exist, keep searching
+            }
+
+
+            // next check the application folder to see if we are using the current version of the file
+            strDestinationFilename = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), filename);
+
+            if (File.Exists(strDestinationFilename))
+            {
+                if (Hashing.HashMatches(hashExpected, Hashing.GetFileHash(strDestinationFilename)))
+                    return FileHashMatchesEnum.MatchInUse; // exists and hash value matches
+                else
+                    return FileHashMatchesEnum.NoMatchDownload; // exists but hash value is different, download it
+            }
+            else
+                return FileHashMatchesEnum.NoMatchDownload; // does not even exist, download it
+
+
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename">Full path to the file to check (ex: c:\temp\test.txt)</param>
+        /// <param name="hashExpected">The expected hash value of the file</param>
+        /// <returns></returns>
+        private bool FileHasExpectedHashValue(string filename, string hashExpected)
+        {
+            if (File.Exists(filename))
+            {
+                if (Hashing.HashMatches(hashExpected, Hashing.GetFileHash(filename)))
+                    return true; // exists and hash value matches
+                else
+                    return false; // exists but hash value is different
+            }
+            else
+                return false; // does not even exist
+        }
+        
         private void tmrDownloadAsynch_Tick(object sender, EventArgs e)
         {
             if(_boolDownloading)
@@ -479,17 +548,57 @@ namespace TeachingUpdater
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
+            SetStatus("Installing updates...please wait.");
+            bgwInstallUpdate.RunWorkerAsync();
+        }
+
+        private void bgwInstallUpdate_DoWork(object sender, DoWorkEventArgs e)
+        {
             // Need to install in a way that if ther are any problems
             // we can rollback
             try
             {
+                using (TransactionalFileChanges trans = new TransactionalFileChanges())
+                {
+                    try
+                    {
+                        string strSourceFilename, strDestinationFilename;
+
+                        XmlNodeList xList = _xSelectedVersion.SelectNodes("Files/File");
+                        foreach (XmlElement xFile in xList)
+                        {
+                            strSourceFilename = _strUpdateFolder + xFile.InnerText;
+                            strDestinationFilename = _strInstallFolder + xFile.InnerText;
+
+                            AddStatus("Updating " + xFile.InnerText);
+
+                            // move each file from update folder to App folder
+                            trans.MoveFile(strSourceFilename, strDestinationFilename);
+                        }
+
+                        // If we did not throw any errors, we should be fine, so commit
+                        trans.CommitTransaction();
+                    }
+                    catch (Exception ex)
+                    {
+                        // The transaction should roll itself back automatically
+                        throw ex;
+                    }
+                }
+
 
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
+        }
+
+        private void bgwInstallUpdate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            SetStatus("Update completed successfully.");
+            btnInstall.Visible = false;
+            btnClose.Focus();
         }
 
         private void EnableDownload()

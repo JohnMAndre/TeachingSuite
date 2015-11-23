@@ -62,6 +62,11 @@
             this.bgwDownloadUpdate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwDownloadUpdate_DoWork);
             this.bgwDownloadUpdate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwDownloadUpdate_RunWorkerCompleted);
             // 
+            // bgwInstallUpdate
+            // 
+            this.bgwInstallUpdate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwInstallUpdate_DoWork);
+            this.bgwInstallUpdate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwInstallUpdate_RunWorkerCompleted);
+            // 
             // KryptonManager
             // 
             this.KryptonManager.GlobalPalette = this.kryptonPalette2;

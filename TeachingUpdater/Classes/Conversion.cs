@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace TeachingUpdater
-{
     class Conversion
     {
         //public static int ConvertToInt32(string value, int valueIfCannotConvert)
@@ -39,4 +37,3 @@ namespace TeachingUpdater
             }
         }
     }
-}

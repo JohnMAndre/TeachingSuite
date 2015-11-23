@@ -5,8 +5,6 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace TeachingUpdater
-{
     class Hashing
     {
         public static byte[] GetFileHash(string filename)
@@ -49,4 +47,3 @@ namespace TeachingUpdater
             }
         }
     }
-}
