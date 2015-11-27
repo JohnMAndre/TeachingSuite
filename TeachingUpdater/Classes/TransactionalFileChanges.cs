@@ -218,20 +218,36 @@ class TransactionalFileChanges : IDisposable
         try
         {
             TransactionalFileDetails transFile = new TransactionalFileDetails(TransactionalFileDetails.TransactionalFileActionEnum.Copy);
+
+            // We only want to add transFile to the list once there is something to commit/rollback
+            // so we use this variable to know if we've added it so we can add it late
+            // but not add it multiple times
+            bool boolAddedToListAlready = false;
+            
+            
+            
             _lstFileActions.Add(transFile);
 
             transFile.TargetFilename = destinationFilename;
-            transFile.SourceFilename = sourceFilename;
 
             // We only need a backup file if the copy will overwrite something
-            if (File.Exists(destinationFilename))
+            if (File.Exists(transFile.TargetFilename))
+            {
                 transFile.BackupFilename = GetTempFileName();
 
-            // prepare for rollback
-            File.Move(transFile.TargetFilename, transFile.BackupFilename);
+                // prepare for rollback
+                File.Move(transFile.TargetFilename, transFile.BackupFilename);
+
+                boolAddedToListAlready = true;
+            }
+
+            // we want to assign the source filename here (not sooner) because the rollback logic is affected.
+            transFile.SourceFilename = sourceFilename;
 
             // Perform the desired copy
             File.Copy(transFile.SourceFilename, transFile.TargetFilename);
+            if (!boolAddedToListAlready)
+                _lstFileActions.Add(transFile); // don't add to the list twice
         }
         catch (Exception ex)
         {
@@ -296,16 +312,21 @@ class TransactionalFileChanges : IDisposable
         try
         {
             TransactionalFileDetails transFile = new TransactionalFileDetails(TransactionalFileDetails.TransactionalFileActionEnum.Delete);
-            _lstFileActions.Add(transFile);
 
             transFile.TargetFilename = filename;
 
             // We only need a backup file if the copy will overwrite something
-            if (File.Exists(filename))
+            if (File.Exists(transFile.TargetFilename))
+            {
                 transFile.BackupFilename = GetTempFileName();
 
-            // prepare for rollback and delete in one operation (move instead of copy+delete)
-            File.Move(transFile.TargetFilename, transFile.BackupFilename);
+                // prepare for rollback and delete in one operation (move instead of copy+delete)
+                File.Move(transFile.TargetFilename, transFile.BackupFilename);
+
+                // only add after the move so there are no problem in the rollback process
+                _lstFileActions.Add(transFile);
+
+            }
         }
         catch (Exception ex)
         {

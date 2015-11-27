@@ -347,7 +347,9 @@ namespace TeachingUpdater
             }
             catch(IOException ex)
             {
+                AddStatus(string.Empty);
                 AddStatus(ex.Message);
+                AddStatus(string.Empty);
                 AddStatus("Please try to correct the problem and download again.");
                 e.Cancel = true;
             }
@@ -484,7 +486,7 @@ namespace TeachingUpdater
             {
                 string strDestinationFilename;
                 bool boolNeedToDownload;
-                bool boolOKToInstall = true;
+                bool boolOKToInstall = true; // assume all is fine and ready to install
 
                 SetStatus("Verifying downloads.");
 
@@ -495,33 +497,16 @@ namespace TeachingUpdater
                     switch (FileNeedsToBeDownloaded(xFile.InnerText, xFile.GetAttribute("Hash")))
                     {
                         case FileHashMatchesEnum.MatchDownloaded:
-                            break;
+                            break;// nothing to do
                         case FileHashMatchesEnum.MatchInUse:
+                            // if element is here (should have been removed in Download_DoWork)
+                            // then we must remove it now
+                            xFile.ParentNode.RemoveChild(xFile);
                             break;
                         case FileHashMatchesEnum.NoMatchDownload:
                             boolOKToInstall = false;
                             break; // no need to keep checking. one problem means must run download process again
                     }
-                    //strDestinationFilename = _strUpdateFolder + xFile.InnerText;
-
-                    //// See if the file has been downloaded already
-                    //if (File.Exists(strDestinationFilename))
-                    //{
-                    //    // If downloaded already, check to see if the hash matches to avoid re-downloading unnecessarily
-                    //    if (Hashing.HashMatches(xFile.GetAttribute("Hash"), Hashing.GetFileHash(strDestinationFilename)))
-                    //        boolNeedToDownload = false;
-                    //    else
-                    //        boolNeedToDownload = true;
-                    //}
-                    //else
-                    //    boolNeedToDownload = true;
-
-
-                    //// Download from the server
-                    ////  actually just queue up so we can download asynch to keep the progress bars updated
-                    //if (boolNeedToDownload)
-                    //{
-                    //}
                 }
                 if (boolOKToInstall)
                 {
@@ -606,6 +591,7 @@ namespace TeachingUpdater
                     {
                         // The transaction should roll itself back automatically
                         // still need to notify the user
+                        AddStatus(string.Empty);
                         AddStatus(ex.InnerException.Message);
                         e.Cancel = true;
                     }
@@ -623,12 +609,14 @@ namespace TeachingUpdater
         {
             if(e.Cancelled)
             {
+                AddStatus(string.Empty);
                 AddStatus("Please correct the problem and install again.");
                 EnableInstall();
             }
             else
             {
                 SetStatus("Update completed successfully.");
+                btnDownload.Visible = false;
                 btnInstall.Visible = false;
                 btnClose.Focus();
             }
