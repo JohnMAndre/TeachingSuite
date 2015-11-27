@@ -199,12 +199,12 @@ Partial Class MainForm
         Me.ThirdTryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleHiddenForSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClearStudentFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExcuseMostRecentAbsenceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetGendermaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetGenderfemaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClearTagsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearStudentFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExcuseMostRecentAbsenceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FilterForSelectedGroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearTagsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FirstSubmissionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -261,10 +261,13 @@ Partial Class MainForm
         Me.FindhistoricalStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProcessAddDropStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckForupdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator()
         Me.ViewLogFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
@@ -277,6 +280,7 @@ Partial Class MainForm
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
+        Me.UpgradeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -1415,9 +1419,9 @@ Partial Class MainForm
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(3, 107)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(3, 108)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
-        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(88, 20)
+        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
         Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1426,9 +1430,9 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(3, 133)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(3, 134)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
-        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(79, 20)
+        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
         Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1448,9 +1452,9 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(62, 156)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(62, 157)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
-        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
         Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1459,9 +1463,9 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(3, 156)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(3, 157)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
-        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
         Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
         Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1482,9 +1486,9 @@ Partial Class MainForm
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(23, 188)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(23, 189)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
-        Me.llblRefreshSchedule.Size = New System.Drawing.Size(51, 20)
+        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
         Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
         Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1622,9 +1626,9 @@ Partial Class MainForm
         'llblLoadFutureOneSemester
         '
         Me.llblLoadFutureOneSemester.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblLoadFutureOneSemester.Location = New System.Drawing.Point(340, 28)
+        Me.llblLoadFutureOneSemester.Location = New System.Drawing.Point(340, 29)
         Me.llblLoadFutureOneSemester.Name = "llblLoadFutureOneSemester"
-        Me.llblLoadFutureOneSemester.Size = New System.Drawing.Size(27, 20)
+        Me.llblLoadFutureOneSemester.Size = New System.Drawing.Size(26, 19)
         Me.llblLoadFutureOneSemester.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblLoadFutureOneSemester, "Advance one semester")
         Me.llblLoadFutureOneSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1633,9 +1637,9 @@ Partial Class MainForm
         'llblLoadPreviousOneSemester
         '
         Me.llblLoadPreviousOneSemester.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblLoadPreviousOneSemester.Location = New System.Drawing.Point(171, 28)
+        Me.llblLoadPreviousOneSemester.Location = New System.Drawing.Point(171, 29)
         Me.llblLoadPreviousOneSemester.Name = "llblLoadPreviousOneSemester"
-        Me.llblLoadPreviousOneSemester.Size = New System.Drawing.Size(27, 20)
+        Me.llblLoadPreviousOneSemester.Size = New System.Drawing.Size(26, 19)
         Me.llblLoadPreviousOneSemester.TabIndex = 32
         Me.ToolTip1.SetToolTip(Me.llblLoadPreviousOneSemester, "Go back one semester")
         Me.llblLoadPreviousOneSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1644,9 +1648,9 @@ Partial Class MainForm
         'llblLoadLatestSemester
         '
         Me.llblLoadLatestSemester.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblLoadLatestSemester.Location = New System.Drawing.Point(231, 28)
+        Me.llblLoadLatestSemester.Location = New System.Drawing.Point(231, 29)
         Me.llblLoadLatestSemester.Name = "llblLoadLatestSemester"
-        Me.llblLoadLatestSemester.Size = New System.Drawing.Size(76, 20)
+        Me.llblLoadLatestSemester.Size = New System.Drawing.Size(81, 19)
         Me.llblLoadLatestSemester.TabIndex = 29
         Me.ToolTip1.SetToolTip(Me.llblLoadLatestSemester, "Most recent semester")
         Me.llblLoadLatestSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -2011,7 +2015,7 @@ Partial Class MainForm
         '
         'StudentToolStripMenuItem
         '
-        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem})
+        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem})
         Me.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem"
         Me.StudentToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.StudentToolStripMenuItem.Text = "&Student"
@@ -2022,20 +2026,6 @@ Partial Class MainForm
         Me.ToggleHiddenForSelectedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
         Me.ToggleHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.ToggleHiddenForSelectedToolStripMenuItem.Text = "Toggle &hidden for selected"
-        '
-        'ClearStudentFilterToolStripMenuItem
-        '
-        Me.ClearStudentFilterToolStripMenuItem.Name = "ClearStudentFilterToolStripMenuItem"
-        Me.ClearStudentFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.ClearStudentFilterToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
-        Me.ClearStudentFilterToolStripMenuItem.Text = "&Clear student filter"
-        '
-        'ExcuseMostRecentAbsenceToolStripMenuItem
-        '
-        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Name = "ExcuseMostRecentAbsenceToolStripMenuItem"
-        Me.ExcuseMostRecentAbsenceToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
-        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Text = "&Excuse most recent absence"
         '
         'SetGendermaleToolStripMenuItem
         '
@@ -2053,11 +2043,19 @@ Partial Class MainForm
         Me.SetGenderfemaleToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.SetGenderfemaleToolStripMenuItem.Text = "Set gender=female"
         '
-        'ClearTagsToolStripMenuItem
+        'ClearStudentFilterToolStripMenuItem
         '
-        Me.ClearTagsToolStripMenuItem.Name = "ClearTagsToolStripMenuItem"
-        Me.ClearTagsToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
-        Me.ClearTagsToolStripMenuItem.Text = "Clear tags for these students"
+        Me.ClearStudentFilterToolStripMenuItem.Name = "ClearStudentFilterToolStripMenuItem"
+        Me.ClearStudentFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
+        Me.ClearStudentFilterToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.ClearStudentFilterToolStripMenuItem.Text = "&Clear student filter"
+        '
+        'ExcuseMostRecentAbsenceToolStripMenuItem
+        '
+        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Name = "ExcuseMostRecentAbsenceToolStripMenuItem"
+        Me.ExcuseMostRecentAbsenceToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Text = "&Excuse most recent absence"
         '
         'FilterForSelectedGroupToolStripMenuItem
         '
@@ -2066,6 +2064,12 @@ Partial Class MainForm
             Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
         Me.FilterForSelectedGroupToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.FilterForSelectedGroupToolStripMenuItem.Text = "Filter for selected group"
+        '
+        'ClearTagsToolStripMenuItem
+        '
+        Me.ClearTagsToolStripMenuItem.Name = "ClearTagsToolStripMenuItem"
+        Me.ClearTagsToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.ClearTagsToolStripMenuItem.Text = "Clear tags for these students"
         '
         'ToolsToolStripMenuItem
         '
@@ -2407,29 +2411,49 @@ Partial Class MainForm
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewLogFileToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ToolStripMenuItem2})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckForupdatesToolStripMenuItem, Me.UpgradeToolStripMenuItem, Me.ToolStripSeparator16, Me.ViewLogFileToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ToolStripMenuItem2})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "&Help"
         '
+        'CheckForupdatesToolStripMenuItem
+        '
+        Me.CheckForupdatesToolStripMenuItem.Name = "CheckForupdatesToolStripMenuItem"
+        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.CheckForupdatesToolStripMenuItem.Text = "Check for &updates"
+        '
+        'ToolStripSeparator16
+        '
+        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(167, 6)
+        '
         'ViewLogFileToolStripMenuItem
         '
         Me.ViewLogFileToolStripMenuItem.Name = "ViewLogFileToolStripMenuItem"
-        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ViewLogFileToolStripMenuItem.Text = "&View log file"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(138, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(170, 22)
         Me.ToolStripMenuItem2.Text = "???"
         Me.ToolStripMenuItem2.Visible = False
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilterStudents
         '
@@ -2482,6 +2506,12 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
+        '
+        'UpgradeToolStripMenuItem
+        '
+        Me.UpgradeToolStripMenuItem.Name = "UpgradeToolStripMenuItem"
+        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.UpgradeToolStripMenuItem.Text = "&Upgrade..."
         '
         'MainForm
         '
@@ -2832,4 +2862,8 @@ Partial Class MainForm
     Friend WithEvents ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CheckForupdatesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator16 As ToolStripSeparator
+    Friend WithEvents UpgradeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

@@ -45,8 +45,34 @@ Public Class ClassDetails
         LoadSkipSessions()
         LoadPlannedSchedule()
         LoadActualSessions()
-    End Sub
 
+        SetupForLiteVersion()
+    End Sub
+    ''' <summary>
+    ''' Removes some features for Lite (free) version
+    ''' </summary>
+    Private Sub SetupForLiteVersion()
+        Try
+            olvActualSessions.Visible = False
+            nudEmailAccountToUse.Visible = False
+            txtEmailAddress.Visible = False
+            lblEmailCaption.Visible = False
+            lblEmailAccountCaption.Visible = False
+            btnShowActualSessions.Visible = False
+            btnShowNormalSchedule.Visible = False
+            btnShowSkips.Visible = False
+            llblCopyTopics.Visible = False
+            llblPasteTopics.Visible = False
+            btnCopySessionsFromOtherClass.Visible = False
+            btnRegenerateActualSchedule.Visible = False
+            llblCalculateTotalTime.Visible = False
+            ScheduleItemToolStripMenuItem.Visible = False
+
+            Me.Height = 171 '-- shrink to fit visible controls
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub olvPlannedSchedule_CellEditStarting(sender As System.Object, e As BrightIdeasSoftware.CellEditEventArgs) Handles olvPlannedSchedule.CellEditStarting
         If TypeOf e.Control Is DateTimePicker Then
             CType(e.Control, DateTimePicker).Format = DateTimePickerFormat.Time
@@ -222,7 +248,7 @@ Public Class ClassDetails
     End Sub
 
     Private Sub MoveupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveupToolStripMenuItem.Click
-        
+
 
     End Sub
     Private Sub MoveActualItemDown()

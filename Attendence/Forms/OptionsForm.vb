@@ -1,5 +1,19 @@
 Public Class OptionsForm
 
+    Private Sub SetupForLiteVersion()
+        Try
+            pnlMarking.Visible = False
+            pnlEmail.Visible = False
+
+            grpExport.Visible = False
+            txtCDDrive.Visible = False
+            lblCDDrive.Visible = False
+        Catch ex As Exception
+            Log(ex)
+        End Try
+    End Sub
+
+
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         AppSettings.AttendenceReportMarkPresent = txtAttendenceMarkPresent.Text
         AppSettings.AttendenceReportMarkLate = txtAttendenceMarkLate.Text
@@ -87,7 +101,7 @@ Public Class OptionsForm
         txtStudentDidNotSubmitDefaultOutcomeComment.Text = AppSettings.AssignmentNotSubmittedDefaultOutcomeComment
 
         txtAutoText.Text = String.Empty
-        
+
 
         txtRedoPassAllDefaultComment.Text = AppSettings.RedoPassAllDefaultComment
         txtLateSubmitDefaultComment.Text = AppSettings.LateSubmitDefaultComment
@@ -104,6 +118,9 @@ Public Class OptionsForm
 
         ReloadImprovementText()
         AutoSizeColumns(olvImprovementText)
+
+        SetupForLiteVersion()
+
     End Sub
     Private Sub ReloadImprovementText()
         olvImprovementText.ClearObjects()

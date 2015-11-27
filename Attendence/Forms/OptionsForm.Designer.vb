@@ -24,56 +24,13 @@ Partial Class OptionsForm
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.llblAddAutoText = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblRemoveAutoText = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblMoveAutoTextBack = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAutoTextUp = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAutoTextDown = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
-        Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel16 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel20 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel23 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel24 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel28 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblBrowseForFeedbackSaveFolder = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.olvImprovementText = New BrightIdeasSoftware.ObjectListView()
-        Me.OlvColumn18 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.chkDisableColorsAssignmentDetail = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.pnlOuter = New System.Windows.Forms.TabControl()
         Me.tabMarking = New System.Windows.Forms.TabPage()
-        Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonLabel31 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtUnknownResultsText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel30 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtFailResultsText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel29 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtPassResultsText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel27 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel26 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudMarkingWarning2 = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel25 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudMarkingWarning1 = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel21 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtPathToFeedbackSaveFolder = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtLateSubmitDefaultComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtRedoPassAllDefaultComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtAutoText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtExamPassWeakDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtNoSubmitFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtExamPassDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtExamFailDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.chkShowHiddenStudents = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.tabExport = New System.Windows.Forms.TabPage()
-        Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonGroupBox2 = New ComponentFactory.Krypton.Toolkit.KryptonGroupBox()
+        Me.pnlExport = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.grpExport = New ComponentFactory.Krypton.Toolkit.KryptonGroupBox()
         Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtOutcomeMarkPass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel17 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -94,7 +51,7 @@ Partial Class OptionsForm
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtAttendenceMarkAbsent = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.tabData = New System.Windows.Forms.TabPage()
-        Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.pnlData = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.chkAutoSaveEnabled = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonLabel22 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudAutoSave = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
@@ -102,10 +59,10 @@ Partial Class OptionsForm
         Me.KryptonLabel18 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudDataBackupsToRetain = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblCDDrive = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtCDDrive = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.tabEmail = New System.Windows.Forms.TabPage()
-        Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.pnlEmail = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonLabel34 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtEmailQuizTrailingText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel33 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -121,84 +78,77 @@ Partial Class OptionsForm
         Me.chkHighlightAttendanceUnknownPresentationQuality = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkHighlightAttendanceUnknownGender = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        CType(Me.olvImprovementText, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControl1.SuspendLayout()
+        Me.chkShowHiddenStudents = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel16 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel20 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel23 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel24 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel28 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblBrowseForFeedbackSaveFolder = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.olvImprovementText = New BrightIdeasSoftware.ObjectListView()
+        Me.OlvColumn18 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.llblAddAutoText = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblRemoveAutoText = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblMoveAutoTextBack = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.chkDisableColorsAssignmentDetail = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.KryptonLabel21 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudMarkingWarning1 = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.KryptonLabel25 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudMarkingWarning2 = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.KryptonLabel26 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel27 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblAutoTextUp = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblAutoTextDown = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.KryptonLabel29 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel30 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel31 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.pnlMarking = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.txtExamFailDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtExamPassDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtNoSubmitFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtExamPassWeakDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtAutoText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtRedoPassAllDefaultComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtLateSubmitDefaultComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtPathToFeedbackSaveFolder = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtPassResultsText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtFailResultsText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtUnknownResultsText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.pnlOuter.SuspendLayout()
         Me.tabMarking.SuspendLayout()
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel.SuspendLayout()
         Me.tabExport.SuspendLayout()
-        CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel1.SuspendLayout()
-        CType(Me.KryptonGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonGroupBox2.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonGroupBox2.Panel.SuspendLayout()
-        Me.KryptonGroupBox2.SuspendLayout()
+        CType(Me.pnlExport, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlExport.SuspendLayout()
+        CType(Me.grpExport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grpExport.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpExport.Panel.SuspendLayout()
+        Me.grpExport.SuspendLayout()
         CType(Me.KryptonGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonGroupBox1.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonGroupBox1.Panel.SuspendLayout()
         Me.KryptonGroupBox1.SuspendLayout()
         Me.tabData.SuspendLayout()
-        CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel2.SuspendLayout()
+        CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlData.SuspendLayout()
         Me.tabEmail.SuspendLayout()
-        CType(Me.KryptonPanel3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel3.SuspendLayout()
+        CType(Me.pnlEmail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlEmail.SuspendLayout()
         Me.tabAttendance.SuspendLayout()
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel4.SuspendLayout()
         CType(Me.KryptonPanel5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel5.SuspendLayout()
+        CType(Me.olvImprovementText, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pnlMarking, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlMarking.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'llblAddAutoText
-        '
-        Me.llblAddAutoText.Location = New System.Drawing.Point(336, 232)
-        Me.llblAddAutoText.Name = "llblAddAutoText"
-        Me.llblAddAutoText.Size = New System.Drawing.Size(22, 18)
-        Me.llblAddAutoText.TabIndex = 123
-        Me.ToolTip1.SetToolTip(Me.llblAddAutoText, "Add AutoText to list")
-        Me.llblAddAutoText.Values.Image = Global.Teaching.My.Resources.Resources.add_icon_16
-        Me.llblAddAutoText.Values.Text = ""
-        '
-        'llblRemoveAutoText
-        '
-        Me.llblRemoveAutoText.Location = New System.Drawing.Point(336, 259)
-        Me.llblRemoveAutoText.Name = "llblRemoveAutoText"
-        Me.llblRemoveAutoText.Size = New System.Drawing.Size(22, 18)
-        Me.llblRemoveAutoText.TabIndex = 124
-        Me.ToolTip1.SetToolTip(Me.llblRemoveAutoText, "Delete selected entry from list")
-        Me.llblRemoveAutoText.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.llblRemoveAutoText.Values.Text = ""
-        '
-        'llblMoveAutoTextBack
-        '
-        Me.llblMoveAutoTextBack.Location = New System.Drawing.Point(337, 288)
-        Me.llblMoveAutoTextBack.Name = "llblMoveAutoTextBack"
-        Me.llblMoveAutoTextBack.Size = New System.Drawing.Size(22, 18)
-        Me.llblMoveAutoTextBack.TabIndex = 125
-        Me.ToolTip1.SetToolTip(Me.llblMoveAutoTextBack, "Copy selected list entry to AutoText box")
-        Me.llblMoveAutoTextBack.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.llblMoveAutoTextBack.Values.Text = ""
-        '
-        'llblAutoTextUp
-        '
-        Me.llblAutoTextUp.Location = New System.Drawing.Point(337, 340)
-        Me.llblAutoTextUp.Name = "llblAutoTextUp"
-        Me.llblAutoTextUp.Size = New System.Drawing.Size(22, 18)
-        Me.llblAutoTextUp.TabIndex = 137
-        Me.ToolTip1.SetToolTip(Me.llblAutoTextUp, "Copy selected list entry to AutoText box")
-        Me.llblAutoTextUp.Values.Image = Global.Teaching.My.Resources.Resources.up_16
-        Me.llblAutoTextUp.Values.Text = ""
-        '
-        'llblAutoTextDown
-        '
-        Me.llblAutoTextDown.Location = New System.Drawing.Point(337, 364)
-        Me.llblAutoTextDown.Name = "llblAutoTextDown"
-        Me.llblAutoTextDown.Size = New System.Drawing.Size(22, 18)
-        Me.llblAutoTextDown.TabIndex = 138
-        Me.ToolTip1.SetToolTip(Me.llblAutoTextDown, "Copy selected list entry to AutoText box")
-        Me.llblAutoTextDown.Values.Image = Global.Teaching.My.Resources.Resources.down_16
-        Me.llblAutoTextDown.Values.Text = ""
         '
         'btnCancel
         '
@@ -225,183 +175,23 @@ Partial Class OptionsForm
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.btnOK.Values.Text = "&OK"
         '
-        'KryptonLabel6
+        'pnlOuter
         '
-        Me.KryptonLabel6.Location = New System.Drawing.Point(9, 39)
-        Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Palette = Me.KryptonPalette1
-        Me.KryptonLabel6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel6.Size = New System.Drawing.Size(178, 20)
-        Me.KryptonLabel6.TabIndex = 36
-        Me.KryptonLabel6.Values.Text = "Exam clock duration (seconds):"
-        '
-        'nudExamClockDuration
-        '
-        Me.nudExamClockDuration.Location = New System.Drawing.Point(193, 37)
-        Me.nudExamClockDuration.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudExamClockDuration.Name = "nudExamClockDuration"
-        Me.nudExamClockDuration.Size = New System.Drawing.Size(75, 22)
-        Me.nudExamClockDuration.TabIndex = 39
-        Me.nudExamClockDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudExamClockDuration.ThousandsSeparator = True
-        Me.nudExamClockDuration.Value = New Decimal(New Integer() {120, 0, 0, 0})
-        '
-        'KryptonLabel7
-        '
-        Me.KryptonLabel7.Location = New System.Drawing.Point(9, 65)
-        Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Palette = Me.KryptonPalette1
-        Me.KryptonLabel7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel7.Size = New System.Drawing.Size(156, 20)
-        Me.KryptonLabel7.TabIndex = 41
-        Me.KryptonLabel7.Values.Text = "Exam fail default feedback:"
-        '
-        'KryptonLabel8
-        '
-        Me.KryptonLabel8.Location = New System.Drawing.Point(403, 65)
-        Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Palette = Me.KryptonPalette1
-        Me.KryptonLabel8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel8.Size = New System.Drawing.Size(164, 20)
-        Me.KryptonLabel8.TabIndex = 43
-        Me.KryptonLabel8.Values.Text = "Exam pass default feedback:"
-        '
-        'KryptonLabel10
-        '
-        Me.KryptonLabel10.Location = New System.Drawing.Point(9, 143)
-        Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Palette = Me.KryptonPalette1
-        Me.KryptonLabel10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel10.Size = New System.Drawing.Size(123, 20)
-        Me.KryptonLabel10.TabIndex = 45
-        Me.KryptonLabel10.Values.Text = "No submit feedback:"
-        '
-        'KryptonLabel14
-        '
-        Me.KryptonLabel14.Location = New System.Drawing.Point(403, 91)
-        Me.KryptonLabel14.Name = "KryptonLabel14"
-        Me.KryptonLabel14.Palette = Me.KryptonPalette1
-        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel14.Size = New System.Drawing.Size(154, 20)
-        Me.KryptonLabel14.TabIndex = 54
-        Me.KryptonLabel14.Values.Text = "Exam pass weak feedback:"
-        '
-        'KryptonLabel16
-        '
-        Me.KryptonLabel16.Location = New System.Drawing.Point(403, 143)
-        Me.KryptonLabel16.Name = "KryptonLabel16"
-        Me.KryptonLabel16.Palette = Me.KryptonPalette1
-        Me.KryptonLabel16.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel16.Size = New System.Drawing.Size(178, 20)
-        Me.KryptonLabel16.TabIndex = 56
-        Me.KryptonLabel16.Values.Text = "No submit outcome comment:"
-        '
-        'KryptonLabel20
-        '
-        Me.KryptonLabel20.Location = New System.Drawing.Point(12, 230)
-        Me.KryptonLabel20.Name = "KryptonLabel20"
-        Me.KryptonLabel20.Palette = Me.KryptonPalette1
-        Me.KryptonLabel20.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel20.Size = New System.Drawing.Size(62, 20)
-        Me.KryptonLabel20.TabIndex = 60
-        Me.KryptonLabel20.Values.Text = "AutoText:"
-        '
-        'KryptonLabel23
-        '
-        Me.KryptonLabel23.Location = New System.Drawing.Point(9, 169)
-        Me.KryptonLabel23.Name = "KryptonLabel23"
-        Me.KryptonLabel23.Palette = Me.KryptonPalette1
-        Me.KryptonLabel23.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel23.Size = New System.Drawing.Size(181, 20)
-        Me.KryptonLabel23.TabIndex = 64
-        Me.KryptonLabel23.Values.Text = "Redo pass all default comment:"
-        '
-        'KryptonLabel24
-        '
-        Me.KryptonLabel24.Location = New System.Drawing.Point(403, 169)
-        Me.KryptonLabel24.Name = "KryptonLabel24"
-        Me.KryptonLabel24.Palette = Me.KryptonPalette1
-        Me.KryptonLabel24.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel24.Size = New System.Drawing.Size(173, 20)
-        Me.KryptonLabel24.TabIndex = 66
-        Me.KryptonLabel24.Values.Text = "Late submit default comment:"
-        '
-        'KryptonLabel28
-        '
-        Me.KryptonLabel28.Location = New System.Drawing.Point(9, 194)
-        Me.KryptonLabel28.Name = "KryptonLabel28"
-        Me.KryptonLabel28.Size = New System.Drawing.Size(120, 20)
-        Me.KryptonLabel28.TabIndex = 74
-        Me.KryptonLabel28.Values.Text = "Feedback save path:"
-        '
-        'llblBrowseForFeedbackSaveFolder
-        '
-        Me.llblBrowseForFeedbackSaveFolder.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblBrowseForFeedbackSaveFolder.Location = New System.Drawing.Point(784, 194)
-        Me.llblBrowseForFeedbackSaveFolder.Name = "llblBrowseForFeedbackSaveFolder"
-        Me.llblBrowseForFeedbackSaveFolder.Size = New System.Drawing.Size(19, 20)
-        Me.llblBrowseForFeedbackSaveFolder.TabIndex = 75
-        Me.llblBrowseForFeedbackSaveFolder.Values.Text = "..."
-        '
-        'olvImprovementText
-        '
-        Me.olvImprovementText.Activation = System.Windows.Forms.ItemActivation.TwoClick
-        Me.olvImprovementText.AllColumns.Add(Me.OlvColumn18)
-        Me.olvImprovementText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.olvImprovementText.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvImprovementText.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn18})
-        Me.olvImprovementText.FullRowSelect = True
-        Me.olvImprovementText.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-        Me.olvImprovementText.HideSelection = False
-        Me.olvImprovementText.Location = New System.Drawing.Point(364, 220)
-        Me.olvImprovementText.Name = "olvImprovementText"
-        Me.olvImprovementText.ShowGroups = False
-        Me.olvImprovementText.Size = New System.Drawing.Size(439, 325)
-        Me.olvImprovementText.TabIndex = 122
-        Me.olvImprovementText.UseCompatibleStateImageBehavior = False
-        Me.olvImprovementText.UseFiltering = True
-        Me.olvImprovementText.View = System.Windows.Forms.View.Details
-        '
-        'OlvColumn18
-        '
-        Me.OlvColumn18.AspectName = "Text"
-        Me.OlvColumn18.FillsFreeSpace = True
-        Me.OlvColumn18.IsEditable = False
-        Me.OlvColumn18.Text = "Text"
-        Me.OlvColumn18.Width = 277
-        '
-        'chkDisableColorsAssignmentDetail
-        '
-        Me.chkDisableColorsAssignmentDetail.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkDisableColorsAssignmentDetail.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkDisableColorsAssignmentDetail.Location = New System.Drawing.Point(17, 259)
-        Me.chkDisableColorsAssignmentDetail.Name = "chkDisableColorsAssignmentDetail"
-        Me.chkDisableColorsAssignmentDetail.Palette = Me.KryptonPalette1
-        Me.chkDisableColorsAssignmentDetail.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkDisableColorsAssignmentDetail.Size = New System.Drawing.Size(220, 20)
-        Me.chkDisableColorsAssignmentDetail.TabIndex = 130
-        Me.chkDisableColorsAssignmentDetail.Text = "Disable colors in assignment details:"
-        Me.chkDisableColorsAssignmentDetail.Values.Text = "Disable colors in assignment details:"
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.tabMarking)
-        Me.TabControl1.Controls.Add(Me.tabExport)
-        Me.TabControl1.Controls.Add(Me.tabData)
-        Me.TabControl1.Controls.Add(Me.tabEmail)
-        Me.TabControl1.Controls.Add(Me.tabAttendance)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(829, 580)
-        Me.TabControl1.TabIndex = 131
+        Me.pnlOuter.Controls.Add(Me.tabMarking)
+        Me.pnlOuter.Controls.Add(Me.tabExport)
+        Me.pnlOuter.Controls.Add(Me.tabData)
+        Me.pnlOuter.Controls.Add(Me.tabEmail)
+        Me.pnlOuter.Controls.Add(Me.tabAttendance)
+        Me.pnlOuter.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlOuter.Location = New System.Drawing.Point(0, 0)
+        Me.pnlOuter.Name = "pnlOuter"
+        Me.pnlOuter.SelectedIndex = 0
+        Me.pnlOuter.Size = New System.Drawing.Size(829, 580)
+        Me.pnlOuter.TabIndex = 131
         '
         'tabMarking
         '
-        Me.tabMarking.Controls.Add(Me.KryptonPanel)
+        Me.tabMarking.Controls.Add(Me.pnlMarking)
         Me.tabMarking.Location = New System.Drawing.Point(4, 22)
         Me.tabMarking.Name = "tabMarking"
         Me.tabMarking.Padding = New System.Windows.Forms.Padding(3)
@@ -410,276 +200,9 @@ Partial Class OptionsForm
         Me.tabMarking.Text = "Marking"
         Me.tabMarking.UseVisualStyleBackColor = True
         '
-        'KryptonPanel
-        '
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel31)
-        Me.KryptonPanel.Controls.Add(Me.txtUnknownResultsText)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel30)
-        Me.KryptonPanel.Controls.Add(Me.txtFailResultsText)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel29)
-        Me.KryptonPanel.Controls.Add(Me.txtPassResultsText)
-        Me.KryptonPanel.Controls.Add(Me.llblAutoTextDown)
-        Me.KryptonPanel.Controls.Add(Me.llblAutoTextUp)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel27)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel26)
-        Me.KryptonPanel.Controls.Add(Me.nudMarkingWarning2)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel25)
-        Me.KryptonPanel.Controls.Add(Me.nudMarkingWarning1)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel21)
-        Me.KryptonPanel.Controls.Add(Me.chkDisableColorsAssignmentDetail)
-        Me.KryptonPanel.Controls.Add(Me.llblMoveAutoTextBack)
-        Me.KryptonPanel.Controls.Add(Me.llblRemoveAutoText)
-        Me.KryptonPanel.Controls.Add(Me.llblAddAutoText)
-        Me.KryptonPanel.Controls.Add(Me.olvImprovementText)
-        Me.KryptonPanel.Controls.Add(Me.llblBrowseForFeedbackSaveFolder)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel28)
-        Me.KryptonPanel.Controls.Add(Me.txtPathToFeedbackSaveFolder)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel24)
-        Me.KryptonPanel.Controls.Add(Me.txtLateSubmitDefaultComment)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel23)
-        Me.KryptonPanel.Controls.Add(Me.txtRedoPassAllDefaultComment)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel20)
-        Me.KryptonPanel.Controls.Add(Me.txtAutoText)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel16)
-        Me.KryptonPanel.Controls.Add(Me.txtStudentDidNotSubmitDefaultOutcomeComment)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel14)
-        Me.KryptonPanel.Controls.Add(Me.txtExamPassWeakDefaultFeedback)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel10)
-        Me.KryptonPanel.Controls.Add(Me.txtNoSubmitFeedback)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel8)
-        Me.KryptonPanel.Controls.Add(Me.txtExamPassDefaultFeedback)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel7)
-        Me.KryptonPanel.Controls.Add(Me.txtExamFailDefaultFeedback)
-        Me.KryptonPanel.Controls.Add(Me.nudExamClockDuration)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel6)
-        Me.KryptonPanel.Controls.Add(Me.chkShowHiddenStudents)
-        Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel.Location = New System.Drawing.Point(3, 3)
-        Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Palette = Me.KryptonPalette1
-        Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonPanel.Size = New System.Drawing.Size(815, 548)
-        Me.KryptonPanel.TabIndex = 0
-        '
-        'KryptonLabel31
-        '
-        Me.KryptonLabel31.Location = New System.Drawing.Point(403, 117)
-        Me.KryptonLabel31.Name = "KryptonLabel31"
-        Me.KryptonLabel31.Palette = Me.KryptonPalette1
-        Me.KryptonLabel31.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel31.Size = New System.Drawing.Size(128, 20)
-        Me.KryptonLabel31.TabIndex = 144
-        Me.KryptonLabel31.Values.Text = "Unknown results text:"
-        '
-        'txtUnknownResultsText
-        '
-        Me.txtUnknownResultsText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtUnknownResultsText.Location = New System.Drawing.Point(581, 117)
-        Me.txtUnknownResultsText.Name = "txtUnknownResultsText"
-        Me.txtUnknownResultsText.Size = New System.Drawing.Size(222, 20)
-        Me.txtUnknownResultsText.TabIndex = 143
-        '
-        'KryptonLabel30
-        '
-        Me.KryptonLabel30.Location = New System.Drawing.Point(9, 117)
-        Me.KryptonLabel30.Name = "KryptonLabel30"
-        Me.KryptonLabel30.Palette = Me.KryptonPalette1
-        Me.KryptonLabel30.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel30.Size = New System.Drawing.Size(94, 20)
-        Me.KryptonLabel30.TabIndex = 142
-        Me.KryptonLabel30.Values.Text = "Fail results text:"
-        '
-        'txtFailResultsText
-        '
-        Me.txtFailResultsText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtFailResultsText.Location = New System.Drawing.Point(193, 117)
-        Me.txtFailResultsText.Name = "txtFailResultsText"
-        Me.txtFailResultsText.Size = New System.Drawing.Size(204, 20)
-        Me.txtFailResultsText.TabIndex = 141
-        '
-        'KryptonLabel29
-        '
-        Me.KryptonLabel29.Location = New System.Drawing.Point(9, 91)
-        Me.KryptonLabel29.Name = "KryptonLabel29"
-        Me.KryptonLabel29.Palette = Me.KryptonPalette1
-        Me.KryptonLabel29.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel29.Size = New System.Drawing.Size(100, 20)
-        Me.KryptonLabel29.TabIndex = 140
-        Me.KryptonLabel29.Values.Text = "Pass results text:"
-        '
-        'txtPassResultsText
-        '
-        Me.txtPassResultsText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPassResultsText.Location = New System.Drawing.Point(193, 91)
-        Me.txtPassResultsText.Name = "txtPassResultsText"
-        Me.txtPassResultsText.Size = New System.Drawing.Size(204, 20)
-        Me.txtPassResultsText.TabIndex = 139
-        '
-        'KryptonLabel27
-        '
-        Me.KryptonLabel27.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel27.Location = New System.Drawing.Point(749, 37)
-        Me.KryptonLabel27.Name = "KryptonLabel27"
-        Me.KryptonLabel27.Palette = Me.KryptonPalette1
-        Me.KryptonLabel27.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel27.Size = New System.Drawing.Size(54, 20)
-        Me.KryptonLabel27.TabIndex = 136
-        Me.KryptonLabel27.Values.Text = "minutes"
-        '
-        'KryptonLabel26
-        '
-        Me.KryptonLabel26.Location = New System.Drawing.Point(483, 37)
-        Me.KryptonLabel26.Name = "KryptonLabel26"
-        Me.KryptonLabel26.Palette = Me.KryptonPalette1
-        Me.KryptonLabel26.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel26.Size = New System.Drawing.Size(54, 20)
-        Me.KryptonLabel26.TabIndex = 135
-        Me.KryptonLabel26.Values.Text = "minutes"
-        '
-        'nudMarkingWarning2
-        '
-        Me.nudMarkingWarning2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nudMarkingWarning2.Location = New System.Drawing.Point(668, 35)
-        Me.nudMarkingWarning2.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
-        Me.nudMarkingWarning2.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.nudMarkingWarning2.Name = "nudMarkingWarning2"
-        Me.nudMarkingWarning2.Size = New System.Drawing.Size(75, 22)
-        Me.nudMarkingWarning2.TabIndex = 134
-        Me.nudMarkingWarning2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudMarkingWarning2.ThousandsSeparator = True
-        Me.nudMarkingWarning2.Value = New Decimal(New Integer() {15, 0, 0, 0})
-        '
-        'KryptonLabel25
-        '
-        Me.KryptonLabel25.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel25.Location = New System.Drawing.Point(547, 37)
-        Me.KryptonLabel25.Name = "KryptonLabel25"
-        Me.KryptonLabel25.Palette = Me.KryptonPalette1
-        Me.KryptonLabel25.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel25.Size = New System.Drawing.Size(115, 20)
-        Me.KryptonLabel25.TabIndex = 133
-        Me.KryptonLabel25.Values.Text = "Marking warning 2:"
-        '
-        'nudMarkingWarning1
-        '
-        Me.nudMarkingWarning1.Location = New System.Drawing.Point(411, 35)
-        Me.nudMarkingWarning1.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
-        Me.nudMarkingWarning1.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.nudMarkingWarning1.Name = "nudMarkingWarning1"
-        Me.nudMarkingWarning1.Size = New System.Drawing.Size(66, 22)
-        Me.nudMarkingWarning1.TabIndex = 132
-        Me.nudMarkingWarning1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudMarkingWarning1.ThousandsSeparator = True
-        Me.nudMarkingWarning1.Value = New Decimal(New Integer() {15, 0, 0, 0})
-        '
-        'KryptonLabel21
-        '
-        Me.KryptonLabel21.Location = New System.Drawing.Point(290, 37)
-        Me.KryptonLabel21.Name = "KryptonLabel21"
-        Me.KryptonLabel21.Palette = Me.KryptonPalette1
-        Me.KryptonLabel21.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel21.Size = New System.Drawing.Size(115, 20)
-        Me.KryptonLabel21.TabIndex = 131
-        Me.KryptonLabel21.Values.Text = "Marking warning 1:"
-        '
-        'txtPathToFeedbackSaveFolder
-        '
-        Me.txtPathToFeedbackSaveFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPathToFeedbackSaveFolder.Location = New System.Drawing.Point(193, 194)
-        Me.txtPathToFeedbackSaveFolder.Name = "txtPathToFeedbackSaveFolder"
-        Me.txtPathToFeedbackSaveFolder.Size = New System.Drawing.Size(585, 20)
-        Me.txtPathToFeedbackSaveFolder.TabIndex = 73
-        '
-        'txtLateSubmitDefaultComment
-        '
-        Me.txtLateSubmitDefaultComment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtLateSubmitDefaultComment.Location = New System.Drawing.Point(581, 169)
-        Me.txtLateSubmitDefaultComment.Name = "txtLateSubmitDefaultComment"
-        Me.txtLateSubmitDefaultComment.Size = New System.Drawing.Size(222, 20)
-        Me.txtLateSubmitDefaultComment.TabIndex = 65
-        '
-        'txtRedoPassAllDefaultComment
-        '
-        Me.txtRedoPassAllDefaultComment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtRedoPassAllDefaultComment.Location = New System.Drawing.Point(193, 169)
-        Me.txtRedoPassAllDefaultComment.Name = "txtRedoPassAllDefaultComment"
-        Me.txtRedoPassAllDefaultComment.Size = New System.Drawing.Size(204, 20)
-        Me.txtRedoPassAllDefaultComment.TabIndex = 63
-        '
-        'txtAutoText
-        '
-        Me.txtAutoText.Location = New System.Drawing.Point(80, 230)
-        Me.txtAutoText.Name = "txtAutoText"
-        Me.txtAutoText.Size = New System.Drawing.Size(244, 20)
-        Me.txtAutoText.TabIndex = 59
-        '
-        'txtStudentDidNotSubmitDefaultOutcomeComment
-        '
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Location = New System.Drawing.Point(581, 143)
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Name = "txtStudentDidNotSubmitDefaultOutcomeComment"
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Size = New System.Drawing.Size(222, 20)
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment.TabIndex = 55
-        '
-        'txtExamPassWeakDefaultFeedback
-        '
-        Me.txtExamPassWeakDefaultFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtExamPassWeakDefaultFeedback.Location = New System.Drawing.Point(581, 91)
-        Me.txtExamPassWeakDefaultFeedback.Name = "txtExamPassWeakDefaultFeedback"
-        Me.txtExamPassWeakDefaultFeedback.Size = New System.Drawing.Size(222, 20)
-        Me.txtExamPassWeakDefaultFeedback.TabIndex = 53
-        '
-        'txtNoSubmitFeedback
-        '
-        Me.txtNoSubmitFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtNoSubmitFeedback.Location = New System.Drawing.Point(193, 143)
-        Me.txtNoSubmitFeedback.Name = "txtNoSubmitFeedback"
-        Me.txtNoSubmitFeedback.Size = New System.Drawing.Size(204, 20)
-        Me.txtNoSubmitFeedback.TabIndex = 44
-        '
-        'txtExamPassDefaultFeedback
-        '
-        Me.txtExamPassDefaultFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtExamPassDefaultFeedback.Location = New System.Drawing.Point(581, 65)
-        Me.txtExamPassDefaultFeedback.Name = "txtExamPassDefaultFeedback"
-        Me.txtExamPassDefaultFeedback.Size = New System.Drawing.Size(222, 20)
-        Me.txtExamPassDefaultFeedback.TabIndex = 42
-        '
-        'txtExamFailDefaultFeedback
-        '
-        Me.txtExamFailDefaultFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtExamFailDefaultFeedback.Location = New System.Drawing.Point(193, 65)
-        Me.txtExamFailDefaultFeedback.Name = "txtExamFailDefaultFeedback"
-        Me.txtExamFailDefaultFeedback.Size = New System.Drawing.Size(204, 20)
-        Me.txtExamFailDefaultFeedback.TabIndex = 40
-        '
-        'chkShowHiddenStudents
-        '
-        Me.chkShowHiddenStudents.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkShowHiddenStudents.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkShowHiddenStudents.Location = New System.Drawing.Point(9, 13)
-        Me.chkShowHiddenStudents.Name = "chkShowHiddenStudents"
-        Me.chkShowHiddenStudents.Palette = Me.KryptonPalette1
-        Me.chkShowHiddenStudents.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkShowHiddenStudents.Size = New System.Drawing.Size(228, 20)
-        Me.chkShowHiddenStudents.TabIndex = 0
-        Me.chkShowHiddenStudents.Text = "Show hidden students on Attendence"
-        Me.chkShowHiddenStudents.Values.Text = "Show hidden students on Attendence"
-        '
         'tabExport
         '
-        Me.tabExport.Controls.Add(Me.KryptonPanel1)
+        Me.tabExport.Controls.Add(Me.pnlExport)
         Me.tabExport.Location = New System.Drawing.Point(4, 22)
         Me.tabExport.Name = "tabExport"
         Me.tabExport.Padding = New System.Windows.Forms.Padding(3)
@@ -688,35 +211,35 @@ Partial Class OptionsForm
         Me.tabExport.Text = "Export"
         Me.tabExport.UseVisualStyleBackColor = True
         '
-        'KryptonPanel1
+        'pnlExport
         '
-        Me.KryptonPanel1.Controls.Add(Me.KryptonGroupBox2)
-        Me.KryptonPanel1.Controls.Add(Me.KryptonGroupBox1)
-        Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel1.Location = New System.Drawing.Point(3, 3)
-        Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(815, 548)
-        Me.KryptonPanel1.TabIndex = 0
+        Me.pnlExport.Controls.Add(Me.grpExport)
+        Me.pnlExport.Controls.Add(Me.KryptonGroupBox1)
+        Me.pnlExport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlExport.Location = New System.Drawing.Point(3, 3)
+        Me.pnlExport.Name = "pnlExport"
+        Me.pnlExport.Size = New System.Drawing.Size(815, 548)
+        Me.pnlExport.TabIndex = 0
         '
-        'KryptonGroupBox2
+        'grpExport
         '
-        Me.KryptonGroupBox2.Location = New System.Drawing.Point(173, 3)
-        Me.KryptonGroupBox2.Name = "KryptonGroupBox2"
-        Me.KryptonGroupBox2.Palette = Me.KryptonPalette1
-        Me.KryptonGroupBox2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.grpExport.Location = New System.Drawing.Point(173, 3)
+        Me.grpExport.Name = "grpExport"
+        Me.grpExport.Palette = Me.KryptonPalette1
+        Me.grpExport.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         '
-        'KryptonGroupBox2.Panel
+        'grpExport.Panel
         '
-        Me.KryptonGroupBox2.Panel.Controls.Add(Me.KryptonLabel15)
-        Me.KryptonGroupBox2.Panel.Controls.Add(Me.txtOutcomeMarkPass)
-        Me.KryptonGroupBox2.Panel.Controls.Add(Me.KryptonLabel17)
-        Me.KryptonGroupBox2.Panel.Controls.Add(Me.txtOutcomeMarkFail)
-        Me.KryptonGroupBox2.Panel.Controls.Add(Me.KryptonLabel19)
-        Me.KryptonGroupBox2.Panel.Controls.Add(Me.txtOutcomeMarkUnknown)
-        Me.KryptonGroupBox2.Size = New System.Drawing.Size(162, 117)
-        Me.KryptonGroupBox2.TabIndex = 53
-        Me.KryptonGroupBox2.Text = "Module Results"
-        Me.KryptonGroupBox2.Values.Heading = "Module Results"
+        Me.grpExport.Panel.Controls.Add(Me.KryptonLabel15)
+        Me.grpExport.Panel.Controls.Add(Me.txtOutcomeMarkPass)
+        Me.grpExport.Panel.Controls.Add(Me.KryptonLabel17)
+        Me.grpExport.Panel.Controls.Add(Me.txtOutcomeMarkFail)
+        Me.grpExport.Panel.Controls.Add(Me.KryptonLabel19)
+        Me.grpExport.Panel.Controls.Add(Me.txtOutcomeMarkUnknown)
+        Me.grpExport.Size = New System.Drawing.Size(162, 117)
+        Me.grpExport.TabIndex = 53
+        Me.grpExport.Text = "Module Results"
+        Me.grpExport.Values.Heading = "Module Results"
         '
         'KryptonLabel15
         '
@@ -935,7 +458,7 @@ Partial Class OptionsForm
         '
         'tabData
         '
-        Me.tabData.Controls.Add(Me.KryptonPanel2)
+        Me.tabData.Controls.Add(Me.pnlData)
         Me.tabData.Location = New System.Drawing.Point(4, 22)
         Me.tabData.Name = "tabData"
         Me.tabData.Padding = New System.Windows.Forms.Padding(3)
@@ -944,22 +467,22 @@ Partial Class OptionsForm
         Me.tabData.Text = "Data"
         Me.tabData.UseVisualStyleBackColor = True
         '
-        'KryptonPanel2
+        'pnlData
         '
-        Me.KryptonPanel2.Controls.Add(Me.chkAutoSaveEnabled)
-        Me.KryptonPanel2.Controls.Add(Me.KryptonLabel22)
-        Me.KryptonPanel2.Controls.Add(Me.nudAutoSave)
-        Me.KryptonPanel2.Controls.Add(Me.nudLoggingThreshold)
-        Me.KryptonPanel2.Controls.Add(Me.KryptonLabel18)
-        Me.KryptonPanel2.Controls.Add(Me.nudDataBackupsToRetain)
-        Me.KryptonPanel2.Controls.Add(Me.KryptonLabel13)
-        Me.KryptonPanel2.Controls.Add(Me.KryptonLabel11)
-        Me.KryptonPanel2.Controls.Add(Me.txtCDDrive)
-        Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel2.Location = New System.Drawing.Point(3, 3)
-        Me.KryptonPanel2.Name = "KryptonPanel2"
-        Me.KryptonPanel2.Size = New System.Drawing.Size(815, 548)
-        Me.KryptonPanel2.TabIndex = 1
+        Me.pnlData.Controls.Add(Me.chkAutoSaveEnabled)
+        Me.pnlData.Controls.Add(Me.KryptonLabel22)
+        Me.pnlData.Controls.Add(Me.nudAutoSave)
+        Me.pnlData.Controls.Add(Me.nudLoggingThreshold)
+        Me.pnlData.Controls.Add(Me.KryptonLabel18)
+        Me.pnlData.Controls.Add(Me.nudDataBackupsToRetain)
+        Me.pnlData.Controls.Add(Me.KryptonLabel13)
+        Me.pnlData.Controls.Add(Me.lblCDDrive)
+        Me.pnlData.Controls.Add(Me.txtCDDrive)
+        Me.pnlData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlData.Location = New System.Drawing.Point(3, 3)
+        Me.pnlData.Name = "pnlData"
+        Me.pnlData.Size = New System.Drawing.Size(815, 548)
+        Me.pnlData.TabIndex = 1
         '
         'chkAutoSaveEnabled
         '
@@ -1037,15 +560,15 @@ Partial Class OptionsForm
         Me.KryptonLabel13.TabIndex = 132
         Me.KryptonLabel13.Values.Text = "Data backups to retain:"
         '
-        'KryptonLabel11
+        'lblCDDrive
         '
-        Me.KryptonLabel11.Location = New System.Drawing.Point(124, 66)
-        Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Palette = Me.KryptonPalette1
-        Me.KryptonLabel11.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel11.Size = New System.Drawing.Size(61, 20)
-        Me.KryptonLabel11.TabIndex = 131
-        Me.KryptonLabel11.Values.Text = "CD Drive:"
+        Me.lblCDDrive.Location = New System.Drawing.Point(124, 66)
+        Me.lblCDDrive.Name = "lblCDDrive"
+        Me.lblCDDrive.Palette = Me.KryptonPalette1
+        Me.lblCDDrive.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.lblCDDrive.Size = New System.Drawing.Size(61, 20)
+        Me.lblCDDrive.TabIndex = 131
+        Me.lblCDDrive.Values.Text = "CD Drive:"
         '
         'txtCDDrive
         '
@@ -1056,7 +579,7 @@ Partial Class OptionsForm
         '
         'tabEmail
         '
-        Me.tabEmail.Controls.Add(Me.KryptonPanel3)
+        Me.tabEmail.Controls.Add(Me.pnlEmail)
         Me.tabEmail.Location = New System.Drawing.Point(4, 22)
         Me.tabEmail.Name = "tabEmail"
         Me.tabEmail.Padding = New System.Windows.Forms.Padding(3)
@@ -1065,23 +588,23 @@ Partial Class OptionsForm
         Me.tabEmail.Text = "Email"
         Me.tabEmail.UseVisualStyleBackColor = True
         '
-        'KryptonPanel3
+        'pnlEmail
         '
-        Me.KryptonPanel3.Controls.Add(Me.KryptonLabel34)
-        Me.KryptonPanel3.Controls.Add(Me.txtEmailQuizTrailingText)
-        Me.KryptonPanel3.Controls.Add(Me.KryptonLabel33)
-        Me.KryptonPanel3.Controls.Add(Me.txtEmailQuizResultsIncorrectFeedback)
-        Me.KryptonPanel3.Controls.Add(Me.nudEmailAccountToUse)
-        Me.KryptonPanel3.Controls.Add(Me.KryptonLabel32)
-        Me.KryptonPanel3.Controls.Add(Me.chkIncludeFeedbackWhenEmailing)
-        Me.KryptonPanel3.Controls.Add(Me.llblBrowseForTrulyMail)
-        Me.KryptonPanel3.Controls.Add(Me.KryptonLabel12)
-        Me.KryptonPanel3.Controls.Add(Me.txtPathToTrulyMail)
-        Me.KryptonPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel3.Location = New System.Drawing.Point(3, 3)
-        Me.KryptonPanel3.Name = "KryptonPanel3"
-        Me.KryptonPanel3.Size = New System.Drawing.Size(815, 548)
-        Me.KryptonPanel3.TabIndex = 2
+        Me.pnlEmail.Controls.Add(Me.KryptonLabel34)
+        Me.pnlEmail.Controls.Add(Me.txtEmailQuizTrailingText)
+        Me.pnlEmail.Controls.Add(Me.KryptonLabel33)
+        Me.pnlEmail.Controls.Add(Me.txtEmailQuizResultsIncorrectFeedback)
+        Me.pnlEmail.Controls.Add(Me.nudEmailAccountToUse)
+        Me.pnlEmail.Controls.Add(Me.KryptonLabel32)
+        Me.pnlEmail.Controls.Add(Me.chkIncludeFeedbackWhenEmailing)
+        Me.pnlEmail.Controls.Add(Me.llblBrowseForTrulyMail)
+        Me.pnlEmail.Controls.Add(Me.KryptonLabel12)
+        Me.pnlEmail.Controls.Add(Me.txtPathToTrulyMail)
+        Me.pnlEmail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlEmail.Location = New System.Drawing.Point(3, 3)
+        Me.pnlEmail.Name = "pnlEmail"
+        Me.pnlEmail.Size = New System.Drawing.Size(815, 548)
+        Me.pnlEmail.TabIndex = 2
         '
         'KryptonLabel34
         '
@@ -1192,6 +715,7 @@ Partial Class OptionsForm
         '
         'KryptonPanel4
         '
+        Me.KryptonPanel4.Controls.Add(Me.chkShowHiddenStudents)
         Me.KryptonPanel4.Controls.Add(Me.chkHighlightAttendanceUnknownPresentationQuality)
         Me.KryptonPanel4.Controls.Add(Me.chkHighlightAttendanceUnknownGender)
         Me.KryptonPanel4.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1236,51 +760,527 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
         '
+        'chkShowHiddenStudents
+        '
+        Me.chkShowHiddenStudents.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkShowHiddenStudents.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkShowHiddenStudents.Location = New System.Drawing.Point(5, 125)
+        Me.chkShowHiddenStudents.Name = "chkShowHiddenStudents"
+        Me.chkShowHiddenStudents.Palette = Me.KryptonPalette1
+        Me.chkShowHiddenStudents.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.chkShowHiddenStudents.Size = New System.Drawing.Size(228, 20)
+        Me.chkShowHiddenStudents.TabIndex = 57
+        Me.chkShowHiddenStudents.Text = "Show hidden students on Attendence"
+        Me.chkShowHiddenStudents.Values.Text = "Show hidden students on Attendence"
+        '
+        'KryptonLabel6
+        '
+        Me.KryptonLabel6.Location = New System.Drawing.Point(9, 39)
+        Me.KryptonLabel6.Name = "KryptonLabel6"
+        Me.KryptonLabel6.Palette = Me.KryptonPalette1
+        Me.KryptonLabel6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel6.Size = New System.Drawing.Size(178, 20)
+        Me.KryptonLabel6.TabIndex = 36
+        Me.KryptonLabel6.Values.Text = "Exam clock duration (seconds):"
+        '
+        'nudExamClockDuration
+        '
+        Me.nudExamClockDuration.Location = New System.Drawing.Point(193, 37)
+        Me.nudExamClockDuration.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.nudExamClockDuration.Name = "nudExamClockDuration"
+        Me.nudExamClockDuration.Size = New System.Drawing.Size(75, 22)
+        Me.nudExamClockDuration.TabIndex = 39
+        Me.nudExamClockDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudExamClockDuration.ThousandsSeparator = True
+        Me.nudExamClockDuration.Value = New Decimal(New Integer() {120, 0, 0, 0})
+        '
+        'KryptonLabel7
+        '
+        Me.KryptonLabel7.Location = New System.Drawing.Point(9, 65)
+        Me.KryptonLabel7.Name = "KryptonLabel7"
+        Me.KryptonLabel7.Palette = Me.KryptonPalette1
+        Me.KryptonLabel7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel7.Size = New System.Drawing.Size(156, 20)
+        Me.KryptonLabel7.TabIndex = 41
+        Me.KryptonLabel7.Values.Text = "Exam fail default feedback:"
+        '
+        'KryptonLabel8
+        '
+        Me.KryptonLabel8.Location = New System.Drawing.Point(403, 65)
+        Me.KryptonLabel8.Name = "KryptonLabel8"
+        Me.KryptonLabel8.Palette = Me.KryptonPalette1
+        Me.KryptonLabel8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel8.Size = New System.Drawing.Size(164, 20)
+        Me.KryptonLabel8.TabIndex = 43
+        Me.KryptonLabel8.Values.Text = "Exam pass default feedback:"
+        '
+        'KryptonLabel10
+        '
+        Me.KryptonLabel10.Location = New System.Drawing.Point(9, 143)
+        Me.KryptonLabel10.Name = "KryptonLabel10"
+        Me.KryptonLabel10.Palette = Me.KryptonPalette1
+        Me.KryptonLabel10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel10.Size = New System.Drawing.Size(123, 20)
+        Me.KryptonLabel10.TabIndex = 45
+        Me.KryptonLabel10.Values.Text = "No submit feedback:"
+        '
+        'KryptonLabel14
+        '
+        Me.KryptonLabel14.Location = New System.Drawing.Point(403, 91)
+        Me.KryptonLabel14.Name = "KryptonLabel14"
+        Me.KryptonLabel14.Palette = Me.KryptonPalette1
+        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel14.Size = New System.Drawing.Size(154, 20)
+        Me.KryptonLabel14.TabIndex = 54
+        Me.KryptonLabel14.Values.Text = "Exam pass weak feedback:"
+        '
+        'KryptonLabel16
+        '
+        Me.KryptonLabel16.Location = New System.Drawing.Point(403, 143)
+        Me.KryptonLabel16.Name = "KryptonLabel16"
+        Me.KryptonLabel16.Palette = Me.KryptonPalette1
+        Me.KryptonLabel16.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel16.Size = New System.Drawing.Size(178, 20)
+        Me.KryptonLabel16.TabIndex = 56
+        Me.KryptonLabel16.Values.Text = "No submit outcome comment:"
+        '
+        'KryptonLabel20
+        '
+        Me.KryptonLabel20.Location = New System.Drawing.Point(12, 230)
+        Me.KryptonLabel20.Name = "KryptonLabel20"
+        Me.KryptonLabel20.Palette = Me.KryptonPalette1
+        Me.KryptonLabel20.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel20.Size = New System.Drawing.Size(62, 20)
+        Me.KryptonLabel20.TabIndex = 60
+        Me.KryptonLabel20.Values.Text = "AutoText:"
+        '
+        'KryptonLabel23
+        '
+        Me.KryptonLabel23.Location = New System.Drawing.Point(9, 169)
+        Me.KryptonLabel23.Name = "KryptonLabel23"
+        Me.KryptonLabel23.Palette = Me.KryptonPalette1
+        Me.KryptonLabel23.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel23.Size = New System.Drawing.Size(181, 20)
+        Me.KryptonLabel23.TabIndex = 64
+        Me.KryptonLabel23.Values.Text = "Redo pass all default comment:"
+        '
+        'KryptonLabel24
+        '
+        Me.KryptonLabel24.Location = New System.Drawing.Point(403, 169)
+        Me.KryptonLabel24.Name = "KryptonLabel24"
+        Me.KryptonLabel24.Palette = Me.KryptonPalette1
+        Me.KryptonLabel24.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel24.Size = New System.Drawing.Size(173, 20)
+        Me.KryptonLabel24.TabIndex = 66
+        Me.KryptonLabel24.Values.Text = "Late submit default comment:"
+        '
+        'KryptonLabel28
+        '
+        Me.KryptonLabel28.Location = New System.Drawing.Point(9, 194)
+        Me.KryptonLabel28.Name = "KryptonLabel28"
+        Me.KryptonLabel28.Size = New System.Drawing.Size(120, 20)
+        Me.KryptonLabel28.TabIndex = 74
+        Me.KryptonLabel28.Values.Text = "Feedback save path:"
+        '
+        'llblBrowseForFeedbackSaveFolder
+        '
+        Me.llblBrowseForFeedbackSaveFolder.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblBrowseForFeedbackSaveFolder.Location = New System.Drawing.Point(784, 194)
+        Me.llblBrowseForFeedbackSaveFolder.Name = "llblBrowseForFeedbackSaveFolder"
+        Me.llblBrowseForFeedbackSaveFolder.Size = New System.Drawing.Size(19, 20)
+        Me.llblBrowseForFeedbackSaveFolder.TabIndex = 75
+        Me.llblBrowseForFeedbackSaveFolder.Values.Text = "..."
+        '
+        'olvImprovementText
+        '
+        Me.olvImprovementText.Activation = System.Windows.Forms.ItemActivation.TwoClick
+        Me.olvImprovementText.AllColumns.Add(Me.OlvColumn18)
+        Me.olvImprovementText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.olvImprovementText.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvImprovementText.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn18})
+        Me.olvImprovementText.FullRowSelect = True
+        Me.olvImprovementText.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+        Me.olvImprovementText.HideSelection = False
+        Me.olvImprovementText.Location = New System.Drawing.Point(364, 220)
+        Me.olvImprovementText.Name = "olvImprovementText"
+        Me.olvImprovementText.ShowGroups = False
+        Me.olvImprovementText.Size = New System.Drawing.Size(439, 325)
+        Me.olvImprovementText.TabIndex = 122
+        Me.olvImprovementText.UseCompatibleStateImageBehavior = False
+        Me.olvImprovementText.UseFiltering = True
+        Me.olvImprovementText.View = System.Windows.Forms.View.Details
+        '
+        'OlvColumn18
+        '
+        Me.OlvColumn18.AspectName = "Text"
+        Me.OlvColumn18.FillsFreeSpace = True
+        Me.OlvColumn18.IsEditable = False
+        Me.OlvColumn18.Text = "Text"
+        Me.OlvColumn18.Width = 277
+        '
+        'llblAddAutoText
+        '
+        Me.llblAddAutoText.Location = New System.Drawing.Point(336, 232)
+        Me.llblAddAutoText.Name = "llblAddAutoText"
+        Me.llblAddAutoText.Size = New System.Drawing.Size(22, 18)
+        Me.llblAddAutoText.TabIndex = 123
+        Me.ToolTip1.SetToolTip(Me.llblAddAutoText, "Add AutoText to list")
+        Me.llblAddAutoText.Values.Image = Global.Teaching.My.Resources.Resources.add_icon_16
+        Me.llblAddAutoText.Values.Text = ""
+        '
+        'llblRemoveAutoText
+        '
+        Me.llblRemoveAutoText.Location = New System.Drawing.Point(336, 259)
+        Me.llblRemoveAutoText.Name = "llblRemoveAutoText"
+        Me.llblRemoveAutoText.Size = New System.Drawing.Size(22, 18)
+        Me.llblRemoveAutoText.TabIndex = 124
+        Me.ToolTip1.SetToolTip(Me.llblRemoveAutoText, "Delete selected entry from list")
+        Me.llblRemoveAutoText.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
+        Me.llblRemoveAutoText.Values.Text = ""
+        '
+        'llblMoveAutoTextBack
+        '
+        Me.llblMoveAutoTextBack.Location = New System.Drawing.Point(337, 288)
+        Me.llblMoveAutoTextBack.Name = "llblMoveAutoTextBack"
+        Me.llblMoveAutoTextBack.Size = New System.Drawing.Size(22, 18)
+        Me.llblMoveAutoTextBack.TabIndex = 125
+        Me.ToolTip1.SetToolTip(Me.llblMoveAutoTextBack, "Copy selected list entry to AutoText box")
+        Me.llblMoveAutoTextBack.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
+        Me.llblMoveAutoTextBack.Values.Text = ""
+        '
+        'chkDisableColorsAssignmentDetail
+        '
+        Me.chkDisableColorsAssignmentDetail.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkDisableColorsAssignmentDetail.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkDisableColorsAssignmentDetail.Location = New System.Drawing.Point(17, 259)
+        Me.chkDisableColorsAssignmentDetail.Name = "chkDisableColorsAssignmentDetail"
+        Me.chkDisableColorsAssignmentDetail.Palette = Me.KryptonPalette1
+        Me.chkDisableColorsAssignmentDetail.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.chkDisableColorsAssignmentDetail.Size = New System.Drawing.Size(220, 20)
+        Me.chkDisableColorsAssignmentDetail.TabIndex = 130
+        Me.chkDisableColorsAssignmentDetail.Text = "Disable colors in assignment details:"
+        Me.chkDisableColorsAssignmentDetail.Values.Text = "Disable colors in assignment details:"
+        '
+        'KryptonLabel21
+        '
+        Me.KryptonLabel21.Location = New System.Drawing.Point(290, 37)
+        Me.KryptonLabel21.Name = "KryptonLabel21"
+        Me.KryptonLabel21.Palette = Me.KryptonPalette1
+        Me.KryptonLabel21.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel21.Size = New System.Drawing.Size(115, 20)
+        Me.KryptonLabel21.TabIndex = 131
+        Me.KryptonLabel21.Values.Text = "Marking warning 1:"
+        '
+        'nudMarkingWarning1
+        '
+        Me.nudMarkingWarning1.Location = New System.Drawing.Point(411, 35)
+        Me.nudMarkingWarning1.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.nudMarkingWarning1.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudMarkingWarning1.Name = "nudMarkingWarning1"
+        Me.nudMarkingWarning1.Size = New System.Drawing.Size(66, 22)
+        Me.nudMarkingWarning1.TabIndex = 132
+        Me.nudMarkingWarning1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudMarkingWarning1.ThousandsSeparator = True
+        Me.nudMarkingWarning1.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        '
+        'KryptonLabel25
+        '
+        Me.KryptonLabel25.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.KryptonLabel25.Location = New System.Drawing.Point(547, 37)
+        Me.KryptonLabel25.Name = "KryptonLabel25"
+        Me.KryptonLabel25.Palette = Me.KryptonPalette1
+        Me.KryptonLabel25.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel25.Size = New System.Drawing.Size(115, 20)
+        Me.KryptonLabel25.TabIndex = 133
+        Me.KryptonLabel25.Values.Text = "Marking warning 2:"
+        '
+        'nudMarkingWarning2
+        '
+        Me.nudMarkingWarning2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nudMarkingWarning2.Location = New System.Drawing.Point(668, 35)
+        Me.nudMarkingWarning2.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.nudMarkingWarning2.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudMarkingWarning2.Name = "nudMarkingWarning2"
+        Me.nudMarkingWarning2.Size = New System.Drawing.Size(75, 22)
+        Me.nudMarkingWarning2.TabIndex = 134
+        Me.nudMarkingWarning2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudMarkingWarning2.ThousandsSeparator = True
+        Me.nudMarkingWarning2.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        '
+        'KryptonLabel26
+        '
+        Me.KryptonLabel26.Location = New System.Drawing.Point(483, 37)
+        Me.KryptonLabel26.Name = "KryptonLabel26"
+        Me.KryptonLabel26.Palette = Me.KryptonPalette1
+        Me.KryptonLabel26.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel26.Size = New System.Drawing.Size(54, 20)
+        Me.KryptonLabel26.TabIndex = 135
+        Me.KryptonLabel26.Values.Text = "minutes"
+        '
+        'KryptonLabel27
+        '
+        Me.KryptonLabel27.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.KryptonLabel27.Location = New System.Drawing.Point(749, 37)
+        Me.KryptonLabel27.Name = "KryptonLabel27"
+        Me.KryptonLabel27.Palette = Me.KryptonPalette1
+        Me.KryptonLabel27.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel27.Size = New System.Drawing.Size(54, 20)
+        Me.KryptonLabel27.TabIndex = 136
+        Me.KryptonLabel27.Values.Text = "minutes"
+        '
+        'llblAutoTextUp
+        '
+        Me.llblAutoTextUp.Location = New System.Drawing.Point(337, 340)
+        Me.llblAutoTextUp.Name = "llblAutoTextUp"
+        Me.llblAutoTextUp.Size = New System.Drawing.Size(22, 18)
+        Me.llblAutoTextUp.TabIndex = 137
+        Me.ToolTip1.SetToolTip(Me.llblAutoTextUp, "Copy selected list entry to AutoText box")
+        Me.llblAutoTextUp.Values.Image = Global.Teaching.My.Resources.Resources.up_16
+        Me.llblAutoTextUp.Values.Text = ""
+        '
+        'llblAutoTextDown
+        '
+        Me.llblAutoTextDown.Location = New System.Drawing.Point(337, 364)
+        Me.llblAutoTextDown.Name = "llblAutoTextDown"
+        Me.llblAutoTextDown.Size = New System.Drawing.Size(22, 18)
+        Me.llblAutoTextDown.TabIndex = 138
+        Me.ToolTip1.SetToolTip(Me.llblAutoTextDown, "Copy selected list entry to AutoText box")
+        Me.llblAutoTextDown.Values.Image = Global.Teaching.My.Resources.Resources.down_16
+        Me.llblAutoTextDown.Values.Text = ""
+        '
+        'KryptonLabel29
+        '
+        Me.KryptonLabel29.Location = New System.Drawing.Point(9, 91)
+        Me.KryptonLabel29.Name = "KryptonLabel29"
+        Me.KryptonLabel29.Palette = Me.KryptonPalette1
+        Me.KryptonLabel29.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel29.Size = New System.Drawing.Size(100, 20)
+        Me.KryptonLabel29.TabIndex = 140
+        Me.KryptonLabel29.Values.Text = "Pass results text:"
+        '
+        'KryptonLabel30
+        '
+        Me.KryptonLabel30.Location = New System.Drawing.Point(9, 117)
+        Me.KryptonLabel30.Name = "KryptonLabel30"
+        Me.KryptonLabel30.Palette = Me.KryptonPalette1
+        Me.KryptonLabel30.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel30.Size = New System.Drawing.Size(94, 20)
+        Me.KryptonLabel30.TabIndex = 142
+        Me.KryptonLabel30.Values.Text = "Fail results text:"
+        '
+        'KryptonLabel31
+        '
+        Me.KryptonLabel31.Location = New System.Drawing.Point(403, 117)
+        Me.KryptonLabel31.Name = "KryptonLabel31"
+        Me.KryptonLabel31.Palette = Me.KryptonPalette1
+        Me.KryptonLabel31.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel31.Size = New System.Drawing.Size(128, 20)
+        Me.KryptonLabel31.TabIndex = 144
+        Me.KryptonLabel31.Values.Text = "Unknown results text:"
+        '
+        'pnlMarking
+        '
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel31)
+        Me.pnlMarking.Controls.Add(Me.txtUnknownResultsText)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel30)
+        Me.pnlMarking.Controls.Add(Me.txtFailResultsText)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel29)
+        Me.pnlMarking.Controls.Add(Me.txtPassResultsText)
+        Me.pnlMarking.Controls.Add(Me.llblAutoTextDown)
+        Me.pnlMarking.Controls.Add(Me.llblAutoTextUp)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel27)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel26)
+        Me.pnlMarking.Controls.Add(Me.nudMarkingWarning2)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel25)
+        Me.pnlMarking.Controls.Add(Me.nudMarkingWarning1)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel21)
+        Me.pnlMarking.Controls.Add(Me.chkDisableColorsAssignmentDetail)
+        Me.pnlMarking.Controls.Add(Me.llblMoveAutoTextBack)
+        Me.pnlMarking.Controls.Add(Me.llblRemoveAutoText)
+        Me.pnlMarking.Controls.Add(Me.llblAddAutoText)
+        Me.pnlMarking.Controls.Add(Me.olvImprovementText)
+        Me.pnlMarking.Controls.Add(Me.llblBrowseForFeedbackSaveFolder)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel28)
+        Me.pnlMarking.Controls.Add(Me.txtPathToFeedbackSaveFolder)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel24)
+        Me.pnlMarking.Controls.Add(Me.txtLateSubmitDefaultComment)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel23)
+        Me.pnlMarking.Controls.Add(Me.txtRedoPassAllDefaultComment)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel20)
+        Me.pnlMarking.Controls.Add(Me.txtAutoText)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel16)
+        Me.pnlMarking.Controls.Add(Me.txtStudentDidNotSubmitDefaultOutcomeComment)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel14)
+        Me.pnlMarking.Controls.Add(Me.txtExamPassWeakDefaultFeedback)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel10)
+        Me.pnlMarking.Controls.Add(Me.txtNoSubmitFeedback)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel8)
+        Me.pnlMarking.Controls.Add(Me.txtExamPassDefaultFeedback)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel7)
+        Me.pnlMarking.Controls.Add(Me.txtExamFailDefaultFeedback)
+        Me.pnlMarking.Controls.Add(Me.nudExamClockDuration)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel6)
+        Me.pnlMarking.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlMarking.Location = New System.Drawing.Point(3, 3)
+        Me.pnlMarking.Name = "pnlMarking"
+        Me.pnlMarking.Palette = Me.KryptonPalette1
+        Me.pnlMarking.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.pnlMarking.Size = New System.Drawing.Size(815, 548)
+        Me.pnlMarking.TabIndex = 0
+        '
+        'txtExamFailDefaultFeedback
+        '
+        Me.txtExamFailDefaultFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtExamFailDefaultFeedback.Location = New System.Drawing.Point(193, 65)
+        Me.txtExamFailDefaultFeedback.Name = "txtExamFailDefaultFeedback"
+        Me.txtExamFailDefaultFeedback.Size = New System.Drawing.Size(204, 20)
+        Me.txtExamFailDefaultFeedback.TabIndex = 40
+        '
+        'txtExamPassDefaultFeedback
+        '
+        Me.txtExamPassDefaultFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtExamPassDefaultFeedback.Location = New System.Drawing.Point(581, 65)
+        Me.txtExamPassDefaultFeedback.Name = "txtExamPassDefaultFeedback"
+        Me.txtExamPassDefaultFeedback.Size = New System.Drawing.Size(222, 20)
+        Me.txtExamPassDefaultFeedback.TabIndex = 42
+        '
+        'txtNoSubmitFeedback
+        '
+        Me.txtNoSubmitFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtNoSubmitFeedback.Location = New System.Drawing.Point(193, 143)
+        Me.txtNoSubmitFeedback.Name = "txtNoSubmitFeedback"
+        Me.txtNoSubmitFeedback.Size = New System.Drawing.Size(204, 20)
+        Me.txtNoSubmitFeedback.TabIndex = 44
+        '
+        'txtExamPassWeakDefaultFeedback
+        '
+        Me.txtExamPassWeakDefaultFeedback.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtExamPassWeakDefaultFeedback.Location = New System.Drawing.Point(581, 91)
+        Me.txtExamPassWeakDefaultFeedback.Name = "txtExamPassWeakDefaultFeedback"
+        Me.txtExamPassWeakDefaultFeedback.Size = New System.Drawing.Size(222, 20)
+        Me.txtExamPassWeakDefaultFeedback.TabIndex = 53
+        '
+        'txtStudentDidNotSubmitDefaultOutcomeComment
+        '
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Location = New System.Drawing.Point(581, 143)
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Name = "txtStudentDidNotSubmitDefaultOutcomeComment"
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Size = New System.Drawing.Size(222, 20)
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment.TabIndex = 55
+        '
+        'txtAutoText
+        '
+        Me.txtAutoText.Location = New System.Drawing.Point(80, 230)
+        Me.txtAutoText.Name = "txtAutoText"
+        Me.txtAutoText.Size = New System.Drawing.Size(244, 20)
+        Me.txtAutoText.TabIndex = 59
+        '
+        'txtRedoPassAllDefaultComment
+        '
+        Me.txtRedoPassAllDefaultComment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtRedoPassAllDefaultComment.Location = New System.Drawing.Point(193, 169)
+        Me.txtRedoPassAllDefaultComment.Name = "txtRedoPassAllDefaultComment"
+        Me.txtRedoPassAllDefaultComment.Size = New System.Drawing.Size(204, 20)
+        Me.txtRedoPassAllDefaultComment.TabIndex = 63
+        '
+        'txtLateSubmitDefaultComment
+        '
+        Me.txtLateSubmitDefaultComment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtLateSubmitDefaultComment.Location = New System.Drawing.Point(581, 169)
+        Me.txtLateSubmitDefaultComment.Name = "txtLateSubmitDefaultComment"
+        Me.txtLateSubmitDefaultComment.Size = New System.Drawing.Size(222, 20)
+        Me.txtLateSubmitDefaultComment.TabIndex = 65
+        '
+        'txtPathToFeedbackSaveFolder
+        '
+        Me.txtPathToFeedbackSaveFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPathToFeedbackSaveFolder.Location = New System.Drawing.Point(193, 194)
+        Me.txtPathToFeedbackSaveFolder.Name = "txtPathToFeedbackSaveFolder"
+        Me.txtPathToFeedbackSaveFolder.Size = New System.Drawing.Size(585, 20)
+        Me.txtPathToFeedbackSaveFolder.TabIndex = 73
+        '
+        'txtPassResultsText
+        '
+        Me.txtPassResultsText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPassResultsText.Location = New System.Drawing.Point(193, 91)
+        Me.txtPassResultsText.Name = "txtPassResultsText"
+        Me.txtPassResultsText.Size = New System.Drawing.Size(204, 20)
+        Me.txtPassResultsText.TabIndex = 139
+        '
+        'txtFailResultsText
+        '
+        Me.txtFailResultsText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtFailResultsText.Location = New System.Drawing.Point(193, 117)
+        Me.txtFailResultsText.Name = "txtFailResultsText"
+        Me.txtFailResultsText.Size = New System.Drawing.Size(204, 20)
+        Me.txtFailResultsText.TabIndex = 141
+        '
+        'txtUnknownResultsText
+        '
+        Me.txtUnknownResultsText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtUnknownResultsText.Location = New System.Drawing.Point(581, 117)
+        Me.txtUnknownResultsText.Name = "txtUnknownResultsText"
+        Me.txtUnknownResultsText.Size = New System.Drawing.Size(222, 20)
+        Me.txtUnknownResultsText.TabIndex = 143
+        '
         'OptionsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(829, 625)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.pnlOuter)
         Me.Controls.Add(Me.KryptonPanel5)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "OptionsForm"
         Me.Palette = Me.KryptonPalette1
         Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.Text = "Settings"
-        CType(Me.olvImprovementText, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabControl1.ResumeLayout(False)
+        Me.pnlOuter.ResumeLayout(False)
         Me.tabMarking.ResumeLayout(False)
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel.ResumeLayout(False)
-        Me.KryptonPanel.PerformLayout()
         Me.tabExport.ResumeLayout(False)
-        CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel1.ResumeLayout(False)
-        CType(Me.KryptonGroupBox2.Panel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonGroupBox2.Panel.ResumeLayout(False)
-        Me.KryptonGroupBox2.Panel.PerformLayout()
-        CType(Me.KryptonGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonGroupBox2.ResumeLayout(False)
+        CType(Me.pnlExport, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlExport.ResumeLayout(False)
+        CType(Me.grpExport.Panel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpExport.Panel.ResumeLayout(False)
+        Me.grpExport.Panel.PerformLayout()
+        CType(Me.grpExport, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpExport.ResumeLayout(False)
         CType(Me.KryptonGroupBox1.Panel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonGroupBox1.Panel.ResumeLayout(False)
         Me.KryptonGroupBox1.Panel.PerformLayout()
         CType(Me.KryptonGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonGroupBox1.ResumeLayout(False)
         Me.tabData.ResumeLayout(False)
-        CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel2.ResumeLayout(False)
-        Me.KryptonPanel2.PerformLayout()
+        CType(Me.pnlData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlData.ResumeLayout(False)
+        Me.pnlData.PerformLayout()
         Me.tabEmail.ResumeLayout(False)
-        CType(Me.KryptonPanel3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel3.ResumeLayout(False)
-        Me.KryptonPanel3.PerformLayout()
+        CType(Me.pnlEmail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlEmail.ResumeLayout(False)
+        Me.pnlEmail.PerformLayout()
         Me.tabAttendance.ResumeLayout(False)
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel4.ResumeLayout(False)
         Me.KryptonPanel4.PerformLayout()
         CType(Me.KryptonPanel5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel5.ResumeLayout(False)
+        CType(Me.olvImprovementText, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pnlMarking, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlMarking.ResumeLayout(False)
+        Me.pnlMarking.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1302,40 +1302,11 @@ Partial Class OptionsForm
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents btnCancel As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents btnOK As ComponentFactory.Krypton.Toolkit.KryptonButton
-    Friend WithEvents KryptonLabel6 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudExamClockDuration As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel16 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel20 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel23 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel24 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel28 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents llblBrowseForFeedbackSaveFolder As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents olvImprovementText As BrightIdeasSoftware.ObjectListView
-    Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents llblAddAutoText As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblRemoveAutoText As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblMoveAutoTextBack As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents chkDisableColorsAssignmentDetail As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents pnlOuter As System.Windows.Forms.TabControl
     Friend WithEvents tabMarking As System.Windows.Forms.TabPage
-    Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents txtPathToFeedbackSaveFolder As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtLateSubmitDefaultComment As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtRedoPassAllDefaultComment As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtAutoText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtStudentDidNotSubmitDefaultOutcomeComment As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtExamPassWeakDefaultFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtNoSubmitFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtExamPassDefaultFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtExamFailDefaultFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents chkShowHiddenStudents As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents tabExport As System.Windows.Forms.TabPage
-    Friend WithEvents KryptonPanel1 As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents KryptonGroupBox2 As ComponentFactory.Krypton.Toolkit.KryptonGroupBox
+    Friend WithEvents pnlExport As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents grpExport As ComponentFactory.Krypton.Toolkit.KryptonGroupBox
     Friend WithEvents KryptonLabel15 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtOutcomeMarkPass As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel17 As ComponentFactory.Krypton.Toolkit.KryptonLabel
@@ -1356,7 +1327,7 @@ Partial Class OptionsForm
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtAttendenceMarkAbsent As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents tabData As System.Windows.Forms.TabPage
-    Friend WithEvents KryptonPanel2 As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents pnlData As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents chkAutoSaveEnabled As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents KryptonLabel22 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudAutoSave As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
@@ -1364,28 +1335,14 @@ Partial Class OptionsForm
     Friend WithEvents KryptonLabel18 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudDataBackupsToRetain As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents KryptonLabel13 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel11 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblCDDrive As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtCDDrive As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents tabEmail As System.Windows.Forms.TabPage
-    Friend WithEvents KryptonPanel3 As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents pnlEmail As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents chkIncludeFeedbackWhenEmailing As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents llblBrowseForTrulyMail As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtPathToTrulyMail As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel27 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel26 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudMarkingWarning2 As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel25 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudMarkingWarning1 As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel21 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents llblAutoTextDown As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblAutoTextUp As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents KryptonLabel30 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtFailResultsText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel29 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtPassResultsText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel31 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtUnknownResultsText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents nudEmailAccountToUse As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents KryptonLabel32 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents tabAttendance As System.Windows.Forms.TabPage
@@ -1397,4 +1354,47 @@ Partial Class OptionsForm
     Friend WithEvents txtEmailQuizResultsIncorrectFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel34 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtEmailQuizTrailingText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents chkShowHiddenStudents As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents pnlMarking As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents KryptonLabel31 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtUnknownResultsText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel30 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtFailResultsText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel29 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtPassResultsText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents llblAutoTextDown As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAutoTextUp As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents KryptonLabel27 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonLabel26 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents nudMarkingWarning2 As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents KryptonLabel25 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents nudMarkingWarning1 As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents KryptonLabel21 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents chkDisableColorsAssignmentDetail As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents llblMoveAutoTextBack As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblRemoveAutoText As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAddAutoText As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents olvImprovementText As BrightIdeasSoftware.ObjectListView
+    Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents llblBrowseForFeedbackSaveFolder As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents KryptonLabel28 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtPathToFeedbackSaveFolder As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel24 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtLateSubmitDefaultComment As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel23 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtRedoPassAllDefaultComment As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel20 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtAutoText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel16 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtStudentDidNotSubmitDefaultOutcomeComment As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtExamPassWeakDefaultFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtNoSubmitFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtExamPassDefaultFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtExamFailDefaultFeedback As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents nudExamClockDuration As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents KryptonLabel6 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

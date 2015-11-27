@@ -1,3 +1,4 @@
+
 Public Class MainForm
     Private WithEvents m_bkgndExportAttendence As System.ComponentModel.BackgroundWorker
     Private WithEvents m_bkgndExportStudents As System.ComponentModel.BackgroundWorker
@@ -66,6 +67,72 @@ Public Class MainForm
         txtNotes.Text = AppSettings.Notes
 
         tmrAutoSave.Start()
+
+        SetupForLiteVersion()
+
+    End Sub
+    ''' <summary>
+    ''' Removes UI elements for Lite (free) version
+    ''' </summary>
+    Private Sub SetupForLiteVersion()
+        Try
+            If Not AppSettings.PremiumFeaturesEnabled Then
+                '-- View
+                ViewScheduleToolStripMenuItem.Visible = False
+                splitStudentsSchedule.Panel2Collapsed = True '-- hide for lite
+                NotesToolStripMenuItem.Visible = False
+
+                '-- Action
+                KryptonSplitContainer1.Panel2Collapsed = True
+                ExamToolStripMenuItem.Visible = False
+                ExamRedoToolStripMenuItem.Visible = False
+                Exam2ndRedoToolStripMenuItem.Visible = False
+                ToolStripSeparator4.Visible = False
+                ToolStripSeparator15.Visible = False
+
+                MarkSelectedAssignmentToolStripMenuItem.Visible = False
+                EmailAssignmentResultsToolStripMenuItem.Visible = False
+                SendBulkEmailToolStripMenuItem.Visible = False
+                EmailOnlineQuizResultsToolStripMenuItem.Visible = False
+                BatchSaveMarkingSheetsToolStripMenuItem.Visible = False
+
+                FilterForSelectedGroupToolStripMenuItem.Visible = False
+
+                CloseAssignmentToolStripMenuItem.Visible = False
+                EitherOrToolStripMenuItem.Visible = False
+                RemoveAllStudentsFromSelectedClassToolStripMenuItem.Visible = False
+                ManageImprovementItemsToolStripMenuItem.Visible = False
+
+                '-- reports
+                AssignmentResultsToolStripMenuItem.Visible = False
+                ModuleResultsToolStripMenuItem.Visible = False
+                FailedoutcomesToolStripMenuItem.Visible = False
+                ModuleFeedbackCheckToolStripMenuItem.Visible = False
+                StudentOutcomeResultsToolStripMenuItem.Visible = False
+                SessionprepStatusToolStripMenuItem.Visible = False
+                AssignmentProcessingToolStripMenuItem.Visible = False
+                StudentQualityToolStripMenuItem.Visible = False
+                StudentGradesToolStripMenuItem.Visible = False
+                SemesterStatisticsToolStripMenuItem.Visible = False
+                ExcessiveAbsencesReport.Visible = False
+                ScheduledSessionsToolStripMenuItem.Visible = False
+
+                '-- Data
+                ImportStudentAssignmentScoresToolStripMenuItem.Visible = False
+                ImportImprovementItemsToolStripMenuItem.Visible = False
+                ExportModuleResultsToolStripMenuItem.Visible = False
+                ExportMarkingResultsToolStripMenuItem.Visible = False
+                ExportMarkingResultsIsolatedToolStripMenuItem.Visible = False
+                ExportStudentGradesToolStripMenuItem.Visible = False
+                ExportScheduleAsICalToolStripMenuItem.Visible = False
+                UpdateEmailAddressToolStripMenuItem.Visible = False
+                FindDuplicateStudentsToolStripMenuItem.Visible = False
+
+            End If
+
+        Catch ex As Exception
+            Log(ex)
+        End Try
     End Sub
     Private Sub LoadSemesters()
         Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
@@ -219,7 +286,7 @@ Public Class MainForm
             LoadClassGroups()
             olvStudents.ClearObjects()
             LoadSchedule()
-           
+
         Catch ex As Exception
             MessageBox.Show("There was an error loading the selected semester: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -357,7 +424,7 @@ Public Class MainForm
     End Sub
 
     Private Sub btnEditStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnEditStudent.LinkClicked
-       EditSelectedStudent
+        EditSelectedStudent()
     End Sub
     Private Sub EditSelectedStudent()
         Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
@@ -682,7 +749,7 @@ Public Class MainForm
         If GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to delete " & GetSelectedAssignment.Name & " for the class " & GetSelectedClass.Name & "?" & _
+            If MessageBox.Show("Are you sure you want to delete " & GetSelectedAssignment.Name & " for the class " & GetSelectedClass.Name & "?" &
                                Environment.NewLine & Environment.NewLine, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
                 If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
                     GetSelectedClassGroup().AssignmentsBTEC.Remove(GetSelectedAssignment())
@@ -826,8 +893,8 @@ Public Class MainForm
 
     Private Sub llblRemoveClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveClassGroup.LinkClicked
         Dim intClasses As Integer = GetSelectedClassGroup.Classes.Count
-        If MessageBox.Show("Are you sure you want to delete " & GetSelectedClassGroup.Name & "?" & _
-                           Environment.NewLine & Environment.NewLine & _
+        If MessageBox.Show("Are you sure you want to delete " & GetSelectedClassGroup.Name & "?" &
+                           Environment.NewLine & Environment.NewLine &
                            "It has " & intClasses.ToString("#,##0") & " classes.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
             ThisSemester.ClassGroups.Remove(GetSelectedClassGroup())
             LoadClassGroups()
@@ -1304,10 +1371,10 @@ Public Class MainForm
     End Sub
     Private Sub SelectRandomStudentAndDisplayMessage()
         If SelectRandomStudent() Then
-            Select Case MessageBox.Show(GetSelectedStudentCanOnlyBeOne().Nickname & " - " & GetSelectedStudentCanOnlyBeOne().LocalName & " - " & GetSelectedStudentCanOnlyBeOne.CurrentAttendenceStatus.ToString() & _
-                                                                                Environment.NewLine & Environment.NewLine & "Overall: " & GetSelectedStudentCanOnlyBeOne.PresentationQuality.ToString() & _
-                                                                                Environment.NewLine & Environment.NewLine & "Mark removed and select a new student (yes)?" & _
-                                                                                Environment.NewLine & "Ignore and select a new student (no)?" & _
+            Select Case MessageBox.Show(GetSelectedStudentCanOnlyBeOne().Nickname & " - " & GetSelectedStudentCanOnlyBeOne().LocalName & " - " & GetSelectedStudentCanOnlyBeOne.CurrentAttendenceStatus.ToString() &
+                                                                                Environment.NewLine & Environment.NewLine & "Overall: " & GetSelectedStudentCanOnlyBeOne.PresentationQuality.ToString() &
+                                                                                Environment.NewLine & Environment.NewLine & "Mark removed and select a new student (yes)?" &
+                                                                                Environment.NewLine & "Ignore and select a new student (no)?" &
                                                                                 Environment.NewLine & "Do nothing (cancel)?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
                 Case Windows.Forms.DialogResult.Yes
                     RemoveCurrentStudent()
@@ -1540,7 +1607,7 @@ Public Class MainForm
         ElseIf GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to close.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to close first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine & _
+            If MessageBox.Show("Are you sure you want to close first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
                                , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
                 CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.FirstTry)
@@ -1555,7 +1622,7 @@ Public Class MainForm
         ElseIf GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to close.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to close rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine & _
+            If MessageBox.Show("Are you sure you want to close rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
                                , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
                 Try
@@ -1574,7 +1641,7 @@ Public Class MainForm
         ElseIf GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to close.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to close 2nd rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine & _
+            If MessageBox.Show("Are you sure you want to close 2nd rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
                                , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
                 Try
@@ -2058,8 +2125,8 @@ Public Class MainForm
     End Sub
     Private Sub RemoveSelectedClass()
         Dim intStudents As Integer = GetSelectedClass.Students.Count
-        If MessageBox.Show("Are you sure you want to delete " & GetSelectedClass.Name & "?" & _
-                           Environment.NewLine & Environment.NewLine & _
+        If MessageBox.Show("Are you sure you want to delete " & GetSelectedClass.Name & "?" &
+                           Environment.NewLine & Environment.NewLine &
                            "It has " & intStudents.ToString("#,##0") & " students.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
             GetSelectedClassGroup.Classes.Remove(GetSelectedClass())
             LoadClasses()
@@ -2253,7 +2320,9 @@ Public Class MainForm
     End Sub
 
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
-        MessageBox.Show(GetSelectedStudents.Count.ToString())
+        'AppSettings.PremiumFeaturesEnabled = Not AppSettings.PremiumFeaturesEnabled
+
+        'SetupForLiteVersion()
     End Sub
 
     Private m_dtStopwatch As Date
@@ -2408,7 +2477,7 @@ Public Class MainForm
         End If
     End Sub
 
-    
+
     Private Sub ExportMarkingResultsIsolatedSubmitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Click, ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Click, ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Click
         If GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -2438,5 +2507,17 @@ Public Class MainForm
 
             m_bkgndExportMarkingResultsIsolated.RunWorkerAsync(expData)
         End If
+    End Sub
+
+    Private Sub CheckForupdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForupdatesToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub UpgradeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpgradeToolStripMenuItem.Click
+        Using frm As New Upgrade()
+            If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+                MessageBox.Show("You need to restart the application for the new features to show.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        End Using
     End Sub
 End Class

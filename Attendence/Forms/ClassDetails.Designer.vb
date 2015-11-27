@@ -22,11 +22,13 @@ Partial Class ClassDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ClassDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblCalculateTotalTime = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.nudEmailAccountToUse = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel32 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblEmailAccountCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtEmailAddress = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblEmailCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblCopyTopics = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblPasteTopics = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnCopySessionsFromOtherClass = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -81,8 +83,6 @@ Partial Class ClassDetails
         Me.MoveupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrResetDuration = New System.Windows.Forms.Timer(Me.components)
-        Me.txtNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -100,9 +100,9 @@ Partial Class ClassDetails
         Me.KryptonPanel.Controls.Add(Me.txtNotes)
         Me.KryptonPanel.Controls.Add(Me.llblCalculateTotalTime)
         Me.KryptonPanel.Controls.Add(Me.nudEmailAccountToUse)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel32)
+        Me.KryptonPanel.Controls.Add(Me.lblEmailAccountCaption)
         Me.KryptonPanel.Controls.Add(Me.txtEmailAddress)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
+        Me.KryptonPanel.Controls.Add(Me.lblEmailCaption)
         Me.KryptonPanel.Controls.Add(Me.llblCopyTopics)
         Me.KryptonPanel.Controls.Add(Me.llblPasteTopics)
         Me.KryptonPanel.Controls.Add(Me.btnCopySessionsFromOtherClass)
@@ -115,6 +115,24 @@ Partial Class ClassDetails
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Size = New System.Drawing.Size(885, 442)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'KryptonLabel3
+        '
+        Me.KryptonLabel3.Location = New System.Drawing.Point(411, 28)
+        Me.KryptonLabel3.Name = "KryptonLabel3"
+        Me.KryptonLabel3.Size = New System.Drawing.Size(46, 20)
+        Me.KryptonLabel3.TabIndex = 140
+        Me.KryptonLabel3.Values.Text = "Notes:"
+        '
+        'txtNotes
+        '
+        Me.txtNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtNotes.Location = New System.Drawing.Point(461, 27)
+        Me.txtNotes.Multiline = True
+        Me.txtNotes.Name = "txtNotes"
+        Me.txtNotes.Size = New System.Drawing.Size(412, 47)
+        Me.txtNotes.TabIndex = 139
         '
         'llblCalculateTotalTime
         '
@@ -137,13 +155,13 @@ Partial Class ClassDetails
         Me.nudEmailAccountToUse.ThousandsSeparator = True
         Me.nudEmailAccountToUse.Value = New Decimal(New Integer() {15, 0, 0, 0})
         '
-        'KryptonLabel32
+        'lblEmailAccountCaption
         '
-        Me.KryptonLabel32.Location = New System.Drawing.Point(12, 80)
-        Me.KryptonLabel32.Name = "KryptonLabel32"
-        Me.KryptonLabel32.Size = New System.Drawing.Size(89, 20)
-        Me.KryptonLabel32.TabIndex = 135
-        Me.KryptonLabel32.Values.Text = "Email account:"
+        Me.lblEmailAccountCaption.Location = New System.Drawing.Point(12, 80)
+        Me.lblEmailAccountCaption.Name = "lblEmailAccountCaption"
+        Me.lblEmailAccountCaption.Size = New System.Drawing.Size(89, 20)
+        Me.lblEmailAccountCaption.TabIndex = 135
+        Me.lblEmailAccountCaption.Values.Text = "Email account:"
         '
         'txtEmailAddress
         '
@@ -154,13 +172,13 @@ Partial Class ClassDetails
         Me.txtEmailAddress.Size = New System.Drawing.Size(275, 20)
         Me.txtEmailAddress.TabIndex = 85
         '
-        'KryptonLabel2
+        'lblEmailCaption
         '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(12, 54)
-        Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(42, 20)
-        Me.KryptonLabel2.TabIndex = 84
-        Me.KryptonLabel2.Values.Text = "Email:"
+        Me.lblEmailCaption.Location = New System.Drawing.Point(12, 54)
+        Me.lblEmailCaption.Name = "lblEmailCaption"
+        Me.lblEmailCaption.Size = New System.Drawing.Size(42, 20)
+        Me.lblEmailCaption.TabIndex = 84
+        Me.lblEmailCaption.Values.Text = "Email:"
         '
         'llblCopyTopics
         '
@@ -611,24 +629,6 @@ Partial Class ClassDetails
         '
         Me.tmrResetDuration.Interval = 5000
         '
-        'txtNotes
-        '
-        Me.txtNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtNotes.Location = New System.Drawing.Point(461, 27)
-        Me.txtNotes.Multiline = True
-        Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(412, 47)
-        Me.txtNotes.TabIndex = 139
-        '
-        'KryptonLabel3
-        '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(411, 28)
-        Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(46, 20)
-        Me.KryptonLabel3.TabIndex = 140
-        Me.KryptonLabel3.Values.Text = "Notes:"
-        '
         'ClassDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -730,9 +730,9 @@ Partial Class ClassDetails
     Friend WithEvents MoveDownToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoveupToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents txtEmailAddress As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblEmailCaption As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudEmailAccountToUse As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel32 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblEmailAccountCaption As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents llblCalculateTotalTime As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents tmrResetDuration As System.Windows.Forms.Timer
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel

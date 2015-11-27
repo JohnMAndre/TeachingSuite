@@ -250,6 +250,15 @@
                     _mainFormStudentListViewStatePrivate = String.Empty
                 End If
 
+                xElement = xDoc.SelectSingleNode("//MainFormStudentListViewStateAlt")
+                If xElement IsNot Nothing Then
+                    '-- Does not matter the details of the element, if it is there then 
+                    '   we consider premium enabled
+                    PremiumFeaturesEnabled = True
+                Else
+                    PremiumFeaturesEnabled = False
+                End If
+
                 xElement = xDoc.SelectSingleNode("//PassResultsText")
                 If xElement IsNot Nothing Then
                     PassResultsText = xElement.InnerText
@@ -386,6 +395,10 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentMarkingWarning1", AssignmentMarkingWarning1.ToString()))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentMarkingWarning2", AssignmentMarkingWarning2.ToString()))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MainFormStudentListViewState", _mainFormStudentListViewStatePrivate))
+            If PremiumFeaturesEnabled Then
+                '-- If this node is present at all we consider premium features enabled
+                xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MainFormStudentListViewStateAlt", _mainFormStudentListViewStatePrivate))
+            End If
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PassResultsText", PassResultsText))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "FailResultsText", FailResultsText))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UnknownResultsText", UnknownResultsText))
@@ -455,6 +468,7 @@
     Public Property PassResultsText As String
     Public Property FailResultsText As String
     Public Property UnknownResultsText As String
+    Public Property PremiumFeaturesEnabled As Boolean
     Private Property _mainFormStudentListViewStatePrivate As String
     Public Property MainFormStudentListViewState() As Byte()
         Get

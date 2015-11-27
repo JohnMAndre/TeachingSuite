@@ -2870,19 +2870,12 @@ Public Class Student
         LocalNameLatinLetters = RemoveAccents(LocalName).Replace("  ", " ") '-- remove extra spaces
 
         Nickname = xElement.GetAttribute("NickName").Replace("  ", " ").Trim '-- remove extra spaces
-        StudentID = xElement.GetAttribute("StudentID").Trim
         ExtStudentID = xElement.GetAttribute("ExtStudentID").Trim
         AdminNumber = ConvertToInt32(xElement.GetAttribute("AdminNumber"), 0)
         AltNumber = ConvertToInt32(xElement.GetAttribute("AltNumber"), 0)
-        MeritPoints = xElement.GetAttribute("MeritPoints")
-        PresentationQuality = ConvertToInt32(xElement.GetAttribute("OverallQuality"), 0)
-        WritingQuality = ConvertToInt32(xElement.GetAttribute("WritingQuality"), 0)
-        Hidden = ConvertToBool(xElement.GetAttribute("Hidden"), False)
-        EmailAddress = xElement.GetAttribute("EmailAddress")
         StudentGroup = ConvertToInt32(xElement.GetAttribute("StudentGroup"), 0)
         Tags = xElement.GetAttribute("Tags")
         EmailedData = xElement.GetAttribute("EmailedData")
-        PlagiarismSeverity = ConvertToInt32(xElement.GetAttribute("PlagiarismSeverity"), 0)
         Dim strTemp As String = xElement.GetAttribute("Gender")
         Try
             Gender = [Enum].Parse(GetType(GenderEnum), strTemp, True)
@@ -2893,9 +2886,19 @@ Public Class Student
         Notes = xElement.GetAttribute("Notes")
         ActivityLog = xElement.GetAttribute("ActivityLog")
 
-        DraftsChecked = ConvertToInt32(xElement.GetAttribute("DraftsChecked"), 0)
-        OfficeHoursVisited = ConvertToInt32(xElement.GetAttribute("OfficeHoursVisited"), 0)
-        ResearchQuality = ConvertToInt32(xElement.GetAttribute("ResearchQuality"), 0)
+        '-- These properties have changes tracked so we must write to the private variable 
+        '   to avoid triggering change logic on every load
+        m_strStudentID = xElement.GetAttribute("StudentID").Trim
+        m_intDraftsChecked = ConvertToInt32(xElement.GetAttribute("DraftsChecked"), 0)
+        m_intOfficeHoursVisited = ConvertToInt32(xElement.GetAttribute("OfficeHoursVisited"), 0)
+        m_intResearchQuality = ConvertToInt32(xElement.GetAttribute("ResearchQuality"), 0)
+        m_intMeritPoints = xElement.GetAttribute("MeritPoints")
+        m_intPresentationQuality = ConvertToInt32(xElement.GetAttribute("OverallQuality"), 0)
+        m_intWritingQuality = ConvertToInt32(xElement.GetAttribute("WritingQuality"), 0)
+        m_boolHidden = ConvertToBool(xElement.GetAttribute("Hidden"), False)
+        m_strEmailAddress = xElement.GetAttribute("EmailAddress")
+        m_intPlagiarismSeverity = ConvertToInt32(xElement.GetAttribute("PlagiarismSeverity"), 0)
+
 
         Dim xSessionList As Xml.XmlNodeList = xElement.SelectNodes("Session")
         For Each xSessionNode As Xml.XmlElement In xSessionList
