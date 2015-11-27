@@ -33,7 +33,6 @@ namespace TeachingUpdater
         private const string BASE_URL = "http://trulymail.com/TeachingApp/";
         private List<FileDownloadData> _lstFilesToDownload = new List<FileDownloadData>() ;
         private WebClient _wcDownloadFile = new WebClient();
-        private bool _boolDownloading;
 
         public class VersionUpdateData
         {
@@ -327,6 +326,7 @@ namespace TeachingUpdater
                             break;
                         case FileHashMatchesEnum.MatchInUse:
                             // The current version (in use) is already correct, remove from update list
+                            // so we don't download when not needed
                             xFile.ParentNode.RemoveChild(xFile);
                             break;
                         case FileHashMatchesEnum.NoMatchDownload:
@@ -351,6 +351,7 @@ namespace TeachingUpdater
                 AddStatus(ex.Message);
                 AddStatus(string.Empty);
                 AddStatus("Please try to correct the problem and download again.");
+                _lstFilesToDownload.Clear(); // we don't want to add multiple copies of any files
                 e.Cancel = true;
             }
             catch (Exception ex)
@@ -425,28 +426,17 @@ namespace TeachingUpdater
         
         private void tmrDownloadAsynch_Tick(object sender, EventArgs e)
         {
-            if(_boolDownloading)
-            {
-                // do nothing, we are still downloading the previous file
-                // progress bars update on wc_progressChanged event so nothing to do here
-                Application.DoEvents(); // for breakpoint only
-            }
-            else
-            {
-                // time to get the next file
-                DownloadNextFile();
-            }
+            tmrDownloadAsynch.Stop();
+            DownloadNextFile();
+
+            // progress bars update on wc_progressChanged event so nothing to do here
         }
 
         private void DownloadNextFile()
         {
-            _boolDownloading = true;
-
             if (_lstFilesToDownload.Count == 0)
             {
-                // If there are no more files, then stop the timer
-                tmrDownloadAsynch.Stop();
-
+                // If there are no more files, time to install
                 GetReadyToInstall();
             }
             else
@@ -471,7 +461,6 @@ namespace TeachingUpdater
             else
             {
                 // Now we have a list of files to download
-                _boolDownloading = false;
                 prgOverall.Maximum = _intTotalToDownload;
                 tmrDownloadAsynch.Start();
             }
@@ -484,8 +473,6 @@ namespace TeachingUpdater
         {
             try
             {
-                string strDestinationFilename;
-                bool boolNeedToDownload;
                 bool boolOKToInstall = true; // assume all is fine and ready to install
 
                 SetStatus("Verifying downloads.");
