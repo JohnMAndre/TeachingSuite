@@ -36,6 +36,7 @@ class TransactionalFileChanges : IDisposable
             switch (ActionType)
             {
                 case TransactionalFileActionEnum.Delete:
+                    // restore deleted file from temp backup
                     if (File.Exists(BackupFilename))
                         File.Move(BackupFilename, TargetFilename);
                     break;
@@ -48,7 +49,13 @@ class TransactionalFileChanges : IDisposable
                         if (File.Exists(BackupFilename))
                         {
                             // We overwrote something so remove what we wrote then restore the backup
-                            File.Delete(TargetFilename);
+
+                            // first move back the last thing we did
+                            // but it is possible we failed during the initial move so the file might
+                            // be there, so check first
+                            if (File.Exists(TargetFilename))
+                                File.Delete(TargetFilename);
+
                             File.Move(BackupFilename, TargetFilename);
                         }
                         else
@@ -71,7 +78,13 @@ class TransactionalFileChanges : IDisposable
                         if (File.Exists(BackupFilename))
                         {
                             // We overwrote something so remove what we wrote then restore the backup
-                            File.Move(TargetFilename, SourceFilename);
+    
+                            // first move back the last thing we did
+                            // but it is possible we failed during the initial move so the file might
+                            // be there, so check first
+                            if (File.Exists(TargetFilename))
+                                File.Move(TargetFilename, SourceFilename);
+
                             File.Move(BackupFilename, TargetFilename);
                         }
                         else
@@ -96,15 +109,24 @@ class TransactionalFileChanges : IDisposable
         /// </summary>
         public void Commit()
         {
-            switch (ActionType)
+            try
             {
-                // All cases have the same result, delete the backup copy
-                case TransactionalFileActionEnum.Copy:
-                case TransactionalFileActionEnum.Move:
-                case TransactionalFileActionEnum.Delete:
-                    if(File.Exists(BackupFilename))
-                        File.Delete(BackupFilename);
-                    break;
+                switch (ActionType)
+                {
+                    // All cases have the same result, delete the backup copy
+                    case TransactionalFileActionEnum.Copy:
+                    case TransactionalFileActionEnum.Move:
+                    case TransactionalFileActionEnum.Delete:
+                        if (File.Exists(BackupFilename))
+                            File.Delete(BackupFilename);
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                // actually, because this routine currently only removes backup files
+                // if the backup file cannot be removed, then we do not really care
+                // just leave it there to be cleaned up by someone else (that's what the temp directory is for)
             }
         }
 
@@ -228,22 +250,35 @@ class TransactionalFileChanges : IDisposable
         try
         {
             TransactionalFileDetails transFile = new TransactionalFileDetails(TransactionalFileDetails.TransactionalFileActionEnum.Move);
-            _lstFileActions.Add(transFile);
+
+            // We only want to add transFile to the list once there is something to commit/rollback
+            // so we use this variable to know if we've added it so we can add it late
+            // but not add it multiple times
+            bool boolAddedToListAlready = false;
+
 
             transFile.TargetFilename = destinationFilename;
-            transFile.SourceFilename = sourceFilename;
 
             // We only need a backup file if the copy will overwrite something
-            if (File.Exists(destinationFilename))
+            if (File.Exists(transFile.TargetFilename))
+            {
+                // prepare for rollback, in case this file already exists and we will overwrite it
                 transFile.BackupFilename = GetTempFileName();
+                File.Move(transFile.TargetFilename, transFile.BackupFilename);
+                _lstFileActions.Add(transFile);
+                boolAddedToListAlready = true;
+            }
 
-            // prepare for rollback
-            File.Move(transFile.TargetFilename, transFile.BackupFilename);
-
+            // we want to assign the source filename here (not sooner) because the rollback logic is affected.
+            transFile.SourceFilename = sourceFilename;
+            
             // Perform the desired move
             File.Move(transFile.SourceFilename, transFile.TargetFilename);
+            if(!boolAddedToListAlready)
+                _lstFileActions.Add(transFile); // don't add to the list twice
+
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             RollbackTransaction();
             Exception exOuter = new Exception("Error in MoveFile.", ex);
@@ -293,6 +328,8 @@ class TransactionalFileChanges : IDisposable
     {
         const string EXTENSION = ".tmp";
         string filename = Crypto.GenerateAlphanumericString(14);
+        if (!Directory.Exists(TempPath))
+            Directory.CreateDirectory(TempPath); // make sure folder is there
         string strReturn = Path.Combine(TempPath, filename) + EXTENSION;
 
         return strReturn;

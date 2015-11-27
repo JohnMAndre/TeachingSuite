@@ -281,6 +281,7 @@ namespace TeachingUpdater
                 lblCurrent.Visible = true;
                 lblOverall.Visible = true;
                 btnDownload.Enabled = false;
+                btnClose.Focus();
                 Application.DoEvents();
 
                 bgwDownloadUpdate.RunWorkerAsync();
@@ -344,9 +345,14 @@ namespace TeachingUpdater
                 }
 
             }
+            catch(IOException ex)
+            {
+                AddStatus(ex.Message);
+                AddStatus("Please try to correct the problem and download again.");
+                e.Cancel = true;
+            }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -455,10 +461,18 @@ namespace TeachingUpdater
 
         private void bgwDownloadUpdate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            // Now we have a list of files to download
-            _boolDownloading = false;
-            prgOverall.Maximum = _intTotalToDownload;
-            tmrDownloadAsynch.Start();
+            if(e.Cancelled)
+            {
+                // there was a problem, just allow user to download again
+                EnableDownload();
+            }
+            else
+            {
+                // Now we have a list of files to download
+                _boolDownloading = false;
+                prgOverall.Maximum = _intTotalToDownload;
+                tmrDownloadAsynch.Start();
+            }
         }
 
         /// <summary>
@@ -478,27 +492,36 @@ namespace TeachingUpdater
                 foreach (XmlElement xFile in xList)
                 {
                     //  Download each file to the holding directly
-                    strDestinationFilename = _strUpdateFolder + xFile.InnerText;
-
-                    // See if the file has been downloaded already
-                    if (File.Exists(strDestinationFilename))
+                    switch (FileNeedsToBeDownloaded(xFile.InnerText, xFile.GetAttribute("Hash")))
                     {
-                        // If downloaded already, check to see if the hash matches to avoid re-downloading unnecessarily
-                        if (Hashing.HashMatches(xFile.GetAttribute("Hash"), Hashing.GetFileHash(strDestinationFilename)))
-                            boolNeedToDownload = false;
-                        else
-                            boolNeedToDownload = true;
+                        case FileHashMatchesEnum.MatchDownloaded:
+                            break;
+                        case FileHashMatchesEnum.MatchInUse:
+                            break;
+                        case FileHashMatchesEnum.NoMatchDownload:
+                            boolOKToInstall = false;
+                            break; // no need to keep checking. one problem means must run download process again
                     }
-                    else
-                        boolNeedToDownload = true;
+                    //strDestinationFilename = _strUpdateFolder + xFile.InnerText;
+
+                    //// See if the file has been downloaded already
+                    //if (File.Exists(strDestinationFilename))
+                    //{
+                    //    // If downloaded already, check to see if the hash matches to avoid re-downloading unnecessarily
+                    //    if (Hashing.HashMatches(xFile.GetAttribute("Hash"), Hashing.GetFileHash(strDestinationFilename)))
+                    //        boolNeedToDownload = false;
+                    //    else
+                    //        boolNeedToDownload = true;
+                    //}
+                    //else
+                    //    boolNeedToDownload = true;
 
 
-                    // Download from the server
-                    //  actually just queue up so we can download asynch to keep the progress bars updated
-                    if (boolNeedToDownload)
-                    {
-                        boolOKToInstall = false;
-                    }
+                    //// Download from the server
+                    ////  actually just queue up so we can download asynch to keep the progress bars updated
+                    //if (boolNeedToDownload)
+                    //{
+                    //}
                 }
                 if (boolOKToInstall)
                 {
@@ -567,8 +590,8 @@ namespace TeachingUpdater
                         XmlNodeList xList = _xSelectedVersion.SelectNodes("Files/File");
                         foreach (XmlElement xFile in xList)
                         {
-                            strSourceFilename = _strUpdateFolder + xFile.InnerText;
-                            strDestinationFilename = _strInstallFolder + xFile.InnerText;
+                            strSourceFilename = Path.Combine(_strUpdateFolder,  xFile.InnerText);
+                            strDestinationFilename = Path.Combine(_strInstallFolder, xFile.InnerText);
 
                             AddStatus("Updating " + xFile.InnerText);
 
@@ -582,7 +605,9 @@ namespace TeachingUpdater
                     catch (Exception ex)
                     {
                         // The transaction should roll itself back automatically
-                        throw ex;
+                        // still need to notify the user
+                        AddStatus(ex.InnerException.Message);
+                        e.Cancel = true;
                     }
                 }
 
@@ -596,9 +621,17 @@ namespace TeachingUpdater
 
         private void bgwInstallUpdate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            SetStatus("Update completed successfully.");
-            btnInstall.Visible = false;
-            btnClose.Focus();
+            if(e.Cancelled)
+            {
+                AddStatus("Please correct the problem and install again.");
+                EnableInstall();
+            }
+            else
+            {
+                SetStatus("Update completed successfully.");
+                btnInstall.Visible = false;
+                btnClose.Focus();
+            }
         }
 
         private void EnableDownload()
