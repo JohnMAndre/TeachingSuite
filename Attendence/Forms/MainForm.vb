@@ -1785,7 +1785,9 @@ Public Class MainForm
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AboutToolStripMenuItem.Click
-        'testSetPrinterDuplex()
+        Using frm As New AboutBox()
+            frm.ShowDialog()
+        End Using
     End Sub
 
     Private Sub SessionprepStatusToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SessionprepStatusToolStripMenuItem.Click

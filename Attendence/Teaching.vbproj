@@ -108,6 +108,12 @@
     <Compile Include="Classes\OLVRenders.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\AboutBox.Designer.vb">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Assignments\ClassAssignmentNormalDetails.Designer.vb">
       <DependentUpon>ClassAssignmentNormalDetails.vb</DependentUpon>
     </Compile>
@@ -443,6 +449,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\AboutBox.resx">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\AssignmentDocumentSelector.resx">
       <DependentUpon>AssignmentDocumentSelector.vb</DependentUpon>
       <SubType>Designer</SubType>
