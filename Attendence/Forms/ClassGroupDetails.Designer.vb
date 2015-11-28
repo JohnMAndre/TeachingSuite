@@ -52,7 +52,7 @@ Partial Class ClassGroupDetails
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette()
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,8 +84,6 @@ Partial Class ClassGroupDetails
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel6)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel5)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel4)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Controls.Add(Me.nudSessionLength)
         Me.KryptonPanel.Controls.Add(Me.nudModuleLength)
         Me.KryptonPanel.Controls.Add(Me.btnOK)
@@ -95,6 +93,8 @@ Partial Class ClassGroupDetails
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel11)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel10)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel8)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel4)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
@@ -253,7 +253,7 @@ Partial Class ClassGroupDetails
         '
         'KryptonLabel6
         '
-        Me.KryptonLabel6.Location = New System.Drawing.Point(478, 40)
+        Me.KryptonLabel6.Location = New System.Drawing.Point(474, 40)
         Me.KryptonLabel6.Name = "KryptonLabel6"
         Me.KryptonLabel6.Size = New System.Drawing.Size(58, 19)
         Me.KryptonLabel6.TabIndex = 54
@@ -269,7 +269,7 @@ Partial Class ClassGroupDetails
         '
         'KryptonLabel4
         '
-        Me.KryptonLabel4.Location = New System.Drawing.Point(309, 40)
+        Me.KryptonLabel4.Location = New System.Drawing.Point(299, 40)
         Me.KryptonLabel4.Name = "KryptonLabel4"
         Me.KryptonLabel4.Size = New System.Drawing.Size(102, 19)
         Me.KryptonLabel4.TabIndex = 52
@@ -285,7 +285,7 @@ Partial Class ClassGroupDetails
         '
         'nudSessionLength
         '
-        Me.nudSessionLength.Location = New System.Drawing.Point(404, 38)
+        Me.nudSessionLength.Location = New System.Drawing.Point(400, 38)
         Me.nudSessionLength.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudSessionLength.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nudSessionLength.Name = "nudSessionLength"
@@ -339,7 +339,7 @@ Partial Class ClassGroupDetails
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(89, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(96, 19)
         Me.KryptonLabel3.TabIndex = 41
         Me.KryptonLabel3.Values.Text = "Module name:"
         '
@@ -347,7 +347,7 @@ Partial Class ClassGroupDetails
         '
         Me.KryptonLabel11.Location = New System.Drawing.Point(413, 66)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(55, 19)
         Me.KryptonLabel11.TabIndex = 64
         Me.KryptonLabel11.Values.Text = "Current"
         '
@@ -355,7 +355,7 @@ Partial Class ClassGroupDetails
         '
         Me.KryptonLabel10.Location = New System.Drawing.Point(172, 66)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Size = New System.Drawing.Size(49, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(53, 19)
         Me.KryptonLabel10.TabIndex = 63
         Me.KryptonLabel10.Values.Text = "Overall"
         '
@@ -363,18 +363,18 @@ Partial Class ClassGroupDetails
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(3, 145)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(110, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(117, 19)
         Me.KryptonLabel8.TabIndex = 65
         Me.KryptonLabel8.Values.Text = "Module outcomes"
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'ClassGroupDetails
         '

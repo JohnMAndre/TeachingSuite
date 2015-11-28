@@ -77,8 +77,17 @@ Public Class MainForm
     Private Sub SetupForLiteVersion()
         Try
             If Not AppSettings.PremiumFeaturesEnabled Then
+                ScheduleNotesSplitter.Panel1Collapsed = True
+                pnlScheduleControls.Visible = False
+
+                '-- olvcolumns
+                olvStudents.Columns.Remove(olvcolAssignmentCount)
+                olvStudents.Columns.Remove(olvcolProcessedAssignments)
+                olvStudents.Columns.Remove(olvcolStudentGroup)
+
                 '-- View
-                ViewScheduleToolStripMenuItem.Visible = False
+                ViewScheduleToolStripMenuItem.Text = "&Notes"
+                ViewScheduleToolStripMenuItem.Checked = False
                 splitStudentsSchedule.Panel2Collapsed = True '-- hide for lite
                 NotesToolStripMenuItem.Visible = False
 
@@ -104,6 +113,7 @@ Public Class MainForm
                 ManageImprovementItemsToolStripMenuItem.Visible = False
 
                 '-- reports
+                StudentAttendanceErrorsToolStripMenuItem.Visible = False
                 AssignmentResultsToolStripMenuItem.Visible = False
                 ModuleResultsToolStripMenuItem.Visible = False
                 FailedoutcomesToolStripMenuItem.Visible = False
@@ -2531,5 +2541,18 @@ Public Class MainForm
 
     Private Sub HelpToolStripMenuItem_DropDownOpening(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.DropDownOpening
         UpgradeToolStripMenuItem.Visible = Not AppSettings.PremiumFeaturesEnabled
+    End Sub
+
+    Private Sub ctxmnuClasses_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ctxmnuClasses.Opening
+        EmailclassToolStripMenuItem.Visible = AppSettings.PremiumFeaturesEnabled
+    End Sub
+
+    Private Sub ctxmnuStudents_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ctxmnuStudents.Opening
+        ToolStripSeparator2.Visible = AppSettings.PremiumFeaturesEnabled
+        ToolStripSeparator8.Visible = AppSettings.PremiumFeaturesEnabled
+        EmailstudentToolStripMenuItem.Visible = AppSettings.PremiumFeaturesEnabled
+        ProcessExam2ndReDoForStudent.Visible = AppSettings.PremiumFeaturesEnabled
+        ProcessExamRedoForStudent.Visible = AppSettings.PremiumFeaturesEnabled
+        ProcessExamForStudent.Visible = AppSettings.PremiumFeaturesEnabled
     End Sub
 End Class

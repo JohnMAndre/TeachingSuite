@@ -80,7 +80,7 @@ Partial Class SplashScreen
         Me.Version.Name = "Version"
         Me.Version.Size = New System.Drawing.Size(241, 20)
         Me.Version.TabIndex = 1
-        Me.Version.Text = "Version {0}.{1:00}"
+        Me.Version.Text = "Version {0}"
         '
         'Copyright
         '
@@ -92,7 +92,7 @@ Partial Class SplashScreen
         Me.Copyright.Name = "Copyright"
         Me.Copyright.Size = New System.Drawing.Size(241, 40)
         Me.Copyright.TabIndex = 2
-        Me.Copyright.Text = "Copyright 2012-2014 by John M. Andre"
+        Me.Copyright.Text = "Copyright 2012-2015 by John M. Andre"
         '
         'ApplicationTitle
         '

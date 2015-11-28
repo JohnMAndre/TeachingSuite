@@ -49,6 +49,7 @@ Partial Class ImportStudentsFromSemester
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonManager1 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -137,9 +138,9 @@ Partial Class ImportStudentsFromSemester
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClassGroups.Location = New System.Drawing.Point(0, 20)
+        Me.lstClassGroups.Location = New System.Drawing.Point(0, 19)
         Me.lstClassGroups.Name = "lstClassGroups"
-        Me.lstClassGroups.Size = New System.Drawing.Size(684, 103)
+        Me.lstClassGroups.Size = New System.Drawing.Size(684, 104)
         Me.lstClassGroups.TabIndex = 28
         '
         'KryptonLabel11
@@ -147,7 +148,7 @@ Partial Class ImportStudentsFromSemester
         Me.KryptonLabel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel11.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(684, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(684, 19)
         Me.KryptonLabel11.TabIndex = 3
         Me.KryptonLabel11.Values.Text = "Modules"
         '
@@ -175,10 +176,10 @@ Partial Class ImportStudentsFromSemester
         'lstClasses
         '
         Me.lstClasses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClasses.Location = New System.Drawing.Point(0, 20)
+        Me.lstClasses.Location = New System.Drawing.Point(0, 19)
         Me.lstClasses.Name = "lstClasses"
         Me.lstClasses.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.lstClasses.Size = New System.Drawing.Size(684, 88)
+        Me.lstClasses.Size = New System.Drawing.Size(684, 89)
         Me.lstClasses.TabIndex = 0
         '
         'KryptonLabel10
@@ -186,7 +187,7 @@ Partial Class ImportStudentsFromSemester
         Me.KryptonLabel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel10.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Size = New System.Drawing.Size(684, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(684, 19)
         Me.KryptonLabel10.TabIndex = 2
         Me.KryptonLabel10.Values.Text = "Classes"
         '
@@ -214,14 +215,14 @@ Partial Class ImportStudentsFromSemester
         Me.olvStudents.GridLines = True
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
-        Me.olvStudents.Location = New System.Drawing.Point(0, 20)
+        Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
         Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(684, 111)
+        Me.olvStudents.Size = New System.Drawing.Size(684, 112)
         Me.olvStudents.TabIndex = 4
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -296,9 +297,9 @@ Partial Class ImportStudentsFromSemester
         Me.KryptonLabel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(684, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(684, 19)
         Me.KryptonLabel1.TabIndex = 3
-        Me.KryptonLabel1.Values.Text = "Assignments"
+        Me.KryptonLabel1.Values.Text = "Students"
         '
         'KryptonPanel3
         '
@@ -326,7 +327,7 @@ Partial Class ImportStudentsFromSemester
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(64, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(72, 19)
         Me.KryptonLabel3.TabIndex = 7
         Me.KryptonLabel3.Values.Text = "Semester:"
         '
@@ -338,7 +339,7 @@ Partial Class ImportStudentsFromSemester
         Me.cboSemester.DropDownWidth = 121
         Me.cboSemester.Location = New System.Drawing.Point(82, 11)
         Me.cboSemester.Name = "cboSemester"
-        Me.cboSemester.Size = New System.Drawing.Size(562, 21)
+        Me.cboSemester.Size = New System.Drawing.Size(562, 20)
         Me.cboSemester.TabIndex = 6
         '
         'KryptonPanel2
@@ -371,6 +372,20 @@ Partial Class ImportStudentsFromSemester
         Me.btnCancel.TabIndex = 27
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
         Me.btnCancel.Values.Text = "&Cancel"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'KryptonManager1
+        '
+        Me.KryptonManager1.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'ImportStudentsFromSemester
         '
@@ -457,4 +472,5 @@ Partial Class ImportStudentsFromSemester
     Friend WithEvents OlvColumn13 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn14 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

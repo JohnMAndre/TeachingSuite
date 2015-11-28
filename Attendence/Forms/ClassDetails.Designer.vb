@@ -42,6 +42,7 @@ Partial Class ClassDetails
         Me.MoveDownToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveupToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.btnShowNormalSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowSkips = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowActualSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -120,7 +121,7 @@ Partial Class ClassDetails
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(411, 28)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(46, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(50, 19)
         Me.KryptonLabel3.TabIndex = 140
         Me.KryptonLabel3.Values.Text = "Notes:"
         '
@@ -138,7 +139,7 @@ Partial Class ClassDetails
         '
         Me.llblCalculateTotalTime.Location = New System.Drawing.Point(279, 101)
         Me.llblCalculateTotalTime.Name = "llblCalculateTotalTime"
-        Me.llblCalculateTotalTime.Size = New System.Drawing.Size(138, 20)
+        Me.llblCalculateTotalTime.Size = New System.Drawing.Size(148, 19)
         Me.llblCalculateTotalTime.TabIndex = 138
         Me.ToolTip1.SetToolTip(Me.llblCalculateTotalTime, "Click to see the total class time scheduled")
         Me.llblCalculateTotalTime.Values.Text = "Calculate total duration"
@@ -149,7 +150,7 @@ Partial Class ClassDetails
         Me.nudEmailAccountToUse.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.nudEmailAccountToUse.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nudEmailAccountToUse.Name = "nudEmailAccountToUse"
-        Me.nudEmailAccountToUse.Size = New System.Drawing.Size(66, 22)
+        Me.nudEmailAccountToUse.Size = New System.Drawing.Size(66, 21)
         Me.nudEmailAccountToUse.TabIndex = 136
         Me.nudEmailAccountToUse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudEmailAccountToUse.ThousandsSeparator = True
@@ -159,7 +160,7 @@ Partial Class ClassDetails
         '
         Me.lblEmailAccountCaption.Location = New System.Drawing.Point(12, 80)
         Me.lblEmailAccountCaption.Name = "lblEmailAccountCaption"
-        Me.lblEmailAccountCaption.Size = New System.Drawing.Size(89, 20)
+        Me.lblEmailAccountCaption.Size = New System.Drawing.Size(99, 19)
         Me.lblEmailAccountCaption.TabIndex = 135
         Me.lblEmailAccountCaption.Values.Text = "Email account:"
         '
@@ -169,14 +170,14 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEmailAddress.Location = New System.Drawing.Point(130, 54)
         Me.txtEmailAddress.Name = "txtEmailAddress"
-        Me.txtEmailAddress.Size = New System.Drawing.Size(275, 20)
+        Me.txtEmailAddress.Size = New System.Drawing.Size(275, 19)
         Me.txtEmailAddress.TabIndex = 85
         '
         'lblEmailCaption
         '
         Me.lblEmailCaption.Location = New System.Drawing.Point(12, 54)
         Me.lblEmailCaption.Name = "lblEmailCaption"
-        Me.lblEmailCaption.Size = New System.Drawing.Size(42, 20)
+        Me.lblEmailCaption.Size = New System.Drawing.Size(48, 19)
         Me.lblEmailCaption.TabIndex = 84
         Me.lblEmailCaption.Values.Text = "Email:"
         '
@@ -227,14 +228,14 @@ Partial Class ClassDetails
         '
         Me.txtClassName.Location = New System.Drawing.Point(130, 27)
         Me.txtClassName.Name = "txtClassName"
-        Me.txtClassName.Size = New System.Drawing.Size(275, 20)
+        Me.txtClassName.Size = New System.Drawing.Size(275, 19)
         Me.txtClassName.TabIndex = 64
         '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(12, 28)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(74, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(85, 19)
         Me.KryptonLabel1.TabIndex = 42
         Me.KryptonLabel1.Values.Text = "Class name:"
         '
@@ -258,7 +259,7 @@ Partial Class ClassDetails
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ScheduleItemToolStripMenuItem
@@ -281,6 +282,15 @@ Partial Class ClassDetails
         Me.MoveupToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Up), System.Windows.Forms.Keys)
         Me.MoveupToolStripMenuItem1.Size = New System.Drawing.Size(202, 22)
         Me.MoveupToolStripMenuItem1.Text = "Move &up"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'btnShowNormalSchedule
         '
@@ -737,4 +747,5 @@ Partial Class ClassDetails
     Friend WithEvents tmrResetDuration As System.Windows.Forms.Timer
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtNotes As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

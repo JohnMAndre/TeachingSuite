@@ -81,6 +81,10 @@ Partial Class ImportAddDropStudents
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
+        'KryptonManager
+        '
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'KryptonPanel
         '
         Me.KryptonPanel.Controls.Add(Me.splitAddDrop)
@@ -212,7 +216,7 @@ Partial Class ImportAddDropStudents
         Me.KryptonLabel6.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
         Me.KryptonLabel6.Location = New System.Drawing.Point(4, 4)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(131, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(133, 19)
         Me.KryptonLabel6.TabIndex = 29
         Me.KryptonLabel6.Values.Text = "New students to add"
         '
@@ -317,7 +321,7 @@ Partial Class ImportAddDropStudents
         Me.KryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
         Me.KryptonLabel1.Location = New System.Drawing.Point(4, 4)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(191, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(194, 19)
         Me.KryptonLabel1.TabIndex = 29
         Me.KryptonLabel1.Values.Text = "Old students to tag as dropped"
         '
@@ -339,27 +343,27 @@ Partial Class ImportAddDropStudents
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(792, 50)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(791, 50)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsLoaded.TabIndex = 76
         Me.lblStudentsLoaded.Values.Text = "0"
         '
         'KryptonLabel3
         '
         Me.KryptonLabel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel3.Location = New System.Drawing.Point(652, 50)
+        Me.KryptonLabel3.Location = New System.Drawing.Point(643, 50)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(102, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(111, 19)
         Me.KryptonLabel3.TabIndex = 75
         Me.KryptonLabel3.Values.Text = "Students loaded:"
         '
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(792, 30)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(791, 30)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsSearched.TabIndex = 74
         Me.lblStudentsSearched.Values.Text = "0"
         '
@@ -367,16 +371,16 @@ Partial Class ImportAddDropStudents
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(4, 4)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(392, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(425, 19)
         Me.KryptonLabel2.TabIndex = 29
         Me.KryptonLabel2.Values.Text = "Copy and paste from spreadsheet with the column order you see here"
         '
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(641, 30)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(628, 30)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
-        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(113, 20)
+        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
         Me.lblStudentsSearchedCaption.TabIndex = 73
         Me.lblStudentsSearchedCaption.Values.Text = "Students searched:"
         '

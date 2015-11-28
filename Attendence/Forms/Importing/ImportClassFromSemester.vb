@@ -3,6 +3,9 @@ Public Class ImportClassFromSemester
     Private m_sourceSemester As Semester
 
     Private Sub ImportStudentsFromSemester_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        lstAssignments.Visible = False
+        lblAssignments.Visible = False
+
         LoadSemesters()
     End Sub
     Private Sub LoadSemesters()
@@ -103,5 +106,9 @@ Public Class ImportClassFromSemester
 
             Me.DialogResult = Windows.Forms.DialogResult.OK
         End If
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Close()
     End Sub
 End Class

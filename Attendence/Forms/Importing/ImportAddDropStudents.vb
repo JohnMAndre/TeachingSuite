@@ -24,6 +24,7 @@
     End Function
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        m_boolCancel = True
         Close()
     End Sub
 
@@ -206,5 +207,10 @@
         Catch ex As Exception
             MessageBox.Show("There was a problem processing the data (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        m_boolCancel = True
+        Close()
     End Sub
 End Class

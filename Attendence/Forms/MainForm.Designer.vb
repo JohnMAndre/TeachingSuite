@@ -86,8 +86,8 @@ Partial Class MainForm
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn18 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn20 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolAssignmentCount = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolProcessedAssignments = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -97,7 +97,7 @@ Partial Class MainForm
         Me.OlvColumn22 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn23 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn24 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolStudentGroup = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn26 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn27 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -133,14 +133,6 @@ Partial Class MainForm
         Me.llblStartPauseStopwatch = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.picStudent = New System.Windows.Forms.PictureBox()
-        Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.llblScheduleNextClassDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblScheduleNextUnprepped = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.lblScheduleDay = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblScheduleForwardOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblScheduleBackOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.dtpScheduleDate = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
-        Me.llblRefreshSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnRemoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblRemoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnEditStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -281,6 +273,14 @@ Partial Class MainForm
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
+        Me.llblRefreshSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.dtpScheduleDate = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
+        Me.llblScheduleBackOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblScheduleForwardOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.lblScheduleDay = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblScheduleNextUnprepped = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblScheduleNextClassDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.pnlScheduleControls = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -326,8 +326,6 @@ Partial Class MainForm
         Me.ctxmnuActualSessions.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel2.SuspendLayout()
         CType(Me.KryptonGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonGroup1.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonGroup1.Panel.SuspendLayout()
@@ -336,6 +334,8 @@ Partial Class MainForm
         Me.MenuStrip1.SuspendLayout()
         Me.ctxmnuTray.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
+        CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlScheduleControls.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -840,7 +840,7 @@ Partial Class MainForm
         'splitStudentsSchedule.Panel2
         '
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.ScheduleNotesSplitter)
-        Me.splitStudentsSchedule.Panel2.Controls.Add(Me.KryptonPanel2)
+        Me.splitStudentsSchedule.Panel2.Controls.Add(Me.pnlScheduleControls)
         Me.splitStudentsSchedule.Size = New System.Drawing.Size(963, 455)
         Me.splitStudentsSchedule.SplitterDistance = 230
         Me.splitStudentsSchedule.TabIndex = 28
@@ -858,8 +858,8 @@ Partial Class MainForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn9)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn18)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn10)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn20)
+        Me.olvStudents.AllColumns.Add(Me.olvcolAssignmentCount)
+        Me.olvStudents.AllColumns.Add(Me.olvcolProcessedAssignments)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn12)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn14)
@@ -869,14 +869,14 @@ Partial Class MainForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn22)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn23)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn24)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn25)
+        Me.olvStudents.AllColumns.Add(Me.olvcolStudentGroup)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn26)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn27)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn28)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.OlvColumn10, Me.OlvColumn20, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.OlvColumn25, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28})
         Me.olvStudents.ContextMenuStrip = Me.ctxmnuStudents
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
@@ -908,6 +908,7 @@ Partial Class MainForm
         Me.OlvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn4.Text = "Admin"
         Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn4.ToolTipText = "Administrative number for student"
         '
         'OlvColumn11
         '
@@ -921,12 +922,14 @@ Partial Class MainForm
         '
         Me.OlvColumn1.AspectName = "LocalName"
         Me.OlvColumn1.Text = "Name"
+        Me.OlvColumn1.ToolTipText = "Student's name in student's language"
         Me.OlvColumn1.Width = 150
         '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Nickname"
         Me.OlvColumn2.Text = "Nickname"
+        Me.OlvColumn2.ToolTipText = "What the student prefers to be called"
         Me.OlvColumn2.Width = 108
         '
         'OlvColumn3
@@ -935,6 +938,7 @@ Partial Class MainForm
         Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn3.Text = "Student ID"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn3.ToolTipText = "ID of the student"
         Me.OlvColumn3.Width = 90
         '
         'OlvColumn5
@@ -943,6 +947,7 @@ Partial Class MainForm
         Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn5.Text = "Merit"
         Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn5.ToolTipText = "Merit increases this, demerit decreases this"
         Me.OlvColumn5.Width = 50
         '
         'OlvColumn6
@@ -973,6 +978,8 @@ Partial Class MainForm
         Me.OlvColumn7.IsEditable = False
         Me.OlvColumn7.Text = "Hid"
         Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.ToolTipText = "Should the student be hidden from attendance (you think student is gone but need " & _
+    "to leave on the list for some reason)"
         Me.OlvColumn7.Width = 40
         '
         'OlvColumn9
@@ -981,6 +988,7 @@ Partial Class MainForm
         Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn9.Text = "Pres"
         Me.OlvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn9.ToolTipText = "Student quality during presentations"
         '
         'OlvColumn18
         '
@@ -988,25 +996,27 @@ Partial Class MainForm
         Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn18.Text = "Write"
         Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn18.ToolTipText = "Student quality when writing"
         '
-        'OlvColumn10
+        'olvcolAssignmentCount
         '
-        Me.OlvColumn10.AspectName = "AssignmentCount"
-        Me.OlvColumn10.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn10.IsEditable = False
-        Me.OlvColumn10.Text = "Asmt"
-        Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn10.ToolTipText = "Number of assignments"
-        Me.OlvColumn10.Width = 50
+        Me.olvcolAssignmentCount.AspectName = "AssignmentCount"
+        Me.olvcolAssignmentCount.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolAssignmentCount.IsEditable = False
+        Me.olvcolAssignmentCount.Text = "Asmt"
+        Me.olvcolAssignmentCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolAssignmentCount.ToolTipText = "Number of assignments"
+        Me.olvcolAssignmentCount.Width = 50
         '
-        'OlvColumn20
+        'olvcolProcessedAssignments
         '
-        Me.OlvColumn20.AspectName = "ProcessedAssignments"
-        Me.OlvColumn20.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn20.IsEditable = False
-        Me.OlvColumn20.Text = "P.Asmts"
-        Me.OlvColumn20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn20.Width = 80
+        Me.olvcolProcessedAssignments.AspectName = "ProcessedAssignments"
+        Me.olvcolProcessedAssignments.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolProcessedAssignments.IsEditable = False
+        Me.olvcolProcessedAssignments.Text = "P.Asmts"
+        Me.olvcolProcessedAssignments.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolProcessedAssignments.ToolTipText = "Number of assignments which have been processed"
+        Me.olvcolProcessedAssignments.Width = 80
         '
         'OlvColumn12
         '
@@ -1014,12 +1024,14 @@ Partial Class MainForm
         Me.OlvColumn12.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn12.Text = "Status"
         Me.OlvColumn12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn12.ToolTipText = "Status of most recent attendance record"
         Me.OlvColumn12.Width = 100
         '
         'OlvColumn13
         '
         Me.OlvColumn13.AspectName = "Tags"
         Me.OlvColumn13.Text = "Tags"
+        Me.OlvColumn13.ToolTipText = "Tags can be for whatever you want (useful for filtering)"
         '
         'OlvColumn14
         '
@@ -1033,6 +1045,7 @@ Partial Class MainForm
         Me.OlvColumn15.AspectName = "LocalNameLatinLetters"
         Me.OlvColumn15.IsEditable = False
         Me.OlvColumn15.Text = "Standard"
+        Me.OlvColumn15.ToolTipText = "Student's local name converted into Latin letters (diacritics removed)"
         Me.OlvColumn15.Width = 150
         '
         'OlvColumn19
@@ -1042,6 +1055,7 @@ Partial Class MainForm
         Me.OlvColumn19.IsEditable = False
         Me.OlvColumn19.Text = "Class"
         Me.OlvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn19.ToolTipText = "Name of the class this student is in"
         Me.OlvColumn19.Width = 120
         '
         'OlvColumn21
@@ -1050,7 +1064,7 @@ Partial Class MainForm
         Me.OlvColumn21.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn21.Text = "Ext ID"
         Me.OlvColumn21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn21.ToolTipText = "External ID (extra ID)"
+        Me.OlvColumn21.ToolTipText = "External ID (an extra student ID)"
         '
         'OlvColumn22
         '
@@ -1058,6 +1072,7 @@ Partial Class MainForm
         Me.OlvColumn22.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn22.Text = "Plag"
         Me.OlvColumn22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn22.ToolTipText = "How severe has this student's plagiarism been"
         '
         'OlvColumn23
         '
@@ -1074,14 +1089,15 @@ Partial Class MainForm
         Me.OlvColumn24.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn24.Text = "Gender"
         Me.OlvColumn24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn24.ToolTipText = "Gender of student"
         '
-        'OlvColumn25
+        'olvcolStudentGroup
         '
-        Me.OlvColumn25.AspectName = "StudentGroup"
-        Me.OlvColumn25.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn25.Text = "Group"
-        Me.OlvColumn25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn25.ToolTipText = "Student group is used for scheduling purposes"
+        Me.olvcolStudentGroup.AspectName = "StudentGroup"
+        Me.olvcolStudentGroup.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolStudentGroup.Text = "Group"
+        Me.olvcolStudentGroup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolStudentGroup.ToolTipText = "Student group is used for scheduling purposes"
         '
         'OlvColumn26
         '
@@ -1400,99 +1416,6 @@ Partial Class MainForm
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
         Me.picStudent.Visible = False
-        '
-        'KryptonPanel2
-        '
-        Me.KryptonPanel2.Controls.Add(Me.llblScheduleNextClassDay)
-        Me.KryptonPanel2.Controls.Add(Me.llblScheduleNextUnprepped)
-        Me.KryptonPanel2.Controls.Add(Me.lblScheduleDay)
-        Me.KryptonPanel2.Controls.Add(Me.llblScheduleForwardOneDay)
-        Me.KryptonPanel2.Controls.Add(Me.llblScheduleBackOneDay)
-        Me.KryptonPanel2.Controls.Add(Me.dtpScheduleDate)
-        Me.KryptonPanel2.Controls.Add(Me.llblRefreshSchedule)
-        Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.KryptonPanel2.Location = New System.Drawing.Point(0, 0)
-        Me.KryptonPanel2.Name = "KryptonPanel2"
-        Me.KryptonPanel2.Size = New System.Drawing.Size(96, 220)
-        Me.KryptonPanel2.TabIndex = 5
-        '
-        'llblScheduleNextClassDay
-        '
-        Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(3, 108)
-        Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
-        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
-        Me.llblScheduleNextClassDay.TabIndex = 34
-        Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
-        Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleNextClassDay.Values.Text = "Next class day"
-        '
-        'llblScheduleNextUnprepped
-        '
-        Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(3, 134)
-        Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
-        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
-        Me.llblScheduleNextUnprepped.TabIndex = 33
-        Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
-        Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleNextUnprepped.Values.Text = "Next unprep"
-        '
-        'lblScheduleDay
-        '
-        Me.lblScheduleDay.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblScheduleDay.Location = New System.Drawing.Point(20, 39)
-        Me.lblScheduleDay.Name = "lblScheduleDay"
-        Me.lblScheduleDay.Palette = Me.KryptonPalette1
-        Me.lblScheduleDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblScheduleDay.Size = New System.Drawing.Size(6, 2)
-        Me.lblScheduleDay.TabIndex = 32
-        Me.lblScheduleDay.Values.Text = ""
-        '
-        'llblScheduleForwardOneDay
-        '
-        Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(62, 157)
-        Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
-        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
-        Me.llblScheduleForwardOneDay.TabIndex = 31
-        Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
-        Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleForwardOneDay.Values.Text = ">>"
-        '
-        'llblScheduleBackOneDay
-        '
-        Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(3, 157)
-        Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
-        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
-        Me.llblScheduleBackOneDay.TabIndex = 30
-        Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
-        Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleBackOneDay.Values.Text = "<<"
-        '
-        'dtpScheduleDate
-        '
-        Me.dtpScheduleDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dtpScheduleDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpScheduleDate.Location = New System.Drawing.Point(3, 12)
-        Me.dtpScheduleDate.Name = "dtpScheduleDate"
-        Me.dtpScheduleDate.Palette = Me.KryptonPalette1
-        Me.dtpScheduleDate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.dtpScheduleDate.Size = New System.Drawing.Size(90, 21)
-        Me.dtpScheduleDate.TabIndex = 29
-        '
-        'llblRefreshSchedule
-        '
-        Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(23, 189)
-        Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
-        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
-        Me.llblRefreshSchedule.TabIndex = 28
-        Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
-        Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblRefreshSchedule.Values.Text = "Refresh"
         '
         'btnRemoveStudent
         '
@@ -2454,10 +2377,6 @@ Partial Class MainForm
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -2516,6 +2435,99 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
+        '
+        'llblRefreshSchedule
+        '
+        Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(23, 189)
+        Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
+        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
+        Me.llblRefreshSchedule.TabIndex = 28
+        Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
+        Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblRefreshSchedule.Values.Text = "Refresh"
+        '
+        'dtpScheduleDate
+        '
+        Me.dtpScheduleDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtpScheduleDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpScheduleDate.Location = New System.Drawing.Point(3, 12)
+        Me.dtpScheduleDate.Name = "dtpScheduleDate"
+        Me.dtpScheduleDate.Palette = Me.KryptonPalette1
+        Me.dtpScheduleDate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.dtpScheduleDate.Size = New System.Drawing.Size(90, 21)
+        Me.dtpScheduleDate.TabIndex = 29
+        '
+        'llblScheduleBackOneDay
+        '
+        Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(3, 157)
+        Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
+        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
+        Me.llblScheduleBackOneDay.TabIndex = 30
+        Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
+        Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleBackOneDay.Values.Text = "<<"
+        '
+        'llblScheduleForwardOneDay
+        '
+        Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(62, 157)
+        Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
+        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
+        Me.llblScheduleForwardOneDay.TabIndex = 31
+        Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
+        Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleForwardOneDay.Values.Text = ">>"
+        '
+        'lblScheduleDay
+        '
+        Me.lblScheduleDay.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblScheduleDay.Location = New System.Drawing.Point(20, 39)
+        Me.lblScheduleDay.Name = "lblScheduleDay"
+        Me.lblScheduleDay.Palette = Me.KryptonPalette1
+        Me.lblScheduleDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.lblScheduleDay.Size = New System.Drawing.Size(6, 2)
+        Me.lblScheduleDay.TabIndex = 32
+        Me.lblScheduleDay.Values.Text = ""
+        '
+        'llblScheduleNextUnprepped
+        '
+        Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(3, 134)
+        Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
+        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
+        Me.llblScheduleNextUnprepped.TabIndex = 33
+        Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
+        Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleNextUnprepped.Values.Text = "Next unprep"
+        '
+        'llblScheduleNextClassDay
+        '
+        Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(3, 108)
+        Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
+        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
+        Me.llblScheduleNextClassDay.TabIndex = 34
+        Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
+        Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleNextClassDay.Values.Text = "Next class day"
+        '
+        'pnlScheduleControls
+        '
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleNextClassDay)
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleNextUnprepped)
+        Me.pnlScheduleControls.Controls.Add(Me.lblScheduleDay)
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleForwardOneDay)
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleBackOneDay)
+        Me.pnlScheduleControls.Controls.Add(Me.dtpScheduleDate)
+        Me.pnlScheduleControls.Controls.Add(Me.llblRefreshSchedule)
+        Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
+        Me.pnlScheduleControls.Name = "pnlScheduleControls"
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(96, 220)
+        Me.pnlScheduleControls.TabIndex = 5
         '
         'MainForm
         '
@@ -2581,9 +2593,6 @@ Partial Class MainForm
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel2.ResumeLayout(False)
-        Me.KryptonPanel2.PerformLayout()
         CType(Me.KryptonGroup1.Panel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonGroup1.Panel.ResumeLayout(False)
         Me.KryptonGroup1.Panel.PerformLayout()
@@ -2594,6 +2603,9 @@ Partial Class MainForm
         Me.MenuStrip1.PerformLayout()
         Me.ctxmnuTray.ResumeLayout(False)
         Me.ctxmnuNewAssignment.ResumeLayout(False)
+        CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlScheduleControls.ResumeLayout(False)
+        Me.pnlScheduleControls.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2701,7 +2713,7 @@ Partial Class MainForm
     Friend WithEvents ReportsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents StudentAttendanceErrorsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn9 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolAssignmentCount As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents AssignmentResultsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents QuitWithoutSavingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2737,14 +2749,8 @@ Partial Class MainForm
     Friend WithEvents OlvColumn34 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn35 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn36 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents KryptonPanel2 As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents dtpScheduleDate As ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker
-    Friend WithEvents llblRefreshSchedule As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblScheduleForwardOneDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblScheduleBackOneDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents ctxmnuActualSessions As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents SkipActualSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents lblScheduleDay As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents ExportStudentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents UpdateEmailAddressToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2756,8 +2762,6 @@ Partial Class MainForm
     Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents FailedoutcomesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn16 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents llblScheduleNextUnprepped As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblScheduleNextClassDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents ImportClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReorderAdminNumbersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblRenumberAdminResetNumber As ComponentFactory.Krypton.Toolkit.KryptonLabel
@@ -2789,7 +2793,7 @@ Partial Class MainForm
     Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ExportScheduleAsICalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator11 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents OlvColumn20 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolProcessedAssignments As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ClearStudentFilterToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn21 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ViewLogFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2819,7 +2823,7 @@ Partial Class MainForm
     Friend WithEvents SetGendermaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetGenderfemaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ClearTagsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn25 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolStudentGroup As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ctxmnuClasses As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents EditClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EmailclassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2870,4 +2874,12 @@ Partial Class MainForm
     Friend WithEvents ToolStripSeparator16 As ToolStripSeparator
     Friend WithEvents UpgradeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents pnlScheduleControls As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents llblScheduleNextClassDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblScheduleNextUnprepped As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents lblScheduleDay As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents llblScheduleForwardOneDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblScheduleBackOneDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents dtpScheduleDate As ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker
+    Friend WithEvents llblRefreshSchedule As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class
