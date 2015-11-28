@@ -2510,7 +2510,13 @@ Public Class MainForm
     End Sub
 
     Private Sub CheckForupdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForupdatesToolStripMenuItem.Click
-
+        Try
+            Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
+            System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- not supporting betas yet, but the updater does
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error launching the updater (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
     End Sub
 
     Private Sub UpgradeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpgradeToolStripMenuItem.Click
@@ -2519,5 +2525,9 @@ Public Class MainForm
                 MessageBox.Show("You need to restart the application for the new features to show.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
+    End Sub
+
+    Private Sub HelpToolStripMenuItem_DropDownOpening(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.DropDownOpening
+        UpgradeToolStripMenuItem.Visible = Not AppSettings.PremiumFeaturesEnabled
     End Sub
 End Class

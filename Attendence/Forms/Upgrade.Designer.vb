@@ -25,7 +25,7 @@ Partial Class Upgrade
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Upgrade))
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.txtEmail = New System.Windows.Forms.TextBox()
@@ -44,7 +44,11 @@ Partial Class Upgrade
         '
         'KryptonManager
         '
-        Me.KryptonManager.GlobalPalette = Me.KryptonPalette1
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPanel
@@ -191,4 +195,5 @@ Partial Class Upgrade
     Friend WithEvents txtCode As System.Windows.Forms.TextBox
     Friend WithEvents pbCancel As System.Windows.Forms.PictureBox
     Friend WithEvents pbActivate As System.Windows.Forms.PictureBox
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

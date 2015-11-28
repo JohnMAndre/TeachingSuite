@@ -30,6 +30,21 @@
         ThirdTry
     End Enum
 
+    ''' <summary>
+    ''' Takes in an email address, spits back a hash
+    ''' </summary>
+    ''' <param name="input"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetUgradeCode(input As String) As String
+        Dim email As String = input.ToLower()
+        Dim md5 As System.Security.Cryptography.MD5 = System.Security.Cryptography.MD5.Create()
+        Dim hash() As Byte = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input.ToLower()))
+        Dim strReturn As String = Convert.ToBase64String(hash)
+        Return strReturn
+    End Function
+
+
    
     Public Function GetImageFolder() As String
         Dim strFolder As String = System.IO.Path.Combine(GetDataFolder(), "Photos")

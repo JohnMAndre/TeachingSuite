@@ -29,6 +29,10 @@ namespace TeachingUpdater
         private XmlElement _xSelectedVersion;
         private string _strUpdateFolder;
         private string _strInstallFolder;
+        private string _currentVersion;
+
+        DateTime _dtDefault = new DateTime(2010, 1, 1);
+
 
         private const string BASE_URL = "http://trulymail.com/TeachingApp/";
         private List<FileDownloadData> _lstFilesToDownload = new List<FileDownloadData>() ;
@@ -46,9 +50,12 @@ namespace TeachingUpdater
         }
 
 
-        public B()
+        public B(string currentVersion, bool considerBetas)
         {
             InitializeComponent();
+
+            _boolConsiderBetas = considerBetas;
+            _currentVersion = currentVersion;
         }
 
         private void B_Load(object sender, EventArgs e)
@@ -99,6 +106,11 @@ namespace TeachingUpdater
             {
                 SetStatus("There was an error checking for updates (" + ex.Message + ").\r\n\r\nPlease try again later.");
             }
+        }
+
+        private void UpdateAvailable(string latestVersion, string currentVersion)
+        {
+
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -175,13 +187,12 @@ namespace TeachingUpdater
             const string RELEASE_DATE = "ReleaseDate";
             const string VERSION_NUMBER = "Number";
 
-            DateTime dtDefault = new DateTime(2010, 1, 1);
             VersionUpdateData objReturn = new VersionUpdateData();
             
             using (WebClient wc = new WebClient())
             {
                 StreamReader sr = new StreamReader(wc.OpenRead(VERSION_FILENAME));
-                string strContents;
+                string strContents, strServerVersion;
                 strContents = sr.ReadToEnd();
                 if (strContents.Length > 0)
                 {
@@ -191,18 +202,32 @@ namespace TeachingUpdater
                     {
                         foreach (XmlElement xVersion in xList)
                         {
+                            strServerVersion = xVersion.GetAttribute(VERSION_NUMBER);
+
                             string strDate = xVersion.GetAttribute(RELEASE_DATE);
-                            DateTime dtTest = Conversion.ConvertToDateFromXML(strDate, dtDefault);
-                            if (dtTest == dtDefault)
+                            DateTime dtReleaseDate = Conversion.ConvertToDateFromXML(strDate, _dtDefault);
+                            if (dtReleaseDate == _dtDefault)
                             {
                                 // This is a pre-release or beta version
                                 if (_boolConsiderBetas)
                                 {
-                                    objReturn.LatestVersion = xVersion.GetAttribute(VERSION_NUMBER);
-                                    objReturn.UpdateDateAvailable = dtDefault;
-                                    objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.Beta;
+                                    objReturn.LatestVersion = strServerVersion;
+                                    objReturn.UpdateDateAvailable = dtReleaseDate;
                                     _xSelectedVersion = xVersion;
-                                    break;// I'm assuming this will break out of the foreach 
+                                    
+                                    // This is the latest version but we must see if it is newer than the current version
+                                    if(VersionIsSameOrLater(strServerVersion, _currentVersion))
+                                    {
+                                        // No need for an update, current version is the latest
+                                        objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.NoUpdate;
+                                        break;// I'm assuming this will break out of the foreach 
+                                    }
+                                    else
+                                    {
+                                        // Server version is newer
+                                        objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.Beta;
+                                        break;// I'm assuming this will break out of the foreach 
+                                    }
                                 }
                                 else
                                 {
@@ -212,12 +237,23 @@ namespace TeachingUpdater
                             }
                             else
                             {
-                                // this is a regular release, we can use it regardless of beta setting by user
-                                objReturn.LatestVersion = xVersion.GetAttribute(VERSION_NUMBER);
-                                objReturn.UpdateDateAvailable = dtTest;
-                                objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.Normal;
+                                objReturn.LatestVersion = strServerVersion;
+                                objReturn.UpdateDateAvailable = dtReleaseDate;
                                 _xSelectedVersion = xVersion;
-                                break;// I'm assuming this will break out of the foreach
+
+                                if (VersionIsSameOrLater(strServerVersion, _currentVersion))
+                                {
+                                    // No need for an update, current version is the latest
+                                    objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.NoUpdate;
+                                    break;// I'm assuming this will break out of the foreach 
+                                }
+                                else
+                                {
+                                    // Server version is newer
+                                    // this is a regular release, we can use it regardless of beta setting by user
+                                    objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.Normal;
+                                    break;// I'm assuming this will break out of the foreach
+                                }
                             }
                         }
                         return objReturn;
@@ -247,9 +283,9 @@ namespace TeachingUpdater
             string strUpdateDetails;
 
             if (objUpdateData.UpdateType == VersionUpdateData.UpdateTypeEnum.Beta)
-                strUpdateDetails = Environment.NewLine + "Your current version: " + Application.ProductVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "New version is a beta update, not yet available to all users.";
+                strUpdateDetails = Environment.NewLine + "Your current version: " + _currentVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "New version is a beta update, not yet available to all users.";
             else
-                strUpdateDetails = Environment.NewLine + "Your current version: " + Application.ProductVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "Date available to all users: " + objUpdateData.UpdateDateAvailable.ToString("dd MMMM yyyy");
+                strUpdateDetails = Environment.NewLine + "Your current version: " + _currentVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "Date available to all users: " + objUpdateData.UpdateDateAvailable.ToString("dd MMMM yyyy");
 
             switch (objUpdateData.UpdateType)
             {
@@ -608,6 +644,102 @@ namespace TeachingUpdater
                 btnClose.Focus();
             }
         }
+        /// <summary>
+        /// Returns true if currentVersion has the same or a later version as serverVersion (so no need to update if true)
+        /// </summary>
+        /// <param name="serverVersion">Version available on the server</param>
+        /// <param name="currentVersion">Version currently being used</param>
+        /// <returns></returns>
+        private bool VersionIsSameOrLater(string serverVersion, string currentVersion)
+        {
+            // 1.0.0 vs. 1.2.3
+            int intMajor1, intMinor1, intRevision1;
+            int intMajor2, intMinor2, intRevision2;
+            const string VERSION_DELIMITER=".";
+            int intStartPos1=0;
+            int intStartPos2=0;
+            int intEndPos1=serverVersion.IndexOf(VERSION_DELIMITER);
+            int intEndPos2=currentVersion.IndexOf(VERSION_DELIMITER);
+
+            intMajor1=Convert.ToInt32(serverVersion.Substring(intStartPos1, intEndPos1));
+            intMajor2=Convert.ToInt32(currentVersion.Substring(intStartPos2, intEndPos2));
+
+            if (intMajor2>intMajor1)
+                return true; // major smaller (4.x vs 3.x) so no need to check more
+            else if (intMajor2>intMajor1)
+                return false; // major smaller (4.x vs 5.x) so no need to check more
+
+            intStartPos1=intEndPos1+1;
+            intStartPos2=intEndPos2+1;
+            intEndPos1=serverVersion.IndexOf(VERSION_DELIMITER,intStartPos1);
+            intEndPos2=currentVersion.IndexOf(VERSION_DELIMITER, intStartPos2);
+
+            intMinor1 = Convert.ToInt32(serverVersion.Substring(intStartPos1, intEndPos1 - intStartPos1));
+            intMinor2 = Convert.ToInt32(currentVersion.Substring(intStartPos2, intEndPos2 - intStartPos2));
+        
+            if(intMinor2>intMinor1)
+                return true;
+            else if(intMinor2<intMinor1)
+                return false;
+
+            intStartPos1 = intEndPos1 + 1;
+            intStartPos2 = intEndPos2 + 1;
+
+            intRevision1 = Convert.ToInt32(serverVersion.Substring(intStartPos1));
+            intRevision2 = Convert.ToInt32(currentVersion.Substring(intStartPos2));
+
+            if(intRevision2 >= intRevision1)
+                return true;
+            else
+                return false;
+        }
+    //Private Function VersionIsSameLater(ByVal version As String, ByVal versionToTest As String) As Boolean
+
+    //    Dim intMajor1, intMinor1, intRevision1 As Integer
+    //    Dim intMajor2, intMinor2, intRevision2 As Integer
+    //    Const VERSION_DELIMITER As String = "."
+    //    Dim intStartPos1 As Integer = 0
+    //    Dim intStartPos2 As Integer = 0
+    //    Dim intEndPos1 As Integer = version.IndexOf(VERSION_DELIMITER)
+    //    Dim intEndPos2 As Integer = versionToTest.IndexOf(VERSION_DELIMITER)
+
+    //    intMajor1 = Convert.ToInt32(version.Substring(intStartPos1, intEndPos1))
+    //    intMajor2 = Convert.ToInt32(versionToTest.Substring(intStartPos2, intEndPos2))
+
+        //If intMajor2 > intMajor1 Then
+        //    '-- Major is higher, nothing else matters
+        //    Return True
+        //ElseIf intMajor2 < intMajor1 Then
+        //    '-- major is lower, nothing else matters
+        //    Return False
+        //End If
+
+        //intStartPos1 = intEndPos1 + 1
+        //intStartPos2 = intEndPos2 + 1
+        //intEndPos1 = version.IndexOf(VERSION_DELIMITER, intStartPos1)
+        //intEndPos2 = versionToTest.IndexOf(VERSION_DELIMITER, intStartPos2)
+
+        //intMinor1 = Convert.ToInt32(version.Substring(intStartPos1, intEndPos1 - intStartPos1))
+        //intMinor2 = Convert.ToInt32(versionToTest.Substring(intStartPos2, intEndPos2 - intStartPos2))
+        //If intMinor2 > intMinor1 Then
+        //    Return True
+        //ElseIf intMinor2 < intMinor1 Then
+        //    Return False
+        //End If
+
+        //intStartPos1 = intEndPos1 + 1
+        //intStartPos2 = intEndPos2 + 1
+
+    //    intRevision1 = Convert.ToInt32(version.Substring(intStartPos1))
+    //    intRevision2 = Convert.ToInt32(versionToTest.Substring(intStartPos2))
+    //    If intRevision2 >= intRevision1 Then
+    //        Return True
+    //    Else
+    //        Return False
+    //    End If
+
+    //End Function
+
 
         private void EnableDownload()
         {
