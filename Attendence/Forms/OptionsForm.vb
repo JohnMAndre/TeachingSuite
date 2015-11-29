@@ -71,79 +71,89 @@ Public Class OptionsForm
     End Sub
 
     Private Sub Settings_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        txtAttendenceMarkPresent.Text = AppSettings.AttendenceReportMarkPresent
-        txtAttendenceMarkLate.Text = AppSettings.AttendenceReportMarkLate
-        txtAttendenceMarkAbsent.Text = AppSettings.AttendenceReportMarkAbsent
-        txtAttendenceMarkRemoved.Text = AppSettings.AttendenceReportMarkRemoved
-        txtAttendenceMarkUnknown.Text = AppSettings.AttendenceReportMarkUnknown
-        txtAttendenceMarkExcused.Text = AppSettings.AttendenceReportMarkExcused
+        Try
+            SetupForLiteVersion() '-- put this early in case there is an error
 
-        nudExamClockDuration.Value = AppSettings.ExamClockDuration
-        txtExamFailDefaultFeedback.Text = AppSettings.ExamFailDefaultFeedback
-        txtExamPassWeakDefaultFeedback.Text = AppSettings.ExamPassWeakDefaultFeedback
-        txtExamPassDefaultFeedback.Text = AppSettings.ExamPassDefaultFeedback
-        chkShowHiddenStudents.Checked = AppSettings.ShowHiddenStudents
-        txtNoSubmitFeedback.Text = AppSettings.NoSubmitFeedback
+            txtAttendenceMarkPresent.Text = AppSettings.AttendenceReportMarkPresent
+            txtAttendenceMarkLate.Text = AppSettings.AttendenceReportMarkLate
+            txtAttendenceMarkAbsent.Text = AppSettings.AttendenceReportMarkAbsent
+            txtAttendenceMarkRemoved.Text = AppSettings.AttendenceReportMarkRemoved
+            txtAttendenceMarkUnknown.Text = AppSettings.AttendenceReportMarkUnknown
+            txtAttendenceMarkExcused.Text = AppSettings.AttendenceReportMarkExcused
 
-        '-- Data
-        txtCDDrive.Text = AppSettings.CDDrive
-        nudDataBackupsToRetain.Value = AppSettings.DataBackupsToRetain
-        Dim dictionaries() As String = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), "*.dct")
-        Dim intCounter As Integer = -1
-        Dim intDictionaryIndex As Integer
-        For Each strFilename In dictionaries
-            intCounter += 1
-            If Path.GetFileName(strFilename).ToLower() = Path.GetFileName(AppSettings.DictionaryName).ToLower() Then
-                intDictionaryIndex = intCounter
+            nudExamClockDuration.Value = AppSettings.ExamClockDuration
+            txtExamFailDefaultFeedback.Text = AppSettings.ExamFailDefaultFeedback
+            txtExamPassWeakDefaultFeedback.Text = AppSettings.ExamPassWeakDefaultFeedback
+            txtExamPassDefaultFeedback.Text = AppSettings.ExamPassDefaultFeedback
+            chkShowHiddenStudents.Checked = AppSettings.ShowHiddenStudents
+            txtNoSubmitFeedback.Text = AppSettings.NoSubmitFeedback
+
+            '-- Data
+            txtCDDrive.Text = AppSettings.CDDrive
+            nudDataBackupsToRetain.Value = AppSettings.DataBackupsToRetain
+            Dim dictionaries() As String = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), "*.dct")
+            Dim intCounter As Integer = -1
+            Dim intDictionaryIndex As Integer
+            For Each strFilename In dictionaries
+                intCounter += 1
+                If Path.GetFileName(strFilename).ToLower() = Path.GetFileName(AppSettings.DictionaryName).ToLower() Then
+                    intDictionaryIndex = intCounter
+                End If
+                cboDictionary.Items.Add(Path.GetFileName(strFilename))
+            Next
+            If cboDictionary.Items.Count > 0 AndAlso intDictionaryIndex >= 0 Then
+                cboDictionary.SelectedIndex = intDictionaryIndex
             End If
-            cboDictionary.Items.Add(Path.GetFileName(strFilename))
-        Next
-        If cboDictionary.Items.Count > 0 AndAlso intDictionaryIndex >= 0 Then
-            cboDictionary.SelectedIndex = intDictionaryIndex
-        End If
 
-        '-- Email
-        txtPathToTrulyMail.Text = AppSettings.PathToTrulyMailEXE
-        chkIncludeFeedbackWhenEmailing.Checked = AppSettings.IncludeFeedbackWhenEmailing
-        nudEmailAccountToUse.Value = AppSettings.EmailSendingAccount
-        txtEmailQuizResultsIncorrectFeedback.Text = AppSettings.EmailQuizResultsIncorrectComments
-        txtEmailQuizTrailingText.Text = AppSettings.EmailQuizTrailingText
+            '-- Email
+            txtPathToTrulyMail.Text = AppSettings.PathToTrulyMailEXE
+            chkIncludeFeedbackWhenEmailing.Checked = AppSettings.IncludeFeedbackWhenEmailing
+            If AppSettings.EmailSendingAccount >= nudEmailAccountToUse.Minimum AndAlso AppSettings.EmailSendingAccount <= nudEmailAccountToUse.Maximum Then
+                nudEmailAccountToUse.Value = AppSettings.EmailSendingAccount
+            Else
+                nudEmailAccountToUse.Value = 1
+            End If
+            txtEmailQuizResultsIncorrectFeedback.Text = AppSettings.EmailQuizResultsIncorrectComments
+            txtEmailQuizTrailingText.Text = AppSettings.EmailQuizTrailingText
 
-        '-- Attendance
-        chkHighlightAttendanceUnknownPresentationQuality.Checked = AppSettings.HighlightAttendanceNoPresentationQuality
-        chkHighlightAttendanceUnknownGender.Checked = AppSettings.HighlightAttendanceUnknownGender
-
-
-        txtPassResultsText.Text = AppSettings.PassResultsText
-        txtFailResultsText.Text = AppSettings.FailResultsText
-        txtUnknownResultsText.Text = AppSettings.UnknownResultsText
-
-        txtOutcomeMarkPass.Text = AppSettings.OutcomeExportMarkPass
-        txtOutcomeMarkFail.Text = AppSettings.OutcomeExportMarkFail
-        txtOutcomeMarkUnknown.Text = AppSettings.OutcomeExportMarkUnknown
-
-        txtStudentDidNotSubmitDefaultOutcomeComment.Text = AppSettings.AssignmentNotSubmittedDefaultOutcomeComment
-
-        txtAutoText.Text = String.Empty
+            '-- Attendance
+            chkHighlightAttendanceUnknownPresentationQuality.Checked = AppSettings.HighlightAttendanceNoPresentationQuality
+            chkHighlightAttendanceUnknownGender.Checked = AppSettings.HighlightAttendanceUnknownGender
 
 
-        txtRedoPassAllDefaultComment.Text = AppSettings.RedoPassAllDefaultComment
-        txtLateSubmitDefaultComment.Text = AppSettings.LateSubmitDefaultComment
-        txtPathToFeedbackSaveFolder.Text = AppSettings.MarkingPageSaveFolder
+            txtPassResultsText.Text = AppSettings.PassResultsText
+            txtFailResultsText.Text = AppSettings.FailResultsText
+            txtUnknownResultsText.Text = AppSettings.UnknownResultsText
 
-        nudLoggingThreshold.Value = AppSettings.LoggingThreshold
-        nudAutoSave.Value = AppSettings.AutoSaveSeconds \ 60
-        chkAutoSaveEnabled.Checked = AppSettings.AutoSaveEnabled
-        chkDisableColorsAssignmentDetail.Checked = AppSettings.DisableColorsInAssignmentDetail
+            txtOutcomeMarkPass.Text = AppSettings.OutcomeExportMarkPass
+            txtOutcomeMarkFail.Text = AppSettings.OutcomeExportMarkFail
+            txtOutcomeMarkUnknown.Text = AppSettings.OutcomeExportMarkUnknown
 
-        nudMarkingWarning1.Value = AppSettings.AssignmentMarkingWarning1
-        nudMarkingWarning2.Value = AppSettings.AssignmentMarkingWarning2
+            txtStudentDidNotSubmitDefaultOutcomeComment.Text = AppSettings.AssignmentNotSubmittedDefaultOutcomeComment
+
+            txtAutoText.Text = String.Empty
 
 
-        ReloadImprovementText()
-        AutoSizeColumns(olvImprovementText)
+            txtRedoPassAllDefaultComment.Text = AppSettings.RedoPassAllDefaultComment
+            txtLateSubmitDefaultComment.Text = AppSettings.LateSubmitDefaultComment
+            txtPathToFeedbackSaveFolder.Text = AppSettings.MarkingPageSaveFolder
 
-        SetupForLiteVersion()
+            nudLoggingThreshold.Value = AppSettings.LoggingThreshold
+            nudAutoSave.Value = AppSettings.AutoSaveSeconds \ 60
+            chkAutoSaveEnabled.Checked = AppSettings.AutoSaveEnabled
+            chkDisableColorsAssignmentDetail.Checked = AppSettings.DisableColorsInAssignmentDetail
+
+            nudMarkingWarning1.Value = AppSettings.AssignmentMarkingWarning1
+            nudMarkingWarning2.Value = AppSettings.AssignmentMarkingWarning2
+
+
+            ReloadImprovementText()
+            AutoSizeColumns(olvImprovementText)
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the options form: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
     Private Sub ReloadImprovementText()

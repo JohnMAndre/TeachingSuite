@@ -368,7 +368,7 @@
                 ExamPassDefaultFeedback = "Student showed proper understanding in oral exam."
                 NoSubmitFeedback = "Not submitted"
                 CDDrive = String.Empty
-                EmailSendingAccount = 0
+                EmailSendingAccount = 1
                 PathToTrulyMailEXE = String.Empty
                 DataBackupsToRetain = 20
                 IncludeFeedbackWhenEmailing = False
