@@ -707,6 +707,7 @@
     <None Include="Resources\e-mail_16.png" />
     <None Include="Resources\activateButton.png" />
     <None Include="Resources\cancelButton.png" />
+    <None Include="Resources\info_32.png" />
     <Content Include="ToDoList.txt" />
     <None Include="Resources\userprofile_16.bmp" />
     <None Include="Resources\Resend_32.png" />

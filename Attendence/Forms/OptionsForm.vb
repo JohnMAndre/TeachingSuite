@@ -1,3 +1,5 @@
+Imports System.IO
+
 Public Class OptionsForm
 
     Private Sub SetupForLiteVersion()
@@ -27,7 +29,14 @@ Public Class OptionsForm
         AppSettings.ExamPassWeakDefaultFeedback = txtExamPassWeakDefaultFeedback.Text
         AppSettings.ExamPassDefaultFeedback = txtExamPassDefaultFeedback.Text
         AppSettings.NoSubmitFeedback = txtNoSubmitFeedback.Text
+
+        '-- Data
         AppSettings.CDDrive = txtCDDrive.Text
+        AppSettings.AutoSaveSeconds = nudAutoSave.Value * 60
+        AppSettings.AutoSaveEnabled = chkAutoSaveEnabled.Checked
+        If cboDictionary.SelectedIndex >= 0 Then
+            AppSettings.DictionaryName = cboDictionary.Items(cboDictionary.SelectedIndex)
+        End If
 
         '-- Email
         AppSettings.PathToTrulyMailEXE = txtPathToTrulyMail.Text
@@ -49,14 +58,14 @@ Public Class OptionsForm
         AppSettings.RedoPassAllDefaultComment = txtRedoPassAllDefaultComment.Text
         AppSettings.LateSubmitDefaultComment = txtLateSubmitDefaultComment.Text
         AppSettings.MarkingPageSaveFolder = txtPathToFeedbackSaveFolder.Text
-        AppSettings.AutoSaveSeconds = nudAutoSave.Value * 60
-        AppSettings.AutoSaveEnabled = chkAutoSaveEnabled.Checked
         AppSettings.DisableColorsInAssignmentDetail = chkDisableColorsAssignmentDetail.Checked
         AppSettings.AssignmentMarkingWarning1 = nudMarkingWarning1.Value
         AppSettings.AssignmentMarkingWarning2 = nudMarkingWarning2.Value
         AppSettings.PassResultsText = txtPassResultsText.Text
         AppSettings.FailResultsText = txtFailResultsText.Text
         AppSettings.UnknownResultsText = txtUnknownResultsText.Text
+
+        Me.DialogResult = Windows.Forms.DialogResult.OK
 
         Me.Close()
     End Sub
@@ -75,8 +84,23 @@ Public Class OptionsForm
         txtExamPassDefaultFeedback.Text = AppSettings.ExamPassDefaultFeedback
         chkShowHiddenStudents.Checked = AppSettings.ShowHiddenStudents
         txtNoSubmitFeedback.Text = AppSettings.NoSubmitFeedback
+
+        '-- Data
         txtCDDrive.Text = AppSettings.CDDrive
         nudDataBackupsToRetain.Value = AppSettings.DataBackupsToRetain
+        Dim dictionaries() As String = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), "*.dct")
+        Dim intCounter As Integer = -1
+        Dim intDictionaryIndex As Integer
+        For Each strFilename In dictionaries
+            intCounter += 1
+            If Path.GetFileName(strFilename).ToLower() = Path.GetFileName(AppSettings.DictionaryName).ToLower() Then
+                intDictionaryIndex = intCounter
+            End If
+            cboDictionary.Items.Add(Path.GetFileName(strFilename))
+        Next
+        If cboDictionary.Items.Count > 0 AndAlso intDictionaryIndex >= 0 Then
+            cboDictionary.SelectedIndex = intDictionaryIndex
+        End If
 
         '-- Email
         txtPathToTrulyMail.Text = AppSettings.PathToTrulyMailEXE
@@ -127,6 +151,7 @@ Public Class OptionsForm
         olvImprovementText.SetObjects(AppSettings.ImprovementAutoTextList)
     End Sub
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
+        Me.DialogResult = Windows.Forms.DialogResult.Cancel
         Me.Close()
     End Sub
 
@@ -209,4 +234,7 @@ Public Class OptionsForm
     End Sub
 
 
+    Private Sub llblDictionaryInfo_LinkClicked(sender As Object, e As EventArgs) Handles llblDictionaryInfo.LinkClicked
+        MessageBox.Show("If you would like more dictionaries, just email John@JohnMAndre.com.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 End Class

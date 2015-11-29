@@ -133,6 +133,14 @@ Partial Class MainForm
         Me.llblStartPauseStopwatch = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.picStudent = New System.Windows.Forms.PictureBox()
+        Me.pnlScheduleControls = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.llblScheduleNextClassDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblScheduleNextUnprepped = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.lblScheduleDay = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblScheduleForwardOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblScheduleBackOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.dtpScheduleDate = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
+        Me.llblRefreshSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnRemoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblRemoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnEditStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -273,14 +281,7 @@ Partial Class MainForm
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.llblRefreshSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.dtpScheduleDate = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
-        Me.llblScheduleBackOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblScheduleForwardOneDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.lblScheduleDay = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblScheduleNextUnprepped = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblScheduleNextClassDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.pnlScheduleControls = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -326,6 +327,8 @@ Partial Class MainForm
         Me.ctxmnuActualSessions.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlScheduleControls.SuspendLayout()
         CType(Me.KryptonGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonGroup1.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonGroup1.Panel.SuspendLayout()
@@ -334,8 +337,7 @@ Partial Class MainForm
         Me.MenuStrip1.SuspendLayout()
         Me.ctxmnuTray.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
-        CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlScheduleControls.SuspendLayout()
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -1417,6 +1419,99 @@ Partial Class MainForm
         Me.picStudent.TabStop = False
         Me.picStudent.Visible = False
         '
+        'pnlScheduleControls
+        '
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleNextClassDay)
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleNextUnprepped)
+        Me.pnlScheduleControls.Controls.Add(Me.lblScheduleDay)
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleForwardOneDay)
+        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleBackOneDay)
+        Me.pnlScheduleControls.Controls.Add(Me.dtpScheduleDate)
+        Me.pnlScheduleControls.Controls.Add(Me.llblRefreshSchedule)
+        Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
+        Me.pnlScheduleControls.Name = "pnlScheduleControls"
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(96, 220)
+        Me.pnlScheduleControls.TabIndex = 5
+        '
+        'llblScheduleNextClassDay
+        '
+        Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(3, 108)
+        Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
+        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
+        Me.llblScheduleNextClassDay.TabIndex = 34
+        Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
+        Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleNextClassDay.Values.Text = "Next class day"
+        '
+        'llblScheduleNextUnprepped
+        '
+        Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(3, 134)
+        Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
+        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
+        Me.llblScheduleNextUnprepped.TabIndex = 33
+        Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
+        Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleNextUnprepped.Values.Text = "Next unprep"
+        '
+        'lblScheduleDay
+        '
+        Me.lblScheduleDay.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblScheduleDay.Location = New System.Drawing.Point(20, 39)
+        Me.lblScheduleDay.Name = "lblScheduleDay"
+        Me.lblScheduleDay.Palette = Me.KryptonPalette1
+        Me.lblScheduleDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.lblScheduleDay.Size = New System.Drawing.Size(6, 2)
+        Me.lblScheduleDay.TabIndex = 32
+        Me.lblScheduleDay.Values.Text = ""
+        '
+        'llblScheduleForwardOneDay
+        '
+        Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(62, 157)
+        Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
+        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
+        Me.llblScheduleForwardOneDay.TabIndex = 31
+        Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
+        Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleForwardOneDay.Values.Text = ">>"
+        '
+        'llblScheduleBackOneDay
+        '
+        Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(3, 157)
+        Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
+        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
+        Me.llblScheduleBackOneDay.TabIndex = 30
+        Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
+        Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblScheduleBackOneDay.Values.Text = "<<"
+        '
+        'dtpScheduleDate
+        '
+        Me.dtpScheduleDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtpScheduleDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpScheduleDate.Location = New System.Drawing.Point(3, 12)
+        Me.dtpScheduleDate.Name = "dtpScheduleDate"
+        Me.dtpScheduleDate.Palette = Me.KryptonPalette1
+        Me.dtpScheduleDate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.dtpScheduleDate.Size = New System.Drawing.Size(90, 21)
+        Me.dtpScheduleDate.TabIndex = 29
+        '
+        'llblRefreshSchedule
+        '
+        Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(23, 189)
+        Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
+        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
+        Me.llblRefreshSchedule.TabIndex = 28
+        Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
+        Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblRefreshSchedule.Values.Text = "Refresh"
+        '
         'btnRemoveStudent
         '
         Me.btnRemoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1845,7 +1940,7 @@ Partial Class MainForm
         Me.TakeAttendenceToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
         Me.TakeAttendenceToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.TakeAttendenceToolStripMenuItem.Text = "&Attendence..."
+        Me.TakeAttendenceToolStripMenuItem.Text = "&Attendance..."
         '
         'ToolStripSeparator3
         '
@@ -2436,99 +2531,6 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'llblRefreshSchedule
-        '
-        Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(23, 189)
-        Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
-        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
-        Me.llblRefreshSchedule.TabIndex = 28
-        Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
-        Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblRefreshSchedule.Values.Text = "Refresh"
-        '
-        'dtpScheduleDate
-        '
-        Me.dtpScheduleDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dtpScheduleDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpScheduleDate.Location = New System.Drawing.Point(3, 12)
-        Me.dtpScheduleDate.Name = "dtpScheduleDate"
-        Me.dtpScheduleDate.Palette = Me.KryptonPalette1
-        Me.dtpScheduleDate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.dtpScheduleDate.Size = New System.Drawing.Size(90, 21)
-        Me.dtpScheduleDate.TabIndex = 29
-        '
-        'llblScheduleBackOneDay
-        '
-        Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(3, 157)
-        Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
-        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
-        Me.llblScheduleBackOneDay.TabIndex = 30
-        Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
-        Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleBackOneDay.Values.Text = "<<"
-        '
-        'llblScheduleForwardOneDay
-        '
-        Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(62, 157)
-        Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
-        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
-        Me.llblScheduleForwardOneDay.TabIndex = 31
-        Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
-        Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleForwardOneDay.Values.Text = ">>"
-        '
-        'lblScheduleDay
-        '
-        Me.lblScheduleDay.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblScheduleDay.Location = New System.Drawing.Point(20, 39)
-        Me.lblScheduleDay.Name = "lblScheduleDay"
-        Me.lblScheduleDay.Palette = Me.KryptonPalette1
-        Me.lblScheduleDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblScheduleDay.Size = New System.Drawing.Size(6, 2)
-        Me.lblScheduleDay.TabIndex = 32
-        Me.lblScheduleDay.Values.Text = ""
-        '
-        'llblScheduleNextUnprepped
-        '
-        Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(3, 134)
-        Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
-        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
-        Me.llblScheduleNextUnprepped.TabIndex = 33
-        Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
-        Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleNextUnprepped.Values.Text = "Next unprep"
-        '
-        'llblScheduleNextClassDay
-        '
-        Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(3, 108)
-        Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
-        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
-        Me.llblScheduleNextClassDay.TabIndex = 34
-        Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
-        Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblScheduleNextClassDay.Values.Text = "Next class day"
-        '
-        'pnlScheduleControls
-        '
-        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleNextClassDay)
-        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleNextUnprepped)
-        Me.pnlScheduleControls.Controls.Add(Me.lblScheduleDay)
-        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleForwardOneDay)
-        Me.pnlScheduleControls.Controls.Add(Me.llblScheduleBackOneDay)
-        Me.pnlScheduleControls.Controls.Add(Me.dtpScheduleDate)
-        Me.pnlScheduleControls.Controls.Add(Me.llblRefreshSchedule)
-        Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
-        Me.pnlScheduleControls.Name = "pnlScheduleControls"
-        Me.pnlScheduleControls.Size = New System.Drawing.Size(96, 220)
-        Me.pnlScheduleControls.TabIndex = 5
-        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2593,6 +2595,9 @@ Partial Class MainForm
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlScheduleControls.ResumeLayout(False)
+        Me.pnlScheduleControls.PerformLayout()
         CType(Me.KryptonGroup1.Panel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonGroup1.Panel.ResumeLayout(False)
         Me.KryptonGroup1.Panel.PerformLayout()
@@ -2603,9 +2608,7 @@ Partial Class MainForm
         Me.MenuStrip1.PerformLayout()
         Me.ctxmnuTray.ResumeLayout(False)
         Me.ctxmnuNewAssignment.ResumeLayout(False)
-        CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlScheduleControls.ResumeLayout(False)
-        Me.pnlScheduleControls.PerformLayout()
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2882,4 +2885,5 @@ Partial Class MainForm
     Friend WithEvents llblScheduleBackOneDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents dtpScheduleDate As ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker
     Friend WithEvents llblRefreshSchedule As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
 End Class

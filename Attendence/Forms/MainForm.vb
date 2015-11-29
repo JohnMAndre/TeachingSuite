@@ -70,6 +70,11 @@ Public Class MainForm
 
         SetupForLiteVersion()
 
+        '-- setup spell check for notes
+        C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
+        C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
+
+
     End Sub
     ''' <summary>
     ''' Removes UI elements for Lite (free) version
@@ -699,7 +704,10 @@ Public Class MainForm
 
     Private Sub OptionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OptionsToolStripMenuItem.Click
         Using frm As New OptionsForm
-            frm.ShowDialog(Me)
+            If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                '-- reload data which might have changed
+                C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
+            End If
         End Using
     End Sub
     Private Sub LoadClassAssignments()
@@ -1271,15 +1279,17 @@ Public Class MainForm
     End Sub
     Private Sub LoadSchedule()
         m_lstCurrentScheduleItems.Clear()
-        For Each grp As ClassGroup In ThisSemester.ClassGroups
-            For Each cls As SchoolClass In grp.Classes
-                For Each item As ActualSessionItem In cls.ActualSessions
-                    If item.StartDateTime.Date = dtpScheduleDate.Value.Date Then
-                        m_lstCurrentScheduleItems.Add(item)
-                    End If
+        If ThisSemester IsNot Nothing Then
+            For Each grp As ClassGroup In ThisSemester.ClassGroups
+                For Each cls As SchoolClass In grp.Classes
+                    For Each item As ActualSessionItem In cls.ActualSessions
+                        If item.StartDateTime.Date = dtpScheduleDate.Value.Date Then
+                            m_lstCurrentScheduleItems.Add(item)
+                        End If
+                    Next
                 Next
             Next
-        Next
+        End If
         m_lstCurrentScheduleItems.Sort()
         olvSchedule.SetObjects(m_lstCurrentScheduleItems)
         lblScheduleDay.Text = dtpScheduleDate.Value.DayOfWeek.ToString()
@@ -1763,16 +1773,18 @@ Public Class MainForm
     End Sub
 
     Private Sub tmrAutoSave_Tick(sender As System.Object, e As System.EventArgs) Handles tmrAutoSave.Tick
-        Me.Text = Application.ProductName & " - " & ThisSemester.Name & " - LastSave: " & ThisSemester.LastSaveDate.ToString("HH:mm")
+        If ThisSemester IsNot Nothing Then
+            Me.Text = Application.ProductName & " - " & ThisSemester.Name & " - LastSave: " & ThisSemester.LastSaveDate.ToString("HH:mm")
 
-        If AppSettings.AutoSaveEnabled Then
-            Dim ts As TimeSpan = Date.Now - m_dtLastAutoSave
-            If ts.TotalSeconds >= AppSettings.AutoSaveSeconds Then
-                tmrAutoSave.Stop()
-                AutoSave()
+            If AppSettings.AutoSaveEnabled Then
+                Dim ts As TimeSpan = Date.Now - m_dtLastAutoSave
+                If ts.TotalSeconds >= AppSettings.AutoSaveSeconds Then
+                    tmrAutoSave.Stop()
+                    AutoSave()
+                End If
+
+                Me.Text &= " - LastAutoSave: " & ThisSemester.LastAutoSaveDate.ToString("HH:mm")
             End If
-
-            Me.Text &= " - LastAutoSave: " & ThisSemester.LastAutoSaveDate.ToString("HH:mm")
         End If
     End Sub
 

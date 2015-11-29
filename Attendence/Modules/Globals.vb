@@ -102,7 +102,7 @@
         If Not strPath.EndsWith("\") Then
             strPath &= "\"
         End If
-        strPath &= "English (US).dct"
+        strPath &= AppSettings.DictionaryName '"English (US).dct"
 
         Return strPath
     End Function

@@ -140,6 +140,7 @@
                 Else
                     OutcomeExportMarkPass = String.Empty
                 End If
+
                 xElement = xDoc.SelectSingleNode("//OutcomeExportMarkFail")
                 If xElement IsNot Nothing Then
                     OutcomeExportMarkFail = xElement.InnerText
@@ -341,8 +342,70 @@
                     Notes = String.Empty
                 End If
 
+                xElement = xDoc.SelectSingleNode("//DictionaryName")
+                If xElement IsNot Nothing Then
+                    DictionaryName = xElement.InnerText
+                Else
+                    DictionaryName = "English (US).dct"
+                End If
+
+
 
                 LoadAutoTexts(xDoc)
+            Else
+                '-- Load up default values
+                LastSemesterFile = String.Empty
+                AttendenceReportMarkPresent = "P"
+                AttendenceReportMarkLate = "L"
+                AttendenceReportMarkAbsent = "A"
+                AttendenceReportMarkRemoved = "R"
+                AttendenceReportMarkUnknown = "U"
+                AttendenceReportMarkExcused = "E"
+                ShowHiddenStudents = True
+                ExamClockDuration = 120
+                ExamFailDefaultFeedback = "Student failed to show proper understanding in oral exam."
+                ExamPassWeakDefaultFeedback = "Student showed weak understanding in oral exam."
+                ExamPassDefaultFeedback = "Student showed proper understanding in oral exam."
+                NoSubmitFeedback = "Not submitted"
+                CDDrive = String.Empty
+                EmailSendingAccount = 0
+                PathToTrulyMailEXE = String.Empty
+                DataBackupsToRetain = 20
+                IncludeFeedbackWhenEmailing = False
+                EmailTrailingText = String.Empty
+                OutcomeExportMarkPass = "1"
+
+                OutcomeExportMarkFail = 0
+                OutcomeExportMarkUnknown = String.Empty
+                AssignmentNotSubmittedDefaultOutcomeComment = "Not submitted"
+                LoggingThreshold = 5 '-- default
+                FeedbackTextPreviouslyPassed = "Passed previously"
+                RedoPassAllDefaultComment = "Passed all remaining outcomes"
+                LateSubmitDefaultComment = "Submitted late."
+                MarkingPageSaveFolder = String.Empty
+                AutoSaveSeconds = 300
+                AttendanceWindowMaximized = False
+                OpenAssignmentDetailMaximized = False
+                DisableColorsInAssignmentDetail = False
+                AssignmentMarkingWarning1 = 15
+                AssignmentMarkingWarning2 = 20
+                _mainFormStudentListViewStatePrivate = String.Empty
+                PremiumFeaturesEnabled = False
+                PassResultsText = "Already"
+                FailResultsText = "Not yet"
+                UnknownResultsText = "Did not submit"
+                HighlightAttendanceNoPresentationQuality = False
+                HighlightAttendanceUnknownGender = False
+                EmailQuizResultsIncorrectComments = "If you do not know why your answer is wrong, please ask me in class."
+                EmailQuizTrailingText = "If you have any questions, you can always ask in class (or email me)."
+                StudentAssignmentNormalWindowHeight = 400
+                StudentAssignmentNormalWindowWidth = 400
+                StudentAssignmentNormalWindowX = 50
+                StudentAssignmentNormalWindowY = 50
+                Notes = "You can store notes here."
+                DictionaryName = "English (US).dct"
+
+                LoadAutoTextDefaults()
             End If
 
         Catch ex As Exception
@@ -411,6 +474,7 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "StudentAssignmentNormalWindowX", StudentAssignmentNormalWindowX))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "StudentAssignmentNormalWindowY", StudentAssignmentNormalWindowY))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "Notes", Notes))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "DictionaryName", DictionaryName))
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
 
@@ -442,6 +506,21 @@
             ImprovementAutoTextList.Add(item)
         Next
     End Sub
+    Private Sub LoadAutoTextDefaults()
+        Dim item As New AutoTextSimple
+        item = New AutoTextSimple
+        item.Text = "Student must learn about academic argument."
+        ImprovementAutoTextList.Add(item)
+
+        item = New AutoTextSimple
+        item.Text = "Student should not cite slides of teacher. Read the research and cite the original author."
+        ImprovementAutoTextList.Add(item)
+
+        item = New AutoTextSimple
+        item.Text = "Student should always include a proper introduction and conclusion."
+        ImprovementAutoTextList.Add(item)
+
+    End Sub
     Private Function GetAutoTextSettingsNode(xDoc As Xml.XmlDocument) As Xml.XmlElement
         Dim root As Xml.XmlElement = xDoc.CreateElement("AutoTexts")
         Dim xElement As Xml.XmlElement
@@ -455,6 +534,7 @@
         Return root
     End Function
 #Region " Public Properties "
+    Public Property DictionaryName As String
     Public Property Notes As String
     Public Property StudentAssignmentNormalWindowHeight As Integer
     Public Property StudentAssignmentNormalWindowWidth As Integer
