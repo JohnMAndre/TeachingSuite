@@ -53,24 +53,26 @@ Public Class ClassDetails
     ''' </summary>
     Private Sub SetupForLiteVersion()
         Try
-            olvActualSessions.Visible = False
-            nudEmailAccountToUse.Visible = False
-            txtEmailAddress.Visible = False
-            lblEmailCaption.Visible = False
-            lblEmailAccountCaption.Visible = False
-            btnShowActualSessions.Visible = False
-            btnShowNormalSchedule.Visible = False
-            btnShowSkips.Visible = False
-            llblCopyTopics.Visible = False
-            llblPasteTopics.Visible = False
-            btnCopySessionsFromOtherClass.Visible = False
-            btnRegenerateActualSchedule.Visible = False
-            llblCalculateTotalTime.Visible = False
-            ScheduleItemToolStripMenuItem.Visible = False
+            If Not AppSettings.PremiumFeaturesEnabled Then
+                olvActualSessions.Visible = False
+                nudEmailAccountToUse.Visible = False
+                txtEmailAddress.Visible = False
+                lblEmailCaption.Visible = False
+                lblEmailAccountCaption.Visible = False
+                btnShowActualSessions.Visible = False
+                btnShowNormalSchedule.Visible = False
+                btnShowSkips.Visible = False
+                llblCopyTopics.Visible = False
+                llblPasteTopics.Visible = False
+                btnCopySessionsFromOtherClass.Visible = False
+                btnRegenerateActualSchedule.Visible = False
+                llblCalculateTotalTime.Visible = False
+                ScheduleItemToolStripMenuItem.Visible = False
 
-            Me.Height = 171 '-- shrink to fit visible controls
+                Me.Height = 171 '-- shrink to fit visible controls
+            End If
         Catch ex As Exception
-
+            Log(ex)
         End Try
     End Sub
     Private Sub olvPlannedSchedule_CellEditStarting(sender As System.Object, e As BrightIdeasSoftware.CellEditEventArgs) Handles olvPlannedSchedule.CellEditStarting

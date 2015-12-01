@@ -560,11 +560,11 @@
             If xElement IsNot Nothing Then
                 m_dtLastUpdateCheck = ConvertToDateFromXML(xElement.InnerText, Date.Now)
             Else
-                m_dtLastUpdateCheck = Date.Now
+                m_dtLastUpdateCheck = Date.Now.AddYears(-1)
             End If
         Catch ex As Exception
             Log(ex)
-            m_dtLastUpdateCheck = Date.Now
+            m_dtLastUpdateCheck = Date.Now.AddYears(-1)
         End Try
     End Sub
 #Region " Public Properties "

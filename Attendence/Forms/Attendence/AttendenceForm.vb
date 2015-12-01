@@ -51,8 +51,21 @@ Public Class AttendenceForm
 
         Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
 
-
-
+        SetupForLiteVersion()
+    End Sub
+    ''' <summary>
+    ''' Removes some features for Lite (free) version
+    ''' </summary>
+    Private Sub SetupForLiteVersion()
+        Try
+            If Not AppSettings.PremiumFeaturesEnabled Then
+                AllStudentsExcusedToolStripMenuItem.Visible = False
+                AllStudentsPresentToolStripMenuItem.Visible = False
+                AllStuentsAbsentToolStripMenuItem.Visible = False
+            End If
+        Catch ex As Exception
+            Log(ex)
+        End Try
     End Sub
     Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim stud As Student = CType(olvi.RowObject, Student)
@@ -396,5 +409,36 @@ Public Class AttendenceForm
 
     Private Sub ExcusedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExcusedToolStripMenuItem.Click
         SetStudentStatus(AttendenceStatusEnum.Excused)
+    End Sub
+
+    Private Sub AllStudentsPresentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStudentsPresentToolStripMenuItem.Click
+        MarkAllStudents(AttendenceStatusEnum.Present)
+    End Sub
+
+    Private Sub AllStuentsAbsentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStuentsAbsentToolStripMenuItem.Click
+        MarkAllStudents(AttendenceStatusEnum.Absent)
+    End Sub
+
+    Private Sub AllStudentsExcusedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStudentsExcusedToolStripMenuItem.Click
+        MarkAllStudents(AttendenceStatusEnum.Excused)
+    End Sub
+    Private Sub MarkAllStudents(status As AttendenceStatusEnum)
+        Try
+            For Each stud As Student In olvStudents.Objects
+                stud.CurrentAttendenceStatus = status
+                olvStudents.RefreshObject(stud)
+
+                If m_frmPublic IsNot Nothing Then
+                    m_frmPublic.UpdateStudent(stud)
+                End If
+
+                Application.DoEvents()
+            Next
+            m_boolDirty = True
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error marking all students: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

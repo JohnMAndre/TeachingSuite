@@ -36,6 +36,7 @@ Partial Class AttendenceForm
         Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -53,6 +54,7 @@ Partial Class AttendenceForm
         Me.LateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemovedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbsentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetQualityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Presentation1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Presentation2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -78,7 +80,10 @@ Partial Class AttendenceForm
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPublicFilter = New System.Windows.Forms.Timer(Me.components)
-        Me.ExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AllStudentsPresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllStuentsAbsentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllStudentsExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,6 +219,15 @@ Partial Class AttendenceForm
         Me.OlvColumn14.Text = "Group"
         Me.OlvColumn14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Nickname"
@@ -316,7 +330,7 @@ Partial Class AttendenceForm
         '
         'MarkToolStripMenuItem
         '
-        Me.MarkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresentToolStripMenuItem, Me.LateToolStripMenuItem, Me.RemovedToolStripMenuItem, Me.AbsentToolStripMenuItem, Me.ExcusedToolStripMenuItem})
+        Me.MarkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresentToolStripMenuItem, Me.LateToolStripMenuItem, Me.RemovedToolStripMenuItem, Me.AbsentToolStripMenuItem, Me.ExcusedToolStripMenuItem, Me.ToolStripSeparator3, Me.AllStudentsPresentToolStripMenuItem, Me.AllStuentsAbsentToolStripMenuItem, Me.AllStudentsExcusedToolStripMenuItem})
         Me.MarkToolStripMenuItem.Name = "MarkToolStripMenuItem"
         Me.MarkToolStripMenuItem.Size = New System.Drawing.Size(46, 23)
         Me.MarkToolStripMenuItem.Text = "&Mark"
@@ -325,29 +339,36 @@ Partial Class AttendenceForm
         '
         Me.PresentToolStripMenuItem.Name = "PresentToolStripMenuItem"
         Me.PresentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.PresentToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.PresentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.PresentToolStripMenuItem.Text = "&Present"
         '
         'LateToolStripMenuItem
         '
         Me.LateToolStripMenuItem.Name = "LateToolStripMenuItem"
         Me.LateToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.LateToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.LateToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.LateToolStripMenuItem.Text = "&Late"
         '
         'RemovedToolStripMenuItem
         '
         Me.RemovedToolStripMenuItem.Name = "RemovedToolStripMenuItem"
         Me.RemovedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.RemovedToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.RemovedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.RemovedToolStripMenuItem.Text = "&Removed"
         '
         'AbsentToolStripMenuItem
         '
         Me.AbsentToolStripMenuItem.Name = "AbsentToolStripMenuItem"
         Me.AbsentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.AbsentToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.AbsentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.AbsentToolStripMenuItem.Text = "&Absent"
+        '
+        'ExcusedToolStripMenuItem
+        '
+        Me.ExcusedToolStripMenuItem.Name = "ExcusedToolStripMenuItem"
+        Me.ExcusedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.ExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.ExcusedToolStripMenuItem.Text = "&Excused"
         '
         'SetQualityToolStripMenuItem
         '
@@ -515,12 +536,28 @@ Partial Class AttendenceForm
         Me.tmrPublicFilter.Enabled = True
         Me.tmrPublicFilter.Interval = 2000
         '
-        'ExcusedToolStripMenuItem
+        'ToolStripSeparator3
         '
-        Me.ExcusedToolStripMenuItem.Name = "ExcusedToolStripMenuItem"
-        Me.ExcusedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ExcusedToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.ExcusedToolStripMenuItem.Text = "&Excused"
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(178, 6)
+        '
+        'AllStudentsPresentToolStripMenuItem
+        '
+        Me.AllStudentsPresentToolStripMenuItem.Name = "AllStudentsPresentToolStripMenuItem"
+        Me.AllStudentsPresentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStudentsPresentToolStripMenuItem.Text = "All students present"
+        '
+        'AllStuentsAbsentToolStripMenuItem
+        '
+        Me.AllStuentsAbsentToolStripMenuItem.Name = "AllStuentsAbsentToolStripMenuItem"
+        Me.AllStuentsAbsentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStuentsAbsentToolStripMenuItem.Text = "All stuents absent"
+        '
+        'AllStudentsExcusedToolStripMenuItem
+        '
+        Me.AllStudentsExcusedToolStripMenuItem.Name = "AllStudentsExcusedToolStripMenuItem"
+        Me.AllStudentsExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStudentsExcusedToolStripMenuItem.Text = "All students excused"
         '
         'AttendenceForm
         '
@@ -623,4 +660,9 @@ Partial Class AttendenceForm
     Friend WithEvents txtStudentGroup As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents tmrPublicFilter As System.Windows.Forms.Timer
     Friend WithEvents ExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents AllStudentsPresentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AllStudentsExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
