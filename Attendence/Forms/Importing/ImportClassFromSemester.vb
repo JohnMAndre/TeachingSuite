@@ -104,7 +104,7 @@ Public Class ImportClassFromSemester
                 asmt.SavedAssignmentsFolder = String.Empty
             Next
 
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = DialogResult.OK
         End If
     End Sub
 

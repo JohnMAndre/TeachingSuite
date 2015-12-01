@@ -1,5 +1,6 @@
 
 Public Class MainForm
+
     Private WithEvents m_bkgndExportAttendence As System.ComponentModel.BackgroundWorker
     Private WithEvents m_bkgndExportStudents As System.ComponentModel.BackgroundWorker
     Private WithEvents m_bkgndExportStudentGrades As System.ComponentModel.BackgroundWorker
@@ -74,6 +75,14 @@ Public Class MainForm
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
         C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
 
+        '-- Check for update
+        Dim ts As TimeSpan = Date.Now - AppSettings.LastUpdateCheck
+        If ts.TotalDays > 30 Then
+            CheckForupdatesToolStripMenuItem.PerformClick()
+        End If
+        If ts.TotalDays > 0.5 Then
+            CheckForupdatesToolStripMenuItem.ToolTipText = "Last checked " & ts.TotalDays.ToString("#,##0.0") & " days ago."
+        End If
 
     End Sub
     ''' <summary>
@@ -270,7 +279,7 @@ Public Class MainForm
 
             If fi IsNot Nothing Then
                 Dim frmAutoSave As New AutoSaveRecovery(strSemesterName)
-                If frmAutoSave.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
+                If frmAutoSave.ShowDialog() = DialogResult.Cancel Then
                     '-- should not load anything
                     Exit Sub
                 Else
@@ -427,7 +436,7 @@ Public Class MainForm
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Using frm As New StudentDetail(clas)
-                If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog = DialogResult.OK Then
                     LoadStudents()
                 End If
             End Using
@@ -447,7 +456,7 @@ Public Class MainForm
             Exit Sub
         Else
             Using frm As New StudentDetail(stud)
-                If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog = DialogResult.OK Then
                     olvStudents.RefreshSelectedObjects()
                 End If
             End Using
@@ -476,7 +485,7 @@ Public Class MainForm
     Private Sub TakeAttendenceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles TakeAttendenceToolStripMenuItem.Click
         If GetSelectedClass() IsNot Nothing Then
             Using frm As New AttendenceForm(GetSelectedClass())
-                If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog() = DialogResult.OK Then
                     '-- trigger autosave to capture attendance
                     AutoSave()
                 End If
@@ -491,7 +500,7 @@ Public Class MainForm
 
         If lstStudents.Count > 0 Then
             For Each stud As Student In lstStudents
-                If MessageBox.Show("Are you sure you want to remove " & stud.LocalName & " (" & stud.Nickname & ")" & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                If MessageBox.Show("Are you sure you want to remove " & stud.LocalName & " (" & stud.Nickname & ")" & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                     stud.SchoolClass.Students.Remove(stud)
                     olvStudents.RemoveObject(stud)
                 End If
@@ -553,7 +562,7 @@ Public Class MainForm
             MessageBox.Show("Please select one or more students to move.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ClassSelector(GetSelectedClassGroup())
-                If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog = DialogResult.OK Then
                     If GetSelectedClass() IsNot frm.SelectedClass Then
                         For Each stud As Student In lstStudents
                             GetSelectedClass().Students.Remove(stud)
@@ -592,7 +601,7 @@ Public Class MainForm
 
     Private Sub llblImportStudents_LinkClicked(sender As System.Object, e As System.EventArgs)
         Using frm As New ImportStudentsFromText(GetSelectedClass())
-            If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog() = DialogResult.OK Then
                 LoadStudents()
             End If
         End Using
@@ -669,7 +678,7 @@ Public Class MainForm
             sfd.Filter = "Text files (*.txt)|*.txt"
             sfd.OverwritePrompt = True
             sfd.FileName = GetSelectedClass.Name & " Export"
-            If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If sfd.ShowDialog = DialogResult.OK Then
                 '-- Export
                 m_bkgndExportAttendence = New System.ComponentModel.BackgroundWorker()
                 Dim expData As New ExportClassData
@@ -704,7 +713,7 @@ Public Class MainForm
 
     Private Sub OptionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OptionsToolStripMenuItem.Click
         Using frm As New OptionsForm
-            If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog(Me) = DialogResult.OK Then
                 '-- reload data which might have changed
                 C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
             End If
@@ -730,7 +739,7 @@ Public Class MainForm
             MessageBox.Show("Please select a module first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ClassAssignmentDetails(GetSelectedClassGroup())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadClassAssignments()
                 End If
             End Using
@@ -747,13 +756,13 @@ Public Class MainForm
             Select Case asmt.AssignmentType
                 Case AssignmentType.BTEC
                     Using frm As New ClassAssignmentDetails(GetSelectedClassGroup(), GetSelectedAssignment())
-                        If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        If frm.ShowDialog(Me) = DialogResult.OK Then
                             LoadClassAssignments()
                         End If
                     End Using
                 Case AssignmentType.Normal
                     Using frm As New ClassAssignmentNormalDetails(GetSelectedClassGroup(), GetSelectedAssignment())
-                        If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        If frm.ShowDialog(Me) = DialogResult.OK Then
                             LoadClassAssignments()
                         End If
                     End Using
@@ -768,7 +777,7 @@ Public Class MainForm
             MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             If MessageBox.Show("Are you sure you want to delete " & GetSelectedAssignment.Name & " for the class " & GetSelectedClass.Name & "?" &
-                               Environment.NewLine & Environment.NewLine, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                               Environment.NewLine & Environment.NewLine, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
                     GetSelectedClassGroup().AssignmentsBTEC.Remove(GetSelectedAssignment())
                 Else
@@ -831,11 +840,11 @@ Public Class MainForm
         End If
 
         If attempt = MarkingTry.FirstTry AndAlso GetSelectedAssignment.ClosedFirstTry Then
-            If MessageBox.Show("Are you sure you want to modify the first submission (for: " & GetSelectedAssignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
+            If MessageBox.Show("Are you sure you want to modify the first submission (for: " & GetSelectedAssignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
         ElseIf attempt = MarkingTry.SecondTry AndAlso Not GetSelectedAssignment.ClosedSecondTry Then
-            If MessageBox.Show("Are you sure you want to modify the second submission (for: " & GetSelectedAssignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
+            If MessageBox.Show("Are you sure you want to modify the second submission (for: " & GetSelectedAssignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
         End If
@@ -885,7 +894,7 @@ Public Class MainForm
             MessageBox.Show("Please select a module to edit.", Application.ProductName)
         Else
             Using frm As New ClassGroupDetails(GetSelectedClassGroup())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadClassGroups()
                 End If
             End Using
@@ -913,7 +922,7 @@ Public Class MainForm
         Dim intClasses As Integer = GetSelectedClassGroup.Classes.Count
         If MessageBox.Show("Are you sure you want to delete " & GetSelectedClassGroup.Name & "?" &
                            Environment.NewLine & Environment.NewLine &
-                           "It has " & intClasses.ToString("#,##0") & " classes.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                           "It has " & intClasses.ToString("#,##0") & " classes.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             ThisSemester.ClassGroups.Remove(GetSelectedClassGroup())
             LoadClassGroups()
         End If
@@ -946,13 +955,13 @@ Public Class MainForm
         End If
 
         If attempt = MarkingTry.FirstTry AndAlso assignment.ClosedFirstTry Then
-            If MessageBox.Show("Are you sure you want to modify the first submission (for: " & assignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
+            If MessageBox.Show("Are you sure you want to modify the first submission (for: " & assignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
             'ElseIf attempt = MarkingTry.SecondTry AndAlso Not student.SchoolClass.ClassGroup.Closed Then
         ElseIf attempt = MarkingTry.SecondTry AndAlso assignment.ClosedSecondTry Then
             'MessageBox.Show("You must 'close' the semester (for: " & student.SchoolClass.Name & ") before entering redo. Go to Tools->Close regular semeseter.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            If MessageBox.Show("Are you sure you want to modify the second submission (for: " & assignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
+            If MessageBox.Show("Are you sure you want to modify the second submission (for: " & assignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
         End If
@@ -1012,7 +1021,7 @@ Public Class MainForm
         Dim ofd As New OpenFileDialog()
         ofd.Filter = "Attendence data files|*" & DATA_FILE_EXTENSION
         ofd.Title = "Select attendence file to access."
-        If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If ofd.ShowDialog = DialogResult.OK Then
             Dim frm As New AttendenceImport(ofd.FileName)
             frm.Show(Me)
         End If
@@ -1103,7 +1112,7 @@ Public Class MainForm
             sfd.Filter = "Text files (*.txt)|*.txt"
             sfd.OverwritePrompt = True
             sfd.FileName = GetSelectedClassGroup.Name & " Module Results Export"
-            If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If sfd.ShowDialog = DialogResult.OK Then
                 '-- Export
                 m_bkgndExportModuleResults = New System.ComponentModel.BackgroundWorker()
                 Dim expData As New ExportModuleResultData
@@ -1136,7 +1145,7 @@ Public Class MainForm
             MessageBox.Show("Please select a class for import.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ImportStudentsFromText(GetSelectedClass())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadStudents()
                 End If
             End Using
@@ -1318,7 +1327,7 @@ Public Class MainForm
             item.SchoolClass.ActualSessions.Remove(item)
 
             Using frm As New ClassDetails(item.SchoolClass)
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadClasses()
                 End If
             End Using
@@ -1340,7 +1349,7 @@ Public Class MainForm
                 sfd.Filter = "Text files (*.txt)|*.txt"
                 sfd.OverwritePrompt = True
                 sfd.FileName = GetSelectedClass.Name & " Student Export"
-                If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If sfd.ShowDialog = DialogResult.OK Then
                     '-- Export
                     m_bkgndExportStudents = New System.ComponentModel.BackgroundWorker()
                     Dim expData As New ExportClassData
@@ -1396,12 +1405,12 @@ Public Class MainForm
                                                                                 Environment.NewLine & Environment.NewLine & "Mark removed and select a new student (yes)?" &
                                                                                 Environment.NewLine & "Ignore and select a new student (no)?" &
                                                                                 Environment.NewLine & "Do nothing (cancel)?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
-                Case Windows.Forms.DialogResult.Yes
+                Case DialogResult.Yes
                     RemoveCurrentStudent()
                     SelectRandomStudentAndDisplayMessage()
-                Case Windows.Forms.DialogResult.No
+                Case DialogResult.No
                     SelectRandomStudentAndDisplayMessage()
-                Case Windows.Forms.DialogResult.Cancel
+                Case DialogResult.Cancel
                     '-- do nothing
                     Application.DoEvents() '-- for breakpoint
             End Select
@@ -1547,7 +1556,7 @@ Public Class MainForm
             MessageBox.Show("Please load a semester before import.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ImportClassFromSemester()
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadClassGroups()
                 End If
             End Using
@@ -1558,7 +1567,7 @@ Public Class MainForm
             MessageBox.Show("Please select a class for import.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ImportStudentsFromSemester(GetSelectedClass())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadStudents()
                 End If
             End Using
@@ -1581,7 +1590,7 @@ Public Class MainForm
     End Sub
 
     Private Sub lblRenumberAdminResetNumber_MouseClick(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lblRenumberAdminResetNumber.MouseClick
-        If MessageBox.Show("Are you sure (reset all to 999)?", Application.ProductName, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure (reset all to 999)?", Application.ProductName, MessageBoxButtons.YesNo) = DialogResult.Yes Then
             If GetSelectedClass() Is Nothing Then
                 MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK)
             Else
@@ -1629,7 +1638,7 @@ Public Class MainForm
         Else
             If MessageBox.Show("Are you sure you want to close first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
-                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.FirstTry)
                 MessageBox.Show("The first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -1644,7 +1653,7 @@ Public Class MainForm
         Else
             If MessageBox.Show("Are you sure you want to close rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
-                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 Try
                     CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.SecondTry)
                     MessageBox.Show("The rework submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1663,7 +1672,7 @@ Public Class MainForm
         Else
             If MessageBox.Show("Are you sure you want to close 2nd rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
-                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 Try
                     CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.ThirdTry)
                     MessageBox.Show("The 2nd rework submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1837,7 +1846,7 @@ Public Class MainForm
             MessageBox.Show("Please select a class for import.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ImportStudentsFromSemester(GetSelectedClass())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadStudents()
                 End If
             End Using
@@ -2023,7 +2032,7 @@ Public Class MainForm
         sfd.Filter = "Text files (*.txt)|*.txt"
         sfd.OverwritePrompt = True
         sfd.FileName = GetSelectedClassGroup.Name & " Marking Results Export"
-        If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If sfd.ShowDialog = DialogResult.OK Then
             '-- Export
             m_bkgndExportMarkingResults = New System.ComponentModel.BackgroundWorker()
             Dim expData As New ExportMarkingListData
@@ -2140,7 +2149,7 @@ Public Class MainForm
             MessageBox.Show("Please select a class to edit.", Application.ProductName)
         Else
             Using frm As New ClassDetails(GetSelectedClass())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadClasses()
                 End If
             End Using
@@ -2151,7 +2160,7 @@ Public Class MainForm
         Dim intStudents As Integer = GetSelectedClass.Students.Count
         If MessageBox.Show("Are you sure you want to delete " & GetSelectedClass.Name & "?" &
                            Environment.NewLine & Environment.NewLine &
-                           "It has " & intStudents.ToString("#,##0") & " students.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                           "It has " & intStudents.ToString("#,##0") & " students.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             GetSelectedClassGroup.Classes.Remove(GetSelectedClass())
             LoadClasses()
             olvStudents.Items.Clear()
@@ -2199,7 +2208,7 @@ Public Class MainForm
             MessageBox.Show("Please select a module first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ClassAssignmentNormalDetails(GetSelectedClassGroup())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadClassAssignments()
                 End If
             End Using
@@ -2256,7 +2265,7 @@ Public Class MainForm
                 sfd.Filter = "Text files (*.txt)|*.txt"
                 sfd.OverwritePrompt = True
                 sfd.FileName = GetSelectedClass.Name & " Student Grade Export"
-                If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If sfd.ShowDialog = DialogResult.OK Then
                     '-- Export
                     If m_bkgndExportStudentGrades Is Nothing Then
                         m_bkgndExportStudentGrades = New System.ComponentModel.BackgroundWorker()
@@ -2312,7 +2321,7 @@ Public Class MainForm
             MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Using frm As New ImportAddDropStudents(GetSelectedClass())
-                If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog(Me) = DialogResult.OK Then
                     LoadStudents()
                 End If
             End Using
@@ -2320,7 +2329,7 @@ Public Class MainForm
     End Sub
 
     Private Sub RemoveAllStudentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveAllStudentsToolStripMenuItem.Click
-        If MessageBox.Show("Are you sure you want to remove all these studenst from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to remove all these studenst from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = DialogResult.Yes Then
             For Each stud As Student In olvStudents.FilteredObjects
                 stud.SchoolClass.Students.Remove(stud)
             Next
@@ -2331,7 +2340,7 @@ Public Class MainForm
         If GetSelectedClass() Is Nothing Then
             MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to remove all these studenst from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            If MessageBox.Show("Are you sure you want to remove all these studenst from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = DialogResult.Yes Then
                 For Each stud As Student In olvStudents.FilteredObjects
                     stud.SchoolClass.Students.Remove(stud)
                 Next
@@ -2514,7 +2523,7 @@ Public Class MainForm
         sfd.Filter = "Text files (*.txt)|*.txt"
         sfd.OverwritePrompt = True
         sfd.FileName = GetSelectedClassGroup.Name & " Marking Results (isolated) Export"
-        If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If sfd.ShowDialog = DialogResult.OK Then
             '-- Export
             m_bkgndExportMarkingResultsIsolated = New System.ComponentModel.BackgroundWorker()
             Dim expData As New ExportMarkingListData
@@ -2532,11 +2541,10 @@ Public Class MainForm
             m_bkgndExportMarkingResultsIsolated.RunWorkerAsync(expData)
         End If
     End Sub
-
     Private Sub CheckForupdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForupdatesToolStripMenuItem.Click
         Try
             Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
-            System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- not supporting betas yet, but the updater does
+            System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- this app is not supporting betas yet, but the updater does
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error launching the updater (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -2545,7 +2553,7 @@ Public Class MainForm
 
     Private Sub UpgradeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpgradeToolStripMenuItem.Click
         Using frm As New Upgrade()
-            If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog = DialogResult.OK Then
                 MessageBox.Show("You need to restart the application for the new features to show.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using

@@ -85,11 +85,11 @@ Public Class ClassDetails
         m_class.EmailAddress = txtEmailAddress.Text
         m_class.EmailSendingAccount = nudEmailAccountToUse.Value
         m_class.Notes = txtNotes.Text
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub RemoveSkipSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RemoveSkipSessionToolStripMenuItem.Click
@@ -115,7 +115,7 @@ Public Class ClassDetails
     End Sub
 
     Private Sub btnRegenerateActualSchedule_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnRegenerateActualSchedule.LinkClicked
-        If MessageBox.Show("Are you sure you want to regenerate the actual sessions? This will remove data from the automatic sessions.", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to regenerate the actual sessions? This will remove data from the automatic sessions.", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             m_class.GenerateActualSessions()
             LoadActualSessions()
         End If
@@ -123,7 +123,7 @@ Public Class ClassDetails
 
     Private Sub btnCopySessionsFromOtherClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnCopySessionsFromOtherClass.LinkClicked
         Using frm As New ClassSelector(m_class.ClassGroup)
-            If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog(Me) = DialogResult.OK Then
                 If m_class IsNot frm.SelectedClass Then
                     'GetSelectedClass().Students.Remove(Student)
                     'frm.SelectedClass.Students.Add(Student)
@@ -155,7 +155,7 @@ Public Class ClassDetails
 
     Private Sub olvActualSessions_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvActualSessions.ItemActivate
         Using frm As New EditManualScheduleItem(olvActualSessions.SelectedObject)
-            If frm.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog() = DialogResult.OK Then
                 olvActualSessions.RefreshSelectedObjects()
             End If
         End Using

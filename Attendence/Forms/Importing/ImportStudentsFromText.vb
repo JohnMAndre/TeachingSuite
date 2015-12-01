@@ -97,13 +97,13 @@ Public Class ImportStudentsFromText
 
             If intStudentsImported > 0 Then
                 MessageBox.Show(intStudentsImported.ToString("#,##0") & " students imported.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.DialogResult = DialogResult.OK
             Else
-                Me.DialogResult = Windows.Forms.DialogResult.Cancel
+                Me.DialogResult = DialogResult.Cancel
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = DialogResult.Cancel
         End Try
     End Sub
 

@@ -12,7 +12,7 @@ Public Class AddSemester
             Dim strFilename As String = System.IO.Path.Combine(GetDataFolder(), strNewSemester & DATA_FILE_EXTENSION)
             Dim boolOverwriteOK As Boolean
             If System.IO.File.Exists(strFilename) Then
-                If MessageBox.Show("Are you sure you want to overwrite the existing semester with this name?", "Overwrite Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                If MessageBox.Show("Are you sure you want to overwrite the existing semester with this name?", "Overwrite Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                     boolOverwriteOK = True
                 Else
                     boolOverwriteOK = False
@@ -26,7 +26,7 @@ Public Class AddSemester
                 newSemester.StartDateOverall = dtpSemesterStart.Value.ToString("yyyy-MM-dd")
                 newSemester.EndDateOverall = dtpSemesterEnd.Value.ToString("yyyy-MM-dd")
                 newSemester.Save()
-                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.DialogResult = DialogResult.OK
             End If
         End If
     End Sub

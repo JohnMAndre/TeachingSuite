@@ -115,7 +115,7 @@
     End Sub
 
     Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As EventArgs) Handles llblDeleteAssignment.LinkClicked
-        If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             m_student.Assignments.Remove(m_studentAssignment)
             MessageBox.Show("Assignment was removed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Close()

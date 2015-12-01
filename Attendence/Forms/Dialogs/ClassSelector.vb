@@ -12,12 +12,12 @@ Public Class ClassSelector
     End Sub
 
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         If lstClasses.SelectedIndex > -1 Then
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = DialogResult.OK
         Else
             MessageBox.Show("Please select a class.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If

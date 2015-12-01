@@ -55,7 +55,7 @@ Public Class EmailQuizResults
         Try
             If m_boolSentAlready Then
                 '-- So easy to his OK when you mean to hit close, so prompt to avoid a lot of extra re-work
-                If MessageBox.Show("It seems you have already send this. Are you sure you want to send again?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) <> Windows.Forms.DialogResult.Yes Then
+                If MessageBox.Show("It seems you have already send this. Are you sure you want to send again?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) <> DialogResult.Yes Then
                     Exit Sub
                 End If
             End If
@@ -182,7 +182,7 @@ Public Class EmailQuizResults
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = DialogResult.Cancel
         End Try
 
     End Sub

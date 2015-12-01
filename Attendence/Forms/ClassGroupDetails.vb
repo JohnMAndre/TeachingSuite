@@ -33,7 +33,7 @@ Public Class ClassGroupDetails
     End Sub
 
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
@@ -46,7 +46,7 @@ Public Class ClassGroupDetails
         m_grp.EndDateCurrent = dtpEndDateCurrent.Value
         m_grp.UseNickname = chkUseNickname.Checked
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub RefreshOutcomeList()
@@ -88,7 +88,7 @@ Public Class ClassGroupDetails
         sfd.InitialDirectory = GetModuleDataFolder()
         sfd.DefaultExt = ".moduledata"
         sfd.Filter = "Module data files|*.tmd"
-        If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If sfd.ShowDialog = DialogResult.OK Then
             Dim strFilename As String = sfd.FileName
 
             Dim xDoc As New Xml.XmlDocument()
@@ -112,7 +112,7 @@ Public Class ClassGroupDetails
         ofd.InitialDirectory = GetModuleDataFolder()
         ofd.DefaultExt = ".moduledata"
         ofd.Filter = "Module data files|*.tmd"
-        If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If ofd.ShowDialog = DialogResult.OK Then
             Dim xDoc As New Xml.XmlDocument
             xDoc.Load(ofd.FileName)
 

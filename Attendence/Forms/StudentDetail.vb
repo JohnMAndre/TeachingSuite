@@ -167,7 +167,7 @@ Public Class StudentDetail
         m_student.WritingQuality = nudWritingQuality.Value
         'm_student.ActivityLog = rtbLog.Text
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub llblAddSession_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddSession.LinkClicked
@@ -202,7 +202,7 @@ Public Class StudentDetail
 
     Private Sub llblAdjustAbsences_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAdjustAbsences.LinkClicked
         Dim intAbsencesExcused As Integer
-        If MessageBox.Show("Are you sure you want to adjust current absences down to " & nudMaxAbsences.Value.ToString() & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to adjust current absences down to " & nudMaxAbsences.Value.ToString() & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             For intCounter = m_student.TeachingSessions.Count - 1 To 0 Step -1
                 If m_student.CurrentAbsences <= nudMaxAbsences.Value Then
                     Exit For
@@ -296,7 +296,7 @@ Public Class StudentDetail
         Else
             '-- select new student to transfer to
             Using frm As New StudentSelector()
-                If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If frm.ShowDialog = DialogResult.OK Then
                     Application.DoEvents()
                     Dim newStudent As Student = frm.SelectedStudent
                     If newStudent IsNot Nothing Then

@@ -1,6 +1,6 @@
-﻿namespace TeachingUpdater
+﻿namespace Teaching
 {
-    partial class B
+    partial class UpdaterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(B));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdaterForm));
             this.bgwCheckForUpdate = new System.ComponentModel.BackgroundWorker();
             this.bgwDownloadUpdate = new System.ComponentModel.BackgroundWorker();
             this.bgwInstallUpdate = new System.ComponentModel.BackgroundWorker();
@@ -229,15 +229,16 @@
             this.tmrDownloadAsynch.Interval = 500;
             this.tmrDownloadAsynch.Tick += new System.EventHandler(this.tmrDownloadAsynch_Tick);
             // 
-            // B
+            // UpdaterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 339);
             this.Controls.Add(this.KryptonPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "B";
+            this.Name = "UpdaterForm";
             this.Text = "Updating Teaching App";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdaterForm_FormClosing);
             this.Load += new System.EventHandler(this.B_Load);
             ((System.ComponentModel.ISupportInitialize)(this.KryptonPanel)).EndInit();
             this.KryptonPanel.ResumeLayout(false);

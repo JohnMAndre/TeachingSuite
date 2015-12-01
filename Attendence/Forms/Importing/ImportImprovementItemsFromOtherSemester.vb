@@ -89,7 +89,7 @@
 
         If lstItemsNotImported.Count > 0 Then
             If MessageBox.Show(lstItemsNotImported.Count.ToString("#,##0") & " items were not added because they seem to exist already." & _
-                            Environment.NewLine & Environment.NewLine & "Would you like to see that list now?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                            Environment.NewLine & Environment.NewLine & "Would you like to see that list now?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                 olvImprovementItems.SetObjects(lstItemsNotImported)
             End If
         Else

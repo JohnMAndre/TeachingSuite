@@ -94,7 +94,7 @@ Public Class ClassAssignmentDetails
         m_assignment.IncludesAttachment = chkIncludesAttachment.Checked
 
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub llblAddOutcome_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddOutcome.LinkClicked
@@ -145,7 +145,7 @@ Public Class ClassAssignmentDetails
         Try
             Dim ofd As New OpenFileDialog()
 
-            If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If ofd.ShowDialog = DialogResult.OK Then
                 txtAssignmentBriefFilename.Text = ofd.FileName
                 m_boolCopyAssignmentBrief = True
             End If
@@ -161,7 +161,7 @@ Public Class ClassAssignmentDetails
                 If Not txtAssignmentBriefFilename.Text.Contains(GetMarkingFolder()) Then
                     Dim strDestination As String = System.IO.Path.Combine(GetMarkingFolder(), System.IO.Path.GetFileName(txtAssignmentBriefFilename.Text))
                     If System.IO.File.Exists(strDestination) Then
-                        If MessageBox.Show(strDestination & " already exists. Overwrite?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                        If MessageBox.Show(strDestination & " already exists. Overwrite?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                             System.IO.File.Delete(strDestination)
                         End If
                     End If
@@ -183,7 +183,7 @@ Public Class ClassAssignmentDetails
             m_classGroup.AssignmentsBTEC.Remove(m_assignment)
         End If
 
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub txtAssignmentBriefFilename_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtAssignmentBriefFilename.TextChanged
@@ -195,7 +195,7 @@ Public Class ClassAssignmentDetails
             fbd.Description = "Select folder to save assignment copies."
             fbd.ShowNewFolderButton =
             fbd.SelectedPath = txtSavedAssignmentsPath.Text
-            If fbd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If fbd.ShowDialog = DialogResult.OK Then
                 txtSavedAssignmentsPath.Text = fbd.SelectedPath
             End If
         End Using

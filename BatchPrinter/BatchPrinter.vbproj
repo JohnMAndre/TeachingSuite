@@ -8,8 +8,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F818DB2A-5C79-4667-8A25-D6BC2648008B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>BatchPrinter.My.MyApplication</StartupObject>
-    <RootNamespace>BatchPrinter</RootNamespace>
+    <StartupObject>Teaching.My.MyApplication</StartupObject>
+    <RootNamespace>Teaching</RootNamespace>
     <AssemblyName>BatchPrinter</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>

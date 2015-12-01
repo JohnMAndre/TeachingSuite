@@ -1199,7 +1199,7 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub llblDeleteAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblDeleteAssignment.LinkClicked
-        If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             m_student.AssignmentsBTEC.Remove(m_studentAssignment)
             MessageBox.Show("Assignment was removed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Close()
@@ -1330,7 +1330,7 @@ Friend Class StudentAssignmentDetails
                 Else
                     '-- choose
                     Using frm As New AssignmentDocumentSelector(files)
-                        If frm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        If frm.ShowDialog(Me) = DialogResult.OK Then
                             strFileToProcess = frm.SelectedFilename
                         Else
                             Exit Sub
@@ -1669,7 +1669,7 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub MoveFeedbackFrom1stTo2ndToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MoveFeedbackFrom1stTo2ndToolStripMenuItem.Click
-        If MessageBox.Show("Are you sure you want to move feedback from 1st to 2nd submission?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to move feedback from 1st to 2nd submission?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             For Each oc As OutcomeResult In m_studentAssignment.Outcomes
                 oc.SecondTryStatus = oc.FirstTryStatus
                 oc.SecondTryComments = oc.FirstTryComments
@@ -1681,7 +1681,7 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub MoveFeedbackFrom2ndTo3rdToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MoveFeedbackFrom2ndTo3rdToolStripMenuItem.Click
-        If MessageBox.Show("Are you sure you want to move feedback from 2nd to 3rd submission?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Are you sure you want to move feedback from 2nd to 3rd submission?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             For Each oc As OutcomeResult In m_studentAssignment.Outcomes
                 oc.ThirdTryStatus = oc.SecondTryStatus
                 oc.ThirdTryComments = oc.SecondTryComments

@@ -2,7 +2,7 @@
     Public Shift As Boolean
     Public Control As Boolean
     Public Alt As Boolean
-    Public KeyCode As Windows.Forms.Keys
+    Public KeyCode As System.Windows.Forms.Keys
     Public KeyName As String
     Public Text As String
 End Class

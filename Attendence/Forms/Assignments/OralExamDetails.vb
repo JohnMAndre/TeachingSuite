@@ -514,7 +514,7 @@ Public Class OralExamDetails
     Private Sub SelectSpecificStudent()
         Try
             If m_boolDirty Then
-                If MessageBox.Show("Change student without recording mark?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+                If MessageBox.Show("Change student without recording mark?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
                     m_boolDirty = False
                 Else
                     Exit Sub
@@ -550,7 +550,7 @@ Public Class OralExamDetails
     Private Sub ClickNewStudent()
         Try
             If m_boolDirty Then
-                If MessageBox.Show("Change student without recording mark?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+                If MessageBox.Show("Change student without recording mark?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
                     m_boolDirty = False
                 Else
                     Exit Sub

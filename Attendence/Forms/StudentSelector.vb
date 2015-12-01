@@ -76,7 +76,7 @@ Public Class StudentSelector
         If SelectedStudent Is Nothing Then
             MessageBox.Show("Please select a student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = DialogResult.OK
         End If
     End Sub
 

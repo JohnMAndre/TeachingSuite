@@ -65,7 +65,7 @@ Public Class OptionsForm
         AppSettings.FailResultsText = txtFailResultsText.Text
         AppSettings.UnknownResultsText = txtUnknownResultsText.Text
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
 
         Me.Close()
     End Sub
@@ -161,7 +161,7 @@ Public Class OptionsForm
         olvImprovementText.SetObjects(AppSettings.ImprovementAutoTextList)
     End Sub
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
 
@@ -169,7 +169,7 @@ Public Class OptionsForm
         Dim ofd As New OpenFileDialog()
         ofd.Filter = "TrulyMail.exe|TrulyMail.exe"
         ofd.Title = "Select TrulyMail.exe main file"
-        If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If ofd.ShowDialog = DialogResult.OK Then
             txtPathToTrulyMail.Text = ofd.FileName
         End If
     End Sub
@@ -177,7 +177,7 @@ Public Class OptionsForm
     Private Sub llblBrowseForFeedbackSaveFolder_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblBrowseForFeedbackSaveFolder.LinkClicked
         Dim fbd As New FolderBrowserDialog()
         fbd.Description = "Select folder for marking pages"
-        If fbd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If fbd.ShowDialog = DialogResult.OK Then
             txtPathToFeedbackSaveFolder.Text = fbd.SelectedPath
         End If
     End Sub
@@ -186,7 +186,7 @@ Public Class OptionsForm
         If olvImprovementText.SelectedObject Is Nothing Then
             MessageBox.Show("Please select an improvement text to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            If MessageBox.Show("Are you sure you want to remove this improvement text?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            If MessageBox.Show("Are you sure you want to remove this improvement text?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 AppSettings.ImprovementAutoTextList.Remove(olvImprovementText.SelectedObject)
                 ReloadImprovementText()
             End If

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace TeachingUpdater
+namespace Teaching
 {
     static class Program
     {
@@ -24,7 +24,7 @@ namespace TeachingUpdater
                     string strCurrentVersion = args[0];
                     string strConsiderBetas = args[1];
 
-                    Application.Run(new B(args[0], Convert.ToBoolean(args[1])));
+                    Application.Run(new UpdaterForm(args[0], Convert.ToBoolean(args[1])));
                 }
 
             }

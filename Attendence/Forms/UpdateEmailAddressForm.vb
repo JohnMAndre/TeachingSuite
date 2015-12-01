@@ -15,7 +15,7 @@ Public Class UpdateEmailAddressForm
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         If txtOldEmailAddress.Text.Trim.Length = 0 Then
-            If MessageBox.Show("Are you sure you want to update ALL students WITHOUT email addresses?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) <> Windows.Forms.DialogResult.Yes Then
+            If MessageBox.Show("Are you sure you want to update ALL students WITHOUT email addresses?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) <> DialogResult.Yes Then
                 Exit Sub
             End If
         End If
@@ -37,7 +37,7 @@ Public Class UpdateEmailAddressForm
         Dim strNewPhotoFilename As String = System.IO.Path.Combine(GetImageFolder(), txtNewEmailAddress.Text & ".jpg")
         If System.IO.File.Exists(strOldPhotoFilename) Then
             If System.IO.File.Exists(strNewPhotoFilename) Then
-                If MessageBox.Show(strNewPhotoFilename & " already exists. Overwrite?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.Yes Then
+                If MessageBox.Show(strNewPhotoFilename & " already exists. Overwrite?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = DialogResult.Yes Then
                     boolReplace = True
                     Try
                         System.IO.File.Delete(strNewPhotoFilename)
@@ -84,7 +84,7 @@ Public Class UpdateEmailAddressForm
     End Sub
     Private Sub EditSelectedStudent()
         Using frm As New StudentDetail(CType(olvStudents.SelectedObject, Student))
-            If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog = DialogResult.OK Then
                 olvStudents.RefreshSelectedObjects()
             End If
         End Using

@@ -46,6 +46,6 @@
         m_assignment.ReleaseDate = dtpReleaseDate.Value
         m_assignment.SubmitDate = dtpSubmitDate.Value
         m_assignment.Weighting = ConvertToDouble(nudWeighting.Value.ToString(), 1)
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 End Class

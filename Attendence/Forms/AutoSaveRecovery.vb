@@ -23,12 +23,12 @@ Public Class AutoSaveRecovery
     End Sub
     Private Sub btnDeleteAutoSave_Click(sender As System.Object, e As System.EventArgs) Handles btnDeleteAutoSave.Click
         Semester.DiscardAutoSaveFile(m_strSemesterName)
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub btnUseAutoSave_Click(sender As System.Object, e As System.EventArgs) Handles btnUseAutoSave.Click
         Semester.UseAutoSaveFile(m_strSemesterName)
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
     Private Sub SelectInExplorer(filename As String)
         If Not System.IO.File.Exists(filename) Then

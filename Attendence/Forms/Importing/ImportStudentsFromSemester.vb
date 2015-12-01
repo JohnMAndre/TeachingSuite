@@ -95,7 +95,7 @@ Public Class ImportStudentsFromSemester
 
 
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub lstClasses_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles lstClasses.SelectedIndexChanged

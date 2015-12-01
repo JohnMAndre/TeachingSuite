@@ -32,11 +32,11 @@ Public Class AttendenceForm
     Private Sub AttendenceForm_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If m_boolDirty Then
             Select Case MessageBox.Show("Do you want to save your changes?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-                Case Windows.Forms.DialogResult.Yes
+                Case DialogResult.Yes
                     SaveSessionStatuses()
-                Case Windows.Forms.DialogResult.No
+                Case DialogResult.No
                     '-- just close
-                Case Windows.Forms.DialogResult.Cancel
+                Case DialogResult.Cancel
                     e.Cancel = True
             End Select
         End If
@@ -168,7 +168,7 @@ Public Class AttendenceForm
 
             m_boolDirty = False
 
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = DialogResult.OK
 
         Catch ex As Exception
             MessageBox.Show("Error saving: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)

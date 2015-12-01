@@ -61,7 +61,7 @@ Public Class StudentOutcomeResults
     End Sub
     Private Sub EditSelectedStudent()
         Using frm As New StudentDetail(CType(olvStudents.SelectedObject, OutcomeResult).Assignment.Student)
-            If frm.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If frm.ShowDialog = DialogResult.OK Then
                 olvStudents.RefreshSelectedObjects()
             End If
         End Using

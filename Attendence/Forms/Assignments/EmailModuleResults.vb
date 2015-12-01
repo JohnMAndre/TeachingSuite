@@ -611,7 +611,7 @@ Public Class EmailModuleResults
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         Dim boolSendNow As Boolean = True
         If RecommendAttachment() AndAlso (IncludeattachmentToolStripMenuItem.Checked = False) Then
-            If MessageBox.Show("At least one assignment includes an attachment. Would you like to continue, ignoring all attachments?", "Attachment Missing", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+            If MessageBox.Show("At least one assignment includes an attachment. Would you like to continue, ignoring all attachments?", "Attachment Missing", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
                 boolSendNow = True
             Else
                 boolSendNow = False
@@ -710,7 +710,7 @@ Public Class EmailModuleResults
             Else
                 ofd.InitialDirectory = m_strAttachmentPath
             End If
-            If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If ofd.ShowDialog = DialogResult.OK Then
                 m_strAttachmentPath = System.IO.Path.GetDirectoryName(ofd.FileName)
             End If
         End If

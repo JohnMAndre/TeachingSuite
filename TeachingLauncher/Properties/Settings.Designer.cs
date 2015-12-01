@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TeachingLauncher.Properties {
+namespace Teaching.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

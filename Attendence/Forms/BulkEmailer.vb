@@ -135,7 +135,7 @@ Public Class BulkEmailer
             End If
         Next
 
-        'If MessageBox.Show(lstErrors.ToString() & " items had errors sending. Do you want to see a list of those items?", Application.ProductName, MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+        'If MessageBox.Show(lstErrors.ToString() & " items had errors sending. Do you want to see a list of those items?", Application.ProductName, MessageBoxButtons.YesNo) = DialogResult.Yes Then
         '    For Each item As BulkEmailData In lstErrors
         '        item.Student
         '    Next

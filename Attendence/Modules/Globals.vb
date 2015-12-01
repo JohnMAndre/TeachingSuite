@@ -132,10 +132,15 @@
         End Try
     End Sub
     Public Sub Log(text As String, level As Integer)
-        If level >= AppSettings.LoggingThreshold Then
+        If AppSettings Is Nothing Then
+            '-- Must be a problem in AppSettings
             System.IO.File.AppendAllText(GetErrorLogLocation(), Date.Now.ToString("yyyy-MM-dd") & " " & text & Environment.NewLine)
         Else
-            '-- do nothing
+            If level >= AppSettings.LoggingThreshold Then
+                System.IO.File.AppendAllText(GetErrorLogLocation(), Date.Now.ToString("yyyy-MM-dd") & " " & text & Environment.NewLine)
+            Else
+                '-- do nothing
+            End If
         End If
     End Sub
     Public Sub ShowErrorLog()

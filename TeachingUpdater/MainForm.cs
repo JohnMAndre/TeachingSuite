@@ -10,10 +10,10 @@ using System.Net;
 using System.IO;
 using System.Xml;
 
-namespace TeachingUpdater
+namespace Teaching
 {
 
-    public partial class B : Form
+    public partial class UpdaterForm : Form
     {
         private class FileDownloadData
         {
@@ -30,6 +30,7 @@ namespace TeachingUpdater
         private string _strUpdateFolder;
         private string _strInstallFolder;
         private string _currentVersion;
+        private ApplicationSettings _appSettings;
 
         DateTime _dtDefault = new DateTime(2010, 1, 1);
 
@@ -50,7 +51,7 @@ namespace TeachingUpdater
         }
 
 
-        public B(string currentVersion, bool considerBetas)
+        public UpdaterForm(string currentVersion, bool considerBetas)
         {
             InitializeComponent();
 
@@ -65,6 +66,10 @@ namespace TeachingUpdater
 
             _strUpdateFolder = Path.GetDirectoryName(Application.ExecutablePath) + "\\Update\\";
             _strInstallFolder = Path.GetDirectoryName(Application.ExecutablePath);
+
+
+
+            _appSettings = new ApplicationSettings();
 
         }
 
@@ -106,11 +111,6 @@ namespace TeachingUpdater
             {
                 SetStatus("There was an error checking for updates (" + ex.Message + ").\r\n\r\nPlease try again later.");
             }
-        }
-
-        private void UpdateAvailable(string latestVersion, string currentVersion)
-        {
-
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -256,9 +256,10 @@ namespace TeachingUpdater
                                 }
                             }
                         }
+                        _appSettings.DateLastChecked = DateTime.Now;
                         return objReturn;
                     }
-                    // Too little returned from server (maybe temp problem
+                    // Too little returned from server (maybe temp problem)
                     objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.Unknown;
                     return objReturn;
                 }
@@ -693,53 +694,6 @@ namespace TeachingUpdater
             else
                 return false;
         }
-    //Private Function VersionIsSameLater(ByVal version As String, ByVal versionToTest As String) As Boolean
-
-    //    Dim intMajor1, intMinor1, intRevision1 As Integer
-    //    Dim intMajor2, intMinor2, intRevision2 As Integer
-    //    Const VERSION_DELIMITER As String = "."
-    //    Dim intStartPos1 As Integer = 0
-    //    Dim intStartPos2 As Integer = 0
-    //    Dim intEndPos1 As Integer = version.IndexOf(VERSION_DELIMITER)
-    //    Dim intEndPos2 As Integer = versionToTest.IndexOf(VERSION_DELIMITER)
-
-    //    intMajor1 = Convert.ToInt32(version.Substring(intStartPos1, intEndPos1))
-    //    intMajor2 = Convert.ToInt32(versionToTest.Substring(intStartPos2, intEndPos2))
-
-        //If intMajor2 > intMajor1 Then
-        //    '-- Major is higher, nothing else matters
-        //    Return True
-        //ElseIf intMajor2 < intMajor1 Then
-        //    '-- major is lower, nothing else matters
-        //    Return False
-        //End If
-
-        //intStartPos1 = intEndPos1 + 1
-        //intStartPos2 = intEndPos2 + 1
-        //intEndPos1 = version.IndexOf(VERSION_DELIMITER, intStartPos1)
-        //intEndPos2 = versionToTest.IndexOf(VERSION_DELIMITER, intStartPos2)
-
-        //intMinor1 = Convert.ToInt32(version.Substring(intStartPos1, intEndPos1 - intStartPos1))
-        //intMinor2 = Convert.ToInt32(versionToTest.Substring(intStartPos2, intEndPos2 - intStartPos2))
-        //If intMinor2 > intMinor1 Then
-        //    Return True
-        //ElseIf intMinor2 < intMinor1 Then
-        //    Return False
-        //End If
-
-        //intStartPos1 = intEndPos1 + 1
-        //intStartPos2 = intEndPos2 + 1
-
-    //    intRevision1 = Convert.ToInt32(version.Substring(intStartPos1))
-    //    intRevision2 = Convert.ToInt32(versionToTest.Substring(intStartPos2))
-    //    If intRevision2 >= intRevision1 Then
-    //        Return True
-    //    Else
-    //        Return False
-    //    End If
-
-    //End Function
-
 
         private void EnableDownload()
         {
@@ -759,6 +713,11 @@ namespace TeachingUpdater
                 prgCurrentFile.Visible = false;
                 prgOverall.Visible = false;
             }
+        }
+
+        private void UpdaterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _appSettings.Save();
         }
     }
 }

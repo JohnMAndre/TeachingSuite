@@ -1,4 +1,8 @@
 ﻿Public Class ApplicationSettings
+
+
+
+
     Public Sub New()
         '-- Load settings from Data folder
         Try
@@ -350,7 +354,6 @@
                 End If
 
 
-
                 LoadAutoTexts(xDoc)
             Else
                 '-- Load up default values
@@ -408,8 +411,11 @@
                 LoadAutoTextDefaults()
             End If
 
-        Catch ex As Exception
+            SetLastUpdaterCheck()
 
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading your settings. Please delete your settings.xml file in your Data folder.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -485,16 +491,29 @@
             Application.DoEvents()
         End Try
     End Sub
-    Private Function GetSettingsNode(xDoc As Xml.XmlDocument, name As String, value As String) As Xml.XmlElement
+    Private Function GetSettingsNode(xDoc As Xml.XmlDocument, name As String, value As Object) As Xml.XmlElement
         Dim xElement As Xml.XmlElement
         xElement = xDoc.CreateElement(name)
         xElement.InnerText = value
 
+        Select Case TypeName(value)
+            Case "FormWindowState"
+                xElement.InnerText = Convert.ToInt32(value) '-- otherwise we get the string
+            Case "Date"
+                xElement.InnerText = CType(value, Date).ToString(DATE_TIME_FORMAT_XML)
+            Case Else
+                xElement.InnerText = value.ToString
+        End Select
+
         Return xElement
     End Function
     Private Function GetSettingsFilename() As String
-        Const SETTIGS_FILENAME As String = "settings.xml"
-        Return System.IO.Path.Combine(GetDataFolder(), SETTIGS_FILENAME)
+        Const SETTINGS_FILENAME As String = "settings.xml"
+        Return System.IO.Path.Combine(GetDataFolder(), SETTINGS_FILENAME)
+    End Function
+    Private Function GetUpdaterSettingsFilename() As String
+        Const SETTINGS_FILENAME As String = "UpdaterSettings.xml"
+        Return System.IO.Path.Combine(GetDataFolder(), SETTINGS_FILENAME)
     End Function
     Private Sub LoadAutoTexts(xDoc As Xml.XmlDocument)
         Dim xList As Xml.XmlNodeList = xDoc.SelectNodes("//AutoText")
@@ -533,7 +552,28 @@
 
         Return root
     End Function
+    Private Sub SetLastUpdaterCheck()
+        Try
+            Dim xDoc As New Xml.XmlDocument()
+            xDoc.Load(GetUpdaterSettingsFilename())
+            Dim xElement As Xml.XmlElement = xDoc.SelectSingleNode("//DateLastChecked")
+            If xElement IsNot Nothing Then
+                m_dtLastUpdateCheck = ConvertToDateFromXML(xElement.InnerText, Date.Now)
+            Else
+                m_dtLastUpdateCheck = Date.Now
+            End If
+        Catch ex As Exception
+            Log(ex)
+            m_dtLastUpdateCheck = Date.Now
+        End Try
+    End Sub
 #Region " Public Properties "
+    Private m_dtLastUpdateCheck As Date
+    Public ReadOnly Property LastUpdateCheck As Date
+        Get
+            Return m_dtLastUpdateCheck
+        End Get
+    End Property
     Public Property DictionaryName As String
     Public Property Notes As String
     Public Property StudentAssignmentNormalWindowHeight As Integer
