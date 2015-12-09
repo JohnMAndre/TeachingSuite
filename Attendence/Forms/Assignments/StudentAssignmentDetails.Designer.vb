@@ -22,6 +22,7 @@ Partial Class StudentAssignmentDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentAssignmentDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.txtTags = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblClearImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblRemoveImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblAddImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -100,6 +101,7 @@ Partial Class StudentAssignmentDetails
         Me.llblFailAll = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblPassAll = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtAssignmentName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -113,6 +115,7 @@ Partial Class StudentAssignmentDetails
         Me.chkM1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.llblOpenStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrFilterFeedback = New System.Windows.Forms.Timer(Me.components)
         Me.tmrTimer = New System.Windows.Forms.Timer(Me.components)
@@ -125,14 +128,14 @@ Partial Class StudentAssignmentDetails
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyAllOutcomeFeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ApplySelectedFeedbackToAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearFeedbackFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyAllOutcomeFeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,6 +173,7 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.txtTags)
         Me.KryptonPanel.Controls.Add(Me.llblClearImprovementItem)
         Me.KryptonPanel.Controls.Add(Me.llblRemoveImprovementItem)
         Me.KryptonPanel.Controls.Add(Me.llblAddImprovementItem)
@@ -196,6 +200,7 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Controls.Add(Me.llblFailAll)
         Me.KryptonPanel.Controls.Add(Me.llblPassAll)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel7)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel6)
         Me.KryptonPanel.Controls.Add(Me.txtAssignmentName)
         Me.KryptonPanel.Controls.Add(Me.txtStudentID)
@@ -215,6 +220,15 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(1150, 578)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'txtTags
+        '
+        Me.txtTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtTags.Location = New System.Drawing.Point(633, 26)
+        Me.txtTags.Name = "txtTags"
+        Me.txtTags.Size = New System.Drawing.Size(513, 19)
+        Me.txtTags.TabIndex = 70
         '
         'llblClearImprovementItem
         '
@@ -746,9 +760,9 @@ Partial Class StudentAssignmentDetails
         Me.chkProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkProcessed.Location = New System.Drawing.Point(944, 34)
+        Me.chkProcessed.Location = New System.Drawing.Point(934, 35)
         Me.chkProcessed.Name = "chkProcessed"
-        Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
+        Me.chkProcessed.Size = New System.Drawing.Size(91, 19)
         Me.chkProcessed.TabIndex = 48
         Me.chkProcessed.Text = "Processed:"
         Me.chkProcessed.Values.Text = "Processed:"
@@ -921,7 +935,7 @@ Partial Class StudentAssignmentDetails
         Me.nudWritingQuality.Location = New System.Drawing.Point(223, 25)
         Me.nudWritingQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudWritingQuality.Name = "nudWritingQuality"
-        Me.nudWritingQuality.Size = New System.Drawing.Size(68, 22)
+        Me.nudWritingQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudWritingQuality.TabIndex = 115
         Me.nudWritingQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudWritingQuality.ThousandsSeparator = True
@@ -998,7 +1012,7 @@ Partial Class StudentAssignmentDetails
         Me.nudAltNumber.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudAltNumber.Minimum = New Decimal(New Integer() {10000, 0, 0, -2147483648})
         Me.nudAltNumber.Name = "nudAltNumber"
-        Me.nudAltNumber.Size = New System.Drawing.Size(68, 22)
+        Me.nudAltNumber.Size = New System.Drawing.Size(68, 21)
         Me.nudAltNumber.TabIndex = 100
         Me.nudAltNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAltNumber.ThousandsSeparator = True
@@ -1009,7 +1023,7 @@ Partial Class StudentAssignmentDetails
         Me.nudPresentationQuality.Location = New System.Drawing.Point(90, 25)
         Me.nudPresentationQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudPresentationQuality.Name = "nudPresentationQuality"
-        Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 22)
+        Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudPresentationQuality.TabIndex = 99
         Me.nudPresentationQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPresentationQuality.ThousandsSeparator = True
@@ -1136,6 +1150,14 @@ Partial Class StudentAssignmentDetails
         Me.KryptonLabel7.Size = New System.Drawing.Size(81, 20)
         Me.KryptonLabel7.TabIndex = 74
         Me.KryptonLabel7.Values.Text = "Presentation:"
+        '
+        'KryptonLabel2
+        '
+        Me.KryptonLabel2.Location = New System.Drawing.Point(591, 26)
+        Me.KryptonLabel2.Name = "KryptonLabel2"
+        Me.KryptonLabel2.Size = New System.Drawing.Size(44, 19)
+        Me.KryptonLabel2.TabIndex = 71
+        Me.KryptonLabel2.Values.Text = "Tags:"
         '
         'KryptonLabel6
         '
@@ -1276,6 +1298,15 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblOpenStudent, "Open student")
         Me.llblOpenStudent.Values.Text = "Student ID:"
         '
+        'KryptonManager
+        '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        '
         'tmrFilterFeedback
         '
         Me.tmrFilterFeedback.Interval = 200
@@ -1338,6 +1369,22 @@ Partial Class StudentAssignmentDetails
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyAllOutcomeFeedbackToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "&Edit"
+        '
+        'CopyAllOutcomeFeedbackToolStripMenuItem
+        '
+        Me.CopyAllOutcomeFeedbackToolStripMenuItem.Name = "CopyAllOutcomeFeedbackToolStripMenuItem"
+        Me.CopyAllOutcomeFeedbackToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.CopyAllOutcomeFeedbackToolStripMenuItem.Size = New System.Drawing.Size(293, 22)
+        Me.CopyAllOutcomeFeedbackToolStripMenuItem.Text = "Copy all outcome feedback"
+        Me.CopyAllOutcomeFeedbackToolStripMenuItem.ToolTipText = "Combine all outcome feedback and copy to clipboard"
+        '
         'ActionsToolStripMenuItem
         '
         Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ApplySelectedFeedbackToAllToolStripMenuItem, Me.ClearFeedbackFilterToolStripMenuItem, Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem, Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem, Me.MarkStudentDidNotSubmitToolStripMenuItem})
@@ -1376,22 +1423,6 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Name = "MarkStudentDidNotSubmitToolStripMenuItem"
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyAllOutcomeFeedbackToolStripMenuItem})
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
-        Me.EditToolStripMenuItem.Text = "&Edit"
-        '
-        'CopyAllOutcomeFeedbackToolStripMenuItem
-        '
-        Me.CopyAllOutcomeFeedbackToolStripMenuItem.Name = "CopyAllOutcomeFeedbackToolStripMenuItem"
-        Me.CopyAllOutcomeFeedbackToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyAllOutcomeFeedbackToolStripMenuItem.Size = New System.Drawing.Size(293, 22)
-        Me.CopyAllOutcomeFeedbackToolStripMenuItem.Text = "Copy all outcome feedback"
-        Me.CopyAllOutcomeFeedbackToolStripMenuItem.ToolTipText = "Combine all outcome feedback and copy to clipboard"
         '
         'StudentAssignmentDetails
         '
@@ -1574,4 +1605,7 @@ Partial Class StudentAssignmentDetails
     Private WithEvents llblOpenSavedMarkingPage As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopyAllOutcomeFeedbackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents txtTags As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Private WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

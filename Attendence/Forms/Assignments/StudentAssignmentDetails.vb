@@ -11,6 +11,7 @@ Friend Class StudentAssignmentDetails
     Private m_boolTimerRunning As Boolean = True
     Private m_tsTimer As TimeSpan
     Private m_improvementItems As New List(Of StudentImprovementItem) '-- include those assigned to the student and those not
+    Private m_strStudentTagsOriginal As String '-- to track if tags changed while form is open (we don't want to overwrite other changes)
 
     Public Sub New(student As Student, assignment As StudentAssignmentBTEC, attempt As MarkingTry)
 
@@ -97,6 +98,8 @@ Friend Class StudentAssignmentDetails
         nudAltNumber.Text = m_student.AltNumber
         txtSchoolClass.Text = m_student.SchoolClass.Name
         Me.Text &= " - " & m_student.LocalName
+        txtTags.Text = m_student.Tags
+        m_strStudentTagsOriginal = m_student.Tags
 
         RefreshOutcomeResults()
 
@@ -212,6 +215,16 @@ Friend Class StudentAssignmentDetails
         If m_student.PlagiarismSeverity <> nudPlagiarismSeverity.Value Then
             m_student.AddToActivityLog("Changed plagiarism severity from " & m_student.PlagiarismSeverity.ToString() & " to " & nudPlagiarismSeverity.Value.ToString() & " on " & m_studentAssignment.BaseAssignment.Name)
             m_student.PlagiarismSeverity = nudPlagiarismSeverity.Value
+        End If
+
+        '-- If the tags changed here but the not elsewhere
+        '   then update tags from here. If they changed elsewhere, notify user
+        If m_strStudentTagsOriginal <> txtTags.Text Then
+            If m_strStudentTagsOriginal = m_student.Tags Then
+                m_student.Tags = txtTags.Text
+            Else
+                MessageBox.Show("Tags changed on this form but also somewhere else. Unclear which tags should be used so tags on this form ignored.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         End If
 
         Return True

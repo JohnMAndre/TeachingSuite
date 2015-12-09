@@ -104,6 +104,7 @@ Partial Class StudentDetail
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.pnlAttendance.SuspendLayout()
@@ -1011,11 +1012,12 @@ Partial Class StudentDetail
         Me.olvTeachingSessions.Activation = System.Windows.Forms.ItemActivation.TwoClick
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn1)
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn2)
+        Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn25)
         Me.olvTeachingSessions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvTeachingSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvTeachingSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn2})
+        Me.olvTeachingSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn25})
         Me.olvTeachingSessions.FullRowSelect = True
         Me.olvTeachingSessions.Location = New System.Drawing.Point(2, 175)
         Me.olvTeachingSessions.Name = "olvTeachingSessions"
@@ -1041,12 +1043,17 @@ Partial Class StudentDetail
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'OlvColumn25
+        '
+        Me.OlvColumn25.AspectName = "Notes"
+        Me.OlvColumn25.Text = "Notes"
         '
         'StudentDetail
         '
@@ -1175,4 +1182,5 @@ Partial Class StudentDetail
     Friend WithEvents txtClassGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents lblAbsentPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents OlvColumn25 As BrightIdeasSoftware.OLVColumn
 End Class

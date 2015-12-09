@@ -17,6 +17,7 @@ Public Class MainForm
     Private Sub MainForm_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If ThisSemester IsNot Nothing Then
             '-- Save back any changes
+            ThisSemester.Notes = txtSemesterNotes.Text
             ThisSemester.Save()
 
             '-- backup after saving (in case data file is over written between uses
@@ -306,6 +307,8 @@ Public Class MainForm
             dtpSemesterEnd.Enabled = True
             dtpSemesterStartCurrent.Enabled = True
             dtpSemesterEndCurrent.Enabled = True
+
+            txtSemesterNotes.Text = ThisSemester.Notes
 
             LoadClassGroups()
             olvStudents.ClearObjects()
@@ -610,6 +613,7 @@ Public Class MainForm
     Private Sub SaveToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SaveToolStripMenuItem.Click
         Try
             If ThisSemester IsNot Nothing Then
+                ThisSemester.Notes = txtSemesterNotes.Text
                 ThisSemester.Save()
             End If
             AppSettings.Save()

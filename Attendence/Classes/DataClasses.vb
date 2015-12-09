@@ -12,6 +12,8 @@ Public Class Semester
     Public Property ImprovementItems As New List(Of ImprovementItem)
     Public Property LastSaveDate As Date
     Public Property LastAutoSaveDate As Date
+    Public Property Notes As String
+
     Public Event LastSaveChanged(lastSaveDate As Date, lastAutoSaveDate As Date)
 
 
@@ -148,6 +150,8 @@ Public Class Semester
                 Application.DoEvents() '-- ignore
             End Try
 
+            Me.Notes = xDoc.DocumentElement.GetAttribute("Notes")
+
             '-- ImprovementItems must come before students
             Dim xImprovements As Xml.XmlNodeList = xDoc.SelectNodes("//ImprovementItem")
             For Each xItem As Xml.XmlElement In xImprovements
@@ -193,6 +197,7 @@ Public Class Semester
             xDoc.DocumentElement.SetAttribute("EndDate", Me.EndDateOverall.ToString(DATE_FORMAT_XML))
             xDoc.DocumentElement.SetAttribute("StartDateCurrent", Me.StartDateCurrent.ToString(DATE_FORMAT_XML))
             xDoc.DocumentElement.SetAttribute("EndDateCurrent", Me.EndDateCurrent.ToString(DATE_FORMAT_XML))
+            xDoc.DocumentElement.SetAttribute("Notes", Me.Notes)
 
             '-- append ClassGroups
             For Each objClassGroup As ClassGroup In Me.ClassGroups
@@ -2826,6 +2831,7 @@ Public Class Student
                 Dim xSessionElement As Xml.XmlElement = xDoc.CreateElement("Session")
                 xSessionElement.SetAttribute("Date", objSession.StartDate.ToString(DATE_FORMAT_XML))
                 xSessionElement.SetAttribute("Status", objSession.AttendenceStatus.ToString())
+                xSessionElement.SetAttribute("Notes", objSession.Notes)
                 xStudentElement.AppendChild(xSessionElement)
             Next
 
@@ -3151,6 +3157,8 @@ Public Class TeachingSession
 
     Public Property StartDate As Date
     Public Property AttendenceStatus As AttendenceStatusEnum
+    Public Property Notes As String
+
     Public Sub New()
 
     End Sub
@@ -3159,6 +3167,8 @@ Public Class TeachingSession
 
         Dim strValue As String = xElement.GetAttribute("Status")
         AttendenceStatus = [Enum].Parse(GetType(AttendenceStatusEnum), strValue, True)
+
+        Notes = xElement.GetAttribute("Notes")
 
     End Sub
 
