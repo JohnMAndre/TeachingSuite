@@ -4,12 +4,15 @@ Public Class OptionsForm
 
     Private Sub SetupForLiteVersion()
         Try
-            pnlMarking.Visible = False
-            pnlEmail.Visible = False
+            If Not AppSettings.PremiumFeaturesEnabled Then
+                pnlMarking.Visible = False
+                pnlEmail.Visible = False
 
-            grpExport.Visible = False
-            txtCDDrive.Visible = False
-            lblCDDrive.Visible = False
+                grpExport.Visible = False
+                txtCDDrive.Visible = False
+                lblCDDrive.Visible = False
+            End If
+
         Catch ex As Exception
             Log(ex)
         End Try

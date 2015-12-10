@@ -59,7 +59,38 @@
         AppSettings.StudentAssignmentNormalWindowHeight = Me.Size.Height
     End Sub
 
+    Private Function ImprovementItemRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
+        Dim item As StudentImprovementItem = CType(olvi.RowObject, StudentImprovementItem)
+
+        Dim RESOLVED_ISSUE_COLOR As Color = Color.LightGreen
+        Dim CURRENT_ISSUE_COLOR As Color = Color.Yellow
+        Dim NON_ISSUE_COLOR As Color = Color.White
+        Dim newColor As Color
+
+        If item.DateAdded = DATE_NO_DATE Then
+            newColor = NON_ISSUE_COLOR
+        Else
+            '-- so it was a problem
+            If item.DateRemoved = DATE_NO_DATE Then
+                '-- and it is still a problem
+                newColor = CURRENT_ISSUE_COLOR
+            Else
+                '-- the student has fixed this problem
+                newColor = RESOLVED_ISSUE_COLOR
+            End If
+        End If
+
+        If item IsNot Nothing Then
+            olvi.BackColor = newColor
+            For intCounter As Integer = 0 To olvi.SubItems.Count - 1
+                olvi.SubItems(intCounter).BackColor = newColor
+            Next
+        End If
+    End Function
+
     Private Sub StudentAssignmentNormalDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.olvImprovementItems.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ImprovementItemRowFormatter)
+
         chkProcessed.Checked = m_studentAssignment.Processed
 
         rtbOverallComments.Text = m_studentAssignment.OverallComments

@@ -39,6 +39,7 @@ Public Class StudentDetail
     End Sub
     Private Sub StudentDetail_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.olvOutcomes.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
+        Me.olvTeachingSessions.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf AttendanceRowFormatter)
 
         LoadSessionList()
         LoadOutcomes()
@@ -60,6 +61,33 @@ Public Class StudentDetail
         UpdateAbsentPercent()
 
     End Sub
+    Private Function AttendanceRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
+        Dim item As TeachingSession = CType(olvi.RowObject, TeachingSession)
+
+        Dim PRESENT_COLOR As Color = Color.LightGreen
+        Dim EXCUSED_COLOR As Color = Color.Yellow
+        Dim ABSENT_COLOR As Color = Color.LightSalmon
+        Dim OTHER_COLOR As Color = Color.White
+        Dim newColor As Color
+
+        Select Case item.AttendenceStatus
+            Case AttendenceStatusEnum.Absent
+                newColor = ABSENT_COLOR
+            Case AttendenceStatusEnum.Present
+                newColor = PRESENT_COLOR
+            Case AttendenceStatusEnum.Excused
+                newColor = EXCUSED_COLOR
+            Case Else
+                newColor = OTHER_COLOR
+        End Select
+
+        If item IsNot Nothing Then
+            olvi.BackColor = newColor
+            For intCounter As Integer = 0 To olvi.SubItems.Count - 1
+                olvi.SubItems(intCounter).BackColor = newColor
+            Next
+        End If
+    End Function
     Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim ocrslt As OutcomeResult = CType(olvi.RowObject, OutcomeResult)
 

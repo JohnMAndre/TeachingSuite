@@ -38,11 +38,7 @@ Partial Class ClassGroupDetails
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.dtpStartDate = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudSessionLength = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.nudModuleLength = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
@@ -51,6 +47,7 @@ Partial Class ClassGroupDetails
         Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -82,9 +79,7 @@ Partial Class ClassGroupDetails
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel7)
         Me.KryptonPanel.Controls.Add(Me.dtpStartDate)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel6)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel5)
-        Me.KryptonPanel.Controls.Add(Me.nudSessionLength)
         Me.KryptonPanel.Controls.Add(Me.nudModuleLength)
         Me.KryptonPanel.Controls.Add(Me.btnOK)
         Me.KryptonPanel.Controls.Add(Me.btnCancel)
@@ -93,7 +88,6 @@ Partial Class ClassGroupDetails
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel11)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel10)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel8)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel4)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
@@ -251,14 +245,6 @@ Partial Class ClassGroupDetails
         Me.KryptonLabel1.TabIndex = 55
         Me.KryptonLabel1.Values.Text = "Start date:"
         '
-        'KryptonLabel6
-        '
-        Me.KryptonLabel6.Location = New System.Drawing.Point(474, 40)
-        Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(58, 19)
-        Me.KryptonLabel6.TabIndex = 54
-        Me.KryptonLabel6.Values.Text = "Minutes"
-        '
         'KryptonLabel5
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(172, 40)
@@ -266,34 +252,6 @@ Partial Class ClassGroupDetails
         Me.KryptonLabel5.Size = New System.Drawing.Size(65, 19)
         Me.KryptonLabel5.TabIndex = 53
         Me.KryptonLabel5.Values.Text = "Sessions"
-        '
-        'KryptonLabel4
-        '
-        Me.KryptonLabel4.Location = New System.Drawing.Point(299, 40)
-        Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(102, 19)
-        Me.KryptonLabel4.TabIndex = 52
-        Me.KryptonLabel4.Values.Text = "Session length:"
-        '
-        'KryptonLabel2
-        '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(3, 40)
-        Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(99, 19)
-        Me.KryptonLabel2.TabIndex = 51
-        Me.KryptonLabel2.Values.Text = "Module length:"
-        '
-        'nudSessionLength
-        '
-        Me.nudSessionLength.Location = New System.Drawing.Point(400, 38)
-        Me.nudSessionLength.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudSessionLength.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.nudSessionLength.Name = "nudSessionLength"
-        Me.nudSessionLength.Size = New System.Drawing.Size(68, 21)
-        Me.nudSessionLength.TabIndex = 50
-        Me.nudSessionLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudSessionLength.ThousandsSeparator = True
-        Me.nudSessionLength.Value = New Decimal(New Integer() {120, 0, 0, 0})
         '
         'nudModuleLength
         '
@@ -367,6 +325,14 @@ Partial Class ClassGroupDetails
         Me.KryptonLabel8.TabIndex = 65
         Me.KryptonLabel8.Values.Text = "Module outcomes"
         '
+        'KryptonLabel2
+        '
+        Me.KryptonLabel2.Location = New System.Drawing.Point(3, 40)
+        Me.KryptonLabel2.Name = "KryptonLabel2"
+        Me.KryptonLabel2.Size = New System.Drawing.Size(99, 19)
+        Me.KryptonLabel2.TabIndex = 51
+        Me.KryptonLabel2.Values.Text = "Module length:"
+        '
         'KryptonManager
         '
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
@@ -407,11 +373,8 @@ Partial Class ClassGroupDetails
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
     End Sub
-    Friend WithEvents KryptonLabel6 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel5 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudSessionLength As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents nudModuleLength As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents btnOK As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents btnCancel As ComponentFactory.Krypton.Toolkit.KryptonButton

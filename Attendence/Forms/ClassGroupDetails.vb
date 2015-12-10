@@ -8,7 +8,6 @@ Public Class ClassGroupDetails
         m_grp = grp
         txtClassGroupName.Text = grp.Name
         nudModuleLength.Value = grp.NumberOfSessions
-        nudSessionLength.Value = grp.SessionLength
 
         dtpStartDate.Value = grp.StartDate
         If grp.EndDateOverall = #12:00:00 AM# Then
@@ -39,7 +38,6 @@ Public Class ClassGroupDetails
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         m_grp.Name = txtClassGroupName.Text
         m_grp.NumberOfSessions = nudModuleLength.Value
-        m_grp.SessionLength = nudSessionLength.Value
         m_grp.StartDate = dtpStartDate.Value
         m_grp.EndDateOverall = dtpEndDate.Value
         m_grp.StartDateCurrent = dtpStartDateCurrent.Value
