@@ -136,6 +136,7 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -601,11 +602,12 @@ Partial Class StudentAssignmentDetails
         Me.olvAutoFeedback.Activation = System.Windows.Forms.ItemActivation.TwoClick
         Me.olvAutoFeedback.AllColumns.Add(Me.OlvColumn4)
         Me.olvAutoFeedback.AllColumns.Add(Me.olvPassFailFeedback)
+        Me.olvAutoFeedback.AllColumns.Add(Me.OlvColumn13)
         Me.olvAutoFeedback.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAutoFeedback.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvAutoFeedback.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.olvPassFailFeedback})
+        Me.olvAutoFeedback.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.olvPassFailFeedback, Me.OlvColumn13})
         Me.olvAutoFeedback.CopySelectionOnControlC = False
         Me.olvAutoFeedback.CopySelectionOnControlCUsesDragSource = False
         Me.olvAutoFeedback.EmptyListMsg = "No stored feedback"
@@ -628,7 +630,6 @@ Partial Class StudentAssignmentDetails
         Me.OlvColumn4.AspectName = "Text"
         Me.OlvColumn4.AutoCompleteEditor = False
         Me.OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn4.DisplayIndex = 1
         Me.OlvColumn4.IsEditable = False
         Me.OlvColumn4.Text = "Feedback"
         Me.OlvColumn4.Width = 299
@@ -1424,6 +1425,15 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
         '
+        'OlvColumn13
+        '
+        Me.OlvColumn13.AspectName = "ItemCount"
+        Me.OlvColumn13.DisplayIndex = 1
+        Me.OlvColumn13.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn13.Text = "#"
+        Me.OlvColumn13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn13.ToolTipText = "Number of times this feedback has been used"
+        '
         'StudentAssignmentDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1608,4 +1618,5 @@ Partial Class StudentAssignmentDetails
     Private WithEvents txtTags As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Private WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents OlvColumn13 As BrightIdeasSoftware.OLVColumn
 End Class

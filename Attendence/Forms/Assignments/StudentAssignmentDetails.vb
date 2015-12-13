@@ -12,7 +12,13 @@ Friend Class StudentAssignmentDetails
     Private m_tsTimer As TimeSpan
     Private m_improvementItems As New List(Of StudentImprovementItem) '-- include those assigned to the student and those not
     Private m_strStudentTagsOriginal As String '-- to track if tags changed while form is open (we don't want to overwrite other changes)
+    Private m_lstAutoFeedbackToRemove As New List(Of AutoFeedbackToRemove)
 
+    Private Class AutoFeedbackToRemove
+        Public Property BaseOutcome As AssignmentOutcome
+        Public Property Text As String
+
+    End Class
     Public Sub New(student As Student, assignment As StudentAssignmentBTEC, attempt As MarkingTry)
 
         ' This call is required by the designer.
@@ -148,6 +154,32 @@ Friend Class StudentAssignmentDetails
         olvImprovementItems.SetObjects(m_improvementItems)
         AutoSizeColumns(olvImprovementItems)
 
+        '-- Load up the list of m_lstAutoFeedbackToRemove so we can remove on OK_Click to keep our counts in sync
+        Dim objRemoveItem As AutoFeedbackToRemove
+        For Each rslt As OutcomeResult In m_studentAssignment.Outcomes
+            '-- Only add to the remove list if there is actually some comments
+            If rslt.FirstTryComments.Trim().Length > 0 Then
+                objRemoveItem = New AutoFeedbackToRemove()
+                objRemoveItem.BaseOutcome = rslt.BaseOutcome
+                objRemoveItem.Text = rslt.FirstTryComments
+                m_lstAutoFeedbackToRemove.Add(objRemoveItem)
+            End If
+
+            If rslt.SecondTryComments.Trim().Length > 0 Then
+                objRemoveItem = New AutoFeedbackToRemove()
+                objRemoveItem.BaseOutcome = rslt.BaseOutcome
+                objRemoveItem.Text = rslt.SecondTryComments
+                m_lstAutoFeedbackToRemove.Add(objRemoveItem)
+            End If
+
+            If rslt.ThirdTryComments.Trim().Length > 0 Then
+                objRemoveItem = New AutoFeedbackToRemove()
+                objRemoveItem.BaseOutcome = rslt.BaseOutcome
+                objRemoveItem.Text = rslt.ThirdTryComments
+                m_lstAutoFeedbackToRemove.Add(objRemoveItem)
+            End If
+        Next
+
 
         If AppSettings.OpenAssignmentDetailMaximized Then
             Me.WindowState = FormWindowState.Maximized
@@ -190,16 +222,19 @@ Friend Class StudentAssignmentDetails
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
 
+        '-- Before we save the StoredResults, we must remove any existing StoredResults
+        For Each objRemoveItem As AutoFeedbackToRemove In m_lstAutoFeedbackToRemove
+            objRemoveItem.BaseOutcome.RemoveStoredResults(objRemoveItem.Text)
+        Next
+
+
         '-- Now, save feedbacks to recent collection
         For Each outcom As OutcomeResult In m_studentAssignment.Outcomes
-            Select Case m_try
-                Case MarkingTry.FirstTry
-                    outcom.BaseOutcome.AddStoredResults(outcom.FirstTryStatus, outcom.FirstTryComments)
-                Case MarkingTry.SecondTry
-                    outcom.BaseOutcome.AddStoredResults(outcom.SecondTryStatus, outcom.SecondTryComments)
-                Case MarkingTry.ThirdTry
-                    outcom.BaseOutcome.AddStoredResults(outcom.ThirdTryStatus, outcom.ThirdTryComments)
-            End Select
+            '-- Before we only processed this m_try but now that we've added the AutoFeedbackToRemove we should process all
+            '   which is better because any could be changed (m_try=Second but First gets changed too)
+            outcom.BaseOutcome.AddStoredResults(outcom.FirstTryStatus, outcom.FirstTryComments)
+            outcom.BaseOutcome.AddStoredResults(outcom.SecondTryStatus, outcom.SecondTryComments)
+            outcom.BaseOutcome.AddStoredResults(outcom.ThirdTryStatus, outcom.ThirdTryComments)
         Next
 
         m_student.AltNumber = nudAltNumber.Value

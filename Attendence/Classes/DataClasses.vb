@@ -2209,12 +2209,15 @@ Public Class AssignmentOutcome
     Public Sub AddStoredResults(status As OutcomeResultStatusEnum, comments As String)
         '-- do not add duplicates
         Dim boolOKToAdd As Boolean = True
+        comments = comments.Trim()
+
         If comments.Trim.Length = 0 Then
             Exit Sub
         End If
 
         For Each item As Result In StoredResults
             If item.Text.ToLower = comments.ToLower Then
+                item.ItemCount += 1 '-- Keep track of how many times this result has been used
                 boolOKToAdd = False
                 Exit Sub
             End If
@@ -2224,8 +2227,25 @@ Public Class AssignmentOutcome
             Dim rslt As New Result
             rslt.Text = comments
             rslt.Status = status
+            rslt.ItemCount = 1
             StoredResults.Add(rslt)
         End If
+    End Sub
+    Public Sub RemoveStoredResults(comments As String)
+        comments = comments.Trim()
+
+        For Each item As Result In StoredResults
+            If item.Text.ToLower() = comments.ToLower() Then
+                If item.ItemCount > 1 Then
+                    '-- decrement its usage count
+                    item.ItemCount -= 1
+                Else
+                    '-- actually remove it from the list
+                    StoredResults.Remove(item)
+                End If
+                Exit Sub
+            End If
+        Next
     End Sub
     Public Overrides Function ToString() As String
         Return Name & " - " & Description
@@ -3215,6 +3235,7 @@ End Enum
 Public Class Result
     Public Property Text As String
     Public Property Status As OutcomeResultStatusEnum
+    Public Property ItemCount As Integer
 End Class
 Public Class ImprovementItem '-- This is the master list of what counts as an improvement item (for the semester)
     Public Property ID As String = Guid.NewGuid.ToString()
