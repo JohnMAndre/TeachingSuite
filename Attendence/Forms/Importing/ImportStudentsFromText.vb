@@ -55,45 +55,14 @@ Public Class ImportStudentsFromText
                         stud.ExtStudentID = objStud.ExtStudentID
                     End If
 
+                    stud.DateOfBirth = objStud.DateOfBirth
+
                     stud.ActivityLog = String.Empty
                     m_class.Students.Add(stud)
                 End If
 
                 intStudentsImported += 1
             Next
-            'For Each strLine As String In txtImportText.Lines
-            '    Dim strData() As String = strLine.Split(vbTab)
-            '    If strData.Length >= 1 Then
-            '        '-- If student exists in history, we will use that data, otherwise, we will create a new student
-            '        stud = GetStudentByID(strData(0))
-            '        If stud Is Nothing Then
-            '            stud = New Student(m_class)
-            '            If strData.Length >= 3 Then
-            '                stud.StudentID = RemoveDoubleSpaces(strData(0))
-            '                stud.LocalName = RemoveDoubleSpaces(strData(1))
-            '                stud.AdminNumber = ConvertToInt32(strData(2), 0)
-            '            End If
-
-            '            If strData.Length >= 4 Then
-            '                stud.Nickname = RemoveDoubleSpaces(strData(3))
-            '            End If
-            '            If strData.Length >= 5 Then
-            '                stud.EmailAddress = strData(4)
-            '            End If
-            '            If strData.Length >= 6 Then
-            '                stud.AltNumber = ConvertToInt32(strData(5), 0)
-            '            End If
-            '        Else
-            '            stud.SchoolClass = m_class
-            '            stud.ClearSemesterSpecificData()
-            '            stud.AdminNumber = ConvertToInt32(strData(2), 0)
-            '        End If
-
-            '        m_class.Students.Add(stud)
-            '        stud.ActivityLog = String.Empty
-            '        intStudentsImported += 1
-            '    End If
-            'Next
 
             If intStudentsImported > 0 Then
                 MessageBox.Show(intStudentsImported.ToString("#,##0") & " students imported.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -101,6 +70,8 @@ Public Class ImportStudentsFromText
             Else
                 Me.DialogResult = DialogResult.Cancel
             End If
+
+            Close()
         Catch ex As Exception
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Me.DialogResult = DialogResult.Cancel
@@ -109,42 +80,59 @@ Public Class ImportStudentsFromText
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Timer1.Stop()
-        Dim ht As New Hashtable() '-- key  = studentID, value = student object
+        Try
 
-        Dim intStudentsAdded, intStudentsSearched As Integer
-        Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
-        Dim semCurrent As Semester
-        Dim strFilename As String
-        Do
-            For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
-                strFilename = lstSemesters(intCounter)
-                semCurrent = New Semester(strFilename)
-                For Each clsgrp As ClassGroup In semCurrent.ClassGroups
-                    For Each clas As SchoolClass In clsgrp.Classes
-                        For Each stud In clas.Students
-                            intStudentsSearched += 1
-                            '-- add to collection, only if there IS a student ID
-                            If Not m_dictHistoricalStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
-                                m_dictHistoricalStudents.Add(stud.StudentID.ToUpper, stud)
-                                intStudentsAdded += 1
-                            End If
+            Dim ht As New Hashtable() '-- key  = studentID, value = student object
+            Dim strBaseHistoryLable As String = lblLoadingHistoricalStudents.Text
+            Dim intStudentsAdded, intStudentsSearched As Integer
+            Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
+            Dim semCurrent As Semester
+            Dim strFilename As String
+            Do
+                For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
+                    strFilename = lstSemesters(intCounter)
+                    semCurrent = New Semester(strFilename)
+                    lblLoadingHistoricalStudents.Text = strBaseHistoryLable & semCurrent.Name
+                    Application.DoEvents()
+                    For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+                        For Each clas As SchoolClass In clsgrp.Classes
+                            For Each stud In clas.Students
+                                intStudentsSearched += 1
+                                '-- add to collection, only if there IS a student ID
+                                If Not m_dictHistoricalStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
+                                    m_dictHistoricalStudents.Add(stud.StudentID.ToUpper, stud)
+                                    intStudentsAdded += 1
+                                End If
 
-                            lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
-                            lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
-                            If m_boolCancel Then
-                                Exit Do
-                            End If
-                            Application.DoEvents()
+                                lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+                                lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
+                                If m_boolCancel Then
+                                    Exit Do
+                                End If
+                                Application.DoEvents()
+                            Next
                         Next
                     Next
                 Next
-            Next
-            Exit Do
-        Loop While True
+                Exit Do
+            Loop While True
+
+            btnCancel.Text = "&Close"
+            btnOK.Enabled = True
+            lblLoadingHistoricalStudents.Visible = False
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading students from earlier semesters. Importing now may not pickup information known about previous students.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            lblLoadingHistoricalStudents.Visible = False
+        End Try
     End Sub
 
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
-        m_boolCancel = True
+        If btnCancel.Text = "&Close" Then
+            Close()
+        Else
+            m_boolCancel = True
+        End If
     End Sub
 
     Private Sub PasteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasteToolStripMenuItem.Click
@@ -168,12 +156,12 @@ Public Class ImportStudentsFromText
                 Dim row() As String
                 For intCounter As Integer = 0 To strRows.Count - 1
                     row = strRows(intCounter).Split(vbTab)
-                    If row.Length < 7 Then
+                    If row.Length < 8 Then
                         If m_lstStudents.Count > 0 Then
                             '-- we are done
                             Exit For
                         Else
-                            MessageBox.Show("There should be 7 columns of data: Admin, Alt, StudentID, Local name, Nickname, Email, and ExtID (the clipboard has " & row.Length & ").")
+                            MessageBox.Show("There should be 8 columns of data: Admin, Alt, StudentID, Local name, Nickname, Email, ExtID, and Date of Birth (the clipboard has " & row.Length & ").")
                         End If
                     End If
                     objStud = New Student(objClass)
@@ -211,11 +199,26 @@ Public Class ImportStudentsFromText
                         Else
                             objStud.ExtStudentID = stud.ExtStudentID
                         End If
+
+                        If row(7).Trim().Length > 0 Then
+                            If IsDate(row(7)) Then
+                                objStud.DateOfBirth = row(7)
+                            Else
+                                objStud.DateOfBirth = New Date(1930, 1, 1)
+                            End If
+                        Else
+                            objStud.DateOfBirth = stud.DateOfBirth
+                        End If
                     Else
                         objStud.LocalName = row(3).Trim()
                         objStud.Nickname = row(4).Trim()
                         objStud.EmailAddress = row(5).Trim()
                         objStud.ExtStudentID = row(6).Trim()
+                        If IsDate(row(7)) Then
+                            objStud.DateOfBirth = row(7)
+                        Else
+                            objStud.DateOfBirth = New Date(1930, 1, 1)
+                        End If
                     End If
 
                     m_lstStudents.Add(objStud)

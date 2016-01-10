@@ -81,7 +81,7 @@ Partial Class MainForm
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolCurrentAbsences = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -151,6 +151,8 @@ Partial Class MainForm
         Me.llblAddStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonGroup1 = New ComponentFactory.Krypton.Toolkit.KryptonGroup()
+        Me.txtSemesterNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblLoadFutureOneSemester = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblLoadPreviousOneSemester = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblLoadLatestSemester = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -255,6 +257,7 @@ Partial Class MainForm
         Me.ExportStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportStudentGradesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportScheduleAsICalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportEntireSemesterAsXMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.UpdateEmailAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FindDuplicateStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -282,8 +285,7 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtSemesterNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -857,7 +859,7 @@ Partial Class MainForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn2)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn3)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn5)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
+        Me.olvStudents.AllColumns.Add(Me.olvcolCurrentAbsences)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn8)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn9)
@@ -877,10 +879,11 @@ Partial Class MainForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn26)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn27)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn28)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6})
         Me.olvStudents.ContextMenuStrip = Me.ctxmnuStudents
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
@@ -954,15 +957,15 @@ Partial Class MainForm
         Me.OlvColumn5.ToolTipText = "Merit increases this, demerit decreases this"
         Me.OlvColumn5.Width = 50
         '
-        'OlvColumn6
+        'olvcolCurrentAbsences
         '
-        Me.OlvColumn6.AspectName = "CurrentAbsences"
-        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.IsEditable = False
-        Me.OlvColumn6.Text = "Abs"
-        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.ToolTipText = "Absences for current period"
-        Me.OlvColumn6.Width = 50
+        Me.olvcolCurrentAbsences.AspectName = "CurrentAbsences"
+        Me.olvcolCurrentAbsences.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolCurrentAbsences.IsEditable = False
+        Me.olvcolCurrentAbsences.Text = "Abs"
+        Me.olvcolCurrentAbsences.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolCurrentAbsences.ToolTipText = "Absences for current period"
+        Me.olvcolCurrentAbsences.Width = 50
         '
         'OlvColumn8
         '
@@ -1645,6 +1648,28 @@ Partial Class MainForm
         Me.KryptonGroup1.Size = New System.Drawing.Size(1053, 90)
         Me.KryptonGroup1.TabIndex = 8
         '
+        'txtSemesterNotes
+        '
+        Me.txtSemesterNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSemesterNotes.Location = New System.Drawing.Point(73, 54)
+        Me.txtSemesterNotes.Name = "txtSemesterNotes"
+        Me.txtSemesterNotes.Palette = Me.KryptonPalette1
+        Me.txtSemesterNotes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.txtSemesterNotes.Size = New System.Drawing.Size(967, 20)
+        Me.txtSemesterNotes.TabIndex = 35
+        Me.ToolTip1.SetToolTip(Me.txtSemesterNotes, "Student filter")
+        '
+        'KryptonLabel12
+        '
+        Me.KryptonLabel12.Location = New System.Drawing.Point(3, 54)
+        Me.KryptonLabel12.Name = "KryptonLabel12"
+        Me.KryptonLabel12.Palette = Me.KryptonPalette1
+        Me.KryptonLabel12.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel12.Size = New System.Drawing.Size(64, 20)
+        Me.KryptonLabel12.TabIndex = 34
+        Me.KryptonLabel12.Values.Text = "Semester:"
+        '
         'llblLoadFutureOneSemester
         '
         Me.llblLoadFutureOneSemester.Location = New System.Drawing.Point(242, 28)
@@ -2257,7 +2282,7 @@ Partial Class MainForm
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportClassToolStripMenuItem, Me.ImportSToolStripMenuItem, Me.ImportAttendanceToolStripMenuItem, Me.ImportEmailAddressesToolStripMenuItem, Me.ImportStudentAssignmentScoresToolStripMenuItem, Me.ImportImprovementItemsToolStripMenuItem, Me.ToolStripSeparator6, Me.ExportAttendanceToolStripMenuItem, Me.ExportModuleResultsToolStripMenuItem, Me.ExportMarkingResultsToolStripMenuItem, Me.ExportMarkingResultsIsolatedToolStripMenuItem, Me.ExportStudentsToolStripMenuItem, Me.ExportStudentGradesToolStripMenuItem, Me.ExportScheduleAsICalToolStripMenuItem, Me.ToolStripSeparator7, Me.UpdateEmailAddressToolStripMenuItem, Me.FindDuplicateStudentsToolStripMenuItem, Me.FindhistoricalStudentToolStripMenuItem, Me.ProcessAddDropStudentsToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportClassToolStripMenuItem, Me.ImportSToolStripMenuItem, Me.ImportAttendanceToolStripMenuItem, Me.ImportEmailAddressesToolStripMenuItem, Me.ImportStudentAssignmentScoresToolStripMenuItem, Me.ImportImprovementItemsToolStripMenuItem, Me.ToolStripSeparator6, Me.ExportAttendanceToolStripMenuItem, Me.ExportModuleResultsToolStripMenuItem, Me.ExportMarkingResultsToolStripMenuItem, Me.ExportMarkingResultsIsolatedToolStripMenuItem, Me.ExportStudentsToolStripMenuItem, Me.ExportStudentGradesToolStripMenuItem, Me.ExportScheduleAsICalToolStripMenuItem, Me.ExportEntireSemesterAsXMLToolStripMenuItem, Me.ToolStripSeparator7, Me.UpdateEmailAddressToolStripMenuItem, Me.FindDuplicateStudentsToolStripMenuItem, Me.FindhistoricalStudentToolStripMenuItem, Me.ProcessAddDropStudentsToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
@@ -2399,6 +2424,12 @@ Partial Class MainForm
         Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ExportScheduleAsICalToolStripMenuItem.Text = "Export schedule as iCalendar..."
         '
+        'ExportEntireSemesterAsXMLToolStripMenuItem
+        '
+        Me.ExportEntireSemesterAsXMLToolStripMenuItem.Name = "ExportEntireSemesterAsXMLToolStripMenuItem"
+        Me.ExportEntireSemesterAsXMLToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportEntireSemesterAsXMLToolStripMenuItem.Text = "Export entire semester as XML..."
+        '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
@@ -2532,27 +2563,14 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'KryptonLabel12
+        'OlvColumn6
         '
-        Me.KryptonLabel12.Location = New System.Drawing.Point(3, 54)
-        Me.KryptonLabel12.Name = "KryptonLabel12"
-        Me.KryptonLabel12.Palette = Me.KryptonPalette1
-        Me.KryptonLabel12.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel12.Size = New System.Drawing.Size(64, 20)
-        Me.KryptonLabel12.TabIndex = 34
-        Me.KryptonLabel12.Values.Text = "Semester:"
-        '
-        'txtSemesterNotes
-        '
-        Me.txtSemesterNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSemesterNotes.Location = New System.Drawing.Point(73, 54)
-        Me.txtSemesterNotes.Name = "txtSemesterNotes"
-        Me.txtSemesterNotes.Palette = Me.KryptonPalette1
-        Me.txtSemesterNotes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtSemesterNotes.Size = New System.Drawing.Size(967, 20)
-        Me.txtSemesterNotes.TabIndex = 35
-        Me.ToolTip1.SetToolTip(Me.txtSemesterNotes, "Student filter")
+        Me.OlvColumn6.AspectName = "DateOfBirth"
+        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.Text = "DoB"
+        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.ToolTipText = "Date of Birth"
         '
         'MainForm
         '
@@ -2699,7 +2717,7 @@ Partial Class MainForm
     Friend WithEvents btnSelectRandomStudent As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents ToolsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolCurrentAbsences As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
@@ -2911,4 +2929,6 @@ Partial Class MainForm
     Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
     Friend WithEvents txtSemesterNotes As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents ExportEntireSemesterAsXMLToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
 End Class

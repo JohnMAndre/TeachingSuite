@@ -166,8 +166,6 @@ Partial Class ClassDetails
         '
         'txtEmailAddress
         '
-        Me.txtEmailAddress.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEmailAddress.Location = New System.Drawing.Point(130, 54)
         Me.txtEmailAddress.Name = "txtEmailAddress"
         Me.txtEmailAddress.Size = New System.Drawing.Size(275, 19)
@@ -259,7 +257,7 @@ Partial Class ClassDetails
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ScheduleItemToolStripMenuItem
@@ -285,12 +283,12 @@ Partial Class ClassDetails
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'btnShowNormalSchedule
         '

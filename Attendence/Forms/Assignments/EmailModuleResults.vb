@@ -467,7 +467,11 @@ Public Class EmailModuleResults
         If boolAtLeastOneBTECAssignment Then
             str.Append("This module has " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
             Dim intFailedOutcomes As Integer = m_intModuleOutcomes - item.PassedOutcomes
-            str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (still need the other " & intFailedOutcomes.ToString() & " of them).<br><br>")
+            If intFailedOutcomes = 0 Then
+                str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (yes, all of them).<br><br>")
+            Else
+                str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (still need the other " & intFailedOutcomes.ToString() & " of them).<br><br>")
+            End If
             str.Append("Outcome details: <br><br>")
             str.Append(GenerateOutcomeDetails(item.Student))
             str.Append("<br>")

@@ -55,6 +55,10 @@ Partial Class AttendenceForm
         Me.RemovedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbsentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AllStudentsPresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllStuentsAbsentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllStudentsExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetQualityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Presentation1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Presentation2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -80,10 +84,7 @@ Partial Class AttendenceForm
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPublicFilter = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AllStudentsPresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AllStuentsAbsentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AllStudentsExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,9 +120,10 @@ Partial Class AttendenceForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn11)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn14)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn15)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn12, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn13, Me.OlvColumn14})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn12, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
@@ -221,12 +223,12 @@ Partial Class AttendenceForm
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'OlvColumn2
         '
@@ -369,6 +371,29 @@ Partial Class AttendenceForm
         Me.ExcusedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
         Me.ExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.ExcusedToolStripMenuItem.Text = "&Excused"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(178, 6)
+        '
+        'AllStudentsPresentToolStripMenuItem
+        '
+        Me.AllStudentsPresentToolStripMenuItem.Name = "AllStudentsPresentToolStripMenuItem"
+        Me.AllStudentsPresentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStudentsPresentToolStripMenuItem.Text = "All students present"
+        '
+        'AllStuentsAbsentToolStripMenuItem
+        '
+        Me.AllStuentsAbsentToolStripMenuItem.Name = "AllStuentsAbsentToolStripMenuItem"
+        Me.AllStuentsAbsentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStuentsAbsentToolStripMenuItem.Text = "All stuents absent"
+        '
+        'AllStudentsExcusedToolStripMenuItem
+        '
+        Me.AllStudentsExcusedToolStripMenuItem.Name = "AllStudentsExcusedToolStripMenuItem"
+        Me.AllStudentsExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStudentsExcusedToolStripMenuItem.Text = "All students excused"
         '
         'SetQualityToolStripMenuItem
         '
@@ -536,28 +561,14 @@ Partial Class AttendenceForm
         Me.tmrPublicFilter.Enabled = True
         Me.tmrPublicFilter.Interval = 2000
         '
-        'ToolStripSeparator3
+        'OlvColumn15
         '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(178, 6)
-        '
-        'AllStudentsPresentToolStripMenuItem
-        '
-        Me.AllStudentsPresentToolStripMenuItem.Name = "AllStudentsPresentToolStripMenuItem"
-        Me.AllStudentsPresentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.AllStudentsPresentToolStripMenuItem.Text = "All students present"
-        '
-        'AllStuentsAbsentToolStripMenuItem
-        '
-        Me.AllStuentsAbsentToolStripMenuItem.Name = "AllStuentsAbsentToolStripMenuItem"
-        Me.AllStuentsAbsentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.AllStuentsAbsentToolStripMenuItem.Text = "All stuents absent"
-        '
-        'AllStudentsExcusedToolStripMenuItem
-        '
-        Me.AllStudentsExcusedToolStripMenuItem.Name = "AllStudentsExcusedToolStripMenuItem"
-        Me.AllStudentsExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.AllStudentsExcusedToolStripMenuItem.Text = "All students excused"
+        Me.OlvColumn15.AspectName = "DateOfBirth"
+        Me.OlvColumn15.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn15.Text = "DoB"
+        Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn15.ToolTipText = "Date of Birth"
         '
         'AttendenceForm
         '
@@ -665,4 +676,5 @@ Partial Class AttendenceForm
     Friend WithEvents AllStudentsPresentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AllStudentsExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
 End Class

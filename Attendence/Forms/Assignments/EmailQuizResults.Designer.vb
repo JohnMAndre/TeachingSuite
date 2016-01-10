@@ -51,11 +51,13 @@ Partial Class EmailQuizResults
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvQuizDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,7 +77,7 @@ Partial Class EmailQuizResults
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 24)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Size = New System.Drawing.Size(986, 405)
+        Me.KryptonPanel.Size = New System.Drawing.Size(991, 413)
         Me.KryptonPanel.TabIndex = 0
         '
         'olvQuizDetails
@@ -94,7 +96,7 @@ Partial Class EmailQuizResults
         Me.olvQuizDetails.AllColumns.Add(Me.OlvColumn19)
         Me.olvQuizDetails.AllowColumnReorder = True
         Me.olvQuizDetails.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.olvQuizDetails.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvQuizDetails.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick
         Me.olvQuizDetails.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn6, Me.olvcolRecordType, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn12, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn16, Me.OlvColumn17, Me.OlvColumn18, Me.OlvColumn19})
         Me.olvQuizDetails.CopySelectionOnControlC = False
         Me.olvQuizDetails.CopySelectionOnControlCUsesDragSource = False
@@ -109,9 +111,8 @@ Partial Class EmailQuizResults
         Me.olvQuizDetails.Name = "olvQuizDetails"
         Me.olvQuizDetails.OwnerDraw = True
         Me.olvQuizDetails.ShowGroups = False
-        Me.olvQuizDetails.ShowImagesOnSubItems = True
         Me.olvQuizDetails.ShowItemCountOnGroups = True
-        Me.olvQuizDetails.Size = New System.Drawing.Size(748, 220)
+        Me.olvQuizDetails.Size = New System.Drawing.Size(753, 228)
         Me.olvQuizDetails.TabIndex = 8
         Me.olvQuizDetails.UseAlternatingBackColors = True
         Me.olvQuizDetails.UseCompatibleStateImageBehavior = False
@@ -206,12 +207,12 @@ Partial Class EmailQuizResults
         'txtOutput
         '
         Me.txtOutput.Dock = System.Windows.Forms.DockStyle.Right
-        Me.txtOutput.Location = New System.Drawing.Point(748, 32)
+        Me.txtOutput.Location = New System.Drawing.Point(753, 32)
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
         Me.txtOutput.ReadOnly = True
         Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtOutput.Size = New System.Drawing.Size(238, 220)
+        Me.txtOutput.Size = New System.Drawing.Size(238, 228)
         Me.txtOutput.TabIndex = 7
         Me.txtOutput.Text = "Results will be written here."
         '
@@ -222,21 +223,21 @@ Partial Class EmailQuizResults
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonPanel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel2.Name = "KryptonPanel2"
-        Me.KryptonPanel2.Size = New System.Drawing.Size(986, 32)
+        Me.KryptonPanel2.Size = New System.Drawing.Size(991, 32)
         Me.KryptonPanel2.TabIndex = 6
         '
         'txtQuizName
         '
         Me.txtQuizName.Location = New System.Drawing.Point(97, 3)
         Me.txtQuizName.Name = "txtQuizName"
-        Me.txtQuizName.Size = New System.Drawing.Size(243, 20)
+        Me.txtQuizName.Size = New System.Drawing.Size(243, 19)
         Me.txtQuizName.TabIndex = 30
         '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(4, 4)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(87, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(93, 19)
         Me.KryptonLabel1.TabIndex = 29
         Me.KryptonLabel1.Values.Text = "Name of quiz:"
         '
@@ -253,16 +254,16 @@ Partial Class EmailQuizResults
         Me.KryptonPanel1.Controls.Add(Me.btnOK)
         Me.KryptonPanel1.Controls.Add(Me.btnCancel)
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 252)
+        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 260)
         Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(986, 153)
+        Me.KryptonPanel1.Size = New System.Drawing.Size(991, 153)
         Me.KryptonPanel1.TabIndex = 5
         '
         'llblViewQuizResultsFolder
         '
         Me.llblViewQuizResultsFolder.Location = New System.Drawing.Point(4, 67)
         Me.llblViewQuizResultsFolder.Name = "llblViewQuizResultsFolder"
-        Me.llblViewQuizResultsFolder.Size = New System.Drawing.Size(137, 20)
+        Me.llblViewQuizResultsFolder.Size = New System.Drawing.Size(149, 19)
         Me.llblViewQuizResultsFolder.TabIndex = 54
         Me.llblViewQuizResultsFolder.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblViewQuizResultsFolder.Values.Text = "View quiz results folder"
@@ -276,14 +277,14 @@ Partial Class EmailQuizResults
         Me.txtEmailTrailingText.Multiline = True
         Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
         Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(725, 116)
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(730, 116)
         Me.txtEmailTrailingText.TabIndex = 52
         '
         'KryptonLabel7
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(249, 6)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(77, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel7.TabIndex = 53
         Me.KryptonLabel7.Values.Text = "Trailing text:"
         '
@@ -291,7 +292,7 @@ Partial Class EmailQuizResults
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(107, 36)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(107, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(116, 19)
         Me.KryptonLabel8.TabIndex = 51
         Me.KryptonLabel8.Values.Text = "hour(s) from now."
         '
@@ -299,7 +300,7 @@ Partial Class EmailQuizResults
         '
         Me.nudSendInXHours.Location = New System.Drawing.Point(46, 34)
         Me.nudSendInXHours.Name = "nudSendInXHours"
-        Me.nudSendInXHours.Size = New System.Drawing.Size(55, 22)
+        Me.nudSendInXHours.Size = New System.Drawing.Size(55, 21)
         Me.nudSendInXHours.TabIndex = 50
         Me.nudSendInXHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudSendInXHours.ThousandsSeparator = True
@@ -309,7 +310,7 @@ Partial Class EmailQuizResults
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(2, 36)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(38, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(42, 19)
         Me.KryptonLabel5.TabIndex = 49
         Me.KryptonLabel5.Values.Text = "Send"
         '
@@ -317,7 +318,7 @@ Partial Class EmailQuizResults
         '
         Me.nudEmailSendingAccount.Location = New System.Drawing.Point(114, 6)
         Me.nudEmailSendingAccount.Name = "nudEmailSendingAccount"
-        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 22)
+        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 21)
         Me.nudEmailSendingAccount.TabIndex = 45
         Me.nudEmailSendingAccount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -325,7 +326,7 @@ Partial Class EmailQuizResults
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(4, 6)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(104, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel4.TabIndex = 47
         Me.KryptonLabel4.Values.Text = "Sending account:"
         '
@@ -350,13 +351,22 @@ Partial Class EmailQuizResults
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
         Me.btnCancel.Values.Text = "&Close"
         '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(986, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(991, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -370,12 +380,12 @@ Partial Class EmailQuizResults
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem, Me.DeleteRowToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "&Edit"
@@ -384,14 +394,21 @@ Partial Class EmailQuizResults
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
         Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
+        '
+        'DeleteRowToolStripMenuItem
+        '
+        Me.DeleteRowToolStripMenuItem.Name = "DeleteRowToolStripMenuItem"
+        Me.DeleteRowToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
+        Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.DeleteRowToolStripMenuItem.Text = "&Delete row"
         '
         'EmailQuizResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(986, 429)
+        Me.ClientSize = New System.Drawing.Size(991, 437)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -461,4 +478,6 @@ Partial Class EmailQuizResults
     Friend WithEvents OlvColumn17 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents DeleteRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -30,8 +30,10 @@ Partial Class AttendencePublic
         Me.olvColumnStatus = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblClock = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,9 +60,10 @@ Partial Class AttendencePublic
         Me.olvStudents.AllColumns.Add(Me.olvColumnStatus)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn2)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn3)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn1)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.olvcolLocalName, Me.olvcolNickname, Me.OlvColumn6, Me.olvColumnStatus, Me.OlvColumn2, Me.OlvColumn3})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.olvcolLocalName, Me.olvcolNickname, Me.OlvColumn6, Me.olvColumnStatus, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn1})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
@@ -95,12 +98,14 @@ Partial Class AttendencePublic
         'olvcolLocalName
         '
         Me.olvcolLocalName.AspectName = "LocalName"
+        Me.olvcolLocalName.IsEditable = False
         Me.olvcolLocalName.Text = "Name"
         Me.olvcolLocalName.Width = 350
         '
         'olvcolNickname
         '
         Me.olvcolNickname.AspectName = "Nickname"
+        Me.olvcolNickname.IsEditable = False
         Me.olvcolNickname.Text = "Nickname"
         Me.olvcolNickname.Width = 200
         '
@@ -108,6 +113,7 @@ Partial Class AttendencePublic
         '
         Me.OlvColumn6.AspectName = "StudentID"
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Student ID"
         Me.OlvColumn6.Width = 225
         '
@@ -115,6 +121,7 @@ Partial Class AttendencePublic
         '
         Me.olvColumnStatus.AspectName = "CurrentAttendenceStatus"
         Me.olvColumnStatus.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvColumnStatus.IsEditable = False
         Me.olvColumnStatus.Text = "Status"
         Me.olvColumnStatus.Width = 175
         '
@@ -122,6 +129,7 @@ Partial Class AttendencePublic
         '
         Me.OlvColumn2.AspectName = "CurrentAbsences"
         Me.OlvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn2.IsEditable = False
         Me.OlvColumn2.Text = "Abs"
         Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn2.Width = 62
@@ -131,9 +139,20 @@ Partial Class AttendencePublic
         Me.OlvColumn3.AspectName = "CurrentAbsentPercent"
         Me.OlvColumn3.AspectToStringFormat = "{0:P0}"
         Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn3.IsEditable = False
         Me.OlvColumn3.Text = "Abs%"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn3.Width = 95
+        '
+        'OlvColumn1
+        '
+        Me.OlvColumn1.AspectName = "DateOfBirth"
+        Me.OlvColumn1.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn1.IsEditable = False
+        Me.OlvColumn1.Text = "DoB"
+        Me.OlvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn1.ToolTipText = "Date of Birth"
         '
         'lblClock
         '
@@ -144,6 +163,15 @@ Partial Class AttendencePublic
         Me.lblClock.StateNormal.ShortText.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblClock.TabIndex = 48
         Me.lblClock.Values.Text = "Current Time:"
+        '
+        'KryptonManager
+        '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'Timer1
         '
@@ -197,4 +225,6 @@ Partial Class AttendencePublic
     Friend WithEvents lblClock As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents tmrFilterHiddenStudents As System.Windows.Forms.Timer
+    Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

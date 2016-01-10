@@ -30,26 +30,32 @@ Public Class AttendenceForm
     End Sub
 
     Private Sub AttendenceForm_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        If m_boolDirty Then
-            Select Case MessageBox.Show("Do you want to save your changes?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-                Case DialogResult.Yes
-                    SaveSessionStatuses()
-                Case DialogResult.No
-                    '-- just close
-                Case DialogResult.Cancel
-                    e.Cancel = True
-            End Select
-        End If
+        Try
+            If m_boolDirty Then
+                Select Case MessageBox.Show("Do you want to save your changes?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+                    Case DialogResult.Yes
+                        SaveSessionStatuses()
+                    Case DialogResult.No
+                        '-- just close
+                    Case DialogResult.Cancel
+                        e.Cancel = True
+                End Select
+            End If
 
-        AppSettings.AttendanceWindowMaximized = WindowState = FormWindowState.Maximized
-
-        ClosePublic()
+            AppSettings.AttendanceWindowMaximized = WindowState = FormWindowState.Maximized
+            AppSettings.AttendanceFormStudentListViewState = olvStudents.SaveState()
+            ClosePublic()
+        Catch ex As Exception
+            Log(ex)
+        End Try
     End Sub
    
     Private Sub AttendenceForm_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         txtSessionDate.Text = Date.Today
 
         Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
+
+        olvStudents.RestoreState(AppSettings.AttendanceFormStudentListViewState)
 
         SetupForLiteVersion()
     End Sub

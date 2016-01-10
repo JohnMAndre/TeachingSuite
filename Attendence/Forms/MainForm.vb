@@ -85,6 +85,9 @@ Public Class MainForm
             CheckForupdatesToolStripMenuItem.ToolTipText = "Last checked " & ts.TotalDays.ToString("#,##0.0") & " days ago."
         End If
 
+        'Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
+
+
     End Sub
     ''' <summary>
     ''' Removes UI elements for Lite (free) version
@@ -2578,5 +2581,30 @@ Public Class MainForm
         ProcessExam2ndReDoForStudent.Visible = AppSettings.PremiumFeaturesEnabled
         ProcessExamRedoForStudent.Visible = AppSettings.PremiumFeaturesEnabled
         ProcessExamForStudent.Visible = AppSettings.PremiumFeaturesEnabled
+    End Sub
+    'Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
+    '    Dim stud As Student = CType(olvi.RowObject, Student)
+
+    '    olvi.UseItemStyleForSubItems = False
+
+    '    Dim intPositionCurrentAbsences As Integer = Me.olvStudents.Columns.IndexOf(Me.olvcolCurrentAbsences)
+
+    '    olvi.SubItems(intPositionCurrentAbsences).BackColor = Color.LightGray
+    'End Function
+
+    Private Sub ExportEntireSemesterAsXMLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEntireSemesterAsXMLToolStripMenuItem.Click
+        Try
+            Dim sfd As New SaveFileDialog()
+            sfd.OverwritePrompt = True
+            sfd.Title = "Select location to save XML file"
+            sfd.Filter = "XML files|*.xml"
+            sfd.AddExtension = True
+            If sfd.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Dim strFilename As String = sfd.FileName
+                ThisSemester.Save(strFilename, True)
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

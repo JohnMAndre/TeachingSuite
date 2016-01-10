@@ -126,9 +126,19 @@ Public Class AttendencePublic
 
     End Function
 
+    Private Sub AttendencePublic_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Try
+            AppSettings.AttendancePublicFormStudentListViewState = olvStudents.SaveState()
+        Catch ex As Exception
+            Log(ex)
+        End Try
+    End Sub
+
     Private Sub AttendencePublic_Load(sender As Object, e As System.EventArgs) Handles MyBase.Load
         Try
             Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
+            olvStudents.RestoreState(AppSettings.AttendancePublicFormStudentListViewState)
+
         Catch ex As Exception
             Application.DoEvents()
         End Try

@@ -46,9 +46,12 @@ Partial Class ImportStudentsFromText
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.lblLoadingHistoricalStudents = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,7 +71,7 @@ Partial Class ImportStudentsFromText
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Palette = Me.KryptonPalette1
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonPanel.Size = New System.Drawing.Size(710, 538)
+        Me.KryptonPanel.Size = New System.Drawing.Size(852, 538)
         Me.KryptonPanel.TabIndex = 0
         '
         'olvStudents
@@ -80,10 +83,11 @@ Partial Class ImportStudentsFromText
         Me.olvStudents.AllColumns.Add(Me.OlvColumn2)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn5)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn6})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
@@ -99,7 +103,7 @@ Partial Class ImportStudentsFromText
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(710, 378)
+        Me.olvStudents.Size = New System.Drawing.Size(852, 378)
         Me.olvStudents.TabIndex = 4
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -166,12 +170,13 @@ Partial Class ImportStudentsFromText
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Palette = Me.KryptonPalette1
         Me.lblTitle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblTitle.Size = New System.Drawing.Size(710, 29)
+        Me.lblTitle.Size = New System.Drawing.Size(852, 29)
         Me.lblTitle.TabIndex = 1
         Me.lblTitle.Values.Text = "Import students into class: "
         '
         'KryptonPanel1
         '
+        Me.KryptonPanel1.Controls.Add(Me.lblLoadingHistoricalStudents)
         Me.KryptonPanel1.Controls.Add(Me.lblStudentsLoaded)
         Me.KryptonPanel1.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel1.Controls.Add(Me.lblStudentsSearched)
@@ -182,33 +187,33 @@ Partial Class ImportStudentsFromText
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.KryptonPanel1.Location = New System.Drawing.Point(0, 431)
         Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(710, 107)
+        Me.KryptonPanel1.Size = New System.Drawing.Size(852, 107)
         Me.KryptonPanel1.TabIndex = 2
         '
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(681, 50)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(822, 50)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsLoaded.TabIndex = 76
         Me.lblStudentsLoaded.Values.Text = "0"
         '
         'KryptonLabel3
         '
         Me.KryptonLabel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel3.Location = New System.Drawing.Point(541, 50)
+        Me.KryptonLabel3.Location = New System.Drawing.Point(674, 50)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(102, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(111, 19)
         Me.KryptonLabel3.TabIndex = 75
         Me.KryptonLabel3.Values.Text = "Students loaded:"
         '
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(681, 30)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(822, 30)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsSearched.TabIndex = 74
         Me.lblStudentsSearched.Values.Text = "0"
         '
@@ -225,16 +230,17 @@ Partial Class ImportStudentsFromText
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(530, 30)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(659, 30)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
-        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(113, 20)
+        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
         Me.lblStudentsSearchedCaption.TabIndex = 73
         Me.lblStudentsSearchedCaption.Values.Text = "Students searched:"
         '
         'btnOK
         '
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.btnOK.Location = New System.Drawing.Point(374, 76)
+        Me.btnOK.Enabled = False
+        Me.btnOK.Location = New System.Drawing.Point(445, 76)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(90, 27)
         Me.btnOK.TabIndex = 28
@@ -245,7 +251,7 @@ Partial Class ImportStudentsFromText
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(247, 76)
+        Me.btnCancel.Location = New System.Drawing.Point(318, 76)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 27)
         Me.btnCancel.TabIndex = 27
@@ -258,7 +264,7 @@ Partial Class ImportStudentsFromText
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(710, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(852, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -285,8 +291,18 @@ Partial Class ImportStudentsFromText
         'PasteToolStripMenuItem
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
+        Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.KryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.KryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'Timer1
         '
@@ -298,12 +314,33 @@ Partial Class ImportStudentsFromText
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 200
         '
+        'OlvColumn6
+        '
+        Me.OlvColumn6.AspectName = "DateOfBirth"
+        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.Text = "DoB"
+        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.ToolTipText = "Date of Birth"
+        Me.OlvColumn6.Width = 76
+        '
+        'lblLoadingHistoricalStudents
+        '
+        Me.lblLoadingHistoricalStudents.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl
+        Me.lblLoadingHistoricalStudents.Location = New System.Drawing.Point(12, 30)
+        Me.lblLoadingHistoricalStudents.Name = "lblLoadingHistoricalStudents"
+        Me.lblLoadingHistoricalStudents.Palette = Me.KryptonPalette1
+        Me.lblLoadingHistoricalStudents.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.lblLoadingHistoricalStudents.Size = New System.Drawing.Size(300, 29)
+        Me.lblLoadingHistoricalStudents.TabIndex = 77
+        Me.lblLoadingHistoricalStudents.Values.Text = "Loading historical students from: "
+        '
         'ImportStudentsFromText
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(710, 538)
+        Me.ClientSize = New System.Drawing.Size(852, 538)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -364,5 +401,7 @@ Partial Class ImportStudentsFromText
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PasteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
+    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents lblLoadingHistoricalStudents As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

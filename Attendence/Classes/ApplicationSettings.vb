@@ -264,6 +264,20 @@
                     PremiumFeaturesEnabled = False
                 End If
 
+                xElement = xDoc.SelectSingleNode("//AttendanceFormStudentListViewState")
+                If xElement IsNot Nothing Then
+                    _attendanceFormStudentListViewStatePrivate = xElement.InnerText
+                Else
+                    _attendanceFormStudentListViewStatePrivate = String.Empty
+                End If
+
+                xElement = xDoc.SelectSingleNode("//AttendancePublicStudentListViewState")
+                If xElement IsNot Nothing Then
+                    _attendancePublicFormStudentListViewStatePrivate = xElement.InnerText
+                Else
+                    _attendancePublicFormStudentListViewStatePrivate = String.Empty
+                End If
+
                 xElement = xDoc.SelectSingleNode("//PassResultsText")
                 If xElement IsNot Nothing Then
                     PassResultsText = xElement.InnerText
@@ -468,6 +482,8 @@
                 '-- If this node is present at all we consider premium features enabled
                 xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MainFormStudentListViewStateAlt", _mainFormStudentListViewStatePrivate))
             End If
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendanceFormStudentListViewState", _attendanceFormStudentListViewStatePrivate))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendancePublicFormStudentListViewState", _attendancePublicFormStudentListViewStatePrivate))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PassResultsText", PassResultsText))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "FailResultsText", FailResultsText))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UnknownResultsText", UnknownResultsText))
@@ -596,6 +612,24 @@
         End Get
         Set(ByVal value As Byte())
             _mainFormStudentListViewStatePrivate = Convert.ToBase64String(value)
+        End Set
+    End Property
+    Private Property _attendanceFormStudentListViewStatePrivate As String
+    Public Property AttendanceFormStudentListViewState() As Byte()
+        Get
+            Return Convert.FromBase64String(_attendanceFormStudentListViewStatePrivate)
+        End Get
+        Set(ByVal value As Byte())
+            _attendanceFormStudentListViewStatePrivate = Convert.ToBase64String(value)
+        End Set
+    End Property
+    Private Property _attendancePublicFormStudentListViewStatePrivate As String
+    Public Property AttendancePublicFormStudentListViewState() As Byte()
+        Get
+            Return Convert.FromBase64String(_attendancePublicFormStudentListViewStatePrivate)
+        End Get
+        Set(ByVal value As Byte())
+            _attendancePublicFormStudentListViewStatePrivate = Convert.ToBase64String(value)
         End Set
     End Property
     Public Property AssignmentMarkingWarning1 As Integer

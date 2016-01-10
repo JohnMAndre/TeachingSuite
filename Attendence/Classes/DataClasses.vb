@@ -186,8 +186,9 @@ Public Class Semester
     ''' Saves the semester data file
     ''' </summary>
     ''' <param name="filename">Name of autosave file. Pass as nothing for normal save</param>
+    ''' <param name="forceXMLOnly">True to save in raw XML, False to save as compressed (zip)</param>
     ''' <remarks></remarks>
-    Public Sub Save(Optional filename As String = Nothing)
+    Public Sub Save(Optional filename As String = Nothing, Optional forceXMLOnly As Boolean = False)
         Try
             '-- save back to data file
             Dim xDoc As New Xml.XmlDocument()
@@ -218,33 +219,37 @@ Public Class Semester
 
 
 #If SUPPORT_ZIP Then
-            Using zip As New Ionic.Zip.ZipFile()
-                Dim byteArray() As Byte = System.Text.Encoding.Unicode.GetBytes(xDoc.OuterXml())
+            If forceXMLOnly Then
+                xDoc.Save(filename)
+            Else
+                Using zip As New Ionic.Zip.ZipFile()
+                    Dim byteArray() As Byte = System.Text.Encoding.Unicode.GetBytes(xDoc.OuterXml())
 
-                zip.AddEntry(DATA_FILE_CONTENTS_NAME, byteArray)
-                If filename Is Nothing Then
-                    '-- Regular save
-                    zip.Save(m_strFilename)
-                    LastSaveDate = Date.Now
-                    Dim strAutoSaveFilename As String
-                    strAutoSaveFilename = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(m_strFilename), System.IO.Path.GetFileNameWithoutExtension(m_strFilename) & DATA_FILE_AUTOSAVE_EXTENSION)
-                    If System.IO.File.Exists(strAutoSaveFilename) Then
-                        Try
-                            System.IO.File.Delete(strAutoSaveFilename)
-                        Catch ex As Exception
-                            Log(ex) '-- log and continue
-                        End Try
+                    zip.AddEntry(DATA_FILE_CONTENTS_NAME, byteArray)
+                    If filename Is Nothing Then
+                        '-- Regular save
+                        zip.Save(m_strFilename)
+                        LastSaveDate = Date.Now
+                        Dim strAutoSaveFilename As String
+                        strAutoSaveFilename = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(m_strFilename), System.IO.Path.GetFileNameWithoutExtension(m_strFilename) & DATA_FILE_AUTOSAVE_EXTENSION)
+                        If System.IO.File.Exists(strAutoSaveFilename) Then
+                            Try
+                                System.IO.File.Delete(strAutoSaveFilename)
+                            Catch ex As Exception
+                                Log(ex) '-- log and continue
+                            End Try
+                        End If
+                    Else
+                        '-- AutoSave
+                        zip.Save(filename)
+                        LastAutoSaveDate = Date.Now
                     End If
-                Else
-                    '-- AutoSave
-                    zip.Save(filename)
-                    LastAutoSaveDate = Date.Now
-                End If
-            End Using
+                End Using
+            End If
 #Else
             xDoc.Save(m_strFilename)
 #End If
-            'xDoc.Save("c:\temp\test.xml")
+                'xDoc.Save("c:\temp\test.xml")
 
 
         Catch ex As Exception
@@ -2406,6 +2411,7 @@ Public Class Student
     Public Property ExtStudentID As String '-- external (or extra, your choice)
     Public Property AdminNumber As Integer
     Public Property AltNumber As Integer
+    Public Property DateOfBirth As Date = DATE_NO_DATE '-- initiate to no_date
     Public Property TeachingSessions As New List(Of TeachingSession)
     Public Property CurrentAttendenceStatus As AttendenceStatusEnum
     Private m_intMeritPoints As Integer
@@ -2845,6 +2851,7 @@ Public Class Student
             xStudentElement.SetAttribute("Gender", Gender)
             xStudentElement.SetAttribute("PlagiarismSeverity", PlagiarismSeverity.ToString())
             xStudentElement.SetAttribute("ResearchQuality", ResearchQuality.ToString())
+            xStudentElement.SetAttribute("DateOfBirth", DateOfBirth.ToString(DATE_FORMAT_XML))
 
             TeachingSessions.Sort()
             For Each objSession As TeachingSession In TeachingSessions
@@ -2889,6 +2896,44 @@ Public Class Student
         Me.SchoolClass = schoolClass
         AddToActivityLog("Student created.")
     End Sub
+    ' ''' <summary>
+    ' ''' Temp routine to clean up redundant text
+    ' ''' </summary>
+    ' ''' <param name="inputLog"></param>
+    ' ''' <returns></returns>
+    ' ''' <remarks></remarks>
+    'Private Function CleanActivityLog(inputLog As String) As String
+    '    Try
+
+    '        Dim sr As New System.IO.StringReader(inputLog)
+    '        Dim sb As New System.Text.StringBuilder()
+    '        Dim strThisLineFull As String
+    '        Dim strPrevLineFull As String
+    '        Dim strThisLineShort As String
+    '        Dim strPrevLineShort As String = String.Empty
+    '        strThisLineFull = sr.ReadLine()
+    '        Do Until strThisLineFull Is Nothing
+    '            strThisLineShort = strThisLineFull.Substring(17) '-- trim date/time
+    '            If strPrevLineShort.Length > 0 Then
+    '                If strThisLineShort.Equals(strPrevLineShort) Then
+    '                    '-- do not append so this line will drop off
+    '                Else
+    '                    sb.AppendLine(strThisLineFull)
+    '                End If
+    '            Else
+    '                sb.AppendLine(strThisLineFull)
+    '            End If
+    '            strPrevLineShort = strThisLineShort
+    '            strPrevLineFull = strThisLineFull
+    '            strThisLineFull = sr.ReadLine()
+    '        Loop
+    '        Return sb.ToString().Trim()
+    '    Catch ex As Exception
+    '        Application.DoEvents()
+    '        Return String.Empty
+    '    End Try
+
+    'End Function
     Public Sub New(xElement As Xml.XmlElement, schoolClass As SchoolClass)
         Me.SchoolClass = schoolClass
         LocalName = xElement.GetAttribute("LocalName").Replace("  ", " ").Trim '-- remove extra spaces
@@ -2912,6 +2957,9 @@ Public Class Student
         Notes = xElement.GetAttribute("Notes")
         ActivityLog = xElement.GetAttribute("ActivityLog")
 
+        '-- This next line is just used when data gets funky and duplicated (like "Drafts changed from 0 to 1" gets duplicated in activitylog).
+        'ActivityLog = CleanActivityLog(ActivityLog)
+
         '-- These properties have changes tracked so we must write to the private variable 
         '   to avoid triggering change logic on every load
         m_strStudentID = xElement.GetAttribute("StudentID").Trim
@@ -2924,6 +2972,9 @@ Public Class Student
         m_boolHidden = ConvertToBool(xElement.GetAttribute("Hidden"), False)
         m_strEmailAddress = xElement.GetAttribute("EmailAddress")
         m_intPlagiarismSeverity = ConvertToInt32(xElement.GetAttribute("PlagiarismSeverity"), 0)
+
+        DateOfBirth = ConvertToDateFromXML(xElement.GetAttribute("DateOfBirth"), DATE_NO_DATE)
+
 
 
         Dim xSessionList As Xml.XmlNodeList = xElement.SelectNodes("Session")

@@ -23,6 +23,8 @@ Partial Class EmailModuleResults
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EmailModuleResults))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonContextMenuItems3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
@@ -92,6 +94,7 @@ Partial Class EmailModuleResults
         Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn16 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn18 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem36 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem37 = New System.Windows.Forms.ToolStripMenuItem()
@@ -101,7 +104,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.OlvColumn18 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -135,6 +137,19 @@ Partial Class EmailModuleResults
         Me.KryptonPanel.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel.TabIndex = 0
         '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        '
         'tmrFilterStudents
         '
         Me.tmrFilterStudents.Interval = 200
@@ -156,7 +171,7 @@ Partial Class EmailModuleResults
         '
         Me.nudSendInXHours.Location = New System.Drawing.Point(60, 249)
         Me.nudSendInXHours.Name = "nudSendInXHours"
-        Me.nudSendInXHours.Size = New System.Drawing.Size(96, 22)
+        Me.nudSendInXHours.Size = New System.Drawing.Size(96, 21)
         Me.nudSendInXHours.TabIndex = 43
         Me.nudSendInXHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudSendInXHours.ThousandsSeparator = True
@@ -180,7 +195,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeAssignmentNumber.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeAssignmentNumber.Location = New System.Drawing.Point(12, 322)
         Me.chkIncludeAssignmentNumber.Name = "chkIncludeAssignmentNumber"
-        Me.chkIncludeAssignmentNumber.Size = New System.Drawing.Size(178, 20)
+        Me.chkIncludeAssignmentNumber.Size = New System.Drawing.Size(192, 19)
         Me.chkIncludeAssignmentNumber.TabIndex = 57
         Me.chkIncludeAssignmentNumber.Text = "Include assignment number:"
         Me.ToolTip1.SetToolTip(Me.chkIncludeAssignmentNumber, "Uncheck to skip assignment number text in email")
@@ -204,7 +219,7 @@ Partial Class EmailModuleResults
         '
         Me.lblLoadedStudents.Location = New System.Drawing.Point(98, 29)
         Me.lblLoadedStudents.Name = "lblLoadedStudents"
-        Me.lblLoadedStudents.Size = New System.Drawing.Size(17, 20)
+        Me.lblLoadedStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblLoadedStudents.TabIndex = 38
         Me.ToolTip1.SetToolTip(Me.lblLoadedStudents, "Number of students loaded")
         Me.lblLoadedStudents.Values.Text = "0"
@@ -213,10 +228,15 @@ Partial Class EmailModuleResults
         '
         Me.lblSelectedStudents.Location = New System.Drawing.Point(171, 29)
         Me.lblSelectedStudents.Name = "lblSelectedStudents"
-        Me.lblSelectedStudents.Size = New System.Drawing.Size(17, 20)
+        Me.lblSelectedStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblSelectedStudents.TabIndex = 61
         Me.ToolTip1.SetToolTip(Me.lblSelectedStudents, "Number of students to be sent")
         Me.lblSelectedStudents.Values.Text = "0"
+        '
+        'KryptonManager1
+        '
+        Me.KryptonManager1.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPanel1
         '
@@ -333,7 +353,7 @@ Partial Class EmailModuleResults
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(62, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 19)
         Me.txtStudentFilter.TabIndex = 25
         '
         'KryptonLabel2
@@ -341,7 +361,7 @@ Partial Class EmailModuleResults
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(1010, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(1010, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
@@ -502,7 +522,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(3, 269)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(100, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(107, 19)
         Me.KryptonLabel8.TabIndex = 44
         Me.KryptonLabel8.Values.Text = "hours from now."
         '
@@ -510,7 +530,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(4, 346)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(77, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel7.TabIndex = 42
         Me.KryptonLabel7.Values.Text = "Trailing text:"
         '
@@ -549,7 +569,7 @@ Partial Class EmailModuleResults
         '
         Me.lblTotalOutcomes.Location = New System.Drawing.Point(98, 3)
         Me.lblTotalOutcomes.Name = "lblTotalOutcomes"
-        Me.lblTotalOutcomes.Size = New System.Drawing.Size(17, 20)
+        Me.lblTotalOutcomes.Size = New System.Drawing.Size(18, 19)
         Me.lblTotalOutcomes.TabIndex = 37
         Me.lblTotalOutcomes.Values.Text = "0"
         '
@@ -557,7 +577,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel6.Location = New System.Drawing.Point(3, 29)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(61, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(67, 19)
         Me.KryptonLabel6.TabIndex = 36
         Me.KryptonLabel6.Values.Text = "Students:"
         '
@@ -565,7 +585,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(3, 3)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(69, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel4.TabIndex = 35
         Me.KryptonLabel4.Values.Text = "Outcomes:"
         '
@@ -573,7 +593,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(3, 249)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(56, 19)
         Me.KryptonLabel5.TabIndex = 34
         Me.KryptonLabel5.Values.Text = "Send in"
         '
@@ -581,7 +601,7 @@ Partial Class EmailModuleResults
         '
         Me.nudEmailSendingAccount.Location = New System.Drawing.Point(113, 174)
         Me.nudEmailSendingAccount.Name = "nudEmailSendingAccount"
-        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 22)
+        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 21)
         Me.nudEmailSendingAccount.TabIndex = 28
         Me.nudEmailSendingAccount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -591,14 +611,14 @@ Partial Class EmailModuleResults
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubject.Location = New System.Drawing.Point(3, 225)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(216, 20)
+        Me.txtSubject.Size = New System.Drawing.Size(216, 19)
         Me.txtSubject.TabIndex = 29
         '
         'KryptonLabel3
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 204)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(53, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel3.TabIndex = 32
         Me.KryptonLabel3.Values.Text = "Subject:"
         '
@@ -606,7 +626,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 174)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(104, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel1.TabIndex = 31
         Me.KryptonLabel1.Values.Text = "Sending account:"
         '
@@ -631,7 +651,6 @@ Partial Class EmailModuleResults
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn7, Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn12, Me.OlvColumn16, Me.OlvColumn18})
-        Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No students, check filter and Submission menu"
@@ -640,13 +659,14 @@ Partial Class EmailModuleResults
         Me.olvStudents.GridLines = True
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
-        Me.olvStudents.Location = New System.Drawing.Point(0, 20)
+        Me.olvStudents.IncludeColumnHeadersInCopy = True
+        Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
         Me.olvStudents.OwnerDraw = True
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(1010, 624)
+        Me.olvStudents.Size = New System.Drawing.Size(1010, 625)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -761,6 +781,13 @@ Partial Class EmailModuleResults
         Me.OlvColumn16.AspectName = "Student.Tags"
         Me.OlvColumn16.Text = "Tags"
         '
+        'OlvColumn18
+        '
+        Me.OlvColumn18.AspectName = "Student.ProcessedAssignments"
+        Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn18.Text = "P.Asmt"
+        Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'ContextMenuStrip3
         '
         Me.ContextMenuStrip3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -832,13 +859,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Name = "KryptonPanel4"
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
-        '
-        'OlvColumn18
-        '
-        Me.OlvColumn18.AspectName = "Student.ProcessedAssignments"
-        Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn18.Text = "P.Asmt"
-        Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'EmailModuleResults
         '
@@ -978,4 +998,5 @@ Partial Class EmailModuleResults
     Friend WithEvents OlvColumn16 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn17 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class
