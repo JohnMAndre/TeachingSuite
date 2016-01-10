@@ -1,16 +1,14 @@
 Public Class AttendencePublic
 
-    Private m_boolUseNickname As Boolean
     Private m_lstStudents As List(Of Student)
 
-    Public Sub New(students As List(Of Student), useNickname As Boolean)
+    Public Sub New(students As List(Of Student))
 
         ' This call is required by the designer.
         InitializeComponent()
 
         olvStudents.SetObjects(students)
 
-        m_boolUseNickname = useNickname
         m_lstStudents = students
     End Sub
 
@@ -137,7 +135,7 @@ Public Class AttendencePublic
     Private Sub AttendencePublic_Load(sender As Object, e As System.EventArgs) Handles MyBase.Load
         Try
             Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
-            olvStudents.RestoreState(AppSettings.AttendancePublicFormStudentListViewState)
+            Me.olvStudents.RestoreState(AppSettings.AttendancePublicFormStudentListViewState)
 
         Catch ex As Exception
             Application.DoEvents()
@@ -151,12 +149,6 @@ Public Class AttendencePublic
 
     Private Sub AttendencePublic_Shown(sender As Object, e As System.EventArgs) Handles MyBase.Shown
         Try
-            If m_boolUseNickname Then
-                olvcolLocalName.DisplayIndex = olvStudents.Columns.Count - 1
-            Else
-                olvcolNickname.DisplayIndex = olvStudents.Columns.Count - 1
-            End If
-
             '-- If we have multiple screens, then project public form on 'other' screen
             If Screen.AllScreens.Count > 0 Then
                 For Each scrn As Screen In Screen.AllScreens

@@ -287,7 +287,7 @@ Public Class AttendenceForm
     Private m_frmPublic As AttendencePublic
     Private Sub PublicToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles PublicToolStripMenuItem.Click
         If m_frmPublic Is Nothing Then
-            m_frmPublic = New AttendencePublic(m_lstStudents, m_class.ClassGroup.UseNickname)
+            m_frmPublic = New AttendencePublic(m_lstStudents)
             m_frmPublic.Show()
             tmrPublicFilter.Start()
         Else

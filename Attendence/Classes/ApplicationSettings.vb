@@ -271,7 +271,7 @@
                     _attendanceFormStudentListViewStatePrivate = String.Empty
                 End If
 
-                xElement = xDoc.SelectSingleNode("//AttendancePublicStudentListViewState")
+                xElement = xDoc.SelectSingleNode("//AttendancePublicFormStudentListViewState")
                 If xElement IsNot Nothing Then
                     _attendancePublicFormStudentListViewStatePrivate = xElement.InnerText
                 Else
