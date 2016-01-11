@@ -30,9 +30,11 @@ Partial Class ImportStudentsFromText
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblTitle = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.lblLoadingHistoricalStudents = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsLoaded = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsSearched = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -49,9 +51,7 @@ Partial Class ImportStudentsFromText
         Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.lblLoadingHistoricalStudents = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,10 +84,11 @@ Partial Class ImportStudentsFromText
         Me.olvStudents.AllColumns.Add(Me.OlvColumn5)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn6})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn6, Me.OlvColumn7})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
@@ -162,6 +163,16 @@ Partial Class ImportStudentsFromText
         Me.OlvColumn13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn13.Width = 97
         '
+        'OlvColumn6
+        '
+        Me.OlvColumn6.AspectName = "DateOfBirth"
+        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.Text = "DoB"
+        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.ToolTipText = "Date of Birth"
+        Me.OlvColumn6.Width = 76
+        '
         'lblTitle
         '
         Me.lblTitle.Dock = System.Windows.Forms.DockStyle.Top
@@ -189,6 +200,17 @@ Partial Class ImportStudentsFromText
         Me.KryptonPanel1.Name = "KryptonPanel1"
         Me.KryptonPanel1.Size = New System.Drawing.Size(852, 107)
         Me.KryptonPanel1.TabIndex = 2
+        '
+        'lblLoadingHistoricalStudents
+        '
+        Me.lblLoadingHistoricalStudents.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl
+        Me.lblLoadingHistoricalStudents.Location = New System.Drawing.Point(12, 30)
+        Me.lblLoadingHistoricalStudents.Name = "lblLoadingHistoricalStudents"
+        Me.lblLoadingHistoricalStudents.Palette = Me.KryptonPalette1
+        Me.lblLoadingHistoricalStudents.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.lblLoadingHistoricalStudents.Size = New System.Drawing.Size(300, 29)
+        Me.lblLoadingHistoricalStudents.TabIndex = 77
+        Me.lblLoadingHistoricalStudents.Values.Text = "Loading historical students from: "
         '
         'lblStudentsLoaded
         '
@@ -292,17 +314,17 @@ Partial Class ImportStudentsFromText
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
         Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.KryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.KryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'KryptonPalette2
+        '
+        Me.KryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'Timer1
         '
@@ -314,26 +336,13 @@ Partial Class ImportStudentsFromText
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 200
         '
-        'OlvColumn6
+        'OlvColumn7
         '
-        Me.OlvColumn6.AspectName = "DateOfBirth"
-        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.Text = "DoB"
-        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.ToolTipText = "Date of Birth"
-        Me.OlvColumn6.Width = 76
-        '
-        'lblLoadingHistoricalStudents
-        '
-        Me.lblLoadingHistoricalStudents.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl
-        Me.lblLoadingHistoricalStudents.Location = New System.Drawing.Point(12, 30)
-        Me.lblLoadingHistoricalStudents.Name = "lblLoadingHistoricalStudents"
-        Me.lblLoadingHistoricalStudents.Palette = Me.KryptonPalette1
-        Me.lblLoadingHistoricalStudents.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblLoadingHistoricalStudents.Size = New System.Drawing.Size(300, 29)
-        Me.lblLoadingHistoricalStudents.TabIndex = 77
-        Me.lblLoadingHistoricalStudents.Values.Text = "Loading historical students from: "
+        Me.OlvColumn7.AspectName = "Gender"
+        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.Text = "Gender"
+        Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.Width = 75
         '
         'ImportStudentsFromText
         '
@@ -404,4 +413,5 @@ Partial Class ImportStudentsFromText
     Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents lblLoadingHistoricalStudents As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
 End Class

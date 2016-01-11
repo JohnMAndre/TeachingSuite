@@ -55,7 +55,13 @@ Public Class ImportStudentsFromText
                         stud.ExtStudentID = objStud.ExtStudentID
                     End If
 
-                    stud.DateOfBirth = objStud.DateOfBirth
+                    If stud.DateOfBirth = DATE_NO_DATE Then
+                        stud.DateOfBirth = objStud.DateOfBirth
+                    End If
+
+                    If stud.Gender = Student.GenderEnum.Unknown Then
+                        stud.Gender = objStud.Gender
+                    End If
 
                     stud.ActivityLog = String.Empty
                     m_class.Students.Add(stud)
@@ -204,10 +210,23 @@ Public Class ImportStudentsFromText
                             If IsDate(row(7)) Then
                                 objStud.DateOfBirth = row(7)
                             Else
-                                objStud.DateOfBirth = New Date(1930, 1, 1)
+                                objStud.DateOfBirth = DATE_NO_DATE
                             End If
                         Else
                             objStud.DateOfBirth = stud.DateOfBirth
+                        End If
+
+                        If row(8).Trim().Length > 0 Then
+                            If row(8).ToLower() = "m" OrElse row(8).ToLower() = "male" Then
+                                objStud.Gender = Student.GenderEnum.Male
+                            ElseIf row(8).ToLower() = "f" OrElse row(8).ToLower() = "female" Then
+                                stud.Gender = Student.GenderEnum.Female
+                            End If
+                            '-- No need to set to unknown gender because that is the default and we don't want to overwrite
+                            '   a user-set gender when importing data is blank
+                        Else
+                            '-- Nothing in the import so just use whatever we knew before (
+                            objStud.Gender = stud.Gender
                         End If
                     Else
                         objStud.LocalName = row(3).Trim()
@@ -217,7 +236,15 @@ Public Class ImportStudentsFromText
                         If IsDate(row(7)) Then
                             objStud.DateOfBirth = row(7)
                         Else
-                            objStud.DateOfBirth = New Date(1930, 1, 1)
+                            objStud.DateOfBirth = DATE_NO_DATE
+                        End If
+
+                        If row(8).Trim().Length > 0 Then
+                            If row(8).ToLower() = "m" OrElse row(8).ToLower() = "male" Then
+                                objStud.Gender = Student.GenderEnum.Male
+                            ElseIf row(8).ToLower() = "f" OrElse row(8).ToLower() = "female" Then
+                                objStud.Gender = Student.GenderEnum.Female
+                            End If
                         End If
                     End If
 
