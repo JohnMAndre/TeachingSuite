@@ -515,6 +515,7 @@ Partial Class ClassDetails
         '
         Me.OlvColumn5.AspectName = "SessionNumber"
         Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn5.IsEditable = False
         Me.OlvColumn5.Text = "#"
         Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -522,6 +523,7 @@ Partial Class ClassDetails
         '
         Me.OlvColumn6.AspectName = "WeekNumber"
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Week"
         Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
