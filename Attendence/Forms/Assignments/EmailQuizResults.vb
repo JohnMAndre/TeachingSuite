@@ -55,7 +55,7 @@ Public Class EmailQuizResults
         Try
             If m_boolSentAlready Then
                 '-- So easy to his OK when you mean to hit close, so prompt to avoid a lot of extra re-work
-                If MessageBox.Show("It seems you have already send this. Are you sure you want to send again?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) <> DialogResult.Yes Then
+                If MessageBox.Show("It seems you have already sent this. Are you sure you want to send again?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) <> DialogResult.Yes Then
                     Exit Sub
                 End If
             End If
@@ -92,6 +92,17 @@ Public Class EmailQuizResults
                     Exit For
                 End If
             Next
+
+            '-- Ensure we have questions and answers
+            If objAnswers Is Nothing Then
+                MessageBox.Show("There are no answers. Please add a row of correct answers for comparison.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            If objQuestions Is Nothing Then
+                MessageBox.Show("There are no questions. Please add a row of questions to make the email meaningful.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
 
             '-- Now process each student comparing to correct answers
             For Each obj As QuizDetails In m_lstQuizResults

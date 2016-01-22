@@ -58,6 +58,7 @@ Partial Class EmailQuizResults
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvQuizDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +112,7 @@ Partial Class EmailQuizResults
         Me.olvQuizDetails.Name = "olvQuizDetails"
         Me.olvQuizDetails.OwnerDraw = True
         Me.olvQuizDetails.ShowGroups = False
+        Me.olvQuizDetails.ShowImagesOnSubItems = True
         Me.olvQuizDetails.ShowItemCountOnGroups = True
         Me.olvQuizDetails.Size = New System.Drawing.Size(753, 228)
         Me.olvQuizDetails.TabIndex = 8
@@ -219,6 +221,7 @@ Partial Class EmailQuizResults
         'KryptonPanel2
         '
         Me.KryptonPanel2.Controls.Add(Me.txtQuizName)
+        Me.KryptonPanel2.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel2.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonPanel2.Location = New System.Drawing.Point(0, 0)
@@ -353,12 +356,12 @@ Partial Class EmailQuizResults
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'MenuStrip1
         '
@@ -380,7 +383,7 @@ Partial Class EmailQuizResults
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
@@ -403,6 +406,15 @@ Partial Class EmailQuizResults
         Me.DeleteRowToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.DeleteRowToolStripMenuItem.Text = "&Delete row"
+        '
+        'KryptonLabel2
+        '
+        Me.KryptonLabel2.Location = New System.Drawing.Point(364, 4)
+        Me.KryptonLabel2.Name = "KryptonLabel2"
+        Me.KryptonLabel2.Size = New System.Drawing.Size(524, 19)
+        Me.KryptonLabel2.TabIndex = 29
+        Me.KryptonLabel2.Values.Text = "Note: Any question where the answer row says STORE will be stored and not emailed" & _
+    "."
         '
         'EmailQuizResults
         '
@@ -480,4 +492,5 @@ Partial Class EmailQuizResults
     Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents DeleteRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class
