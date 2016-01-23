@@ -60,6 +60,8 @@ Public Class StudentDetail
         End Select
         UpdateAbsentPercent()
 
+        '-- have to wire up this way because of krypton limitations
+        AddHandler rtbNotes.RichTextBox.DoubleClick, AddressOf rtbNotes_DoubleClick
     End Sub
     Private Function AttendanceRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim item As TeachingSession = CType(olvi.RowObject, TeachingSession)
@@ -350,5 +352,9 @@ Public Class StudentDetail
 
     Private Sub nudMaxAbsences_ValueChanged(sender As System.Object, e As System.EventArgs) Handles nudMaxAbsences.ValueChanged
         UpdateAbsentPercent()
+    End Sub
+
+    Private Sub rtbNotes_DoubleClick(sender As Object, e As EventArgs)
+        rtbNotes.Text = rtbNotes.Text & Environment.NewLine & Date.Now.ToString() & "   "
     End Sub
 End Class

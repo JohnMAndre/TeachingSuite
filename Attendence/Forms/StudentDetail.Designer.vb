@@ -101,10 +101,10 @@ Partial Class StudentDetail
         Me.olvTeachingSessions = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.pnlAttendance.SuspendLayout()
@@ -156,13 +156,13 @@ Partial Class StudentDetail
         Me.KryptonPanel.Controls.Add(Me.btnCancel)
         Me.KryptonPanel.Controls.Add(Me.txtLocalName)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
-        Me.KryptonPanel.Controls.Add(Me.pnlOutcomes)
         Me.KryptonPanel.Controls.Add(Me.pbButtonHighlight)
-        Me.KryptonPanel.Controls.Add(Me.rtbLog)
-        Me.KryptonPanel.Controls.Add(Me.rtbNotes)
         Me.KryptonPanel.Controls.Add(Me.pnlAssignments)
+        Me.KryptonPanel.Controls.Add(Me.rtbNotes)
         Me.KryptonPanel.Controls.Add(Me.olvAssignments)
         Me.KryptonPanel.Controls.Add(Me.olvTeachingSessions)
+        Me.KryptonPanel.Controls.Add(Me.pnlOutcomes)
+        Me.KryptonPanel.Controls.Add(Me.rtbLog)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
@@ -1041,6 +1041,11 @@ Partial Class StudentDetail
         Me.OlvColumn2.Text = "Status"
         Me.OlvColumn2.Width = 100
         '
+        'OlvColumn25
+        '
+        Me.OlvColumn25.AspectName = "Notes"
+        Me.OlvColumn25.Text = "Notes"
+        '
         'KryptonManager
         '
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
@@ -1049,11 +1054,6 @@ Partial Class StudentDetail
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
-        'OlvColumn25
-        '
-        Me.OlvColumn25.AspectName = "Notes"
-        Me.OlvColumn25.Text = "Notes"
         '
         'StudentDetail
         '
