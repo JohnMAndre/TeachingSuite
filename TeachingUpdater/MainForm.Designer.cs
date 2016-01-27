@@ -166,6 +166,7 @@
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(114, 29);
             this.btnDownload.TabIndex = 62;
+            this.btnDownload.Values.Image = global::Teaching.Properties.Resources.download_16;
             this.btnDownload.Values.ImageTransparentColor = System.Drawing.Color.White;
             this.btnDownload.Values.Text = "&Download";
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
@@ -177,6 +178,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(114, 29);
             this.btnClose.TabIndex = 61;
+            this.btnClose.Values.Image = global::Teaching.Properties.Resources.Erase_16;
             this.btnClose.Values.ImageTransparentColor = System.Drawing.Color.White;
             this.btnClose.Values.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -189,6 +191,7 @@
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(114, 29);
             this.btnInstall.TabIndex = 60;
+            this.btnInstall.Values.Image = global::Teaching.Properties.Resources.checkmark_16;
             this.btnInstall.Values.ImageTransparentColor = System.Drawing.Color.White;
             this.btnInstall.Values.Text = "&Install";
             this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
