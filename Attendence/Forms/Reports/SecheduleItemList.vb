@@ -63,4 +63,32 @@ Public Class SecheduleItemList
         txtFilter.Text = String.Empty
         txtFilter.Focus()
     End Sub
+
+    Private Sub EmailClassToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmailClassToolStripMenuItem.Click
+        Try
+            If Not Emailer.SetupProperly Then
+                MessageBox.Show("Please go to Tools->Options on main form and select the path to TrulyMail. TrulyMail must be used for emailing.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                If olvSchedule.SelectedObjects.Count = 0 Then
+                    MessageBox.Show("Please select at least one item for sending.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    Dim objEmail As New Emailer()
+                    Dim intAccount As Integer
+                    Dim strSubject As String
+                    For Each item As ActualSessionItem In olvSchedule.SelectedObjects
+                        objEmail.Recipients.Add(New EmailRecipient(item.SchoolClass.Name, item.SchoolClass.EmailAddress))
+                        intAccount = item.SchoolClass.EmailSendingAccount '-- so we will use the last one
+                        strSubject = item.Topic
+                    Next
+                    objEmail.Subject = strSubject
+                    objEmail.Send(intAccount, False, 0)
+                End If
+            End If
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error emailing: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 End Class

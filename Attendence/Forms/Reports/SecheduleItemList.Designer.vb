@@ -26,6 +26,7 @@ Partial Class SecheduleItemList
         Me.llblLoadAllSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.olvSchedule = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn29 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn30 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn16 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn31 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -35,15 +36,18 @@ Partial Class SecheduleItemList
         Me.OlvColumn34 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn35 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn36 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.ctxmnuItems = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EmailClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.txtFilter = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblClearFilter = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.tmrFilterSessions = New System.Windows.Forms.Timer(Me.components)
-        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuItems.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -64,7 +68,7 @@ Partial Class SecheduleItemList
         '
         Me.llblLoadUnsentSessions.Location = New System.Drawing.Point(383, -1)
         Me.llblLoadUnsentSessions.Name = "llblLoadUnsentSessions"
-        Me.llblLoadUnsentSessions.Size = New System.Drawing.Size(125, 20)
+        Me.llblLoadUnsentSessions.Size = New System.Drawing.Size(140, 19)
         Me.llblLoadUnsentSessions.TabIndex = 30
         Me.llblLoadUnsentSessions.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblLoadUnsentSessions.Values.Text = "Load unsent sessions"
@@ -73,7 +77,7 @@ Partial Class SecheduleItemList
         '
         Me.llblLoadAllSessions.Location = New System.Drawing.Point(231, -1)
         Me.llblLoadAllSessions.Name = "llblLoadAllSessions"
-        Me.llblLoadAllSessions.Size = New System.Drawing.Size(101, 20)
+        Me.llblLoadAllSessions.Size = New System.Drawing.Size(114, 19)
         Me.llblLoadAllSessions.TabIndex = 29
         Me.llblLoadAllSessions.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblLoadAllSessions.Values.Text = "Load all sessions"
@@ -95,6 +99,7 @@ Partial Class SecheduleItemList
         Me.olvSchedule.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn29, Me.OlvColumn1, Me.OlvColumn30, Me.OlvColumn16, Me.OlvColumn31, Me.OlvColumn33, Me.OlvColumn32, Me.OlvColumn17, Me.OlvColumn34, Me.OlvColumn35, Me.OlvColumn36})
+        Me.olvSchedule.ContextMenuStrip = Me.ctxmnuItems
         Me.olvSchedule.CopySelectionOnControlC = False
         Me.olvSchedule.CopySelectionOnControlCUsesDragSource = False
         Me.olvSchedule.Dock = System.Windows.Forms.DockStyle.Fill
@@ -104,15 +109,14 @@ Partial Class SecheduleItemList
         Me.olvSchedule.GridLines = True
         Me.olvSchedule.HasCollapsibleGroups = False
         Me.olvSchedule.HideSelection = False
-        Me.olvSchedule.Location = New System.Drawing.Point(0, 20)
-        Me.olvSchedule.MultiSelect = False
+        Me.olvSchedule.Location = New System.Drawing.Point(0, 19)
         Me.olvSchedule.Name = "olvSchedule"
         Me.olvSchedule.OwnerDraw = True
         Me.olvSchedule.SelectAllOnControlA = False
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(898, 493)
+        Me.olvSchedule.Size = New System.Drawing.Size(898, 494)
         Me.olvSchedule.TabIndex = 29
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -126,6 +130,14 @@ Partial Class SecheduleItemList
         Me.OlvColumn29.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn29.Text = "Day"
         Me.OlvColumn29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn1
+        '
+        Me.OlvColumn1.AspectName = "DaysInFuture"
+        Me.OlvColumn1.AspectToStringFormat = "{0:N0}"
+        Me.OlvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn1.Text = "Days"
+        Me.OlvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn30
         '
@@ -197,11 +209,24 @@ Partial Class SecheduleItemList
         Me.OlvColumn36.Text = "Sent"
         Me.OlvColumn36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'ctxmnuItems
+        '
+        Me.ctxmnuItems.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ctxmnuItems.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmailClassToolStripMenuItem})
+        Me.ctxmnuItems.Name = "ctxmnuItems"
+        Me.ctxmnuItems.Size = New System.Drawing.Size(151, 26)
+        '
+        'EmailClassToolStripMenuItem
+        '
+        Me.EmailClassToolStripMenuItem.Name = "EmailClassToolStripMenuItem"
+        Me.EmailClassToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.EmailClassToolStripMenuItem.Text = "&Email class(es)"
+        '
         'txtFilter
         '
         Me.txtFilter.Location = New System.Drawing.Point(39, 0)
         Me.txtFilter.Name = "txtFilter"
-        Me.txtFilter.Size = New System.Drawing.Size(147, 20)
+        Me.txtFilter.Size = New System.Drawing.Size(147, 19)
         Me.txtFilter.TabIndex = 28
         '
         'llblClearFilter
@@ -218,21 +243,22 @@ Partial Class SecheduleItemList
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(898, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(898, 19)
         Me.KryptonLabel2.TabIndex = 26
         Me.KryptonLabel2.Values.Text = "Filter:"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilterSessions
         '
         Me.tmrFilterSessions.Interval = 200
-        '
-        'OlvColumn1
-        '
-        Me.OlvColumn1.AspectName = "DaysInFuture"
-        Me.OlvColumn1.AspectToStringFormat = "{0:N0}"
-        Me.OlvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn1.Text = "Days"
-        Me.OlvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'SecheduleItemList
         '
@@ -247,6 +273,7 @@ Partial Class SecheduleItemList
         Me.KryptonPanel.ResumeLayout(False)
         Me.KryptonPanel.PerformLayout()
         CType(Me.olvSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuItems.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -283,4 +310,7 @@ Partial Class SecheduleItemList
     Friend WithEvents llblLoadAllSessions As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents tmrFilterSessions As System.Windows.Forms.Timer
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents ctxmnuItems As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents EmailClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

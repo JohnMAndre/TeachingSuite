@@ -31,14 +31,17 @@ Partial Class AttendenceErrors
         Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveDateFromSelectedStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.statusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.llblRemoveDateFromStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblAddSessionToClass = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblRemoveDateFromClass = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblAddDateToStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -53,7 +56,7 @@ Partial Class AttendenceErrors
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +80,7 @@ Partial Class AttendenceErrors
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Palette = Me.KryptonPalette1
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonPanel.Size = New System.Drawing.Size(859, 370)
+        Me.KryptonPanel.Size = New System.Drawing.Size(859, 510)
         Me.KryptonPanel.TabIndex = 0
         '
         'KryptonSplitContainer1
@@ -97,6 +100,7 @@ Partial Class AttendenceErrors
         '
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.StatusStrip1)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblRemoveDateFromStudent)
+        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblAddSessionToClass)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblRemoveDateFromClass)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblAddDateToStudent)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.KryptonLabel1)
@@ -105,8 +109,8 @@ Partial Class AttendenceErrors
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.KryptonLabel3)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.olvClassSessions)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.olvStudentSessions)
-        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(859, 370)
-        Me.KryptonSplitContainer1.SplitterDistance = 123
+        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(859, 510)
+        Me.KryptonSplitContainer1.SplitterDistance = 169
         Me.KryptonSplitContainer1.TabIndex = 11
         '
         'olvStudents
@@ -139,7 +143,7 @@ Partial Class AttendenceErrors
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(859, 99)
+        Me.olvStudents.Size = New System.Drawing.Size(859, 145)
         Me.olvStudents.TabIndex = 4
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -203,6 +207,13 @@ Partial Class AttendenceErrors
         Me.OlvColumn7.Text = "Hidden"
         Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'OlvColumn11
+        '
+        Me.OlvColumn11.AspectName = "StudentGroup"
+        Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn11.Text = "Group"
+        Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -228,7 +239,7 @@ Partial Class AttendenceErrors
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadDataToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadDataToolStripMenuItem, Me.RemoveDateFromSelectedStudentToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
@@ -237,13 +248,20 @@ Partial Class AttendenceErrors
         '
         Me.LoadDataToolStripMenuItem.Name = "LoadDataToolStripMenuItem"
         Me.LoadDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.LoadDataToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.LoadDataToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
         Me.LoadDataToolStripMenuItem.Text = "&Load data"
+        '
+        'RemoveDateFromSelectedStudentToolStripMenuItem
+        '
+        Me.RemoveDateFromSelectedStudentToolStripMenuItem.Name = "RemoveDateFromSelectedStudentToolStripMenuItem"
+        Me.RemoveDateFromSelectedStudentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
+        Me.RemoveDateFromSelectedStudentToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.RemoveDateFromSelectedStudentToolStripMenuItem.Text = "Remove &date from selected student"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusLabel})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 220)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 314)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(859, 22)
         Me.StatusStrip1.TabIndex = 58
@@ -258,16 +276,25 @@ Partial Class AttendenceErrors
         '
         Me.llblRemoveDateFromStudent.Location = New System.Drawing.Point(675, 79)
         Me.llblRemoveDateFromStudent.Name = "llblRemoveDateFromStudent"
-        Me.llblRemoveDateFromStudent.Size = New System.Drawing.Size(156, 20)
+        Me.llblRemoveDateFromStudent.Size = New System.Drawing.Size(169, 19)
         Me.llblRemoveDateFromStudent.TabIndex = 57
         Me.llblRemoveDateFromStudent.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblRemoveDateFromStudent.Values.Text = "Remove date from student"
+        '
+        'llblAddSessionToClass
+        '
+        Me.llblAddSessionToClass.Location = New System.Drawing.Point(229, 187)
+        Me.llblAddSessionToClass.Name = "llblAddSessionToClass"
+        Me.llblAddSessionToClass.Size = New System.Drawing.Size(133, 19)
+        Me.llblAddSessionToClass.TabIndex = 56
+        Me.llblAddSessionToClass.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblAddSessionToClass.Values.Text = "Add session to class"
         '
         'llblRemoveDateFromClass
         '
         Me.llblRemoveDateFromClass.Location = New System.Drawing.Point(229, 147)
         Me.llblRemoveDateFromClass.Name = "llblRemoveDateFromClass"
-        Me.llblRemoveDateFromClass.Size = New System.Drawing.Size(156, 20)
+        Me.llblRemoveDateFromClass.Size = New System.Drawing.Size(175, 19)
         Me.llblRemoveDateFromClass.TabIndex = 56
         Me.llblRemoveDateFromClass.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblRemoveDateFromClass.Values.Text = "Remove session from class"
@@ -276,10 +303,10 @@ Partial Class AttendenceErrors
         '
         Me.llblAddDateToStudent.Location = New System.Drawing.Point(229, 79)
         Me.llblAddDateToStudent.Name = "llblAddDateToStudent"
-        Me.llblAddDateToStudent.Size = New System.Drawing.Size(133, 20)
+        Me.llblAddDateToStudent.Size = New System.Drawing.Size(176, 19)
         Me.llblAddDateToStudent.TabIndex = 55
         Me.llblAddDateToStudent.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblAddDateToStudent.Values.Text = "Add date(s) to student"
+        Me.llblAddDateToStudent.Values.Text = "Add date(s) to student ----->"
         '
         'KryptonLabel1
         '
@@ -348,7 +375,7 @@ Partial Class AttendenceErrors
         Me.olvClassSessions.ShowGroups = False
         Me.olvClassSessions.ShowImagesOnSubItems = True
         Me.olvClassSessions.ShowItemCountOnGroups = True
-        Me.olvClassSessions.Size = New System.Drawing.Size(209, 183)
+        Me.olvClassSessions.Size = New System.Drawing.Size(209, 277)
         Me.olvClassSessions.TabIndex = 5
         Me.olvClassSessions.UseAlternatingBackColors = True
         Me.olvClassSessions.UseCompatibleStateImageBehavior = False
@@ -390,13 +417,12 @@ Partial Class AttendenceErrors
         Me.olvStudentSessions.HasCollapsibleGroups = False
         Me.olvStudentSessions.HideSelection = False
         Me.olvStudentSessions.Location = New System.Drawing.Point(433, 34)
-        Me.olvStudentSessions.MultiSelect = False
         Me.olvStudentSessions.Name = "olvStudentSessions"
         Me.olvStudentSessions.SelectAllOnControlA = False
         Me.olvStudentSessions.ShowGroups = False
         Me.olvStudentSessions.ShowImagesOnSubItems = True
         Me.olvStudentSessions.ShowItemCountOnGroups = True
-        Me.olvStudentSessions.Size = New System.Drawing.Size(240, 183)
+        Me.olvStudentSessions.Size = New System.Drawing.Size(240, 277)
         Me.olvStudentSessions.TabIndex = 6
         Me.olvStudentSessions.UseAlternatingBackColors = True
         Me.olvStudentSessions.UseCompatibleStateImageBehavior = False
@@ -419,18 +445,20 @@ Partial Class AttendenceErrors
         Me.OlvColumn8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn8.Width = 105
         '
-        'OlvColumn11
+        'KryptonManager
         '
-        Me.OlvColumn11.AspectName = "StudentGroup"
-        Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn11.Text = "Group"
-        Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'AttendenceErrors
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(859, 370)
+        Me.ClientSize = New System.Drawing.Size(859, 510)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -505,4 +533,7 @@ Partial Class AttendenceErrors
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents statusLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents RemoveDateFromSelectedStudentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents llblAddSessionToClass As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class

@@ -83,27 +83,32 @@ Public Class AttendenceErrors
                 stud.SchoolClass.ClassSessions.Remove(classSession)
                 LoadClassSessions(stud.SchoolClass)
             End If
-            
+
         Catch ex As Exception
             MessageBox.Show("Error adding session to student: " & ex.Message)
         End Try
     End Sub
-
-    Private Sub llblRemoveDateFromStudent_LinkClicked(sender As Object, e As EventArgs) Handles llblRemoveDateFromStudent.LinkClicked
+    Private Sub RemoveDateFromStudent()
         Try
             '-- add this to student
-            If olvStudentSessions.SelectedObject Is Nothing Then
+            If olvStudentSessions.SelectedObjects.Count = 0 Then
                 MessageBox.Show("Please select a session from the student session list.", Application.ProductName)
                 Exit Sub
             End If
-            Dim session As TeachingSession = CType(olvStudentSessions.SelectedObject, TeachingSession)
             Dim stud As Student = CType(olvStudents.SelectedObject, Student)
-            stud.TeachingSessions.Remove(session)
+            'Dim session As TeachingSession = CType(olvStudentSessions.SelectedObject, TeachingSession)
+            For Each session As TeachingSession In olvStudentSessions.SelectedObjects
+                stud.TeachingSessions.Remove(session)
+            Next
 
             LoadStudentSessions(stud)
         Catch ex As Exception
             MessageBox.Show("Error removing session from student: " & ex.Message)
         End Try
+    End Sub
+
+    Private Sub llblRemoveDateFromStudent_LinkClicked(sender As Object, e As EventArgs) Handles llblRemoveDateFromStudent.LinkClicked
+        RemoveDateFromStudent()
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -150,6 +155,31 @@ Public Class AttendenceErrors
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub RemoveDateFromSelectedStudentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveDateFromSelectedStudentToolStripMenuItem.Click
+        RemoveDateFromStudent()
+    End Sub
+
+    Private Sub llblAddSessionToClass_LinkClicked(sender As Object, e As EventArgs) Handles llblAddSessionToClass.LinkClicked
+        Try
+            If olvStudents.SelectedObject IsNot Nothing Then
+                Dim stud As Student = CType(olvStudents.SelectedObject, Student)
+
+
+                Dim objClassSession As New ClassSession()
+                objClassSession.StartDate = Date.Today
+                objClassSession.StudentGroup = 0
+                stud.SchoolClass.ClassSessions.Add(objClassSession)
+
+                LoadClassSessions(stud.SchoolClass)
+
+            Else
+                MessageBox.Show("Please select a student to select the class.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error adding the session to the class: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

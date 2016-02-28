@@ -1018,6 +1018,7 @@ Public Class SchoolClass
     Public Property PlannedSchedule As New List(Of PlannedScheduleItem)
     Public Property ActualSessions As New List(Of ActualSessionItem)
     Public Property EmailSendingAccount As Integer
+    Public Property ClassSessions As New List(Of ClassSession)
     Public Property Notes As String
 
     Public Overrides Function ToString() As String
@@ -1159,7 +1160,6 @@ Public Class SchoolClass
             Return intReturn
         End Get
     End Property
-    Public Property ClassSessions As New List(Of ClassSession)
     Public Sub GenerateAttendaceExport(filename As String)
         '-- create a list with names and dates and export for opening/manipulation in Excel
         Const DELIMITER As String = vbTab
@@ -3297,4 +3297,13 @@ Public Class StudentImprovementItem '-- This is for the student and references t
     Public Property BaseImprovementItem As ImprovementItem
     Public Property DateAdded As Date
     Public Property DateRemoved As Date
+End Class
+
+Public Class EmailRecipient
+    Public Property Name As String
+    Public Property EmailAddress As String
+    Public Sub New(name As String, emailAddress As String)
+        Me.Name = name
+        Me.EmailAddress = emailAddress
+    End Sub
 End Class

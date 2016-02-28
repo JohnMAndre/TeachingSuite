@@ -42,6 +42,7 @@ Partial Class BulkEmailer
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.llblMakeQuiz = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.lblRecipientCount = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -63,8 +64,8 @@ Partial Class BulkEmailer
         Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem25 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.lblRecipientCount = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,14 +175,14 @@ Partial Class BulkEmailer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtLinkAddress.Location = New System.Drawing.Point(49, 172)
         Me.txtLinkAddress.Name = "txtLinkAddress"
-        Me.txtLinkAddress.Size = New System.Drawing.Size(157, 20)
+        Me.txtLinkAddress.Size = New System.Drawing.Size(157, 19)
         Me.txtLinkAddress.TabIndex = 62
         '
         'llblCreateLink
         '
         Me.llblCreateLink.Location = New System.Drawing.Point(8, 174)
         Me.llblCreateLink.Name = "llblCreateLink"
-        Me.llblCreateLink.Size = New System.Drawing.Size(35, 20)
+        Me.llblCreateLink.Size = New System.Drawing.Size(39, 19)
         Me.llblCreateLink.TabIndex = 61
         Me.llblCreateLink.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblCreateLink.Values.Text = "Link:"
@@ -201,7 +202,7 @@ Partial Class BulkEmailer
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(3, 117)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(100, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(107, 19)
         Me.KryptonLabel8.TabIndex = 44
         Me.KryptonLabel8.Values.Text = "hours from now."
         '
@@ -210,7 +211,7 @@ Partial Class BulkEmailer
         Me.nudSendInXHours.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nudSendInXHours.Location = New System.Drawing.Point(146, 89)
         Me.nudSendInXHours.Name = "nudSendInXHours"
-        Me.nudSendInXHours.Size = New System.Drawing.Size(58, 22)
+        Me.nudSendInXHours.Size = New System.Drawing.Size(58, 21)
         Me.nudSendInXHours.TabIndex = 43
         Me.nudSendInXHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudSendInXHours.ThousandsSeparator = True
@@ -220,7 +221,7 @@ Partial Class BulkEmailer
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(4, 196)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(85, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(94, 19)
         Me.KryptonLabel7.TabIndex = 42
         Me.KryptonLabel7.Values.Text = "Message text:"
         '
@@ -259,7 +260,7 @@ Partial Class BulkEmailer
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(3, 91)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(56, 19)
         Me.KryptonLabel5.TabIndex = 34
         Me.KryptonLabel5.Values.Text = "Send in"
         '
@@ -268,7 +269,7 @@ Partial Class BulkEmailer
         Me.nudEmailSendingAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nudEmailSendingAccount.Location = New System.Drawing.Point(161, 8)
         Me.nudEmailSendingAccount.Name = "nudEmailSendingAccount"
-        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 22)
+        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 21)
         Me.nudEmailSendingAccount.TabIndex = 28
         Me.nudEmailSendingAccount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -278,7 +279,7 @@ Partial Class BulkEmailer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubject.Location = New System.Drawing.Point(3, 61)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(201, 20)
+        Me.txtSubject.Size = New System.Drawing.Size(201, 19)
         Me.txtSubject.TabIndex = 29
         '
         'KryptonLabel3
@@ -316,6 +317,14 @@ Partial Class BulkEmailer
         Me.llblMakeQuiz.TabIndex = 63
         Me.llblMakeQuiz.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblMakeQuiz.Values.Text = "Quiz"
+        '
+        'lblRecipientCount
+        '
+        Me.lblRecipientCount.Location = New System.Drawing.Point(328, -1)
+        Me.lblRecipientCount.Name = "lblRecipientCount"
+        Me.lblRecipientCount.Size = New System.Drawing.Size(88, 19)
+        Me.lblRecipientCount.TabIndex = 33
+        Me.lblRecipientCount.Values.Text = "Recipients: 0"
         '
         'olvStudents
         '
@@ -433,7 +442,7 @@ Partial Class BulkEmailer
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(62, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 19)
         Me.txtStudentFilter.TabIndex = 25
         '
         'llblClearFilter
@@ -500,17 +509,18 @@ Partial Class BulkEmailer
         Me.ToolStripMenuItem25.Size = New System.Drawing.Size(107, 22)
         Me.ToolStripMenuItem25.Text = "&About"
         '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'tmrFilterStudents
         '
         Me.tmrFilterStudents.Interval = 200
-        '
-        'lblRecipientCount
-        '
-        Me.lblRecipientCount.Location = New System.Drawing.Point(328, -1)
-        Me.lblRecipientCount.Name = "lblRecipientCount"
-        Me.lblRecipientCount.Size = New System.Drawing.Size(79, 20)
-        Me.lblRecipientCount.TabIndex = 33
-        Me.lblRecipientCount.Values.Text = "Recipients: 0"
         '
         'BulkEmailer
         '
@@ -604,4 +614,5 @@ Partial Class BulkEmailer
     Friend WithEvents txtLinkAddress As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents llblMakeQuiz As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents lblRecipientCount As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class
