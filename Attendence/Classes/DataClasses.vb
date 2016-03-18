@@ -1712,6 +1712,7 @@ Public Class StudentAssignmentBTEC
     Public Property D3Achieved As Boolean
     Public Property OverallComments As String Implements IStudentAssignment.OverallComments
     Public Property ImprovementComments As String Implements IStudentAssignment.ImprovementComments
+    Public Property ObservationComments As String
     Public Property Processed As Boolean Implements IStudentAssignment.Processed '-- means completed, ready to notify student
     Public Property FirstTryPrintDate As Date = DATE_NO_DATE Implements IStudentAssignment.FirstTryPrintDate
     Public Property SecondTryPrintDate As Date = DATE_NO_DATE Implements IStudentAssignment.SecondTryPrintDate
@@ -1741,6 +1742,7 @@ Public Class StudentAssignmentBTEC
 
         OverallComments = xElement.GetAttribute("OverallComments")
         ImprovementComments = xElement.GetAttribute("ImprovementComments")
+        ObservationComments = xElement.GetAttribute("ObservationComments")
         Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
 
         Dim xOutcomeResultList As Xml.XmlNodeList = xElement.SelectNodes("OutcomeResult")
@@ -1781,6 +1783,7 @@ Public Class StudentAssignmentBTEC
 
         xAssignmentElement.SetAttribute("OverallComments", OverallComments)
         xAssignmentElement.SetAttribute("ImprovementComments", ImprovementComments)
+        xAssignmentElement.SetAttribute("ObservationComments", ObservationComments)
         xAssignmentElement.SetAttribute("Processed", Processed)
         xAssignmentElement.SetAttribute("FirstTryPrintDate", FirstTryPrintDate.ToString(DATE_TIME_FORMAT_XML))
         xAssignmentElement.SetAttribute("SecondTryPrintDate", SecondTryPrintDate.ToString(DATE_TIME_FORMAT_XML))

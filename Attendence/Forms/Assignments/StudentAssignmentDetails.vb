@@ -96,6 +96,7 @@ Friend Class StudentAssignmentDetails
 
         rtbOverallComments.Text = m_studentAssignment.OverallComments
         rtbImprovementComments.Text = m_studentAssignment.ImprovementComments
+        rtbObservationComments.Text = m_studentAssignment.ObservationComments
 
         txtNickName.Text = m_student.Nickname
         txtStudentID.Text = m_student.StudentID
@@ -221,6 +222,7 @@ Friend Class StudentAssignmentDetails
 
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
+        m_studentAssignment.ObservationComments = rtbObservationComments.Text
 
         '-- Before we save the StoredResults, we must remove any existing StoredResults
         For Each objRemoveItem As AutoFeedbackToRemove In m_lstAutoFeedbackToRemove
@@ -779,71 +781,6 @@ Friend Class StudentAssignmentDetails
             End With
             oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
-            With oWord.Selection.Find
-                .Text = "@M2"
-                If m_studentAssignment.BaseAssignment.M2Available Then
-                    If chkM2.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-            With oWord.Selection.Find
-                .Text = "@M3"
-                If m_studentAssignment.BaseAssignment.M3Available Then
-                    If chkM3.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
             With oWord.Selection.Find
                 .Text = "@D1"
@@ -878,6 +815,41 @@ Friend Class StudentAssignmentDetails
             End With
             oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
+
+            With oWord.Selection.Find
+                .Text = "@M2"
+                If m_studentAssignment.BaseAssignment.M2Available Then
+                    If chkM2.Checked Then
+                        '-- check mark
+                        .Replacement.ClearFormatting()
+                        .Replacement.Text = CHECKMARK
+                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
+                    Else
+                        '-- X mark
+                        .Replacement.ClearFormatting()
+                        .Replacement.Text = XMARK
+                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
+                    End If
+                Else
+                    .Replacement.Text = String.Empty
+                End If
+                .Forward = True
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Format = True
+                .MatchCase = False
+                .MatchWholeWord = False
+                .MatchKashida = False
+                .MatchDiacritics = False
+                .MatchAlefHamza = False
+                .MatchControl = False
+                .MatchByte = False
+                .MatchWildcards = False
+                .MatchSoundsLike = False
+                .MatchAllWordForms = False
+            End With
+            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+
             With oWord.Selection.Find
                 .Text = "@D2"
                 If m_studentAssignment.BaseAssignment.D2Available Then
@@ -911,6 +883,45 @@ Friend Class StudentAssignmentDetails
             End With
             oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
+
+
+
+            With oWord.Selection.Find
+                .Text = "@M3"
+                If m_studentAssignment.BaseAssignment.M3Available Then
+                    If chkM3.Checked Then
+                        '-- check mark
+                        .Replacement.ClearFormatting()
+                        .Replacement.Text = CHECKMARK
+                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
+                    Else
+                        '-- X mark
+                        .Replacement.ClearFormatting()
+                        .Replacement.Text = XMARK
+                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
+                    End If
+                Else
+                    .Replacement.Text = String.Empty
+                End If
+                .Forward = True
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Format = True
+                .MatchCase = False
+                .MatchWholeWord = False
+                .MatchKashida = False
+                .MatchDiacritics = False
+                .MatchAlefHamza = False
+                .MatchControl = False
+                .MatchByte = False
+                .MatchWildcards = False
+                .MatchSoundsLike = False
+                .MatchAllWordForms = False
+            End With
+            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+            
+
+
             With oWord.Selection.Find
                 .Text = "@D3"
                 If m_studentAssignment.BaseAssignment.D3Available Then
@@ -943,8 +954,6 @@ Friend Class StudentAssignmentDetails
                 .MatchAllWordForms = False
             End With
             oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
 
 
             With oWord.Selection.Find
@@ -1909,4 +1918,5 @@ Friend Class StudentAssignmentDetails
 
         Clipboard.SetText(sb.ToString())
     End Sub
+
 End Class
