@@ -569,7 +569,7 @@ Partial Class StudentAssignmentDetails
         'btnGenerateImprovementComments
         '
         Me.btnGenerateImprovementComments.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGenerateImprovementComments.Location = New System.Drawing.Point(695, 133)
+        Me.btnGenerateImprovementComments.Location = New System.Drawing.Point(695, 60)
         Me.btnGenerateImprovementComments.Name = "btnGenerateImprovementComments"
         Me.btnGenerateImprovementComments.Palette = Me.KryptonPalette1
         Me.btnGenerateImprovementComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
@@ -582,7 +582,7 @@ Partial Class StudentAssignmentDetails
         'btnGenerateImprovementCommentsLate
         '
         Me.btnGenerateImprovementCommentsLate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGenerateImprovementCommentsLate.Location = New System.Drawing.Point(695, 164)
+        Me.btnGenerateImprovementCommentsLate.Location = New System.Drawing.Point(695, 91)
         Me.btnGenerateImprovementCommentsLate.Name = "btnGenerateImprovementCommentsLate"
         Me.btnGenerateImprovementCommentsLate.Palette = Me.KryptonPalette1
         Me.btnGenerateImprovementCommentsLate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
