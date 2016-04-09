@@ -3,6 +3,11 @@ Public Class StudentDetail
     Private m_student As Student
     Private m_class As SchoolClass
 
+    ''' <summary>
+    ''' For adding a new student
+    ''' </summary>
+    ''' <param name="schoolClass"></param>
+    ''' <remarks></remarks>
     Public Sub New(schoolClass As SchoolClass)
 
         ' This call is required by the designer.
@@ -11,7 +16,13 @@ Public Class StudentDetail
         m_class = schoolClass
         rtbLog.AppendText("Student added: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL))
     End Sub
-    Public Sub New(student As Student)
+    ''' <summary>
+    ''' For editing an existing student
+    ''' </summary>
+    ''' <param name="student"></param>
+    ''' <param name="editable">If false, all fields are readonly</param>
+    ''' <remarks></remarks>
+    Public Sub New(student As Student, Optional editable As Boolean = True)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -34,6 +45,44 @@ Public Class StudentDetail
         rtbLog.Text = student.ActivityLog
 
         m_student = student
+
+        If Not editable Then
+            txtLocalName.ReadOnly = True
+            txtNickName.ReadOnly = True
+            txtStudentID.ReadOnly = True
+            txtExtStudentID.ReadOnly = True
+
+            nudAdminNumber.ReadOnly = True
+            nudAdminNumber.Increment = 0
+            nudAltNumber.ReadOnly = True
+            nudAltNumber.Increment = 0
+            nudPresentationQuality.ReadOnly = True
+            nudPresentationQuality.Increment = 0
+            nudWritingQuality.ReadOnly = True
+            nudWritingQuality.Increment = 0
+            nudMaxAbsences.ReadOnly = True
+            nudMaxAbsences.Increment = 0
+            nudPlagiarismSeverity.ReadOnly = True
+            nudPlagiarismSeverity.Increment = 0
+
+            chkHidden.Enabled = False
+            rtbNotes.ReadOnly = True
+            txtEmail.ReadOnly = True
+            txtClass.ReadOnly = True
+            txtClassGroup.ReadOnly = True
+            rtbLog.ReadOnly = True
+
+            chkM1.Enabled = False
+            chkM2.Enabled = False
+            chkM3.Enabled = False
+            chkD1.Enabled = False
+            chkD2.Enabled = False
+            chkD3.Enabled = False
+
+            olvTeachingSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
+            olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
+            olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
+        End If
 
         LoadSessionList()
     End Sub

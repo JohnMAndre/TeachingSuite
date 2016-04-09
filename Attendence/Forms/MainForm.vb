@@ -18,7 +18,23 @@ Public Class MainForm
         If ThisSemester IsNot Nothing Then
             '-- Save back any changes
             ThisSemester.Notes = txtSemesterNotes.Text
-            ThisSemester.Save()
+            Try
+                Throw New Exception("test")
+                ThisSemester.Save()
+            Catch ex As Exception
+                Application.DoEvents()
+                Log(ex)
+                Dim rslt As DialogResult = MessageBox.Show("There was an error saving this semester. Do you want to close WITHOUT saving?" & _
+                                                           Environment.NewLine & Environment.NewLine & "This will cause you to LOSE the DATA since you opened this application.", _
+                                                           Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
+                If rslt = System.Windows.Forms.DialogResult.Yes Then
+                    Log("User chose to close without saving after save error.", 1)
+                    Exit Sub
+                Else
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End Try
 
             '-- backup after saving (in case data file is over written between uses
             MakeBackupDataFile(ThisSemester.Name, "postsave")
@@ -618,6 +634,8 @@ Public Class MainForm
             If ThisSemester IsNot Nothing Then
                 ThisSemester.Notes = txtSemesterNotes.Text
                 ThisSemester.Save()
+
+                UpdateLastSaved()
             End If
             AppSettings.Save()
         Catch ex As Exception
@@ -1790,7 +1808,7 @@ Public Class MainForm
 
     Private Sub tmrAutoSave_Tick(sender As System.Object, e As System.EventArgs) Handles tmrAutoSave.Tick
         If ThisSemester IsNot Nothing Then
-            Me.Text = Application.ProductName & " - " & ThisSemester.Name & " - LastSave: " & ThisSemester.LastSaveDate.ToString("HH:mm")
+            'Me.Text = Application.ProductName & " - " & ThisSemester.Name & " - LastSave: " & ThisSemester.LastSaveDate.ToString("HH:mm")
 
             If AppSettings.AutoSaveEnabled Then
                 Dim ts As TimeSpan = Date.Now - m_dtLastAutoSave
@@ -1799,11 +1817,21 @@ Public Class MainForm
                     AutoSave()
                 End If
 
-                Me.Text &= " - LastAutoSave: " & ThisSemester.LastAutoSaveDate.ToString("HH:mm")
+                'Me.Text &= " - LastAutoSave: " & ThisSemester.LastAutoSaveDate.ToString("HH:mm")
             End If
+
+            UpdateLastSaved()
+
         End If
     End Sub
+    Private Sub UpdateLastSaved()
+        Me.Text = Application.ProductName & " - " & ThisSemester.Name & " - Saved: " & ThisSemester.LastSaveDate.ToString("HH:mm")
 
+        If AppSettings.AutoSaveEnabled Then
+            Me.Text &= " - AutoSaved: " & ThisSemester.LastAutoSaveDate.ToString("HH:mm")
+        End If
+
+    End Sub
     Private Sub AutoSave()
         m_bkgndAutoSave.RunWorkerAsync()
     End Sub

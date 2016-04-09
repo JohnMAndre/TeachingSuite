@@ -255,14 +255,18 @@
                     _mainFormStudentListViewStatePrivate = String.Empty
                 End If
 
-                xElement = xDoc.SelectSingleNode("//MainFormStudentListViewStateAlt")
-                If xElement IsNot Nothing Then
-                    '-- Does not matter the details of the element, if it is there then 
-                    '   we consider premium enabled
-                    PremiumFeaturesEnabled = True
-                Else
-                    PremiumFeaturesEnabled = False
-                End If
+                'xElement = xDoc.SelectSingleNode("//MainFormStudentListViewStateAlt")
+                'If xElement IsNot Nothing Then
+                '    '-- Does not matter the details of the element, if it is there then 
+                '    '   we consider premium enabled
+                '    PremiumFeaturesEnabled = True
+                'Else
+                '    PremiumFeaturesEnabled = False
+                'End If
+
+                '-- 3 April 2016: Changed to make it completely free for everyone
+                PremiumFeaturesEnabled = True
+
 
                 xElement = xDoc.SelectSingleNode("//AttendanceFormStudentListViewState")
                 If xElement IsNot Nothing Then

@@ -22,6 +22,7 @@ Partial Class HistoricalStudentFinder
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HistoricalStudentFinder))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.txtExtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.lblStudentsLoaded = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsSearched = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -50,7 +51,6 @@ Partial Class HistoricalStudentFinder
         Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.v = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtExtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtLocalName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -59,6 +59,7 @@ Partial Class HistoricalStudentFinder
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -67,6 +68,7 @@ Partial Class HistoricalStudentFinder
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.txtExtStudentID)
         Me.KryptonPanel.Controls.Add(Me.lblStudentsLoaded)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel5)
         Me.KryptonPanel.Controls.Add(Me.lblStudentsSearched)
@@ -78,7 +80,6 @@ Partial Class HistoricalStudentFinder
         Me.KryptonPanel.Controls.Add(Me.olvStudents)
         Me.KryptonPanel.Controls.Add(Me.v)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
-        Me.KryptonPanel.Controls.Add(Me.txtExtStudentID)
         Me.KryptonPanel.Controls.Add(Me.txtLocalName)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel8)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
@@ -92,39 +93,48 @@ Partial Class HistoricalStudentFinder
         Me.KryptonPanel.Size = New System.Drawing.Size(820, 438)
         Me.KryptonPanel.TabIndex = 0
         '
+        'txtExtStudentID
+        '
+        Me.txtExtStudentID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtExtStudentID.Location = New System.Drawing.Point(485, 64)
+        Me.txtExtStudentID.Name = "txtExtStudentID"
+        Me.txtExtStudentID.Size = New System.Drawing.Size(235, 19)
+        Me.txtExtStudentID.TabIndex = 65
+        '
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(743, 110)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(742, 110)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsLoaded.TabIndex = 80
         Me.lblStudentsLoaded.Values.Text = "0"
         '
         'KryptonLabel5
         '
         Me.KryptonLabel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel5.Location = New System.Drawing.Point(603, 110)
+        Me.KryptonLabel5.Location = New System.Drawing.Point(594, 110)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(102, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(111, 19)
         Me.KryptonLabel5.TabIndex = 79
         Me.KryptonLabel5.Values.Text = "Students loaded:"
         '
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(743, 90)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(742, 90)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsSearched.TabIndex = 78
         Me.lblStudentsSearched.Values.Text = "0"
         '
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(592, 90)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(579, 90)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
-        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(113, 20)
+        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
         Me.lblStudentsSearchedCaption.TabIndex = 77
         Me.lblStudentsSearchedCaption.Values.Text = "Students searched:"
         '
@@ -141,7 +151,7 @@ Partial Class HistoricalStudentFinder
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(371, 12)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(216, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(234, 19)
         Me.KryptonLabel4.TabIndex = 70
         Me.KryptonLabel4.Values.Text = "* local name supports partial matches"
         '
@@ -346,7 +356,7 @@ Partial Class HistoricalStudentFinder
         '
         Me.v.Location = New System.Drawing.Point(378, 64)
         Me.v.Name = "v"
-        Me.v.Size = New System.Drawing.Size(91, 20)
+        Me.v.Size = New System.Drawing.Size(101, 19)
         Me.v.TabIndex = 66
         Me.v.Values.Text = "Ext Student ID:"
         '
@@ -354,31 +364,22 @@ Partial Class HistoricalStudentFinder
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(75, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel3.TabIndex = 57
         Me.KryptonLabel3.Values.Text = "Local name:"
-        '
-        'txtExtStudentID
-        '
-        Me.txtExtStudentID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtExtStudentID.Location = New System.Drawing.Point(475, 64)
-        Me.txtExtStudentID.Name = "txtExtStudentID"
-        Me.txtExtStudentID.Size = New System.Drawing.Size(245, 20)
-        Me.txtExtStudentID.TabIndex = 65
         '
         'txtLocalName
         '
         Me.txtLocalName.Location = New System.Drawing.Point(93, 12)
         Me.txtLocalName.Name = "txtLocalName"
-        Me.txtLocalName.Size = New System.Drawing.Size(245, 20)
+        Me.txtLocalName.Size = New System.Drawing.Size(245, 19)
         Me.txtLocalName.TabIndex = 58
         '
         'KryptonLabel8
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(378, 38)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(42, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(48, 19)
         Me.KryptonLabel8.TabIndex = 64
         Me.KryptonLabel8.Values.Text = "Email:"
         '
@@ -386,29 +387,29 @@ Partial Class HistoricalStudentFinder
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(12, 38)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel1.TabIndex = 59
         Me.KryptonLabel1.Values.Text = "NickName:"
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(475, 38)
+        Me.txtEmail.Location = New System.Drawing.Point(485, 38)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(245, 20)
+        Me.txtEmail.Size = New System.Drawing.Size(235, 19)
         Me.txtEmail.TabIndex = 63
         '
         'txtNickName
         '
         Me.txtNickName.Location = New System.Drawing.Point(93, 38)
         Me.txtNickName.Name = "txtNickName"
-        Me.txtNickName.Size = New System.Drawing.Size(245, 20)
+        Me.txtNickName.Size = New System.Drawing.Size(245, 19)
         Me.txtNickName.TabIndex = 60
         '
         'KryptonLabel2
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(12, 64)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(71, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(78, 19)
         Me.KryptonLabel2.TabIndex = 62
         Me.KryptonLabel2.Values.Text = "Student ID:"
         '
@@ -416,8 +417,17 @@ Partial Class HistoricalStudentFinder
         '
         Me.txtStudentID.Location = New System.Drawing.Point(93, 64)
         Me.txtStudentID.Name = "txtStudentID"
-        Me.txtStudentID.Size = New System.Drawing.Size(184, 20)
+        Me.txtStudentID.Size = New System.Drawing.Size(184, 19)
         Me.txtStudentID.TabIndex = 61
+        '
+        'KryptonManager
+        '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'Timer1
         '
@@ -492,4 +502,5 @@ Partial Class HistoricalStudentFinder
     Friend WithEvents lblStudentsSearched As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblStudentsSearchedCaption As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

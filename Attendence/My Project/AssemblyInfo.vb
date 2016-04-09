@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Teaching App is an application to manage classes, students, attendance, assignment marking, with many other features needed by teaching professors.")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Teaching App")> 
-<Assembly: AssemblyCopyright("Copyright ©  2012-2015 by John M. Andre")> 
+<Assembly: AssemblyCopyright("Copyright ©  2012-2016 by John M. Andre")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -32,4 +32,4 @@ Imports System.Runtime.InteropServices
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
 <Assembly: AssemblyVersion("1.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.2")> 
+<Assembly: AssemblyFileVersion("1.1.0")> 

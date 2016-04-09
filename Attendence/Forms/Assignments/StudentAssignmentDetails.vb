@@ -102,6 +102,7 @@ Friend Class StudentAssignmentDetails
         txtStudentID.Text = m_student.StudentID
         nudPresentationQuality.Text = m_student.PresentationQuality
         nudWritingQuality.Value = m_student.WritingQuality
+        nudResearchQuality.Value = m_student.ResearchQuality
         txtAssignmentName.Text = m_studentAssignment.BaseAssignment.Name
         nudAltNumber.Text = m_student.AltNumber
         txtSchoolClass.Text = m_student.SchoolClass.Name
@@ -248,6 +249,12 @@ Friend Class StudentAssignmentDetails
             m_student.AddToActivityLog("Changed writing quality from " & m_student.WritingQuality.ToString() & " to " & nudWritingQuality.Value.ToString() & " on " & m_studentAssignment.BaseAssignment.Name)
             m_student.WritingQuality = nudWritingQuality.Value
         End If
+
+        If m_student.ResearchQuality <> nudResearchQuality.Value Then
+            m_student.AddToActivityLog("Changed research quality from " & m_student.ResearchQuality.ToString() & " to " & nudResearchQuality.Value.ToString() & " on " & m_studentAssignment.BaseAssignment.Name)
+            m_student.ResearchQuality = nudResearchQuality.Value
+        End If
+
 
         m_studentAssignment.Processed = chkProcessed.Checked
         If m_student.PlagiarismSeverity <> nudPlagiarismSeverity.Value Then

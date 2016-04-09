@@ -181,6 +181,7 @@ Public Class HistoricalStudentFinder
             Else
                 Dim stud As Student = CType(olvStudents.SelectedObject, Student)
                 cls.Students.Add(stud)
+                stud.SchoolClass = cls '-- need to change this or the data is still tied to the other semester (doesn't update but is confusing for user)
 
                 stud.ClearStudentOfHistoricalData()
 
@@ -196,14 +197,12 @@ Public Class HistoricalStudentFinder
         EditSelectedStudent()
     End Sub
     Private Sub EditSelectedStudent()
-        Using frm As New StudentDetail(CType(olvStudents.SelectedObject, Student))
+        Using frm As New StudentDetail(CType(olvStudents.SelectedObject, Student), False)
             If frm.ShowDialog = DialogResult.OK Then
                 olvStudents.RefreshSelectedObjects()
             End If
         End Using
     End Sub
 
-    Private Sub HistoricalStudentFinder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 End Class

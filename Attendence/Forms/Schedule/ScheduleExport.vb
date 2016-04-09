@@ -66,7 +66,7 @@ Public Class ScheduleExport
                             dtEnd = item.StartDateTime.AddMinutes(item.DurationInMinutes)
                         End If
                         sbMailFile.AppendLine("DTEND:" & dtEnd.ToString("yyyyMMddTHHmm00"))
-                        strSummary = grp.Name & " " & cls.Name & " " & item.Topic & " " & item.Location
+                        strSummary = item.Location & " " & grp.Name & " " & cls.Name & " " & item.Topic
                         sbMailFile.AppendLine("SUMMARY:" & strSummary)
                         sbMailFile.AppendLine("DESCRIPTION:" & item.Notes)
                         If chkSetAlarm.Checked Then
@@ -93,7 +93,7 @@ Public Class ScheduleExport
                                 dtEnd = item.StartDateTime.AddMinutes(item.DurationInMinutes)
                             End If
                             sbRollback.AppendLine("DTEND:" & dtEnd.ToString("yyyyMMddTHHmm00"))
-                            strSummary = grp.Name & " " & cls.Name & " " & item.Topic & " " & item.Location
+                            strSummary = item.Location & " " & grp.Name & " " & cls.Name & " " & item.Topic
                             sbRollback.AppendLine("SUMMARY:" & strSummary)
                             sbRollback.AppendLine("DESCRIPTION:" & item.Notes)
                             If chkSetAlarm.Checked Then
