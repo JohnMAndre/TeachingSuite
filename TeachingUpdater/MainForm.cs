@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,14 @@ using System.Net;
 using System.IO;
 using System.Xml;
 
+
 namespace Teaching
 {
 
+
     public partial class UpdaterForm : Form
     {
+
         private class FileDownloadData
         {
             public string SourceFilename { get; set; }
@@ -77,6 +81,8 @@ namespace Teaching
         {
             // Update progress bars and also start downloading next file (if one exists)
             _intDownloadedAlready += _lstFilesToDownload[0].Size;
+
+            AddStatus("File (" + Path.GetFileName(_lstFilesToDownload[0].DestinationFilename) + ") downloaded.");
 
             // remove file just downloaded
             _lstFilesToDownload.RemoveAt(0);
@@ -143,6 +149,7 @@ namespace Teaching
             }
             else
             {
+                Log(message);
                 txtStatus.Text += Environment.NewLine + message;
                 Application.DoEvents();
             }
@@ -318,6 +325,7 @@ namespace Teaching
                 lblOverall.Visible = true;
                 btnDownload.Enabled = false;
                 btnClose.Focus();
+                _intDownloadedAlready = 0;
                 Application.DoEvents();
 
                 bgwDownloadUpdate.RunWorkerAsync();
@@ -521,15 +529,18 @@ namespace Teaching
                     switch (FileNeedsToBeDownloaded(xFile.InnerText, xFile.GetAttribute("Hash")))
                     {
                         case FileHashMatchesEnum.MatchDownloaded:
+                            AddStatus("File is clean: " + xFile.InnerText);
                             break;// nothing to do
                         case FileHashMatchesEnum.MatchInUse:
                             // if element is here (should have been removed in Download_DoWork)
                             // then we must remove it now
+                            AddStatus("File is clean and present: " + xFile.InnerText);
                             xFile.ParentNode.RemoveChild(xFile);
                             break;
                         case FileHashMatchesEnum.NoMatchDownload:
+                            AddStatus("File is corrupt: " + xFile.InnerText);
                             boolOKToInstall = false;
-                            break; // no need to keep checking. one problem means must run download process again
+                            break; // no need to keep checking. One problem means must run download process again
                     }
                 }
                 if (boolOKToInstall)
@@ -542,7 +553,8 @@ namespace Teaching
                 {
                     // Something is wrong, either something didn't come down or the hash doesn't match
                     EnableDownload();
-                    SetStatus("The download did not complete properly.\r\n\r\nPlease click the download button again.");
+                    AddStatus(string.Empty);
+                    AddStatus("The download did not complete properly.\r\n\r\nPlease click the download button again.");
                 }
             }
             catch (Exception ex)
@@ -602,21 +614,46 @@ namespace Teaching
                             strSourceFilename = Path.Combine(_strUpdateFolder,  xFile.InnerText);
                             strDestinationFilename = Path.Combine(_strInstallFolder, xFile.InnerText);
 
+                            if (strDestinationFilename == System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName))
+                            {
+                                AddStatus("Updating updater...need replacer.");
+
+                            }
+      
+                            if (TransactionalFileChanges.IsRunningProcess(strDestinationFilename))
+                            {
+                                AddStatus("Please close the following: " + System.IO.Path.GetFileNameWithoutExtension(xFile.InnerText));
+                                AddStatus("Then try to install the update again.");
+                                throw new Exception("File in use and cannot be overwritten.");
+                            }
+
                             AddStatus("Updating " + xFile.InnerText);
 
                             // move each file from update folder to App folder
+                            Log("About to move file. Source=" + strSourceFilename + "; Destination=" + strDestinationFilename);
                             trans.MoveFile(strSourceFilename, strDestinationFilename);
+                            Log("Just moved file. Source=" + strSourceFilename + "; Destination=" + strDestinationFilename);
+
+                            if (System.IO.File.Exists(strSourceFilename))
+                                Log("Source is there (should not be). Source=" + strSourceFilename);
+
+                            if (!System.IO.File.Exists(strDestinationFilename))
+                                Log("Destination is not there (should be). Destination=" + strDestinationFilename);
                         }
 
                         // If we did not throw any errors, we should be fine, so commit
                         trans.CommitTransaction();
+                        Log("Just committed transaction.");
                     }
                     catch (Exception ex)
                     {
+                        Log("Error stacktrace: " + ex.StackTrace);
+                        Log("Error: " + ex.Message + " - expecting auto-rollback.");
                         // The transaction should roll itself back automatically
                         // still need to notify the user
                         AddStatus(string.Empty);
-                        AddStatus(ex.InnerException.Message);
+                        if (ex.InnerException != null)
+                            AddStatus(ex.InnerException.Message);
                         e.Cancel = true;
                     }
                 }
@@ -653,6 +690,8 @@ namespace Teaching
         /// <returns></returns>
         private bool VersionIsSameOrLater(string serverVersion, string currentVersion)
         {
+            Log("Checking version. Server version=" + serverVersion + "; Current Version=" + currentVersion);
+
             // 1.0.0 vs. 1.2.3
             int intMajor1, intMinor1, intRevision1;
             int intMajor2, intMinor2, intRevision2;
@@ -718,6 +757,18 @@ namespace Teaching
         private void UpdaterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _appSettings.Save();
+        }
+        private void Log(string text)
+        {
+            string strLogFilename ;
+            strLogFilename = Path.GetDirectoryName(Application.ExecutablePath);
+            strLogFilename = Path.GetDirectoryName(strLogFilename);// go up one level to get to launcher
+            if(!strLogFilename.EndsWith("\\"))
+                strLogFilename += "\\";
+            strLogFilename  += "Data\\Log.txt";
+
+            System.IO.File.AppendAllText(strLogFilename, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  " + text + Environment.NewLine);
+
         }
     }
 }

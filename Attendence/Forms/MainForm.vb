@@ -19,10 +19,8 @@ Public Class MainForm
             '-- Save back any changes
             ThisSemester.Notes = txtSemesterNotes.Text
             Try
-                Throw New Exception("test")
                 ThisSemester.Save()
             Catch ex As Exception
-                Application.DoEvents()
                 Log(ex)
                 Dim rslt As DialogResult = MessageBox.Show("There was an error saving this semester. Do you want to close WITHOUT saving?" & _
                                                            Environment.NewLine & Environment.NewLine & "This will cause you to LOSE the DATA since you opened this application.", _

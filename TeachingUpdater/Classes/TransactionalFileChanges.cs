@@ -355,6 +355,17 @@ class TransactionalFileChanges : IDisposable
 
         return strReturn;
     }
+    /// <summary>
+    /// Returns true of the there is a running process with the same name
+    /// </summary>
+    /// <param name="name">Name of process. Devenv.exe should be passed in as "devenv"</param>
+    /// <returns></returns>
+    public static bool IsRunningProcess(string name)
+    {
+        string strProcessname = System.IO.Path.GetFileNameWithoutExtension(name);
+        System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(strProcessname);
+        return processes.Length > 0;
+    }
         
     #endregion
 }
