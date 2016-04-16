@@ -17,7 +17,7 @@ namespace UpdaterReplacer
             string strSource, strDestination;
             strDestination=System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             strSource=System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            if(System.IO.File.Exists())
+            //if(System.IO.File.Exists())
         }
     }
 }

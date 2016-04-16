@@ -27,7 +27,7 @@ namespace Teaching
             public string Hash { get; set; }
         }
 
-        private bool _boolConsiderBetas;
+        private bool _boolConsiderBetas, _boolUpdaterNeedUpdated;
         private int _intTotalToDownload, _intDownloadedAlready;
         private XmlDocument _xDocVersionData = new XmlDocument();
         private XmlElement _xSelectedVersion;
@@ -105,6 +105,45 @@ namespace Teaching
 
                 VersionUpdateData objUpdateData = UpdateAvailable();
 
+
+                // Before we download EVERY file needed, we must check if the Updater needs updating
+                // if it does, then we must only download that, then replace the updater and re-launch (using updaterReplacer)
+                string strUpdaterFilename = Path.GetFileName(Application.ExecutablePath).ToLower();
+                string strSourceFilename;
+                FileHashMatchesEnum needToDownload;
+
+                XmlNodeList xList = _xSelectedVersion.SelectNodes("Files/File");
+                foreach (XmlElement xFile in xList)
+                {
+                    //  Here we only need to check the updater because this branches the update logic (see comments above)
+                    strSourceFilename = BASE_URL + xFile.GetAttribute("SourceLocation") + "/" + xFile.InnerText;
+
+                     if (Path.GetFileName(strSourceFilename.ToLower()) == strUpdaterFilename)
+                     {
+                         needToDownload = FileNeedsToBeDownloaded(xFile.InnerText.Trim(), xFile.GetAttribute("Hash"));
+
+                         switch (needToDownload)
+                         {
+                            case FileHashMatchesEnum.MatchDownloaded:
+                                 // Do nothing here
+                                 break;
+                            case FileHashMatchesEnum.MatchInUse:
+                                 // This should hit if updater needs replacing and gets relaunched (because 
+                                 // updater will not need updating and it's the only file we care about)
+                                 // Do nothing here
+                                break;
+                            case FileHashMatchesEnum.NoMatchDownload:
+                                 // If we are here, then we know updater needs to be replaced
+                                 // Remove all other files from the list
+                                _boolUpdaterNeedUpdated = true;
+                                 XmlElement xParent = (XmlElement)xFile.ParentNode;
+                                 xParent.RemoveAll();
+                                 xParent.AppendChild(xFile); // Now there should only be a single file to download: the updater
+                                 break;
+                         }
+                     }
+                }
+
                 e.Result = objUpdateData;
 
             }
@@ -136,7 +175,8 @@ namespace Teaching
             }
             else
             {
-                txtStatus.Text = message;
+                txtStatus.Text = string.Empty;
+                AddStatus(message);
                 Application.DoEvents();
             }
         }
@@ -307,7 +347,10 @@ namespace Teaching
                     break;
                 case VersionUpdateData.UpdateTypeEnum.Normal:
                 case VersionUpdateData.UpdateTypeEnum.Beta:
-                    SetStatus("There is a recommended update available. Click the Download button to download it now." + Environment.NewLine + strUpdateDetails);
+                    if (_boolUpdaterNeedUpdated)
+                        SetStatus("The update utility must be replaced before you can update to the latest version. Click the Download button to download it now." + Environment.NewLine + strUpdateDetails);
+                    else
+                        SetStatus("There is a recommended update available. Click the Download button to download it now." + Environment.NewLine + strUpdateDetails);
                     EnableDownload();
                     break;
             }
@@ -344,13 +387,13 @@ namespace Teaching
                 string strSourceFilename, strDestinationFilename;
                 FileHashMatchesEnum needToDownload;
 
-
                 // Ensure update folder exists
                 if (!Directory.Exists(_strUpdateFolder))
                     Directory.CreateDirectory(_strUpdateFolder);
 
                 _intTotalToDownload = 0; // Need to reset for re-download
 
+                
                 XmlNodeList xList = _xSelectedVersion.SelectNodes("Files/File");
                 foreach (XmlElement xFile in xList)
                 {

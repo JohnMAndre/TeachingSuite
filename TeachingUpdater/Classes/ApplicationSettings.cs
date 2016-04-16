@@ -49,7 +49,7 @@ namespace Teaching
         {
             // Save back to Data folder
             try 
-	        {	        
+	        {	
 	            XmlDocument xDoc=new XmlDocument();
 	            xDoc.AppendChild(xDoc.CreateElement("settings"));
                 xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "DateLastChecked", DateLastChecked));

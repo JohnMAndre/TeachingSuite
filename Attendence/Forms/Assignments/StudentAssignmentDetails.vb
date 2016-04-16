@@ -404,7 +404,7 @@ Friend Class StudentAssignmentDetails
         Else
             Select Case intPassedOutcomes
                 Case 0
-                    rtbOverallComments.Text = "Failed all outcomes."
+                    rtbOverallComments.Text = "Referred all outcomes."
                 Case 1
                     If boolPassedAll Then
                         rtbOverallComments.Text = "Passed all remaining outcomes."

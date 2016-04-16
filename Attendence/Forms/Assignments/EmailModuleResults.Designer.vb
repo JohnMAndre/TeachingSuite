@@ -103,6 +103,7 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -138,10 +139,6 @@ Partial Class EmailModuleResults
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -296,7 +293,7 @@ Partial Class EmailModuleResults
         '
         'StudentsToolStripMenuItem
         '
-        Me.StudentsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem1, Me.SethiddenForSelectedToolStripMenuItem, Me.ClearHiddenForSelectedToolStripMenuItem, Me.IncludeattachmentToolStripMenuItem})
+        Me.StudentsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem1, Me.SethiddenForSelectedToolStripMenuItem, Me.ClearHiddenForSelectedToolStripMenuItem, Me.IncludeattachmentToolStripMenuItem, Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem})
         Me.StudentsToolStripMenuItem.Name = "StudentsToolStripMenuItem"
         Me.StudentsToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.StudentsToolStripMenuItem.Text = "&Students"
@@ -305,26 +302,26 @@ Partial Class EmailModuleResults
         '
         Me.LoadToolStripMenuItem1.Name = "LoadToolStripMenuItem1"
         Me.LoadToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.LoadToolStripMenuItem1.Size = New System.Drawing.Size(205, 22)
+        Me.LoadToolStripMenuItem1.Size = New System.Drawing.Size(271, 22)
         Me.LoadToolStripMenuItem1.Text = "&Reload students"
         '
         'SethiddenForSelectedToolStripMenuItem
         '
         Me.SethiddenForSelectedToolStripMenuItem.Name = "SethiddenForSelectedToolStripMenuItem"
-        Me.SethiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.SethiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.SethiddenForSelectedToolStripMenuItem.Text = "Set &hidden for selected"
         '
         'ClearHiddenForSelectedToolStripMenuItem
         '
         Me.ClearHiddenForSelectedToolStripMenuItem.Name = "ClearHiddenForSelectedToolStripMenuItem"
-        Me.ClearHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.ClearHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ClearHiddenForSelectedToolStripMenuItem.Text = "Clear h&idden for selected"
         '
         'IncludeattachmentToolStripMenuItem
         '
         Me.IncludeattachmentToolStripMenuItem.CheckOnClick = True
         Me.IncludeattachmentToolStripMenuItem.Name = "IncludeattachmentToolStripMenuItem"
-        Me.IncludeattachmentToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.IncludeattachmentToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.IncludeattachmentToolStripMenuItem.Text = "Include &attachment"
         Me.IncludeattachmentToolStripMenuItem.ToolTipText = "If checked, the all documents in the selected folder which end with the Student I" & _
     "D will be attached"
@@ -859,6 +856,13 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
+        'UseExtIDuncheckToUseStudentIDToolStripMenuItem
+        '
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.CheckOnClick = True
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Name = "UseExtIDuncheckToUseStudentIDToolStripMenuItem"
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
+        '
         'EmailModuleResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -998,4 +1002,5 @@ Partial Class EmailModuleResults
     Friend WithEvents OlvColumn17 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents UseExtIDuncheckToUseStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -385,7 +385,12 @@ Public Class EmailModuleResults
                     tm.Body = GenerateEmailBodyForStudent(dataItem)
                     tm.SendAsPlainText = False
                     If Me.IncludeattachmentToolStripMenuItem.Checked Then
-                        Dim files() As String = System.IO.Directory.GetFiles(m_strAttachmentPath, "*" & dataItem.Student.StudentID & "*.*")
+                        Dim files() As String
+                        If Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Checked Then
+                            files = System.IO.Directory.GetFiles(m_strAttachmentPath, "*" & dataItem.Student.ExtStudentID & "*.*")
+                        Else
+                            files = System.IO.Directory.GetFiles(m_strAttachmentPath, "*" & dataItem.Student.StudentID & "*.*")
+                        End If
                         For Each strFilename As String In files
                             tm.AddAttachment(strFilename)
                         Next

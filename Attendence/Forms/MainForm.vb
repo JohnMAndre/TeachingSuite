@@ -1892,17 +1892,20 @@ Public Class MainForm
 
     Private Sub ExcuseMostRecentAbsenceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExcuseMostRecentAbsenceToolStripMenuItem.Click
         Try
-            If GetSelectedStudentCanOnlyBeOne() Is Nothing Then
+            Dim stud As Student
+            Dim lstStudents As List(Of Student) = GetSelectedStudents()
+            If lstStudents.Count = 0 Then
                 MessageBox.Show("Please select a student to excuse.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                Dim obj As Student = GetSelectedStudentCanOnlyBeOne()
-                For intCounter = obj.TeachingSessions.Count - 1 To 0 Step -1
-                    If obj.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Absent Then
-                        obj.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Excused
-                        Exit For
-                    End If
+                For Each stud In lstStudents
+                    For intCounter = stud.TeachingSessions.Count - 1 To 0 Step -1
+                        If stud.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Absent Then
+                            stud.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Excused
+                            Exit For
+                        End If
+                    Next
+                    olvStudents.RefreshObject(stud)
                 Next
-                olvStudents.RefreshObject(obj)
             End If
         Catch ex As Exception
             Log(ex)
