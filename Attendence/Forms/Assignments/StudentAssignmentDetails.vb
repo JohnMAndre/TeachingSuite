@@ -114,6 +114,7 @@ Friend Class StudentAssignmentDetails
 
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
         C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments.RichTextBox, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbObservationComments.RichTextBox, True)
         C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments.RichTextBox, True)
 
         Me.olvPassFailFeedback.ImageGetter = New BrightIdeasSoftware.ImageGetterDelegate(AddressOf PassFailImageGetter)
@@ -271,6 +272,8 @@ Friend Class StudentAssignmentDetails
                 MessageBox.Show("Tags changed on this form but also somewhere else. Unclear which tags should be used so tags on this form ignored.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         End If
+
+        AddHistory("Processed student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.ToString() & ").")
 
         Return True
     End Function

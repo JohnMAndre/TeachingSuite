@@ -187,6 +187,8 @@ Public Class AttendenceForm
 
             m_boolDirty = False
 
+            AddHistory("Recorded attendance (" & m_class.ToString() & ").")
+
             Me.DialogResult = DialogResult.OK
 
         Catch ex As Exception

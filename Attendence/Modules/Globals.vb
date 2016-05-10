@@ -120,6 +120,18 @@
     End Function
 
 
+    Private Function GetHistoryLocation() As String
+        Dim strHistoryFilename As String = System.IO.Path.GetFileNameWithoutExtension(ThisSemester.DataFilename) & ".History.txt"
+        Return System.IO.Path.Combine(GetDataFolder(), strHistoryFilename)
+    End Function
+    Public Sub AddHistory(text As String)
+        If ThisSemester Is Nothing Then
+            '-- ignore, there is no semester to worry about
+        Else
+            System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & Environment.NewLine)
+        End If
+    End Sub
+
     Private Function GetErrorLogLocation() As String
         Const LOG_FILENAME As String = "Log.txt"
         Return System.IO.Path.Combine(GetDataFolder(), LOG_FILENAME)

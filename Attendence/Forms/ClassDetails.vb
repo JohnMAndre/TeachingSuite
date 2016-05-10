@@ -42,12 +42,45 @@ Public Class ClassDetails
     End Sub
 
     Private Sub ClassGroupForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        LoadSkipSessions()
-        LoadPlannedSchedule()
-        LoadActualSessions()
+        Try
+            Me.olvActualSessions.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ActualSessionsRowFormatter)
 
-        SetupForLiteVersion()
+            LoadSkipSessions()
+            LoadPlannedSchedule()
+            LoadActualSessions()
+
+            SetupForLiteVersion()
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the class form: " & ex.Message)
+        End Try
+
     End Sub
+    Private Function ActualSessionsRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
+        Dim item As ActualSessionItem = CType(olvi.RowObject, ActualSessionItem)
+
+        Dim COLOR_PAST As Color = Color.LightGray
+        Dim COLOR_PRESENT As Color = Color.Yellow
+        Dim COLOR_FUTURE As Color = Color.White
+        Dim newColor As Color
+
+        If item.StartDateTime.Date < Date.Today.Date Then
+            newColor = COLOR_PAST
+        ElseIf item.StartDateTime.Date > Date.Today.Date Then
+            newColor = COLOR_FUTURE
+        Else
+            newColor = COLOR_PRESENT
+        End If
+
+        If item IsNot Nothing Then
+            olvi.BackColor = newColor
+            For intCounter As Integer = 0 To olvi.SubItems.Count - 1
+                olvi.SubItems(intCounter).BackColor = newColor
+            Next
+        End If
+    End Function
+
     ''' <summary>
     ''' Removes some features for Lite (free) version
     ''' </summary>

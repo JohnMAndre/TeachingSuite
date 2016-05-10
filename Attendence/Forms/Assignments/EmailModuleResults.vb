@@ -421,6 +421,9 @@ Public Class EmailModuleResults
             MessageBox.Show("The following students had problems: " & Environment.NewLine & Environment.NewLine & strProblems, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
+
+        AddHistory("Emailed module results (" & m_clas.ToString() & ") to " & m_lst.Count.ToString("#,##0") & " students.")
+
         lblSendingStatus.Text = "Finished."
         ProgressBar1.Hide()
         btnCancel.Hide()

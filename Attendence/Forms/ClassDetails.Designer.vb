@@ -43,6 +43,7 @@ Partial Class ClassDetails
         Me.MoveupToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.btnShowNormalSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowSkips = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowActualSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -283,6 +284,10 @@ Partial Class ClassDetails
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -502,10 +507,8 @@ Partial Class ClassDetails
         Me.olvActualSessions.Name = "olvActualSessions"
         Me.olvActualSessions.OwnerDraw = True
         Me.olvActualSessions.ShowGroups = False
-        Me.olvActualSessions.ShowImagesOnSubItems = True
         Me.olvActualSessions.Size = New System.Drawing.Size(881, 273)
         Me.olvActualSessions.TabIndex = 76
-        Me.olvActualSessions.UseAlternatingBackColors = True
         Me.olvActualSessions.UseCompatibleStateImageBehavior = False
         Me.olvActualSessions.UseFiltering = True
         Me.olvActualSessions.UseSubItemCheckBoxes = True

@@ -13,6 +13,12 @@ Public Class Semester
     Public Property LastSaveDate As Date
     Public Property LastAutoSaveDate As Date
     Public Property Notes As String
+    Public ReadOnly Property DataFilename As String
+        Get
+            Return m_strFilename
+        End Get
+    End Property
+
 
     Public Event LastSaveChanged(lastSaveDate As Date, lastAutoSaveDate As Date)
 

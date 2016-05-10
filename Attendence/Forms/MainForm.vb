@@ -1182,9 +1182,9 @@ Public Class MainForm
     ''' Will change outcome marks from pass to fail if there are any 'unknown' status on the matching assignment
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub CleanUpStudentAssignments(group As ClassGroup, targetAssignment As ClassAssignmentBTEC, submission As MarkingTry)
+    Private Sub CleanUpStudentAssignments(group As ClassGroup, targetAssignment As IClassAssignment, submission As MarkingTry)
         Try
-            Dim boolAssignmentNotSubmitted As Boolean
+            'Dim boolAssignmentNotSubmitted As Boolean
 
             'For Each group As ClassGroup In ThisSemester.ClassGroups
 
@@ -1290,6 +1290,8 @@ Public Class MainForm
                 Case MarkingTry.ThirdTry
                     targetAssignment.ClosedThirdTry = True
             End Select
+
+            AddHistory("Closed assignment: " & targetAssignment.Name & " (" & submission.ToString() & ")")
         Catch ex As Exception
             MessageBox.Show("There was an error cleaning up the student assignments: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try

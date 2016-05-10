@@ -226,6 +226,8 @@
             m_student.PlagiarismSeverity = nudPlagiarismSeverity.Value
         End If
 
+        AddHistory("Processed student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.ToString() & ").")
+
         Return True
     End Function
 
