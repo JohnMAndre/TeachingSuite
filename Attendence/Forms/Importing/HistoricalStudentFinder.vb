@@ -186,6 +186,9 @@ Public Class HistoricalStudentFinder
                 stud.ClearStudentOfHistoricalData()
 
                 olvStudents.RemoveObject(stud)
+
+                AddHistory("Added historical student (" & stud.ToString() & ") to class (" & cls.ToString() & ").")
+
             End If
         Catch ex As Exception
             MessageBox.Show("There was an error adding students to the class (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -93,6 +93,7 @@ Public Class ImportStudentsFromSemester
             stu.ActivityLog = String.Empty '-- clear log on import
         Next
 
+        AddHistory("Imported students from previous semester (Prev Semester: " & m_sourceSemester.Name & ", Class: " & m_TargetClass.ToString() & ", Students: " & olvStudents.SelectedObjects.Count.ToString("#,##0") & ").")
 
 
         Me.DialogResult = DialogResult.OK

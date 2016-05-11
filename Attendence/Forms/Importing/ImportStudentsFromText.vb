@@ -77,6 +77,9 @@ Public Class ImportStudentsFromText
                 Me.DialogResult = DialogResult.Cancel
             End If
 
+            AddHistory("Imported students from spreadsheet (Class: " & m_class.ToString() & ", Students: " & intStudentsImported.ToString("#,##0") & ").")
+
+
             Close()
         Catch ex As Exception
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)

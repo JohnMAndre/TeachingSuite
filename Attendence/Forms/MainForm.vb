@@ -1026,6 +1026,8 @@ Public Class MainForm
     End Sub
 
     Private Sub QuitWithoutSavingToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles QuitWithoutSavingToolStripMenuItem.Click
+        AddHistory("Closed without savin.")
+
         ThisSemester = Nothing '-- this will stop backing and saving logic from firing
         Close()
     End Sub
@@ -2523,29 +2525,38 @@ Public Class MainForm
         BatchSaveMarkingSheets(MarkingTry.ThirdTry)
     End Sub
 
+    Private Sub LoadSchoolClassForSession(session As ActualSessionItem)
+        Dim objClass As SchoolClass = session.SchoolClass
+        Dim objGroup As ClassGroup = session.SchoolClass.ClassGroup
+
+        '-- Select the group, then the class
+        For Each grp As ClassGroup In lstClassGroups.Items
+            If grp Is objGroup Then
+                lstClassGroups.SelectedItem = grp
+                Exit For
+            End If
+        Next
+
+        For Each cls As SchoolClass In lstClasses.Items
+            If cls Is objClass Then
+                lstClasses.SelectedItem = objClass
+                Exit For
+            End If
+        Next
+    End Sub
     Private Sub LoadClassToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadClassToolStripMenuItem.Click
-        If olvSchedule.SelectedObject IsNot Nothing Then
-            Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
-            Dim objClass As SchoolClass = item.SchoolClass
-            Dim objGroup As ClassGroup = item.SchoolClass.ClassGroup
+        Try
+            If olvSchedule.SelectedObject IsNot Nothing Then
+                Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
+                LoadSchoolClassForSession(item)
+            Else
+                MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
 
-            '-- Select the group, then the class
-            For Each grp As ClassGroup In lstClassGroups.Items
-                If grp Is objGroup Then
-                    lstClassGroups.SelectedItem = grp
-                    Exit For
-                End If
-            Next
-
-            For Each cls As SchoolClass In lstClasses.Items
-                If cls Is objClass Then
-                    lstClasses.SelectedItem = objClass
-                    Exit For
-                End If
-            Next
-        Else
-            MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the scheduled session: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
 
@@ -2636,6 +2647,29 @@ Public Class MainForm
             End If
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub LoadCurrentClassToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadCurrentClassToolStripMenuItem.Click
+        Try
+            Dim ts As TimeSpan
+            For Each group As ClassGroup In ThisSemester.ClassGroups
+                For Each cls As SchoolClass In group.Classes
+                    For Each sess As ActualSessionItem In cls.ActualSessions
+                        If sess.StartDateTime <= Date.Now Then
+                            ts = Date.Now - sess.StartDateTime
+                            If ts.TotalMinutes < sess.DurationInMinutes Then
+                                '-- we have our current class
+                                LoadSchoolClassForSession(sess)
+                                Exit Sub
+                            End If
+                        End If
+                    Next
+                Next
+            Next
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the current class: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

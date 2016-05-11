@@ -128,7 +128,13 @@
         If ThisSemester Is Nothing Then
             '-- ignore, there is no semester to worry about
         Else
-            System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & Environment.NewLine)
+            Dim strSemester As String
+            If ThisSemester Is Nothing Then
+                strSemester = "No semester loaded"
+            Else
+                strSemester = ThisSemester.Name
+            End If
+            System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
         End If
     End Sub
 

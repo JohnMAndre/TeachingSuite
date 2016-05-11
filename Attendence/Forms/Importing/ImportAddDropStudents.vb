@@ -203,6 +203,8 @@
                 stud.Tags &= " Dropped " & Date.Now.ToString()
             Next
 
+            AddHistory("Processed Add-Drop students (" & m_class.ToString() & ").")
+
             Me.Close()
         Catch ex As Exception
             MessageBox.Show("There was a problem processing the data (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -101,6 +101,7 @@ Partial Class MainForm
         Me.OlvColumn26 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn27 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ctxmnuStudents = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MeritToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -285,7 +286,7 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.LoadCurrentClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -1130,6 +1131,15 @@ Partial Class MainForm
         Me.OlvColumn28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn28.ToolTipText = "Research quality of student"
         '
+        'OlvColumn6
+        '
+        Me.OlvColumn6.AspectName = "DateOfBirth"
+        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.Text = "DoB"
+        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.ToolTipText = "Date of Birth"
+        '
         'ctxmnuStudents
         '
         Me.ctxmnuStudents.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -1955,7 +1965,7 @@ Partial Class MainForm
         '
         'ActionsToolStripMenuItem
         '
-        Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TakeAttendenceToolStripMenuItem, Me.ToolStripSeparator3, Me.ExamToolStripMenuItem, Me.ExamRedoToolStripMenuItem, Me.Exam2ndRedoToolStripMenuItem, Me.ToolStripSeparator4, Me.MarkSelectedAssignmentToolStripMenuItem, Me.EmailAssignmentResultsToolStripMenuItem, Me.SendBulkEmailToolStripMenuItem, Me.EmailOnlineQuizResultsToolStripMenuItem, Me.FormGroupsToolStripMenuItem, Me.ToolStripSeparator15, Me.BatchSaveMarkingSheetsToolStripMenuItem})
+        Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TakeAttendenceToolStripMenuItem, Me.LoadCurrentClassToolStripMenuItem, Me.ToolStripSeparator3, Me.ExamToolStripMenuItem, Me.ExamRedoToolStripMenuItem, Me.Exam2ndRedoToolStripMenuItem, Me.ToolStripSeparator4, Me.MarkSelectedAssignmentToolStripMenuItem, Me.EmailAssignmentResultsToolStripMenuItem, Me.SendBulkEmailToolStripMenuItem, Me.EmailOnlineQuizResultsToolStripMenuItem, Me.FormGroupsToolStripMenuItem, Me.ToolStripSeparator15, Me.BatchSaveMarkingSheetsToolStripMenuItem})
         Me.ActionsToolStripMenuItem.Name = "ActionsToolStripMenuItem"
         Me.ActionsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ActionsToolStripMenuItem.Text = "&Actions"
@@ -2563,14 +2573,13 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'OlvColumn6
+        'LoadCurrentClassToolStripMenuItem
         '
-        Me.OlvColumn6.AspectName = "DateOfBirth"
-        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.Text = "DoB"
-        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.ToolTipText = "Date of Birth"
+        Me.LoadCurrentClassToolStripMenuItem.Name = "LoadCurrentClassToolStripMenuItem"
+        Me.LoadCurrentClassToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
+        Me.LoadCurrentClassToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.LoadCurrentClassToolStripMenuItem.Text = "&Load current class"
         '
         'MainForm
         '
@@ -2931,4 +2940,5 @@ Partial Class MainForm
     Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents ExportEntireSemesterAsXMLToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents LoadCurrentClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
