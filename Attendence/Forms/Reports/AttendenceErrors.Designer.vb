@@ -57,6 +57,7 @@ Partial Class AttendenceErrors
         Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.cboStatus = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +71,7 @@ Partial Class AttendenceErrors
         Me.StatusStrip1.SuspendLayout()
         CType(Me.olvClassSessions, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvStudentSessions, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -98,6 +100,7 @@ Partial Class AttendenceErrors
         '
         'KryptonSplitContainer1.Panel2
         '
+        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.cboStatus)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.StatusStrip1)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblRemoveDateFromStudent)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblAddSessionToClass)
@@ -283,7 +286,7 @@ Partial Class AttendenceErrors
         '
         'llblAddSessionToClass
         '
-        Me.llblAddSessionToClass.Location = New System.Drawing.Point(229, 187)
+        Me.llblAddSessionToClass.Location = New System.Drawing.Point(229, 222)
         Me.llblAddSessionToClass.Name = "llblAddSessionToClass"
         Me.llblAddSessionToClass.Size = New System.Drawing.Size(133, 19)
         Me.llblAddSessionToClass.TabIndex = 56
@@ -292,7 +295,7 @@ Partial Class AttendenceErrors
         '
         'llblRemoveDateFromClass
         '
-        Me.llblRemoveDateFromClass.Location = New System.Drawing.Point(229, 147)
+        Me.llblRemoveDateFromClass.Location = New System.Drawing.Point(229, 182)
         Me.llblRemoveDateFromClass.Name = "llblRemoveDateFromClass"
         Me.llblRemoveDateFromClass.Size = New System.Drawing.Size(175, 19)
         Me.llblRemoveDateFromClass.TabIndex = 56
@@ -447,12 +450,21 @@ Partial Class AttendenceErrors
         '
         'KryptonManager
         '
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        '
+        'cboStatus
+        '
+        Me.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboStatus.DropDownWidth = 121
+        Me.cboStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Removed", "Late", "Excused"})
+        Me.cboStatus.Location = New System.Drawing.Point(229, 104)
+        Me.cboStatus.Name = "cboStatus"
+        Me.cboStatus.Size = New System.Drawing.Size(176, 20)
+        Me.cboStatus.TabIndex = 59
         '
         'AttendenceErrors
         '
@@ -484,6 +496,7 @@ Partial Class AttendenceErrors
         Me.StatusStrip1.PerformLayout()
         CType(Me.olvClassSessions, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvStudentSessions, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -536,4 +549,5 @@ Partial Class AttendenceErrors
     Friend WithEvents RemoveDateFromSelectedStudentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents llblAddSessionToClass As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents cboStatus As ComponentFactory.Krypton.Toolkit.KryptonComboBox
 End Class
