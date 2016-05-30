@@ -1153,6 +1153,23 @@ Public Class SchoolClass
             MessageBox.Show("There was an error auto generating actual sessions.", Application.ProductName)
         End Try
     End Sub
+    ''' <summary>
+    ''' Will return the class session topic for the date/group combination. If there are multiple sessions on the same date, only the first will be used (could cause some confusion).
+    ''' </summary>
+    ''' <param name="startDate"></param>
+    ''' <param name="studentGroup"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetSessionTopic(startDate As Date, studentGroup As Integer) As ActualSessionItem
+        For Each actualSession As ActualSessionItem In Me.ActualSessions
+            If actualSession.StartDateTime.Date = startDate AndAlso (actualSession.StudentGroup = 0 OrElse actualSession.StudentGroup = studentGroup) Then
+                '-- just return the first match
+                Return actualSession
+            End If
+        Next
+
+        Return Nothing '-- no match
+    End Function
 
     Public ReadOnly Property HiddenStudents As Integer
         Get
@@ -2988,7 +3005,7 @@ Public Class Student
 
         Dim xSessionList As Xml.XmlNodeList = xElement.SelectNodes("Session")
         For Each xSessionNode As Xml.XmlElement In xSessionList
-            Dim objSession As New TeachingSession(xSessionNode)
+            Dim objSession As New TeachingSession(xSessionNode, Me)
 
 
             '== This block of logic is used when user takes attendance for the wrong module and 
@@ -3238,17 +3255,19 @@ Public Class TeachingSession
     Public Property StartDate As Date
     Public Property AttendenceStatus As AttendenceStatusEnum
     Public Property Notes As String
+    Public Property Student As Student
 
     Public Sub New()
 
     End Sub
-    Public Sub New(xElement As Xml.XmlElement)
+    Public Sub New(xElement As Xml.XmlElement, student As Student)
         StartDate = Xml.XmlConvert.ToDateTime(xElement.GetAttribute("Date"), Xml.XmlDateTimeSerializationMode.Unspecified)
 
         Dim strValue As String = xElement.GetAttribute("Status")
         AttendenceStatus = [Enum].Parse(GetType(AttendenceStatusEnum), strValue, True)
 
         Notes = xElement.GetAttribute("Notes")
+        Me.Student = student
 
     End Sub
 

@@ -2,6 +2,24 @@ Public Class StudentDetail
 
     Private m_student As Student
     Private m_class As SchoolClass
+    Private m_lstRickerTeachingSessionData As New List(Of RicherTeachingSession)
+
+    Public Class RicherTeachingSession
+        Private m_objActualClassSession As ActualSessionItem
+      
+        Public Property TeachingSession As TeachingSession
+        Public ReadOnly Property ActualSessionItem As ActualSessionItem
+            Get
+                Return m_objActualClassSession
+            End Get
+        End Property
+
+        Public Sub New(teachingSession As TeachingSession)
+            Me.TeachingSession = teachingSession
+            m_objActualClassSession = teachingSession.Student.SchoolClass.GetSessionTopic(teachingSession.StartDate, teachingSession.Student.StudentGroup)
+        End Sub
+
+    End Class
 
     ''' <summary>
     ''' For adding a new student
@@ -43,6 +61,7 @@ Public Class StudentDetail
         txtClass.Text = student.SchoolClass.Name
         txtClassGroup.Text = student.SchoolClass.ClassGroup.Name
         rtbLog.Text = student.ActivityLog
+        txtTags.Text = student.Tags
 
         m_student = student
 
@@ -84,7 +103,6 @@ Public Class StudentDetail
             olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
         End If
 
-        LoadSessionList()
     End Sub
     Private Sub StudentDetail_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.olvOutcomes.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
@@ -113,7 +131,7 @@ Public Class StudentDetail
         AddHandler rtbNotes.RichTextBox.DoubleClick, AddressOf rtbNotes_DoubleClick
     End Sub
     Private Function AttendanceRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
-        Dim item As TeachingSession = CType(olvi.RowObject, TeachingSession)
+        Dim item As RicherTeachingSession = CType(olvi.RowObject, RicherTeachingSession)
 
         Dim PRESENT_COLOR As Color = Color.LightGreen
         Dim EXCUSED_COLOR As Color = Color.Yellow
@@ -121,7 +139,7 @@ Public Class StudentDetail
         Dim OTHER_COLOR As Color = Color.White
         Dim newColor As Color
 
-        Select Case item.AttendenceStatus
+        Select Case item.TeachingSession.AttendenceStatus
             Case AttendenceStatusEnum.Absent
                 newColor = ABSENT_COLOR
             Case AttendenceStatusEnum.Present
@@ -165,9 +183,26 @@ Public Class StudentDetail
         End If
     End Function
     Private Sub LoadSessionList()
-        If m_student IsNot Nothing Then
-            olvTeachingSessions.SetObjects(m_student.TeachingSessions)
-        End If
+        Try
+            If m_student IsNot Nothing Then
+                '-- This was the old way
+                'olvTeachingSessions.SetObjects(m_student.TeachingSessions)
+
+                '-- Populate the teaching topics for each session
+                Dim objRichSession As RicherTeachingSession
+                For Each session As TeachingSession In m_student.TeachingSessions
+                    objRichSession = New RicherTeachingSession(session)
+                    m_lstRickerTeachingSessionData.Add(objRichSession)
+                Next
+
+                '-- Now load the list
+                olvTeachingSessions.SetObjects(m_lstRickerTeachingSessionData)
+
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the teaching sessions for this student: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Private Sub LoadAssignments()
         If m_student IsNot Nothing Then
@@ -226,6 +261,7 @@ Public Class StudentDetail
         m_student.AdminNumber = nudAdminNumber.Value
         m_student.Hidden = chkHidden.Checked
         m_student.EmailAddress = txtEmail.Text.Trim()
+        m_student.Tags = txtTags.Text
     End Sub
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         If m_student Is Nothing Then
@@ -244,6 +280,8 @@ Public Class StudentDetail
         m_student.EmailAddress = txtEmail.Text.Trim()
         m_student.PlagiarismSeverity = nudPlagiarismSeverity.Value
         m_student.WritingQuality = nudWritingQuality.Value
+        m_student.Tags = txtTags.Text
+
         'm_student.ActivityLog = rtbLog.Text
 
         Me.DialogResult = DialogResult.OK
