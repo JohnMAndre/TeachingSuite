@@ -107,7 +107,9 @@ namespace Teaching
 
 
                 // Before we download EVERY file needed, we must check if the Updater needs updating
-                // if it does, then we must only download that, then replace the updater and re-launch (using updaterReplacer)
+                // if it does, then we must only download that, then replace the updater and re-launch using calling app
+                // That means, if Updater needs updated, we will download just that file with an appended identifier (.toreplace)
+                // and then we launch the caller and the caller will replace the updater and re-launch the (new) updater
                 string strUpdaterFilename = Path.GetFileName(Application.ExecutablePath).ToLower();
                 string strSourceFilename;
                 FileHashMatchesEnum needToDownload;
@@ -124,15 +126,15 @@ namespace Teaching
 
                          switch (needToDownload)
                          {
-                            case FileHashMatchesEnum.MatchDownloaded:
-                                 // Do nothing here
-                                 break;
                             case FileHashMatchesEnum.MatchInUse:
                                  // This should hit if updater needs replacing and gets relaunched (because 
                                  // updater will not need updating and it's the only file we care about)
                                  // Do nothing here
                                 break;
+                            case FileHashMatchesEnum.MatchDownloaded:
                             case FileHashMatchesEnum.NoMatchDownload:
+                                 // Whether the file has been downloaded or not means nothing, we still continue with the same logic
+                                 //
                                  // If we are here, then we know updater needs to be replaced
                                  // Remove all other files from the list
                                 _boolUpdaterNeedUpdated = true;
@@ -361,7 +363,10 @@ namespace Teaching
         {
             try
             {
-                SetStatus("Downloading the latest version.");
+                if (_boolUpdaterNeedUpdated)
+                    SetStatus("Downloading the latest version of the update utility.");
+                else
+                    SetStatus("Downloading the latest version.");
                 prgCurrentFile.Visible = true;
                 prgOverall.Visible = true;
                 lblCurrent.Visible = true;
@@ -590,7 +595,11 @@ namespace Teaching
                 {
                     // Everything seems fine, enable the install button
                     EnableInstall();
-                    SetStatus("The update is ready. Please click the Install button.");
+                    if(_boolUpdaterNeedUpdated)
+                        SetStatus("The update is ready. Please click the Install button to replace the updater and re-launch.");
+                    else
+                        SetStatus("The update is ready. Please click the Install button.");
+
                 }
                 else
                 {
@@ -657,10 +666,18 @@ namespace Teaching
                             strSourceFilename = Path.Combine(_strUpdateFolder,  xFile.InnerText);
                             strDestinationFilename = Path.Combine(_strInstallFolder, xFile.InnerText);
 
-                            if (strDestinationFilename == System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName))
+                            if (strDestinationFilename == System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName)
                             {
-                                AddStatus("Updating updater...need replacer.");
+                                // Actually, all we will do is pass the source and destination to the updaterReplacer and it will copy it over for us
+                                // and relaunch
+                                string strReplacer = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                                strReplacer = System.IO.Path.Combine(strReplacer, "UpdaterReplacer.exe");
 
+                                string strParms = "\"" + strSourceFilename + "\" \"" + strDestinationFilename + "\"";
+                                System.Diagnostics.Process.Start(strReplacer, strParms);
+
+                                // Now kill this thread ASAP so we don't have an overwrite problem
+                                Application.ExitThread();
                             }
       
                             if (TransactionalFileChanges.IsRunningProcess(strDestinationFilename))
