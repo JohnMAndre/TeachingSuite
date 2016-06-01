@@ -23,16 +23,23 @@ namespace UpdaterReplacer
                 string strDestination = args[2];
                 string strCallbackParms = args[3];
 
+                Console.WriteLine("Please wait while the Teaching App update utility is updated to the latest version.");
+
                 
                 System.Threading.Thread.Sleep(1500);
+
+                if (System.IO.File.Exists(strDestination))
+                    System.IO.File.Delete(strDestination);
+
+                System.IO.File.Move(strSource, strDestination);
 
                 if (System.IO.File.Exists(strLogfile))
                     System.IO.File.AppendAllText(strLogfile, "UpdaterReplacer Replaced updater: Source: " + strSource + "; Destination: " + strDestination + Environment.NewLine);
 
-                System.Diagnostics.Process.Start(strDestination);
+                System.Diagnostics.Process.Start(strDestination, strCallbackParms);
 
                 if (System.IO.File.Exists(strLogfile))
-                    System.IO.File.AppendAllText(strLogfile, "UpdaterReplacer Launched: " + strDestination + Environment.NewLine);
+                    System.IO.File.AppendAllText(strLogfile, "UpdaterReplacer Launched: " + strDestination + "; Parms: " + strCallbackParms + Environment.NewLine);
          
             }
             catch (Exception ex)
