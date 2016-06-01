@@ -73,8 +73,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\SupportFiles\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="ObjectListView">
-      <HintPath>..\..\TrulyMail\SupportFiles\ObjectListView.dll</HintPath>
+    <Reference Include="ObjectListView, Version=2.5.0.31097, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SupportFiles\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -771,6 +772,10 @@
     <ProjectReference Include="..\TeachingUpdater\TeachingUpdater.csproj">
       <Project>{f660b14f-c160-4de2-8694-15a311f4e3a4}</Project>
       <Name>TeachingUpdater</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UpdaterReplacer\UpdaterReplacer.csproj">
+      <Project>{9660f637-e093-48d5-959b-7a680f645b8e}</Project>
+      <Name>UpdaterReplacer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

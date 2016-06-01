@@ -644,7 +644,7 @@ namespace Teaching
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            SetStatus("Installing updates...please wait.");
+            SetStatus("Installing updates...please wait."); 
             bgwInstallUpdate.RunWorkerAsync();
         }
 
