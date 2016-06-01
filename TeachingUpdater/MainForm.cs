@@ -33,7 +33,7 @@ namespace Teaching
         private XmlElement _xSelectedVersion;
         private string _strUpdateFolder;
         private string _strInstallFolder;
-        private string _currentVersion;
+        private string _strCurrentVersion;
         private ApplicationSettings _appSettings;
 
         DateTime _dtDefault = new DateTime(2010, 1, 1);
@@ -60,7 +60,7 @@ namespace Teaching
             InitializeComponent();
 
             _boolConsiderBetas = considerBetas;
-            _currentVersion = currentVersion;
+            _strCurrentVersion = currentVersion;
         }
 
         private void B_Load(object sender, EventArgs e)
@@ -265,7 +265,7 @@ namespace Teaching
                                     _xSelectedVersion = xVersion;
                                     
                                     // This is the latest version but we must see if it is newer than the current version
-                                    if(VersionIsSameOrLater(strServerVersion, _currentVersion))
+                                    if(VersionIsSameOrLater(strServerVersion, _strCurrentVersion))
                                     {
                                         // No need for an update, current version is the latest
                                         objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.NoUpdate;
@@ -290,7 +290,7 @@ namespace Teaching
                                 objReturn.UpdateDateAvailable = dtReleaseDate;
                                 _xSelectedVersion = xVersion;
 
-                                if (VersionIsSameOrLater(strServerVersion, _currentVersion))
+                                if (VersionIsSameOrLater(strServerVersion, _strCurrentVersion))
                                 {
                                     // No need for an update, current version is the latest
                                     objReturn.UpdateType = VersionUpdateData.UpdateTypeEnum.NoUpdate;
@@ -333,9 +333,9 @@ namespace Teaching
             string strUpdateDetails;
 
             if (objUpdateData.UpdateType == VersionUpdateData.UpdateTypeEnum.Beta)
-                strUpdateDetails = Environment.NewLine + "Your current version: " + _currentVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "New version is a beta update, not yet available to all users.";
+                strUpdateDetails = Environment.NewLine + "Your current version: " + _strCurrentVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "New version is a beta update, not yet available to all users.";
             else
-                strUpdateDetails = Environment.NewLine + "Your current version: " + _currentVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "Date available to all users: " + objUpdateData.UpdateDateAvailable.ToString("dd MMMM yyyy");
+                strUpdateDetails = Environment.NewLine + "Your current version: " + _strCurrentVersion + Environment.NewLine + "Latest version: " + objUpdateData.LatestVersion + Environment.NewLine + "Date available to all users: " + objUpdateData.UpdateDateAvailable.ToString("dd MMMM yyyy");
 
             switch (objUpdateData.UpdateType)
             {
@@ -673,11 +673,17 @@ namespace Teaching
                                 string strReplacer = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
                                 strReplacer = System.IO.Path.Combine(strReplacer, "UpdaterReplacer.exe");
 
-                                string strParms = "\"" + strSourceFilename + "\" \"" + strDestinationFilename + "\"";
+                                string strParms;
+                                strParms = "\"" + LogFileLocation() + "\"";
+                                strParms += " \"" + strSourceFilename + "\" \"" + strDestinationFilename + "\"";
+                                strParms += " \"" + _strCurrentVersion + " " + _boolConsiderBetas + "\""; // callback parms used when relaunching this app
+                                Log("Updater calling UpdaterReplacer. Parms: " + strParms);
                                 System.Diagnostics.Process.Start(strReplacer, strParms);
 
+
                                 // Now kill this thread ASAP so we don't have an overwrite problem
-                                Application.ExitThread();
+                                Application.Exit();
+                                return;
                             }
       
                             if (TransactionalFileChanges.IsRunningProcess(strDestinationFilename))
@@ -816,16 +822,24 @@ namespace Teaching
 
         private void UpdaterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _appSettings.Save();
+            if(!_boolUpdaterNeedUpdated)
+                _appSettings.Save();
+        }
+        private string LogFileLocation()
+        {
+            string strLogFilename;
+            strLogFilename = Path.GetDirectoryName(Application.ExecutablePath);
+            strLogFilename = Path.GetDirectoryName(strLogFilename);// go up one level to get to launcher
+            if (!strLogFilename.EndsWith("\\"))
+                strLogFilename += "\\";
+            strLogFilename += "Data\\Log.txt";
+
+            return strLogFilename;
         }
         private void Log(string text)
         {
-            string strLogFilename ;
-            strLogFilename = Path.GetDirectoryName(Application.ExecutablePath);
-            strLogFilename = Path.GetDirectoryName(strLogFilename);// go up one level to get to launcher
-            if(!strLogFilename.EndsWith("\\"))
-                strLogFilename += "\\";
-            strLogFilename  += "Data\\Log.txt";
+
+            string strLogFilename = LogFileLocation();
 
             System.IO.File.AppendAllText(strLogFilename, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  " + text + Environment.NewLine);
 
