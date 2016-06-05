@@ -2232,9 +2232,53 @@ Public Class OutcomeResult
     End Function
 End Class
 
+Public Enum BTECGradeGroup
+    Pass
+    Merit
+    Distinction
+End Enum
+Public Enum BTECGrade
+    Referral
+    Pass
+    Merit
+    Distinction
+End Enum
+'Public Class BTECGradingCriteria
+'    Public ID As String
+'    Public GradeGroup As BTECGradeGroup '-- Pass, etc.
+'    Public Name As String '-- P1 - P9 or M1 - M9, etc.
+'    Public Description As String '-- Explain how a small business can develop transnationally and determine the benefits and drawbacks
+
+'    Public Overrides Function ToString() As String
+'        Return Name & " - " & Description
+'    End Function
+
+'    Public Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
+'        Dim xOutcomeElement As Xml.XmlElement = xDoc.CreateElement("Outcome")
+'        xOutcomeElement.SetAttribute("ID", ID)
+'        xOutcomeElement.SetAttribute("Name", Name)
+'        xOutcomeElement.SetAttribute("Description", Description)
+'        Return xOutcomeElement
+'    End Function
+'    Public Sub New()
+'        ID = Guid.NewGuid.ToString()
+'    End Sub
+'    Public Sub New(xElement As Xml.XmlElement)
+'        ID = xElement.GetAttribute("ID")
+'        If ID.Length = 0 Then
+'            ID = Guid.NewGuid.ToString()
+'        End If
+
+'        Name = xElement.GetAttribute("Name")
+'        Description = xElement.GetAttribute("Description")
+'    End Sub
+'End Class
 Public Class AssignmentOutcome
+    Implements IComparable(Of AssignmentOutcome)
+
     Public ID As String
-    Public Name As String
+    Public GradeGroup As BTECGradeGroup '-- Pass, Merit, etc.
+    Public Name As String '-- RQF = P1 - P9 or M1 - M9, etc. ---- QCF = 1.1, 1.2, etc.
     Public Description As String
     Public Property StoredResults As New List(Of Result)
     Public Sub AddStoredResults(status As OutcomeResultStatusEnum, comments As String)
@@ -2286,22 +2330,36 @@ Public Class AssignmentOutcome
         Dim xOutcomeElement As Xml.XmlElement = xDoc.CreateElement("Outcome")
         xOutcomeElement.SetAttribute("ID", ID)
         xOutcomeElement.SetAttribute("Name", Name)
+        xOutcomeElement.SetAttribute("GradeGroup", GradeGroup)
         xOutcomeElement.SetAttribute("Description", Description)
         Return xOutcomeElement
     End Function
-    Public Sub New()
+    Public Sub New(gradeGroup As BTECGradeGroup)
         ID = Guid.NewGuid.ToString()
-        AddDefaultStoredResults()
+        Me.GradeGroup = gradeGroup
+        If Me.GradeGroup = BTECGradeGroup.Pass Then
+            '-- Just add defaults for pass, not for higher levels
+            AddDefaultStoredResults()
+        End If
     End Sub
     Public Sub New(xElement As Xml.XmlElement)
         ID = xElement.GetAttribute("ID")
         If ID.Length = 0 Then
             ID = Guid.NewGuid.ToString()
         End If
+        Try
+            GradeGroup = [Enum].Parse(GetType(BTECGradeGroup), xElement.GetAttribute("GradeGroup"))
+        Catch ex As Exception
+            '-- Cannot match, default to pass
+            GradeGroup = BTECGradeGroup.Pass
+        End Try
 
         Name = xElement.GetAttribute("Name")
         Description = xElement.GetAttribute("Description")
-        AddDefaultStoredResults()
+        If GradeGroup = BTECGradeGroup.Pass Then
+            '-- Just add defaults for pass, not for higher levels
+            AddDefaultStoredResults()
+        End If
     End Sub
     Private Sub AddDefaultStoredResults()
         Me.AddStoredResults(OutcomeResultStatusEnum.Pass, AppSettings.ExamPassDefaultFeedback)
@@ -2309,8 +2367,19 @@ Public Class AssignmentOutcome
         Me.AddStoredResults(OutcomeResultStatusEnum.Fail, AppSettings.ExamFailDefaultFeedback)
         Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Not submitted")
         Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Plagiarized")
-        Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Plagiarized in other outcome")
+        Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Plagiarized in other section")
     End Sub
+
+    Public Function CompareTo(other As AssignmentOutcome) As Integer Implements IComparable(Of AssignmentOutcome).CompareTo
+
+        If Me.GradeGroup = other.GradeGroup Then
+            '-- So, M2 will be before M3 but after P3
+            Return Me.Name.CompareTo(other.Name)
+        Else
+            '-- So Pass will be before Merit
+            Return Me.GradeGroup.CompareTo(other.GradeGroup)
+        End If
+    End Function
 End Class
 Public Class Student
     Implements IComparable(Of Student)
