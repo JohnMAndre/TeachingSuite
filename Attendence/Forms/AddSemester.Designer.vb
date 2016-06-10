@@ -32,6 +32,7 @@ Partial Class AddSemester
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.SuspendLayout()
@@ -60,7 +61,7 @@ Partial Class AddSemester
         Me.btnOK.Location = New System.Drawing.Point(175, 131)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(90, 25)
-        Me.btnOK.TabIndex = 22
+        Me.btnOK.TabIndex = 6
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.btnOK.Values.Text = "&OK"
         '
@@ -70,7 +71,7 @@ Partial Class AddSemester
         Me.btnCancel.Location = New System.Drawing.Point(48, 131)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 25)
-        Me.btnCancel.TabIndex = 21
+        Me.btnCancel.TabIndex = 7
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
         Me.btnCancel.Values.Text = "&Cancel"
         '
@@ -84,7 +85,7 @@ Partial Class AddSemester
         Me.dtpSemesterEnd.Palette = Me.KryptonPalette1
         Me.dtpSemesterEnd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpSemesterEnd.Size = New System.Drawing.Size(227, 21)
-        Me.dtpSemesterEnd.TabIndex = 18
+        Me.dtpSemesterEnd.TabIndex = 5
         '
         'KryptonLabel5
         '
@@ -108,7 +109,7 @@ Partial Class AddSemester
         Me.dtpSemesterStart.Palette = Me.KryptonPalette1
         Me.dtpSemesterStart.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpSemesterStart.Size = New System.Drawing.Size(227, 21)
-        Me.dtpSemesterStart.TabIndex = 17
+        Me.dtpSemesterStart.TabIndex = 3
         '
         'txtSemesterName
         '
@@ -119,7 +120,7 @@ Partial Class AddSemester
         Me.txtSemesterName.Palette = Me.KryptonPalette1
         Me.txtSemesterName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.txtSemesterName.Size = New System.Drawing.Size(227, 20)
-        Me.txtSemesterName.TabIndex = 17
+        Me.txtSemesterName.TabIndex = 1
         '
         'KryptonLabel4
         '
@@ -142,6 +143,15 @@ Partial Class AddSemester
         Me.KryptonLabel3.Size = New System.Drawing.Size(64, 20)
         Me.KryptonLabel3.TabIndex = 16
         Me.KryptonLabel3.Values.Text = "Semester:"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'AddSemester
         '
@@ -187,4 +197,5 @@ Partial Class AddSemester
     Friend WithEvents txtSemesterName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents btnCancel As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents btnOK As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

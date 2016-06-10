@@ -455,7 +455,7 @@ Partial Class MainForm
         Me.llblRemoveClassGroup.Name = "llblRemoveClassGroup"
         Me.llblRemoveClassGroup.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveClassGroup.TabIndex = 27
-        Me.ToolTip1.SetToolTip(Me.llblRemoveClassGroup, "Delete selected class")
+        Me.ToolTip1.SetToolTip(Me.llblRemoveClassGroup, "Delete selected module")
         Me.llblRemoveClassGroup.Values.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.llblRemoveClassGroup.Values.Text = ""
         '
@@ -466,7 +466,7 @@ Partial Class MainForm
         Me.llblEditClassGroup.Name = "llblEditClassGroup"
         Me.llblEditClassGroup.Size = New System.Drawing.Size(22, 18)
         Me.llblEditClassGroup.TabIndex = 26
-        Me.ToolTip1.SetToolTip(Me.llblEditClassGroup, "Edit selected class")
+        Me.ToolTip1.SetToolTip(Me.llblEditClassGroup, "Edit selected module")
         Me.llblEditClassGroup.Values.Image = Global.Teaching.My.Resources.Resources.AutoText_16
         Me.llblEditClassGroup.Values.Text = ""
         '
@@ -477,7 +477,7 @@ Partial Class MainForm
         Me.llblAddClassGroup.Name = "llblAddClassGroup"
         Me.llblAddClassGroup.Size = New System.Drawing.Size(22, 18)
         Me.llblAddClassGroup.TabIndex = 25
-        Me.ToolTip1.SetToolTip(Me.llblAddClassGroup, "Add new class")
+        Me.ToolTip1.SetToolTip(Me.llblAddClassGroup, "Add new module")
         Me.llblAddClassGroup.Values.Image = Global.Teaching.My.Resources.Resources.add_icon_16
         Me.llblAddClassGroup.Values.Text = ""
         '
@@ -1682,9 +1682,9 @@ Partial Class MainForm
         Me.KryptonLabel12.Name = "KryptonLabel12"
         Me.KryptonLabel12.Palette = Me.KryptonPalette1
         Me.KryptonLabel12.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel12.Size = New System.Drawing.Size(64, 20)
+        Me.KryptonLabel12.Size = New System.Drawing.Size(46, 20)
         Me.KryptonLabel12.TabIndex = 34
-        Me.KryptonLabel12.Values.Text = "Semester:"
+        Me.KryptonLabel12.Values.Text = "Notes:"
         '
         'llblLoadFutureOneSemester
         '

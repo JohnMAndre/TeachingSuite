@@ -24,7 +24,9 @@ Public Class AddSemester
             If boolOverwriteOK Then
                 Dim newSemester As New Semester(strNewSemester)
                 newSemester.StartDateOverall = dtpSemesterStart.Value.ToString("yyyy-MM-dd")
+                newSemester.StartDateCurrent = dtpSemesterStart.Value.ToString("yyyy-MM-dd")
                 newSemester.EndDateOverall = dtpSemesterEnd.Value.ToString("yyyy-MM-dd")
+                newSemester.EndDateCurrent = dtpSemesterEnd.Value.ToString("yyyy-MM-dd")
                 newSemester.Save()
                 Me.DialogResult = DialogResult.OK
             End If
