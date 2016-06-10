@@ -43,10 +43,10 @@ Public Class AttendenceErrors
 
             For Each classSession As ClassSession In olvClassSessions.SelectedObjects
                 'Dim classSession As ClassSession = CType(olvClassSessions.SelectedObject, ClassSession)
-                Dim session As New TeachingSession()
+                Dim stud As Student = CType(olvStudents.SelectedObject, Student)
+                Dim session As New TeachingSession(stud)
                 session.StartDate = classSession.StartDate
                 session.AttendenceStatus = CType(cboStatus.SelectedIndex, AttendenceStatusEnum)
-                Dim stud As Student = CType(olvStudents.SelectedObject, Student)
                 stud.TeachingSessions.Add(session)
                 LoadStudentSessions(stud)
                 Application.DoEvents()

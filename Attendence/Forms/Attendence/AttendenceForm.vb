@@ -173,7 +173,7 @@ Public Class AttendenceForm
             Dim lstStudents As List(Of Student) = olvStudents.Objects
             For Each stu In lstStudents
                 If stu.CurrentAttendenceStatus <> AttendenceStatusEnum.Unknown Then
-                    Dim session As New TeachingSession()
+                    Dim session As New TeachingSession(stu)
                     session.StartDate = dtSessionDate
                     session.AttendenceStatus = stu.CurrentAttendenceStatus
                     stu.TeachingSessions.Add(session)

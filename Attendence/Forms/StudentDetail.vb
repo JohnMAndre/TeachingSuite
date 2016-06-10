@@ -292,7 +292,7 @@ Public Class StudentDetail
             AddNewStudent()
         End If
 
-        Dim session As New TeachingSession()
+        Dim session As New TeachingSession(m_student)
         session.StartDate = Date.Today
         session.AttendenceStatus = AttendenceStatusEnum.Present
         m_student.TeachingSessions.Add(session)

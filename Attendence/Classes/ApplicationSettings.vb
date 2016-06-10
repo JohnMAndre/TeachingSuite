@@ -411,7 +411,7 @@
                 AssignmentMarkingWarning1 = 15
                 AssignmentMarkingWarning2 = 20
                 _mainFormStudentListViewStatePrivate = String.Empty
-                PremiumFeaturesEnabled = False
+                PremiumFeaturesEnabled = True
                 PassResultsText = "Already"
                 FailResultsText = "Not yet"
                 UnknownResultsText = "Did not submit"

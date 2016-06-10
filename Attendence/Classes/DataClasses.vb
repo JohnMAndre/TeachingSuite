@@ -3326,7 +3326,8 @@ Public Class TeachingSession
     Public Property Notes As String
     Public Property Student As Student
 
-    Public Sub New()
+    Public Sub New(student As Student)
+        Me.Student = student
 
     End Sub
     Public Sub New(xElement As Xml.XmlElement, student As Student)

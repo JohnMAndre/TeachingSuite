@@ -185,6 +185,7 @@ Partial Class MainForm
         Me.NotesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TakeAttendenceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadCurrentClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExamToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExamRedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -286,7 +287,6 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.LoadCurrentClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -884,19 +884,22 @@ Partial Class MainForm
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6})
         Me.olvStudents.ContextMenuStrip = Me.ctxmnuStudents
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "This class is empty"
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvStudents.FullRowSelect = True
         Me.olvStudents.GridLines = True
         Me.olvStudents.HideSelection = False
+        Me.olvStudents.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvStudents.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvStudents.Location = New System.Drawing.Point(0, 0)
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowGroups = False
@@ -1234,10 +1237,12 @@ Partial Class MainForm
         Me.olvSchedule.AllowColumnReorder = True
         Me.olvSchedule.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvSchedule.CellEditUseWholeCell = False
         Me.olvSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn29, Me.OlvColumn30, Me.OlvColumn16, Me.OlvColumn31, Me.OlvColumn33, Me.OlvColumn32, Me.OlvColumn17, Me.OlvColumn34, Me.OlvColumn35, Me.OlvColumn36})
         Me.olvSchedule.ContextMenuStrip = Me.ctxmnuActualSessions
         Me.olvSchedule.CopySelectionOnControlC = False
         Me.olvSchedule.CopySelectionOnControlCUsesDragSource = False
+        Me.olvSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvSchedule.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvSchedule.EmptyListMsg = "Nothing scheduled for this day"
         Me.olvSchedule.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1245,10 +1250,11 @@ Partial Class MainForm
         Me.olvSchedule.GridLines = True
         Me.olvSchedule.HasCollapsibleGroups = False
         Me.olvSchedule.HideSelection = False
+        Me.olvSchedule.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvSchedule.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvSchedule.Location = New System.Drawing.Point(0, 0)
         Me.olvSchedule.MultiSelect = False
         Me.olvSchedule.Name = "olvSchedule"
-        Me.olvSchedule.OwnerDraw = True
         Me.olvSchedule.SelectAllOnControlA = False
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
@@ -1672,7 +1678,7 @@ Partial Class MainForm
         '
         'KryptonLabel12
         '
-        Me.KryptonLabel12.Location = New System.Drawing.Point(3, 54)
+        Me.KryptonLabel12.Location = New System.Drawing.Point(11, 54)
         Me.KryptonLabel12.Name = "KryptonLabel12"
         Me.KryptonLabel12.Palette = Me.KryptonPalette1
         Me.KryptonLabel12.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
@@ -1977,6 +1983,14 @@ Partial Class MainForm
             Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
         Me.TakeAttendenceToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.TakeAttendenceToolStripMenuItem.Text = "&Attendance..."
+        '
+        'LoadCurrentClassToolStripMenuItem
+        '
+        Me.LoadCurrentClassToolStripMenuItem.Name = "LoadCurrentClassToolStripMenuItem"
+        Me.LoadCurrentClassToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
+        Me.LoadCurrentClassToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.LoadCurrentClassToolStripMenuItem.Text = "&Load current class"
         '
         'ToolStripSeparator3
         '
@@ -2572,14 +2586,6 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'LoadCurrentClassToolStripMenuItem
-        '
-        Me.LoadCurrentClassToolStripMenuItem.Name = "LoadCurrentClassToolStripMenuItem"
-        Me.LoadCurrentClassToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.LoadCurrentClassToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.LoadCurrentClassToolStripMenuItem.Text = "&Load current class"
         '
         'MainForm
         '
