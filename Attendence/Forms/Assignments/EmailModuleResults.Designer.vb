@@ -31,10 +31,11 @@ Partial Class EmailModuleResults
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.nudSendInXHours = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.llblRemoveEmailedData = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.chkIncludeAssignmentNumber = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeGrade = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.lblLoadedStudents = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblSelectedStudents = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.chkIncludeFeedback = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonManager1 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
@@ -48,6 +49,7 @@ Partial Class EmailModuleResults
         Me.SethiddenForSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearHiddenForSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IncludeattachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem25 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem26 = New System.Windows.Forms.ToolStripMenuItem()
@@ -103,7 +105,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -153,7 +154,7 @@ Partial Class EmailModuleResults
         'btnOK
         '
         Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnOK.Location = New System.Drawing.Point(40, 291)
+        Me.btnOK.Location = New System.Drawing.Point(46, 291)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Palette = Me.KryptonPalette1
         Me.btnOK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
@@ -165,7 +166,8 @@ Partial Class EmailModuleResults
         '
         'nudSendInXHours
         '
-        Me.nudSendInXHours.Location = New System.Drawing.Point(60, 249)
+        Me.nudSendInXHours.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nudSendInXHours.Location = New System.Drawing.Point(135, 250)
         Me.nudSendInXHours.Name = "nudSendInXHours"
         Me.nudSendInXHours.Size = New System.Drawing.Size(96, 21)
         Me.nudSendInXHours.TabIndex = 43
@@ -177,7 +179,7 @@ Partial Class EmailModuleResults
         'llblRemoveEmailedData
         '
         Me.llblRemoveEmailedData.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveEmailedData.Location = New System.Drawing.Point(444, 1)
+        Me.llblRemoveEmailedData.Location = New System.Drawing.Point(432, 1)
         Me.llblRemoveEmailedData.Name = "llblRemoveEmailedData"
         Me.llblRemoveEmailedData.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveEmailedData.TabIndex = 26
@@ -185,22 +187,24 @@ Partial Class EmailModuleResults
         Me.llblRemoveEmailedData.Values.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.llblRemoveEmailedData.Values.Text = ""
         '
-        'chkIncludeAssignmentNumber
+        'chkIncludeGrade
         '
-        Me.chkIncludeAssignmentNumber.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeAssignmentNumber.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeAssignmentNumber.Location = New System.Drawing.Point(12, 322)
-        Me.chkIncludeAssignmentNumber.Name = "chkIncludeAssignmentNumber"
-        Me.chkIncludeAssignmentNumber.Size = New System.Drawing.Size(192, 19)
-        Me.chkIncludeAssignmentNumber.TabIndex = 57
-        Me.chkIncludeAssignmentNumber.Text = "Include assignment number:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeAssignmentNumber, "Uncheck to skip assignment number text in email")
-        Me.chkIncludeAssignmentNumber.Values.Text = "Include assignment number:"
+        Me.chkIncludeGrade.Checked = True
+        Me.chkIncludeGrade.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeGrade.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeGrade.Location = New System.Drawing.Point(4, 322)
+        Me.chkIncludeGrade.Name = "chkIncludeGrade"
+        Me.chkIncludeGrade.Size = New System.Drawing.Size(109, 19)
+        Me.chkIncludeGrade.TabIndex = 57
+        Me.chkIncludeGrade.Text = "Include grade:"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeGrade, "Check to include outcome by outcome result for BTEC assignments")
+        Me.chkIncludeGrade.Values.Text = "Include grade:"
         '
         'btnCancel
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.Location = New System.Drawing.Point(130, 616)
+        Me.btnCancel.Location = New System.Drawing.Point(142, 616)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Palette = Me.KryptonPalette1
         Me.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
@@ -228,6 +232,20 @@ Partial Class EmailModuleResults
         Me.lblSelectedStudents.TabIndex = 61
         Me.ToolTip1.SetToolTip(Me.lblSelectedStudents, "Number of students to be sent")
         Me.lblSelectedStudents.Values.Text = "0"
+        '
+        'chkIncludeFeedback
+        '
+        Me.chkIncludeFeedback.Checked = True
+        Me.chkIncludeFeedback.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeFeedback.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeFeedback.Location = New System.Drawing.Point(135, 322)
+        Me.chkIncludeFeedback.Name = "chkIncludeFeedback"
+        Me.chkIncludeFeedback.Size = New System.Drawing.Size(86, 19)
+        Me.chkIncludeFeedback.TabIndex = 62
+        Me.chkIncludeFeedback.Text = "Feedback:"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeFeedback, "Check to include outcome by outcome feedback for BTEC assignments")
+        Me.chkIncludeFeedback.Values.Text = "Feedback:"
         '
         'KryptonManager1
         '
@@ -326,6 +344,13 @@ Partial Class EmailModuleResults
         Me.IncludeattachmentToolStripMenuItem.ToolTipText = "If checked, the all documents in the selected folder which end with the Student I" & _
     "D will be attached"
         '
+        'UseExtIDuncheckToUseStudentIDToolStripMenuItem
+        '
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.CheckOnClick = True
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Name = "UseExtIDuncheckToUseStudentIDToolStripMenuItem"
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
+        '
         'ToolStripMenuItem24
         '
         Me.ToolStripMenuItem24.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem25})
@@ -357,7 +382,7 @@ Partial Class EmailModuleResults
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(1010, 19)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
@@ -373,7 +398,7 @@ Partial Class EmailModuleResults
         'llblSelectStudents
         '
         Me.llblSelectStudents.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblSelectStudents.Location = New System.Drawing.Point(953, 3)
+        Me.llblSelectStudents.Location = New System.Drawing.Point(941, 3)
         Me.llblSelectStudents.Name = "llblSelectStudents"
         Me.llblSelectStudents.Size = New System.Drawing.Size(22, 18)
         Me.llblSelectStudents.TabIndex = 17
@@ -383,7 +408,7 @@ Partial Class EmailModuleResults
         'llblUnSelectStudents
         '
         Me.llblUnSelectStudents.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblUnSelectStudents.Location = New System.Drawing.Point(981, 2)
+        Me.llblUnSelectStudents.Location = New System.Drawing.Point(969, 2)
         Me.llblUnSelectStudents.Name = "llblUnSelectStudents"
         Me.llblUnSelectStudents.Size = New System.Drawing.Size(22, 18)
         Me.llblUnSelectStudents.TabIndex = 16
@@ -405,10 +430,11 @@ Partial Class EmailModuleResults
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeFeedback)
         Me.splitOverall.Panel1.Controls.Add(Me.lblSelectedStudents)
         Me.splitOverall.Panel1.Controls.Add(Me.olvAssignments)
         Me.splitOverall.Panel1.Controls.Add(Me.btnCancel)
-        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeAssignmentNumber)
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeGrade)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel8)
         Me.splitOverall.Panel1.Controls.Add(Me.nudSendInXHours)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel7)
@@ -436,7 +462,7 @@ Partial Class EmailModuleResults
         Me.splitOverall.Panel2.Controls.Add(Me.llblSelectStudents)
         Me.splitOverall.Panel2.Controls.Add(Me.KryptonLabel2)
         Me.splitOverall.Size = New System.Drawing.Size(1241, 644)
-        Me.splitOverall.SplitterDistance = 226
+        Me.splitOverall.SplitterDistance = 238
         Me.splitOverall.TabIndex = 28
         '
         'olvAssignments
@@ -450,24 +476,27 @@ Partial Class EmailModuleResults
         Me.olvAssignments.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvAssignments.CellEditUseWholeCell = False
         Me.olvAssignments.CheckBoxes = True
         Me.olvAssignments.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn25, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvAssignments.CopySelectionOnControlC = False
         Me.olvAssignments.CopySelectionOnControlCUsesDragSource = False
+        Me.olvAssignments.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvAssignments.EmptyListMsg = "No assignments"
         Me.olvAssignments.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvAssignments.FullRowSelect = True
         Me.olvAssignments.GridLines = True
         Me.olvAssignments.HasCollapsibleGroups = False
         Me.olvAssignments.HideSelection = False
+        Me.olvAssignments.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvAssignments.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvAssignments.Location = New System.Drawing.Point(0, 55)
         Me.olvAssignments.Name = "olvAssignments"
-        Me.olvAssignments.OwnerDraw = True
         Me.olvAssignments.SelectAllOnControlA = False
         Me.olvAssignments.ShowGroups = False
         Me.olvAssignments.ShowImagesOnSubItems = True
         Me.olvAssignments.ShowItemCountOnGroups = True
-        Me.olvAssignments.Size = New System.Drawing.Size(225, 113)
+        Me.olvAssignments.Size = New System.Drawing.Size(237, 113)
         Me.olvAssignments.TabIndex = 60
         Me.olvAssignments.UseAlternatingBackColors = True
         Me.olvAssignments.UseCompatibleStateImageBehavior = False
@@ -539,7 +568,7 @@ Partial Class EmailModuleResults
         Me.txtEmailTrailingText.Multiline = True
         Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
         Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(223, 153)
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(235, 153)
         Me.txtEmailTrailingText.TabIndex = 41
         '
         'lblSendingStatus
@@ -557,7 +586,7 @@ Partial Class EmailModuleResults
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ProgressBar1.Location = New System.Drawing.Point(4, 540)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(219, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(231, 23)
         Me.ProgressBar1.TabIndex = 39
         Me.ProgressBar1.Visible = False
         '
@@ -595,7 +624,8 @@ Partial Class EmailModuleResults
         '
         'nudEmailSendingAccount
         '
-        Me.nudEmailSendingAccount.Location = New System.Drawing.Point(113, 174)
+        Me.nudEmailSendingAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nudEmailSendingAccount.Location = New System.Drawing.Point(188, 174)
         Me.nudEmailSendingAccount.Name = "nudEmailSendingAccount"
         Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 21)
         Me.nudEmailSendingAccount.TabIndex = 28
@@ -607,7 +637,7 @@ Partial Class EmailModuleResults
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubject.Location = New System.Drawing.Point(3, 225)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(216, 19)
+        Me.txtSubject.Size = New System.Drawing.Size(228, 19)
         Me.txtSubject.TabIndex = 29
         '
         'KryptonLabel3
@@ -646,8 +676,10 @@ Partial Class EmailModuleResults
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn7, Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn12, Me.OlvColumn16, Me.OlvColumn18})
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No students, check filter and Submission menu"
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -655,14 +687,15 @@ Partial Class EmailModuleResults
         Me.olvStudents.GridLines = True
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
+        Me.olvStudents.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvStudents.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvStudents.IncludeColumnHeadersInCopy = True
         Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(1010, 625)
+        Me.olvStudents.Size = New System.Drawing.Size(998, 625)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -856,13 +889,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
-        'UseExtIDuncheckToUseStudentIDToolStripMenuItem
-        '
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.CheckOnClick = True
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Name = "UseExtIDuncheckToUseStudentIDToolStripMenuItem"
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
-        '
         'EmailModuleResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -984,7 +1010,7 @@ Partial Class EmailModuleResults
     Friend WithEvents OlvColumn8 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents llblRemoveEmailedData As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents OlvColumn9 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents chkIncludeAssignmentNumber As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents chkIncludeGrade As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents OlvColumn12 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents StudentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
@@ -1003,4 +1029,5 @@ Partial Class EmailModuleResults
     Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents UseExtIDuncheckToUseStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents chkIncludeFeedback As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

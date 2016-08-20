@@ -30,7 +30,7 @@
         ThirdTry
     End Enum
 
-    
+    Public Const DUMMY_SEMESTER_NAME As String = "dummy"
 
 
     ''' <summary>

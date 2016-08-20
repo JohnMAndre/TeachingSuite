@@ -186,7 +186,16 @@ Public Class MainForm
 
         cboSemester.Items.Clear()
         For Each strFilename As String In lstSemesters
-            cboSemester.Items.Add(System.IO.Path.GetFileNameWithoutExtension(strFilename))
+            If strFilename = DUMMY_SEMESTER_NAME Then
+                '-- Delete the dummy semester file (keep system clean)
+                Try
+                    System.IO.File.Delete(strFilename)
+                Catch ex As Exception
+                    Log(ex) '-- just log and continue, not a huge problem if it stays there
+                End Try
+            Else
+                cboSemester.Items.Add(System.IO.Path.GetFileNameWithoutExtension(strFilename))
+            End If
         Next
 
         cboSemester.Items.Add("<Add New>")

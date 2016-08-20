@@ -475,11 +475,16 @@ Public Class EmailModuleResults
         If boolAtLeastOneBTECAssignment Then
             str.Append("This module has " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
             Dim intFailedOutcomes As Integer = m_intModuleOutcomes - item.PassedOutcomes
-            If intFailedOutcomes = 0 Then
-                str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (yes, all of them).<br><br>")
-            Else
-                str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (still need the other " & intFailedOutcomes.ToString() & " of them).<br><br>")
+
+            '-- If not sending grades, then don't send summary of grades either
+            If chkIncludeGrade.Checked Then
+                If intFailedOutcomes = 0 Then
+                    str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (yes, all of them).<br><br>")
+                Else
+                    str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (still need the other " & intFailedOutcomes.ToString() & " of them).<br><br>")
+                End If
             End If
+
             str.Append("Outcome details: <br><br>")
             str.Append(GenerateOutcomeDetails(item.Student))
             str.Append("<br>")
@@ -488,9 +493,12 @@ Public Class EmailModuleResults
         '-- overall and improvement
         For Each asmt As StudentAssignmentBTEC In item.AssignmentsBTEC
             If ShouldIncludeAssignment(asmt.BaseAssignment) Then
-                str.Append("<br>")
-                str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(Environment.NewLine, "<br>"))
-                str.Append("<br>")
+                '-- If not sending grades, then don't send summary of grades either
+                If chkIncludeGrade.Checked Then
+                    str.Append("<br>")
+                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(Environment.NewLine, "<br>"))
+                    str.Append("<br>")
+                End If
                 str.Append("<br>")
                 str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(Environment.NewLine, "<br>"))
                 str.Append("<br>")
@@ -542,36 +550,35 @@ Public Class EmailModuleResults
             Const ACHIEVED As String = "Achieved"
             Const NOTACHIEVED As String = "Not achieved"
 
-            str.Append("M1: " & IIf(item.M1, ACHIEVED, NOTACHIEVED) & "<br>")
-            str.Append("M2: " & IIf(item.M2, ACHIEVED, NOTACHIEVED) & "<br>")
-            str.Append("M3: " & IIf(item.M3, ACHIEVED, NOTACHIEVED) & "<br>")
-            If item.M1 AndAlso item.M2 AndAlso item.M3 Then
-                str.Append("You achieved MERIT!<br>")
-            End If
-            str.Append("<br>")
-            str.Append("D1: " & IIf(item.D1, ACHIEVED, NOTACHIEVED) & "<br>")
-            str.Append("D2: " & IIf(item.D2, ACHIEVED, NOTACHIEVED) & "<br>")
-            str.Append("D3: " & IIf(item.D3, ACHIEVED, NOTACHIEVED) & "<br>")
-            If item.D1 AndAlso item.D2 AndAlso item.D3 Then
-                str.Append("You achieved DISTINCTION!!!<br>")
-            End If
-            str.Append("<br>")
+            '-- No grades means no M's or D's or congratulations
+            If chkIncludeGrade.Checked Then
+                str.Append("M1: " & IIf(item.M1, ACHIEVED, NOTACHIEVED) & "<br>")
+                str.Append("M2: " & IIf(item.M2, ACHIEVED, NOTACHIEVED) & "<br>")
+                str.Append("M3: " & IIf(item.M3, ACHIEVED, NOTACHIEVED) & "<br>")
+                If item.M1 AndAlso item.M2 AndAlso item.M3 Then
+                    str.Append("You achieved MERIT!<br>")
+                End If
+                str.Append("<br>")
+                str.Append("D1: " & IIf(item.D1, ACHIEVED, NOTACHIEVED) & "<br>")
+                str.Append("D2: " & IIf(item.D2, ACHIEVED, NOTACHIEVED) & "<br>")
+                str.Append("D3: " & IIf(item.D3, ACHIEVED, NOTACHIEVED) & "<br>")
+                If item.D1 AndAlso item.D2 AndAlso item.D3 Then
+                    str.Append("You achieved DISTINCTION!!!<br>")
+                End If
+                str.Append("<br>")
 
-            If item.PassedOutcomes >= m_intModuleOutcomes Then
-                str.Append("Congratulations!!!<br><br>")
-            Else
-                If m_try = MarkingTry.FirstTry Then
-                    str.Append("Don't worry. You can still fix it.<br><br>")
+                If item.PassedOutcomes >= m_intModuleOutcomes Then
+                    str.Append("Congratulations!!!<br><br>")
                 Else
-                    str.Append("I am sure you will do better next time.<br><br>")
+                    If m_try = MarkingTry.FirstTry Then
+                        str.Append("Don't worry. You can still fix it.<br><br>")
+                    Else
+                        str.Append("I am sure you will do better next time.<br><br>")
+                    End If
                 End If
             End If
         End If
 
-
-        If chkIncludeAssignmentNumber.Checked Then
-            str.Append("<b>If you come to feedback, it will help if you know your ASSIGNMENT number. It is: " & item.Student.AltNumber & "</b><br><br>")
-        End If
 
         str.Append(txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br>"))
 
@@ -595,22 +602,52 @@ Public Class EmailModuleResults
         sbReturn.Append("<table border='1'>")
         Dim rslts As Student.StudentModuleResult = student.ModuleResults
 
+        sbReturn.Append("<tr><td>Outcome</td><td>Result</td><td>Feedback</td></tr>")
+
+
         rslts.Outcomes.Sort()
 
         For Each oc As Student.StudentModuleOutcomeResult In rslts.Outcomes
             strResult = GetResultsText(oc.Status) & " &nbsp;" '-- make sure tables look ok with no text
             strFeedback = oc.LatestFeedback & " &nbsp;"
 
-            If AppSettings.IncludeFeedbackWhenEmailing Then
+            '-- First part of line is the same no matter what (outcome name)
+            sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td>")
+
+            '-- Next is grade, but only include if that is checked
+            If chkIncludeGrade.Checked Then
                 If oc.Status = OutcomeResultStatusEnum.Pass Then
-                    sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td bgcolor='LightGreen'>" & strResult & "</td><td>" & strFeedback & "</td></tr>")
+                    sbReturn.Append("<td bgcolor='LightGreen'>" & strResult & "</td>")
                 Else
-                    sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td bgcolor='Red'>" & strResult & "</td><td>" & strFeedback & "</td></tr>")
+                    sbReturn.Append("<td bgcolor='Red'>" & strResult & "</td>")
                 End If
             Else
-                '-- should never get here
-                sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td>" & strResult & "</td><td>&nbsp;</td></tr>")
+                '-- We are not supposed to send the grade
+                '   So just send blank, no color coding
+                sbReturn.Append("<td>&nbsp;</td>")
             End If
+
+            If Me.chkIncludeFeedback.Checked Then
+                sbReturn.Append("<td>" & strFeedback & "</td>")
+            Else
+                '-- We are not supposed to send the feedback
+                '   So just send blank
+                sbReturn.Append("<td>&nbsp;</td>")
+            End If
+
+            '-- Last part of the line is the same no matter what
+            sbReturn.Append("</tr>")
+
+            'If Me.chkIncludeFeedback.Checked Then
+            '    If oc.Status = OutcomeResultStatusEnum.Pass Then
+            '        sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td bgcolor='LightGreen'>" & strResult & "</td><td>" & strFeedback & "</td></tr>")
+            '    Else
+            '        sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td bgcolor='Red'>" & strResult & "</td><td>" & strFeedback & "</td></tr>")
+            '    End If
+            'Else
+            '    '-- should never get here
+            '    sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td>" & strResult & "</td><td>&nbsp;</td></tr>")
+            'End If
 
         Next
 

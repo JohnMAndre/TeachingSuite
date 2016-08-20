@@ -43,7 +43,7 @@
             ElseIf Not strClipboard.Contains(Environment.NewLine) Then
                 MessageBox.Show("The clipboard does not contain multiple lines but it needs to (you can manually process one student, right?).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                Dim objClass As New SchoolClass(New ClassGroup(New Semester("dummy"))) '-- just a dummy class
+                Dim objClass As New SchoolClass(New ClassGroup(New Semester(DUMMY_SEMESTER_NAME))) '-- just a dummy class
                 Dim stud As Student
                 Dim intStudentsProcessed As Integer
                 Dim strRows() As String

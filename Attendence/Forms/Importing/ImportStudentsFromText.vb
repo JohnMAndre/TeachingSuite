@@ -157,7 +157,7 @@ Public Class ImportStudentsFromText
             ElseIf Not strClipboard.Contains(Environment.NewLine) Then
                 MessageBox.Show("The clipboard does not contain multiple lines but it needs to (you can manually enter one student, right?).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                Dim objClass As New SchoolClass(New ClassGroup(New Semester("dummy"))) '-- just a dummy class
+                Dim objClass As New SchoolClass(New ClassGroup(New Semester(DUMMY_SEMESTER_NAME))) '-- just a dummy class
                 Dim stud As Student
 
                 Dim strRows() As String
