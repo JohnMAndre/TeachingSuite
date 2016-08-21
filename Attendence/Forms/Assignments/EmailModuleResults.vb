@@ -329,18 +329,23 @@ Public Class EmailModuleResults
         btnCancel.Show()
         m_boolCancel = False
 
-        lblSendingStatus.Text = "Preparing TrulyMail..."
+        Dim tm As Object ' New TrulyMail.NewMessage()
+        Dim mainform As System.Runtime.Remoting.ObjectHandle
+        Dim obj As Object
+
+        Try
+            lblSendingStatus.Text = "Preparing TrulyMail..."
+            mainform = Activator.CreateInstanceFrom(AppSettings.PathToTrulyMailEXE, "TrulyMail.MainForm") '-- load appsettings, etc.
+            obj = mainform.Unwrap()
+        Catch ex As Exception
+            MessageBox.Show("TrulyMail is not properly setup. Please check your settings in Tools->Options on the main form and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
         ProgressBar1.Show()
         ProgressBar1.Maximum = m_lst.Count
         Application.DoEvents()
 
-        Dim tm As Object ' New TrulyMail.NewMessage()
-        Dim mainform As System.Runtime.Remoting.ObjectHandle
-        Dim obj As Object
-        'Dim newDomain As AppDomain = AppDomain.CreateDomain("TrulyMailDomain")
-        mainform = Activator.CreateInstanceFrom(AppSettings.PathToTrulyMailEXE, "TrulyMail.MainForm") '-- load appsettings, etc.
-        obj = mainform.Unwrap()
-        'obj.Show()
         Dim intCounter As Integer
         Dim dt As Date = Date.UtcNow.AddHours(nudSendInXHours.Value) '-- must be in UTC
         Dim strProblems As String = String.Empty

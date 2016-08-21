@@ -137,7 +137,7 @@ namespace Teaching
                                  //
                                  // If we are here, then we know updater needs to be replaced
                                  // Remove all other files from the list
-                                _boolUpdaterNeedUpdated = true;
+                                 _boolUpdaterNeedUpdated = true;
                                  XmlElement xParent = (XmlElement)xFile.ParentNode;
                                  xParent.RemoveAll();
                                  xParent.AppendChild(xFile); // Now there should only be a single file to download: the updater
@@ -822,8 +822,7 @@ namespace Teaching
 
         private void UpdaterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(!_boolUpdaterNeedUpdated)
-                _appSettings.Save();
+            _appSettings.Save();
         }
         private string LogFileLocation()
         {
