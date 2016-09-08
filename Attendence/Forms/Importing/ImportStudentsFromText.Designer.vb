@@ -31,6 +31,7 @@ Partial Class ImportStudentsFromText
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblTitle = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
@@ -51,7 +52,6 @@ Partial Class ImportStudentsFromText
         Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,9 +88,11 @@ Partial Class ImportStudentsFromText
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn6, Me.OlvColumn7})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "Copy and paste from spreadsheet."
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -98,9 +100,10 @@ Partial Class ImportStudentsFromText
         Me.olvStudents.GridLines = True
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
+        Me.olvStudents.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvStudents.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvStudents.Location = New System.Drawing.Point(0, 53)
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
@@ -172,6 +175,14 @@ Partial Class ImportStudentsFromText
         Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.ToolTipText = "Date of Birth"
         Me.OlvColumn6.Width = 76
+        '
+        'OlvColumn7
+        '
+        Me.OlvColumn7.AspectName = "Gender"
+        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.Text = "Gender"
+        Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.Width = 75
         '
         'lblTitle
         '
@@ -272,7 +283,6 @@ Partial Class ImportStudentsFromText
         'btnCancel
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(318, 76)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 27)
@@ -319,7 +329,6 @@ Partial Class ImportStudentsFromText
         '
         'KryptonManager
         '
-        Me.KryptonManager.GlobalPalette = Me.KryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPalette2
@@ -336,19 +345,10 @@ Partial Class ImportStudentsFromText
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 200
         '
-        'OlvColumn7
-        '
-        Me.OlvColumn7.AspectName = "Gender"
-        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Text = "Gender"
-        Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Width = 75
-        '
         'ImportStudentsFromText
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(852, 538)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -412,6 +412,6 @@ Partial Class ImportStudentsFromText
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents lblLoadingHistoricalStudents As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents KryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

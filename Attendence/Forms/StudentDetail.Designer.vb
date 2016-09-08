@@ -22,8 +22,9 @@ Partial Class StudentDetail
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentDetail))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.lblAbsentPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.lblAbsentPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblAdjustAbsences = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtClassGroup = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -35,6 +36,7 @@ Partial Class StudentDetail
         Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtClass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtTags = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtExtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.nudWritingQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -66,9 +68,11 @@ Partial Class StudentDetail
         Me.pnlAssignments = New System.Windows.Forms.Panel()
         Me.llblMoveAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.olvTeachingSessions = New BrightIdeasSoftware.ObjectListView()
+        Me.OlvColumn26 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn27 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.pnlOutcomes = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.chkD3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkD2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
@@ -105,10 +109,6 @@ Partial Class StudentDetail
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.OlvColumn26 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn27 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtTags = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.pnlAttendance.SuspendLayout()
@@ -176,6 +176,16 @@ Partial Class StudentDetail
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(773, 454)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'KryptonLabel14
+        '
+        Me.KryptonLabel14.Location = New System.Drawing.Point(356, 37)
+        Me.KryptonLabel14.Name = "KryptonLabel14"
+        Me.KryptonLabel14.Palette = Me.KryptonPalette1
+        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel14.Size = New System.Drawing.Size(38, 20)
+        Me.KryptonLabel14.TabIndex = 69
+        Me.KryptonLabel14.Values.Text = "Tags:"
         '
         'lblAbsentPercent
         '
@@ -287,6 +297,7 @@ Partial Class StudentDetail
         '
         'KryptonLabel12
         '
+        Me.KryptonLabel12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.KryptonLabel12.Location = New System.Drawing.Point(514, 12)
         Me.KryptonLabel12.Name = "KryptonLabel12"
         Me.KryptonLabel12.Palette = Me.KryptonPalette1
@@ -297,8 +308,7 @@ Partial Class StudentDetail
         '
         'txtClass
         '
-        Me.txtClass.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtClass.Location = New System.Drawing.Point(561, 12)
         Me.txtClass.Name = "txtClass"
         Me.txtClass.Palette = Me.KryptonPalette1
@@ -317,6 +327,15 @@ Partial Class StudentDetail
         Me.KryptonLabel11.Size = New System.Drawing.Size(91, 20)
         Me.KryptonLabel11.TabIndex = 56
         Me.KryptonLabel11.Values.Text = "Ext Student ID:"
+        '
+        'txtTags
+        '
+        Me.txtTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtTags.Location = New System.Drawing.Point(399, 38)
+        Me.txtTags.Name = "txtTags"
+        Me.txtTags.Size = New System.Drawing.Size(267, 19)
+        Me.txtTags.TabIndex = 55
         '
         'txtExtStudentID
         '
@@ -673,8 +692,12 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvTeachingSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvTeachingSessions.CellEditUseWholeCell = False
         Me.olvTeachingSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn26, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn25, Me.OlvColumn27})
+        Me.olvTeachingSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvTeachingSessions.FullRowSelect = True
+        Me.olvTeachingSessions.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvTeachingSessions.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvTeachingSessions.Location = New System.Drawing.Point(2, 175)
         Me.olvTeachingSessions.Name = "olvTeachingSessions"
         Me.olvTeachingSessions.ShowGroups = False
@@ -683,6 +706,14 @@ Partial Class StudentDetail
         Me.olvTeachingSessions.UseCompatibleStateImageBehavior = False
         Me.olvTeachingSessions.UseFiltering = True
         Me.olvTeachingSessions.View = System.Windows.Forms.View.Details
+        '
+        'OlvColumn26
+        '
+        Me.OlvColumn26.AspectName = "TeachingSession.StartDate.DayOfWeek"
+        Me.OlvColumn26.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn26.Text = "Day"
+        Me.OlvColumn26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn26.Width = 90
         '
         'OlvColumn1
         '
@@ -704,6 +735,13 @@ Partial Class StudentDetail
         Me.OlvColumn25.AspectName = "TeachingSession.Notes"
         Me.OlvColumn25.Text = "Notes"
         Me.OlvColumn25.Width = 79
+        '
+        'OlvColumn27
+        '
+        Me.OlvColumn27.AspectName = "ActualSessionItem.Topic"
+        Me.OlvColumn27.IsEditable = False
+        Me.OlvColumn27.Text = "Topic"
+        Me.OlvColumn27.Width = 234
         '
         'pnlOutcomes
         '
@@ -818,8 +856,12 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvOutcomes.CellEditUseWholeCell = False
         Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
+        Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvOutcomes.FullRowSelect = True
+        Me.olvOutcomes.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvOutcomes.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvOutcomes.Location = New System.Drawing.Point(0, 36)
         Me.olvOutcomes.Name = "olvOutcomes"
         Me.olvOutcomes.ShowGroups = False
@@ -948,11 +990,14 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvAssignments.CellEditUseWholeCell = False
         Me.olvAssignments.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn16, Me.OlvColumn17, Me.OlvColumn18, Me.OlvColumn19, Me.OlvColumn20, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24})
+        Me.olvAssignments.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvAssignments.FullRowSelect = True
+        Me.olvAssignments.HighlightBackgroundColor = System.Drawing.Color.Empty
+        Me.olvAssignments.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvAssignments.Location = New System.Drawing.Point(1, 175)
         Me.olvAssignments.Name = "olvAssignments"
-        Me.olvAssignments.OwnerDraw = True
         Me.olvAssignments.ShowGroups = False
         Me.olvAssignments.ShowImagesOnSubItems = True
         Me.olvAssignments.Size = New System.Drawing.Size(770, 279)
@@ -1065,40 +1110,6 @@ Partial Class StudentDetail
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
-        'OlvColumn26
-        '
-        Me.OlvColumn26.AspectName = "TeachingSession.StartDate.DayOfWeek"
-        Me.OlvColumn26.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn26.Text = "Day"
-        Me.OlvColumn26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn26.Width = 90
-        '
-        'OlvColumn27
-        '
-        Me.OlvColumn27.AspectName = "ActualSessionItem.Topic"
-        Me.OlvColumn27.IsEditable = False
-        Me.OlvColumn27.Text = "Topic"
-        Me.OlvColumn27.Width = 234
-        '
-        'KryptonLabel14
-        '
-        Me.KryptonLabel14.Location = New System.Drawing.Point(356, 37)
-        Me.KryptonLabel14.Name = "KryptonLabel14"
-        Me.KryptonLabel14.Palette = Me.KryptonPalette1
-        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel14.Size = New System.Drawing.Size(38, 20)
-        Me.KryptonLabel14.TabIndex = 69
-        Me.KryptonLabel14.Values.Text = "Tags:"
-        '
-        'txtTags
-        '
-        Me.txtTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtTags.Location = New System.Drawing.Point(399, 38)
-        Me.txtTags.Name = "txtTags"
-        Me.txtTags.Size = New System.Drawing.Size(267, 19)
-        Me.txtTags.TabIndex = 55
         '
         'StudentDetail
         '

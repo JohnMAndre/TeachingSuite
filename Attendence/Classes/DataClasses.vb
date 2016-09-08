@@ -1435,6 +1435,8 @@ Public Class SchoolClass
             tw.Write(DELIMITER)
             tw.Write("Group")
             tw.Write(DELIMITER)
+            tw.Write("Team")
+            tw.Write(DELIMITER)
             tw.Write("Tags")
 
             tw.Write(Environment.NewLine)
@@ -1469,6 +1471,8 @@ Public Class SchoolClass
                 tw.Write(student.Hidden)
                 tw.Write(DELIMITER)
                 tw.Write(student.StudentGroup.ToString())
+                tw.Write(DELIMITER)
+                tw.Write(student.StudentTeam)
                 tw.Write(DELIMITER)
                 tw.Write(student.Tags)
 
@@ -2509,6 +2513,20 @@ Public Class Student
     Public Property DateOfBirth As Date = DATE_NO_DATE '-- initiate to no_date
     Public Property TeachingSessions As New List(Of TeachingSession)
     Public Property CurrentAttendenceStatus As AttendenceStatusEnum
+    Private m_studentTeam As String = String.Empty
+    Public Property StudentTeam As String
+        Get
+            Return m_studentTeam
+        End Get
+        Set(value As String)
+            If value Is Nothing Then
+                m_studentTeam = String.Empty
+            Else
+                m_studentTeam = value.Trim()
+            End If
+        End Set
+    End Property
+
     Private m_intMeritPoints As Integer
     Public Property MeritPoints As Integer
         Get
@@ -2939,6 +2957,7 @@ Public Class Student
             xStudentElement.SetAttribute("ActivityLog", ActivityLog)
             xStudentElement.SetAttribute("EmailAddress", EmailAddress)
             xStudentElement.SetAttribute("StudentGroup", StudentGroup.ToString())
+            xStudentElement.SetAttribute("StudentTeam", StudentTeam)
             xStudentElement.SetAttribute("Tags", Tags)
             xStudentElement.SetAttribute("EmailedData", EmailedData)
             xStudentElement.SetAttribute("DraftsChecked", DraftsChecked.ToString())
@@ -3040,6 +3059,7 @@ Public Class Student
         AdminNumber = ConvertToInt32(xElement.GetAttribute("AdminNumber"), 0)
         AltNumber = ConvertToInt32(xElement.GetAttribute("AltNumber"), 0)
         StudentGroup = ConvertToInt32(xElement.GetAttribute("StudentGroup"), 0)
+        StudentTeam = xElement.GetAttribute("StudentTeam")
         Tags = xElement.GetAttribute("Tags")
         EmailedData = xElement.GetAttribute("EmailedData")
         Dim strTemp As String = xElement.GetAttribute("Gender")

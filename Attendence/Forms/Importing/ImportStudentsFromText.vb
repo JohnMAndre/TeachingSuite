@@ -126,12 +126,9 @@ Public Class ImportStudentsFromText
                 Exit Do
             Loop While True
 
-            btnCancel.Text = "&Close"
-            btnOK.Enabled = True
-            lblLoadingHistoricalStudents.Visible = False
         Catch ex As Exception
             Log(ex)
-            MessageBox.Show("There was an error loading students from earlier semesters. Importing now may not pickup information known about previous students.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("There was an error loading students from earlier semesters. Importing not may not pickup information known about previous students.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             lblLoadingHistoricalStudents.Visible = False
         End Try
     End Sub
@@ -140,6 +137,9 @@ Public Class ImportStudentsFromText
         If btnCancel.Text = "&Close" Then
             Close()
         Else
+            btnCancel.Text = "&Close"
+            btnOK.Enabled = True
+            lblLoadingHistoricalStudents.Visible = False
             m_boolCancel = True
         End If
     End Sub
@@ -223,10 +223,10 @@ Public Class ImportStudentsFromText
                             If row(8).ToLower() = "m" OrElse row(8).ToLower() = "male" Then
                                 objStud.Gender = Student.GenderEnum.Male
                             ElseIf row(8).ToLower() = "f" OrElse row(8).ToLower() = "female" Then
-                                stud.Gender = Student.GenderEnum.Female
+                                objStud.Gender = Student.GenderEnum.Female
+                            Else
+                                objStud.Gender = Student.GenderEnum.Unknown
                             End If
-                            '-- No need to set to unknown gender because that is the default and we don't want to overwrite
-                            '   a user-set gender when importing data is blank
                         Else
                             '-- Nothing in the import so just use whatever we knew before (
                             objStud.Gender = stud.Gender

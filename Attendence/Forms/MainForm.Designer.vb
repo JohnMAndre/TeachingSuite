@@ -287,6 +287,7 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -881,11 +882,12 @@ Partial Class MainForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn27)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn28)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn10)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6, Me.OlvColumn10})
         Me.olvStudents.ContextMenuStrip = Me.ctxmnuStudents
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
@@ -1411,7 +1413,7 @@ Partial Class MainForm
         Me.llblStartPauseStopwatch.Name = "llblStartPauseStopwatch"
         Me.llblStartPauseStopwatch.Size = New System.Drawing.Size(38, 34)
         Me.llblStartPauseStopwatch.TabIndex = 33
-        Me.ToolTip1.SetToolTip(Me.llblStartPauseStopwatch, "Delete selected student from this class")
+        Me.ToolTip1.SetToolTip(Me.llblStartPauseStopwatch, "Start / stop timer")
         Me.llblStartPauseStopwatch.Values.Image = Global.Teaching.My.Resources.Resources.play_32
         Me.llblStartPauseStopwatch.Values.Text = ""
         '
@@ -2587,6 +2589,12 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'OlvColumn10
+        '
+        Me.OlvColumn10.AspectName = "StudentTeam"
+        Me.OlvColumn10.Text = "Team"
+        Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2947,4 +2955,5 @@ Partial Class MainForm
     Friend WithEvents ExportEntireSemesterAsXMLToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents LoadCurrentClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
 End Class

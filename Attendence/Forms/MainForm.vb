@@ -1175,15 +1175,20 @@ Public Class MainForm
     End Sub
 
     Private Sub ImportStudentsFromTextToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ImportStudentsFromTextToolStripMenuItem.Click
-        If GetSelectedClass() Is Nothing Then
-            MessageBox.Show("Please select a class for import.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            Using frm As New ImportStudentsFromText(GetSelectedClass())
-                If frm.ShowDialog(Me) = DialogResult.OK Then
-                    LoadStudents()
-                End If
-            End Using
-        End If
+        Try
+            If GetSelectedClass() Is Nothing Then
+                MessageBox.Show("Please select a class to receive students.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                Using frm As New ImportStudentsFromText(GetSelectedClass())
+                    Dim rst As DialogResult = frm.ShowDialog(Me)
+                    If rst = DialogResult.OK Then
+                        LoadStudents()
+                    End If
+                End Using
+            End If
+        Catch ex As Exception
+            Log(ex)
+        End Try
     End Sub
 
 
@@ -2389,10 +2394,20 @@ Public Class MainForm
         If GetSelectedClass() Is Nothing Then
             MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to remove all these studenst from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = DialogResult.Yes Then
-                For Each stud As Student In olvStudents.FilteredObjects
-                    stud.SchoolClass.Students.Remove(stud)
+            If MessageBox.Show("Are you sure you want to remove all these students from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = DialogResult.Yes Then
+                Dim lst As New List(Of Student)
+                For Each stud As Student In olvStudents.FilteredObjects()
+                    lst.Add(stud)
                 Next
+
+                For Each stud As Student In lst
+                    GetSelectedClass.Students.Remove(stud)
+                Next
+
+                lst.Clear()
+
+                LoadStudents() '-- refresh list
+
             End If
         End If
     End Sub
