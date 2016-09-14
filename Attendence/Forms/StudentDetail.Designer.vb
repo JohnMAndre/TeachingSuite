@@ -711,6 +711,7 @@ Partial Class StudentDetail
         '
         Me.OlvColumn26.AspectName = "TeachingSession.StartDate.DayOfWeek"
         Me.OlvColumn26.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn26.IsEditable = False
         Me.OlvColumn26.Text = "Day"
         Me.OlvColumn26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn26.Width = 90

@@ -190,6 +190,7 @@ Public Class StudentDetail
 
                 '-- Populate the teaching topics for each session
                 Dim objRichSession As RicherTeachingSession
+                m_lstRickerTeachingSessionData.Clear()
                 For Each session As TeachingSession In m_student.TeachingSessions
                     objRichSession = New RicherTeachingSession(session)
                     m_lstRickerTeachingSessionData.Add(objRichSession)
@@ -303,7 +304,8 @@ Public Class StudentDetail
         If olvTeachingSessions.SelectedObject Is Nothing Then
             MessageBox.Show("Please select a sesson entry to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            m_student.TeachingSessions.Remove(olvTeachingSessions.SelectedObject)
+            Dim objRicher As RicherTeachingSession = olvTeachingSessions.SelectedObject
+            m_student.TeachingSessions.Remove(objRicher.TeachingSession)
             LoadSessionList()
         End If
     End Sub

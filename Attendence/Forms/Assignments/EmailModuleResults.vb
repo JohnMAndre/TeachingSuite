@@ -512,6 +512,7 @@ Public Class EmailModuleResults
         Next
 
 
+        '-- This is for Normal assignments
         Dim intGrade As Integer
         Dim dblPercent As Double
         For Each asmt As StudentAssignment In item.Assignments
@@ -525,24 +526,30 @@ Public Class EmailModuleResults
                     intGrade = asmt.ThirdTryPoints
                 End If
                 dblPercent = intGrade / asmt.BaseAssignment.MaxPoints
-                str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
-                str.Append("<br>")
-                str.Append("<br>")
-                str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(Environment.NewLine, "<br>"))
-                str.Append("<br>")
-                str.Append("<br>")
+
+                If chkIncludeGrade.Checked Then
+                    str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
+                    str.Append("<br>")
+                    str.Append("<br>")
+                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(Environment.NewLine, "<br>"))
+                    str.Append("<br>")
+                    str.Append("<br>")
+                End If
+
                 str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(Environment.NewLine, "<br>"))
                 str.Append("<br>")
                 str.Append("<br>")
             End If
         Next
 
-        If boolAtLeastOneNormalAssignment Then
-            str.Append("<hr>")
-            str.Append("<b>Overall grade for module:</b> " & item.Student.AssessmentResultOverall)
-            str.Append("<br>")
-            str.Append("<hr>")
-            str.Append("<br>")
+        If chkIncludeGrade.Checked Then
+            If boolAtLeastOneNormalAssignment Then
+                str.Append("<hr>")
+                str.Append("<b>Overall grade for module:</b> " & item.Student.AssessmentResultOverall)
+                str.Append("<br>")
+                str.Append("<hr>")
+                str.Append("<br>")
+            End If
         End If
 
 
@@ -557,28 +564,32 @@ Public Class EmailModuleResults
 
             '-- No grades means no M's or D's or congratulations
             If chkIncludeGrade.Checked Then
-                str.Append("M1: " & IIf(item.M1, ACHIEVED, NOTACHIEVED) & "<br>")
-                str.Append("M2: " & IIf(item.M2, ACHIEVED, NOTACHIEVED) & "<br>")
-                str.Append("M3: " & IIf(item.M3, ACHIEVED, NOTACHIEVED) & "<br>")
-                If item.M1 AndAlso item.M2 AndAlso item.M3 Then
-                    str.Append("You achieved MERIT!<br>")
+                If chkIncludeMeritDistinctionResults.Checked Then
+                    str.Append("M1: " & IIf(item.M1, ACHIEVED, NOTACHIEVED) & "<br>")
+                    str.Append("M2: " & IIf(item.M2, ACHIEVED, NOTACHIEVED) & "<br>")
+                    str.Append("M3: " & IIf(item.M3, ACHIEVED, NOTACHIEVED) & "<br>")
+                    If item.M1 AndAlso item.M2 AndAlso item.M3 Then
+                        str.Append("You achieved MERIT!<br>")
+                    End If
+                    str.Append("<br>")
+                    str.Append("D1: " & IIf(item.D1, ACHIEVED, NOTACHIEVED) & "<br>")
+                    str.Append("D2: " & IIf(item.D2, ACHIEVED, NOTACHIEVED) & "<br>")
+                    str.Append("D3: " & IIf(item.D3, ACHIEVED, NOTACHIEVED) & "<br>")
+                    If item.D1 AndAlso item.D2 AndAlso item.D3 Then
+                        str.Append("You achieved DISTINCTION!!!<br>")
+                    End If
+                    str.Append("<br>")
                 End If
-                str.Append("<br>")
-                str.Append("D1: " & IIf(item.D1, ACHIEVED, NOTACHIEVED) & "<br>")
-                str.Append("D2: " & IIf(item.D2, ACHIEVED, NOTACHIEVED) & "<br>")
-                str.Append("D3: " & IIf(item.D3, ACHIEVED, NOTACHIEVED) & "<br>")
-                If item.D1 AndAlso item.D2 AndAlso item.D3 Then
-                    str.Append("You achieved DISTINCTION!!!<br>")
-                End If
-                str.Append("<br>")
 
-                If item.PassedOutcomes >= m_intModuleOutcomes Then
-                    str.Append("Congratulations!!!<br><br>")
-                Else
-                    If m_try = MarkingTry.FirstTry Then
-                        str.Append("Don't worry. You can still fix it.<br><br>")
+                If chkFinalFeedback.Checked Then
+                    If item.PassedOutcomes >= m_intModuleOutcomes Then
+                        str.Append("Congratulations!!!<br><br>")
                     Else
-                        str.Append("I am sure you will do better next time.<br><br>")
+                        If m_try = MarkingTry.FirstTry Then
+                            str.Append("Don't worry. You can still fix it.<br><br>")
+                        Else
+                            str.Append("I am sure you will do better next time.<br><br>")
+                        End If
                     End If
                 End If
             End If
