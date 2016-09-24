@@ -102,6 +102,7 @@ Partial Class MainForm
         Me.OlvColumn27 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ctxmnuStudents = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MeritToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -287,7 +288,6 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -886,10 +886,8 @@ Partial Class MainForm
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6, Me.OlvColumn10})
         Me.olvStudents.ContextMenuStrip = Me.ctxmnuStudents
-        Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
@@ -898,20 +896,19 @@ Partial Class MainForm
         Me.olvStudents.FullRowSelect = True
         Me.olvStudents.GridLines = True
         Me.olvStudents.HideSelection = False
-        Me.olvStudents.HighlightBackgroundColor = System.Drawing.Color.Empty
-        Me.olvStudents.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvStudents.Location = New System.Drawing.Point(0, 0)
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowGroups = False
-        Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
         Me.olvStudents.Size = New System.Drawing.Size(871, 214)
         Me.olvStudents.TabIndex = 3
+        Me.olvStudents.TriggerCellOverEventsWhenOverHeader = False
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
         Me.olvStudents.UseFiltering = True
+        Me.olvStudents.UseHotControls = False
+        Me.olvStudents.UseOverlays = False
         Me.olvStudents.UseSubItemCheckBoxes = True
         Me.olvStudents.View = System.Windows.Forms.View.Details
         '
@@ -1145,6 +1142,12 @@ Partial Class MainForm
         Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.ToolTipText = "Date of Birth"
         '
+        'OlvColumn10
+        '
+        Me.OlvColumn10.AspectName = "StudentTeam"
+        Me.OlvColumn10.Text = "Team"
+        Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'ctxmnuStudents
         '
         Me.ctxmnuStudents.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -1252,8 +1255,6 @@ Partial Class MainForm
         Me.olvSchedule.GridLines = True
         Me.olvSchedule.HasCollapsibleGroups = False
         Me.olvSchedule.HideSelection = False
-        Me.olvSchedule.HighlightBackgroundColor = System.Drawing.Color.Empty
-        Me.olvSchedule.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvSchedule.Location = New System.Drawing.Point(0, 0)
         Me.olvSchedule.MultiSelect = False
         Me.olvSchedule.Name = "olvSchedule"
@@ -2588,12 +2589,6 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'OlvColumn10
-        '
-        Me.OlvColumn10.AspectName = "StudentTeam"
-        Me.OlvColumn10.Text = "Team"
-        Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'MainForm
         '
