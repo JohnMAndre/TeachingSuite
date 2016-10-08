@@ -1035,7 +1035,7 @@ Public Class MainForm
     End Sub
 
     Private Sub QuitWithoutSavingToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles QuitWithoutSavingToolStripMenuItem.Click
-        AddHistory("Closed without savin.")
+        AddHistory("Closed app without saving.")
 
         ThisSemester = Nothing '-- this will stop backing and saving logic from firing
         Close()
@@ -1097,6 +1097,7 @@ Public Class MainForm
                         Dim grp As New ClassGroup(Nothing)
                         grp.UseNickname = GetSelectedClassGroup.UseNickname
                         objClassToSend = New SchoolClass(grp)
+                        objClassToSend.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
                         objClassToSend.Students.AddRange(objCls.Students)
                         boolSetAlready = True
                     Else

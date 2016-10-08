@@ -427,7 +427,7 @@ Public Class EmailModuleResults
         End If
 
 
-        AddHistory("Emailed module results (" & m_clas.ToString() & ") to " & m_lst.Count.ToString("#,##0") & " students.")
+        AddHistory("Emailed module results (" & m_clas.Name.ToString() & ") to " & m_lst.Count.ToString("#,##0") & " students.")
 
         lblSendingStatus.Text = "Finished."
         ProgressBar1.Hide()

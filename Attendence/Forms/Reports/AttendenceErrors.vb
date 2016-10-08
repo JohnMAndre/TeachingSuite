@@ -68,15 +68,16 @@ Public Class AttendenceErrors
 
     Private Sub llblRemoveDateFromClass_LinkClicked(sender As Object, e As EventArgs) Handles llblRemoveDateFromClass.LinkClicked
         Try
+            Dim classSession As ClassSession = CType(olvClassSessions.SelectedObject, ClassSession)
+
             '-- Remove this session from the class
-            If olvClassSessions.SelectedObject Is Nothing Then
+            If classSession Is Nothing Then
                 MessageBox.Show("Please select a session from the class session list.", Application.ProductName)
                 Exit Sub
             End If
-            Dim classSession As ClassSession = CType(olvClassSessions.SelectedObject, ClassSession)
 
             If olvStudents.SelectedObject Is Nothing Then
-                MessageBox.Show("Please select a student from the student list.", Application.ProductName)
+                MessageBox.Show("Please select a student (any student) from the student list.", Application.ProductName)
                 Exit Sub
             Else
                 Dim stud As Student = CType(olvStudents.SelectedObject, Student)
