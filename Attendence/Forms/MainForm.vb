@@ -101,6 +101,11 @@ Public Class MainForm
 
         'Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
 
+        If ThisSemester Is Nothing Then
+            AddHistory("Opened app without active semester")
+        Else
+            AddHistory("Opened app. Active semester: " & ThisSemester.Name)
+        End If
 
     End Sub
     ''' <summary>

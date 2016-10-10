@@ -128,17 +128,30 @@
         Return System.IO.Path.Combine(GetDataFolder(), strHistoryFilename)
     End Function
     Public Sub AddHistory(text As String)
-        If ThisSemester Is Nothing Then
-            '-- ignore, there is no semester to worry about
-        Else
-            Dim strSemester As String
+        Try
             If ThisSemester Is Nothing Then
-                strSemester = "No semester loaded"
+                '-- ignore, there is no semester to worry about
             Else
-                strSemester = ThisSemester.Name
+                Dim strSemester As String
+                If ThisSemester Is Nothing Then
+                    strSemester = "No semester loaded"
+                Else
+                    strSemester = ThisSemester.Name
+                End If
+
+                '-- We want to pre-pend the new entry (so newest always at the top - it's for syncing anyway)
+                Dim strPreviousLogContents As String
+                strPreviousLogContents = System.IO.File.ReadAllText(GetHistoryLocation())
+                If strPreviousLogContents.Length > 10000 Then '-- we want to keep the log file small
+                    strPreviousLogContents = strPreviousLogContents.Substring(0, 8000)
+                End If
+                System.IO.File.Delete(GetHistoryLocation())
+                System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
+                System.IO.File.AppendAllText(GetHistoryLocation(), strPreviousLogContents)
             End If
-            System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
-        End If
+        Catch ex As Exception
+            Log(ex) '-- Log and continue
+        End Try
     End Sub
 
     Private Function GetErrorLogLocation() As String
