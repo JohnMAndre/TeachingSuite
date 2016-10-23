@@ -22,11 +22,13 @@ Public Class AutoSaveRecovery
         m_strSemesterName = semesterName
     End Sub
     Private Sub btnDeleteAutoSave_Click(sender As System.Object, e As System.EventArgs) Handles btnDeleteAutoSave.Click
+        AddHistory("User chose to remove autosave file: " & m_strSemesterName)
         Semester.DiscardAutoSaveFile(m_strSemesterName)
         Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub btnUseAutoSave_Click(sender As System.Object, e As System.EventArgs) Handles btnUseAutoSave.Click
+        AddHistory("User chose to use autosave file: " & m_strSemesterName)
         Semester.UseAutoSaveFile(m_strSemesterName)
         Me.DialogResult = DialogResult.OK
     End Sub

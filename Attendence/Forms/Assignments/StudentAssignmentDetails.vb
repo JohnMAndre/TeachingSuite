@@ -540,6 +540,8 @@ Friend Class StudentAssignmentDetails
                                 objSecondColumnMark = OutcomeResultStatusEnum.Unknown
                                 .Replacement.Text = outcome.FirstTryComments
                             Else
+                                '-- TODO: Need to see if this outcome is only on this assignment, if so use the logic above
+                                '   If on multiple assignments, it gets more complex
                                 statusOtherAssignment = GetModuleResultForSingleOutcome(outcome.BaseOutcome)
 
                                 If statusOtherAssignment = OutcomeResultStatusEnum.Pass Then

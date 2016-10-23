@@ -341,6 +341,8 @@ Public Class MainForm
 
             txtSemesterNotes.Text = ThisSemester.Notes
 
+            AddHistory("Loaded semester: " & ThisSemester.Name)
+
             LoadClassGroups()
             olvStudents.ClearObjects()
             LoadSchedule()

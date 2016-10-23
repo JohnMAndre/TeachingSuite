@@ -35,12 +35,14 @@ Partial Class ScheduleExport
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.txtFilename)
         Me.KryptonPanel.Controls.Add(Me.lstClassGroups)
         Me.KryptonPanel.Controls.Add(Me.chkCreateRollbackFile)
         Me.KryptonPanel.Controls.Add(Me.chkExportAllSessions)
@@ -48,7 +50,6 @@ Partial Class ScheduleExport
         Me.KryptonPanel.Controls.Add(Me.nudAlarmMinutes)
         Me.KryptonPanel.Controls.Add(Me.llblBrowseForExportFilename)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel7)
-        Me.KryptonPanel.Controls.Add(Me.txtFilename)
         Me.KryptonPanel.Controls.Add(Me.chkSetAlarm)
         Me.KryptonPanel.Controls.Add(Me.btnOK)
         Me.KryptonPanel.Controls.Add(Me.btnCancel)
@@ -72,7 +73,7 @@ Partial Class ScheduleExport
         Me.chkCreateRollbackFile.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkCreateRollbackFile.Location = New System.Drawing.Point(137, 136)
         Me.chkCreateRollbackFile.Name = "chkCreateRollbackFile"
-        Me.chkCreateRollbackFile.Size = New System.Drawing.Size(280, 20)
+        Me.chkCreateRollbackFile.Size = New System.Drawing.Size(304, 19)
         Me.chkCreateRollbackFile.TabIndex = 137
         Me.chkCreateRollbackFile.Text = "Create rollback file (import to remove sessions)"
         Me.chkCreateRollbackFile.Values.Text = "Create rollback file (import to remove sessions)"
@@ -82,7 +83,7 @@ Partial Class ScheduleExport
         Me.chkExportAllSessions.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkExportAllSessions.Location = New System.Drawing.Point(137, 103)
         Me.chkExportAllSessions.Name = "chkExportAllSessions"
-        Me.chkExportAllSessions.Size = New System.Drawing.Size(451, 20)
+        Me.chkExportAllSessions.Size = New System.Drawing.Size(494, 19)
         Me.chkExportAllSessions.TabIndex = 136
         Me.chkExportAllSessions.Text = "Include teaching sessions already past (uncheck to export only future sessions)"
         Me.chkExportAllSessions.Values.Text = "Include teaching sessions already past (uncheck to export only future sessions)"
@@ -91,7 +92,7 @@ Partial Class ScheduleExport
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(313, 64)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(165, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(181, 19)
         Me.KryptonLabel1.TabIndex = 135
         Me.KryptonLabel1.Values.Text = "minutes before each session"
         '
@@ -100,7 +101,7 @@ Partial Class ScheduleExport
         Me.nudAlarmMinutes.Location = New System.Drawing.Point(236, 64)
         Me.nudAlarmMinutes.Maximum = New Decimal(New Integer() {180, 0, 0, 0})
         Me.nudAlarmMinutes.Name = "nudAlarmMinutes"
-        Me.nudAlarmMinutes.Size = New System.Drawing.Size(71, 22)
+        Me.nudAlarmMinutes.Size = New System.Drawing.Size(71, 21)
         Me.nudAlarmMinutes.TabIndex = 134
         Me.nudAlarmMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAlarmMinutes.ThousandsSeparator = True
@@ -109,9 +110,9 @@ Partial Class ScheduleExport
         'llblBrowseForExportFilename
         '
         Me.llblBrowseForExportFilename.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblBrowseForExportFilename.Location = New System.Drawing.Point(677, 21)
+        Me.llblBrowseForExportFilename.Location = New System.Drawing.Point(674, 21)
         Me.llblBrowseForExportFilename.Name = "llblBrowseForExportFilename"
-        Me.llblBrowseForExportFilename.Size = New System.Drawing.Size(19, 20)
+        Me.llblBrowseForExportFilename.Size = New System.Drawing.Size(22, 19)
         Me.llblBrowseForExportFilename.TabIndex = 133
         Me.llblBrowseForExportFilename.Values.Text = "..."
         '
@@ -119,7 +120,7 @@ Partial Class ScheduleExport
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(137, 21)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(119, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(130, 19)
         Me.KryptonLabel7.TabIndex = 132
         Me.KryptonLabel7.Values.Text = "Filename for export:"
         '
@@ -127,9 +128,9 @@ Partial Class ScheduleExport
         '
         Me.txtFilename.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtFilename.Location = New System.Drawing.Point(262, 21)
+        Me.txtFilename.Location = New System.Drawing.Point(265, 21)
         Me.txtFilename.Name = "txtFilename"
-        Me.txtFilename.Size = New System.Drawing.Size(409, 20)
+        Me.txtFilename.Size = New System.Drawing.Size(406, 19)
         Me.txtFilename.TabIndex = 131
         '
         'chkSetAlarm
@@ -137,7 +138,7 @@ Partial Class ScheduleExport
         Me.chkSetAlarm.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkSetAlarm.Location = New System.Drawing.Point(137, 64)
         Me.chkSetAlarm.Name = "chkSetAlarm"
-        Me.chkSetAlarm.Size = New System.Drawing.Size(93, 20)
+        Me.chkSetAlarm.Size = New System.Drawing.Size(100, 19)
         Me.chkSetAlarm.TabIndex = 128
         Me.chkSetAlarm.Text = "Set alarm for"
         Me.chkSetAlarm.Values.Text = "Set alarm for"
@@ -167,9 +168,18 @@ Partial Class ScheduleExport
         '
         Me.KryptonLabel11.Location = New System.Drawing.Point(0, 19)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(111, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(117, 19)
         Me.KryptonLabel11.TabIndex = 138
         Me.KryptonLabel11.Values.Text = "Modules to export"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'ScheduleExport
         '
@@ -213,4 +223,5 @@ Partial Class ScheduleExport
     Friend WithEvents chkCreateRollbackFile As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents lstClassGroups As ComponentFactory.Krypton.Toolkit.KryptonListBox
     Friend WithEvents KryptonLabel11 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

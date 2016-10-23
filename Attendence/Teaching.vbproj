@@ -714,6 +714,7 @@
     <None Include="Resources\info_32.png" />
     <None Include="Resources\Thermometer2.png" />
     <None Include="Resources\Thermometer2_32.png" />
+    <None Include="Resources\address_book_16.png" />
     <Content Include="ToDoList.txt" />
     <None Include="Resources\userprofile_16.bmp" />
     <None Include="Resources\Resend_32.png" />
