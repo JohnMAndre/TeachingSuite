@@ -2460,17 +2460,22 @@ Public Class MainForm
     Private Sub FilterForSelectedGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FilterForSelectedGroupToolStripMenuItem.Click
         Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
-            Dim strGroup As String = stud.Tags.ToLower()
-            Dim intPosition As Integer = strGroup.IndexOf("group")
-            If intPosition > -1 Then
-                '-- There is a group, now set the filter
-                Dim intEndPosition As Integer = strGroup.IndexOf(" ", intPosition)
-                If intEndPosition < 0 Then
-                    intEndPosition = strGroup.Length
-                End If
-                strGroup = strGroup.Substring(intPosition, intEndPosition - intPosition)
+            Dim strGroup As String = stud.StudentTeam.Trim()
+            If strGroup.Length > 0 Then
                 txtStudentFilter.Text = strGroup
+            Else
+                MessageBox.Show("This student is not on a team.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
+            'Dim intPosition As Integer = strGroup.IndexOf("group")
+            'If intPosition > -1 Then
+            '    '-- There is a group, now set the filter
+            '    Dim intEndPosition As Integer = strGroup.IndexOf(" ", intPosition)
+            '    If intEndPosition < 0 Then
+            '        intEndPosition = strGroup.Length
+            '    End If
+            '    strGroup = strGroup.Substring(intPosition, intEndPosition - intPosition)
+            '    txtStudentFilter.Text = strGroup
+            'End If
         End If
     End Sub
 
