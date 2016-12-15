@@ -2507,7 +2507,18 @@ Public Class Student
             m_strStudentID = value
         End Set
     End Property
+    Private m_strExtStudentID As String
     Public Property ExtStudentID As String '-- external (or extra, your choice)
+        Get
+            Return m_strExtStudentID
+        End Get
+        Set(value As String)
+            If value <> m_strStudentID Then
+                AddToActivityLog("ExtStudentID changed from " & m_strExtStudentID & " to " & value)
+            End If
+            m_strExtStudentID = value
+        End Set
+    End Property
     Public Property AdminNumber As Integer
     Public Property AltNumber As Integer
     Public Property DateOfBirth As Date = DATE_NO_DATE '-- initiate to no_date

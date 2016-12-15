@@ -24,7 +24,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonContextMenuItems3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
@@ -151,10 +150,6 @@ Partial Class EmailModuleResults
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'tmrFilterStudents
         '
@@ -420,7 +415,7 @@ Partial Class EmailModuleResults
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
@@ -468,6 +463,7 @@ Partial Class EmailModuleResults
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.btnOK)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeMeritDistinctionResults)
         Me.splitOverall.Panel1.Controls.Add(Me.chkFinalFeedback)
         Me.splitOverall.Panel1.Controls.Add(Me.txtEmailTrailingText)
@@ -490,7 +486,6 @@ Partial Class EmailModuleResults
         Me.splitOverall.Panel1.Controls.Add(Me.txtSubject)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel3)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel1)
-        Me.splitOverall.Panel1.Controls.Add(Me.btnOK)
         '
         'splitOverall.Panel2
         '
@@ -682,7 +677,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 204)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(53, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel3.TabIndex = 32
         Me.KryptonLabel3.Values.Text = "Subject:"
         '
@@ -690,7 +685,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 174)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(104, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel1.TabIndex = 31
         Me.KryptonLabel1.Values.Text = "Sending account:"
         '
@@ -728,12 +723,12 @@ Partial Class EmailModuleResults
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
         Me.olvStudents.IncludeColumnHeadersInCopy = True
-        Me.olvStudents.Location = New System.Drawing.Point(0, 20)
+        Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(998, 624)
+        Me.olvStudents.Size = New System.Drawing.Size(998, 625)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -1076,11 +1071,11 @@ Partial Class EmailModuleResults
     Friend WithEvents OlvColumn16 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn17 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn18 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents UseExtIDuncheckToUseStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents chkIncludeFeedback As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn20 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents chkFinalFeedback As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeMeritDistinctionResults As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class
