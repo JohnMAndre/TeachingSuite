@@ -207,7 +207,15 @@ Public Class StudentDetail
     End Sub
     Private Sub LoadAssignments()
         If m_student IsNot Nothing Then
-            olvAssignments.SetObjects(m_student.AssignmentsBTEC)
+            If m_student.AssignmentsBTEC.Count > 0 Then
+                olvAssignments.SetObjects(m_student.AssignmentsBTEC)
+            Else
+                llblShowOutcomes.Hide() '-- If there are no BTEC assignments, then no need to show BTEC outcomes
+            End If
+
+            If m_student.Assignments.Count > 0 Then
+                olvNormalAssignments.SetObjects(m_student.Assignments)
+            End If
         End If
     End Sub
     Private Sub LoadOutcomes()
@@ -386,8 +394,27 @@ Public Class StudentDetail
     Private Sub ShowAssignments()
         pnlAttendance.Hide()
         pnlAssignments.Show()
-        olvAssignments.Show()
-        olvAssignments.BringToFront()
+
+        If m_student.AssignmentsBTEC.Count > 0 Then
+            olvAssignments.SetObjects(m_student.AssignmentsBTEC)
+            olvAssignments.Visible = True
+            olvAssignments.Show()
+            olvAssignments.BringToFront()
+        Else
+            olvAssignments.Visible = False
+        End If
+
+        If m_student.Assignments.Count > 0 OrElse olvAssignments.Visible = False Then '-- we need something visible, even if there are no assignments of any kind
+            olvNormalAssignments.SetObjects(m_student.Assignments)
+            olvNormalAssignments.Visible = True
+            olvNormalAssignments.Show()
+            olvNormalAssignments.BringToFront()
+        Else
+            olvNormalAssignments.Visible = False
+
+        End If
+
+
         pbButtonHighlight.Location = New Point(200, 127)
     End Sub
     Private Sub ShowSessions()
@@ -411,8 +438,27 @@ Public Class StudentDetail
 
     Private Sub llblMoveAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblMoveAssignment.LinkClicked
         If olvAssignments.SelectedObject Is Nothing Then
-            MessageBox.Show("Please select an assignment to move.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If olvNormalAssignments.SelectedObject Is Nothing Then
+                MessageBox.Show("Please select an assignment to move.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                '-- Move normal assignment
+                Using frm As New StudentSelector()
+                    If frm.ShowDialog = DialogResult.OK Then
+                        Application.DoEvents()
+                        Dim newStudent As Student = frm.SelectedStudent
+                        If newStudent IsNot Nothing Then
+                            Dim asmt As StudentAssignment = CType(olvNormalAssignments.SelectedObject, StudentAssignment)
+                            asmt.Student = newStudent
+                            newStudent.Assignments.Add(asmt)
+                            m_student.Assignments.Remove(asmt)
+                            olvNormalAssignments.RemoveObject(asmt)
+                        End If
+                    End If
+                End Using
+                LoadAssignments()
+            End If
         Else
+            '-- Move BTEC Assignment
             '-- select new student to transfer to
             Using frm As New StudentSelector()
                 If frm.ShowDialog = DialogResult.OK Then
@@ -423,6 +469,7 @@ Public Class StudentDetail
                         asmt.Student = newStudent
                         newStudent.AssignmentsBTEC.Add(asmt)
                         m_student.AssignmentsBTEC.Remove(asmt)
+                        olvAssignments.RemoveObject(asmt)
                     End If
                 End If
             End Using
@@ -446,4 +493,5 @@ Public Class StudentDetail
     Private Sub rtbNotes_DoubleClick(sender As Object, e As EventArgs)
         rtbNotes.Text = rtbNotes.Text & Environment.NewLine & Date.Now.ToString() & "   "
     End Sub
+
 End Class

@@ -85,10 +85,7 @@ Public Class ImportStudentsFromSemester
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         For Each stu As Student In olvStudents.SelectedObjects
-            stu.AssignmentsBTEC.Clear()
-            stu.TeachingSessions.Clear()
-            stu.Hidden = False
-            m_TargetClass.Students.Add(stu)
+            m_TargetClass.ImportStudent(stu)
             stu.AddToActivityLog("Student imported from " & m_sourceSemester.Name & " - " & GetSelectedClassGroup.Name & " - " & GetSelectedClass.Name)
             stu.ActivityLog = String.Empty '-- clear log on import
         Next

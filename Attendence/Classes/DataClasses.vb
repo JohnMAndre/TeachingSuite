@@ -1031,6 +1031,15 @@ Public Class SchoolClass
         Return Me.Name
     End Function
     ''' <summary>
+    ''' Will strip off any semester-specific data and add the student to this SchoolClass
+    ''' </summary>
+    ''' <param name="stud">The student to import</param>
+    ''' <remarks></remarks>
+    Public Sub ImportStudent(stud As Student)
+        stud.ClearStudentOfHistoricalData()
+        Me.Students.Add(stud)
+    End Sub
+    ''' <summary>
     ''' Generates auto actual sessions, leaving manual sessions
     ''' </summary>
     ''' <remarks></remarks>
@@ -2550,6 +2559,7 @@ Public Class Student
             m_intMeritPoints = value
         End Set
     End Property
+
     Public Property Gender As GenderEnum
     Public Property Notes As String
     Public Property ActivityLog As String '-- Semester-specific notes

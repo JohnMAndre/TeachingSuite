@@ -90,4 +90,25 @@ Public Class StudentSelector
     Private Sub lstClasses_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lstClasses.SelectedIndexChanged
         LoadStudents()
     End Sub
+
+    Private Sub txtStudentFilter_TextChanged(sender As Object, e As EventArgs) Handles txtFilter.TextChanged
+        tmrFilter.Stop()
+        tmrFilter.Start()
+    End Sub
+
+    Private Sub tmrFilter_Tick(sender As Object, e As EventArgs) Handles tmrFilter.Tick
+        Try
+            tmrFilter.Stop()
+
+            olvStudents.ModelFilter = New BrightIdeasSoftware.TextMatchFilter(olvStudents, txtFilter.Text)
+
+            If txtFilter.Text.Length = 0 Then
+                olvStudents.EmptyListMsg = "There are no students"
+            Else
+                olvStudents.EmptyListMsg = "No students match your filter"
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error filtering students: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

@@ -38,7 +38,6 @@ Public Class ImportStudentsFromText
                     '-- Do have existing student
                     '   update existing student with new data, if new data exists
                     stud.SchoolClass = m_class
-                    stud.ClearStudentOfHistoricalData()
                     If objStud.AdminNumber <> 0 Then
                         stud.AdminNumber = objStud.AdminNumber
                     End If
@@ -64,7 +63,7 @@ Public Class ImportStudentsFromText
                     End If
 
                     stud.ActivityLog = String.Empty
-                    m_class.Students.Add(stud)
+                    m_class.ImportStudent(stud)
                 End If
 
                 intStudentsImported += 1

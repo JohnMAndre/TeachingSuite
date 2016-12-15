@@ -22,7 +22,6 @@ Partial Class StudentSelector
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentSelector))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.splitOverall = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.KryptonSplitContainer3 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.lstClassGroups = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
@@ -31,6 +30,7 @@ Partial Class StudentSelector
         Me.lstClasses = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.splitStudentsSchedule = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
+        Me.picStudent = New System.Windows.Forms.PictureBox()
         Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -50,12 +50,14 @@ Partial Class StudentSelector
         Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn19 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.picStudent = New System.Windows.Forms.PictureBox()
-        Me.txtStudentFilter = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.llblClearFilter = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.txtFilter = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.llblClearFilter = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.tmrFilter = New System.Windows.Forms.Timer(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.splitOverall, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +83,8 @@ Partial Class StudentSelector
         CType(Me.splitStudentsSchedule.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.splitStudentsSchedule.Panel2.SuspendLayout()
         Me.splitStudentsSchedule.SuspendLayout()
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -108,7 +110,7 @@ Partial Class StudentSelector
         'splitOverall.Panel2
         '
         Me.splitOverall.Panel2.Controls.Add(Me.splitStudentsSchedule)
-        Me.splitOverall.Panel2.Controls.Add(Me.txtStudentFilter)
+        Me.splitOverall.Panel2.Controls.Add(Me.txtFilter)
         Me.splitOverall.Panel2.Controls.Add(Me.llblClearFilter)
         Me.splitOverall.Panel2.Controls.Add(Me.KryptonLabel2)
         Me.splitOverall.Size = New System.Drawing.Size(820, 394)
@@ -138,9 +140,9 @@ Partial Class StudentSelector
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClassGroups.Location = New System.Drawing.Point(0, 20)
+        Me.lstClassGroups.Location = New System.Drawing.Point(0, 19)
         Me.lstClassGroups.Name = "lstClassGroups"
-        Me.lstClassGroups.Size = New System.Drawing.Size(138, 110)
+        Me.lstClassGroups.Size = New System.Drawing.Size(138, 111)
         Me.lstClassGroups.TabIndex = 28
         '
         'KryptonLabel11
@@ -148,7 +150,7 @@ Partial Class StudentSelector
         Me.KryptonLabel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel11.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(138, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(138, 19)
         Me.KryptonLabel11.TabIndex = 3
         Me.KryptonLabel11.Values.Text = "Module"
         '
@@ -172,9 +174,9 @@ Partial Class StudentSelector
         'lstClasses
         '
         Me.lstClasses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClasses.Location = New System.Drawing.Point(0, 20)
+        Me.lstClasses.Location = New System.Drawing.Point(0, 19)
         Me.lstClasses.Name = "lstClasses"
-        Me.lstClasses.Size = New System.Drawing.Size(138, 239)
+        Me.lstClasses.Size = New System.Drawing.Size(138, 240)
         Me.lstClasses.TabIndex = 0
         '
         'KryptonLabel10
@@ -182,7 +184,7 @@ Partial Class StudentSelector
         Me.KryptonLabel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel10.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Size = New System.Drawing.Size(138, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(138, 19)
         Me.KryptonLabel10.TabIndex = 2
         Me.KryptonLabel10.Values.Text = "Classes"
         '
@@ -190,7 +192,7 @@ Partial Class StudentSelector
         '
         Me.splitStudentsSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.splitStudentsSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 20)
+        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 19)
         Me.splitStudentsSchedule.Name = "splitStudentsSchedule"
         Me.splitStudentsSchedule.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -203,9 +205,22 @@ Partial Class StudentSelector
         '
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.btnOK)
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.btnCancel)
-        Me.splitStudentsSchedule.Size = New System.Drawing.Size(677, 374)
+        Me.splitStudentsSchedule.Size = New System.Drawing.Size(677, 375)
         Me.splitStudentsSchedule.SplitterDistance = 317
         Me.splitStudentsSchedule.TabIndex = 28
+        '
+        'picStudent
+        '
+        Me.picStudent.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picStudent.Location = New System.Drawing.Point(549, 87)
+        Me.picStudent.Name = "picStudent"
+        Me.picStudent.Size = New System.Drawing.Size(121, 207)
+        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.picStudent.TabIndex = 44
+        Me.picStudent.TabStop = False
+        Me.picStudent.Visible = False
         '
         'olvStudents
         '
@@ -230,9 +245,11 @@ Partial Class StudentSelector
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.OlvColumn10, Me.OlvColumn20, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "This class is empty"
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -242,7 +259,6 @@ Partial Class StudentSelector
         Me.olvStudents.Location = New System.Drawing.Point(0, 0)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowGroups = False
@@ -398,25 +414,33 @@ Partial Class StudentSelector
         Me.OlvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn19.Width = 120
         '
-        'picStudent
+        'btnOK
         '
-        Me.picStudent.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.picStudent.Location = New System.Drawing.Point(549, 87)
-        Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(121, 207)
-        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.picStudent.TabIndex = 44
-        Me.picStudent.TabStop = False
-        Me.picStudent.Visible = False
+        Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.btnOK.Location = New System.Drawing.Point(357, 12)
+        Me.btnOK.Name = "btnOK"
+        Me.btnOK.Size = New System.Drawing.Size(90, 29)
+        Me.btnOK.TabIndex = 30
+        Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
+        Me.btnOK.Values.Text = "&OK"
         '
-        'txtStudentFilter
+        'btnCancel
         '
-        Me.txtStudentFilter.Location = New System.Drawing.Point(62, 0)
-        Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
-        Me.txtStudentFilter.TabIndex = 25
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.Location = New System.Drawing.Point(230, 12)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(90, 29)
+        Me.btnCancel.TabIndex = 29
+        Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
+        Me.btnCancel.Values.Text = "&Cancel"
+        '
+        'txtFilter
+        '
+        Me.txtFilter.Location = New System.Drawing.Point(62, 0)
+        Me.txtFilter.Name = "txtFilter"
+        Me.txtFilter.Size = New System.Drawing.Size(117, 19)
+        Me.txtFilter.TabIndex = 25
         '
         'llblClearFilter
         '
@@ -432,30 +456,22 @@ Partial Class StudentSelector
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(677, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(677, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
-        'btnOK
+        'KryptonManager
         '
-        Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.btnOK.Location = New System.Drawing.Point(357, 12)
-        Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(90, 28)
-        Me.btnOK.TabIndex = 30
-        Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnOK.Values.Text = "&OK"
         '
-        'btnCancel
+        'kryptonPalette2
         '
-        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(230, 12)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(90, 28)
-        Me.btnCancel.TabIndex = 29
-        Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.btnCancel.Values.Text = "&Cancel"
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'tmrFilter
+        '
+        Me.tmrFilter.Interval = 200
         '
         'StudentSelector
         '
@@ -494,8 +510,8 @@ Partial Class StudentSelector
         Me.splitStudentsSchedule.Panel2.ResumeLayout(False)
         CType(Me.splitStudentsSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splitStudentsSchedule.ResumeLayout(False)
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -542,9 +558,11 @@ Partial Class StudentSelector
     Friend WithEvents OlvColumn14 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents txtStudentFilter As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents txtFilter As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents llblClearFilter As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents btnOK As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents btnCancel As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents tmrFilter As System.Windows.Forms.Timer
 End Class
