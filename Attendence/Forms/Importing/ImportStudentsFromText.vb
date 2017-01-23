@@ -204,6 +204,9 @@ Public Class ImportStudentsFromText
 
             Dim row() As String
             For intCounter As Integer = 0 To strRows.Count - 1
+                If strRows(intCounter).Trim.Length = 0 Then
+                    Continue For '-- skip this row, it has no data
+                End If
                 row = strRows(intCounter).Split(vbTab)
                 'If row.Length < 8 Then
                 '    If m_lstStudents.Count > 0 Then
@@ -263,7 +266,7 @@ Public Class ImportStudentsFromText
                         ElseIf row(8).ToLower() = "f" OrElse row(8).ToLower() = "female" Then
                             objStud.Gender = Student.GenderEnum.Female
                         Else
-                            objStud.Gender = Student.GenderEnum.Unknown
+                            objStud.Gender = stud.Gender
                         End If
                     Else
                         '-- Nothing in the import so just use whatever we knew before (
