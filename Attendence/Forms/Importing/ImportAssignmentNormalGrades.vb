@@ -3,6 +3,7 @@
         Public Property Student As Student
         Public Property ExtStudentID As String
         Public Property Grade As Integer
+        Public Property OverallComments As String
     End Class
 
     Private m_boolCancel As Boolean
@@ -57,7 +58,18 @@
                     End If
                     objData = New ImportData()
                     objData.ExtStudentID = row(0).Trim
-                    objData.Grade = ConvertToInt32(row(1).Trim, 0)
+                    objData.Grade = ConvertToInt32(row(1).Trim(), 0)
+                    If row.Length > 2 Then
+                        objData.OverallComments = row(2).Trim()
+                        If objData.OverallComments.StartsWith("""") Then
+                            objData.OverallComments = objData.OverallComments.Substring(1) '-- eliminate leading quote
+                        End If
+
+                        If objData.OverallComments.EndsWith("""") Then
+                            objData.OverallComments = objData.OverallComments.Substring(0, objData.OverallComments.Length - 1) '-- eliminate trailing quote
+                        End If
+
+                    End If
 
                     Select Case cboIDToUse.SelectedIndex
                         Case 0
@@ -146,12 +158,13 @@
                     If asmtToUse Is Nothing Then
                         asmtToUse = data.Student.AddAssignment(m_asmt)
                         asmtToUse.FirstTryPoints = data.Grade
-                        asmtToUse.OverallComments = "Imported on " & Date.Today.ToString("dd-MM-yyyy")
+                        asmtToUse.OverallComments = data.OverallComments & Environment.NewLine & Environment.NewLine & "Imported on " & Date.Today.ToString("dd-MM-yyyy")
                     End If
 
                     intCounter += 1
                 Else
-                    '-- what to do if there is no student? Ignore I guess.
+                    '-- what to do if there is no student? Write to output panel I guess.
+                    txtOutput.Text &= "Student (ExtID: " & data.ExtStudentID & ") could not be found in database."
                 End If
             Next
 

@@ -36,6 +36,8 @@ Partial Class ImportAssignmentNormalGrades
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtOutput = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.cboIDToUse = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.lblStudentsLoaded = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.btnImport = New ComponentFactory.Krypton.Toolkit.KryptonButton()
@@ -44,17 +46,16 @@ Partial Class ImportAssignmentNormalGrades
         Me.lblStudentsSearched = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsSearchedCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.cboIDToUse = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
+        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel2.SuspendLayout()
+        CType(Me.cboIDToUse, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel3.SuspendLayout()
-        CType(Me.cboIDToUse, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -112,12 +113,15 @@ Partial Class ImportAssignmentNormalGrades
         Me.olvData.AllColumns.Add(Me.OlvColumn2)
         Me.olvData.AllColumns.Add(Me.OlvColumn3)
         Me.olvData.AllColumns.Add(Me.OlvColumn4)
+        Me.olvData.AllColumns.Add(Me.OlvColumn5)
         Me.olvData.AllowColumnReorder = True
         Me.olvData.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvData.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvData.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn4})
+        Me.olvData.CellEditUseWholeCell = False
+        Me.olvData.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn5})
         Me.olvData.CopySelectionOnControlC = False
         Me.olvData.CopySelectionOnControlCUsesDragSource = False
+        Me.olvData.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvData.EmptyListMsg = "Copy and paste from spreadsheet."
         Me.olvData.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -127,7 +131,6 @@ Partial Class ImportAssignmentNormalGrades
         Me.olvData.HideSelection = False
         Me.olvData.Location = New System.Drawing.Point(0, 32)
         Me.olvData.Name = "olvData"
-        Me.olvData.OwnerDraw = True
         Me.olvData.ShowGroups = False
         Me.olvData.ShowImagesOnSubItems = True
         Me.olvData.ShowItemCountOnGroups = True
@@ -189,6 +192,24 @@ Partial Class ImportAssignmentNormalGrades
         Me.KryptonPanel2.Size = New System.Drawing.Size(955, 32)
         Me.KryptonPanel2.TabIndex = 6
         '
+        'KryptonLabel1
+        '
+        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 6)
+        Me.KryptonLabel1.Name = "KryptonLabel1"
+        Me.KryptonLabel1.Size = New System.Drawing.Size(68, 19)
+        Me.KryptonLabel1.TabIndex = 9
+        Me.KryptonLabel1.Values.Text = "ID to use:"
+        '
+        'cboIDToUse
+        '
+        Me.cboIDToUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboIDToUse.DropDownWidth = 121
+        Me.cboIDToUse.Items.AddRange(New Object() {"StudentID", "ExtStudentID"})
+        Me.cboIDToUse.Location = New System.Drawing.Point(82, 5)
+        Me.cboIDToUse.Name = "cboIDToUse"
+        Me.cboIDToUse.Size = New System.Drawing.Size(215, 20)
+        Me.cboIDToUse.TabIndex = 8
+        '
         'KryptonPanel3
         '
         Me.KryptonPanel3.Controls.Add(Me.lblStudentsLoaded)
@@ -206,9 +227,9 @@ Partial Class ImportAssignmentNormalGrades
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(891, 26)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(890, 26)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsLoaded.TabIndex = 80
         Me.lblStudentsLoaded.Values.Text = "0"
         '
@@ -226,9 +247,9 @@ Partial Class ImportAssignmentNormalGrades
         'KryptonLabel3
         '
         Me.KryptonLabel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel3.Location = New System.Drawing.Point(751, 26)
+        Me.KryptonLabel3.Location = New System.Drawing.Point(742, 26)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(102, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(111, 19)
         Me.KryptonLabel3.TabIndex = 79
         Me.KryptonLabel3.Values.Text = "Students loaded:"
         '
@@ -246,18 +267,18 @@ Partial Class ImportAssignmentNormalGrades
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(891, 6)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(890, 6)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(17, 20)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsSearched.TabIndex = 78
         Me.lblStudentsSearched.Values.Text = "0"
         '
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(740, 6)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(727, 6)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
-        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(113, 20)
+        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
         Me.lblStudentsSearchedCaption.TabIndex = 77
         Me.lblStudentsSearchedCaption.Values.Text = "Students searched:"
         '
@@ -266,23 +287,11 @@ Partial Class ImportAssignmentNormalGrades
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 200
         '
-        'KryptonLabel1
+        'OlvColumn5
         '
-        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 6)
-        Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(62, 20)
-        Me.KryptonLabel1.TabIndex = 9
-        Me.KryptonLabel1.Values.Text = "ID to use:"
-        '
-        'cboIDToUse
-        '
-        Me.cboIDToUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboIDToUse.DropDownWidth = 121
-        Me.cboIDToUse.Items.AddRange(New Object() {"StudentID", "ExtStudentID"})
-        Me.cboIDToUse.Location = New System.Drawing.Point(82, 5)
-        Me.cboIDToUse.Name = "cboIDToUse"
-        Me.cboIDToUse.Size = New System.Drawing.Size(215, 21)
-        Me.cboIDToUse.TabIndex = 8
+        Me.OlvColumn5.AspectName = "OverallComments"
+        Me.OlvColumn5.Text = "Comments"
+        Me.OlvColumn5.Width = 150
         '
         'ImportAssignmentNormalGrades
         '
@@ -302,10 +311,10 @@ Partial Class ImportAssignmentNormalGrades
         CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel2.ResumeLayout(False)
         Me.KryptonPanel2.PerformLayout()
+        CType(Me.cboIDToUse, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KryptonPanel3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel3.ResumeLayout(False)
         Me.KryptonPanel3.PerformLayout()
-        CType(Me.cboIDToUse, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -333,4 +342,5 @@ Partial Class ImportAssignmentNormalGrades
     Friend WithEvents lblStudentsSearchedCaption As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents cboIDToUse As ComponentFactory.Krypton.Toolkit.KryptonComboBox
+    Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
 End Class

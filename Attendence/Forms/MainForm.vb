@@ -2709,4 +2709,9 @@ Public Class MainForm
             MessageBox.Show("There was an error loading the current class: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub MissingGradeDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MissingGradeDataToolStripMenuItem.Click
+        Dim frm As New MissingGradeDataReport()
+        frm.Show()
+    End Sub
 End Class

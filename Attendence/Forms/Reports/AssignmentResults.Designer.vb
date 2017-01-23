@@ -21,7 +21,24 @@ Partial Class AssignmentResults
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AssignmentResults))
-        Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblPass = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblFail = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblNoSubmit = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblPassPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblFailPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblNoSubmitPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblPassPercentSubmit = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblFailPercentSubmit = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.miniToolStrip = New System.Windows.Forms.MenuStrip()
+        Me.FirstTryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SecondRedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -33,42 +50,159 @@ Partial Class AssignmentResults
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.FirstTryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SecondRedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.lblFailPercentSubmit = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblPassPercentSubmit = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblNoSubmitPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblFailPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblPassPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblNoSubmit = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblFail = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.lblPass = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel.SuspendLayout()
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.MenuStrip1.SuspendLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
+        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.KryptonPanel.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'KryptonPanel
+        'KryptonManager
         '
-        Me.KryptonPanel.Controls.Add(Me.olvStudents)
-        Me.KryptonPanel.Controls.Add(Me.MenuStrip1)
-        Me.KryptonPanel.Controls.Add(Me.KryptonPanel1)
-        Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
-        Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Size = New System.Drawing.Size(914, 444)
-        Me.KryptonPanel.TabIndex = 0
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'KryptonPanel1
+        '
+        Me.KryptonPanel1.Controls.Add(Me.lblFailPercentSubmit)
+        Me.KryptonPanel1.Controls.Add(Me.lblPassPercentSubmit)
+        Me.KryptonPanel1.Controls.Add(Me.lblNoSubmitPercent)
+        Me.KryptonPanel1.Controls.Add(Me.lblFailPercent)
+        Me.KryptonPanel1.Controls.Add(Me.lblPassPercent)
+        Me.KryptonPanel1.Controls.Add(Me.lblNoSubmit)
+        Me.KryptonPanel1.Controls.Add(Me.lblFail)
+        Me.KryptonPanel1.Controls.Add(Me.lblPass)
+        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel3)
+        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel2)
+        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel1)
+        Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 379)
+        Me.KryptonPanel1.Name = "KryptonPanel1"
+        Me.KryptonPanel1.Size = New System.Drawing.Size(914, 65)
+        Me.KryptonPanel1.TabIndex = 7
+        '
+        'KryptonLabel1
+        '
+        Me.KryptonLabel1.Location = New System.Drawing.Point(13, 1)
+        Me.KryptonLabel1.Name = "KryptonLabel1"
+        Me.KryptonLabel1.Size = New System.Drawing.Size(44, 19)
+        Me.KryptonLabel1.TabIndex = 0
+        Me.KryptonLabel1.Values.Text = "Pass:"
+        '
+        'KryptonLabel2
+        '
+        Me.KryptonLabel2.Location = New System.Drawing.Point(13, 19)
+        Me.KryptonLabel2.Name = "KryptonLabel2"
+        Me.KryptonLabel2.Size = New System.Drawing.Size(36, 19)
+        Me.KryptonLabel2.TabIndex = 1
+        Me.KryptonLabel2.Values.Text = "Fail:"
+        '
+        'KryptonLabel3
+        '
+        Me.KryptonLabel3.Location = New System.Drawing.Point(13, 37)
+        Me.KryptonLabel3.Name = "KryptonLabel3"
+        Me.KryptonLabel3.Size = New System.Drawing.Size(33, 19)
+        Me.KryptonLabel3.TabIndex = 2
+        Me.KryptonLabel3.Values.Text = "NS:"
+        '
+        'lblPass
+        '
+        Me.lblPass.Location = New System.Drawing.Point(56, 1)
+        Me.lblPass.Name = "lblPass"
+        Me.lblPass.Size = New System.Drawing.Size(18, 19)
+        Me.lblPass.TabIndex = 3
+        Me.lblPass.Values.Text = "0"
+        '
+        'lblFail
+        '
+        Me.lblFail.Location = New System.Drawing.Point(56, 19)
+        Me.lblFail.Name = "lblFail"
+        Me.lblFail.Size = New System.Drawing.Size(18, 19)
+        Me.lblFail.TabIndex = 4
+        Me.lblFail.Values.Text = "0"
+        '
+        'lblNoSubmit
+        '
+        Me.lblNoSubmit.Location = New System.Drawing.Point(56, 37)
+        Me.lblNoSubmit.Name = "lblNoSubmit"
+        Me.lblNoSubmit.Size = New System.Drawing.Size(18, 19)
+        Me.lblNoSubmit.TabIndex = 5
+        Me.lblNoSubmit.Values.Text = "0"
+        '
+        'lblPassPercent
+        '
+        Me.lblPassPercent.Location = New System.Drawing.Point(134, 1)
+        Me.lblPassPercent.Name = "lblPassPercent"
+        Me.lblPassPercent.Size = New System.Drawing.Size(18, 19)
+        Me.lblPassPercent.TabIndex = 6
+        Me.ToolTip1.SetToolTip(Me.lblPassPercent, "Percent of all students")
+        Me.lblPassPercent.Values.Text = "0"
+        '
+        'lblFailPercent
+        '
+        Me.lblFailPercent.Location = New System.Drawing.Point(134, 19)
+        Me.lblFailPercent.Name = "lblFailPercent"
+        Me.lblFailPercent.Size = New System.Drawing.Size(18, 19)
+        Me.lblFailPercent.TabIndex = 7
+        Me.ToolTip1.SetToolTip(Me.lblFailPercent, "Percent of all students")
+        Me.lblFailPercent.Values.Text = "0"
+        '
+        'lblNoSubmitPercent
+        '
+        Me.lblNoSubmitPercent.Location = New System.Drawing.Point(134, 37)
+        Me.lblNoSubmitPercent.Name = "lblNoSubmitPercent"
+        Me.lblNoSubmitPercent.Size = New System.Drawing.Size(18, 19)
+        Me.lblNoSubmitPercent.TabIndex = 8
+        Me.ToolTip1.SetToolTip(Me.lblNoSubmitPercent, "Percent of all students")
+        Me.lblNoSubmitPercent.Values.Text = "0"
+        '
+        'lblPassPercentSubmit
+        '
+        Me.lblPassPercentSubmit.Location = New System.Drawing.Point(211, 1)
+        Me.lblPassPercentSubmit.Name = "lblPassPercentSubmit"
+        Me.lblPassPercentSubmit.Size = New System.Drawing.Size(18, 19)
+        Me.lblPassPercentSubmit.TabIndex = 9
+        Me.ToolTip1.SetToolTip(Me.lblPassPercentSubmit, "Percent of students who submitted")
+        Me.lblPassPercentSubmit.Values.Text = "0"
+        '
+        'lblFailPercentSubmit
+        '
+        Me.lblFailPercentSubmit.Location = New System.Drawing.Point(211, 19)
+        Me.lblFailPercentSubmit.Name = "lblFailPercentSubmit"
+        Me.lblFailPercentSubmit.Size = New System.Drawing.Size(18, 19)
+        Me.lblFailPercentSubmit.TabIndex = 10
+        Me.ToolTip1.SetToolTip(Me.lblFailPercentSubmit, "Percent of students who submitted")
+        Me.lblFailPercentSubmit.Values.Text = "0"
+        '
+        'miniToolStrip
+        '
+        Me.miniToolStrip.AutoSize = False
+        Me.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None
+        Me.miniToolStrip.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.miniToolStrip.Location = New System.Drawing.Point(206, 2)
+        Me.miniToolStrip.Name = "miniToolStrip"
+        Me.miniToolStrip.Size = New System.Drawing.Size(914, 24)
+        Me.miniToolStrip.TabIndex = 6
+        '
+        'FirstTryToolStripMenuItem
+        '
+        Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
+        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.FirstTryToolStripMenuItem.Text = "First Try"
+        '
+        'RedoToolStripMenuItem
+        '
+        Me.RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
+        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.RedoToolStripMenuItem.Text = "Rework"
+        '
+        'SecondRedoToolStripMenuItem
+        '
+        Me.SecondRedoToolStripMenuItem.Name = "SecondRedoToolStripMenuItem"
+        Me.SecondRedoToolStripMenuItem.Size = New System.Drawing.Size(81, 20)
+        Me.SecondRedoToolStripMenuItem.Text = "2nd Rework"
         '
         'olvStudents
         '
@@ -85,9 +219,11 @@ Partial Class AssignmentResults
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn3, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No data for this assignment...click menu above."
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -97,7 +233,6 @@ Partial Class AssignmentResults
         Me.olvStudents.Location = New System.Drawing.Point(0, 24)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowImagesOnSubItems = True
@@ -205,6 +340,17 @@ Partial Class AssignmentResults
         Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn2.Width = 120
         '
+        'KryptonPanel
+        '
+        Me.KryptonPanel.Controls.Add(Me.olvStudents)
+        Me.KryptonPanel.Controls.Add(Me.MenuStrip1)
+        Me.KryptonPanel.Controls.Add(Me.KryptonPanel1)
+        Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
+        Me.KryptonPanel.Name = "KryptonPanel"
+        Me.KryptonPanel.Size = New System.Drawing.Size(914, 444)
+        Me.KryptonPanel.TabIndex = 0
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -215,136 +361,6 @@ Partial Class AssignmentResults
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'FirstTryToolStripMenuItem
-        '
-        Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
-        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
-        Me.FirstTryToolStripMenuItem.Text = "First Try"
-        '
-        'RedoToolStripMenuItem
-        '
-        Me.RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
-        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.RedoToolStripMenuItem.Text = "Rework"
-        '
-        'SecondRedoToolStripMenuItem
-        '
-        Me.SecondRedoToolStripMenuItem.Name = "SecondRedoToolStripMenuItem"
-        Me.SecondRedoToolStripMenuItem.Size = New System.Drawing.Size(81, 20)
-        Me.SecondRedoToolStripMenuItem.Text = "2nd Rework"
-        '
-        'KryptonPanel1
-        '
-        Me.KryptonPanel1.Controls.Add(Me.lblFailPercentSubmit)
-        Me.KryptonPanel1.Controls.Add(Me.lblPassPercentSubmit)
-        Me.KryptonPanel1.Controls.Add(Me.lblNoSubmitPercent)
-        Me.KryptonPanel1.Controls.Add(Me.lblFailPercent)
-        Me.KryptonPanel1.Controls.Add(Me.lblPassPercent)
-        Me.KryptonPanel1.Controls.Add(Me.lblNoSubmit)
-        Me.KryptonPanel1.Controls.Add(Me.lblFail)
-        Me.KryptonPanel1.Controls.Add(Me.lblPass)
-        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel3)
-        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel2)
-        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel1)
-        Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 379)
-        Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(914, 65)
-        Me.KryptonPanel1.TabIndex = 7
-        '
-        'lblFailPercentSubmit
-        '
-        Me.lblFailPercentSubmit.Location = New System.Drawing.Point(211, 19)
-        Me.lblFailPercentSubmit.Name = "lblFailPercentSubmit"
-        Me.lblFailPercentSubmit.Size = New System.Drawing.Size(17, 20)
-        Me.lblFailPercentSubmit.TabIndex = 10
-        Me.ToolTip1.SetToolTip(Me.lblFailPercentSubmit, "Percent of students who submitted")
-        Me.lblFailPercentSubmit.Values.Text = "0"
-        '
-        'lblPassPercentSubmit
-        '
-        Me.lblPassPercentSubmit.Location = New System.Drawing.Point(211, 1)
-        Me.lblPassPercentSubmit.Name = "lblPassPercentSubmit"
-        Me.lblPassPercentSubmit.Size = New System.Drawing.Size(17, 20)
-        Me.lblPassPercentSubmit.TabIndex = 9
-        Me.ToolTip1.SetToolTip(Me.lblPassPercentSubmit, "Percent of students who submitted")
-        Me.lblPassPercentSubmit.Values.Text = "0"
-        '
-        'lblNoSubmitPercent
-        '
-        Me.lblNoSubmitPercent.Location = New System.Drawing.Point(134, 37)
-        Me.lblNoSubmitPercent.Name = "lblNoSubmitPercent"
-        Me.lblNoSubmitPercent.Size = New System.Drawing.Size(17, 20)
-        Me.lblNoSubmitPercent.TabIndex = 8
-        Me.ToolTip1.SetToolTip(Me.lblNoSubmitPercent, "Percent of all students")
-        Me.lblNoSubmitPercent.Values.Text = "0"
-        '
-        'lblFailPercent
-        '
-        Me.lblFailPercent.Location = New System.Drawing.Point(134, 19)
-        Me.lblFailPercent.Name = "lblFailPercent"
-        Me.lblFailPercent.Size = New System.Drawing.Size(17, 20)
-        Me.lblFailPercent.TabIndex = 7
-        Me.ToolTip1.SetToolTip(Me.lblFailPercent, "Percent of all students")
-        Me.lblFailPercent.Values.Text = "0"
-        '
-        'lblPassPercent
-        '
-        Me.lblPassPercent.Location = New System.Drawing.Point(134, 1)
-        Me.lblPassPercent.Name = "lblPassPercent"
-        Me.lblPassPercent.Size = New System.Drawing.Size(17, 20)
-        Me.lblPassPercent.TabIndex = 6
-        Me.ToolTip1.SetToolTip(Me.lblPassPercent, "Percent of all students")
-        Me.lblPassPercent.Values.Text = "0"
-        '
-        'lblNoSubmit
-        '
-        Me.lblNoSubmit.Location = New System.Drawing.Point(56, 37)
-        Me.lblNoSubmit.Name = "lblNoSubmit"
-        Me.lblNoSubmit.Size = New System.Drawing.Size(17, 20)
-        Me.lblNoSubmit.TabIndex = 5
-        Me.lblNoSubmit.Values.Text = "0"
-        '
-        'lblFail
-        '
-        Me.lblFail.Location = New System.Drawing.Point(56, 19)
-        Me.lblFail.Name = "lblFail"
-        Me.lblFail.Size = New System.Drawing.Size(17, 20)
-        Me.lblFail.TabIndex = 4
-        Me.lblFail.Values.Text = "0"
-        '
-        'lblPass
-        '
-        Me.lblPass.Location = New System.Drawing.Point(56, 1)
-        Me.lblPass.Name = "lblPass"
-        Me.lblPass.Size = New System.Drawing.Size(17, 20)
-        Me.lblPass.TabIndex = 3
-        Me.lblPass.Values.Text = "0"
-        '
-        'KryptonLabel3
-        '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(13, 37)
-        Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(29, 20)
-        Me.KryptonLabel3.TabIndex = 2
-        Me.KryptonLabel3.Values.Text = "NS:"
-        '
-        'KryptonLabel2
-        '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(13, 19)
-        Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(31, 20)
-        Me.KryptonLabel2.TabIndex = 1
-        Me.KryptonLabel2.Values.Text = "Fail:"
-        '
-        'KryptonLabel1
-        '
-        Me.KryptonLabel1.Location = New System.Drawing.Point(13, 1)
-        Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(37, 20)
-        Me.KryptonLabel1.TabIndex = 0
-        Me.KryptonLabel1.Values.Text = "Pass:"
-        '
         'AssignmentResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -352,22 +368,20 @@ Partial Class AssignmentResults
         Me.ClientSize = New System.Drawing.Size(914, 444)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "AssignmentResults"
         Me.Text = "Assignment Results"
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel.ResumeLayout(False)
-        Me.KryptonPanel.PerformLayout()
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel1.ResumeLayout(False)
         Me.KryptonPanel1.PerformLayout()
+        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonPanel.ResumeLayout(False)
+        Me.KryptonPanel.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents KryptonManager As ComponentFactory.Krypton.Toolkit.KryptonManager
 
     Public Sub New()
@@ -382,32 +396,34 @@ Partial Class AssignmentResults
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
     End Sub
-    Friend WithEvents olvStudents As BrightIdeasSoftware.ObjectListView
-    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents FirstTryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SecondRedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn8 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn9 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents KryptonPanel1 As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents lblFailPercentSubmit As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblPassPercentSubmit As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblNoSubmitPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblFailPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblPassPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblNoSubmit As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblFail As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblPass As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents lblNoSubmitPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents lblFailPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents lblPassPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents lblFailPercentSubmit As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents lblPassPercentSubmit As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents miniToolStrip As System.Windows.Forms.MenuStrip
+    Friend WithEvents FirstTryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SecondRedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents olvStudents As BrightIdeasSoftware.ObjectListView
+    Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn8 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn9 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
 End Class

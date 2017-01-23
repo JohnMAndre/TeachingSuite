@@ -140,14 +140,20 @@
                 End If
 
                 '-- We want to pre-pend the new entry (so newest always at the top - it's for syncing anyway)
-                Dim strPreviousLogContents As String
-                strPreviousLogContents = System.IO.File.ReadAllText(GetHistoryLocation())
-                If strPreviousLogContents.Length > 10000 Then '-- we want to keep the log file small
-                    strPreviousLogContents = strPreviousLogContents.Substring(0, 8000)
+                If System.IO.File.Exists(GetHistoryLocation()) Then
+                    Dim strPreviousLogContents As String
+                    strPreviousLogContents = System.IO.File.ReadAllText(GetHistoryLocation())
+                    If strPreviousLogContents.Length > 10000 Then '-- we want to keep the log file small
+                        strPreviousLogContents = strPreviousLogContents.Substring(0, 8000)
+                    End If
+                    System.IO.File.Delete(GetHistoryLocation())
+                    System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
+                    System.IO.File.AppendAllText(GetHistoryLocation(), strPreviousLogContents)
+                Else
+                    '-- No history file, so just create it now
+                    Log("Creating history file: " & GetHistoryLocation(), 5)
+                    System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
                 End If
-                System.IO.File.Delete(GetHistoryLocation())
-                System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
-                System.IO.File.AppendAllText(GetHistoryLocation(), strPreviousLogContents)
             End If
         Catch ex As Exception
             Log(ex) '-- Log and continue
@@ -165,6 +171,12 @@
             MessageBox.Show("There was an error writing to the log file. Error: " & ex1.Message, Application.ProductName)
         End Try
     End Sub
+    ''' <summary>
+    ''' Add text to local log file
+    ''' </summary>
+    ''' <param name="text">The text to add to the log file</param>
+    ''' <param name="level">The minimum logging level (lower = less chance to log this entry)</param>
+    ''' <remarks></remarks>
     Public Sub Log(text As String, level As Integer)
         If AppSettings Is Nothing Then
             '-- Must be a problem in AppSettings

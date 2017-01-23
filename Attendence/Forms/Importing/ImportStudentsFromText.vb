@@ -89,6 +89,10 @@ Public Class ImportStudentsFromText
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Timer1.Stop()
         Try
+            'Dim strReport As String = String.Empty
+            'Dim strReportPrevious As String = String.Empty
+            'Dim swReport1 As New Stopwatch()
+            'Dim swReport2 As New Stopwatch()
 
             Dim ht As New Hashtable() '-- key  = studentID, value = student object
             Dim strBaseHistoryLable As String = lblLoadingHistoricalStudents.Text
@@ -99,10 +103,20 @@ Public Class ImportStudentsFromText
             Do
                 For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
                     strFilename = lstSemesters(intCounter)
+                    'swReport2.Restart()
                     semCurrent = New Semester(strFilename)
+                    'strReport &= "Loading " & semCurrent.Name & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
+                    'swReport2.Stop()
+
                     lblLoadingHistoricalStudents.Text = strBaseHistoryLable & semCurrent.Name
                     Application.DoEvents()
                     For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+                        'If strReportPrevious.Length > 0 Then
+                        '    strReport &= strReportPrevious & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
+                        'End If
+                        'swReport1.Restart()
+                        'strReportPrevious = "Sem: " & semCurrent.Name & "; Module: " & clsgrp.Name
+
                         For Each clas As SchoolClass In clsgrp.Classes
                             For Each stud In clas.Students
                                 intStudentsSearched += 1
@@ -124,6 +138,9 @@ Public Class ImportStudentsFromText
                 Next
                 Exit Do
             Loop While True
+
+            'System.IO.File.WriteAllText("C:\Teaching\output.txt", strReport)
+            lblLoadingHistoricalStudents.Text = "Done"
 
         Catch ex As Exception
             Log(ex)
@@ -147,100 +164,134 @@ Public Class ImportStudentsFromText
         Try
             m_lstStudents = New List(Of Student)
             Dim objStud As Student
+            Dim strRows() As String
 
             Dim strClipboard As String = Clipboard.GetText()
             If strClipboard Is Nothing Then
                 MessageBox.Show("The clipboard is empty.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
             ElseIf Not strClipboard.Contains(vbTab) Then
-                MessageBox.Show("The clipboard data does not contain tabs. It must be spreadsheet data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If Not strClipboard.Contains(Environment.NewLine) Then
+                    MessageBox.Show("The clipboard does not contain multiple lines but it needs to (you can manually enter one student, right?).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Exit Sub
+                Else
+                    'MessageBox.Show("The clipboard data does not contain tabs. It must be spreadsheet data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    '-- Try to use just student IDs
+                    strRows = strClipboard.Split(Environment.NewLine)
+                    For intCounter As Integer = 0 To strRows.Count - 1
+                        '-- pack in the extra data
+                        If strRows(intCounter).Trim().Length > 0 Then
+                            strRows(intCounter) = (intCounter + 1).ToString() & vbTab & "0" & vbTab & strRows(intCounter).Trim()
+                        Else
+                            '-- remove the last row, it is bad
+                            If intCounter = strRows.Count - 1 Then
+                                ReDim Preserve strRows(strRows.Count - 2)
+                            End If
+                        End If
+                    Next
+                End If
             ElseIf Not strClipboard.Contains(Environment.NewLine) Then
                 MessageBox.Show("The clipboard does not contain multiple lines but it needs to (you can manually enter one student, right?).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                Dim objClass As New SchoolClass(New ClassGroup(New Semester(DUMMY_SEMESTER_NAME))) '-- just a dummy class
-                Dim stud As Student
+                Exit Sub
+            End If
 
-                Dim strRows() As String
+            Dim objClass As New SchoolClass(New ClassGroup(New Semester(DUMMY_SEMESTER_NAME))) '-- just a dummy class
+            Dim stud As Student
+
+            If strRows Is Nothing Then
                 strRows = strClipboard.Split(Environment.NewLine)
-                Dim row() As String
-                For intCounter As Integer = 0 To strRows.Count - 1
-                    row = strRows(intCounter).Split(vbTab)
-                    If row.Length < 8 Then
-                        If m_lstStudents.Count > 0 Then
-                            '-- we are done
-                            Exit For
-                        Else
-                            MessageBox.Show("There should be 8 columns of data: Admin, Alt, StudentID, Local name, Nickname, Email, ExtID, and Date of Birth (the clipboard has " & row.Length & ").")
-                        End If
-                    End If
-                    objStud = New Student(objClass)
-                    If IsNumeric(row(0)) Then
-                        objStud.AdminNumber = row(0)
-                    Else
-                        objStud.AdminNumber = 0
-                    End If
-                    If IsNumeric(row(1)) Then
-                        objStud.AltNumber = row(1)
-                    Else
-                        objStud.AltNumber = 0
-                    End If
-                    objStud.StudentID = row(2).Trim()
+            End If
 
-                    stud = GetStudentByID(objStud.StudentID)
-                    If stud IsNot Nothing Then
-                        If row(3).Trim().Length > 0 Then
-                            objStud.LocalName = row(3).Trim()
-                        Else
-                            objStud.LocalName = stud.LocalName
-                        End If
-                        If row(4).Trim().Length > 0 Then
-                            objStud.Nickname = row(4).Trim()
-                        Else
-                            objStud.Nickname = stud.Nickname
-                        End If
-                        If row(5).Trim().Length > 0 Then
-                            objStud.EmailAddress = row(5).Trim()
-                        Else
-                            objStud.EmailAddress = stud.EmailAddress
-                        End If
-                        If row(6).Trim().Length > 0 Then
-                            objStud.ExtStudentID = row(6).Trim()
-                        Else
-                            objStud.ExtStudentID = stud.ExtStudentID
-                        End If
+            Dim row() As String
+            For intCounter As Integer = 0 To strRows.Count - 1
+                row = strRows(intCounter).Split(vbTab)
+                'If row.Length < 8 Then
+                '    If m_lstStudents.Count > 0 Then
+                '        '-- we are done
+                '        Exit For
+                '    Else
+                '        MessageBox.Show("There should be 8 columns of data: Admin, Alt, StudentID, Local name, Nickname, Email, ExtID, and Date of Birth (the clipboard has " & row.Length & ").")
+                '    End If
+                'End If
+                objStud = New Student(objClass)
+                If IsNumeric(row(0)) Then
+                    objStud.AdminNumber = row(0)
+                Else
+                    objStud.AdminNumber = 0
+                End If
+                If IsNumeric(row(1)) Then
+                    objStud.AltNumber = row(1)
+                Else
+                    objStud.AltNumber = 0
+                End If
+                objStud.StudentID = row(2).Trim()
 
-                        If row(7).Trim().Length > 0 Then
-                            If IsDate(row(7)) Then
-                                objStud.DateOfBirth = row(7)
-                            Else
-                                objStud.DateOfBirth = DATE_NO_DATE
-                            End If
-                        Else
-                            objStud.DateOfBirth = stud.DateOfBirth
-                        End If
-
-                        If row(8).Trim().Length > 0 Then
-                            If row(8).ToLower() = "m" OrElse row(8).ToLower() = "male" Then
-                                objStud.Gender = Student.GenderEnum.Male
-                            ElseIf row(8).ToLower() = "f" OrElse row(8).ToLower() = "female" Then
-                                objStud.Gender = Student.GenderEnum.Female
-                            Else
-                                objStud.Gender = Student.GenderEnum.Unknown
-                            End If
-                        Else
-                            '-- Nothing in the import so just use whatever we knew before (
-                            objStud.Gender = stud.Gender
-                        End If
-                    Else
+                stud = GetStudentByID(objStud.StudentID)
+                If stud IsNot Nothing Then
+                    If row.Count > 3 AndAlso row(3).Trim().Length > 0 Then
                         objStud.LocalName = row(3).Trim()
+                    Else
+                        objStud.LocalName = stud.LocalName
+                    End If
+                    If row.Count > 4 AndAlso row(4).Trim().Length > 0 Then
                         objStud.Nickname = row(4).Trim()
+                    Else
+                        objStud.Nickname = stud.Nickname
+                    End If
+                    If row.Count > 5 AndAlso row(5).Trim().Length > 0 Then
                         objStud.EmailAddress = row(5).Trim()
+                    Else
+                        objStud.EmailAddress = stud.EmailAddress
+                    End If
+                    If row.Count > 6 AndAlso row(6).Trim().Length > 0 Then
                         objStud.ExtStudentID = row(6).Trim()
+                    Else
+                        objStud.ExtStudentID = stud.ExtStudentID
+                    End If
+                    If row.Count > 7 AndAlso row(7).Trim().Length > 0 Then
+                        If IsDate(row(7)) Then
+                            objStud.DateOfBirth = row(7)
+                        Else
+                            objStud.DateOfBirth = DATE_NO_DATE
+                        End If
+                    Else
+                        objStud.DateOfBirth = stud.DateOfBirth
+                    End If
+                    If row.Count > 8 AndAlso row(8).Trim().Length > 0 Then
+                        If row(8).ToLower() = "m" OrElse row(8).ToLower() = "male" Then
+                            objStud.Gender = Student.GenderEnum.Male
+                        ElseIf row(8).ToLower() = "f" OrElse row(8).ToLower() = "female" Then
+                            objStud.Gender = Student.GenderEnum.Female
+                        Else
+                            objStud.Gender = Student.GenderEnum.Unknown
+                        End If
+                    Else
+                        '-- Nothing in the import so just use whatever we knew before (
+                        objStud.Gender = stud.Gender
+                    End If
+                Else
+                    '-- New student
+                    If row.Count > 3 Then
+                        objStud.LocalName = row(3).Trim()
+                    End If
+                    If row.Count > 4 Then
+                        objStud.Nickname = row(4).Trim()
+                    End If
+                    If row.Count > 5 Then
+                        objStud.EmailAddress = row(5).Trim()
+                    End If
+                    If row.Count > 6 Then
+                        objStud.ExtStudentID = row(6).Trim()
+                    End If
+                    If row.Count > 7 Then
                         If IsDate(row(7)) Then
                             objStud.DateOfBirth = row(7)
                         Else
                             objStud.DateOfBirth = DATE_NO_DATE
                         End If
 
+                    End If
+                    If row.Count > 8 Then
                         If row(8).Trim().Length > 0 Then
                             If row(8).ToLower() = "m" OrElse row(8).ToLower() = "male" Then
                                 objStud.Gender = Student.GenderEnum.Male
@@ -249,11 +300,12 @@ Public Class ImportStudentsFromText
                             End If
                         End If
                     End If
+                End If
 
-                    m_lstStudents.Add(objStud)
-                Next
-                olvStudents.SetObjects(m_lstStudents)
-            End If
+                m_lstStudents.Add(objStud)
+            Next
+            olvStudents.SetObjects(m_lstStudents)
+
         Catch ex As Exception
             MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
