@@ -292,7 +292,6 @@ Public Class ImportStudentsFromText
                         Else
                             objStud.DateOfBirth = DATE_NO_DATE
                         End If
-
                     End If
                     If row.Count > 8 Then
                         If row(8).Trim().Length > 0 Then
@@ -308,6 +307,7 @@ Public Class ImportStudentsFromText
                 m_lstStudents.Add(objStud)
             Next
             olvStudents.SetObjects(m_lstStudents)
+            btnOK.Enabled = True
 
         Catch ex As Exception
             MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)

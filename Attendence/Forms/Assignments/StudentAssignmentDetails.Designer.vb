@@ -22,6 +22,9 @@ Partial Class StudentAssignmentDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentAssignmentDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.nudResearchQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudWritingQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.txtTags = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblClearImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -40,7 +43,6 @@ Partial Class StudentAssignmentDetails
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.llblModuleResults = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.olvModuleResults = New BrightIdeasSoftware.ObjectListView()
         Me.olv1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvModuleResultsPassFail = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -65,9 +67,10 @@ Partial Class StudentAssignmentDetails
         Me.llblClearFilter = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolDateAdded = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolDateRemoved = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolPerformanceLevel = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.llblOpenSavedMarkingPage = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblWarningNotice = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.chkProcessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
@@ -139,8 +142,6 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.nudResearchQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,6 +228,30 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(1169, 596)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'nudResearchQuality
+        '
+        Me.nudResearchQuality.Location = New System.Drawing.Point(339, 24)
+        Me.nudResearchQuality.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.nudResearchQuality.Name = "nudResearchQuality"
+        Me.nudResearchQuality.Palette = Me.KryptonPalette1
+        Me.nudResearchQuality.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.nudResearchQuality.Size = New System.Drawing.Size(44, 22)
+        Me.nudResearchQuality.TabIndex = 127
+        Me.nudResearchQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudResearchQuality.ThousandsSeparator = True
+        Me.ToolTip1.SetToolTip(Me.nudResearchQuality, "0=not concerned, 5=watch 5 next asmts for plagiarism")
+        Me.nudResearchQuality.Value = New Decimal(New Integer() {3, 0, 0, 0})
+        '
+        'KryptonLabel14
+        '
+        Me.KryptonLabel14.Location = New System.Drawing.Point(293, 26)
+        Me.KryptonLabel14.Name = "KryptonLabel14"
+        Me.KryptonLabel14.Palette = Me.KryptonPalette1
+        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel14.Size = New System.Drawing.Size(49, 20)
+        Me.KryptonLabel14.TabIndex = 128
+        Me.KryptonLabel14.Values.Text = "Resrch:"
         '
         'nudWritingQuality
         '
@@ -382,7 +407,9 @@ Partial Class StudentAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvOutcomes.CellEditUseWholeCell = False
         Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumnOutcomeName, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
+        Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvOutcomes.FullRowSelect = True
         Me.olvOutcomes.HideSelection = False
         Me.olvOutcomes.Location = New System.Drawing.Point(2, 0)
@@ -460,7 +487,9 @@ Partial Class StudentAssignmentDetails
         Me.olvModuleResults.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvModuleResults.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvModuleResults.CellEditUseWholeCell = False
         Me.olvModuleResults.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.olv1, Me.olvModuleResultsPassFail})
+        Me.olvModuleResults.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvModuleResults.FullRowSelect = True
         Me.olvModuleResults.HideSelection = False
         Me.olvModuleResults.Location = New System.Drawing.Point(642, 25)
@@ -650,9 +679,11 @@ Partial Class StudentAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAutoFeedback.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvAutoFeedback.CellEditUseWholeCell = False
         Me.olvAutoFeedback.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.olvPassFailFeedback, Me.OlvColumn13})
         Me.olvAutoFeedback.CopySelectionOnControlC = False
         Me.olvAutoFeedback.CopySelectionOnControlCUsesDragSource = False
+        Me.olvAutoFeedback.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvAutoFeedback.EmptyListMsg = "No stored feedback"
         Me.olvAutoFeedback.FullRowSelect = True
         Me.olvAutoFeedback.Location = New System.Drawing.Point(0, 24)
@@ -733,14 +764,17 @@ Partial Class StudentAssignmentDetails
         '
         Me.olvImprovementItems.Activation = System.Windows.Forms.ItemActivation.TwoClick
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn1)
-        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn2)
-        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn3)
+        Me.olvImprovementItems.AllColumns.Add(Me.olvcolDateAdded)
+        Me.olvImprovementItems.AllColumns.Add(Me.olvcolDateRemoved)
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn5)
+        Me.olvImprovementItems.AllColumns.Add(Me.olvcolPerformanceLevel)
         Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvImprovementItems.CellEditUseWholeCell = False
         Me.olvImprovementItems.CheckBoxes = True
-        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5})
+        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.olvcolDateAdded, Me.olvcolDateRemoved, Me.OlvColumn5, Me.olvcolPerformanceLevel})
         Me.olvImprovementItems.CopySelectionOnControlC = False
         Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False
+        Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvImprovementItems.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvImprovementItems.EmptyListMsg = "No improvement items"
         Me.olvImprovementItems.FullRowSelect = True
@@ -764,23 +798,38 @@ Partial Class StudentAssignmentDetails
         Me.OlvColumn1.IsEditable = False
         Me.OlvColumn1.Text = "Name"
         '
-        'OlvColumn2
+        'olvcolDateAdded
         '
-        Me.OlvColumn2.AspectName = "DateAdded"
-        Me.OlvColumn2.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn2.Text = "Added"
+        Me.olvcolDateAdded.AspectName = "DateAdded"
+        Me.olvcolDateAdded.AspectToStringFormat = "{0:d}"
+        Me.olvcolDateAdded.DisplayIndex = 2
+        Me.olvcolDateAdded.Text = "Added"
+        Me.olvcolDateAdded.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'OlvColumn3
+        'olvcolDateRemoved
         '
-        Me.OlvColumn3.AspectName = "DateRemoved"
-        Me.OlvColumn3.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn3.Text = "Removed"
+        Me.olvcolDateRemoved.AspectName = "DateRemoved"
+        Me.olvcolDateRemoved.AspectToStringFormat = "{0:d}"
+        Me.olvcolDateRemoved.DisplayIndex = 3
+        Me.olvcolDateRemoved.Text = "Removed"
+        Me.olvcolDateRemoved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "BaseImprovementItem.Description"
+        Me.OlvColumn5.DisplayIndex = 4
         Me.OlvColumn5.IsEditable = False
         Me.OlvColumn5.Text = "Description"
+        '
+        'olvcolPerformanceLevel
+        '
+        Me.olvcolPerformanceLevel.AspectName = "PerformanceLevel"
+        Me.olvcolPerformanceLevel.DisplayIndex = 1
+        Me.olvcolPerformanceLevel.MaximumWidth = 100
+        Me.olvcolPerformanceLevel.MinimumWidth = 50
+        Me.olvcolPerformanceLevel.Text = "Perf"
+        Me.olvcolPerformanceLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolPerformanceLevel.Width = 50
         '
         'llblOpenSavedMarkingPage
         '
@@ -1463,30 +1512,6 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
         '
-        'nudResearchQuality
-        '
-        Me.nudResearchQuality.Location = New System.Drawing.Point(339, 24)
-        Me.nudResearchQuality.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.nudResearchQuality.Name = "nudResearchQuality"
-        Me.nudResearchQuality.Palette = Me.KryptonPalette1
-        Me.nudResearchQuality.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.nudResearchQuality.Size = New System.Drawing.Size(44, 22)
-        Me.nudResearchQuality.TabIndex = 127
-        Me.nudResearchQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudResearchQuality.ThousandsSeparator = True
-        Me.ToolTip1.SetToolTip(Me.nudResearchQuality, "0=not concerned, 5=watch 5 next asmts for plagiarism")
-        Me.nudResearchQuality.Value = New Decimal(New Integer() {3, 0, 0, 0})
-        '
-        'KryptonLabel14
-        '
-        Me.KryptonLabel14.Location = New System.Drawing.Point(293, 26)
-        Me.KryptonLabel14.Name = "KryptonLabel14"
-        Me.KryptonLabel14.Palette = Me.KryptonPalette1
-        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel14.Size = New System.Drawing.Size(49, 20)
-        Me.KryptonLabel14.TabIndex = 128
-        Me.KryptonLabel14.Values.Text = "Resrch:"
-        '
         'StudentAssignmentDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1591,8 +1616,8 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents olvPassFailFeedback As BrightIdeasSoftware.OLVColumn
     Friend WithEvents olvImprovementItems As BrightIdeasSoftware.ObjectListView
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolDateAdded As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolDateRemoved As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents MarkStudentDidNotSubmitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
@@ -1676,4 +1701,5 @@ Partial Class StudentAssignmentDetails
     Private WithEvents rtbObservationComments As ComponentFactory.Krypton.Toolkit.KryptonRichTextBox
     Private WithEvents nudResearchQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Private WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
 End Class

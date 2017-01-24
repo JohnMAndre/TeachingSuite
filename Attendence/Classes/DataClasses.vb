@@ -3016,6 +3016,7 @@ Public Class Student
                 xItem.SetAttribute("ID", item.BaseImprovementItem.ID)
                 xItem.SetAttribute("DateAdded", item.DateAdded.ToString(DATE_FORMAT_XML))
                 xItem.SetAttribute("DateRemoved", item.DateRemoved.ToString(DATE_FORMAT_XML))
+                xItem.SetAttribute("PerformanceLevel", item.PerformanceLevel.ToString())
                 xItems.AppendChild(xItem)
             Next
             xStudentElement.AppendChild(xItems)
@@ -3155,16 +3156,24 @@ Public Class Student
         Dim xItems As Xml.XmlNodeList = xElement.SelectNodes("StudentImprovementItems/StudentImprovementItem")
         Dim xItem As Xml.XmlElement
         Dim item As StudentImprovementItem
+        '-- Add improvementitems for this student
         For Each xItem In xItems
-            item = New StudentImprovementItem
+            item = New StudentImprovementItem(Me)
             item.DateAdded = ConvertToDateFromXML(xItem.GetAttribute("DateAdded"), DATE_NO_DATE)
             item.DateRemoved = ConvertToDateFromXML(xItem.GetAttribute("DateRemoved"), DATE_NO_DATE)
+            '-- 24 Jan 2017 I am adding PerfLevel for improvementitems
+            '   Note: This has to be done before assigning the baseimprovementitem or history logging will take place
+            strTemp = xItem.GetAttribute("PerformanceLevel")
+            item.PerformanceLevel = ConvertToByte(strTemp, 3) '-- If the data has no perfLevel then we just start at 3 (wrong but not horrible)
+
+
             For Each baseItem As ImprovementItem In Me.SchoolClass.ClassGroup.Semester.ImprovementItems
                 If baseItem.ID.ToUpper() = xItem.GetAttribute("ID").ToUpper() Then
                     item.BaseImprovementItem = baseItem
                     Exit For
                 End If
             Next
+
 
             If item.BaseImprovementItem Is Nothing Then
                 '-- the base item no longer exists, so remove from student
@@ -3433,9 +3442,44 @@ Public Class ImprovementItem '-- This is the master list of what counts as an im
     Public Property Description As String
 End Class
 Public Class StudentImprovementItem '-- This is for the student and references the base item
+    Public Sub New(student As Student)
+        Me.Student = student
+    End Sub
+    Public Property Student As Student
     Public Property BaseImprovementItem As ImprovementItem
     Public Property DateAdded As Date
     Public Property DateRemoved As Date
+
+    Private m_bytPerformanceLevel As Integer
+    '0=Not evaluated
+    '1=Completely unacceptable
+    '2=Very weak, incorrect very often
+    '3=Sometimes ok but inconsistent
+    '4=Good but still room for improvement
+    '5=Completely correct
+    Public Property PerformanceLevel As Integer
+        Get
+            Return m_bytPerformanceLevel
+        End Get
+        Set(value As Integer)
+            If value > 5 Then
+                value = 5 '-- cannot be above 5, 5 represents completely correct (could 6=innovative, or is innovation a new skill?)
+            ElseIf value < 0 Then
+                value = 0 '-- cannot be neg
+            End If
+            If BaseImprovementItem IsNot Nothing AndAlso value <> m_bytPerformanceLevel Then '-- make sure we are fully initialized
+                '-- Log change
+                Dim strExtra As String
+                If DateAdded = DATE_NO_DATE Then
+                    strExtra = " (but item was never added to student)"
+                Else
+                    strExtra = String.Empty
+                End If
+                Me.Student.AddToActivityLog("Improvement item: " & BaseImprovementItem.Name & " performance level changed from " & m_bytPerformanceLevel.ToString() & " to " & value.ToString() & strExtra)
+            End If
+            m_bytPerformanceLevel = value
+        End Set
+    End Property
 End Class
 
 Public Class EmailRecipient

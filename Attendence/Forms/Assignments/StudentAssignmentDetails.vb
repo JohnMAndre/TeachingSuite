@@ -73,7 +73,7 @@ Friend Class StudentAssignmentDetails
     Private Sub StudentAssignmentDetails_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.olvOutcomes.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
         Me.olvImprovementItems.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ImprovementItemRowFormatter)
-
+        olvcolPerformanceLevel.ToolTipText = "Performance level (0-5)" & Environment.NewLine & "0=Not evaluated" & Environment.NewLine & "1=Unacceptable" & Environment.NewLine & "2=Very weak, incorrect very often" & Environment.NewLine & "3=Sometimes OK but inconsistent" & Environment.NewLine & "4=Good but still room for improvement" & Environment.NewLine & "5=Completely correct"
 
         chkM1.Enabled = m_studentAssignment.BaseAssignment.M1Available
         chkM1.Checked = m_studentAssignment.M1Achieved
@@ -147,7 +147,7 @@ Friend Class StudentAssignmentDetails
                 End If
             Next
             If Not boolItemAdded Then
-                Dim studItem As New StudentImprovementItem()
+                Dim studItem As New StudentImprovementItem(m_student)
                 studItem.BaseImprovementItem = item
                 studItem.DateAdded = DATE_NO_DATE
                 studItem.DateRemoved = DATE_NO_DATE
@@ -1702,6 +1702,7 @@ Friend Class StudentAssignmentDetails
 
         If item.DateAdded = DATE_NO_DATE Then
             newColor = NON_ISSUE_COLOR
+            olvi.SubItems(olvcolDateAdded.Index).Text = String.Empty
         Else
             '-- so it was a problem
             If item.DateRemoved = DATE_NO_DATE Then
@@ -1711,6 +1712,10 @@ Friend Class StudentAssignmentDetails
                 '-- the student has fixed this problem
                 newColor = RESOLVED_ISSUE_COLOR
             End If
+        End If
+
+        If item.DateRemoved = DATE_NO_DATE Then
+            olvi.SubItems(olvcolDateRemoved.Index).Text = String.Empty
         End If
 
         If item IsNot Nothing Then

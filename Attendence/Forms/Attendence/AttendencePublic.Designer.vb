@@ -36,6 +36,7 @@ Partial Class AttendencePublic
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
+        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,27 +62,28 @@ Partial Class AttendencePublic
         Me.olvStudents.AllColumns.Add(Me.OlvColumn2)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn3)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn1)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn4)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.olvcolLocalName, Me.olvcolNickname, Me.OlvColumn6, Me.olvColumnStatus, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn1})
+        Me.olvStudents.CellEditUseWholeCell = False
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.olvcolLocalName, Me.olvcolNickname, Me.OlvColumn6, Me.olvColumnStatus, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn4})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvStudents.FullRowSelect = True
-        Me.olvStudents.HighlightBackgroundColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.olvStudents.HighlightForegroundColor = System.Drawing.Color.Yellow
         Me.olvStudents.Location = New System.Drawing.Point(0, 0)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
+        Me.olvStudents.SelectedBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.olvStudents.SelectedForeColor = System.Drawing.Color.Yellow
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.Size = New System.Drawing.Size(1130, 325)
         Me.olvStudents.TabIndex = 5
         Me.olvStudents.UseCompatibleStateImageBehavior = False
-        Me.olvStudents.UseCustomSelectionColors = True
         Me.olvStudents.UseFiltering = True
         Me.olvStudents.UseSubItemCheckBoxes = True
         Me.olvStudents.View = System.Windows.Forms.View.Details
@@ -183,6 +185,11 @@ Partial Class AttendencePublic
         Me.tmrFilterHiddenStudents.Enabled = True
         Me.tmrFilterHiddenStudents.Interval = 3000
         '
+        'OlvColumn4
+        '
+        Me.OlvColumn4.AspectName = "StudentTeam"
+        Me.OlvColumn4.Text = "Team"
+        '
         'AttendencePublic
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -227,4 +234,5 @@ Partial Class AttendencePublic
     Friend WithEvents tmrFilterHiddenStudents As System.Windows.Forms.Timer
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents OlvColumn4 As BrightIdeasSoftware.OLVColumn
 End Class

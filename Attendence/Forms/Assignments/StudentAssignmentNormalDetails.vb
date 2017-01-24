@@ -69,6 +69,7 @@
 
         If item.DateAdded = DATE_NO_DATE Then
             newColor = NON_ISSUE_COLOR
+            olvi.SubItems(olvcolDataAdded.Index).Text = String.Empty
         Else
             '-- so it was a problem
             If item.DateRemoved = DATE_NO_DATE Then
@@ -78,6 +79,10 @@
                 '-- the student has fixed this problem
                 newColor = RESOLVED_ISSUE_COLOR
             End If
+        End If
+
+        If item.DateRemoved = DATE_NO_DATE Then
+            olvi.SubItems(olvcolDateRemoved.Index).Text = String.Empty
         End If
 
         If item IsNot Nothing Then
@@ -90,6 +95,7 @@
 
     Private Sub StudentAssignmentNormalDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.olvImprovementItems.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ImprovementItemRowFormatter)
+        olvcolPerformanceLevel.ToolTipText = "Performance level (0-5)" & Environment.NewLine & "0=Not evaluated" & Environment.NewLine & "1=Unacceptable" & Environment.NewLine & "2=Very weak, incorrect very often" & Environment.NewLine & "3=Sometimes OK but inconsistent" & Environment.NewLine & "4=Good but still room for improvement" & Environment.NewLine & "5=Completely correct"
 
         chkProcessed.Checked = m_studentAssignment.Processed
 
@@ -129,7 +135,7 @@
                 End If
             Next
             If Not boolItemAdded Then
-                Dim studItem As New StudentImprovementItem()
+                Dim studItem As New StudentImprovementItem(m_student)
                 studItem.BaseImprovementItem = item
                 studItem.DateAdded = DATE_NO_DATE
                 studItem.DateRemoved = DATE_NO_DATE
@@ -259,7 +265,7 @@
             MessageBox.Show("Please select an improvement item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             If selItem.DateAdded > DATE_NO_DATE Then
-                MessageBox.Show("This improvement item already exists for this student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show("This improvement item already exists for this student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 '-- add item to student
                 m_student.ImprovementItems.Add(selItem)
@@ -382,5 +388,11 @@
 
     Private Sub AutogenImprovementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutogenImprovementsToolStripMenuItem.Click
         AutoGenImprovementComments()
+    End Sub
+
+    Private Sub llblEditStudent_LinkClicked(sender As Object, e As EventArgs) Handles llblEditStudent.LinkClicked
+        Using frm As New StudentDetail(m_student)
+            frm.ShowDialog(Me)
+        End Using
     End Sub
 End Class

@@ -30,6 +30,16 @@
             Return valueIfCannotConvert
         End Try
     End Function
+    Public Function ConvertToByte(ByVal value As String, ByVal valueIfCannotConvert As Byte) As Byte
+        Try
+            If value.Contains(".") Then '-- strip any decimal places
+                value = value.Substring(0, value.IndexOf("."))
+            End If
+            Return Convert.ToByte(value)
+        Catch ex As Exception
+            Return valueIfCannotConvert
+        End Try
+    End Function
     Public Function ConvertToColor(ByVal value As String, ByVal valueIfCannotConvert As Color) As Color
         If value.Length = 0 Then
             Return valueIfCannotConvert
