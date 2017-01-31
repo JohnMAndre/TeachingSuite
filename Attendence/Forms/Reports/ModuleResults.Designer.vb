@@ -29,10 +29,6 @@ Partial Class ModuleResults
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -42,7 +38,10 @@ Partial Class ModuleResults
         Me.FirstTryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SecondRedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.lblFailPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblPassPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -61,8 +60,6 @@ Partial Class ModuleResults
         Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.tmrFilter = New System.Windows.Forms.Timer(Me.components)
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LoadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,17 +89,15 @@ Partial Class ModuleResults
         Me.olvStudents.AllColumns.Add(Me.OlvColumn3)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn8)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn9)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn10)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn11)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn2)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn3, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn2})
+        Me.olvStudents.CellEditUseWholeCell = False
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn3, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn2})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No data for this module...click menu above."
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -112,7 +107,6 @@ Partial Class ModuleResults
         Me.olvStudents.Location = New System.Drawing.Point(0, 48)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowImagesOnSubItems = True
@@ -129,82 +123,57 @@ Partial Class ModuleResults
         '
         Me.OlvColumn5.AspectName = "FailedOutcomes"
         Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn5.IsEditable = False
         Me.OlvColumn5.Text = "Failed"
         Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn4
         '
         Me.OlvColumn4.AspectName = "Student.LocalName"
+        Me.OlvColumn4.IsEditable = False
         Me.OlvColumn4.Text = "Name"
-        Me.OlvColumn4.Width = 120
+        Me.OlvColumn4.Width = 134
         '
         'OlvColumn1
         '
         Me.OlvColumn1.AspectName = "Student.Nickname"
+        Me.OlvColumn1.IsEditable = False
         Me.OlvColumn1.Text = "Nickname"
-        Me.OlvColumn1.Width = 100
+        Me.OlvColumn1.Width = 113
         '
         'OlvColumn3
         '
         Me.OlvColumn3.AspectName = "Student.StudentID"
         Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn3.IsEditable = False
         Me.OlvColumn3.Text = "Student ID"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn3.Width = 110
         '
         'OlvColumn6
         '
-        Me.OlvColumn6.AspectName = "M1Achieved"
+        Me.OlvColumn6.AspectName = "AchievedMerit"
         Me.OlvColumn6.CheckBoxes = True
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.Text = "M1"
+        Me.OlvColumn6.IsEditable = False
+        Me.OlvColumn6.Text = "Merit"
         Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn7
         '
-        Me.OlvColumn7.AspectName = "M2Achieved"
+        Me.OlvColumn7.AspectName = "AchievedDistinction"
         Me.OlvColumn7.CheckBoxes = True
         Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Text = "M2"
+        Me.OlvColumn7.IsEditable = False
+        Me.OlvColumn7.Text = "Destinction"
         Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Width = 61
-        '
-        'OlvColumn8
-        '
-        Me.OlvColumn8.AspectName = "M3Achieved"
-        Me.OlvColumn8.CheckBoxes = True
-        Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn8.Text = "M3"
-        Me.OlvColumn8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'OlvColumn9
-        '
-        Me.OlvColumn9.AspectName = "D1Achieved"
-        Me.OlvColumn9.CheckBoxes = True
-        Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn9.Text = "D1"
-        Me.OlvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'OlvColumn10
-        '
-        Me.OlvColumn10.AspectName = "D2Achieved"
-        Me.OlvColumn10.CheckBoxes = True
-        Me.OlvColumn10.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn10.Text = "D2"
-        Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'OlvColumn11
-        '
-        Me.OlvColumn11.AspectName = "D3Achieved"
-        Me.OlvColumn11.CheckBoxes = True
-        Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn11.Text = "D3"
-        Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.Width = 85
         '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Student.SchoolClass.Name"
         Me.OlvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn2.IsEditable = False
         Me.OlvColumn2.Text = "Class"
         Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn2.Width = 120
@@ -224,7 +193,7 @@ Partial Class ModuleResults
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(13, 3)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(40, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel4.TabIndex = 28
         Me.KryptonLabel4.Values.Text = "Filter:"
         '
@@ -232,7 +201,7 @@ Partial Class ModuleResults
         '
         Me.txtFilter.Location = New System.Drawing.Point(59, 2)
         Me.txtFilter.Name = "txtFilter"
-        Me.txtFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtFilter.Size = New System.Drawing.Size(117, 19)
         Me.txtFilter.TabIndex = 27
         '
         'llblClearFilter
@@ -275,11 +244,34 @@ Partial Class ModuleResults
         Me.SecondRedoToolStripMenuItem.Text = "2nd Rework"
         Me.SecondRedoToolStripMenuItem.Visible = False
         '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadDataToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "&File"
+        '
+        'LoadDataToolStripMenuItem
+        '
+        Me.LoadDataToolStripMenuItem.Name = "LoadDataToolStripMenuItem"
+        Me.LoadDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.LoadDataToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.LoadDataToolStripMenuItem.Text = "&Load data"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'lblFailPercent
         '
         Me.lblFailPercent.Location = New System.Drawing.Point(134, 19)
         Me.lblFailPercent.Name = "lblFailPercent"
-        Me.lblFailPercent.Size = New System.Drawing.Size(17, 20)
+        Me.lblFailPercent.Size = New System.Drawing.Size(18, 19)
         Me.lblFailPercent.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.lblFailPercent, "Percent of all students")
         Me.lblFailPercent.Values.Text = "0"
@@ -288,7 +280,7 @@ Partial Class ModuleResults
         '
         Me.lblPassPercent.Location = New System.Drawing.Point(134, 1)
         Me.lblPassPercent.Name = "lblPassPercent"
-        Me.lblPassPercent.Size = New System.Drawing.Size(17, 20)
+        Me.lblPassPercent.Size = New System.Drawing.Size(18, 19)
         Me.lblPassPercent.TabIndex = 6
         Me.ToolTip1.SetToolTip(Me.lblPassPercent, "Percent of all students")
         Me.lblPassPercent.Values.Text = "0"
@@ -297,7 +289,7 @@ Partial Class ModuleResults
         '
         Me.lblMeritPercent.Location = New System.Drawing.Point(389, 1)
         Me.lblMeritPercent.Name = "lblMeritPercent"
-        Me.lblMeritPercent.Size = New System.Drawing.Size(17, 20)
+        Me.lblMeritPercent.Size = New System.Drawing.Size(18, 19)
         Me.lblMeritPercent.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.lblMeritPercent, "Percent of all students")
         Me.lblMeritPercent.Values.Text = "0"
@@ -306,10 +298,15 @@ Partial Class ModuleResults
         '
         Me.lblDistinctionPercent.Location = New System.Drawing.Point(389, 19)
         Me.lblDistinctionPercent.Name = "lblDistinctionPercent"
-        Me.lblDistinctionPercent.Size = New System.Drawing.Size(17, 20)
+        Me.lblDistinctionPercent.Size = New System.Drawing.Size(18, 19)
         Me.lblDistinctionPercent.TabIndex = 14
         Me.ToolTip1.SetToolTip(Me.lblDistinctionPercent, "Percent of all students")
         Me.lblDistinctionPercent.Values.Text = "0"
+        '
+        'KryptonManager1
+        '
+        Me.KryptonManager1.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPanel1
         '
@@ -337,7 +334,7 @@ Partial Class ModuleResults
         '
         Me.lblNumberDistinction.Location = New System.Drawing.Point(311, 19)
         Me.lblNumberDistinction.Name = "lblNumberDistinction"
-        Me.lblNumberDistinction.Size = New System.Drawing.Size(17, 20)
+        Me.lblNumberDistinction.Size = New System.Drawing.Size(18, 19)
         Me.lblNumberDistinction.TabIndex = 13
         Me.lblNumberDistinction.Values.Text = "0"
         '
@@ -345,7 +342,7 @@ Partial Class ModuleResults
         '
         Me.lblNumberMerit.Location = New System.Drawing.Point(311, 1)
         Me.lblNumberMerit.Name = "lblNumberMerit"
-        Me.lblNumberMerit.Size = New System.Drawing.Size(17, 20)
+        Me.lblNumberMerit.Size = New System.Drawing.Size(18, 19)
         Me.lblNumberMerit.TabIndex = 10
         Me.lblNumberMerit.Values.Text = "0"
         '
@@ -353,7 +350,7 @@ Partial Class ModuleResults
         '
         Me.lblTotalStudents.Location = New System.Drawing.Point(69, 37)
         Me.lblTotalStudents.Name = "lblTotalStudents"
-        Me.lblTotalStudents.Size = New System.Drawing.Size(17, 20)
+        Me.lblTotalStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblTotalStudents.TabIndex = 5
         Me.lblTotalStudents.Values.Text = "0"
         '
@@ -361,7 +358,7 @@ Partial Class ModuleResults
         '
         Me.lblFail.Location = New System.Drawing.Point(69, 19)
         Me.lblFail.Name = "lblFail"
-        Me.lblFail.Size = New System.Drawing.Size(17, 20)
+        Me.lblFail.Size = New System.Drawing.Size(18, 19)
         Me.lblFail.TabIndex = 4
         Me.lblFail.Values.Text = "0"
         '
@@ -369,7 +366,7 @@ Partial Class ModuleResults
         '
         Me.lblPass.Location = New System.Drawing.Point(69, 1)
         Me.lblPass.Name = "lblPass"
-        Me.lblPass.Size = New System.Drawing.Size(17, 20)
+        Me.lblPass.Size = New System.Drawing.Size(18, 19)
         Me.lblPass.TabIndex = 3
         Me.lblPass.Values.Text = "0"
         '
@@ -377,7 +374,7 @@ Partial Class ModuleResults
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(13, 37)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(40, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel3.TabIndex = 2
         Me.KryptonLabel3.Values.Text = "Total:"
         '
@@ -385,7 +382,7 @@ Partial Class ModuleResults
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(13, 19)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(31, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(36, 19)
         Me.KryptonLabel2.TabIndex = 1
         Me.KryptonLabel2.Values.Text = "Fail:"
         '
@@ -393,7 +390,7 @@ Partial Class ModuleResults
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(13, 1)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(37, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel1.TabIndex = 0
         Me.KryptonLabel1.Values.Text = "Pass:"
         '
@@ -401,7 +398,7 @@ Partial Class ModuleResults
         '
         Me.KryptonLabel9.Location = New System.Drawing.Point(225, 19)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(71, 20)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel9.TabIndex = 12
         Me.KryptonLabel9.Values.Text = "Distinction:"
         '
@@ -409,27 +406,13 @@ Partial Class ModuleResults
         '
         Me.KryptonLabel6.Location = New System.Drawing.Point(225, 1)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(42, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel6.TabIndex = 9
         Me.KryptonLabel6.Values.Text = "Merit:"
         '
         'tmrFilter
         '
         Me.tmrFilter.Interval = 200
-        '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadDataToolStripMenuItem})
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "&File"
-        '
-        'LoadDataToolStripMenuItem
-        '
-        Me.LoadDataToolStripMenuItem.Name = "LoadDataToolStripMenuItem"
-        Me.LoadDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.LoadDataToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.LoadDataToolStripMenuItem.Text = "&Load data"
         '
         'ModuleResults
         '
@@ -481,9 +464,6 @@ Partial Class ModuleResults
     Friend WithEvents KryptonManager1 As ComponentFactory.Krypton.Toolkit.KryptonManager
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn9 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents KryptonPanel1 As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents lblTotalStudents As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblFail As ComponentFactory.Krypton.Toolkit.KryptonLabel
@@ -491,7 +471,6 @@ Partial Class ModuleResults
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents OlvColumn8 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
@@ -511,4 +490,5 @@ Partial Class ModuleResults
     Friend WithEvents OlvColumn4 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadDataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

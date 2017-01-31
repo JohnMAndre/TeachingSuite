@@ -58,7 +58,7 @@ Public Class OptionsForm
         AppSettings.OutcomeExportMarkUnknown = txtOutcomeMarkUnknown.Text
         AppSettings.AssignmentNotSubmittedDefaultOutcomeComment = txtStudentDidNotSubmitDefaultOutcomeComment.Text
         AppSettings.LoggingThreshold = nudLoggingThreshold.Value
-        AppSettings.RedoPassAllDefaultComment = txtRedoPassAllDefaultComment.Text
+        AppSettings.RedoPassAllDefaultComment = txtReworkPassAllDefaultComment.Text
         AppSettings.LateSubmitDefaultComment = txtLateSubmitDefaultComment.Text
         AppSettings.MarkingPageSaveFolder = txtPathToFeedbackSaveFolder.Text
         AppSettings.DisableColorsInAssignmentDetail = chkDisableColorsAssignmentDetail.Checked
@@ -67,6 +67,13 @@ Public Class OptionsForm
         AppSettings.PassResultsText = txtPassResultsText.Text
         AppSettings.FailResultsText = txtFailResultsText.Text
         AppSettings.UnknownResultsText = txtUnknownResultsText.Text
+
+        AppSettings.ImprovementFeedbackForDistinction = txtImprovementWithDistinction.Text
+        AppSettings.ImprovementFeedbackForMerit = txtImprovementWithMerit.Text
+        AppSettings.ImprovementFeedbackForPassAll = txtImprovementWithPassAll.Text
+        AppSettings.ImprovementFeedbackForFailSome = txtImprovementWithFailSome.Text
+        AppSettings.ImprovementFeedbackForFailAll = txtImprovementWithFailAll.Text
+
 
         Me.DialogResult = DialogResult.OK
 
@@ -134,10 +141,8 @@ Public Class OptionsForm
 
             txtStudentDidNotSubmitDefaultOutcomeComment.Text = AppSettings.AssignmentNotSubmittedDefaultOutcomeComment
 
-            txtAutoText.Text = String.Empty
 
-
-            txtRedoPassAllDefaultComment.Text = AppSettings.RedoPassAllDefaultComment
+            txtReworkPassAllDefaultComment.Text = AppSettings.RedoPassAllDefaultComment
             txtLateSubmitDefaultComment.Text = AppSettings.LateSubmitDefaultComment
             txtPathToFeedbackSaveFolder.Text = AppSettings.MarkingPageSaveFolder
 
@@ -149,19 +154,17 @@ Public Class OptionsForm
             nudMarkingWarning1.Value = AppSettings.AssignmentMarkingWarning1
             nudMarkingWarning2.Value = AppSettings.AssignmentMarkingWarning2
 
-
-            ReloadImprovementText()
-            AutoSizeColumns(olvImprovementText)
+            txtImprovementWithDistinction.Text = AppSettings.ImprovementFeedbackForDistinction
+            txtImprovementWithMerit.Text = AppSettings.ImprovementFeedbackForMerit
+            txtImprovementWithPassAll.Text = AppSettings.ImprovementFeedbackForPassAll
+            txtImprovementWithFailSome.Text = AppSettings.ImprovementFeedbackForFailSome
+            txtImprovementWithFailAll.Text = AppSettings.ImprovementFeedbackForFailAll
 
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error loading the options form: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
-    End Sub
-    Private Sub ReloadImprovementText()
-        olvImprovementText.ClearObjects()
-        olvImprovementText.SetObjects(AppSettings.ImprovementAutoTextList)
     End Sub
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
         Me.DialogResult = DialogResult.Cancel
@@ -184,68 +187,6 @@ Public Class OptionsForm
             txtPathToFeedbackSaveFolder.Text = fbd.SelectedPath
         End If
     End Sub
-
-    Private Sub llblRemoveAutoText_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveAutoText.LinkClicked
-        If olvImprovementText.SelectedObject Is Nothing Then
-            MessageBox.Show("Please select an improvement text to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            If MessageBox.Show("Are you sure you want to remove this improvement text?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                AppSettings.ImprovementAutoTextList.Remove(olvImprovementText.SelectedObject)
-                ReloadImprovementText()
-            End If
-        End If
-    End Sub
-
-    Private Sub llblMoveAutoTextBack_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblMoveAutoTextBack.LinkClicked
-        If olvImprovementText.SelectedObject Is Nothing Then
-            MessageBox.Show("Please select an improvement text to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            txtAutoText.Text = CType(olvImprovementText.SelectedObject, AutoTextSimple).Text
-        End If
-    End Sub
-
-    Private Sub llblAddAutoText_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddAutoText.LinkClicked
-        Dim obj As New AutoTextSimple
-        obj.Text = txtAutoText.Text
-        AppSettings.ImprovementAutoTextList.Add(obj)
-        txtAutoText.Text = String.Empty
-        ReloadImprovementText()
-    End Sub
-
-    Private Sub llblAutoTextUp_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAutoTextUp.LinkClicked
-        Dim objMovingAutoText As AutoTextSimple = CType(olvImprovementText.SelectedObject, AutoTextSimple)
-        If objMovingAutoText IsNot Nothing Then
-            Dim intPosition As Integer = AppSettings.ImprovementAutoTextList.IndexOf(objMovingAutoText)
-            If intPosition = 0 Then
-                Exit Sub '-- do nothing
-            Else
-                '-- Move up one in the list
-                AppSettings.ImprovementAutoTextList.Remove(objMovingAutoText)
-                AppSettings.ImprovementAutoTextList.Insert(intPosition - 1, objMovingAutoText)
-                ReloadImprovementText()
-
-                olvImprovementText.SelectedObject = objMovingAutoText
-            End If
-        End If
-    End Sub
-
-    Private Sub llblAutoTextDown_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAutoTextDown.LinkClicked
-        Dim objMovingAutoText As AutoTextSimple = CType(olvImprovementText.SelectedObject, AutoTextSimple)
-        If objMovingAutoText IsNot Nothing Then
-            Dim intPosition As Integer = AppSettings.ImprovementAutoTextList.IndexOf(objMovingAutoText)
-            If intPosition = AppSettings.ImprovementAutoTextList.Count - 1 Then
-                Exit Sub '-- do nothing
-            Else
-                '-- Move up one in the list
-                AppSettings.ImprovementAutoTextList.Remove(objMovingAutoText)
-                AppSettings.ImprovementAutoTextList.Insert(intPosition + 1, objMovingAutoText)
-                ReloadImprovementText()
-
-                olvImprovementText.SelectedObject = objMovingAutoText
-            End If
-        End If
-    End Sub
-
 
     Private Sub llblDictionaryInfo_LinkClicked(sender As Object, e As EventArgs) Handles llblDictionaryInfo.LinkClicked
         MessageBox.Show("If you would like more dictionaries, just email John@JohnMAndre.com.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)

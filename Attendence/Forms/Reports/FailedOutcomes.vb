@@ -58,53 +58,55 @@ Public Class FailedOutcomes
                 Dim objBaseOutcome As AssignmentOutcome
 
                 For Each outcom As OutcomeResult In details.Outcomes
-                    boolFailed = False
-                    Select Case m_try
-                        Case MarkingTry.FirstTry
-                            If outcom.FirstTryStatus <> OutcomeResultStatusEnum.Pass Then
-                                boolFailed = True
-                                objBaseOutcome = outcom.BaseOutcome
-                                If outcom.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
-                                    strComments = outcom.FirstTryComments
-                                Else
-                                    '-- unknown
-                                    strComments = "Did not submit"
-                                End If
+                    If outcom.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
+                        boolFailed = False
+                        Select Case m_try
+                            Case MarkingTry.FirstTry
+                                If outcom.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                                    boolFailed = True
+                                    objBaseOutcome = outcom.BaseOutcome
+                                    If outcom.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                        strComments = outcom.FirstTryComments
+                                    Else
+                                        '-- unknown
+                                        strComments = "Did not submit"
+                                    End If
 
-                            End If
-                        Case MarkingTry.SecondTry
-                            If outcom.SecondTryStatus <> OutcomeResultStatusEnum.Pass Then
-                                boolFailed = True
-                                objBaseOutcome = outcom.BaseOutcome
-                                If outcom.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
-                                    strComments = outcom.SecondTryComments
-                                Else
-                                    '-- unknown
-                                    strComments = "Did not submit"
                                 End If
-                            End If
-                        Case MarkingTry.ThirdTry
-                            If outcom.ThirdTryStatus <> OutcomeResultStatusEnum.Pass Then
-                                boolFailed = True
-                                objBaseOutcome = outcom.BaseOutcome
-                                If outcom.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
-                                    strComments = outcom.ThirdTryComments
-                                Else
-                                    '-- unknown
-                                    strComments = "Did not submit"
+                            Case MarkingTry.SecondTry
+                                If outcom.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso outcom.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                                    boolFailed = True
+                                    objBaseOutcome = outcom.BaseOutcome
+                                    If outcom.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                        strComments = outcom.SecondTryComments
+                                    Else
+                                        '-- unknown
+                                        strComments = "Did not submit"
+                                    End If
                                 End If
-                            End If
-                    End Select
+                            Case MarkingTry.ThirdTry
+                                If outcom.ThirdTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso outcom.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso outcom.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                                    boolFailed = True
+                                    objBaseOutcome = outcom.BaseOutcome
+                                    If outcom.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                        strComments = outcom.ThirdTryComments
+                                    Else
+                                        '-- unknown
+                                        strComments = "Did not submit"
+                                    End If
+                                End If
+                        End Select
 
-                    If boolFailed Then
-                        dataItem = New FailedOutcomeReportResult()
-                        dataItem.StudentID = stu.StudentID
-                        dataItem.Nickname = stu.Nickname
-                        dataItem.SchoolClassName = stu.SchoolClass.Name
+                        If boolFailed Then
+                            dataItem = New FailedOutcomeReportResult()
+                            dataItem.StudentID = stu.StudentID
+                            dataItem.Nickname = stu.Nickname
+                            dataItem.SchoolClassName = stu.SchoolClass.Name
 
-                        dataItem.Comments = strComments
-                        dataItem.BaseOutcome = objBaseOutcome
-                        m_lstResults.Add(dataItem)
+                            dataItem.Comments = strComments
+                            dataItem.BaseOutcome = objBaseOutcome
+                            m_lstResults.Add(dataItem)
+                        End If
                     End If
                 Next
             Next
@@ -136,6 +138,22 @@ Public Class FailedOutcomes
                 grp.Collapsed = False
             Next
         End If
+    End Sub
+
+    Private Sub RedoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RedoToolStripMenuItem.Click
+        FirstTryToolStripMenuItem.Checked = False
+        RedoToolStripMenuItem.Checked = True
+        SecondRedoToolStripMenuItem.Checked = False
+        m_try = MarkingTry.SecondTry
+        LoadData()
+    End Sub
+
+    Private Sub SecondRedoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SecondRedoToolStripMenuItem.Click
+        FirstTryToolStripMenuItem.Checked = False
+        RedoToolStripMenuItem.Checked = False
+        SecondRedoToolStripMenuItem.Checked = True
+        m_try = MarkingTry.ThirdTry
+        LoadData()
     End Sub
 End Class
 

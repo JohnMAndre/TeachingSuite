@@ -128,7 +128,7 @@ Public Class OralExamDetails
                     '-- Now the logic gets a little trickier
                     '   If we are on firsttry, then return false (it is not open for oral because it is already passed or failed)
                     '   if we are on secondtry, then if oc on firsttry was fail and is unknown on secondtry (must consider all assignments) then is ok
-                    If rslt.Status = OutcomeResultStatusEnum.Pass Then
+                    If rslt.Status = OutcomeResultStatusEnum.Achieved Then
                         Return False '-- already passed, do not reassess this outcome
                     Else
                         Select Case m_try
@@ -174,7 +174,7 @@ Public Class OralExamDetails
         For Each rslt As Student.StudentModuleOutcomeResult In student.ModuleResults.Outcomes
             If rslt.Outcome Is outcome Then
                 '-- done, get out
-                Return rslt.Status = OutcomeResultStatusEnum.Pass
+                Return rslt.Status = OutcomeResultStatusEnum.Achieved
             End If
         Next
 
@@ -207,24 +207,24 @@ Public Class OralExamDetails
 
         If m_studentAssignment IsNot Nothing Then
             Dim strAwarded As String = String.Empty
-            If m_studentAssignment.M1Achieved Then
-                strAwarded &= " M1"
-            End If
-            If m_studentAssignment.M2Achieved Then
-                strAwarded &= " M2"
-            End If
-            If m_studentAssignment.M3Achieved Then
-                strAwarded &= " M3"
-            End If
-            If m_studentAssignment.D1Achieved Then
-                strAwarded &= " D1"
-            End If
-            If m_studentAssignment.D2Achieved Then
-                strAwarded &= " D2"
-            End If
-            If m_studentAssignment.D3Achieved Then
-                strAwarded &= " D3"
-            End If
+            'If m_studentAssignment.M1Achieved Then
+            '    strAwarded &= " M1"
+            'End If
+            'If m_studentAssignment.M2Achieved Then
+            '    strAwarded &= " M2"
+            'End If
+            'If m_studentAssignment.M3Achieved Then
+            '    strAwarded &= " M3"
+            'End If
+            'If m_studentAssignment.D1Achieved Then
+            '    strAwarded &= " D1"
+            'End If
+            'If m_studentAssignment.D2Achieved Then
+            '    strAwarded &= " D2"
+            'End If
+            'If m_studentAssignment.D3Achieved Then
+            '    strAwarded &= " D3"
+            'End If
         End If
     End Sub
     Private Sub SetStudentAssignment()
@@ -521,7 +521,7 @@ Public Class OralExamDetails
                 End If
             End If
 
-            m_student = cboStudent.SelectedItem
+            m_student = lstStudent.SelectedItem
             m_studentAssignment = Nothing
             lblStudentName.Text = m_student.Nickname & " - " & m_student.LocalName & " - " & m_student.StudentID & " - " & m_student.LatestAttendenceStatus.ToString()
 
@@ -583,9 +583,9 @@ Public Class OralExamDetails
         '-- outcome result gets written
         Dim status As OutcomeResultStatusEnum
         If llblRecordFeedback.Values.Image Is llblPassOutcome.Values.Image Then
-            status = OutcomeResultStatusEnum.Pass
+            status = OutcomeResultStatusEnum.Achieved
         Else
-            status = OutcomeResultStatusEnum.Fail
+            status = OutcomeResultStatusEnum.NotAchieved
         End If
 
         If m_try = MarkingTry.FirstTry Then
@@ -742,25 +742,27 @@ Public Class OralExamDetails
     End Sub
 
     Private Sub OralExamDetails_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        chkM1.Enabled = m_baseAssignment.M1Available
-        chkM2.Enabled = m_baseAssignment.M2Available
-        chkM3.Enabled = m_baseAssignment.M3Available
-        chkD1.Enabled = m_baseAssignment.D1Available
-        chkD2.Enabled = m_baseAssignment.D2Available
-        chkD3.Enabled = m_baseAssignment.D3Available
+        'chkM1.Enabled = m_baseAssignment.M1Available
+        'chkM2.Enabled = m_baseAssignment.M2Available
+        'chkM3.Enabled = m_baseAssignment.M3Available
+        'chkD1.Enabled = m_baseAssignment.D1Available
+        'chkD2.Enabled = m_baseAssignment.D2Available
+        'chkD3.Enabled = m_baseAssignment.D3Available
         
         lstOutcomes.Items.Clear()
         If m_baseAssignment IsNot Nothing Then
             For Each oc As AssignmentOutcome In m_baseAssignment.Outcomes
-                lstOutcomes.Items.Add(oc)
+                If oc.GradeGroup = BTECGradeGroup.Pass Then
+                    lstOutcomes.Items.Add(oc)
+                End If
             Next
         End If
 
-        m_class.Students.Sort()
-
+        m_class.Students.Sort(New Student.CompareOnStudentID())
         For Each stud As Student In m_class.Students
-            cboStudent.Items.Add(stud)
+            lstStudent.Items.Add(stud)
         Next
+
     End Sub
 
     Private Sub lstOutcomes_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lstOutcomes.SelectedIndexChanged
@@ -782,10 +784,11 @@ Public Class OralExamDetails
         MarkCurrentOutcomePassed(True)
     End Sub
 
-    Private Sub cboStudent_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboStudent.SelectedIndexChanged
+    Private Sub lstStudent_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstStudent.SelectedIndexChanged
         '-- activate selected student
-        If cboStudent.SelectedIndex > -1 Then
+        If lstStudent.SelectedIndex > -1 Then
             SelectSpecificStudent()
         End If
     End Sub
+
 End Class

@@ -165,9 +165,9 @@ Public Class StudentDetail
         Dim UNKNOWN_COLOR As Color = Color.White
         Dim newColor As Color
 
-        If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse _
-            ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse _
-            ocrslt.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
+        If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+            ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+            ocrslt.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
             newColor = PASS_COLOR
         ElseIf ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
             newColor = UNKNOWN_COLOR
@@ -220,41 +220,16 @@ Public Class StudentDetail
     End Sub
     Private Sub LoadOutcomes()
         If m_student IsNot Nothing Then
-            '-- First load outcomes
-            Dim lst As New List(Of OutcomeResult)
-            'Dim boolM1, boolM2, boolM3, boolD1, boolD2, boolD3 As Boolean
+            'Dim rslt As Student.StudentModuleResult = 
+            'If rslt.AchievedDistinction Then
+            '    llblDistinctionAwarded.Show()
+            'End If
 
-            For Each asmt As StudentAssignmentBTEC In m_student.AssignmentsBTEC
-                If asmt.M1Achieved Then
-                    chkM1.Checked = True
-                End If
-                If asmt.M2Achieved Then
-                    chkM2.Checked = True
-                End If
-                If asmt.M3Achieved Then
-                    chkM3.Checked = True
-                End If
-                llblMeritAwarded.Visible = chkM1.Checked AndAlso chkM2.Checked AndAlso chkM3.Checked
+            'If rslt.AchievedMerit Then
+            '    llblMeritAwarded.Show()
+            'End If
 
-                If asmt.D1Achieved Then
-                    chkD1.Checked = True
-                End If
-                If asmt.D2Achieved Then
-                    chkD2.Checked = True
-                End If
-                If asmt.D3Achieved Then
-                    chkD3.Checked = True
-                End If
-                llblDistinctionAwarded.Visible = chkD1.Checked AndAlso chkD2.Checked AndAlso chkD3.Checked
-
-                For Each rslt As OutcomeResult In asmt.Outcomes
-                    lst.Add(rslt)
-                Next
-            Next
-
-            '-- Now load M/D
-
-            olvOutcomes.SetObjects(lst)
+            olvOutcomes.SetObjects(m_student.OutcomePerformance())
         End If
     End Sub
     Private Sub AddNewStudent()

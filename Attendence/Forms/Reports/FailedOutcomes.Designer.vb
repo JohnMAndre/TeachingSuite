@@ -45,6 +45,7 @@ Partial Class FailedOutcomes
         Me.CollapseAllGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExpandAllGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonManager1 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.KryptonManager2 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
@@ -90,9 +91,11 @@ Partial Class FailedOutcomes
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn4, Me.OlvColumn5, Me.OlvColumn12})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No data for this module...click menu above."
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -102,7 +105,6 @@ Partial Class FailedOutcomes
         Me.olvStudents.Location = New System.Drawing.Point(0, 48)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowGroups = False
@@ -175,7 +177,7 @@ Partial Class FailedOutcomes
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(13, 3)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(40, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel4.TabIndex = 28
         Me.KryptonLabel4.Values.Text = "Filter:"
         '
@@ -183,7 +185,7 @@ Partial Class FailedOutcomes
         '
         Me.txtFilter.Location = New System.Drawing.Point(59, 2)
         Me.txtFilter.Name = "txtFilter"
-        Me.txtFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtFilter.Size = New System.Drawing.Size(117, 19)
         Me.txtFilter.TabIndex = 27
         '
         'llblClearFilter
@@ -214,14 +216,14 @@ Partial Class FailedOutcomes
         'RedoToolStripMenuItem
         '
         Me.RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
-        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
-        Me.RedoToolStripMenuItem.Text = "Redo"
+        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.RedoToolStripMenuItem.Text = "Rework"
         '
         'SecondRedoToolStripMenuItem
         '
         Me.SecondRedoToolStripMenuItem.Name = "SecondRedoToolStripMenuItem"
-        Me.SecondRedoToolStripMenuItem.Size = New System.Drawing.Size(69, 20)
-        Me.SecondRedoToolStripMenuItem.Text = "2nd Redo"
+        Me.SecondRedoToolStripMenuItem.Size = New System.Drawing.Size(81, 20)
+        Me.SecondRedoToolStripMenuItem.Text = "2nd Rework"
         '
         'GroupsToolStripMenuItem
         '
@@ -258,6 +260,25 @@ Partial Class FailedOutcomes
         Me.ExpandAllGroupsToolStripMenuItem.Name = "ExpandAllGroupsToolStripMenuItem"
         Me.ExpandAllGroupsToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.ExpandAllGroupsToolStripMenuItem.Text = "Expand all groups"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'KryptonManager1
+        '
+        Me.KryptonManager1.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'KryptonManager2
+        '
+        Me.KryptonManager2.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager2.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilter
         '
@@ -327,4 +348,5 @@ Partial Class FailedOutcomes
     Friend WithEvents CollapseAllGroupsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExpandAllGroupsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

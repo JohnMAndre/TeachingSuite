@@ -12,96 +12,7 @@ Public Class ModuleResults
 
         Me.Text &= " - " & classGroup.Name
     End Sub
-    '== This is the original version where we could use FirstTry, SecondTry, ThirdTry
-    '   Had to replace as soon as we started allowing one outcome on mulitple assignments
-    'Private Sub LoadData()
-    '    '-- Logic is: Check each student in group 
-    '    '   for each base assignment for group
-    '    '   check each assignment matching baseassignment for each student and count failed outcomes
-    '    '   if no assignment matching base assignment, then failed all
 
-    '    Dim intPassed, intFailed, intTotalStudents As Integer
-    '    Dim intMerit, intDistinction As Integer
-
-    '    m_lstResults.Clear()
-    '    Dim dataItem As AssignmentReportResult
-    '    Dim boolPassed As Boolean
-    '    Dim rslt As Student.QuickAssignmentResults
-
-    '    Dim intTotalOutcomes As Integer
-    '    For Each asmt As ClassAssignment In m_classGroup.Assignments
-    '        intTotalOutcomes += asmt.Outcomes.Count
-    '    Next
-
-
-    '    For Each clas As SchoolClass In m_classGroup.Classes
-    '        For Each stu As Student In clas.Students
-    '            dataItem = New AssignmentReportResult()
-    '            dataItem.Student = stu
-    '            m_lstResults.Add(dataItem)
-
-    '            If FirstTryToolStripMenuItem.Checked Then
-    '                rslt = stu.GetQuickAssignmentResults(MarkingTry.FirstTry)
-    '            ElseIf RedoToolStripMenuItem.Checked Then
-    '                rslt = stu.GetQuickAssignmentResults(MarkingTry.SecondTry)
-    '            ElseIf SecondRedoToolStripMenuItem.Checked Then
-    '                rslt = stu.GetQuickAssignmentResults(MarkingTry.ThirdTry)
-    '            Else
-    '                Continue For '-- should never get here
-    '            End If
-    '            dataItem.FailedOutcomes = intTotalOutcomes - rslt.OutcomesPassed
-    '            dataItem.M1Achieved = rslt.M1Achieved
-    '            dataItem.M2Achieved = rslt.M2Achieved
-    '            dataItem.M3Achieved = rslt.M3Achieved
-    '            dataItem.D1Achieved = rslt.D1Achieved
-    '            dataItem.D2Achieved = rslt.D2Achieved
-    '            dataItem.D3Achieved = rslt.D3Achieved
-
-    '            intTotalStudents += 1
-    '            boolPassed = rslt.OutcomesPassed = intTotalOutcomes
-
-    '            If boolPassed Then
-    '                intPassed += 1
-    '            Else
-    '                intFailed += 1
-    '            End If
-
-    '            If dataItem.M1Achieved AndAlso dataItem.M2Achieved AndAlso dataItem.M3Achieved Then
-    '                If dataItem.D1Achieved AndAlso dataItem.D2Achieved AndAlso dataItem.D3Achieved Then
-    '                    intDistinction += 1
-    '                Else
-    '                    intMerit += 1
-    '                End If
-    '            End If
-    '        Next
-    '    Next
-
-    '    olvStudents.SetObjects(m_lstResults)
-    '    For Each grp As BrightIdeasSoftware.OLVGroup In olvStudents.OLVGroups
-    '        grp.Collapsed = True
-    '    Next
-
-    '    lblPass.Text = intPassed.ToString("#,##0")
-    '    lblFail.Text = intFailed.ToString("#,##0")
-    '    lblTotalStudents.Text = intTotalStudents.ToString("#,##0")
-    '    lblNumberMerit.Text = intMerit.ToString("#,##0")
-    '    lblNumberDistinction.Text = intDistinction.ToString("#,##0")
-
-    '    Dim dblResult As Double
-
-    '    dblResult = intPassed / intTotalStudents
-    '    lblPassPercent.Text = dblResult.ToString("##0%")
-
-    '    dblResult = intFailed / intTotalStudents
-    '    lblFailPercent.Text = dblResult.ToString("##0%")
-
-    '    dblResult = intMerit / intTotalStudents
-    '    lblMeritPercent.Text = dblResult.ToString("##0%")
-
-    '    dblResult = intDistinction / intTotalStudents
-    '    lblDistinctionPercent.Text = dblResult.ToString("##0%")
-
-    'End Sub
     Private Sub LoadData()
         '-- Logic is: Check each student in group 
         '   for each base assignment for group
@@ -113,10 +24,14 @@ Public Class ModuleResults
 
         m_lstResults.Clear()
         Dim dataItem As AssignmentReportResult
-        Dim boolPassed As Boolean
         Dim rslt As Student.StudentModuleResult
 
-        Dim intTotalOutcomes As Integer = m_classGroup.Outcomes.Count
+        Dim intTotalPassOutcomes As Integer '-- total pass outcomes
+        For Each oc As AssignmentOutcome In m_classGroup.Outcomes
+            If oc.GradeGroup = BTECGradeGroup.Pass Then
+                intTotalPassOutcomes += 1
+            End If
+        Next
 
         For Each clas As SchoolClass In m_classGroup.Classes
             For Each stu As Student In clas.Students
@@ -126,30 +41,43 @@ Public Class ModuleResults
 
                 rslt = stu.ModuleResults()
 
-                dataItem.FailedOutcomes = intTotalOutcomes - rslt.OutcomesPassed
-                dataItem.M1Achieved = rslt.M1Achieved
-                dataItem.M2Achieved = rslt.M2Achieved
-                dataItem.M3Achieved = rslt.M3Achieved
-                dataItem.D1Achieved = rslt.D1Achieved
-                dataItem.D2Achieved = rslt.D2Achieved
-                dataItem.D3Achieved = rslt.D3Achieved
+                dataItem.FailedOutcomes = intTotalPassOutcomes - rslt.PassOutcomesPassed
+                'dataItem.M1Achieved = rslt.M1Achieved
+                'dataItem.M2Achieved = rslt.M2Achieved
+                'dataItem.M3Achieved = rslt.M3Achieved
+                'dataItem.D1Achieved = rslt.D1Achieved
+                'dataItem.D2Achieved = rslt.D2Achieved
+                'dataItem.D3Achieved = rslt.D3Achieved
 
                 intTotalStudents += 1
-                boolPassed = rslt.OutcomesPassed = intTotalOutcomes
 
-                If boolPassed Then
+                If rslt.AchievedMerit Then
+                    dataItem.AchievedMerit = True
+                    intMerit += 1
+                Else
+                    dataItem.AchievedMerit = False
+                End If
+
+                If rslt.AchievedDistinction Then
+                    dataItem.AchievedDistinction = True
+                    intDistinction += 1
+                Else
+                    dataItem.AchievedDistinction = False
+                End If
+
+                If dataItem.FailedOutcomes = 0 Then
                     intPassed += 1
                 Else
                     intFailed += 1
                 End If
 
-                If dataItem.M1Achieved AndAlso dataItem.M2Achieved AndAlso dataItem.M3Achieved Then
-                    If dataItem.D1Achieved AndAlso dataItem.D2Achieved AndAlso dataItem.D3Achieved Then
-                        intDistinction += 1
-                    Else
-                        intMerit += 1
-                    End If
-                End If
+                'If dataItem.M1Achieved AndAlso dataItem.M2Achieved AndAlso dataItem.M3Achieved Then
+                '    If dataItem.D1Achieved AndAlso dataItem.D2Achieved AndAlso dataItem.D3Achieved Then
+                '        intDistinction += 1
+                '    Else
+                '        intMerit += 1
+                '    End If
+                'End If
             Next
         Next
 

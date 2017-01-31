@@ -31,19 +31,19 @@ Public Class ClassAssignmentDetails
         Me.Text &= " - " & m_classGroup.Name
 
         txtName.Text = m_assignment.Name
-        chkM1Available.Checked = m_assignment.M1Available
-        chkM2Available.Checked = m_assignment.M2Available
-        chkM3Available.Checked = m_assignment.M3Available
-        chkD1Available.Checked = m_assignment.D1Available
-        chkD2Available.Checked = m_assignment.D2Available
-        chkD3Available.Checked = m_assignment.D3Available
+        'chkM1Available.Checked = m_assignment.M1Available
+        'chkM2Available.Checked = m_assignment.M2Available
+        'chkM3Available.Checked = m_assignment.M3Available
+        'chkD1Available.Checked = m_assignment.D1Available
+        'chkD2Available.Checked = m_assignment.D2Available
+        'chkD3Available.Checked = m_assignment.D3Available
 
-        txtM1Description.Text = m_assignment.M1Description
-        txtM2Description.Text = m_assignment.M2Description
-        txtM3Description.Text = m_assignment.M3Description
-        txtD1Description.Text = m_assignment.D1Description
-        txtD2Description.Text = m_assignment.D2Description
-        txtD3Description.Text = m_assignment.D3Description
+        'txtM1Description.Text = m_assignment.M1Description
+        'txtM2Description.Text = m_assignment.M2Description
+        'txtM3Description.Text = m_assignment.M3Description
+        'txtD1Description.Text = m_assignment.D1Description
+        'txtD2Description.Text = m_assignment.D2Description
+        'txtD3Description.Text = m_assignment.D3Description
 
         olvAssignmentOutcomes.SetObjects(m_assignment.Outcomes)
         olvAssignmentOutcomes.Sort(olvAssignmentOutcomes.Columns(0), SortOrder.Ascending)
@@ -77,20 +77,20 @@ Public Class ClassAssignmentDetails
         'End If
 
         m_assignment.Name = txtName.Text
-        m_assignment.M1Available = chkM1Available.Checked
-        m_assignment.M2Available = chkM2Available.Checked
-        m_assignment.M3Available = chkM3Available.Checked
-        m_assignment.D1Available = chkD1Available.Checked
-        m_assignment.D2Available = chkD2Available.Checked
-        m_assignment.D3Available = chkD3Available.Checked
+        'm_assignment.M1Available = chkM1Available.Checked
+        'm_assignment.M2Available = chkM2Available.Checked
+        'm_assignment.M3Available = chkM3Available.Checked
+        'm_assignment.D1Available = chkD1Available.Checked
+        'm_assignment.D2Available = chkD2Available.Checked
+        'm_assignment.D3Available = chkD3Available.Checked
         m_assignment.AssignmentBriefFilename = System.IO.Path.GetFileName(txtAssignmentBriefFilename.Text)
         m_assignment.SavedAssignmentsFolder = txtSavedAssignmentsPath.Text
-        m_assignment.M1Description = txtM1Description.Text
-        m_assignment.M2Description = txtM2Description.Text
-        m_assignment.M3Description = txtM3Description.Text
-        m_assignment.D1Description = txtD1Description.Text
-        m_assignment.D2Description = txtD2Description.Text
-        m_assignment.D3Description = txtD3Description.Text
+        'm_assignment.M1Description = txtM1Description.Text
+        'm_assignment.M2Description = txtM2Description.Text
+        'm_assignment.M3Description = txtM3Description.Text
+        'm_assignment.D1Description = txtD1Description.Text
+        'm_assignment.D2Description = txtD2Description.Text
+        'm_assignment.D3Description = txtD3Description.Text
         m_assignment.IncludesAttachment = chkIncludesAttachment.Checked
 
         AddHistory("Modified module assignment (Module: " & m_classGroup.Name & ", Assignment: " & m_assignment.Name & ").")

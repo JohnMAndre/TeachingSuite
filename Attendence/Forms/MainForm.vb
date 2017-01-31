@@ -1743,13 +1743,13 @@ Public Class MainForm
                     boolAtLeastOneFail = False
                     For Each asmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
                         For Each oc As OutcomeResult In asmt.Outcomes
-                            If oc.FirstTryStatus = OutcomeResultStatusEnum.Unknown OrElse oc.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
+                            If oc.FirstTryStatus = OutcomeResultStatusEnum.Unknown OrElse oc.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 boolAtLeastOneFail = True
                                 Exit For '-- just need one
-                            ElseIf oc.SecondTryStatus = OutcomeResultStatusEnum.Unknown OrElse oc.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
+                            ElseIf oc.SecondTryStatus = OutcomeResultStatusEnum.Unknown OrElse oc.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 boolAtLeastOneFail = True
                                 Exit For '-- just need one
-                            ElseIf oc.ThirdTryStatus = OutcomeResultStatusEnum.Unknown OrElse oc.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
+                            ElseIf oc.ThirdTryStatus = OutcomeResultStatusEnum.Unknown OrElse oc.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 boolAtLeastOneFail = True
                                 Exit For '-- just need one
                             End If
@@ -2347,10 +2347,10 @@ Public Class MainForm
                                     grp.Assignments.Add(asmt)
                                 Next
 
-                                '-- Add btec assignments
-                                For Each asmt As ClassAssignmentBTEC In objCls.ClassGroup.AssignmentsBTEC
-                                    grp.AssignmentsBTEC.Add(asmt)
-                                Next
+                                '-- Add btec assignments (THIS NEVER GETS USED
+                                'For Each asmt As ClassAssignmentBTEC In objCls.ClassGroup.AssignmentsBTEC
+                                '    grp.AssignmentsBTEC.Add(asmt)
+                                'Next
 
                                 objClassToSend = New SchoolClass(grp)
                                 objClassToSend.Students.AddRange(objCls.Students)

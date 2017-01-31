@@ -414,24 +414,61 @@ Public Class ClassGroup '-- teaching module
 
         Me.Semester = semester
 
+        Dim boolHigherOutcomesPresent As Boolean
         '-- outcomes must come before assignments because assignments depend on outcomes
         Dim xOutcomeList As Xml.XmlNodeList = xElement.SelectNodes("Outcomes/Outcome")
-        For Each xOutcome As Xml.XmlElement In xOutcomeList
-            Dim objOutcome As New AssignmentOutcome(xOutcome)
-            Me.Outcomes.Add(objOutcome)
-        Next
+        Dim xAssignmentList As Xml.XmlNodeList
+        If xOutcomeList.Count > 0 Then
+            '-- This is a BTEC module
+            For Each xOutcome As Xml.XmlElement In xOutcomeList
+                Dim objOutcome As New AssignmentOutcome(xOutcome)
+                Me.Outcomes.Add(objOutcome)
 
-        '-- assignments must come before students because students depend on them
-        Dim xAssignmentList As Xml.XmlNodeList = xElement.SelectNodes("ClassAssignment")
-        For Each xAssignmentNode As Xml.XmlElement In xAssignmentList
-            Dim objAssignment As New ClassAssignmentBTEC(xAssignmentNode, Me)
-            AssignmentsBTEC.Add(objAssignment)
+                '-- We need this so we know whether or not to add M's and D's as outcomes when converting 1.x data to version 2 data
+                If objOutcome.GradeGroup = BTECGradeGroup.Merit OrElse objOutcome.GradeGroup = BTECGradeGroup.Distinction Then
+                    boolHigherOutcomesPresent = True
+                End If
+            Next
 
-            '-- If we have a "LastAsmtUsed" then check each asmt for a match
-            If strLastUsedAssignmentID.Length > 0 AndAlso objAssignment.ID.ToUpper() = strLastUsedAssignmentID.ToUpper() Then
-                LastAssignmentUsed = objAssignment
+            '-- For 2.0, we must add M and D outcomes if there are none
+            If Not boolHigherOutcomesPresent Then
+                Dim objOutcome As AssignmentOutcome
+
+                '-- We will not add descriptions here
+                '   instead we will custom populate when we convert data for the BTEC assignment
+                objOutcome = New AssignmentOutcome(BTECGradeGroup.Merit)
+                objOutcome.Name = "M1"
+                Me.Outcomes.Add(objOutcome)
+                objOutcome = New AssignmentOutcome(BTECGradeGroup.Merit)
+                objOutcome.Name = "M2"
+                Me.Outcomes.Add(objOutcome)
+                objOutcome = New AssignmentOutcome(BTECGradeGroup.Merit)
+                objOutcome.Name = "M3"
+                Me.Outcomes.Add(objOutcome)
+                objOutcome = New AssignmentOutcome(BTECGradeGroup.Distinction)
+                objOutcome.Name = "D1"
+                Me.Outcomes.Add(objOutcome)
+                objOutcome = New AssignmentOutcome(BTECGradeGroup.Distinction)
+                objOutcome.Name = "D2"
+                Me.Outcomes.Add(objOutcome)
+                objOutcome = New AssignmentOutcome(BTECGradeGroup.Distinction)
+                objOutcome.Name = "D3"
+                Me.Outcomes.Add(objOutcome)
+
             End If
-        Next
+
+            '-- assignments must come before students because students depend on them
+            xAssignmentList = xElement.SelectNodes("ClassAssignment") '-- These are BTEC assignments
+            For Each xAssignmentNode As Xml.XmlElement In xAssignmentList
+                Dim objAssignment As New ClassAssignmentBTEC(xAssignmentNode, Me)
+                AssignmentsBTEC.Add(objAssignment)
+
+                '-- If we have a "LastAsmtUsed" then check each asmt for a match
+                If strLastUsedAssignmentID.Length > 0 AndAlso objAssignment.ID.ToUpper() = strLastUsedAssignmentID.ToUpper() Then
+                    LastAssignmentUsed = objAssignment
+                End If
+            Next
+        End If
 
         xAssignmentList = xElement.SelectNodes("ClassAssignmentNormal")
         For Each xAssignmentNode As Xml.XmlElement In xAssignmentList
@@ -606,6 +643,7 @@ Public Class ClassGroup '-- teaching module
                     For Each asmt As StudentAssignment In stu.Assignments
                         If asmt.BaseAssignment Is assignment Then
                             MessageBox.Show("GenerateMarkingList not implemented for normal assignments.")
+                            Exit Sub
                             '-- ok, this student has this assignment, now are they in this marking try?
                             '   if so, add to the list, otherwise, just keep going around
                             'Select Case markingTry
@@ -668,6 +706,7 @@ Public Class ClassGroup '-- teaching module
                     For Each asmt As StudentAssignment In stu.Assignments
                         If asmt.BaseAssignment Is assignment Then
                             MessageBox.Show("GenerateMarkingListIsolated not implemented for normal assignments.")
+                            Exit Sub
                         End If
                     Next
                 End If
@@ -689,13 +728,14 @@ Public Class ClassGroup '-- teaching module
             tw.Write("Admin" & DELIMITER & "Alt#" & DELIMITER & "Class" & DELIMITER & "StudentID" & DELIMITER & "LocalName" & DELIMITER & "Nickname" & DELIMITER)
 
             '-- output all outcomes on assignment (not all in module)
+            assignment.Outcomes.Sort()
             For Each oc As AssignmentOutcome In assignment.Outcomes
                 tw.Write(oc.Name)
                 tw.Write(DELIMITER)
             Next
 
             '-- Output headers for M's and D's 
-            tw.Write("M1" & DELIMITER & "M2" & DELIMITER & "M3" & DELIMITER & "D1" & DELIMITER & "D2" & DELIMITER & "D3")
+            'tw.Write("M1" & DELIMITER & "M2" & DELIMITER & "M3" & DELIMITER & "D1" & DELIMITER & "D2" & DELIMITER & "D3")
             tw.Write(Environment.NewLine)
 
             Dim asmtToUse As StudentAssignmentBTEC
@@ -730,27 +770,27 @@ Public Class ClassGroup '-- teaching module
                         Select Case markingTry
                             Case Globals.MarkingTry.FirstTry
                                 Select Case ocr.FirstTryStatus
-                                    Case OutcomeResultStatusEnum.Pass
+                                    Case OutcomeResultStatusEnum.Achieved
                                         tw.Write(AppSettings.OutcomeExportMarkPass)
-                                    Case OutcomeResultStatusEnum.Fail
+                                    Case OutcomeResultStatusEnum.NotAchieved
                                         tw.Write(AppSettings.OutcomeExportMarkFail)
                                     Case OutcomeResultStatusEnum.Unknown
                                         tw.Write(AppSettings.OutcomeExportMarkUnknown)
                                 End Select
                             Case Globals.MarkingTry.SecondTry
                                 Select Case ocr.SecondTryStatus
-                                    Case OutcomeResultStatusEnum.Pass
+                                    Case OutcomeResultStatusEnum.Achieved
                                         tw.Write(AppSettings.OutcomeExportMarkPass)
-                                    Case OutcomeResultStatusEnum.Fail
+                                    Case OutcomeResultStatusEnum.NotAchieved
                                         tw.Write(AppSettings.OutcomeExportMarkFail)
                                     Case OutcomeResultStatusEnum.Unknown
                                         tw.Write(AppSettings.OutcomeExportMarkUnknown)
                                 End Select
                             Case Globals.MarkingTry.ThirdTry
                                 Select Case ocr.ThirdTryStatus
-                                    Case OutcomeResultStatusEnum.Pass
+                                    Case OutcomeResultStatusEnum.Achieved
                                         tw.Write(AppSettings.OutcomeExportMarkPass)
-                                    Case OutcomeResultStatusEnum.Fail
+                                    Case OutcomeResultStatusEnum.NotAchieved
                                         tw.Write(AppSettings.OutcomeExportMarkFail)
                                     Case OutcomeResultStatusEnum.Unknown
                                         tw.Write(AppSettings.OutcomeExportMarkUnknown)
@@ -763,41 +803,41 @@ Public Class ClassGroup '-- teaching module
                     '   but we don't track WHEN student got M's or D's, just whether they have them or not
                     '   So could output secondTry with M2 but really it was given on firstTry
                     '   Am not changing this now because I'm the only user and none of my schools do this
-                    If asmtToUse.M1Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If asmtToUse.M2Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If asmtToUse.M3Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If asmtToUse.D1Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If asmtToUse.D2Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If asmtToUse.D3Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
+                    'If asmtToUse.M1Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If asmtToUse.M2Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If asmtToUse.M3Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If asmtToUse.D1Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If asmtToUse.D2Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If asmtToUse.D3Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
 
                     tw.Write(Environment.NewLine)
                 Next '-- Student
@@ -816,7 +856,7 @@ Public Class ClassGroup '-- teaching module
                 tw.Write(DELIMITER)
             Next
 
-            tw.Write("M1" & DELIMITER & "M2" & DELIMITER & "M3" & DELIMITER & "D1" & DELIMITER & "D2" & DELIMITER & "D3")
+            'tw.Write("M1" & DELIMITER & "M2" & DELIMITER & "M3" & DELIMITER & "D1" & DELIMITER & "D2" & DELIMITER & "D3")
             tw.Write(Environment.NewLine)
 
             For Each cls As SchoolClass In Classes
@@ -828,15 +868,15 @@ Public Class ClassGroup '-- teaching module
                             Continue For '-- the student is not on the list, so skip this student
                         End If
                     End If
-                    Dim studentResults As Student.StudentModuleResult = stu.ModuleResults()
+                    Dim studentResults As Student.StudentModuleResult = stu.ModuleResults() '-- Should result in each module outcome one time, regardless of how many asmts it was on
 
                     tw.Write(stu.AdminNumber & DELIMITER & stu.AltNumber & DELIMITER & cls.Name & DELIMITER & stu.StudentID & DELIMITER & stu.LocalName & DELIMITER & stu.Nickname & DELIMITER)
 
                     For Each rslt As Student.StudentModuleOutcomeResult In studentResults.Outcomes
                         Select Case rslt.Status
-                            Case OutcomeResultStatusEnum.Pass
+                            Case OutcomeResultStatusEnum.Achieved
                                 tw.Write(AppSettings.OutcomeExportMarkPass)
-                            Case OutcomeResultStatusEnum.Fail
+                            Case OutcomeResultStatusEnum.NotAchieved
                                 tw.Write(AppSettings.OutcomeExportMarkFail)
                             Case OutcomeResultStatusEnum.Unknown
                                 tw.Write(AppSettings.OutcomeExportMarkUnknown)
@@ -844,151 +884,48 @@ Public Class ClassGroup '-- teaching module
                         tw.Write(DELIMITER)
                     Next
 
-                    If studentResults.M1Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If studentResults.M2Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If studentResults.M3Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If studentResults.D1Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If studentResults.D2Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
-                    tw.Write(DELIMITER)
-                    If studentResults.D3Achieved Then
-                        tw.Write(AppSettings.OutcomeExportMarkPass)
-                    Else
-                        tw.Write(AppSettings.OutcomeExportMarkFail)
-                    End If
+                    'If studentResults.M1Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If studentResults.M2Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If studentResults.M3Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If studentResults.D1Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If studentResults.D2Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
+                    'tw.Write(DELIMITER)
+                    'If studentResults.D3Achieved Then
+                    '    tw.Write(AppSettings.OutcomeExportMarkPass)
+                    'Else
+                    '    tw.Write(AppSettings.OutcomeExportMarkFail)
+                    'End If
 
                     tw.Write(Environment.NewLine)
                 Next '-- Student
             Next '-- SchoolClass
             tw.Close()
         End Using
-
     End Sub
-    '-- From old structure, delete after Aug 2014
-    'Friend Sub GenerateModuleReultsExport(filename As String, markingTry As MarkingTry)
-    '    Const DELIMITER As String = vbTab
-    '    Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode) ' System.IO.File.Create(filename, 128, IO.FileOptions.None)
-    '        tw.Write("Admin" & DELIMITER & "Alt#" & DELIMITER & "Class" & DELIMITER & "StudentID" & DELIMITER & "LocalName" & DELIMITER & "Nickname" & DELIMITER)
-
-    '        For Each asmt As ClassAssignment In Assignments
-    '            For Each oc As AssignmentOutcome In asmt.Outcomes
-    '                tw.Write(oc.Name)
-    '                tw.Write(DELIMITER)
-    '            Next
-    '        Next
-
-    '        tw.Write("M1" & DELIMITER & "M2" & DELIMITER & "M3" & DELIMITER & "D1" & DELIMITER & "D2" & DELIMITER & "D3")
-    '        tw.Write(Environment.NewLine)
-
-    '        For Each cls As SchoolClass In Classes
-    '            For Each stu As Student In cls.Students
-    '                tw.Write(stu.AdminNumber & DELIMITER & stu.AltNumber & DELIMITER & cls.Name & DELIMITER & stu.StudentID & DELIMITER & stu.LocalName & DELIMITER & stu.Nickname & DELIMITER)
-
-    '                Dim rslt As Student.DetailAssignmentResults = stu.GetDetailedAssignmentResults(markingTry)
-    '                For Each oc As OutcomeResult In rslt.Outcomes
-    '                    Select Case markingTry
-    '                        Case Globals.MarkingTry.FirstTry
-    '                            Select Case oc.FirstTryStatus
-    '                                Case OutcomeResultStatusEnum.Pass
-    '                                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                                Case OutcomeResultStatusEnum.Fail
-    '                                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                                Case OutcomeResultStatusEnum.Unknown
-    '                                    tw.Write(AppSettings.OutcomeExportMarkUnknown)
-    '                            End Select
-    '                        Case Globals.MarkingTry.SecondTry
-    '                            If oc.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse oc.SecondTryStatus = OutcomeResultStatusEnum.Pass Then
-    '                                tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                            ElseIf oc.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
-    '                                tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                            Else
-    '                                tw.Write(AppSettings.OutcomeExportMarkUnknown)
-    '                            End If
-    '                        Case Globals.MarkingTry.ThirdTry
-    '                            If oc.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse oc.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse oc.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
-    '                                tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                            ElseIf oc.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
-    '                                tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                            Else
-    '                                tw.Write(AppSettings.OutcomeExportMarkUnknown)
-    '                            End If
-    '                            'Select Case oc.ThirdTryStatus
-    '                            '    Case OutcomeResultStatusEnum.Pass
-    '                            '        tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                            '    Case OutcomeResultStatusEnum.Fail
-    '                            '        tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                            '    Case OutcomeResultStatusEnum.Unknown
-    '                            '        tw.Write(AppSettings.OutcomeExportMarkUnknown)
-    '                            'End Select
-    '                    End Select
-    '                    tw.Write(DELIMITER)
-    '                Next
-    '                If rslt.M1Achieved Then
-    '                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                Else
-    '                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                End If
-    '                tw.Write(DELIMITER)
-    '                If rslt.M2Achieved Then
-    '                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                Else
-    '                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                End If
-    '                tw.Write(DELIMITER)
-    '                If rslt.M3Achieved Then
-    '                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                Else
-    '                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                End If
-    '                tw.Write(DELIMITER)
-    '                If rslt.D1Achieved Then
-    '                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                Else
-    '                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                End If
-    '                tw.Write(DELIMITER)
-    '                If rslt.D2Achieved Then
-    '                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                Else
-    '                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                End If
-    '                tw.Write(DELIMITER)
-    '                If rslt.D3Achieved Then
-    '                    tw.Write(AppSettings.OutcomeExportMarkPass)
-    '                Else
-    '                    tw.Write(AppSettings.OutcomeExportMarkFail)
-    '                End If
-    '                tw.Write(DELIMITER)
-
-    '                tw.Write(Environment.NewLine)
-    '            Next '-- Student
-    '        Next '-- SchoolClass
-    '        tw.Close()
-    '    End Using
-    'End Sub
     Public Sub RemoveOutcome(outcome As AssignmentOutcome)
         '-- will throw an error if the outcome is in use by any assignment
         For Each asmt As ClassAssignmentBTEC In Me.AssignmentsBTEC
@@ -1283,6 +1220,11 @@ Public Class SchoolClass
         End Using
 
     End Sub
+    ''' <summary>
+    ''' Exports student grades for all normal (not BTEC) assignments
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <remarks></remarks>
     Public Sub GenerateStudentGradesExport(filename As String)
         Try
             '-- The output here will be a crosstab
@@ -1357,7 +1299,6 @@ Public Class SchoolClass
 
 
 
-                '-- Next, walk through the students and mark present, absent, or late
                 Dim intStudentCounter As Integer
 
                 Dim stuAsmtToProcess As StudentAssignment
@@ -1740,12 +1681,111 @@ Public Class StudentAssignmentBTEC
     Public Property Student As Student '-- parent
     Public Property BaseAssignment As ClassAssignmentBTEC
     Public Property Outcomes As New List(Of OutcomeResult) '-- studentAssignment has own outcomes to provide for feedback
-    Public Property M1Achieved As Boolean
-    Public Property M2Achieved As Boolean
-    Public Property M3Achieved As Boolean
-    Public Property D1Achieved As Boolean
-    Public Property D2Achieved As Boolean
-    Public Property D3Achieved As Boolean
+    'Public Property M1Achieved As Boolean
+    'Public Property M2Achieved As Boolean
+    'Public Property M3Achieved As Boolean
+    'Public Property D1Achieved As Boolean
+    'Public Property D2Achieved As Boolean
+    'Public Property D3Achieved As Boolean
+    Public ReadOnly Property AchievedMerit As Boolean
+        Get
+            If AchievedAllAtGrade(BTECGradeGroup.Pass) AndAlso AchievedAllAtGrade(BTECGradeGroup.Merit) Then
+                Return True
+            Else
+                Return False
+            End If
+
+        End Get
+    End Property
+    Public ReadOnly Property AchievedDistinction As Boolean
+        Get
+            If AchievedAllAtGrade(BTECGradeGroup.Pass) AndAlso AchievedAllAtGrade(BTECGradeGroup.Merit) AndAlso AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
+                Return True
+            Else
+                Return False
+            End If
+        End Get
+    End Property
+    Public ReadOnly Property PassedAllOutcomes
+        Get
+            Return AchievedAllAtGrade(BTECGradeGroup.Pass)
+        End Get
+    End Property
+    Public ReadOnly Property AvailableOutcomes
+        Get
+            Return OutcomesAtGrade(BTECGradeGroup.Pass)
+        End Get
+    End Property
+    Private Function AchievedAllAtGrade(grade As BTECGradeGroup) As Boolean
+        Dim intAvailable As Integer = OutcomesAtGrade(grade)
+        Dim intAchieved As Integer = AchievedOutcomesAtGrade(grade)
+        If intAvailable > 0 Then
+            Return intAchieved = intAvailable
+        Else
+            Return False '-- No outcomes at this grade, so did not achieve anything
+        End If
+    End Function
+    Private Function OutcomesAtGrade(grade As BTECGradeGroup) As Integer
+        Dim intReturn As Integer
+        For Each asmtOC As AssignmentOutcome In Me.BaseAssignment.Outcomes
+            If asmtOC.GradeGroup = grade Then
+                intReturn += 1
+            End If
+        Next
+
+        Return intReturn
+    End Function
+    ''' <summary>
+    ''' Number of pass outcomes achieved during the submission (1st, 2nd, 3rd)
+    ''' </summary>
+    ''' <param name="grade">Pass, Merit, Distinction</param>
+    ''' <param name="submission">First submission, rework, second rework</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Friend Function AchievedOutcomesAtGradeAndTry(grade As BTECGradeGroup, submission As MarkingTry) As Integer
+        Dim intReturn As Integer
+        '-- First, second, or third try all count
+        For Each ocResult As OutcomeResult In Me.Outcomes
+            If ocResult.BaseOutcome.GradeGroup = grade Then
+                Select Case submission
+                    Case MarkingTry.FirstTry
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            intReturn += 1
+                        End If
+                    Case MarkingTry.SecondTry '-- means passed first or second try
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            intReturn += 1
+                        End If
+                    Case MarkingTry.ThirdTry '-- means passed on any try
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            intReturn += 1
+                        End If
+                End Select
+            End If
+        Next
+
+        Return intReturn
+    End Function
+
+    Public Function AchievedOutcomesAtGrade(grade As BTECGradeGroup) As Integer
+        Dim intReturn As Integer
+        '-- First, second, or third try all count
+        For Each ocResult As OutcomeResult In Me.Outcomes
+            If ocResult.BaseOutcome.GradeGroup = grade Then
+                If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                    ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                    ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                    intReturn += 1
+                End If
+            End If
+        Next
+
+        Return intReturn
+    End Function
+
     Public Property OverallComments As String Implements IStudentAssignment.OverallComments
     Public Property ImprovementComments As String Implements IStudentAssignment.ImprovementComments
     Public Property ObservationComments As String
@@ -1769,12 +1809,7 @@ Public Class StudentAssignmentBTEC
             End If
         Next
 
-        M1Achieved = ConvertToBool(xElement.GetAttribute("M1Achieved"), True)
-        M2Achieved = ConvertToBool(xElement.GetAttribute("M2Achieved"), True)
-        M3Achieved = ConvertToBool(xElement.GetAttribute("M3Achieved"), True)
-        D1Achieved = ConvertToBool(xElement.GetAttribute("D1Achieved"), True)
-        D2Achieved = ConvertToBool(xElement.GetAttribute("D2Achieved"), True)
-        D3Achieved = ConvertToBool(xElement.GetAttribute("D3Achieved"), True)
+
 
         OverallComments = xElement.GetAttribute("OverallComments")
         ImprovementComments = xElement.GetAttribute("ImprovementComments")
@@ -1786,6 +1821,42 @@ Public Class StudentAssignmentBTEC
             Dim objOutcomeResult As New OutcomeResult(xOutcomeResultNode, BaseAssignment, Me)
             Outcomes.Add(objOutcomeResult)
         Next
+
+        '-- Changed in version 2
+        '-- Need to add any outcome results for the higher outcomes (M's and D's)
+        If Me.BaseAssignment.Outcomes.Count > Me.Outcomes.Count Then
+            Dim objBaseOutcome As AssignmentOutcome
+            Dim objOutcomeResult As OutcomeResult
+            For intCounterBase As Integer = 0 To Me.BaseAssignment.Outcomes.Count - 1
+                objBaseOutcome = Me.BaseAssignment.Outcomes(intCounterBase)
+
+                '-- Is this BaseOutcome represented on this student's assignment? If not, add it
+                objOutcomeResult = Nothing '-- reset
+                For intCounterStudent As Integer = 0 To Me.Outcomes.Count - 1
+                    If Me.Outcomes(intCounterStudent).BaseOutcome Is objBaseOutcome Then
+                        objOutcomeResult = Me.Outcomes(intCounterStudent)
+                        Exit For '-- This BaseOutcome is already represented on this student's assignment
+                    End If
+                Next
+                If objOutcomeResult Is Nothing Then
+                    '-- This assignment outcome is NOT represented on this student's assignment, so add it
+                    objOutcomeResult = New OutcomeResult(objBaseOutcome, Me)
+                    If ConvertToBool(xElement.GetAttribute(objBaseOutcome.Name & "Achieved"), True) Then
+                        objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                    Else
+                        objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                    End If
+                    Me.Outcomes.Add(objOutcomeResult)
+                End If
+            Next
+        End If
+
+        'M1Achieved = ConvertToBool(xElement.GetAttribute("M1Achieved"), True)
+        'M2Achieved = ConvertToBool(xElement.GetAttribute("M2Achieved"), True)
+        'M3Achieved = ConvertToBool(xElement.GetAttribute("M3Achieved"), True)
+        'D1Achieved = ConvertToBool(xElement.GetAttribute("D1Achieved"), True)
+        'D2Achieved = ConvertToBool(xElement.GetAttribute("D2Achieved"), True)
+        'D3Achieved = ConvertToBool(xElement.GetAttribute("D3Achieved"), True)
 
         Me.Student = Student
 
@@ -1810,12 +1881,12 @@ Public Class StudentAssignmentBTEC
     Public Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
         Dim xAssignmentElement As Xml.XmlElement = xDoc.CreateElement("StudentAssignment")
         xAssignmentElement.SetAttribute("BaseAssignmentID", BaseAssignment.ID)
-        xAssignmentElement.SetAttribute("M1Achieved", M1Achieved.ToString())
-        xAssignmentElement.SetAttribute("M2Achieved", M2Achieved.ToString())
-        xAssignmentElement.SetAttribute("M3Achieved", M3Achieved.ToString())
-        xAssignmentElement.SetAttribute("D1Achieved", D1Achieved.ToString())
-        xAssignmentElement.SetAttribute("D2Achieved", D2Achieved.ToString())
-        xAssignmentElement.SetAttribute("D3Achieved", D3Achieved.ToString)
+        'xAssignmentElement.SetAttribute("M1Achieved", M1Achieved.ToString())
+        'xAssignmentElement.SetAttribute("M2Achieved", M2Achieved.ToString())
+        'xAssignmentElement.SetAttribute("M3Achieved", M3Achieved.ToString())
+        'xAssignmentElement.SetAttribute("D1Achieved", D1Achieved.ToString())
+        'xAssignmentElement.SetAttribute("D2Achieved", D2Achieved.ToString())
+        'xAssignmentElement.SetAttribute("D3Achieved", D3Achieved.ToString)
 
         xAssignmentElement.SetAttribute("OverallComments", OverallComments)
         xAssignmentElement.SetAttribute("ImprovementComments", ImprovementComments)
@@ -1843,17 +1914,7 @@ Public Class StudentAssignmentBTEC
         Return BaseAssignment.Name.CompareTo(other.BaseAssignment.Name)
         'End If
     End Function
-    Public ReadOnly Property PassedOutcomes
-        Get
-            Dim intReturn As Integer
-            For Each oc As OutcomeResult In Outcomes
-                If oc.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse oc.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse oc.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
-                    intReturn += 1
-                End If
-            Next
-            Return intReturn
-        End Get
-    End Property
+
     Public ReadOnly Property FirstTryPrint As String
         Get
             If FirstTryPrintDate = DATE_NO_DATE Then
@@ -2003,21 +2064,24 @@ Public Class ClassAssignmentBTEC
             Return Teaching.AssignmentType.BTEC
         End Get
     End Property
-    Public Property Outcomes As New List(Of AssignmentOutcome)
-    Public Property M1Available As Boolean
-    Public Property M2Available As Boolean
-    Public Property M3Available As Boolean
-    Public Property D1Available As Boolean
-    Public Property D2Available As Boolean
-    Public Property D3Available As Boolean
     Public Property AssignmentBriefFilename As String
     Public Property SavedAssignmentsFolder As String
-    Public Property M1Description As String
-    Public Property M2Description As String
-    Public Property M3Description As String
-    Public Property D1Description As String
-    Public Property D2Description As String
-    Public Property D3Description As String
+    Public Property Outcomes As New List(Of AssignmentOutcome)
+
+    '====== Following are deprecated, keeping just to convert old data on load
+    'Public Property M1Available As Boolean
+    'Public Property M2Available As Boolean
+    'Public Property M3Available As Boolean
+    'Public Property D1Available As Boolean
+    'Public Property D2Available As Boolean
+    'Public Property D3Available As Boolean
+    'Public Property M1Description As String
+    'Public Property M2Description As String
+    'Public Property M3Description As String
+    'Public Property D1Description As String
+    'Public Property D2Description As String
+    'Public Property D3Description As String
+    '============= End deprecated
 
     Public Overrides Function ToString() As String
         Dim strToReturn As String = Me.Name & " "
@@ -2038,18 +2102,18 @@ Public Class ClassAssignmentBTEC
         Dim xAssignmentElement As Xml.XmlElement = xDoc.CreateElement("ClassAssignment")
         xAssignmentElement.SetAttribute("ID", ID)
         xAssignmentElement.SetAttribute("Name", Name)
-        xAssignmentElement.SetAttribute("M1Available", M1Available)
-        xAssignmentElement.SetAttribute("M2Available", M2Available)
-        xAssignmentElement.SetAttribute("M3Available", M3Available)
-        xAssignmentElement.SetAttribute("D1Available", D1Available)
-        xAssignmentElement.SetAttribute("D2Available", D2Available)
-        xAssignmentElement.SetAttribute("D3Available", D3Available)
-        xAssignmentElement.SetAttribute("M1Description", M1Description)
-        xAssignmentElement.SetAttribute("M2Description", M2Description)
-        xAssignmentElement.SetAttribute("M3Description", M3Description)
-        xAssignmentElement.SetAttribute("D1Description", D1Description)
-        xAssignmentElement.SetAttribute("D2Description", D2Description)
-        xAssignmentElement.SetAttribute("D3Description", D3Description)
+        'xAssignmentElement.SetAttribute("M1Available", M1Available)
+        'xAssignmentElement.SetAttribute("M2Available", M2Available)
+        'xAssignmentElement.SetAttribute("M3Available", M3Available)
+        'xAssignmentElement.SetAttribute("D1Available", D1Available)
+        'xAssignmentElement.SetAttribute("D2Available", D2Available)
+        'xAssignmentElement.SetAttribute("D3Available", D3Available)
+        'xAssignmentElement.SetAttribute("M1Description", M1Description)
+        'xAssignmentElement.SetAttribute("M2Description", M2Description)
+        'xAssignmentElement.SetAttribute("M3Description", M3Description)
+        'xAssignmentElement.SetAttribute("D1Description", D1Description)
+        'xAssignmentElement.SetAttribute("D2Description", D2Description)
+        'xAssignmentElement.SetAttribute("D3Description", D3Description)
         xAssignmentElement.SetAttribute("AssignmentBriefFilename", AssignmentBriefFilename)
         xAssignmentElement.SetAttribute("SavedAssignmentsFolder", SavedAssignmentsFolder)
         xAssignmentElement.SetAttribute("ClosedFirstTry", ClosedFirstTry.ToString())
@@ -2068,6 +2132,7 @@ Public Class ClassAssignmentBTEC
         Dim xOutcomes As Xml.XmlElement = xDoc.CreateElement("OutcomeRefs")
         xOutcomes = xAssignmentElement.AppendChild(xOutcomes)
         Dim xOutcome As Xml.XmlElement
+        Me.Outcomes.Sort()
         For Each outcome As AssignmentOutcome In Me.Outcomes
             xOutcome = xDoc.CreateElement("OutcomeRef")
             xOutcome.SetAttribute("BaseID", outcome.ID)
@@ -2076,15 +2141,26 @@ Public Class ClassAssignmentBTEC
 
         Return xAssignmentElement
     End Function
+    Public Function OutcomesAtGrade(grade As BTECGradeGroup) As Integer
+        Dim intReturn As Integer
+        For Each asmtOC As AssignmentOutcome In Me.Outcomes
+            If asmtOC.GradeGroup = grade Then
+                intReturn += 1
+            End If
+        Next
+
+        Return intReturn
+    End Function
     Public Sub New(parent As ClassGroup)
         ID = Guid.NewGuid.ToString()
         Me.ClassGroup = parent
-        M1Description = String.Empty
-        M2Description = String.Empty
-        M3Description = String.Empty
-        D1Description = String.Empty
-        D2Description = String.Empty
-        D3Description = String.Empty
+        '== Removed for 2.0
+        'M1Description = String.Empty
+        'M2Description = String.Empty
+        'M3Description = String.Empty
+        'D1Description = String.Empty
+        'D2Description = String.Empty
+        'D3Description = String.Empty
         ReleaseDate = Date.MinValue
         SubmitDate = Date.MinValue
     End Sub
@@ -2095,18 +2171,124 @@ Public Class ClassAssignmentBTEC
         End If
         Me.ClassGroup = parent
         Name = xElement.GetAttribute("Name")
-        M1Available = xElement.GetAttribute("M1Available")
-        M2Available = xElement.GetAttribute("M2Available")
-        M3Available = xElement.GetAttribute("M3Available")
-        D1Available = xElement.GetAttribute("D1Available")
-        D2Available = xElement.GetAttribute("D2Available")
-        D3Available = xElement.GetAttribute("D3Available")
-        M1Description = xElement.GetAttribute("M1Description")
-        M2Description = xElement.GetAttribute("M2Description")
-        M3Description = xElement.GetAttribute("M3Description")
-        D1Description = xElement.GetAttribute("D1Description")
-        D2Description = xElement.GetAttribute("D2Description")
-        D3Description = xElement.GetAttribute("D3Description")
+        'M1Available = xElement.GetAttribute("M1Available")
+        'M2Available = xElement.GetAttribute("M2Available")
+        'M3Available = xElement.GetAttribute("M3Available")
+        'D1Available = xElement.GetAttribute("D1Available")
+        'D2Available = xElement.GetAttribute("D2Available")
+        'D3Available = xElement.GetAttribute("D3Available")
+        'M1Description = xElement.GetAttribute("M1Description")
+        'M2Description = xElement.GetAttribute("M2Description")
+        'M3Description = xElement.GetAttribute("M3Description")
+        'D1Description = xElement.GetAttribute("D1Description")
+        'D2Description = xElement.GetAttribute("D2Description")
+        'D3Description = xElement.GetAttribute("D3Description")
+
+        '============= Start data conversion for 1.x to 2
+        Dim objHigherOutcome As AssignmentOutcome
+        If ConvertToBool(xElement.GetAttribute("M1Available"), False) Then
+            For intCounter As Integer = 0 To Me.ClassGroup.Outcomes.Count - 1
+                If Me.ClassGroup.Outcomes(intCounter).Name = "M1" Then
+                    objHigherOutcome = Me.ClassGroup.Outcomes(intCounter)
+                    Exit For
+                End If
+            Next
+
+            If objHigherOutcome Is Nothing Then
+                '-- Strange, we have a problem at the ClassGroup level
+                MessageBox.Show("Error loading BTEC Class Assignment data (M1 missing from module: " & Me.ClassGroup.Name & ").")
+            Else
+                objHigherOutcome.Description = xElement.GetAttribute("M1Description")
+                Me.Outcomes.Add(objHigherOutcome)
+            End If
+        End If
+
+        If ConvertToBool(xElement.GetAttribute("M2Available"), False) Then
+            For intCounter As Integer = 0 To Me.ClassGroup.Outcomes.Count - 1
+                If Me.ClassGroup.Outcomes(intCounter).Name = "M2" Then
+                    objHigherOutcome = Me.ClassGroup.Outcomes(intCounter)
+                    Exit For
+                End If
+            Next
+
+            If objHigherOutcome Is Nothing Then
+                '-- Strange, we have a problem at the ClassGroup level
+                MessageBox.Show("Error loading BTEC Class Assignment data (M2 missing from module: " & Me.ClassGroup.Name & ").")
+            Else
+                objHigherOutcome.Description = xElement.GetAttribute("M2Description")
+                Me.Outcomes.Add(objHigherOutcome)
+            End If
+        End If
+
+        If ConvertToBool(xElement.GetAttribute("M3Available"), False) Then
+            For intCounter As Integer = 0 To Me.ClassGroup.Outcomes.Count - 1
+                If Me.ClassGroup.Outcomes(intCounter).Name = "M3" Then
+                    objHigherOutcome = Me.ClassGroup.Outcomes(intCounter)
+                    Exit For
+                End If
+            Next
+
+            If objHigherOutcome Is Nothing Then
+                '-- Strange, we have a problem at the ClassGroup level
+                MessageBox.Show("Error loading BTEC Class Assignment data (M3 missing from module: " & Me.ClassGroup.Name & ").")
+            Else
+                objHigherOutcome.Description = xElement.GetAttribute("M3Description")
+                Me.Outcomes.Add(objHigherOutcome)
+            End If
+        End If
+
+        If ConvertToBool(xElement.GetAttribute("D1Available"), False) Then
+            For intCounter As Integer = 0 To Me.ClassGroup.Outcomes.Count - 1
+                If Me.ClassGroup.Outcomes(intCounter).Name = "D1" Then
+                    objHigherOutcome = Me.ClassGroup.Outcomes(intCounter)
+                    Exit For
+                End If
+            Next
+
+            If objHigherOutcome Is Nothing Then
+                '-- Strange, we have a problem at the ClassGroup level
+                MessageBox.Show("Error loading BTEC Class Assignment data (D1 missing from module: " & Me.ClassGroup.Name & ").")
+            Else
+                objHigherOutcome.Description = xElement.GetAttribute("D1Description")
+                Me.Outcomes.Add(objHigherOutcome)
+            End If
+        End If
+
+        If ConvertToBool(xElement.GetAttribute("D2Available"), False) Then
+            For intCounter As Integer = 0 To Me.ClassGroup.Outcomes.Count - 1
+                If Me.ClassGroup.Outcomes(intCounter).Name = "D2" Then
+                    objHigherOutcome = Me.ClassGroup.Outcomes(intCounter)
+                    Exit For
+                End If
+            Next
+
+            If objHigherOutcome Is Nothing Then
+                '-- Strange, we have a problem at the ClassGroup level
+                MessageBox.Show("Error loading BTEC Class Assignment data (D2 missing from module: " & Me.ClassGroup.Name & ").")
+            Else
+                objHigherOutcome.Description = xElement.GetAttribute("D2Description")
+                Me.Outcomes.Add(objHigherOutcome)
+            End If
+        End If
+
+        If ConvertToBool(xElement.GetAttribute("D3Available"), False) Then
+            For intCounter As Integer = 0 To Me.ClassGroup.Outcomes.Count - 1
+                If Me.ClassGroup.Outcomes(intCounter).Name = "D3" Then
+                    objHigherOutcome = Me.ClassGroup.Outcomes(intCounter)
+                    Exit For
+                End If
+            Next
+
+            If objHigherOutcome Is Nothing Then
+                '-- Strange, we have a problem at the ClassGroup level
+                MessageBox.Show("Error loading BTEC Class Assignment data (D3 missing from module: " & Me.ClassGroup.Name & ").")
+            Else
+                objHigherOutcome.Description = xElement.GetAttribute("D3Description")
+                Me.Outcomes.Add(objHigherOutcome)
+            End If
+        End If
+        '============= End data conversion for 1.x to 2
+
         AssignmentBriefFilename = xElement.GetAttribute("AssignmentBriefFilename")
         SavedAssignmentsFolder = xElement.GetAttribute("SavedAssignmentsFolder")
         ClosedFirstTry = ConvertToBool(xElement.GetAttribute("ClosedFirstTry"), False)
@@ -2149,6 +2331,7 @@ Public Class ClassAssignmentBTEC
                 Log("OutcomeRef found under ClassAssignment without ID.", 5)
             End If
         Next
+
     End Sub
     Public Sub RemoveOutcome(outcome As AssignmentOutcome)
         '-- will throw an error if the outcome is in use by any student
@@ -2184,7 +2367,12 @@ Public Class OutcomeResult
     Public ThirdTryStatus As OutcomeResultStatusEnum
     Public ThirdTryComments As String = String.Empty
     Public Function CompareTo(other As OutcomeResult) As Integer Implements System.IComparable(Of OutcomeResult).CompareTo
-        Return BaseOutcome.Name.CompareTo(BaseOutcome.Name)
+        '-- For 2.0 we need to enhance this to sort first by grade group, then by name
+        If BaseOutcome.GradeGroup.CompareTo(other.BaseOutcome.GradeGroup) = 0 Then
+            Return BaseOutcome.Name.CompareTo(other.BaseOutcome.Name)
+        Else
+            Return BaseOutcome.GradeGroup.CompareTo(other.BaseOutcome.GradeGroup)
+        End If
     End Function
     Public Sub New(outcome As AssignmentOutcome, asmt As StudentAssignmentBTEC)
         BaseOutcome = outcome
@@ -2200,6 +2388,15 @@ Public Class OutcomeResult
             Return BaseOutcome.Description
         End Get
     End Property
+    Private Function ConvertOutcomeResultForVersion2(currentResult As String) As String
+        If currentResult = "Pass" Then
+            Return "Achieved"
+        ElseIf currentResult = "Fail" Then
+            Return "NotAchieved"
+        Else
+            Return currentResult '-- must be unknown, Achieved, or NonAchieved
+        End If
+    End Function
     Public Sub New(xElement As Xml.XmlElement, assignment As ClassAssignmentBTEC, asmt As StudentAssignmentBTEC)
         Dim strBaseOutcomeID As String = xElement.GetAttribute("BaseOutcomeID")
         ' = 
@@ -2215,16 +2412,19 @@ Public Class OutcomeResult
 
         Dim strValue As String
         strValue = xElement.GetAttribute("FirstTryStatus")
+        strValue = ConvertOutcomeResultForVersion2(strValue)
         FirstTryStatus = [Enum].Parse(GetType(OutcomeResultStatusEnum), strValue, True)
         FirstTryComments = xElement.GetAttribute("FirstTryComments")
         Me.BaseOutcome.AddStoredResults(FirstTryStatus, FirstTryComments)
 
         strValue = xElement.GetAttribute("SecondTryStatus")
+        strValue = ConvertOutcomeResultForVersion2(strValue)
         SecondTryStatus = [Enum].Parse(GetType(OutcomeResultStatusEnum), strValue, True)
         SecondTryComments = xElement.GetAttribute("SecondTryComments")
         Me.BaseOutcome.AddStoredResults(SecondTryStatus, SecondTryComments)
 
         strValue = xElement.GetAttribute("ThirdTryStatus")
+        strValue = ConvertOutcomeResultForVersion2(strValue)
         ThirdTryStatus = [Enum].Parse(GetType(OutcomeResultStatusEnum), strValue, True)
         ThirdTryComments = xElement.GetAttribute("ThirdTryComments")
         Me.BaseOutcome.AddStoredResults(ThirdTryStatus, ThirdTryComments)
@@ -2375,12 +2575,12 @@ Public Class AssignmentOutcome
         End If
     End Sub
     Private Sub AddDefaultStoredResults()
-        Me.AddStoredResults(OutcomeResultStatusEnum.Pass, AppSettings.ExamPassDefaultFeedback)
-        Me.AddStoredResults(OutcomeResultStatusEnum.Pass, AppSettings.ExamPassWeakDefaultFeedback)
-        Me.AddStoredResults(OutcomeResultStatusEnum.Fail, AppSettings.ExamFailDefaultFeedback)
-        Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Not submitted")
-        Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Plagiarized")
-        Me.AddStoredResults(OutcomeResultStatusEnum.Fail, "Plagiarized in other section")
+        Me.AddStoredResults(OutcomeResultStatusEnum.Achieved, AppSettings.ExamPassDefaultFeedback)
+        Me.AddStoredResults(OutcomeResultStatusEnum.Achieved, AppSettings.ExamPassWeakDefaultFeedback)
+        Me.AddStoredResults(OutcomeResultStatusEnum.NotAchieved, AppSettings.ExamFailDefaultFeedback)
+        Me.AddStoredResults(OutcomeResultStatusEnum.NotAchieved, "Not submitted")
+        Me.AddStoredResults(OutcomeResultStatusEnum.NotAchieved, "Plagiarized")
+        Me.AddStoredResults(OutcomeResultStatusEnum.NotAchieved, "Plagiarized in other section")
     End Sub
 
     Public Function CompareTo(other As AssignmentOutcome) As Integer Implements IComparable(Of AssignmentOutcome).CompareTo
@@ -2418,25 +2618,12 @@ Public Class Student
             '   P3=pass on third submit
             '   75% = could also be a percentage
 
-            '-- We are assuming that there will be either BTEC or normal assignments, not a combination of the two groups
+            '-- We are assuming that there will be either BTEC or normal assignments, ==== not a combination of the two types for the same student ====
 
             If Me.AssignmentsBTEC.Count > 0 Then
                 Dim rslt As StudentModuleResult = Me.ModuleResults()
-                If rslt.Outcomes.Count = rslt.OutcomesPassed Then
-                    If rslt.M1Achieved AndAlso rslt.M2Achieved AndAlso rslt.M3Achieved Then
-                        If rslt.D1Achieved AndAlso rslt.D2Achieved AndAlso rslt.D3Achieved Then
-                            Return "D"
-                        Else
-                            Return "M"
-                        End If
-                    Else
-                        Return "P" '-- need to enhance to return P1, P2, P3 to know on which submission they passed
-                    End If
-                Else
-                    Return "R"
-                End If
+                Return rslt.OverallGrade
             ElseIf Me.Assignments.Count > 0 Then
-                'Dim intAvailablePoints, intEarnedPoints As Integer
                 Dim dblOverall As Double
                 Dim intScore As Integer
 
@@ -2444,31 +2631,12 @@ Public Class Student
                     intScore = Math.Max(Math.Max(asmt.FirstTryPoints, asmt.SecondTryPoints), asmt.ThirdTryPoints) '-- get highest score of first 3 submissions
 
                     dblOverall += (intScore / asmt.BaseAssignment.MaxPoints) * asmt.BaseAssignment.Weighting
-
-                    'intAvailablePoints += asmt.BaseAssignment.MaxPoints
-
-                    'If asmt.ThirdTryPoints > 0 Then
-                    '    intEarnedPoints += asmt.ThirdTryPoints
-                    'ElseIf asmt.SecondTryPoints > 0 Then
-                    '    intEarnedPoints += asmt.SecondTryPoints
-                    'ElseIf asmt.FirstTryPoints > 0 Then
-                    '    intEarnedPoints += asmt.FirstTryPoints
-                    'Else
-                    '    '-- no points, so ignore
-                    '    Application.DoEvents() '-- for breakpoint only
-                    'End If
                 Next
 
                 Return dblOverall.ToString("#,##0%")
-                'If intAvailablePoints > 0 Then
-                '    Dim dbl As Double = intEarnedPoints / intAvailablePoints
-                '    Return dbl.ToString("##0%")
-                'Else
-                '    Return intEarnedPoints.ToString("#,##0")
-                'End If
             Else
                 '-- no assignments as all
-                Return String.Empty
+                Return "n/a"
             End If
         End Get
     End Property
@@ -2728,6 +2896,70 @@ Public Class Student
             m_intPlagiarismSeverity = value
         End Set
     End Property
+    ''' <summary>
+    ''' Returns all outcomes (at all gradegroups) but no duplicates (not 2x M1), this data is not intended to be modifyable
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function OutcomePerformance() As List(Of OutcomeResult)
+        '-- used in studentDetail form
+        Dim objReturn As New List(Of OutcomeResult)
+
+        '-- First add all the module outcomes
+        Dim objOutcomeResult As OutcomeResult
+        For Each objAsmtOutcome As AssignmentOutcome In Me.SchoolClass.ClassGroup.Outcomes
+            objOutcomeResult = New OutcomeResult(objAsmtOutcome, Nothing)
+            objOutcomeResult.BaseOutcome = objAsmtOutcome
+
+            objReturn.Add(objOutcomeResult)
+        Next
+
+        For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
+            '-- Now, check all the outcomes
+            For Each objStudentOutcome As OutcomeResult In asmt.Outcomes
+                '-- and match to what we added earlier
+                For Each objOutcomeResult In objReturn
+                    If objOutcomeResult.BaseOutcome.ID = objStudentOutcome.BaseOutcome.ID Then
+                        '-- Found a matching student OutcomeResult with module outcome
+
+                        '-- Now, we want to set the status for first, second, etc but favoring achievement
+                        '   So we never set notachieved or unknown if achieved is already set
+                        '   This is true for P, M, and D outcomes
+                        '   So can go from unknown to Achieved or NonAchieved
+                        '   Can go from NonAchieved to Achieved
+                        '   No reason to change if already achieved
+                        If objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                        ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved AndAlso objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
+                            objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                        End If
+
+                        If objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved
+                        ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved AndAlso objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.Unknown AndAlso objOutcomeResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                            '-- Do not write NonAchieved for 2nd if 1st is already achieved
+                            objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
+                        End If
+
+                        If objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            objOutcomeResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
+                        ElseIf objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved AndAlso objOutcomeResult.ThirdTryStatus = OutcomeResultStatusEnum.Unknown AndAlso objOutcomeResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso objOutcomeResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                            '-- Do not write NonAchieved for 3rd if 1st or 2nd is already achieved
+                            objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
+                        End If
+
+                    End If
+                Next
+            Next
+        Next
+
+        Return objReturn
+    End Function
+    ''' <summary>
+    ''' Returns all outcomes on the module and the student results for that outcome (each outcome is included one time)
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function ModuleResults() As StudentModuleResult
         Dim objReturn As New StudentModuleResult
 
@@ -2743,83 +2975,62 @@ Public Class Student
 
         '-- walk through each assignment and check off M's and D's
         For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
-            If asmt.M1Achieved Then
-                objReturn.M1Achieved = True
-            End If
-            If asmt.M2Achieved Then
-                objReturn.M2Achieved = True
-            End If
-            If asmt.M3Achieved Then
-                objReturn.M3Achieved = True
-            End If
+            'If asmt.M1Achieved Then
+            '    objReturn.M1Achieved = True
+            'End If
+            'If asmt.M2Achieved Then
+            '    objReturn.M2Achieved = True
+            'End If
+            'If asmt.M3Achieved Then
+            '    objReturn.M3Achieved = True
+            'End If
 
-            If asmt.D1Achieved Then
-                objReturn.D1Achieved = True
-            End If
-            If asmt.D2Achieved Then
-                objReturn.D2Achieved = True
-            End If
-            If asmt.D3Achieved Then
-                objReturn.D3Achieved = True
-            End If
+            'If asmt.D1Achieved Then
+            '    objReturn.D1Achieved = True
+            'End If
+            'If asmt.D2Achieved Then
+            '    objReturn.D2Achieved = True
+            'End If
+            'If asmt.D3Achieved Then
+            '    objReturn.D3Achieved = True
+            'End If
 
             '-- Now, check all the outcomes
             For Each objStudentOutcome As OutcomeResult In asmt.Outcomes
                 '-- and match to what we added earlier
                 For Each objModuleOutcomeResult As StudentModuleOutcomeResult In objReturn.Outcomes
                     If objModuleOutcomeResult.Outcome.ID = objStudentOutcome.BaseOutcome.ID Then
-                        '-- match
-                        '== Replace this with new logic to support outcome independence
-                        '   that is, now one outcome can be on multiple assignments before we assumed one outcome on one assignment
-                        'If objModuleOutcomeResult.Status <> OutcomeResultStatusEnum.Pass Then
-                        '    '-- We only consider if the outcome was not passed earlier (like on earlier assignment)
-                        '    If objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse _
-                        '        objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse _
-                        '        objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
+                        '-- Found a matching student OutcomeResult
 
-                        '        '-- Yeah, student passed
-                        '        objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Pass
-
-                        '    ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Fail OrElse _
-                        '        objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Fail OrElse _
-                        '        objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
-
-                        '        '-- Student fail somewhere
-                        '        '   Unknown means the student has not attempted the outcome yet
-                        '        objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Fail
-                        '    End If
-                        'End If
-
-                        '-- New outcome-independence logic
-                        If objModuleOutcomeResult.Status <> OutcomeResultStatusEnum.Pass Then
+                        If objModuleOutcomeResult.Status <> OutcomeResultStatusEnum.Achieved Then
                             '-- We only consider if the outcome was not passed earlier (like on earlier assignment)
-                            If objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
+                            If objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
                                 '-- Yeah, student passed
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Pass
+                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
                                 objModuleOutcomeResult.LatestFeedback = objStudentOutcome.ThirdTryComments
-                            ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Pass Then
+                            ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
                                 '-- Yeah, student passed
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Pass
+                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
                                 objModuleOutcomeResult.LatestFeedback = objStudentOutcome.SecondTryComments
-                            ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
+                            ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
                                 '-- Yeah, student passed
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Pass
+                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
                                 objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
 
 
 
-                                '== At this point, we did not pass, so let's deal with failing feedback
+                                '== At this point, student did not pass, so let's deal with failing feedback
                                 '-- Student fail somewhere
-                            ElseIf objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Fail
+                            ElseIf objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
                                 objModuleOutcomeResult.LatestFeedback = objStudentOutcome.ThirdTryComments
-                            ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Fail
+                            ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
                                 objModuleOutcomeResult.LatestFeedback = objStudentOutcome.SecondTryComments
-                            ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
+                            ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
 
                                 '   Unknown means the student has not attempted the outcome yet
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Fail
+                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
                                 objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
                             Else
                                 '-- If we get here, actually this outcome never passed, never failed...so never submitted
@@ -3201,24 +3412,91 @@ Public Class Student
         Next
     End Sub
     Public Class StudentModuleResult
-        Public Property M1Achieved As Boolean
-        Public Property M2Achieved As Boolean
-        Public Property M3Achieved As Boolean
-        Public Property D1Achieved As Boolean
-        Public Property D2Achieved As Boolean
-        Public Property D3Achieved As Boolean
-        Public Property Outcomes As New List(Of StudentModuleOutcomeResult)
-        Public ReadOnly Property OutcomesPassed() As Integer
-            Get
-                Dim intReturn As Integer
-                For Each oc As StudentModuleOutcomeResult In Me.Outcomes
-                    If oc.Status = OutcomeResultStatusEnum.Pass Then
-                        intReturn += 1
+        Public Function AchievedMerit() As Boolean
+            Dim boolReturn As Boolean = True '-- assume true
+            For Each oc As StudentModuleOutcomeResult In Me.Outcomes
+                If oc.Outcome.GradeGroup = BTECGradeGroup.Pass OrElse oc.Outcome.GradeGroup = BTECGradeGroup.Merit Then
+                    If Not oc.Status = OutcomeResultStatusEnum.Achieved Then
+                        boolReturn = False '-- student failed at least one relevant outcome
+                        Exit For
                     End If
-                Next
-                Return intReturn
-            End Get
-        End Property
+                End If
+            Next
+            Return boolReturn
+        End Function
+        Public Function AchievedDistinction() As Boolean
+            Dim boolReturn As Boolean = True '-- assume true
+            For Each oc As StudentModuleOutcomeResult In Me.Outcomes
+                If oc.Outcome.GradeGroup = BTECGradeGroup.Pass OrElse oc.Outcome.GradeGroup = BTECGradeGroup.Merit OrElse oc.Outcome.GradeGroup = BTECGradeGroup.Distinction Then
+                    If Not oc.Status = OutcomeResultStatusEnum.Achieved Then
+                        boolReturn = False '-- student failed at least one relevant outcome
+                        Exit For
+                    End If
+                End If
+            Next
+            Return boolReturn
+        End Function
+        Public Function OverallGrade() As String
+            Dim boolPass As Boolean = True
+            Dim boolMerit As Boolean = True
+            Dim boolDistinction As Boolean = True
+
+            '-- Since these are MODULE results (not assignment), we do not need to check for presence 
+            '   of P, M, D outcomes because we must have some of each (BTEC rule)
+            For Each oc As StudentModuleOutcomeResult In Me.Outcomes
+                Select Case oc.Outcome.GradeGroup
+                    Case BTECGradeGroup.Distinction
+                        If oc.Status = OutcomeResultStatusEnum.NotAchieved Then
+                            boolDistinction = False
+                        End If
+                    Case BTECGradeGroup.Merit
+                        If oc.Status = OutcomeResultStatusEnum.NotAchieved Then
+                            boolMerit = False
+                        End If
+                    Case BTECGradeGroup.Pass
+                        If oc.Status = OutcomeResultStatusEnum.NotAchieved Then
+                            boolPass = False
+                        End If
+                End Select
+            Next
+
+            If boolPass Then
+                If boolMerit Then
+                    If boolDistinction Then
+                        Return "D"
+                    Else
+                        Return "M"
+                    End If
+                Else
+                    Return "P"
+                End If
+            Else
+                Return "R"
+            End If
+        End Function
+
+        'Public Property M1Achieved As Boolean
+        'Public Property M2Achieved As Boolean
+        'Public Property M3Achieved As Boolean
+        'Public Property D1Achieved As Boolean
+        'Public Property D2Achieved As Boolean
+        'Public Property D3Achieved As Boolean
+        Public Property Outcomes As New List(Of StudentModuleOutcomeResult)
+        ''' <summary>
+        ''' Returns the number of Pass outcomes passed
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Function PassOutcomesPassed() As Integer
+            Dim intReturn As Integer
+            For Each oc As StudentModuleOutcomeResult In Me.Outcomes
+                If oc.Status = OutcomeResultStatusEnum.Achieved AndAlso oc.Outcome.GradeGroup = BTECGradeGroup.Pass Then
+                    intReturn += 1
+                End If
+            Next
+            Return intReturn
+        End Function
     End Class
     Public Class StudentModuleOutcomeResult
         Implements IComparable(Of StudentModuleOutcomeResult)
@@ -3255,26 +3533,26 @@ Public Class Student
     Friend Function GetDetailedAssignmentResults(attempt As MarkingTry) As DetailAssignmentResults
         Try
             Dim rtn As New DetailAssignmentResults()
-            For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
-                If asmt.M1Achieved Then
-                    rtn.M1Achieved = True
-                End If
-                If asmt.M2Achieved Then
-                    rtn.M2Achieved = True
-                End If
-                If asmt.M3Achieved Then
-                    rtn.M3Achieved = True
-                End If
-                If asmt.D1Achieved Then
-                    rtn.D1Achieved = True
-                End If
-                If asmt.D2Achieved Then
-                    rtn.D2Achieved = True
-                End If
-                If asmt.D3Achieved Then
-                    rtn.D3Achieved = True
-                End If
-            Next
+            'For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
+            '    If asmt.M1Achieved Then
+            '        rtn.M1Achieved = True
+            '    End If
+            '    If asmt.M2Achieved Then
+            '        rtn.M2Achieved = True
+            '    End If
+            '    If asmt.M3Achieved Then
+            '        rtn.M3Achieved = True
+            '    End If
+            '    If asmt.D1Achieved Then
+            '        rtn.D1Achieved = True
+            '    End If
+            '    If asmt.D2Achieved Then
+            '        rtn.D2Achieved = True
+            '    End If
+            '    If asmt.D3Achieved Then
+            '        rtn.D3Achieved = True
+            '    End If
+            'Next
 
             Dim boolOutcomeAdded As Boolean
 
@@ -3323,40 +3601,42 @@ Public Class Student
     Friend Function GetQuickAssignmentResults(attempt As MarkingTry) As QuickAssignmentResults
         Dim rtn As New QuickAssignmentResults()
         For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
-            If asmt.M1Achieved Then
-                rtn.M1Achieved = True
-            End If
-            If asmt.M2Achieved Then
-                rtn.M2Achieved = True
-            End If
-            If asmt.M3Achieved Then
-                rtn.M3Achieved = True
-            End If
-            If asmt.D1Achieved Then
-                rtn.D1Achieved = True
-            End If
-            If asmt.D2Achieved Then
-                rtn.D2Achieved = True
-            End If
-            If asmt.D3Achieved Then
-                rtn.D3Achieved = True
-            End If
+            'If asmt.M1Achieved Then
+            '    rtn.M1Achieved = True
+            'End If
+            'If asmt.M2Achieved Then
+            '    rtn.M2Achieved = True
+            'End If
+            'If asmt.M3Achieved Then
+            '    rtn.M3Achieved = True
+            'End If
+            'If asmt.D1Achieved Then
+            '    rtn.D1Achieved = True
+            'End If
+            'If asmt.D2Achieved Then
+            '    rtn.D2Achieved = True
+            'End If
+            'If asmt.D3Achieved Then
+            '    rtn.D3Achieved = True
+            'End If
             For Each rslt As OutcomeResult In asmt.Outcomes
-                rtn.OutcomesIncluded += 1
-                Select Case attempt
-                    Case MarkingTry.FirstTry
-                        If rslt.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
-                            rtn.OutcomesPassed += 1
-                        End If
-                    Case MarkingTry.SecondTry
-                        If rslt.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse rslt.SecondTryStatus = OutcomeResultStatusEnum.Pass Then
-                            rtn.OutcomesPassed += 1
-                        End If
-                    Case MarkingTry.ThirdTry
-                        If rslt.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse rslt.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse rslt.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
-                            rtn.OutcomesPassed += 1
-                        End If
-                End Select
+                If rslt.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
+                    rtn.OutcomesIncluded += 1
+                    Select Case attempt
+                        Case MarkingTry.FirstTry
+                            If rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                rtn.OutcomesPassed += 1
+                            End If
+                        Case MarkingTry.SecondTry
+                            If rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse rslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                rtn.OutcomesPassed += 1
+                            End If
+                        Case MarkingTry.ThirdTry
+                            If rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse rslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse rslt.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                rtn.OutcomesPassed += 1
+                            End If
+                    End Select
+                End If
             Next
         Next
 
@@ -3366,6 +3646,12 @@ Public Class Student
     Public Function CompareTo(other As Student) As Integer Implements System.IComparable(Of Student).CompareTo
         Return Me.AdminNumber.CompareTo(other.AdminNumber)
     End Function
+    Public Class CompareOnStudentID
+        Implements IComparer(Of Student)
+        Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+            Return x.StudentID.CompareTo(y.StudentID)
+        End Function
+    End Class
 End Class
 
 Public Class TeachingSession
@@ -3428,8 +3714,8 @@ Public Enum AttendenceStatusEnum
 End Enum
 Public Enum OutcomeResultStatusEnum
     Unknown
-    Pass
-    Fail
+    Achieved
+    NotAchieved
 End Enum
 Public Class Result
     Public Property Text As String

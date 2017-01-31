@@ -94,13 +94,13 @@
 
     Private Sub ExamClockForm_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         If m_baseAssignment IsNot Nothing Then
-            chkM1.Enabled = m_baseAssignment.M1Available
-            chkM2.Enabled = m_baseAssignment.M2Available
-            chkM3.Enabled = m_baseAssignment.M3Available
+            'chkM1.Enabled = m_baseAssignment.M1Available
+            'chkM2.Enabled = m_baseAssignment.M2Available
+            'chkM3.Enabled = m_baseAssignment.M3Available
 
-            chkD1.Enabled = m_baseAssignment.D1Available
-            chkD2.Enabled = m_baseAssignment.D2Available
-            chkD3.Enabled = m_baseAssignment.D3Available
+            'chkD1.Enabled = m_baseAssignment.D1Available
+            'chkD2.Enabled = m_baseAssignment.D2Available
+            'chkD3.Enabled = m_baseAssignment.D3Available
         End If
     End Sub
     Private Sub RunningForm_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
@@ -188,10 +188,10 @@
                     Select Case markingTry
                         Case Globals.MarkingTry.FirstTry
                             '-- done, get out
-                            Return oc.FirstTryStatus = OutcomeResultStatusEnum.Pass
+                            Return oc.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                         Case Globals.MarkingTry.SecondTry
                             '-- done, get out
-                            Return oc.SecondTryStatus = OutcomeResultStatusEnum.Pass
+                            Return oc.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                     End Select
                 End If
             Next
@@ -381,21 +381,21 @@
                     '-- just need to match on the name of the outcome (therefore must be unique)
                     Select Case m_examNumber
                         Case MarkingTry.FirstTry
-                            result.FirstTryStatus = OutcomeResultStatusEnum.Pass
+                            result.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                             If weak Then
                                 result.FirstTryComments = AppSettings.ExamPassWeakDefaultFeedback
                             Else
                                 result.FirstTryComments = AppSettings.ExamPassDefaultFeedback
                             End If
                         Case MarkingTry.SecondTry
-                            result.SecondTryStatus = OutcomeResultStatusEnum.Pass
+                            result.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                             If weak Then
                                 result.SecondTryComments = AppSettings.ExamPassWeakDefaultFeedback
                             Else
                                 result.SecondTryComments = AppSettings.ExamPassDefaultFeedback
                             End If
                         Case MarkingTry.ThirdTry
-                            result.ThirdTryStatus = OutcomeResultStatusEnum.Pass
+                            result.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
                             If weak Then
                                 result.ThirdTryComments = AppSettings.ExamPassWeakDefaultFeedback
                             Else
@@ -432,24 +432,24 @@
 
         If m_studentAssignment IsNot Nothing Then
             Dim strAwarded As String = String.Empty
-            If m_studentAssignment.M1Achieved Then
-                strAwarded &= " M1"
-            End If
-            If m_studentAssignment.M2Achieved Then
-                strAwarded &= " M2"
-            End If
-            If m_studentAssignment.M3Achieved Then
-                strAwarded &= " M3"
-            End If
-            If m_studentAssignment.D1Achieved Then
-                strAwarded &= " D1"
-            End If
-            If m_studentAssignment.D2Achieved Then
-                strAwarded &= " D2"
-            End If
-            If m_studentAssignment.D3Achieved Then
-                strAwarded &= " D3"
-            End If
+            'If m_studentAssignment.M1Achieved Then
+            '    strAwarded &= " M1"
+            'End If
+            'If m_studentAssignment.M2Achieved Then
+            '    strAwarded &= " M2"
+            'End If
+            'If m_studentAssignment.M3Achieved Then
+            '    strAwarded &= " M3"
+            'End If
+            'If m_studentAssignment.D1Achieved Then
+            '    strAwarded &= " D1"
+            'End If
+            'If m_studentAssignment.D2Achieved Then
+            '    strAwarded &= " D2"
+            'End If
+            'If m_studentAssignment.D3Achieved Then
+            '    strAwarded &= " D3"
+            'End If
             Me.ToolTip1.SetToolTip(lblStudentGivenOverall, strAwarded)
         Else
             Me.ToolTip1.SetToolTip(lblStudentGivenOverall, String.Empty)
@@ -485,13 +485,13 @@
                     '-- need to match on the base outcome 
                     Select Case m_examNumber
                         Case MarkingTry.FirstTry
-                            result.FirstTryStatus = OutcomeResultStatusEnum.Fail
+                            result.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                             result.FirstTryComments = AppSettings.ExamFailDefaultFeedback
                         Case MarkingTry.SecondTry
-                            result.SecondTryStatus = OutcomeResultStatusEnum.Fail
+                            result.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
                             result.SecondTryComments = AppSettings.ExamFailDefaultFeedback
                         Case MarkingTry.ThirdTry
-                            result.ThirdTryStatus = OutcomeResultStatusEnum.Fail
+                            result.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved
                             result.ThirdTryComments = AppSettings.ExamFailDefaultFeedback
                     End Select
                     txtOutcomeText.TextBox.BackColor = Color.Red

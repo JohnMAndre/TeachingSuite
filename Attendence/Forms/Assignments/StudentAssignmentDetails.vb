@@ -55,7 +55,7 @@ Friend Class StudentAssignmentDetails
             '-- mark first as fail, no submit
             For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
                 If outcome.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
-                    outcome.FirstTryStatus = OutcomeResultStatusEnum.Fail
+                    outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                     outcome.FirstTryComments = AppSettings.NoSubmitFeedback
                 End If
             Next
@@ -75,19 +75,19 @@ Friend Class StudentAssignmentDetails
         Me.olvImprovementItems.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ImprovementItemRowFormatter)
         olvcolPerformanceLevel.ToolTipText = "Performance level (0-5)" & Environment.NewLine & "0=Not evaluated" & Environment.NewLine & "1=Unacceptable" & Environment.NewLine & "2=Very weak, incorrect very often" & Environment.NewLine & "3=Sometimes OK but inconsistent" & Environment.NewLine & "4=Good but still room for improvement" & Environment.NewLine & "5=Completely correct"
 
-        chkM1.Enabled = m_studentAssignment.BaseAssignment.M1Available
-        chkM1.Checked = m_studentAssignment.M1Achieved
-        chkM2.Enabled = m_studentAssignment.BaseAssignment.M2Available
-        chkM2.Checked = m_studentAssignment.M2Achieved
-        chkM3.Enabled = m_studentAssignment.BaseAssignment.M3Available
-        chkM3.Checked = m_studentAssignment.M3Achieved
+        'chkM1.Enabled = m_studentAssignment.BaseAssignment.M1Available
+        'chkM1.Checked = m_studentAssignment.M1Achieved
+        'chkM2.Enabled = m_studentAssignment.BaseAssignment.M2Available
+        'chkM2.Checked = m_studentAssignment.M2Achieved
+        'chkM3.Enabled = m_studentAssignment.BaseAssignment.M3Available
+        'chkM3.Checked = m_studentAssignment.M3Achieved
 
-        chkD1.Enabled = m_studentAssignment.BaseAssignment.D1Available
-        chkD1.Checked = m_studentAssignment.D1Achieved
-        chkD2.Enabled = m_studentAssignment.BaseAssignment.D2Available
-        chkD2.Checked = m_studentAssignment.D2Achieved
-        chkD3.Enabled = m_studentAssignment.BaseAssignment.D3Available
-        chkD3.Checked = m_studentAssignment.D3Achieved
+        'chkD1.Enabled = m_studentAssignment.BaseAssignment.D1Available
+        'chkD1.Checked = m_studentAssignment.D1Achieved
+        'chkD2.Enabled = m_studentAssignment.BaseAssignment.D2Available
+        'chkD2.Checked = m_studentAssignment.D2Achieved
+        'chkD3.Enabled = m_studentAssignment.BaseAssignment.D3Available
+        'chkD3.Checked = m_studentAssignment.D3Achieved
 
         chkProcessed.Checked = m_studentAssignment.Processed
 
@@ -126,12 +126,12 @@ Friend Class StudentAssignmentDetails
 
         AutoSizeColumns(olvAutoFeedback)
 
-        ToolTip1.SetToolTip(chkM1, m_studentAssignment.BaseAssignment.M1Description)
-        ToolTip1.SetToolTip(chkM2, m_studentAssignment.BaseAssignment.M2Description)
-        ToolTip1.SetToolTip(chkM3, m_studentAssignment.BaseAssignment.M3Description)
-        ToolTip1.SetToolTip(chkD1, m_studentAssignment.BaseAssignment.D1Description)
-        ToolTip1.SetToolTip(chkD2, m_studentAssignment.BaseAssignment.D2Description)
-        ToolTip1.SetToolTip(chkD3, m_studentAssignment.BaseAssignment.D3Description)
+        'ToolTip1.SetToolTip(chkM1, m_studentAssignment.BaseAssignment.M1Description)
+        'ToolTip1.SetToolTip(chkM2, m_studentAssignment.BaseAssignment.M2Description)
+        'ToolTip1.SetToolTip(chkM3, m_studentAssignment.BaseAssignment.M3Description)
+        'ToolTip1.SetToolTip(chkD1, m_studentAssignment.BaseAssignment.D1Description)
+        'ToolTip1.SetToolTip(chkD2, m_studentAssignment.BaseAssignment.D2Description)
+        'ToolTip1.SetToolTip(chkD3, m_studentAssignment.BaseAssignment.D3Description)
 
         LoadModuleResults()
 
@@ -215,12 +215,12 @@ Friend Class StudentAssignmentDetails
         'End If
 
 
-        m_studentAssignment.M1Achieved = chkM1.Checked
-        m_studentAssignment.M2Achieved = chkM2.Checked
-        m_studentAssignment.M3Achieved = chkM3.Checked
-        m_studentAssignment.D1Achieved = chkD1.Checked
-        m_studentAssignment.D2Achieved = chkD2.Checked
-        m_studentAssignment.D3Achieved = chkD3.Checked
+        'm_studentAssignment.M1Achieved = chkM1.Checked
+        'm_studentAssignment.M2Achieved = chkM2.Checked
+        'm_studentAssignment.M3Achieved = chkM3.Checked
+        'm_studentAssignment.D1Achieved = chkD1.Checked
+        'm_studentAssignment.D2Achieved = chkD2.Checked
+        'm_studentAssignment.D3Achieved = chkD3.Checked
 
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
@@ -285,11 +285,11 @@ Friend Class StudentAssignmentDetails
     Private Function PassedOutcomes() As Integer
         Dim intPassedOutcomes As Integer
         For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
-            If m_try = MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
+            If m_try = MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
                 intPassedOutcomes += 1
-            ElseIf m_try = MarkingTry.SecondTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Pass) Then
+            ElseIf m_try = MarkingTry.SecondTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved) Then
                 intPassedOutcomes += 1
-            ElseIf m_try = MarkingTry.ThirdTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse outcome.ThirdTryStatus = OutcomeResultStatusEnum.Pass) Then
+            ElseIf m_try = MarkingTry.ThirdTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved) Then
                 intPassedOutcomes += 1
                 '== Remove this little block to support same outcome on multiple assignments
                 '   so some can be unknown and it's still ok
@@ -304,11 +304,11 @@ Friend Class StudentAssignmentDetails
     Private Function FailedOutcomes() As Integer
         Dim intFailedOutcomes As Integer
         For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
-            If m_try = MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
+            If m_try = MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                 intFailedOutcomes += 1
-            ElseIf m_try = MarkingTry.SecondTry AndAlso outcome.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
+            ElseIf m_try = MarkingTry.SecondTry AndAlso outcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                 intFailedOutcomes += 1
-            ElseIf m_try = MarkingTry.ThirdTry AndAlso outcome.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
+            ElseIf m_try = MarkingTry.ThirdTry AndAlso outcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                 intFailedOutcomes += 1
                 '== Remove this little block to support same outcome on multiple assignments
                 '   so some can be unknown and it's still ok
@@ -342,101 +342,225 @@ Friend Class StudentAssignmentDetails
     End Function
     Private Sub btnGenerateOverallComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateOverallComments.LinkClicked
 
-        Dim objResults As Student.StudentModuleResult = LoadModuleResults()
-        Dim boolPassedAll As Boolean = True
-        For Each oc As Student.StudentModuleOutcomeResult In objResults.Outcomes
-            If oc.Status <> OutcomeResultStatusEnum.Pass Then
-                boolPassedAll = False
-                Exit For
-            End If
-        Next
+        '============================ DELETE BELOW HERE once 2.0 is fully working ================================
 
+        'Dim objResults As Student.StudentModuleResult = LoadModuleResults()
+        'Dim boolPassedAll As Boolean = True
+        'For Each oc As Student.StudentModuleOutcomeResult In objResults.Outcomes
+        '    If oc.Status <> OutcomeResultStatusEnum.Achieved Then
+        '        boolPassedAll = False
+        '        Exit For
+        '    End If
+        'Next
 
-
-        Dim intPassedOutcomes As Integer = PassedOutcomes()
+        'Dim intPassedOutcomes As Integer = PassedOutcomes()
 
         'If intPassedOutcomes = -1 Then
         '    MessageBox.Show("You must mark all outcomes before generating text.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         '    Exit Sub
         'End If
 
-        Dim strOverall As String
+        'Dim strOverall As String
 
-        If intPassedOutcomes = m_studentAssignment.Outcomes.Count Then
-            strOverall = "Passed all outcomes"
-            Dim boolGotMerit As Boolean = True
-            Dim boolMeritPossible As Boolean = chkM1.Enabled OrElse chkM2.Enabled OrElse chkM3.Enabled
-            If chkM1.Enabled AndAlso Not chkM1.Checked Then
-                boolGotMerit = False
-                boolMeritPossible = True
-            End If
-            If chkM2.Enabled AndAlso Not chkM2.Checked Then
-                boolGotMerit = False
-                boolMeritPossible = True
-            End If
-            If chkM3.Enabled AndAlso Not chkM3.Checked Then
-                boolGotMerit = False
-                boolMeritPossible = True
-            End If
+        'If intPassedOutcomes = m_studentAssignment.Outcomes.Count Then
+        '    strOverall = "Passed all outcomes"
+        'Dim boolGotMerit As Boolean = True
+        'Dim boolMeritPossible As Boolean = chkM1.Enabled OrElse chkM2.Enabled OrElse chkM3.Enabled
+        'If chkM1.Enabled AndAlso Not chkM1.Checked Then
+        '    boolGotMerit = False
+        '    boolMeritPossible = True
+        'End If
+        'If chkM2.Enabled AndAlso Not chkM2.Checked Then
+        '    boolGotMerit = False
+        '    boolMeritPossible = True
+        'End If
+        'If chkM3.Enabled AndAlso Not chkM3.Checked Then
+        '    boolGotMerit = False
+        '    boolMeritPossible = True
+        'End If
+        '
+        'If boolGotMerit AndAlso boolMeritPossible Then
+        ' strOverall &= " and achieved MERIT"
+        'End If
 
-            If boolGotMerit AndAlso boolMeritPossible Then
-                strOverall &= " and achieved MERIT"
-            End If
+        'Dim boolGotDistinction As Boolean = boolGotMerit '-- must get merit to get distinction
+        'Dim boolDistinctionPossible As Boolean = boolMeritPossible AndAlso (chkD1.Enabled OrElse chkD2.Enabled OrElse chkD3.Enabled)
+        'If chkD1.Enabled AndAlso Not chkD1.Checked Then
+        '    boolGotDistinction = False
+        '    boolDistinctionPossible = True
+        'End If
+        'If chkD2.Enabled AndAlso Not chkD2.Checked Then
+        '    boolGotDistinction = False
+        '    boolDistinctionPossible = True
+        'End If
+        'If chkD3.Enabled AndAlso Not chkD3.Checked Then
+        '    boolGotDistinction = False
+        '    boolDistinctionPossible = True
+        'End If
 
-            Dim boolGotDistinction As Boolean = boolGotMerit '-- must get merit to get distinction
-            Dim boolDistinctionPossible As Boolean = boolMeritPossible AndAlso (chkD1.Enabled OrElse chkD2.Enabled OrElse chkD3.Enabled)
-            If chkD1.Enabled AndAlso Not chkD1.Checked Then
-                boolGotDistinction = False
-                boolDistinctionPossible = True
-            End If
-            If chkD2.Enabled AndAlso Not chkD2.Checked Then
-                boolGotDistinction = False
-                boolDistinctionPossible = True
-            End If
-            If chkD3.Enabled AndAlso Not chkD3.Checked Then
-                boolGotDistinction = False
-                boolDistinctionPossible = True
-            End If
+        'If boolGotDistinction AndAlso boolDistinctionPossible Then
+        '    strOverall &= " and DISTINCTION"
+        'End If
 
-            If boolGotDistinction AndAlso boolDistinctionPossible Then
-                strOverall &= " and DISTINCTION"
-            End If
+        'rtbOverallComments.Text = strOverall & "."
 
-            rtbOverallComments.Text = strOverall & "."
+        'Else
+        'Select Case intPassedOutcomes
+        '    Case 0
+        '        rtbOverallComments.Text = "Referred all outcomes."
+        '    Case 1
+        '        If boolPassedAll Then
+        '            rtbOverallComments.Text = "Passed all remaining outcomes."
+        '        Else
+        '            rtbOverallComments.Text = "Passed " & intPassedOutcomes.ToString() & " outcome."
+        '        End If
+        '    Case Else
+        '        If boolPassedAll Then
+        '            rtbOverallComments.Text = "Passed all remaining outcomes."
+        '        Else
+        '            rtbOverallComments.Text = "Passed " & intPassedOutcomes.ToString() & " outcomes."
+        '        End If
+        'End Select
+        'End If
 
-        Else
-            Select Case intPassedOutcomes
-                Case 0
-                    rtbOverallComments.Text = "Referred all outcomes."
-                Case 1
-                    If boolPassedAll Then
-                        rtbOverallComments.Text = "Passed all remaining outcomes."
-                    Else
-                        rtbOverallComments.Text = "Passed " & intPassedOutcomes.ToString() & " outcome."
-                    End If
-                Case Else
-                    If boolPassedAll Then
-                        rtbOverallComments.Text = "Passed all remaining outcomes."
-                    Else
-                        rtbOverallComments.Text = "Passed " & intPassedOutcomes.ToString() & " outcomes."
-                    End If
-            End Select
-        End If
+        'Dim lst As List(Of OutcomeResult) = GetFailedOutcomes()
+        'If lst.Count > 0 Then
+        '    Dim intCounter As Integer
+        '    rtbOverallComments.Text &= Environment.NewLine & "Referral outcomes: "
+        '    For Each ocr As OutcomeResult In lst
+        '        intCounter += 1
+        '        If intCounter > 1 Then
+        '            rtbOverallComments.Text &= "; "
+        '        End If
+        '        rtbOverallComments.Text &= ocr.Name
+        '    Next
+        'End If
+        '============================ DELETE ABOVE HERE once 2.0 is fully working ================================
 
-        Dim lst As List(Of OutcomeResult) = GetFailedOutcomes()
-        If lst.Count > 0 Then
-            Dim intCounter As Integer
-            rtbOverallComments.Text &= Environment.NewLine & "Referral outcomes: "
-            For Each ocr As OutcomeResult In lst
-                intCounter += 1
-                If intCounter > 1 Then
-                    rtbOverallComments.Text &= "; "
+
+        '-- For 2.0 in order to support RQF this has been completely changed
+        '   Now M's and D's are outcomes and each outcome has a grade group
+        '   The new rules are:
+        '   "Achieved Pass" requires all outcomes with gradegroup of pass to be achieved, and number of outcomes @ pass > 0
+        '   "Achieved Merit" requires "Achieve Pass" and all outcomes with gradegroup of merit to be achieved, and number of outcomes @ merit > 0
+        '   "Achieved Distinction" requires "Achieve Pass" and "Achieve Merit" and all outcomes with gradegroup of distinction to be achieved, and number of outcomes @ distinction > 0
+        If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
+            If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
+                If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
+                    '- Distinction
+                    rtbOverallComments.Text = "Achieved all PASS and MERIT and DISTINCTION outcomes."
+                Else
+                    '-- Just merit
+                    rtbOverallComments.Text = "Achieved all PASS and MERIT outcomes."
                 End If
-                rtbOverallComments.Text &= ocr.Name
-            Next
+            Else
+                '-- Just pass
+                rtbOverallComments.Text = "Achieved all PASS outcomes"
+            End If
+        Else
+            '-- Not passed yet
+            Dim intAvailable As Integer = OutcomesAtGrade(BTECGradeGroup.Pass)
+            Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
+            Dim intReferral As Integer = intAvailable - intAchieved
+            rtbOverallComments.Text = "Achieved " & intAchieved.ToString() & " of " & intAvailable.ToString() & " PASS outcomes (referral outcomes: "
+            rtbOverallComments.Text &= ListReferralOutcomes(BTECGradeGroup.Pass)
+            rtbOverallComments.Text &= ")."
         End If
 
     End Sub
+    Private Function AchievedAllAtGrade(grade As BTECGradeGroup) As Boolean
+        Dim intAvailable As Integer = OutcomesAtGrade(grade)
+        Dim intAchieved As Integer = AchievedOutcomesAtGrade(grade)
+        If intAvailable > 0 Then
+            Return intAchieved = intAvailable
+        Else
+            Return False '-- No outcomes at this grade, so did not achieve anything
+        End If
+    End Function
+    Private Function OutcomesAtGrade(grade As BTECGradeGroup) As Integer
+        Dim intReturn As Integer
+        For Each asmtOC As AssignmentOutcome In m_studentAssignment.BaseAssignment.Outcomes
+            If asmtOC.GradeGroup = grade Then
+                intReturn += 1
+            End If
+        Next
+
+        Return intReturn
+    End Function
+    Private Function AchievedOutcomesAtGrade(grade As BTECGradeGroup) As Integer
+        Dim intReturn As Integer
+        Select Case m_try
+            Case MarkingTry.FirstTry
+                For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
+                    '-- only first try counts
+                    If ocResult.BaseOutcome.GradeGroup = grade Then
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            intReturn += 1
+                        End If
+                    End If
+                Next
+            Case MarkingTry.SecondTry
+                '-- first or second try count
+                For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
+                    If ocResult.BaseOutcome.GradeGroup = grade Then
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            intReturn += 1
+                        End If
+                    End If
+                Next
+            Case MarkingTry.ThirdTry
+                '-- First, second, or third try count
+                For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
+                    If ocResult.BaseOutcome.GradeGroup = grade Then
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                            intReturn += 1
+                        End If
+                    End If
+                Next
+        End Select
+
+        Return intReturn
+    End Function
+    Private Function ListReferralOutcomes(grade As BTECGradeGroup) As String
+        Dim strReturn As String = String.Empty
+        Select Case m_try
+            Case MarkingTry.FirstTry
+                For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
+                    '-- only first try counts
+                    If ocResult.BaseOutcome.GradeGroup = grade Then
+                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                            strReturn &= ocResult.BaseOutcome.Name & "; "
+                        End If
+                    End If
+                Next
+            Case MarkingTry.SecondTry
+                '-- first or second try count
+                For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
+                    If ocResult.BaseOutcome.GradeGroup = grade Then
+                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                            strReturn &= ocResult.BaseOutcome.Name & "; "
+                        End If
+                    End If
+                Next
+            Case MarkingTry.ThirdTry
+                '-- First, second, or third try count
+                For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
+                    If ocResult.BaseOutcome.GradeGroup = grade Then
+                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved OrElse _
+                            ocResult.ThirdTryStatus <> OutcomeResultStatusEnum.Achieved Then
+                            strReturn &= ocResult.BaseOutcome.Name & "; "
+                        End If
+                    End If
+                Next
+        End Select
+
+        Return strReturn.Substring(0, strReturn.Length - 2)
+    End Function
     Private Function GetFailedOutcomes() As List(Of OutcomeResult)
         Dim rslts As Student.StudentModuleResult = m_student.ModuleResults
         Dim lstReturn As New List(Of OutcomeResult)
@@ -445,7 +569,7 @@ Friend Class StudentAssignmentDetails
         For Each ocAssignment As OutcomeResult In m_studentAssignment.Outcomes
             For Each ocRslt As Student.StudentModuleOutcomeResult In rslts.Outcomes
                 If ocRslt.Outcome.Name = ocAssignment.BaseOutcome.Name Then
-                    If ocRslt.Status <> OutcomeResultStatusEnum.Pass Then
+                    If ocRslt.Status <> OutcomeResultStatusEnum.Achieved Then
                         lstReturn.Add(ocAssignment)
                         Exit For
                     End If
@@ -509,21 +633,18 @@ Friend Class StudentAssignmentDetails
             System.IO.File.Copy(strTemplateFilename, strWorkingFilename)
             oDoc = oWord.Documents.Open(strWorkingFilename)
 
-            'oDoc.WordOpenXML
-
             Const CHECKMARK_FONT_NAME As String = "Wingdings"
             Const CHECKMARK As String = "ü"
             Const XMARK As String = "û"
             Const BLANK_FONT_NAME As String = "Ariel"
             Const BLANK As String = " "
-            Dim statusOtherAssignment As OutcomeResultStatusEnum
-            'Dim feedbackOtherAssignment As String
 
             '-- refresh module results (may use many times)
             m_studentModuleResults = m_student.ModuleResults
 
             Dim objFirstColumnMark As OutcomeResultStatusEnum '-- Pass=check; fail=X; unknown=blank
             Dim objSecondColumnMark As OutcomeResultStatusEnum
+
 
             For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
                 '-- reset varliables
@@ -535,97 +656,105 @@ Friend Class StudentAssignmentDetails
                     .Text = "[[[OUTCOME" & outcome.BaseOutcome.Name & "COMMENTS]]]"
                     Select Case m_try
                         Case MarkingTry.FirstTry
-                            If outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
-                                objFirstColumnMark = OutcomeResultStatusEnum.Pass
-                                objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                .Replacement.Text = outcome.FirstTryComments
-                            Else
-                                '-- TODO: Need to see if this outcome is only on this assignment, if so use the logic above
-                                '   If on multiple assignments, it gets more complex
-                                statusOtherAssignment = GetModuleResultForSingleOutcome(outcome.BaseOutcome)
-
-                                If statusOtherAssignment = OutcomeResultStatusEnum.Pass Then
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Pass
+                            Select Case outcome.FirstTryStatus
+                                '-- Changed in 2.0. Now we will show results for this assignment only
+                                '   Potential issue: If one outcome is on multiple assignments (P1 or M1, does not matter)
+                                '   We will only show the results for this assignment on this assignment
+                                '   Previously, if this assignment failed 1.1 but previous assignment passed 1.1 we would 
+                                '   say that it Passed Previously but now we will say Fail (exactly the results for this assignment)
+                                '   This seems reasonable because the assignment marking sheet is not designed to convey module
+                                '   results, it is designed to convey assignment results (that's why we say MERIT when only M1 
+                                '   was achieved and M2 was not because M2 was not on this assignment). This is more consistent
+                                Case OutcomeResultStatusEnum.Achieved
+                                    objFirstColumnMark = OutcomeResultStatusEnum.Achieved
                                     objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                Else
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Fail
+                                    .Replacement.Text = outcome.FirstTryComments
+                                Case OutcomeResultStatusEnum.NotAchieved
+                                    objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
                                     objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
-                                        '-- failed now and did not pass on other assignment
+                                    .Replacement.Text = outcome.FirstTryComments
+                                Case Else
+                                    '-- Unknown
+                                    objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    .Replacement.Text = AppSettings.NoSubmitFeedback
+                            End Select
+                        Case MarkingTry.SecondTry
+                            Select Case outcome.SecondTryStatus
+                                Case OutcomeResultStatusEnum.Achieved
+                                    '-- passing on rework does not mean fail before
+                                    '   could mean passed before and now improving for higher mark
+                                    '   Although in 2017 Peason forbids that behavior, we don't know the future
+                                    .Replacement.Text = outcome.SecondTryComments
+                                    objSecondColumnMark = OutcomeResultStatusEnum.Achieved
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+                                    Else
+                                        '-- Changing this for 2015 BTEC forms so first column will be blank if passed in second submission (so there are not 2 symbols in same box)
+                                        'objFirstColumnMark = OutcomeResultStatusEnum.Fail
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+                                    End If
+                                Case OutcomeResultStatusEnum.NotAchieved
+                                    objSecondColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+                                    Else
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+                                        .Replacement.Text = outcome.SecondTryComments
+                                    End If
+                                Case Else
+                                    '-- unknown = non-submit
+                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+                                    ElseIf outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
                                         .Replacement.Text = outcome.FirstTryComments
                                     Else
-                                        '-- did not fail now, failed before and did not pass now (unknown now)
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
                                         .Replacement.Text = AppSettings.NoSubmitFeedback
                                     End If
-                                End If
-                            End If
-                        Case MarkingTry.SecondTry
-                            If outcome.SecondTryStatus = OutcomeResultStatusEnum.Pass Then
-                                '-- passing on rework does not mean fail before
-                                '   could mean passed before and now improving for higher mark
-                                .Replacement.Text = outcome.SecondTryComments
-                                objSecondColumnMark = OutcomeResultStatusEnum.Pass
-                                If outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Pass
-                                Else
-                                    '-- Changing this for 2015 BTEC forms so first column will be blank if passed in second submission (so there are not 2 symbols in same box)
-                                    'objFirstColumnMark = OutcomeResultStatusEnum.Fail
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                End If
-                                '' ''== NEED TO CHANGE THIS TO FIND IF THEY PASSED BEFORE (cannot see from existing module results because we passed now)
-                                '' ''objFirstColumnMark = GetModuleResultForSingleOutcome(outcome.BaseOutcome)
-                            Else
-                                statusOtherAssignment = GetModuleResultForSingleOutcome(outcome.BaseOutcome)
-
-                                If statusOtherAssignment = OutcomeResultStatusEnum.Pass Then
-                                    '-- Changing this for 2015 BTEC forms so first column will be blank if passed in first submission
-                                    'objFirstColumnMark = OutcomeResultStatusEnum.Pass
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                Else
-                                    '-- Changing this for 2015 BTEC forms so first column will be blank if passed in second submission (so there are not 2 symbols in same box)
-                                    'objFirstColumnMark = OutcomeResultStatusEnum.Fail
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Fail
-                                    If outcome.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
-                                        '-- failed now and did not pass on other assignment
-                                        .Replacement.Text = outcome.SecondTryComments
-                                    Else
-                                        '-- did not fail now, failed before and did not pass now (unknown now)
-                                        .Replacement.Text = AppSettings.NoSubmitFeedback
-                                    End If
-                                End If
-                            End If
+                            End Select
                         Case MarkingTry.ThirdTry
-                            If outcome.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
-                                '-- passing on rework does not mean fail before
-                                '   could mean passed before and now improving for higher mark
-                                .Replacement.Text = outcome.ThirdTryComments
-                                objSecondColumnMark = OutcomeResultStatusEnum.Pass
-                                objFirstColumnMark = OutcomeResultStatusEnum.Fail
-                                '== NEED TO CHANGE THIS TO FIND IF THEY PASSED BEFORE (cannot see from existing module results because we passed now)
-                                'objFirstColumnMark = GetModuleResultForSingleOutcome(outcome.BaseOutcome)
-                            Else
-                                statusOtherAssignment = GetModuleResultForSingleOutcome(outcome.BaseOutcome)
-
-                                If statusOtherAssignment = OutcomeResultStatusEnum.Pass Then
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Pass
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                Else
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Fail
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Fail
-                                    If outcome.ThirdTryStatus = OutcomeResultStatusEnum.Fail Then
-                                        '-- failed now and did not pass on other assignment
-                                        .Replacement.Text = outcome.ThirdTryComments
+                            Select Case outcome.ThirdTryStatus
+                                Case OutcomeResultStatusEnum.Achieved
+                                    '-- passing on rework does not mean fail before
+                                    '   could mean passed before and now improving for higher mark
+                                    '   Although in 2017 Peason forbids that behavior, we don't know the future
+                                    .Replacement.Text = outcome.ThirdTryComments
+                                    objSecondColumnMark = OutcomeResultStatusEnum.Achieved
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved '-- achieved previously, could be 1st or 2nd submit
                                     Else
-                                        '-- did not fail now, failed before and did not pass now (unknown now)
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+                                    End If
+                                Case OutcomeResultStatusEnum.NotAchieved
+                                    objSecondColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+                                    ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+                                    Else
+                                        objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                        .Replacement.Text = outcome.ThirdTryComments
+                                    End If
+                                Case OutcomeResultStatusEnum.Unknown
+                                    '-- unknown = non-submit
+                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+                                    ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+                                    Else
+                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
                                         .Replacement.Text = AppSettings.NoSubmitFeedback
                                     End If
-                                End If
-                            End If
+                            End Select
                     End Select
                     .Forward = True
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
@@ -643,12 +772,12 @@ Friend Class StudentAssignmentDetails
                 With oWord.Selection.Find
                     .Text = "[" & outcome.BaseOutcome.Name & "]"
                     Select Case objFirstColumnMark
-                        Case OutcomeResultStatusEnum.Pass
+                        Case OutcomeResultStatusEnum.Achieved
                             '-- check mark
                             .Replacement.ClearFormatting()
                             .Replacement.Text = CHECKMARK
                             .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                        Case OutcomeResultStatusEnum.Fail
+                        Case OutcomeResultStatusEnum.NotAchieved
                             '-- X mark
                             .Replacement.ClearFormatting()
                             .Replacement.Text = XMARK
@@ -658,29 +787,8 @@ Friend Class StudentAssignmentDetails
                             .Replacement.Text = BLANK
                             .Replacement.Font.Name = BLANK_FONT_NAME
                     End Select
-                    'If outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
-                    '    '-- check mark
-                    '    .Replacement.ClearFormatting()
-                    '    .Replacement.Text = CHECKMARK
-                    '    .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    'ElseIf outcome.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
-                    '    '-- Now, we must look to other assignments, if passed on other assignment, then mark passed previously
-                    '    If statusOtherAssignment = OutcomeResultStatusEnum.Pass Then
-                    '        .Replacement.ClearFormatting()
-                    '        .Replacement.Text = CHECKMARK
-                    '        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    '    Else
-                    '        '-- X mark
-                    '        .Replacement.ClearFormatting()
-                    '        .Replacement.Text = XMARK
-                    '        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    '    End If
-                    'Else
-                    '    '-- X mark
-                    '    .Replacement.ClearFormatting()
-                    '    .Replacement.Text = XMARK
-                    '    .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    'End If
+
+
                     .Forward = True
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
                     .Format = True
@@ -703,12 +811,12 @@ Friend Class StudentAssignmentDetails
                 With oWord.Selection.Find
                     .Text = "[" & outcome.BaseOutcome.Name & "R]"
                     Select Case objSecondColumnMark
-                        Case OutcomeResultStatusEnum.Pass
+                        Case OutcomeResultStatusEnum.Achieved
                             '-- check mark
                             .Replacement.ClearFormatting()
                             .Replacement.Text = CHECKMARK
                             .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                        Case OutcomeResultStatusEnum.Fail
+                        Case OutcomeResultStatusEnum.NotAchieved
                             '-- X mark
                             .Replacement.ClearFormatting()
                             .Replacement.Text = XMARK
@@ -718,29 +826,8 @@ Friend Class StudentAssignmentDetails
                             .Replacement.Text = BLANK
                             .Replacement.Font.Name = BLANK_FONT_NAME
                     End Select
-                    'If m_try = MarkingTry.FirstTry Then
-                    '    '-- Leave redo clear (2nd column should be blank) since there is no second try yet
-                    '    .Replacement.ClearFormatting()
-                    '    .Replacement.Text = " "
-                    '    .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    'ElseIf m_try = MarkingTry.SecondTry Or m_try = MarkingTry.ThirdTry Then
-                    '    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass Then
-                    '        '-- Leave redo clear (2nd column should be blank) since passed on first try
-                    '        .Replacement.ClearFormatting()
-                    '        .Replacement.Text = BLANK
-                    '        .Replacement.Font.Name = BLANK_FONT_NAME
-                    '    ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse outcome.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then '-- 3rd try acts as additional rework
-                    '        '-- check mark
-                    '        .Replacement.ClearFormatting()
-                    '        .Replacement.Text = CHECKMARK
-                    '        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    '    Else
-                    '        '-- X mark
-                    '        .Replacement.ClearFormatting()
-                    '        .Replacement.Text = XMARK
-                    '        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    '    End If
-                    'End If
+
+
                     .Forward = True
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
                     .Format = True
@@ -759,213 +846,213 @@ Friend Class StudentAssignmentDetails
 
             Next
 
-            With oWord.Selection.Find
-                .Text = "@M1"
-                .ClearFormatting()
-                If m_studentAssignment.BaseAssignment.M1Available Then
-                    If chkM1.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            'With oWord.Selection.Find
+            '    .Text = "@M1"
+            '    .ClearFormatting()
+            '    If m_studentAssignment.BaseAssignment.M1Available Then
+            '        If chkM1.Checked Then
+            '            '-- check mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = CHECKMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        Else
+            '            '-- X mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = XMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        End If
+            '    Else
+            '        .Replacement.Text = String.Empty
+            '    End If
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = True
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchKashida = False
+            '    .MatchDiacritics = False
+            '    .MatchAlefHamza = False
+            '    .MatchControl = False
+            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
 
-            With oWord.Selection.Find
-                .Text = "@D1"
-                If m_studentAssignment.BaseAssignment.D1Available Then
-                    If chkD1.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            'With oWord.Selection.Find
+            '    .Text = "@D1"
+            '    If m_studentAssignment.BaseAssignment.D1Available Then
+            '        If chkD1.Checked Then
+            '            '-- check mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = CHECKMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        Else
+            '            '-- X mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = XMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        End If
+            '    Else
+            '        .Replacement.Text = String.Empty
+            '    End If
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = True
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchKashida = False
+            '    .MatchDiacritics = False
+            '    .MatchAlefHamza = False
+            '    .MatchControl = False
+            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
 
-            With oWord.Selection.Find
-                .Text = "@M2"
-                If m_studentAssignment.BaseAssignment.M2Available Then
-                    If chkM2.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            'With oWord.Selection.Find
+            '    .Text = "@M2"
+            '    If m_studentAssignment.BaseAssignment.M2Available Then
+            '        If chkM2.Checked Then
+            '            '-- check mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = CHECKMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        Else
+            '            '-- X mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = XMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        End If
+            '    Else
+            '        .Replacement.Text = String.Empty
+            '    End If
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = True
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchKashida = False
+            '    .MatchDiacritics = False
+            '    .MatchAlefHamza = False
+            '    .MatchControl = False
+            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
 
-            With oWord.Selection.Find
-                .Text = "@D2"
-                If m_studentAssignment.BaseAssignment.D2Available Then
-                    If chkD2.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            'With oWord.Selection.Find
+            '    .Text = "@D2"
+            '    If m_studentAssignment.BaseAssignment.D2Available Then
+            '        If chkD2.Checked Then
+            '            '-- check mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = CHECKMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        Else
+            '            '-- X mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = XMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        End If
+            '    Else
+            '        .Replacement.Text = String.Empty
+            '    End If
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = True
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchKashida = False
+            '    .MatchDiacritics = False
+            '    .MatchAlefHamza = False
+            '    .MatchControl = False
+            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
 
 
 
-            With oWord.Selection.Find
-                .Text = "@M3"
-                If m_studentAssignment.BaseAssignment.M3Available Then
-                    If chkM3.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-            
+            'With oWord.Selection.Find
+            '    .Text = "@M3"
+            '    If m_studentAssignment.BaseAssignment.M3Available Then
+            '        If chkM3.Checked Then
+            '            '-- check mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = CHECKMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        Else
+            '            '-- X mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = XMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        End If
+            '    Else
+            '        .Replacement.Text = String.Empty
+            '    End If
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = True
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchKashida = False
+            '    .MatchDiacritics = False
+            '    .MatchAlefHamza = False
+            '    .MatchControl = False
+            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
 
-            With oWord.Selection.Find
-                .Text = "@D3"
-                If m_studentAssignment.BaseAssignment.D3Available Then
-                    If chkD3.Checked Then
-                        '-- check mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = CHECKMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    Else
-                        '-- X mark
-                        .Replacement.ClearFormatting()
-                        .Replacement.Text = XMARK
-                        .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                    End If
-                Else
-                    .Replacement.Text = String.Empty
-                End If
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = True
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchKashida = False
-                .MatchDiacritics = False
-                .MatchAlefHamza = False
-                .MatchControl = False
-                .MatchByte = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+
+            'With oWord.Selection.Find
+            '    .Text = "@D3"
+            '    If m_studentAssignment.BaseAssignment.D3Available Then
+            '        If chkD3.Checked Then
+            '            '-- check mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = CHECKMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        Else
+            '            '-- X mark
+            '            .Replacement.ClearFormatting()
+            '            .Replacement.Text = XMARK
+            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '        End If
+            '    Else
+            '        .Replacement.Text = String.Empty
+            '    End If
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = True
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchKashida = False
+            '    .MatchDiacritics = False
+            '    .MatchAlefHamza = False
+            '    .MatchControl = False
+            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
 
             With oWord.Selection.Find
@@ -1125,122 +1212,151 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub btnGenerateImprovementComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementComments.LinkClicked
-        Dim objResults As Student.StudentModuleResult = LoadModuleResults()
-        Dim boolPassedAll As Boolean = True
-        For Each oc As OutcomeResult In m_studentAssignment.Outcomes
-            Select Case m_try
-                Case MarkingTry.FirstTry
-                    If oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass Then
-                        boolPassedAll = False
-                        Exit For
-                    End If
-                Case MarkingTry.SecondTry
-                    If oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Pass Then
-                        boolPassedAll = False
-                        Exit For
-                    End If
-                Case MarkingTry.ThirdTry
-                    If oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Pass AndAlso oc.ThirdTryStatus <> OutcomeResultStatusEnum.Pass Then
-                        boolPassedAll = False
-                        Exit For
-                    End If
-            End Select
-        Next
-        'For Each oc As Student.StudentModuleOutcomeResult In objResults.Outcomes
-        '    If oc.Status <> OutcomeResultStatusEnum.Pass Then
-        '        boolPassedAll = False
-        '        Exit For
-        '    End If
+
+        '============================ DELETE BELOW HERE once 2.0 is fully working ================================
+
+        'Dim objResults As Student.StudentModuleResult = LoadModuleResults()
+        'Dim boolPassedAll As Boolean = True
+        'For Each oc As OutcomeResult In m_studentAssignment.Outcomes
+        '    Select Case m_try
+        '        Case MarkingTry.FirstTry
+        '            If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
+        '                boolPassedAll = False
+        '                Exit For
+        '            End If
+        '        Case MarkingTry.SecondTry
+        '            If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Achieved Then
+        '                boolPassedAll = False
+        '                Exit For
+        '            End If
+        '        Case MarkingTry.ThirdTry
+        '            If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso oc.ThirdTryStatus <> OutcomeResultStatusEnum.Achieved Then
+        '                boolPassedAll = False
+        '                Exit For
+        '            End If
+        '    End Select
         'Next
 
-        'If intPassedOutcomes = -1 Then
-        '    MessageBox.Show("You must mark all outcomes before generating text.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Exit Sub
-        'End If
+        'Dim strImprovement As String
 
+        'If boolPassedAll Then
+        '    boolPassedAll = True
+        '    Dim boolGotMerit As Boolean = True
+        '    If chkM1.Enabled AndAlso Not chkM1.Checked Then
+        '        boolGotMerit = False
+        '    End If
+        '    If chkM2.Enabled AndAlso Not chkM2.Checked Then
+        '        boolGotMerit = False
+        '    End If
+        '    If chkM3.Enabled AndAlso Not chkM3.Checked Then
+        '        boolGotMerit = False
+        '    End If
+
+
+        '    Dim boolGotDistinction As Boolean = boolGotMerit '-- must get merit to get distinction
+        '    If chkD1.Enabled AndAlso Not chkD1.Checked Then
+        '        boolGotDistinction = False
+        '    End If
+        '    If chkD2.Enabled AndAlso Not chkD2.Checked Then
+        '        boolGotDistinction = False
+        '    End If
+        '    If chkD3.Enabled AndAlso Not chkD3.Checked Then
+        '        boolGotDistinction = False
+        '    End If
+
+        '    If boolGotMerit AndAlso boolGotDistinction Then
+        '        strImprovement = "Keep up the good work"
+        '    ElseIf boolGotMerit Then
+        '        Dim boolNeedAnd As Boolean
+        '        strImprovement = "To achieve DISTINCTION, student should fulfill the requirements for "
+        '        If chkD1.Enabled AndAlso Not chkD1.Checked Then
+        '            strImprovement &= "D1"
+        '            boolNeedAnd = True
+        '        End If
+        '        If chkD2.Enabled AndAlso Not chkD2.Checked Then
+        '            If boolNeedAnd Then
+        '                strImprovement &= " and "
+        '            End If
+        '            strImprovement &= "D2"
+        '            boolNeedAnd = True
+        '        End If
+        '        If chkD3.Enabled AndAlso Not chkD3.Checked Then
+        '            If boolNeedAnd Then
+        '                strImprovement &= " and "
+        '            End If
+        '            strImprovement &= "D3"
+        '        End If
+        '    Else
+        '        If m_try = MarkingTry.FirstTry Then
+        '            strImprovement = "To achieve MERIT, student should"
+        '        Else
+        '            strImprovement = AppSettings.RedoPassAllDefaultComment
+        '        End If
+        '    End If
+
+        '    If m_try = MarkingTry.FirstTry Then
+        '        If rtbImprovementComments.Text.Trim.Length = 0 Then
+        '            rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
+        '        Else
+        '            rtbImprovementComments.Text = strImprovement & " " & rtbImprovementComments.Text & " " & GetImprovementNotes()
+        '        End If
+        '    Else
+        '        rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
+        '    End If
+
+        'Else
+        '    If StudentPlagiarized() Then
+        '        strImprovement = "To pass, student should not plagiarize"
+        '    Else
+        '        strImprovement = "To pass, student should show proper understanding of all outcomes"
+        '    End If
+
+        '    If m_try = MarkingTry.FirstTry Then
+        '        rtbImprovementComments.Text = strImprovement & " " & rtbImprovementComments.Text & " " & GetImprovementNotes()
+        '    Else
+        '        rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
+        '    End If
+        'End If
+        '============================ DELETE ABOVE HERE once 2.0 is fully working ================================
+
+        GenerateImprovementFeedback(False)
+    End Sub
+    Private Sub GenerateImprovementFeedback(late As Boolean)
         Dim strImprovement As String
 
-        If boolPassedAll Then
-            boolPassedAll = True
-            Dim boolGotMerit As Boolean = True
-            If chkM1.Enabled AndAlso Not chkM1.Checked Then
-                boolGotMerit = False
-            End If
-            If chkM2.Enabled AndAlso Not chkM2.Checked Then
-                boolGotMerit = False
-            End If
-            If chkM3.Enabled AndAlso Not chkM3.Checked Then
-                boolGotMerit = False
-            End If
-
-
-            Dim boolGotDistinction As Boolean = boolGotMerit '-- must get merit to get distinction
-            If chkD1.Enabled AndAlso Not chkD1.Checked Then
-                boolGotDistinction = False
-            End If
-            If chkD2.Enabled AndAlso Not chkD2.Checked Then
-                boolGotDistinction = False
-            End If
-            If chkD3.Enabled AndAlso Not chkD3.Checked Then
-                boolGotDistinction = False
-            End If
-
-            If boolGotMerit AndAlso boolGotDistinction Then
-                strImprovement = "Keep up the good work"
-            ElseIf boolGotMerit Then
-                Dim boolNeedAnd As Boolean
-                strImprovement = "To achieve DISTINCTION, student should fulfill the requirements for "
-                If chkD1.Enabled AndAlso Not chkD1.Checked Then
-                    strImprovement &= "D1"
-                    boolNeedAnd = True
-                End If
-                If chkD2.Enabled AndAlso Not chkD2.Checked Then
-                    If boolNeedAnd Then
-                        strImprovement &= " and "
-                    End If
-                    strImprovement &= "D2"
-                    boolNeedAnd = True
-                End If
-                If chkD3.Enabled AndAlso Not chkD3.Checked Then
-                    If boolNeedAnd Then
-                        strImprovement &= " and "
-                    End If
-                    strImprovement &= "D3"
+        If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
+            If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
+                If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
+                    '- Distinction
+                    strImprovement = AppSettings.ImprovementFeedbackForDistinction
+                Else
+                    '-- Just merit
+                    strImprovement = AppSettings.ImprovementFeedbackForMerit
                 End If
             Else
+                '-- Just pass
                 If m_try = MarkingTry.FirstTry Then
-                    strImprovement = "To achieve MERIT, student should"
+                    If late Then
+                        strImprovement = AppSettings.LateSubmitDefaultComment
+                    Else
+                        strImprovement = AppSettings.ImprovementFeedbackForPassAll
+                    End If
                 Else
                     strImprovement = AppSettings.RedoPassAllDefaultComment
                 End If
             End If
-
-            If m_try = MarkingTry.FirstTry Then
-                If rtbImprovementComments.Text.Trim.Length = 0 Then
-                    rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
-                Else
-                    rtbImprovementComments.Text = strImprovement & " " & rtbImprovementComments.Text & " " & GetImprovementNotes()
-                End If
-            Else
-                rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
-            End If
-
         Else
-            If StudentPlagiarized() Then
-                strImprovement = "To pass, student should not plagiarize"
+            '-- Not passed yet
+            Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
+            If intAchieved > 0 Then
+                strImprovement = AppSettings.ImprovementFeedbackForFailSome
             Else
-                strImprovement = "To pass, student should show proper understanding of all outcomes"
-            End If
-
-            If m_try = MarkingTry.FirstTry Then
-                rtbImprovementComments.Text = strImprovement & " " & rtbImprovementComments.Text & " " & GetImprovementNotes()
-            Else
-                rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
+                strImprovement = AppSettings.ImprovementFeedbackForFailAll
             End If
         End If
 
+        rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
     End Sub
-
     Private Function GetImprovementNotes() As String
         Try
             Dim strReturn As String = String.Empty
@@ -1250,6 +1366,7 @@ Friend Class StudentAssignmentDetails
 
             Return strReturn.Trim()
         Catch ex As Exception
+            Log(ex)
             MessageBox.Show("There was an error with the improvement note list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
@@ -1281,14 +1398,14 @@ Friend Class StudentAssignmentDetails
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
                     Case MarkingTry.FirstTry
-                        item.FirstTryStatus = OutcomeResultStatusEnum.Pass
+                        item.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                     Case MarkingTry.SecondTry
-                        If item.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
-                            item.SecondTryStatus = OutcomeResultStatusEnum.Pass
+                        If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                            item.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                         End If
                     Case MarkingTry.ThirdTry
-                        If item.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
-                            item.ThirdTryStatus = OutcomeResultStatusEnum.Pass
+                        If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                            item.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
                         End If
                 End Select
                 olvOutcomes.RefreshObject(item)
@@ -1303,15 +1420,15 @@ Friend Class StudentAssignmentDetails
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
                     Case MarkingTry.FirstTry
-                        item.FirstTryStatus = OutcomeResultStatusEnum.Fail
+                        item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                     Case MarkingTry.SecondTry
                         '-- only mark those failed on first submission
-                        If item.FirstTryStatus = OutcomeResultStatusEnum.Fail Then
-                            item.SecondTryStatus = OutcomeResultStatusEnum.Fail
+                        If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                            item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
                         End If
                     Case MarkingTry.ThirdTry
-                        If item.SecondTryStatus = OutcomeResultStatusEnum.Fail Then
-                            item.ThirdTryStatus = OutcomeResultStatusEnum.Fail
+                        If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                            item.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved
                         End If
                 End Select
                 olvOutcomes.RefreshObject(item)
@@ -1322,37 +1439,42 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub btnGenerateImprovementCommentsLate_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementCommentsLate.LinkClicked
-        Dim intPassedOutcomes As Integer = PassedOutcomes()
-        Dim intFailedOutcomes As Integer = FailedOutcomes()
+        '============================ DELETE BELOW HERE once 2.0 is fully working ================================
 
-        If intPassedOutcomes = -1 Then
-            MessageBox.Show("You must mark all outcomes before generating text.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End If
+        'Dim intPassedOutcomes As Integer = PassedOutcomes()
+        'Dim intFailedOutcomes As Integer = FailedOutcomes()
 
-        If chkM1.Checked OrElse chkM2.Checked OrElse chkM3.Checked OrElse chkD1.Checked OrElse chkD2.Checked OrElse chkD3.Checked Then
-            MessageBox.Show("M and D qualifiers not available for late submissions.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End If
+        'If intPassedOutcomes = -1 Then
+        '    MessageBox.Show("You must mark all outcomes before generating text.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
 
-        Dim strImprovement As String
+        'If chkM1.Checked OrElse chkM2.Checked OrElse chkM3.Checked OrElse chkD1.Checked OrElse chkD2.Checked OrElse chkD3.Checked Then
+        '    MessageBox.Show("M and D qualifiers not available for late submissions.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
 
-        'If intPassedOutcomes = m_studentAssignment.Outcomes.Count Then
-        If intFailedOutcomes = 0 Then
-            strImprovement = AppSettings.LateSubmitDefaultComment
-        Else
-            If StudentPlagiarized() Then
-                strImprovement = "To pass, student should not plagiarize"
-            Else
-                strImprovement = "To pass, student should show proper understanding of all outcomes"
-            End If
-        End If
+        'Dim strImprovement As String
 
-        If m_try = MarkingTry.FirstTry Then
-            rtbImprovementComments.Text = strImprovement & ". " & rtbImprovementComments.Text & " " & GetImprovementNotes()
-        Else
-            rtbImprovementComments.Text = strImprovement & ". " & GetImprovementNotes()
-        End If
+        ''If intPassedOutcomes = m_studentAssignment.Outcomes.Count Then
+        'If intFailedOutcomes = 0 Then
+        '    strImprovement = AppSettings.LateSubmitDefaultComment
+        'Else
+        '    If StudentPlagiarized() Then
+        '        strImprovement = "To pass, student should not plagiarize"
+        '    Else
+        '        strImprovement = "To pass, student should show proper understanding of all outcomes"
+        '    End If
+        'End If
+
+        'If m_try = MarkingTry.FirstTry Then
+        '    rtbImprovementComments.Text = strImprovement & ". " & rtbImprovementComments.Text & " " & GetImprovementNotes()
+        'Else
+        '    rtbImprovementComments.Text = strImprovement & ". " & GetImprovementNotes()
+        'End If
+        '============================ DELETE ABOVE HERE once 2.0 is fully working ================================
+
+        GenerateImprovementFeedback(True)
 
     End Sub
     Private Function GetSavedAssignmentFilename() As String
@@ -1449,7 +1571,7 @@ Friend Class StudentAssignmentDetails
         Catch ex As Exception
             MessageBox.Show("There was an error copying (drive: " & AppSettings.CDDrive & ") the assignment: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-       
+
     End Sub
 
     Private Sub ApplyFeedback()
@@ -1479,13 +1601,13 @@ Friend Class StudentAssignmentDetails
             Select Case m_try
                 Case MarkingTry.FirstTry
                     outcome.FirstTryComments = olvAutoFeedback.SelectedItem.Text
-                    outcome.FirstTryStatus = OutcomeResultStatusEnum.Pass
+                    outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                 Case MarkingTry.SecondTry
                     outcome.SecondTryComments = olvAutoFeedback.SelectedItem.Text
-                    outcome.SecondTryStatus = OutcomeResultStatusEnum.Pass
+                    outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                 Case MarkingTry.ThirdTry
                     outcome.ThirdTryComments = olvAutoFeedback.SelectedItem.Text
-                    outcome.ThirdTryStatus = OutcomeResultStatusEnum.Pass
+                    outcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
             End Select
             olvOutcomes.RefreshObject(outcome)
         End If
@@ -1656,9 +1778,9 @@ Friend Class StudentAssignmentDetails
     Private Function PassFailImageGetter(ByVal row As Object) As Object
         Dim rslt As Result = CType(row, Result)
         Select Case rslt.Status
-            Case OutcomeResultStatusEnum.Fail
+            Case OutcomeResultStatusEnum.NotAchieved
                 Return 0
-            Case OutcomeResultStatusEnum.Pass
+            Case OutcomeResultStatusEnum.Achieved
                 Return 1
             Case Else
                 '-- unknown
@@ -1668,9 +1790,9 @@ Friend Class StudentAssignmentDetails
     Private Function PassFailTextImageGetter(ByVal row As Object) As Object
         Dim rslt As Student.StudentModuleOutcomeResult = CType(row, Student.StudentModuleOutcomeResult)
         Select Case rslt.Status
-            Case OutcomeResultStatusEnum.Fail
+            Case OutcomeResultStatusEnum.NotAchieved
                 Return 0
-            Case OutcomeResultStatusEnum.Pass
+            Case OutcomeResultStatusEnum.Achieved
                 Return 1
             Case Else
                 '-- unknown
@@ -1734,9 +1856,9 @@ Friend Class StudentAssignmentDetails
         Dim UNKNOWN_COLOR As Color = Color.White
         Dim newColor As Color
 
-        If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Pass OrElse _
-            ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Pass OrElse _
-            ocrslt.ThirdTryStatus = OutcomeResultStatusEnum.Pass Then
+        If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+            ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+            ocrslt.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
             newColor = PASS_COLOR
         ElseIf ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
             newColor = UNKNOWN_COLOR
@@ -1822,6 +1944,7 @@ Friend Class StudentAssignmentDetails
                 '-- add item to student
                 m_student.ImprovementItems.Add(selItem)
                 selItem.DateAdded = Date.Now
+                selItem.PerformanceLevel = 3 '-- default to 3
             End If
             olvImprovementItems.ModelToItem(selItem).Checked = True
             olvImprovementItems.RefreshObject(selItem)
@@ -1892,13 +2015,13 @@ Friend Class StudentAssignmentDetails
             For Each oc As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
                     Case MarkingTry.FirstTry
-                        oc.FirstTryStatus = OutcomeResultStatusEnum.Fail
+                        oc.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                         oc.FirstTryComments = AppSettings.NoSubmitFeedback
                     Case MarkingTry.SecondTry
-                        oc.SecondTryStatus = OutcomeResultStatusEnum.Fail
+                        oc.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
                         oc.SecondTryComments = AppSettings.NoSubmitFeedback
                     Case MarkingTry.ThirdTry
-                        oc.ThirdTryStatus = OutcomeResultStatusEnum.Fail
+                        oc.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved
                         oc.ThirdTryComments = AppSettings.NoSubmitFeedback
                 End Select
                 olvOutcomes.RefreshObject(oc)

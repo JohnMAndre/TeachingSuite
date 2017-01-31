@@ -270,6 +270,7 @@
                 '-- add item to student
                 m_student.ImprovementItems.Add(selItem)
                 selItem.DateAdded = Date.Now
+                selItem.PerformanceLevel = 3 '-- default to 3
                 olvImprovementItems.RefreshObject(selItem)
                 olvImprovementItems.ModelToItem(selItem).Checked = True
                 AutoSizeColumns(olvImprovementItems)

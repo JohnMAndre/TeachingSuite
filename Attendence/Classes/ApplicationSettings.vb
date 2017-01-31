@@ -371,6 +371,42 @@
                     DictionaryName = "English (US).dct"
                 End If
 
+                xElement = xDoc.SelectSingleNode("//ImprovementFeedbackForDistinction")
+                If xElement IsNot Nothing Then
+                    ImprovementFeedbackForDistinction = xElement.InnerText
+                Else
+                    ImprovementFeedbackForDistinction = "Keep up the good work!"
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ImprovementFeedbackForMerit")
+                If xElement IsNot Nothing Then
+                    ImprovementFeedbackForMerit = xElement.InnerText
+                Else
+                    ImprovementFeedbackForMerit = "To achieve DISTINCTION, student must increase the quality to meet distinction requirements."
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ImprovementFeedbackForPassAll")
+                If xElement IsNot Nothing Then
+                    ImprovementFeedbackForPassAll = xElement.InnerText
+                Else
+                    ImprovementFeedbackForPassAll = "To achieve MERIT, student must increase the quality to meet merit requirements."
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ImprovementFeedbackForFailSome")
+                If xElement IsNot Nothing Then
+                    ImprovementFeedbackForFailSome = xElement.InnerText
+                Else
+                    ImprovementFeedbackForFailSome = "To achieve PASS, student must show clear understanding of all pass outcomes."
+                End If
+
+                xElement = xDoc.SelectSingleNode("//ImprovementFeedbackForFailAll")
+                If xElement IsNot Nothing Then
+                    ImprovementFeedbackForFailAll = xElement.InnerText
+                Else
+                    ImprovementFeedbackForFailAll = "Student should arrange a time to meet their teacher for assistance."
+                End If
+
+
 
                 LoadAutoTexts(xDoc)
             Else
@@ -502,6 +538,13 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "Notes", Notes))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "DictionaryName", DictionaryName))
 
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForDistinction", ImprovementFeedbackForDistinction))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForMerit", ImprovementFeedbackForMerit))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForPassAll", ImprovementFeedbackForPassAll))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForFailSome", ImprovementFeedbackForFailSome))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForFailAll", ImprovementFeedbackForFailAll))
+
+
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
 
 
@@ -608,6 +651,11 @@
     Public Property PassResultsText As String
     Public Property FailResultsText As String
     Public Property UnknownResultsText As String
+    Public Property ImprovementFeedbackForDistinction As String
+    Public Property ImprovementFeedbackForMerit As String
+    Public Property ImprovementFeedbackForPassAll As String
+    Public Property ImprovementFeedbackForFailAll As String
+    Public Property ImprovementFeedbackForFailSome As String
     Public Property PremiumFeaturesEnabled As Boolean
     Private Property _mainFormStudentListViewStatePrivate As String
     Public Property MainFormStudentListViewState() As Byte()

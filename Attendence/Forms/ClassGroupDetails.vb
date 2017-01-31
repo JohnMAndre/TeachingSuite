@@ -120,7 +120,7 @@ Public Class ClassGroupDetails
         Dim ofd As New OpenFileDialog()
         ofd.InitialDirectory = GetModuleDataFolder()
         ofd.DefaultExt = ".tamd"
-        ofd.Filter = "Module data files|*.tamd"
+        ofd.Filter = "Module data files|*.tmd"
         If ofd.ShowDialog = DialogResult.OK Then
             Dim xDoc As New Xml.XmlDocument
             xDoc.Load(ofd.FileName)

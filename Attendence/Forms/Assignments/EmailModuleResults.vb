@@ -94,18 +94,18 @@ Public Class EmailModuleResults
             Next
 
 
-            objData.M1 = rslts.M1Achieved
-            objData.M2 = rslts.M2Achieved
-            objData.M3 = rslts.M3Achieved
-            objData.D1 = rslts.D1Achieved
-            objData.D2 = rslts.D2Achieved
-            objData.D3 = rslts.D3Achieved
+            'objData.M1 = rslts.M1Achieved
+            'objData.M2 = rslts.M2Achieved
+            'objData.M3 = rslts.M3Achieved
+            'objData.D1 = rslts.D1Achieved
+            'objData.D2 = rslts.D2Achieved
+            'objData.D3 = rslts.D3Achieved
 
             '-- Make sure there are no unknown outcomes
             For Each oc As Student.StudentModuleOutcomeResult In rslts.Outcomes
                 If oc.Status = OutcomeResultStatusEnum.Unknown Then
                     intUnknownOutcomes += 1
-                ElseIf oc.Status = OutcomeResultStatusEnum.Pass Then
+                ElseIf oc.Status = OutcomeResultStatusEnum.Achieved Then
                     objData.PassedOutcomes += 1
                 End If
             Next
@@ -580,54 +580,54 @@ Public Class EmailModuleResults
             '-- No grades means no M's or D's or congratulations
             If chkIncludeGrade.Checked Then
                 If chkIncludeMeritDistinctionResults.Checked Then
-                    str.Append("<table border='1'>")
-                    If item.M1 Then
-                        str.Append("<tr><td bgcolor='LightGreen'>M1: " & ACHIEVED & "</td></td>")
-                    Else
-                        str.Append("<tr><td>M1: " & NOTACHIEVED & "</td></td>")
-                    End If
-                    If item.M2 Then
-                        str.Append("<tr><td bgcolor='LightGreen'>M2: " & ACHIEVED & "</td></td>")
-                    Else
-                        str.Append("<tr><td>M2: " & NOTACHIEVED & "</td></td>")
-                    End If
+                    'str.Append("<table border='1'>")
+                    'If item.M1 Then
+                    '    str.Append("<tr><td bgcolor='LightGreen'>M1: " & ACHIEVED & "</td></td>")
+                    'Else
+                    '    str.Append("<tr><td>M1: " & NOTACHIEVED & "</td></td>")
+                    'End If
+                    'If item.M2 Then
+                    '    str.Append("<tr><td bgcolor='LightGreen'>M2: " & ACHIEVED & "</td></td>")
+                    'Else
+                    '    str.Append("<tr><td>M2: " & NOTACHIEVED & "</td></td>")
+                    'End If
 
-                    If item.M3 Then
-                        str.Append("<tr><td bgcolor='LightGreen'>M3: " & ACHIEVED & "</td></td>")
-                    Else
-                        str.Append("<tr><td>M3: " & NOTACHIEVED & "</td></td>")
-                    End If
+                    'If item.M3 Then
+                    '    str.Append("<tr><td bgcolor='LightGreen'>M3: " & ACHIEVED & "</td></td>")
+                    'Else
+                    '    str.Append("<tr><td>M3: " & NOTACHIEVED & "</td></td>")
+                    'End If
 
-                    str.Append("</table>")
-                    If item.M1 AndAlso item.M2 AndAlso item.M3 Then
-                        str.Append("You achieved MERIT!<br>")
-                    End If
+                    'str.Append("</table>")
+                    'If item.M1 AndAlso item.M2 AndAlso item.M3 Then
+                    '    str.Append("You achieved MERIT!<br>")
+                    'End If
 
-                    str.Append("<br>")
+                    'str.Append("<br>")
 
-                    str.Append("<table border='1'>")
-                    If item.D1 Then
-                        str.Append("<tr><td bgcolor='LightGreen'>D1: " & ACHIEVED & "</td></td>")
-                    Else
-                        str.Append("<tr><td>D1: " & NOTACHIEVED & "</td></td>")
-                    End If
-                    If item.D2 Then
-                        str.Append("<tr><td bgcolor='LightGreen'>D2: " & ACHIEVED & "</td></td>")
-                    Else
-                        str.Append("<tr><td>D2: " & NOTACHIEVED & "</td></td>")
-                    End If
+                    'str.Append("<table border='1'>")
+                    'If item.D1 Then
+                    '    str.Append("<tr><td bgcolor='LightGreen'>D1: " & ACHIEVED & "</td></td>")
+                    'Else
+                    '    str.Append("<tr><td>D1: " & NOTACHIEVED & "</td></td>")
+                    'End If
+                    'If item.D2 Then
+                    '    str.Append("<tr><td bgcolor='LightGreen'>D2: " & ACHIEVED & "</td></td>")
+                    'Else
+                    '    str.Append("<tr><td>D2: " & NOTACHIEVED & "</td></td>")
+                    'End If
 
-                    If item.D3 Then
-                        str.Append("<tr><td bgcolor='LightGreen'>D3: " & ACHIEVED & "</td></td>")
-                    Else
-                        str.Append("<tr><td>D3: " & NOTACHIEVED & "</td></td>")
-                    End If
-                    str.Append("</table>")
+                    'If item.D3 Then
+                    '    str.Append("<tr><td bgcolor='LightGreen'>D3: " & ACHIEVED & "</td></td>")
+                    'Else
+                    '    str.Append("<tr><td>D3: " & NOTACHIEVED & "</td></td>")
+                    'End If
+                    'str.Append("</table>")
 
-                    If item.D1 AndAlso item.D2 AndAlso item.D3 Then
-                        str.Append("You achieved DISTINCTION!!!<br>")
-                    End If
-                    str.Append("<br>")
+                    'If item.D1 AndAlso item.D2 AndAlso item.D3 Then
+                    '    str.Append("You achieved DISTINCTION!!!<br>")
+                    'End If
+                    'str.Append("<br>")
                 End If
 
                 If chkFinalFeedback.Checked Then
@@ -651,9 +651,9 @@ Public Class EmailModuleResults
         Return str.ToString()
     End Function
     Private Function GetResultsText(status As OutcomeResultStatusEnum)
-        If status = OutcomeResultStatusEnum.Pass Then
+        If status = OutcomeResultStatusEnum.Achieved Then
             Return AppSettings.PassResultsText
-        ElseIf status = OutcomeResultStatusEnum.Fail Then
+        ElseIf status = OutcomeResultStatusEnum.NotAchieved Then
             Return AppSettings.FailResultsText
         Else '-- unknown
             Return AppSettings.UnknownResultsText
@@ -702,7 +702,7 @@ Public Class EmailModuleResults
 
                 '-- Next is grade, but only include if that is checked
                 If chkIncludeGrade.Checked Then
-                    If oc.Status = OutcomeResultStatusEnum.Pass Then
+                    If oc.Status = OutcomeResultStatusEnum.Achieved Then
                         sbReturn.Append("<td bgcolor='LightGreen'>" & strResult & "</td>")
                     Else
                         sbReturn.Append("<td bgcolor='Red'>" & strResult & "</td>")
@@ -862,12 +862,12 @@ Public Class EmailResultData
     Public Property Nickname As String
     Public Property EmailAddress As String
     Public Property PassedOutcomes As Integer
-    Public Property M1 As Boolean
-    Public Property M2 As Boolean
-    Public Property M3 As Boolean
-    Public Property D1 As Boolean
-    Public Property D2 As Boolean
-    Public Property D3 As Boolean
+    'Public Property M1 As Boolean
+    'Public Property M2 As Boolean
+    'Public Property M3 As Boolean
+    'Public Property D1 As Boolean
+    'Public Property D2 As Boolean
+    'Public Property D3 As Boolean
     Public Property FirstTryPassAll As Boolean
     Public Property SecondTryPassAll As Boolean
     Public Property AppearsReady As AppearsReadyState

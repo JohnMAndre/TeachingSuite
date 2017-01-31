@@ -214,7 +214,7 @@ Partial Class ExamClockForm
         Me.chkAbsent.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkAbsent.Location = New System.Drawing.Point(348, 5)
         Me.chkAbsent.Name = "chkAbsent"
-        Me.chkAbsent.Size = New System.Drawing.Size(64, 20)
+        Me.chkAbsent.Size = New System.Drawing.Size(69, 19)
         Me.chkAbsent.TabIndex = 62
         Me.chkAbsent.Text = "Absent:"
         Me.chkAbsent.Values.Text = "Absent:"
@@ -261,10 +261,11 @@ Partial Class ExamClockForm
         Me.chkD3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkD3.Location = New System.Drawing.Point(276, 5)
         Me.chkD3.Name = "chkD3"
-        Me.chkD3.Size = New System.Drawing.Size(42, 20)
+        Me.chkD3.Size = New System.Drawing.Size(45, 19)
         Me.chkD3.TabIndex = 59
         Me.chkD3.Text = "D3:"
         Me.chkD3.Values.Text = "D3:"
+        Me.chkD3.Visible = False
         '
         'chkD2
         '
@@ -272,10 +273,11 @@ Partial Class ExamClockForm
         Me.chkD2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkD2.Location = New System.Drawing.Point(223, 5)
         Me.chkD2.Name = "chkD2"
-        Me.chkD2.Size = New System.Drawing.Size(42, 20)
+        Me.chkD2.Size = New System.Drawing.Size(45, 19)
         Me.chkD2.TabIndex = 58
         Me.chkD2.Text = "D2:"
         Me.chkD2.Values.Text = "D2:"
+        Me.chkD2.Visible = False
         '
         'chkD1
         '
@@ -283,10 +285,11 @@ Partial Class ExamClockForm
         Me.chkD1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkD1.Location = New System.Drawing.Point(175, 5)
         Me.chkD1.Name = "chkD1"
-        Me.chkD1.Size = New System.Drawing.Size(42, 20)
+        Me.chkD1.Size = New System.Drawing.Size(45, 19)
         Me.chkD1.TabIndex = 57
         Me.chkD1.Text = "D1:"
         Me.chkD1.Values.Text = "D1:"
+        Me.chkD1.Visible = False
         '
         'chkM3
         '
@@ -294,10 +297,11 @@ Partial Class ExamClockForm
         Me.chkM3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkM3.Location = New System.Drawing.Point(112, 5)
         Me.chkM3.Name = "chkM3"
-        Me.chkM3.Size = New System.Drawing.Size(44, 20)
+        Me.chkM3.Size = New System.Drawing.Size(46, 19)
         Me.chkM3.TabIndex = 56
         Me.chkM3.Text = "M3:"
         Me.chkM3.Values.Text = "M3:"
+        Me.chkM3.Visible = False
         '
         'chkM2
         '
@@ -305,10 +309,11 @@ Partial Class ExamClockForm
         Me.chkM2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkM2.Location = New System.Drawing.Point(62, 5)
         Me.chkM2.Name = "chkM2"
-        Me.chkM2.Size = New System.Drawing.Size(44, 20)
+        Me.chkM2.Size = New System.Drawing.Size(46, 19)
         Me.chkM2.TabIndex = 55
         Me.chkM2.Text = "M2:"
         Me.chkM2.Values.Text = "M2:"
+        Me.chkM2.Visible = False
         '
         'chkM1
         '
@@ -316,10 +321,11 @@ Partial Class ExamClockForm
         Me.chkM1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkM1.Location = New System.Drawing.Point(12, 5)
         Me.chkM1.Name = "chkM1"
-        Me.chkM1.Size = New System.Drawing.Size(44, 20)
+        Me.chkM1.Size = New System.Drawing.Size(46, 19)
         Me.chkM1.TabIndex = 54
         Me.chkM1.Text = "M1:"
         Me.chkM1.Values.Text = "M1:"
+        Me.chkM1.Visible = False
         '
         'splitOutcomeNotes
         '

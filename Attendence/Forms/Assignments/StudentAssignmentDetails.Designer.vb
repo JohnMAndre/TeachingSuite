@@ -42,6 +42,7 @@ Partial Class StudentAssignmentDetails
         Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.llblModuleResults = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.olvModuleResults = New BrightIdeasSoftware.ObjectListView()
         Me.olv1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -402,13 +403,14 @@ Partial Class StudentAssignmentDetails
         Me.olvOutcomes.AllColumns.Add(Me.OlvColumn10)
         Me.olvOutcomes.AllColumns.Add(Me.OlvColumn11)
         Me.olvOutcomes.AllColumns.Add(Me.OlvColumn12)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn2)
         Me.olvOutcomes.AllowColumnReorder = True
         Me.olvOutcomes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvOutcomes.CellEditUseWholeCell = False
-        Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumnOutcomeName, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
+        Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumnOutcomeName, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn2})
         Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvOutcomes.FullRowSelect = True
         Me.olvOutcomes.HideSelection = False
@@ -439,33 +441,47 @@ Partial Class StudentAssignmentDetails
         'OlvColumn7
         '
         Me.OlvColumn7.AspectName = "FirstTryStatus"
+        Me.OlvColumn7.DisplayIndex = 3
         Me.OlvColumn7.Text = "First"
         '
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "FirstTryComments"
+        Me.OlvColumn8.DisplayIndex = 4
         Me.OlvColumn8.Text = "Feedback"
         Me.OlvColumn8.Width = 299
         '
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "SecondTryStatus"
+        Me.OlvColumn9.DisplayIndex = 5
         Me.OlvColumn9.Text = "Rework"
         '
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "SecondTryComments"
+        Me.OlvColumn10.DisplayIndex = 6
         Me.OlvColumn10.Text = "Feedback"
         '
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "ThirdTryStatus"
+        Me.OlvColumn11.DisplayIndex = 7
         Me.OlvColumn11.Text = "2nd Rework"
         '
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "ThirdTryComments"
+        Me.OlvColumn12.DisplayIndex = 8
         Me.OlvColumn12.Text = "Feedback"
+        '
+        'OlvColumn2
+        '
+        Me.OlvColumn2.AspectName = "BaseOutcome.GradeGroup"
+        Me.OlvColumn2.DisplayIndex = 2
+        Me.OlvColumn2.IsEditable = False
+        Me.OlvColumn2.Text = "Grade"
+        Me.OlvColumn2.Width = 77
         '
         'llblModuleResults
         '
@@ -516,11 +532,11 @@ Partial Class StudentAssignmentDetails
         Me.olvModuleResultsPassFail.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvModuleResultsPassFail.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvModuleResultsPassFail.IsEditable = False
-        Me.olvModuleResultsPassFail.MaximumWidth = 24
-        Me.olvModuleResultsPassFail.MinimumWidth = 24
+        Me.olvModuleResultsPassFail.MaximumWidth = 17
+        Me.olvModuleResultsPassFail.MinimumWidth = 17
         Me.olvModuleResultsPassFail.Text = "P"
         Me.olvModuleResultsPassFail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.olvModuleResultsPassFail.Width = 24
+        Me.olvModuleResultsPassFail.Width = 17
         '
         'imglstFeedback
         '
@@ -574,7 +590,7 @@ Partial Class StudentAssignmentDetails
         Me.rtbOverallComments.Name = "rtbOverallComments"
         Me.rtbOverallComments.Palette = Me.KryptonPalette1
         Me.rtbOverallComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.rtbOverallComments.Size = New System.Drawing.Size(599, 50)
+        Me.rtbOverallComments.Size = New System.Drawing.Size(602, 50)
         Me.rtbOverallComments.TabIndex = 54
         Me.rtbOverallComments.Text = ""
         '
@@ -715,11 +731,11 @@ Partial Class StudentAssignmentDetails
         Me.olvPassFailFeedback.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvPassFailFeedback.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvPassFailFeedback.IsEditable = False
-        Me.olvPassFailFeedback.MaximumWidth = 24
-        Me.olvPassFailFeedback.MinimumWidth = 24
+        Me.olvPassFailFeedback.MaximumWidth = 17
+        Me.olvPassFailFeedback.MinimumWidth = 17
         Me.olvPassFailFeedback.Text = "P"
         Me.olvPassFailFeedback.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.olvPassFailFeedback.Width = 24
+        Me.olvPassFailFeedback.Width = 17
         '
         'OlvColumn13
         '
@@ -1148,6 +1164,7 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblAlreadyD3, "Already has it!")
         Me.llblAlreadyD3.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.llblAlreadyD3.Values.Text = ""
+        Me.llblAlreadyD3.Visible = False
         '
         'llblAlreadyD2
         '
@@ -1158,6 +1175,7 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblAlreadyD2, "Already has it!")
         Me.llblAlreadyD2.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.llblAlreadyD2.Values.Text = ""
+        Me.llblAlreadyD2.Visible = False
         '
         'llblAlreadyD1
         '
@@ -1168,6 +1186,7 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblAlreadyD1, "Already has it!")
         Me.llblAlreadyD1.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.llblAlreadyD1.Values.Text = ""
+        Me.llblAlreadyD1.Visible = False
         '
         'llblAlreadyM3
         '
@@ -1178,6 +1197,7 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblAlreadyM3, "Already has it!")
         Me.llblAlreadyM3.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.llblAlreadyM3.Values.Text = ""
+        Me.llblAlreadyM3.Visible = False
         '
         'llblAlreadyM2
         '
@@ -1188,6 +1208,7 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblAlreadyM2, "Already has it!")
         Me.llblAlreadyM2.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.llblAlreadyM2.Values.Text = ""
+        Me.llblAlreadyM2.Visible = False
         '
         'llblAlreadyM1
         '
@@ -1198,6 +1219,7 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblAlreadyM1, "Already has it!")
         Me.llblAlreadyM1.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.llblAlreadyM1.Values.Text = ""
+        Me.llblAlreadyM1.Visible = False
         '
         'KryptonLabel8
         '
@@ -1309,6 +1331,7 @@ Partial Class StudentAssignmentDetails
         Me.chkD3.TabIndex = 53
         Me.chkD3.Text = "D3:"
         Me.chkD3.Values.Text = "D3:"
+        Me.chkD3.Visible = False
         '
         'chkD2
         '
@@ -1322,6 +1345,7 @@ Partial Class StudentAssignmentDetails
         Me.chkD2.TabIndex = 52
         Me.chkD2.Text = "D2:"
         Me.chkD2.Values.Text = "D2:"
+        Me.chkD2.Visible = False
         '
         'chkD1
         '
@@ -1335,6 +1359,7 @@ Partial Class StudentAssignmentDetails
         Me.chkD1.TabIndex = 51
         Me.chkD1.Text = "D1:"
         Me.chkD1.Values.Text = "D1:"
+        Me.chkD1.Visible = False
         '
         'chkM3
         '
@@ -1348,6 +1373,7 @@ Partial Class StudentAssignmentDetails
         Me.chkM3.TabIndex = 50
         Me.chkM3.Text = "M3:"
         Me.chkM3.Values.Text = "M3:"
+        Me.chkM3.Visible = False
         '
         'chkM2
         '
@@ -1361,6 +1387,7 @@ Partial Class StudentAssignmentDetails
         Me.chkM2.TabIndex = 49
         Me.chkM2.Text = "M2:"
         Me.chkM2.Values.Text = "M2:"
+        Me.chkM2.Visible = False
         '
         'chkM1
         '
@@ -1374,6 +1401,7 @@ Partial Class StudentAssignmentDetails
         Me.chkM1.TabIndex = 48
         Me.chkM1.Text = "M1:"
         Me.chkM1.Values.Text = "M1:"
+        Me.chkM1.Visible = False
         '
         'llblOpenStudent
         '
@@ -1702,4 +1730,5 @@ Partial Class StudentAssignmentDetails
     Private WithEvents nudResearchQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Private WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
 End Class

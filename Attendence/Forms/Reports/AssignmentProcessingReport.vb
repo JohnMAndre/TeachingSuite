@@ -53,7 +53,7 @@ Public Class AssignmentProcessingReport
                                         boolFirstProcessed = False
                                     End If
                                     If oc.SecondTryStatus = OutcomeResultStatusEnum.Unknown Then
-                                        If oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass Then
+                                        If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
                                             '-- did not process second
                                             boolSecondProcessed = False
                                         End If
@@ -62,7 +62,7 @@ Public Class AssignmentProcessingReport
                                         boolAtLeastOneSecond = True
                                     End If
                                     If oc.ThirdTryStatus = OutcomeResultStatusEnum.Unknown Then
-                                        If (oc.SecondTryStatus <> OutcomeResultStatusEnum.Pass) AndAlso (oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass) Then
+                                        If (oc.SecondTryStatus <> OutcomeResultStatusEnum.Achieved) AndAlso (oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved) Then
                                             '-- did not process third
                                             boolThirdProcessed = False
                                         End If

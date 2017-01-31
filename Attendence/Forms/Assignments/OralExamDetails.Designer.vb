@@ -52,6 +52,7 @@ Partial Class OralExamDetails
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.txtOutcomeText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.lstOutcomes = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
+        Me.lstStudent = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.txtImprovement = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -59,6 +60,7 @@ Partial Class OralExamDetails
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblRecordFeedback = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.OlvColumn29 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -69,7 +71,6 @@ Partial Class OralExamDetails
         Me.OlvColumn34 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn35 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn36 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.cboStudent = New System.Windows.Forms.ComboBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.pbTimer, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,7 +104,7 @@ Partial Class OralExamDetails
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Size = New System.Drawing.Size(728, 433)
+        Me.KryptonPanel.Size = New System.Drawing.Size(728, 472)
         Me.KryptonPanel.TabIndex = 0
         '
         'pbTimer
@@ -112,7 +113,7 @@ Partial Class OralExamDetails
         Me.pbTimer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pbTimer.Location = New System.Drawing.Point(318, 24)
         Me.pbTimer.Name = "pbTimer"
-        Me.pbTimer.Size = New System.Drawing.Size(410, 150)
+        Me.pbTimer.Size = New System.Drawing.Size(410, 139)
         Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbTimer.TabIndex = 12
         Me.pbTimer.TabStop = False
@@ -122,7 +123,7 @@ Partial Class OralExamDetails
         Me.picStudent.Dock = System.Windows.Forms.DockStyle.Left
         Me.picStudent.Location = New System.Drawing.Point(0, 24)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(318, 150)
+        Me.picStudent.Size = New System.Drawing.Size(318, 139)
         Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
@@ -141,7 +142,7 @@ Partial Class OralExamDetails
         Me.KryptonPanel2.Controls.Add(Me.chkM2)
         Me.KryptonPanel2.Controls.Add(Me.chkM1)
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel2.Location = New System.Drawing.Point(0, 174)
+        Me.KryptonPanel2.Location = New System.Drawing.Point(0, 163)
         Me.KryptonPanel2.Name = "KryptonPanel2"
         Me.KryptonPanel2.Size = New System.Drawing.Size(728, 29)
         Me.KryptonPanel2.TabIndex = 8
@@ -151,7 +152,7 @@ Partial Class OralExamDetails
         Me.nudWritingQuality.Location = New System.Drawing.Point(655, 4)
         Me.nudWritingQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudWritingQuality.Name = "nudWritingQuality"
-        Me.nudWritingQuality.Size = New System.Drawing.Size(68, 22)
+        Me.nudWritingQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudWritingQuality.TabIndex = 119
         Me.nudWritingQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudWritingQuality.ThousandsSeparator = True
@@ -162,7 +163,7 @@ Partial Class OralExamDetails
         '
         Me.KryptonLabel12.Location = New System.Drawing.Point(596, 5)
         Me.KryptonLabel12.Name = "KryptonLabel12"
-        Me.KryptonLabel12.Size = New System.Drawing.Size(53, 20)
+        Me.KryptonLabel12.Size = New System.Drawing.Size(56, 19)
         Me.KryptonLabel12.TabIndex = 118
         Me.KryptonLabel12.Values.Text = "Writing:"
         '
@@ -171,7 +172,7 @@ Partial Class OralExamDetails
         Me.nudPresentationQuality.Location = New System.Drawing.Point(522, 4)
         Me.nudPresentationQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudPresentationQuality.Name = "nudPresentationQuality"
-        Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 22)
+        Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudPresentationQuality.TabIndex = 117
         Me.nudPresentationQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPresentationQuality.ThousandsSeparator = True
@@ -182,7 +183,7 @@ Partial Class OralExamDetails
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(435, 5)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(81, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(90, 19)
         Me.KryptonLabel7.TabIndex = 116
         Me.KryptonLabel7.Values.Text = "Presentation:"
         '
@@ -192,7 +193,7 @@ Partial Class OralExamDetails
         Me.chkAbsent.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkAbsent.Location = New System.Drawing.Point(348, 5)
         Me.chkAbsent.Name = "chkAbsent"
-        Me.chkAbsent.Size = New System.Drawing.Size(64, 20)
+        Me.chkAbsent.Size = New System.Drawing.Size(69, 19)
         Me.chkAbsent.TabIndex = 62
         Me.chkAbsent.Text = "Absent:"
         Me.chkAbsent.Values.Text = "Absent:"
@@ -203,10 +204,11 @@ Partial Class OralExamDetails
         Me.chkD3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkD3.Location = New System.Drawing.Point(276, 5)
         Me.chkD3.Name = "chkD3"
-        Me.chkD3.Size = New System.Drawing.Size(42, 20)
+        Me.chkD3.Size = New System.Drawing.Size(45, 19)
         Me.chkD3.TabIndex = 59
         Me.chkD3.Text = "D3:"
         Me.chkD3.Values.Text = "D3:"
+        Me.chkD3.Visible = False
         '
         'chkD2
         '
@@ -214,10 +216,11 @@ Partial Class OralExamDetails
         Me.chkD2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkD2.Location = New System.Drawing.Point(223, 5)
         Me.chkD2.Name = "chkD2"
-        Me.chkD2.Size = New System.Drawing.Size(42, 20)
+        Me.chkD2.Size = New System.Drawing.Size(45, 19)
         Me.chkD2.TabIndex = 58
         Me.chkD2.Text = "D2:"
         Me.chkD2.Values.Text = "D2:"
+        Me.chkD2.Visible = False
         '
         'chkD1
         '
@@ -225,10 +228,11 @@ Partial Class OralExamDetails
         Me.chkD1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkD1.Location = New System.Drawing.Point(175, 5)
         Me.chkD1.Name = "chkD1"
-        Me.chkD1.Size = New System.Drawing.Size(42, 20)
+        Me.chkD1.Size = New System.Drawing.Size(45, 19)
         Me.chkD1.TabIndex = 57
         Me.chkD1.Text = "D1:"
         Me.chkD1.Values.Text = "D1:"
+        Me.chkD1.Visible = False
         '
         'chkM3
         '
@@ -236,10 +240,11 @@ Partial Class OralExamDetails
         Me.chkM3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkM3.Location = New System.Drawing.Point(112, 5)
         Me.chkM3.Name = "chkM3"
-        Me.chkM3.Size = New System.Drawing.Size(44, 20)
+        Me.chkM3.Size = New System.Drawing.Size(46, 19)
         Me.chkM3.TabIndex = 56
         Me.chkM3.Text = "M3:"
         Me.chkM3.Values.Text = "M3:"
+        Me.chkM3.Visible = False
         '
         'chkM2
         '
@@ -247,10 +252,11 @@ Partial Class OralExamDetails
         Me.chkM2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkM2.Location = New System.Drawing.Point(62, 5)
         Me.chkM2.Name = "chkM2"
-        Me.chkM2.Size = New System.Drawing.Size(44, 20)
+        Me.chkM2.Size = New System.Drawing.Size(46, 19)
         Me.chkM2.TabIndex = 55
         Me.chkM2.Text = "M2:"
         Me.chkM2.Values.Text = "M2:"
+        Me.chkM2.Visible = False
         '
         'chkM1
         '
@@ -258,10 +264,11 @@ Partial Class OralExamDetails
         Me.chkM1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkM1.Location = New System.Drawing.Point(12, 5)
         Me.chkM1.Name = "chkM1"
-        Me.chkM1.Size = New System.Drawing.Size(44, 20)
+        Me.chkM1.Size = New System.Drawing.Size(46, 19)
         Me.chkM1.TabIndex = 54
         Me.chkM1.Text = "M1:"
         Me.chkM1.Values.Text = "M1:"
+        Me.chkM1.Visible = False
         '
         'KryptonPanel1
         '
@@ -273,7 +280,7 @@ Partial Class OralExamDetails
         Me.KryptonPanel1.Controls.Add(Me.llblNewOutcome)
         Me.KryptonPanel1.Controls.Add(Me.llblFailOutcome)
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 203)
+        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 192)
         Me.KryptonPanel1.Name = "KryptonPanel1"
         Me.KryptonPanel1.Size = New System.Drawing.Size(728, 39)
         Me.KryptonPanel1.TabIndex = 7
@@ -390,9 +397,9 @@ Partial Class OralExamDetails
         '
         Me.KryptonPanel5.Controls.Add(Me.KryptonSplitContainer1)
         Me.KryptonPanel5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel5.Location = New System.Drawing.Point(0, 242)
+        Me.KryptonPanel5.Location = New System.Drawing.Point(0, 231)
         Me.KryptonPanel5.Name = "KryptonPanel5"
-        Me.KryptonPanel5.Size = New System.Drawing.Size(728, 65)
+        Me.KryptonPanel5.Size = New System.Drawing.Size(728, 115)
         Me.KryptonPanel5.TabIndex = 14
         '
         'KryptonSplitContainer1
@@ -405,36 +412,42 @@ Partial Class OralExamDetails
         'KryptonSplitContainer1.Panel1
         '
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.txtOutcomeText)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lstOutcomes)
         '
         'KryptonSplitContainer1.Panel2
         '
-        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.cboStudent)
-        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.lstOutcomes)
-        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(728, 65)
-        Me.KryptonSplitContainer1.SplitterDistance = 553
+        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.lstStudent)
+        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(728, 115)
+        Me.KryptonSplitContainer1.SplitterDistance = 450
         Me.KryptonSplitContainer1.TabIndex = 28
         '
         'txtOutcomeText
         '
-        Me.txtOutcomeText.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtOutcomeText.Location = New System.Drawing.Point(0, 0)
+        Me.txtOutcomeText.Location = New System.Drawing.Point(48, 23)
         Me.txtOutcomeText.Multiline = True
         Me.txtOutcomeText.Name = "txtOutcomeText"
         Me.txtOutcomeText.ReadOnly = True
-        Me.txtOutcomeText.Size = New System.Drawing.Size(553, 65)
+        Me.txtOutcomeText.Size = New System.Drawing.Size(220, 42)
         Me.txtOutcomeText.StateCommon.Content.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtOutcomeText.TabIndex = 7
         Me.txtOutcomeText.Text = "This is the outcome"
+        Me.txtOutcomeText.Visible = False
         '
         'lstOutcomes
         '
-        Me.lstOutcomes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lstOutcomes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstOutcomes.Location = New System.Drawing.Point(0, 0)
         Me.lstOutcomes.Name = "lstOutcomes"
-        Me.lstOutcomes.Size = New System.Drawing.Size(170, 45)
+        Me.lstOutcomes.Size = New System.Drawing.Size(450, 115)
         Me.lstOutcomes.TabIndex = 9
+        '
+        'lstStudent
+        '
+        Me.lstStudent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lstStudent.Location = New System.Drawing.Point(0, 0)
+        Me.lstStudent.Name = "lstStudent"
+        Me.lstStudent.Size = New System.Drawing.Size(273, 115)
+        Me.lstStudent.TabIndex = 21
         '
         'KryptonPanel4
         '
@@ -444,7 +457,7 @@ Partial Class OralExamDetails
         Me.KryptonPanel4.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel4.Controls.Add(Me.llblRecordFeedback)
         Me.KryptonPanel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel4.Location = New System.Drawing.Point(0, 307)
+        Me.KryptonPanel4.Location = New System.Drawing.Point(0, 346)
         Me.KryptonPanel4.Name = "KryptonPanel4"
         Me.KryptonPanel4.Size = New System.Drawing.Size(728, 126)
         Me.KryptonPanel4.TabIndex = 13
@@ -468,7 +481,7 @@ Partial Class OralExamDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.KryptonLabel2.Location = New System.Drawing.Point(5, 79)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(87, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(93, 19)
         Me.KryptonLabel2.TabIndex = 24
         Me.KryptonLabel2.Values.Text = "Improvement:"
         '
@@ -492,7 +505,7 @@ Partial Class OralExamDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 6)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(65, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(73, 19)
         Me.KryptonLabel1.TabIndex = 23
         Me.KryptonLabel1.Values.Text = "Feedback:"
         '
@@ -508,6 +521,15 @@ Partial Class OralExamDetails
         Me.llblRecordFeedback.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_32
         Me.llblRecordFeedback.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblRecordFeedback.Values.Text = ""
+        '
+        'KryptonManager
+        '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'Timer1
         '
@@ -581,21 +603,11 @@ Partial Class OralExamDetails
         Me.OlvColumn36.Text = "Emailed"
         Me.OlvColumn36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'cboStudent
-        '
-        Me.cboStudent.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboStudent.FormattingEnabled = True
-        Me.cboStudent.Location = New System.Drawing.Point(1, 44)
-        Me.cboStudent.Name = "cboStudent"
-        Me.cboStudent.Size = New System.Drawing.Size(167, 21)
-        Me.cboStudent.TabIndex = 10
-        '
         'OralExamDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(728, 433)
+        Me.ClientSize = New System.Drawing.Size(728, 472)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
@@ -690,5 +702,6 @@ Partial Class OralExamDetails
     Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents picStudent As System.Windows.Forms.PictureBox
     Friend WithEvents llblWeakPassOutcome As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents cboStudent As System.Windows.Forms.ComboBox
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents lstStudent As ComponentFactory.Krypton.Toolkit.KryptonListBox
 End Class
