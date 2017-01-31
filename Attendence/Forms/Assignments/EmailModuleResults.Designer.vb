@@ -144,12 +144,12 @@ Partial Class EmailModuleResults
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilterStudents
         '
@@ -339,7 +339,7 @@ Partial Class EmailModuleResults
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
         'StudentsToolStripMenuItem
@@ -394,7 +394,7 @@ Partial Class EmailModuleResults
         'ToolStripMenuItem25
         '
         Me.ToolStripMenuItem25.Name = "ToolStripMenuItem25"
-        Me.ToolStripMenuItem25.Size = New System.Drawing.Size(107, 22)
+        Me.ToolStripMenuItem25.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem25.Text = "&About"
         '
         'ToolStripMenuItem26

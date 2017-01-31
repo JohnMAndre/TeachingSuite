@@ -51,6 +51,9 @@ Public Class EmailModuleResults
 
     Private Sub LoadData()
         Dim objData As EmailResultData
+        If olvAssignments.CheckedObjects.Count = 0 Then
+            MessageBox.Show("You should select at least one assignment before loading the data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
         m_lst.Clear()
         Dim intUnknownOutcomes As Integer
 
@@ -105,7 +108,7 @@ Public Class EmailModuleResults
             For Each oc As Student.StudentModuleOutcomeResult In rslts.Outcomes
                 If oc.Status = OutcomeResultStatusEnum.Unknown Then
                     intUnknownOutcomes += 1
-                ElseIf oc.Status = OutcomeResultStatusEnum.Achieved Then
+                ElseIf oc.Status = OutcomeResultStatusEnum.Achieved AndAlso oc.Outcome.GradeGroup = BTECGradeGroup.Pass Then
                     objData.PassedOutcomes += 1
                 End If
             Next
@@ -686,7 +689,7 @@ Public Class EmailModuleResults
         sbReturn.Append("<table border='1'>")
         Dim rslts As Student.StudentModuleResult = student.ModuleResults
 
-        sbReturn.Append("<tr><td>Outcome</td><td>Result</td><td>Feedback</td></tr>")
+        sbReturn.Append("<tr><td align=center>Outcome</td><td align=center>Result</td><td>Feedback</td></tr>")
 
 
         rslts.Outcomes.Sort()
@@ -698,23 +701,37 @@ Public Class EmailModuleResults
                 strFeedback = oc.LatestFeedback & " &nbsp;"
 
                 '-- First part of line is the same no matter what (outcome name)
-                sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td>")
+                sbReturn.Append("<tr><td align='center'>" & oc.Outcome.Name & "</td>")
 
                 '-- Next is grade, but only include if that is checked
                 If chkIncludeGrade.Checked Then
-                    If oc.Status = OutcomeResultStatusEnum.Achieved Then
-                        sbReturn.Append("<td bgcolor='LightGreen'>" & strResult & "</td>")
+                    Dim boolOKToInclude As Boolean
+                    If oc.Outcome.GradeGroup = BTECGradeGroup.Merit OrElse oc.Outcome.GradeGroup = BTECGradeGroup.Distinction Then
+                        If chkIncludeMeritDistinctionResults.Checked Then
+                            boolOKToInclude = True
+                        Else
+                            boolOKToInclude = False
+                        End If
                     Else
-                        sbReturn.Append("<td bgcolor='Red'>" & strResult & "</td>")
+                        boolOKToInclude = True
+                    End If
+                    If boolOKToInclude Then
+                        If oc.Status = OutcomeResultStatusEnum.Achieved Then
+                            sbReturn.Append("<td bgcolor='LightGreen' align='center'>" & strResult & "</td>")
+                        Else
+                            sbReturn.Append("<td bgcolor='Red' align='center'>" & strResult & "</td>")
+                        End If
+                    Else
+                        sbReturn.Append("<td align='center'>&nbsp;</td>")
                     End If
                 Else
                     '-- We are not supposed to send the grade
                     '   So just send blank, no color coding
-                    sbReturn.Append("<td>&nbsp;</td>")
+                    sbReturn.Append("<td align='center'>&nbsp;</td>")
                 End If
 
                 If Me.chkIncludeFeedback.Checked Then
-                    sbReturn.Append("<td>" & strFeedback & "</td>")
+                    sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
                 Else
                     '-- We are not supposed to send the feedback
                     '   So just send blank
@@ -809,21 +826,22 @@ Public Class EmailModuleResults
     End Sub
 
     Private Sub CalculateOutcomes()
-        m_intModuleOutcomes = m_clas.ClassGroup.Outcomes.Count
+        m_intModuleOutcomes = 0 '-- reset and only count pass outcomes
+        For Each oc As AssignmentOutcome In m_clas.ClassGroup.Outcomes
+            If oc.GradeGroup = BTECGradeGroup.Pass Then
+                m_intModuleOutcomes += 1
+            End If
+        Next
 
         m_intAssignmentsSoFar = 0
         For Each asmt As ClassAssignmentBTEC In m_clas.ClassGroup.AssignmentsBTEC
             If ShouldIncludeAssignment(asmt) Then
-                '-- We ignore outcomes which have not been submitted and marked
-                'm_intModuleOutcomes += asmt.Outcomes.Count
                 m_intAssignmentsSoFar += 1
             End If
         Next
 
         For Each asmt As ClassAssignment In m_clas.ClassGroup.Assignments
             If ShouldIncludeAssignment(asmt) Then
-                '-- We ignore outcomes which have not been submitted and marked
-                'm_intModuleOutcomes += asmt.Outcomes.Count
                 m_intAssignmentsSoFar += 1
             End If
         Next
