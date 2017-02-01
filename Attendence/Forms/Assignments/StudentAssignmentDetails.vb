@@ -273,7 +273,7 @@ Friend Class StudentAssignmentDetails
             End If
         End If
 
-        AddHistory("Processed student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.ToString() & ").")
+        AddHistory("Finished marking student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
 
         Return True
     End Function
