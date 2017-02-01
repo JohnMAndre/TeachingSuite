@@ -320,6 +320,13 @@ Public Class MainForm
                 End If
             End If
 
+            '-- clear old data (for user experience only)
+            lstClasses.Items.Clear()
+            lstClassGroups.Items.Clear()
+            lstAssignments.Items.Clear()
+            olvStudents.ClearObjects()
+            olvSchedule.ClearObjects()
+
             ThisSemester = New Semester(strSemesterName)
             AppSettings.LastSemesterFile = cboSemester.Items(cboSemester.SelectedIndex)
             Me.Text = Application.ProductName & " - " & ThisSemester.Name
@@ -1004,6 +1011,9 @@ Public Class MainForm
                 Exit Sub
             End If
         End If
+
+        AddHistory("Marking " & assignment.Name & " (class: " & student.SchoolClass.Name & "; student: " & student.ToString() & ")")
+
         Select Case assignment.AssignmentType
             Case AssignmentType.BTEC
                 Dim frm As New StudentAssignmentDetails(student, CType(assignment, ClassAssignmentBTEC), attempt)
