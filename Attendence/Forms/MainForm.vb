@@ -2724,4 +2724,13 @@ Public Class MainForm
         Dim frm As New MissingGradeDataReport()
         frm.Show()
     End Sub
+
+    Private Sub ImprovementItemsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImprovementItemsToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class for the report.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Dim frm As New ImprovementItemReport(GetSelectedClass())
+            frm.Show()
+        End If
+    End Sub
 End Class

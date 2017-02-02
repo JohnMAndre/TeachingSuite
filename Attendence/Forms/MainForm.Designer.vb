@@ -38,7 +38,6 @@ Partial Class MainForm
         Me.lstClasses = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.ctxmnuClasses = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator()
         Me.StatisticsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -46,7 +45,6 @@ Partial Class MainForm
         Me.VisibleStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator()
         Me.RemoveAllStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EmailclassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnAddClass = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblRemoveAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -112,7 +110,6 @@ Partial Class MainForm
         Me.ProcessExamRedoForStudent = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProcessExam2ndReDoForStudent = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
-        Me.EmailstudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ScheduleNotesSplitter = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.olvSchedule = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn29 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -126,7 +123,6 @@ Partial Class MainForm
         Me.OlvColumn35 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn36 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ctxmnuActualSessions = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SkipActualSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TakeAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -134,7 +130,6 @@ Partial Class MainForm
         Me.lblStopwatchDuration = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblStartPauseStopwatch = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.txtNotes = New System.Windows.Forms.TextBox()
-        Me.picStudent = New System.Windows.Forms.PictureBox()
         Me.pnlScheduleControls = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.llblScheduleNextClassDay = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblScheduleNextUnprepped = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -194,7 +189,6 @@ Partial Class MainForm
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.MarkSelectedAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailAssignmentResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SendBulkEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailOnlineQuizResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FormGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
@@ -232,7 +226,6 @@ Partial Class MainForm
         Me.StudentOutcomeResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SessionprepStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignmentProcessingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ScheduledSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentQualityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentGradesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SemesterStatisticsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -276,6 +269,7 @@ Partial Class MainForm
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
@@ -289,6 +283,14 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        Me.DeleteClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmailclassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmailstudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SkipActualSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.picStudent = New System.Windows.Forms.PictureBox()
+        Me.SendBulkEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ScheduledSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImprovementItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -333,7 +335,6 @@ Partial Class MainForm
         CType(Me.olvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ctxmnuActualSessions.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlScheduleControls.SuspendLayout()
         CType(Me.KryptonGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,6 +346,7 @@ Partial Class MainForm
         Me.ctxmnuTray.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
         CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -567,13 +569,6 @@ Partial Class MainForm
         Me.EditClassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.EditClassToolStripMenuItem.Text = "&Edit class..."
         '
-        'DeleteClassToolStripMenuItem
-        '
-        Me.DeleteClassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.DeleteClassToolStripMenuItem.Name = "DeleteClassToolStripMenuItem"
-        Me.DeleteClassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
-        Me.DeleteClassToolStripMenuItem.Text = "&Delete class"
-        '
         'ToolStripSeparator13
         '
         Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
@@ -614,13 +609,6 @@ Partial Class MainForm
         Me.RemoveAllStudentsToolStripMenuItem.Name = "RemoveAllStudentsToolStripMenuItem"
         Me.RemoveAllStudentsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.RemoveAllStudentsToolStripMenuItem.Text = "Remove all students"
-        '
-        'EmailclassToolStripMenuItem
-        '
-        Me.EmailclassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
-        Me.EmailclassToolStripMenuItem.Name = "EmailclassToolStripMenuItem"
-        Me.EmailclassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
-        Me.EmailclassToolStripMenuItem.Text = "Email &class..."
         '
         'btnAddClass
         '
@@ -1204,13 +1192,6 @@ Partial Class MainForm
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
         Me.ToolStripSeparator8.Size = New System.Drawing.Size(190, 6)
         '
-        'EmailstudentToolStripMenuItem
-        '
-        Me.EmailstudentToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
-        Me.EmailstudentToolStripMenuItem.Name = "EmailstudentToolStripMenuItem"
-        Me.EmailstudentToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.EmailstudentToolStripMenuItem.Text = "Email &student"
-        '
         'ScheduleNotesSplitter
         '
         Me.ScheduleNotesSplitter.Cursor = System.Windows.Forms.Cursors.Default
@@ -1357,13 +1338,6 @@ Partial Class MainForm
         Me.ctxmnuActualSessions.Name = "ctxmnuPlannedSchedule"
         Me.ctxmnuActualSessions.Size = New System.Drawing.Size(184, 70)
         '
-        'SkipActualSessionToolStripMenuItem
-        '
-        Me.SkipActualSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
-        Me.SkipActualSessionToolStripMenuItem.Name = "SkipActualSessionToolStripMenuItem"
-        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.SkipActualSessionToolStripMenuItem.Text = "Skip selected session"
-        '
         'TakeAttendanceToolStripMenuItem
         '
         Me.TakeAttendanceToolStripMenuItem.Name = "TakeAttendanceToolStripMenuItem"
@@ -1434,17 +1408,6 @@ Partial Class MainForm
         Me.txtNotes.Size = New System.Drawing.Size(202, 167)
         Me.txtNotes.TabIndex = 45
         Me.ToolTip1.SetToolTip(Me.txtNotes, "Notes")
-        '
-        'picStudent
-        '
-        Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.picStudent.Location = New System.Drawing.Point(0, 0)
-        Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(202, 205)
-        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.picStudent.TabIndex = 44
-        Me.picStudent.TabStop = False
-        Me.picStudent.Visible = False
         '
         'pnlScheduleControls
         '
@@ -2039,13 +2002,6 @@ Partial Class MainForm
         Me.EmailAssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.EmailAssignmentResultsToolStripMenuItem.Text = "Email module &results..."
         '
-        'SendBulkEmailToolStripMenuItem
-        '
-        Me.SendBulkEmailToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
-        Me.SendBulkEmailToolStripMenuItem.Name = "SendBulkEmailToolStripMenuItem"
-        Me.SendBulkEmailToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.SendBulkEmailToolStripMenuItem.Text = "Send &bulk email..."
-        '
         'EmailOnlineQuizResultsToolStripMenuItem
         '
         Me.EmailOnlineQuizResultsToolStripMenuItem.Name = "EmailOnlineQuizResultsToolStripMenuItem"
@@ -2228,7 +2184,7 @@ Partial Class MainForm
         '
         'ReportsToolStripMenuItem
         '
-        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem})
+        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem})
         Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
         Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ReportsToolStripMenuItem.Text = "&Reports"
@@ -2280,13 +2236,6 @@ Partial Class MainForm
         Me.AssignmentProcessingToolStripMenuItem.Name = "AssignmentProcessingToolStripMenuItem"
         Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.AssignmentProcessingToolStripMenuItem.Text = "Assignment processing"
-        '
-        'ScheduledSessionsToolStripMenuItem
-        '
-        Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
-        Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
-        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
         '
         'StudentQualityToolStripMenuItem
         '
@@ -2615,6 +2564,65 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'DeleteClassToolStripMenuItem
+        '
+        Me.DeleteClassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.erase_16
+        Me.DeleteClassToolStripMenuItem.Name = "DeleteClassToolStripMenuItem"
+        Me.DeleteClassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.DeleteClassToolStripMenuItem.Text = "&Delete class"
+        '
+        'EmailclassToolStripMenuItem
+        '
+        Me.EmailclassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
+        Me.EmailclassToolStripMenuItem.Name = "EmailclassToolStripMenuItem"
+        Me.EmailclassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.EmailclassToolStripMenuItem.Text = "Email &class..."
+        '
+        'EmailstudentToolStripMenuItem
+        '
+        Me.EmailstudentToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
+        Me.EmailstudentToolStripMenuItem.Name = "EmailstudentToolStripMenuItem"
+        Me.EmailstudentToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.EmailstudentToolStripMenuItem.Text = "Email &student"
+        '
+        'SkipActualSessionToolStripMenuItem
+        '
+        Me.SkipActualSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
+        Me.SkipActualSessionToolStripMenuItem.Name = "SkipActualSessionToolStripMenuItem"
+        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.SkipActualSessionToolStripMenuItem.Text = "Skip selected session"
+        '
+        'picStudent
+        '
+        Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.picStudent.Location = New System.Drawing.Point(0, 0)
+        Me.picStudent.Name = "picStudent"
+        Me.picStudent.Size = New System.Drawing.Size(202, 205)
+        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.picStudent.TabIndex = 44
+        Me.picStudent.TabStop = False
+        Me.picStudent.Visible = False
+        '
+        'SendBulkEmailToolStripMenuItem
+        '
+        Me.SendBulkEmailToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
+        Me.SendBulkEmailToolStripMenuItem.Name = "SendBulkEmailToolStripMenuItem"
+        Me.SendBulkEmailToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.SendBulkEmailToolStripMenuItem.Text = "Send &bulk email..."
+        '
+        'ScheduledSessionsToolStripMenuItem
+        '
+        Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
+        Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
+        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
+        '
+        'ImprovementItemsToolStripMenuItem
+        '
+        Me.ImprovementItemsToolStripMenuItem.Name = "ImprovementItemsToolStripMenuItem"
+        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ImprovementItemsToolStripMenuItem.Text = "&Improvement items..."
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2678,7 +2686,6 @@ Partial Class MainForm
         Me.ctxmnuActualSessions.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pnlScheduleControls, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlScheduleControls.ResumeLayout(False)
         Me.pnlScheduleControls.PerformLayout()
@@ -2693,6 +2700,7 @@ Partial Class MainForm
         Me.ctxmnuTray.ResumeLayout(False)
         Me.ctxmnuNewAssignment.ResumeLayout(False)
         CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2977,4 +2985,5 @@ Partial Class MainForm
     Friend WithEvents LoadCurrentClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents MissingGradeDataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImprovementItemsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

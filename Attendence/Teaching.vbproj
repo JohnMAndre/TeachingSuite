@@ -188,6 +188,12 @@
     <Compile Include="Forms\Reports\ExcessiveAbsencesReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Reports\ImprovementItemReport.Designer.vb">
+      <DependentUpon>ImprovementItemReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ImprovementItemReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Reports\MissingGradeDataReport.Designer.vb">
       <DependentUpon>MissingGradeDataReport.vb</DependentUpon>
     </Compile>
@@ -546,6 +552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\ExcessiveAbsencesReport.resx">
       <DependentUpon>ExcessiveAbsencesReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ImprovementItemReport.resx">
+      <DependentUpon>ImprovementItemReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\MissingGradeDataReport.resx">
       <DependentUpon>MissingGradeDataReport.vb</DependentUpon>
