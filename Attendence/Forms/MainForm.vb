@@ -1045,6 +1045,9 @@ Public Class MainForm
         If GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
+        ElseIf TypeOf GetSelectedAssignment() Is ClassAssignment Then
+            MessageBox.Show("This report is only for BTEC assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
         End If
         Using frm As New AssignmentResults(GetSelectedClassGroup(), GetSelectedAssignment())
             frm.ShowDialog()
