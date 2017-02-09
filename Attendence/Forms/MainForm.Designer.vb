@@ -225,11 +225,13 @@ Partial Class MainForm
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAttendanceErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator()
         Me.AssignmentResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModuleResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FailedoutcomesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModuleFeedbackCheckToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentOutcomeResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator()
         Me.SessionprepStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignmentProcessingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ScheduledSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -276,6 +278,7 @@ Partial Class MainForm
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
@@ -289,8 +292,6 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -1466,9 +1467,9 @@ Partial Class MainForm
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 92)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 93)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
-        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(88, 20)
+        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
         Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1477,9 +1478,9 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 118)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 119)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
-        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(79, 20)
+        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
         Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1499,9 +1500,9 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 141)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 142)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
-        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
         Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1510,9 +1511,9 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 141)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 142)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
-        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
         Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
         Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1533,9 +1534,9 @@ Partial Class MainForm
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 173)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 174)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
-        Me.llblRefreshSchedule.Size = New System.Drawing.Size(51, 20)
+        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
         Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
         Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1698,7 +1699,7 @@ Partial Class MainForm
         '
         Me.llblLoadFutureOneSemester.Location = New System.Drawing.Point(242, 28)
         Me.llblLoadFutureOneSemester.Name = "llblLoadFutureOneSemester"
-        Me.llblLoadFutureOneSemester.Size = New System.Drawing.Size(27, 20)
+        Me.llblLoadFutureOneSemester.Size = New System.Drawing.Size(26, 19)
         Me.llblLoadFutureOneSemester.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblLoadFutureOneSemester, "Advance one semester")
         Me.llblLoadFutureOneSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1708,7 +1709,7 @@ Partial Class MainForm
         '
         Me.llblLoadPreviousOneSemester.Location = New System.Drawing.Point(73, 28)
         Me.llblLoadPreviousOneSemester.Name = "llblLoadPreviousOneSemester"
-        Me.llblLoadPreviousOneSemester.Size = New System.Drawing.Size(27, 20)
+        Me.llblLoadPreviousOneSemester.Size = New System.Drawing.Size(26, 19)
         Me.llblLoadPreviousOneSemester.TabIndex = 32
         Me.ToolTip1.SetToolTip(Me.llblLoadPreviousOneSemester, "Go back one semester")
         Me.llblLoadPreviousOneSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1718,7 +1719,7 @@ Partial Class MainForm
         '
         Me.llblLoadLatestSemester.Location = New System.Drawing.Point(133, 28)
         Me.llblLoadLatestSemester.Name = "llblLoadLatestSemester"
-        Me.llblLoadLatestSemester.Size = New System.Drawing.Size(76, 20)
+        Me.llblLoadLatestSemester.Size = New System.Drawing.Size(81, 19)
         Me.llblLoadLatestSemester.TabIndex = 29
         Me.ToolTip1.SetToolTip(Me.llblLoadLatestSemester, "Most recent semester")
         Me.llblLoadLatestSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -2238,8 +2239,13 @@ Partial Class MainForm
         'StudentAttendanceErrorsToolStripMenuItem
         '
         Me.StudentAttendanceErrorsToolStripMenuItem.Name = "StudentAttendanceErrorsToolStripMenuItem"
-        Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.StudentAttendanceErrorsToolStripMenuItem.Text = "Student &Attendance Errors..."
+        '
+        'ToolStripSeparator17
+        '
+        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(249, 6)
         '
         'AssignmentResultsToolStripMenuItem
         '
@@ -2271,59 +2277,64 @@ Partial Class MainForm
         Me.StudentOutcomeResultsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.StudentOutcomeResultsToolStripMenuItem.Text = "Student outcome results (BTEC)..."
         '
+        'ToolStripSeparator18
+        '
+        Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
+        Me.ToolStripSeparator18.Size = New System.Drawing.Size(249, 6)
+        '
         'SessionprepStatusToolStripMenuItem
         '
         Me.SessionprepStatusToolStripMenuItem.Name = "SessionprepStatusToolStripMenuItem"
-        Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.SessionprepStatusToolStripMenuItem.Text = "Session &prep status"
         '
         'AssignmentProcessingToolStripMenuItem
         '
         Me.AssignmentProcessingToolStripMenuItem.Name = "AssignmentProcessingToolStripMenuItem"
-        Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.AssignmentProcessingToolStripMenuItem.Text = "Assignment processing"
         '
         'ScheduledSessionsToolStripMenuItem
         '
         Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
         Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
-        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
         '
         'StudentQualityToolStripMenuItem
         '
         Me.StudentQualityToolStripMenuItem.Name = "StudentQualityToolStripMenuItem"
-        Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.StudentQualityToolStripMenuItem.Text = "Student quality..."
         '
         'StudentGradesToolStripMenuItem
         '
         Me.StudentGradesToolStripMenuItem.Name = "StudentGradesToolStripMenuItem"
-        Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.StudentGradesToolStripMenuItem.Text = "Student grades..."
         '
         'SemesterStatisticsToolStripMenuItem
         '
         Me.SemesterStatisticsToolStripMenuItem.Name = "SemesterStatisticsToolStripMenuItem"
-        Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.SemesterStatisticsToolStripMenuItem.Text = "Semester statistics..."
         '
         'ExcessiveAbsencesToolStripMenuItem
         '
         Me.ExcessiveAbsencesToolStripMenuItem.Name = "ExcessiveAbsencesToolStripMenuItem"
-        Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.ExcessiveAbsencesToolStripMenuItem.Text = "Excessive absences..."
         '
         'MissingGradeDataToolStripMenuItem
         '
         Me.MissingGradeDataToolStripMenuItem.Name = "MissingGradeDataToolStripMenuItem"
-        Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.MissingGradeDataToolStripMenuItem.Text = "&Missing grade data..."
         '
         'ImprovementItemsToolStripMenuItem
         '
         Me.ImprovementItemsToolStripMenuItem.Name = "ImprovementItemsToolStripMenuItem"
-        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.ImprovementItemsToolStripMenuItem.Text = "&Improvement items..."
         '
         'DataToolStripMenuItem
@@ -2555,13 +2566,17 @@ Partial Class MainForm
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(179, 22)
-        Me.ToolStripMenuItem2.Text = "???"
+        Me.ToolStripMenuItem2.Text = "Test...do not use"
         Me.ToolStripMenuItem2.Visible = False
         '
         'KryptonManager
         '
-        Me.KryptonManager.GlobalPalette = Me.KryptonPalette1
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'tmrFilterStudents
         '
@@ -2614,16 +2629,6 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'ToolStripSeparator17
-        '
-        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(249, 6)
-        '
-        'ToolStripSeparator18
-        '
-        Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
-        Me.ToolStripSeparator18.Size = New System.Drawing.Size(249, 6)
         '
         'MainForm
         '
@@ -2989,4 +2994,5 @@ Partial Class MainForm
     Friend WithEvents ImprovementItemsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator17 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator18 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

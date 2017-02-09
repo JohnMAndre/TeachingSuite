@@ -1824,6 +1824,7 @@ Public Class StudentAssignmentBTEC
 
         '-- Changed in version 2
         '-- Need to add any outcome results for the higher outcomes (M's and D's)
+
         If Me.BaseAssignment.Outcomes.Count > Me.Outcomes.Count Then
             Dim objBaseOutcome As AssignmentOutcome
             Dim objOutcomeResult As OutcomeResult
@@ -3403,6 +3404,8 @@ Public Class Student
             Else
                 AssignmentsBTEC.Add(objAssignment)
             End If
+            'Dim objAssignment As New StudentAssignment(xAssignmentNode, Me)
+            'Assignments.Add(objAssignment)
         Next
 
         xAssignmentList = xElement.SelectNodes("StudentAssignmentNormal")

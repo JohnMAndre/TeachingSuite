@@ -2436,11 +2436,47 @@ Public Class MainForm
     Private Sub NotesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotesToolStripMenuItem.Click
         ScheduleNotesSplitter.Panel2Collapsed = Not NotesToolStripMenuItem.Checked
     End Sub
+    'Private Sub ImportAssignmentsFromOtherSemester()
+    '    Dim semesterAlternate As Semester = New Semester("C:\Users\John\Desktop\Teaching App Data\2016-2017 Spring.datx")
+    '    '-- First we will load up a list with alternate students (which includes their assignments
+    '    Dim lstAlternate As New List(Of Student)
+    '    For Each clasGroup As ClassGroup In semesterAlternate.ClassGroups
+    '        If clasGroup.Name = "BLaw" Then
+    '            For Each schClass As SchoolClass In clasGroup.Classes
+    '                For Each stud As Student In schClass.Students '-- Process ALL BLaw students
+    '                    lstAlternate.Add(stud)
+    '                Next
+    '            Next
+    '        End If
+    '    Next
+
+
+
+    '    '-- Now we will loop through this semester's students and copy over the assignments
+    '    Dim clsgrp As ClassGroup = GetSelectedClassGroup()
+    '    If clsgrp Is Nothing Then
+    '        MessageBox.Show("You should not use it, it will damage your data.")
+    '        Exit Sub
+    '    End If
+
+    '    Dim studAlternate As Student
+    '    For Each schClass As SchoolClass In clsgrp.Classes
+    '        For Each stud As Student In schClass.Students '-- Process ALL BLaw students in current semester
+    '            For Each studAlternate In lstAlternate
+    '                If stud.StudentID = studAlternate.StudentID Then
+    '                    '-- we have a match
+    '                    stud.Assignments.Add(studAlternate.Assignments(0))
+    '                    Exit For '-- Done with this student (just one asmt)
+    '                End If
+    '            Next
+    '        Next
+    '    Next
+    'End Sub
 
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
         'AppSettings.PremiumFeaturesEnabled = Not AppSettings.PremiumFeaturesEnabled
-
-        'SetupForLiteVersion()
+        '-- Going to import student Normal assignments from another database
+        'ImportAssignmentsFromOtherSemester()
     End Sub
 
     Private m_dtStopwatch As Date
