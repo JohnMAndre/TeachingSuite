@@ -43,7 +43,6 @@ Partial Class ClassDetails
         Me.MoveupToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.btnShowNormalSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowSkips = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowActualSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()

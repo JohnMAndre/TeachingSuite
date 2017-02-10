@@ -374,7 +374,9 @@ Public Class MainForm
         If GetSelectedClassGroup() Is Nothing Then
             MessageBox.Show("Please select a module first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            Dim strNewClass As String = GetInput("What would you like to call the new class?", False, "F05A")
+            Dim intClasses As Integer = GetSelectedClassGroup.Classes.Count + 1
+            Dim strDefaultName As String = GetSelectedClassGroup.Name & "-" & intClasses.ToString()
+            Dim strNewClass As String = GetInput("What would you like to call the new class?", False, strDefaultName)
             If strNewClass = Chr(0) Then
                 '-- do nothing
             Else
