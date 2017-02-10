@@ -1069,7 +1069,25 @@ Public Class MainForm
             Exit Sub
         End If
 
-        Dim frm As New ModuleResults(GetSelectedClassGroup())
+        Dim groupToInclude As ClassGroup
+        Dim frm As ModuleResults
+
+        If GetSelectedClass() Is Nothing OrElse ClassIsCombinedView(GetSelectedClass()) Then
+            '-- use whole module
+            frm = New ModuleResults(GetSelectedClassGroup())
+        Else
+            groupToInclude = New ClassGroup(GetSelectedClassGroup.GetXMLElementToPersist(New Xml.XmlDocument()), ThisSemester) '-- not sure if this will work
+            Dim lstToRemove As New List(Of SchoolClass)
+            For Each cls As SchoolClass In groupToInclude.Classes
+                If cls.Name <> GetSelectedClass().Name Then
+                    lstToRemove.Add(cls)
+                End If
+            Next
+            For Each cls As SchoolClass In lstToRemove
+                groupToInclude.Classes.Remove(cls)
+            Next
+            frm = New ModuleResults(groupToInclude)
+        End If
         frm.Show(Me)
     End Sub
 
