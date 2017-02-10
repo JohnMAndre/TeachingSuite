@@ -26,7 +26,7 @@ Public Class ModuleResults
         Dim dataItem As AssignmentReportResult
         Dim rslt As Student.StudentModuleResult
 
-        Dim intTotalPassOutcomes As Integer '-- total pass outcomes
+        Dim intTotalPassOutcomes As Integer '-- total pass outcomes available
         For Each oc As AssignmentOutcome In m_classGroup.Outcomes
             If oc.GradeGroup = BTECGradeGroup.Pass Then
                 intTotalPassOutcomes += 1
@@ -42,17 +42,11 @@ Public Class ModuleResults
                 rslt = stu.ModuleResults()
 
                 dataItem.FailedOutcomes = intTotalPassOutcomes - rslt.PassOutcomesPassed
-                'dataItem.M1Achieved = rslt.M1Achieved
-                'dataItem.M2Achieved = rslt.M2Achieved
-                'dataItem.M3Achieved = rslt.M3Achieved
-                'dataItem.D1Achieved = rslt.D1Achieved
-                'dataItem.D2Achieved = rslt.D2Achieved
-                'dataItem.D3Achieved = rslt.D3Achieved
 
                 intTotalStudents += 1
 
-                If rslt.AchievedMerit Then
-                    dataItem.AchievedMerit = True
+                If rslt.AchievedMerit AndAlso Not rslt.AchievedDistinction Then
+                    dataItem.AchievedMerit = True '-- Merit = only merit
                     intMerit += 1
                 Else
                     dataItem.AchievedMerit = False
@@ -70,14 +64,6 @@ Public Class ModuleResults
                 Else
                     intFailed += 1
                 End If
-
-                'If dataItem.M1Achieved AndAlso dataItem.M2Achieved AndAlso dataItem.M3Achieved Then
-                '    If dataItem.D1Achieved AndAlso dataItem.D2Achieved AndAlso dataItem.D3Achieved Then
-                '        intDistinction += 1
-                '    Else
-                '        intMerit += 1
-                '    End If
-                'End If
             Next
         Next
 

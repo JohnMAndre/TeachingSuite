@@ -118,75 +118,80 @@ Public Class Semester
         System.IO.File.Move(strAutoSaveFilename, strFilename)
     End Sub
     Public Sub New(name As String)
-        '-- Load from data file
-        Dim strAutoSaveFilename As String
+        Try
+            '-- Load from data file
+            Dim strAutoSaveFilename As String
 
-        m_strFilename = GetMainDataFilename(name)
-        strAutoSaveFilename = GetAutoSaveFilename(name)
+            m_strFilename = GetMainDataFilename(name)
+            strAutoSaveFilename = GetAutoSaveFilename(name)
 
-        Dim xDoc As New Xml.XmlDocument
+            Dim xDoc As New Xml.XmlDocument
 
-        If System.IO.File.Exists(m_strFilename) Then
+            If System.IO.File.Exists(m_strFilename) Then
 #If SUPPORT_ZIP Then
-            Dim strContents As String
-            Using zip As New Ionic.Zip.ZipFile(m_strFilename)
-                Using ms As New System.IO.MemoryStream()
-                    zip.Entries(0).Extract(ms)
-                    ms.Position = 0
-                    Using sr As New System.IO.StreamReader(ms, System.Text.Encoding.Unicode)
-                        strContents = sr.ReadToEnd
-                        sr.Close()
+                Dim strContents As String
+                Using zip As New Ionic.Zip.ZipFile(m_strFilename)
+                    Using ms As New System.IO.MemoryStream()
+                        zip.Entries(0).Extract(ms)
+                        ms.Position = 0
+                        Using sr As New System.IO.StreamReader(ms, System.Text.Encoding.Unicode)
+                            strContents = sr.ReadToEnd
+                            sr.Close()
+                        End Using
+                        ms.Close()
                     End Using
-                    ms.Close()
                 End Using
-            End Using
-            xDoc.LoadXml(strContents)
+                xDoc.LoadXml(strContents)
 #Else
             xDoc.Load(m_strFilename)
 #End If
-            'xDoc.Load(m_strFilename)
-            Me.Name = xDoc.DocumentElement.GetAttribute("Name")
-            StartDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
-            EndDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
-            'Closed = ConvertToBool(xDoc.DocumentElement.GetAttribute("Closed"), False)
-            Try
-                StartDateCurrent = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDateCurrent"), Xml.XmlDateTimeSerializationMode.Unspecified)
-                EndDateCurrent = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDateCurrent"), Xml.XmlDateTimeSerializationMode.Unspecified)
-            Catch ex As Exception
-                Application.DoEvents() '-- ignore
-            End Try
+                'xDoc.Load(m_strFilename)
+                Me.Name = xDoc.DocumentElement.GetAttribute("Name")
+                StartDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
+                EndDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
+                'Closed = ConvertToBool(xDoc.DocumentElement.GetAttribute("Closed"), False)
+                Try
+                    StartDateCurrent = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDateCurrent"), Xml.XmlDateTimeSerializationMode.Unspecified)
+                    EndDateCurrent = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDateCurrent"), Xml.XmlDateTimeSerializationMode.Unspecified)
+                Catch ex As Exception
+                    Application.DoEvents() '-- ignore
+                End Try
 
-            Me.Notes = xDoc.DocumentElement.GetAttribute("Notes")
+                Me.Notes = xDoc.DocumentElement.GetAttribute("Notes")
 
-            '-- ImprovementItems must come before students
-            Dim xImprovements As Xml.XmlNodeList = xDoc.SelectNodes("//ImprovementItem")
-            For Each xItem As Xml.XmlElement In xImprovements
-                Dim objItem As New ImprovementItem()
-                objItem.ID = xItem.GetAttribute("ID")
-                objItem.Name = xItem.GetAttribute("Name")
-                objItem.Description = xItem.GetAttribute("Description")
-                Me.ImprovementItems.Add(objItem)
-            Next
+                '-- ImprovementItems must come before students
+                Dim xImprovements As Xml.XmlNodeList = xDoc.SelectNodes("//ImprovementItem")
+                For Each xItem As Xml.XmlElement In xImprovements
+                    Dim objItem As New ImprovementItem()
+                    objItem.ID = xItem.GetAttribute("ID")
+                    objItem.Name = xItem.GetAttribute("Name")
+                    objItem.Description = xItem.GetAttribute("Description")
+                    Me.ImprovementItems.Add(objItem)
+                Next
 
 
-            Dim xClassGroupList As Xml.XmlNodeList = xDoc.SelectNodes("/Semester/ClassGroup")
-            For Each xClassGroupNode As Xml.XmlElement In xClassGroupList
-                Dim objClassGroup As New ClassGroup(xClassGroupNode, Me)
-                ClassGroups.Add(objClassGroup)
-            Next
+                Dim xClassGroupList As Xml.XmlNodeList = xDoc.SelectNodes("/Semester/ClassGroup")
+                For Each xClassGroupNode As Xml.XmlElement In xClassGroupList
+                    Dim objClassGroup As New ClassGroup(xClassGroupNode, Me)
+                    ClassGroups.Add(objClassGroup)
+                Next
 
-        Else
-            '-- create a new semester file
-            Me.Name = name
-            StartDateOverall = Date.Today
-            EndDateOverall = Date.Today.AddMonths(4)
-            StartDateCurrent = Date.Today
-            EndDateCurrent = Date.Today.AddMonths(4)
-            Save()
-        End If
+            Else
+                '-- create a new semester file
+                Me.Name = name
+                StartDateOverall = Date.Today
+                EndDateOverall = Date.Today.AddMonths(4)
+                StartDateCurrent = Date.Today
+                EndDateCurrent = Date.Today.AddMonths(4)
+                Save()
+            End If
 
-        LastSaveDate = Date.Now
-        LastAutoSaveDate = Date.Now
+            LastSaveDate = Date.Now
+            LastAutoSaveDate = Date.Now
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the semester: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     ''' <summary>
     ''' Saves the semester data file
@@ -1800,7 +1805,9 @@ Public Class StudentAssignmentBTEC
     End Property
 
     Public Sub New(xElement As Xml.XmlElement, Student As Student)
+       
         Dim strBaseAssignmentID As String = xElement.GetAttribute("BaseAssignmentID")
+
 
         For Each asmt As ClassAssignmentBTEC In Student.SchoolClass.ClassGroup.AssignmentsBTEC
             If asmt.ID = strBaseAssignmentID Then
@@ -1808,8 +1815,6 @@ Public Class StudentAssignmentBTEC
                 Exit For
             End If
         Next
-
-
 
         OverallComments = xElement.GetAttribute("OverallComments")
         ImprovementComments = xElement.GetAttribute("ImprovementComments")
@@ -2931,22 +2936,28 @@ Public Class Student
                         '   No reason to change if already achieved
                         If objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
                             objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                            objOutcomeResult.FirstTryComments = objStudentOutcome.FirstTryComments
                         ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved AndAlso objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
                             objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                            objOutcomeResult.FirstTryComments = objStudentOutcome.FirstTryComments
                         End If
 
                         If objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
                             objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved
+                            objOutcomeResult.SecondTryComments = objStudentOutcome.SecondTryComments
                         ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved AndAlso objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.Unknown AndAlso objOutcomeResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
                             '-- Do not write NonAchieved for 2nd if 1st is already achieved
                             objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
+                            objOutcomeResult.SecondTryComments = objStudentOutcome.SecondTryComments
                         End If
 
                         If objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
                             objOutcomeResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
+                            objOutcomeResult.ThirdTryComments = objStudentOutcome.ThirdTryComments
                         ElseIf objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved AndAlso objOutcomeResult.ThirdTryStatus = OutcomeResultStatusEnum.Unknown AndAlso objOutcomeResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso objOutcomeResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved Then
                             '-- Do not write NonAchieved for 3rd if 1st or 2nd is already achieved
                             objOutcomeResult.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
+                            objOutcomeResult.ThirdTryComments = objStudentOutcome.ThirdTryComments
                         End If
 
                     End If
@@ -2969,79 +2980,64 @@ Public Class Student
         For Each objAsmtOutcome As AssignmentOutcome In Me.SchoolClass.ClassGroup.Outcomes
             objOutcomeResult = New StudentModuleOutcomeResult()
             objOutcomeResult.Outcome = objAsmtOutcome
-            objOutcomeResult.Status = OutcomeResultStatusEnum.Unknown '-- We don't know until we know
+            objOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved '-- We don't know until we know and unknown = not achieved
 
             objReturn.Outcomes.Add(objOutcomeResult)
         Next
 
         '-- walk through each assignment and check off M's and D's
         For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
-            'If asmt.M1Achieved Then
-            '    objReturn.M1Achieved = True
-            'End If
-            'If asmt.M2Achieved Then
-            '    objReturn.M2Achieved = True
-            'End If
-            'If asmt.M3Achieved Then
-            '    objReturn.M3Achieved = True
-            'End If
+            If asmt.Processed Then
+                '-- only use processed assignment
+                '   So if oral exam on an assignment which was never submitted, it will be completely ignored
 
-            'If asmt.D1Achieved Then
-            '    objReturn.D1Achieved = True
-            'End If
-            'If asmt.D2Achieved Then
-            '    objReturn.D2Achieved = True
-            'End If
-            'If asmt.D3Achieved Then
-            '    objReturn.D3Achieved = True
-            'End If
+                '-- Now, check all the outcomes
+                For Each objStudentOutcome As OutcomeResult In asmt.Outcomes
+                    '-- and match to what we added earlier
+                    For Each objModuleOutcomeResult As StudentModuleOutcomeResult In objReturn.Outcomes
+                        If objModuleOutcomeResult.Outcome.ID = objStudentOutcome.BaseOutcome.ID Then
+                            '-- Found a matching student OutcomeResult
 
-            '-- Now, check all the outcomes
-            For Each objStudentOutcome As OutcomeResult In asmt.Outcomes
-                '-- and match to what we added earlier
-                For Each objModuleOutcomeResult As StudentModuleOutcomeResult In objReturn.Outcomes
-                    If objModuleOutcomeResult.Outcome.ID = objStudentOutcome.BaseOutcome.ID Then
-                        '-- Found a matching student OutcomeResult
-
-                        If objModuleOutcomeResult.Status <> OutcomeResultStatusEnum.Achieved Then
-                            '-- We only consider if the outcome was not passed earlier (like on earlier assignment)
-                            If objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                '-- Yeah, student passed
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
-                                objModuleOutcomeResult.LatestFeedback = objStudentOutcome.ThirdTryComments
-                            ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                '-- Yeah, student passed
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
-                                objModuleOutcomeResult.LatestFeedback = objStudentOutcome.SecondTryComments
-                            ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                '-- Yeah, student passed
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
-                                objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
+                            If objModuleOutcomeResult.Status <> OutcomeResultStatusEnum.Achieved Then
+                                '-- We only consider if the outcome was not passed earlier (like on earlier assignment)
+                                If objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                    '-- Yeah, student passed
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
+                                    objModuleOutcomeResult.LatestFeedback = objStudentOutcome.ThirdTryComments
+                                ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                    '-- Yeah, student passed
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
+                                    objModuleOutcomeResult.LatestFeedback = objStudentOutcome.SecondTryComments
+                                ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                    '-- Yeah, student passed
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Achieved
+                                    objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
 
 
 
-                                '== At this point, student did not pass, so let's deal with failing feedback
-                                '-- Student fail somewhere
-                            ElseIf objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
-                                objModuleOutcomeResult.LatestFeedback = objStudentOutcome.ThirdTryComments
-                            ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
-                                objModuleOutcomeResult.LatestFeedback = objStudentOutcome.SecondTryComments
-                            ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                    '== At this point, student did not pass, so let's deal with failing feedback
+                                    '-- Student fail somewhere
+                                ElseIf objStudentOutcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
+                                    objModuleOutcomeResult.LatestFeedback = objStudentOutcome.ThirdTryComments
+                                ElseIf objStudentOutcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
+                                    objModuleOutcomeResult.LatestFeedback = objStudentOutcome.SecondTryComments
+                                ElseIf objStudentOutcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
 
-                                '   Unknown means the student has not attempted the outcome yet
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
-                                objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
-                            Else
-                                '-- If we get here, actually this outcome never passed, never failed...so never submitted
-                                objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Unknown
-                                objModuleOutcomeResult.LatestFeedback = AppSettings.NoSubmitFeedback
+                                    '   Unknown means the student has not attempted the outcome yet
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
+                                    objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
+                                Else
+                                    '-- If we get here, actually this outcome never passed, never failed...so never submitted
+                                    objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Unknown
+                                    objModuleOutcomeResult.LatestFeedback = AppSettings.NoSubmitFeedback
+                                End If
                             End If
                         End If
-                    End If
+                    Next
                 Next
-            Next
+            End If
         Next
 
         Return objReturn

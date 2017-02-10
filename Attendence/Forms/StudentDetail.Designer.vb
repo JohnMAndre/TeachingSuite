@@ -68,12 +68,6 @@ Partial Class StudentDetail
         Me.pnlAssignments = New System.Windows.Forms.Panel()
         Me.llblMoveAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.pnlOutcomes = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkD3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.olvOutcomes = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -85,6 +79,12 @@ Partial Class StudentDetail
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.llblMeritAwarded = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblDistinctionAwarded = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.chkD3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkD2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkD1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkM3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkM2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkM1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.rtbLog = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.rtbNotes = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.olvNormalAssignments = New BrightIdeasSoftware.ObjectListView()
@@ -110,8 +110,6 @@ Partial Class StudentDetail
         Me.OlvColumn25 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn27 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -707,6 +705,104 @@ Partial Class StudentDetail
         Me.pnlOutcomes.Size = New System.Drawing.Size(772, 279)
         Me.pnlOutcomes.TabIndex = 44
         '
+        'olvOutcomes
+        '
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn5)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn6)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn7)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn8)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn9)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn10)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn11)
+        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn12)
+        Me.olvOutcomes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvOutcomes.CellEditUseWholeCell = False
+        Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
+        Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
+        Me.olvOutcomes.FullRowSelect = True
+        Me.olvOutcomes.Location = New System.Drawing.Point(0, 20)
+        Me.olvOutcomes.Name = "olvOutcomes"
+        Me.olvOutcomes.ShowGroups = False
+        Me.olvOutcomes.Size = New System.Drawing.Size(773, 259)
+        Me.olvOutcomes.TabIndex = 41
+        Me.olvOutcomes.UseCompatibleStateImageBehavior = False
+        Me.olvOutcomes.UseFiltering = True
+        Me.olvOutcomes.View = System.Windows.Forms.View.Details
+        '
+        'OlvColumn5
+        '
+        Me.OlvColumn5.AspectName = "Name"
+        Me.OlvColumn5.IsEditable = False
+        Me.OlvColumn5.Text = "Name"
+        '
+        'OlvColumn6
+        '
+        Me.OlvColumn6.AspectName = "Description"
+        Me.OlvColumn6.IsEditable = False
+        Me.OlvColumn6.Text = "Description"
+        Me.OlvColumn6.Width = 157
+        '
+        'OlvColumn7
+        '
+        Me.OlvColumn7.AspectName = "FirstTryStatus"
+        Me.OlvColumn7.Text = "First"
+        '
+        'OlvColumn8
+        '
+        Me.OlvColumn8.AspectName = "FirstTryComments"
+        Me.OlvColumn8.Text = "Feedback"
+        Me.OlvColumn8.Width = 130
+        '
+        'OlvColumn9
+        '
+        Me.OlvColumn9.AspectName = "SecondTryStatus"
+        Me.OlvColumn9.Text = "Rework"
+        '
+        'OlvColumn10
+        '
+        Me.OlvColumn10.AspectName = "SecondTryComments"
+        Me.OlvColumn10.Text = "Feedback"
+        '
+        'OlvColumn11
+        '
+        Me.OlvColumn11.AspectName = "ThirdTryStatus"
+        Me.OlvColumn11.Text = "2nd Rework"
+        Me.OlvColumn11.Width = 100
+        '
+        'OlvColumn12
+        '
+        Me.OlvColumn12.AspectName = "ThirdTryComments"
+        Me.OlvColumn12.Text = "Feedback"
+        '
+        'llblMeritAwarded
+        '
+        Me.llblMeritAwarded.Location = New System.Drawing.Point(170, 3)
+        Me.llblMeritAwarded.Name = "llblMeritAwarded"
+        Me.llblMeritAwarded.Palette = Me.KryptonPalette1
+        Me.llblMeritAwarded.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.llblMeritAwarded.Size = New System.Drawing.Size(38, 34)
+        Me.llblMeritAwarded.TabIndex = 48
+        Me.ToolTip1.SetToolTip(Me.llblMeritAwarded, "You got merit!!!")
+        Me.llblMeritAwarded.Values.Image = Global.Teaching.My.Resources.Resources.smiley_32
+        Me.llblMeritAwarded.Values.Text = ""
+        Me.llblMeritAwarded.Visible = False
+        '
+        'llblDistinctionAwarded
+        '
+        Me.llblDistinctionAwarded.Location = New System.Drawing.Point(439, 3)
+        Me.llblDistinctionAwarded.Name = "llblDistinctionAwarded"
+        Me.llblDistinctionAwarded.Palette = Me.KryptonPalette1
+        Me.llblDistinctionAwarded.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.llblDistinctionAwarded.Size = New System.Drawing.Size(38, 34)
+        Me.llblDistinctionAwarded.TabIndex = 49
+        Me.ToolTip1.SetToolTip(Me.llblDistinctionAwarded, "You got distinction!!!")
+        Me.llblDistinctionAwarded.Values.Image = Global.Teaching.My.Resources.Resources.smileybig_32
+        Me.llblDistinctionAwarded.Values.Text = ""
+        Me.llblDistinctionAwarded.Visible = False
+        '
         'chkD3
         '
         Me.chkD3.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
@@ -790,104 +886,6 @@ Partial Class StudentDetail
         Me.chkM1.Text = "M1:"
         Me.chkM1.Values.Text = "M1:"
         Me.chkM1.Visible = False
-        '
-        'olvOutcomes
-        '
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn5)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn6)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn7)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn8)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn9)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn10)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn11)
-        Me.olvOutcomes.AllColumns.Add(Me.OlvColumn12)
-        Me.olvOutcomes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvOutcomes.CellEditUseWholeCell = False
-        Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
-        Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
-        Me.olvOutcomes.FullRowSelect = True
-        Me.olvOutcomes.Location = New System.Drawing.Point(0, 22)
-        Me.olvOutcomes.Name = "olvOutcomes"
-        Me.olvOutcomes.ShowGroups = False
-        Me.olvOutcomes.Size = New System.Drawing.Size(773, 257)
-        Me.olvOutcomes.TabIndex = 41
-        Me.olvOutcomes.UseCompatibleStateImageBehavior = False
-        Me.olvOutcomes.UseFiltering = True
-        Me.olvOutcomes.View = System.Windows.Forms.View.Details
-        '
-        'OlvColumn5
-        '
-        Me.OlvColumn5.AspectName = "Name"
-        Me.OlvColumn5.IsEditable = False
-        Me.OlvColumn5.Text = "Name"
-        '
-        'OlvColumn6
-        '
-        Me.OlvColumn6.AspectName = "Description"
-        Me.OlvColumn6.IsEditable = False
-        Me.OlvColumn6.Text = "Description"
-        Me.OlvColumn6.Width = 157
-        '
-        'OlvColumn7
-        '
-        Me.OlvColumn7.AspectName = "FirstTryStatus"
-        Me.OlvColumn7.Text = "First"
-        '
-        'OlvColumn8
-        '
-        Me.OlvColumn8.AspectName = "FirstTryComments"
-        Me.OlvColumn8.Text = "Feedback"
-        Me.OlvColumn8.Width = 130
-        '
-        'OlvColumn9
-        '
-        Me.OlvColumn9.AspectName = "SecondTryStatus"
-        Me.OlvColumn9.Text = "Rework"
-        '
-        'OlvColumn10
-        '
-        Me.OlvColumn10.AspectName = "SecondTryComments"
-        Me.OlvColumn10.Text = "Feedback"
-        '
-        'OlvColumn11
-        '
-        Me.OlvColumn11.AspectName = "ThirdTryStatus"
-        Me.OlvColumn11.Text = "2nd Rework"
-        Me.OlvColumn11.Width = 100
-        '
-        'OlvColumn12
-        '
-        Me.OlvColumn12.AspectName = "ThirdTryComments"
-        Me.OlvColumn12.Text = "Feedback"
-        '
-        'llblMeritAwarded
-        '
-        Me.llblMeritAwarded.Location = New System.Drawing.Point(170, 3)
-        Me.llblMeritAwarded.Name = "llblMeritAwarded"
-        Me.llblMeritAwarded.Palette = Me.KryptonPalette1
-        Me.llblMeritAwarded.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblMeritAwarded.Size = New System.Drawing.Size(38, 34)
-        Me.llblMeritAwarded.TabIndex = 48
-        Me.ToolTip1.SetToolTip(Me.llblMeritAwarded, "You got merit!!!")
-        Me.llblMeritAwarded.Values.Image = Global.Teaching.My.Resources.Resources.smiley_32
-        Me.llblMeritAwarded.Values.Text = ""
-        Me.llblMeritAwarded.Visible = False
-        '
-        'llblDistinctionAwarded
-        '
-        Me.llblDistinctionAwarded.Location = New System.Drawing.Point(439, 3)
-        Me.llblDistinctionAwarded.Name = "llblDistinctionAwarded"
-        Me.llblDistinctionAwarded.Palette = Me.KryptonPalette1
-        Me.llblDistinctionAwarded.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblDistinctionAwarded.Size = New System.Drawing.Size(38, 34)
-        Me.llblDistinctionAwarded.TabIndex = 49
-        Me.ToolTip1.SetToolTip(Me.llblDistinctionAwarded, "You got distinction!!!")
-        Me.llblDistinctionAwarded.Values.Image = Global.Teaching.My.Resources.Resources.smileybig_32
-        Me.llblDistinctionAwarded.Values.Text = ""
-        Me.llblDistinctionAwarded.Visible = False
         '
         'rtbLog
         '
@@ -1143,16 +1141,7 @@ Partial Class StudentDetail
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'StudentDetail
         '
@@ -1270,7 +1259,6 @@ Partial Class StudentDetail
     Friend WithEvents KryptonLabel13 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtClassGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents lblAbsentPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents OlvColumn25 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn26 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn27 As BrightIdeasSoftware.OLVColumn
