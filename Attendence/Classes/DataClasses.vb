@@ -3224,6 +3224,7 @@ Public Class Student
                 xItem.SetAttribute("ID", item.BaseImprovementItem.ID)
                 xItem.SetAttribute("DateAdded", item.DateAdded.ToString(DATE_FORMAT_XML))
                 xItem.SetAttribute("DateRemoved", item.DateRemoved.ToString(DATE_FORMAT_XML))
+                xItem.SetAttribute("DateLastIncluded", item.DateLastIncluded.ToString(DATE_FORMAT_XML))
                 xItem.SetAttribute("PerformanceLevel", item.PerformanceLevel.ToString())
                 xItems.AppendChild(xItem)
             Next
@@ -3372,6 +3373,8 @@ Public Class Student
             '-- 24 Jan 2017 I am adding PerfLevel for improvementitems
             '   Note: This has to be done before assigning the baseimprovementitem or history logging will take place
             strTemp = xItem.GetAttribute("PerformanceLevel")
+            item.DateLastIncluded = ConvertToDateFromXML(xItem.GetAttribute("DateLastIncluded"), DATE_NO_DATE)
+
             item.PerformanceLevel = ConvertToByte(strTemp, 3) '-- If the data has no perfLevel then we just start at 3 (wrong but not horrible)
 
 
@@ -3729,11 +3732,31 @@ End Class
 Public Class StudentImprovementItem '-- This is for the student and references the base item
     Public Sub New(student As Student)
         Me.Student = student
+        DateAdded = DATE_NO_DATE
+        DateRemoved = DATE_NO_DATE
+        DateLastIncluded = DATE_NO_DATE
     End Sub
     Public Property Student As Student
     Public Property BaseImprovementItem As ImprovementItem
     Public Property DateAdded As Date
     Public Property DateRemoved As Date
+    Public Property DateLastIncluded As Date
+    Public Overrides Function ToString() As String
+        If BaseImprovementItem IsNot Nothing Then
+            Return BaseImprovementItem.Name & " (" & BaseImprovementItem.ID & ")"
+        Else
+            Return "Undefined improvement item"
+        End If
+        Return MyBase.ToString()
+    End Function
+    ''' <summary>
+    ''' Sets the DateLastIncluded to now and also adds to student's activity log
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub IncludeToday()
+        DateLastIncluded = Date.Now
+        Student.AddToActivityLog("Improvement item included: " & Me.ToString())
+    End Sub
 
     Private m_bytPerformanceLevel As Integer
     '0=Not evaluated

@@ -468,11 +468,12 @@ Partial Class StudentAssignmentNormalDetails
         '
         'olvcolDateRemoved
         '
-        Me.olvcolDateRemoved.AspectName = "DateRemoved"
+        Me.olvcolDateRemoved.AspectName = "DateLastIncluded"
         Me.olvcolDateRemoved.AspectToStringFormat = "{0:d}"
         Me.olvcolDateRemoved.DisplayIndex = 3
-        Me.olvcolDateRemoved.Text = "Removed"
+        Me.olvcolDateRemoved.Text = "Last time"
         Me.olvcolDateRemoved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolDateRemoved.ToolTipText = "Date this was last included in student feedback"
         '
         'OlvColumn5
         '

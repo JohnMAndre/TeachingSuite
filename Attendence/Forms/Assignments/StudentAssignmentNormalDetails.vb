@@ -81,7 +81,7 @@
             End If
         End If
 
-        If item.DateRemoved = DATE_NO_DATE Then
+        If item.DateLastIncluded = DATE_NO_DATE Then
             olvi.SubItems(olvcolDateRemoved.Index).Text = String.Empty
         End If
 
@@ -231,6 +231,10 @@
             m_student.AddToActivityLog("Changed plagiarism severity from " & m_student.PlagiarismSeverity.ToString() & " to " & nudPlagiarismSeverity.Value.ToString() & " on " & m_studentAssignment.BaseAssignment.Name)
             m_student.PlagiarismSeverity = nudPlagiarismSeverity.Value
         End If
+
+        For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
+            item.IncludeToday()
+        Next
 
         AddHistory("Finished marking student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
 

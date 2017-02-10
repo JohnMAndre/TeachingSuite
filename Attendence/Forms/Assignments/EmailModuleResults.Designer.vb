@@ -109,6 +109,7 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -339,12 +340,12 @@ Partial Class EmailModuleResults
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
         'StudentsToolStripMenuItem
         '
-        Me.StudentsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem1, Me.SethiddenForSelectedToolStripMenuItem, Me.ClearHiddenForSelectedToolStripMenuItem, Me.IncludeattachmentToolStripMenuItem, Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem})
+        Me.StudentsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem1, Me.SethiddenForSelectedToolStripMenuItem, Me.ClearHiddenForSelectedToolStripMenuItem, Me.ToolStripSeparator1, Me.IncludeattachmentToolStripMenuItem, Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem})
         Me.StudentsToolStripMenuItem.Name = "StudentsToolStripMenuItem"
         Me.StudentsToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.StudentsToolStripMenuItem.Text = "&Students"
@@ -394,7 +395,7 @@ Partial Class EmailModuleResults
         'ToolStripMenuItem25
         '
         Me.ToolStripMenuItem25.Name = "ToolStripMenuItem25"
-        Me.ToolStripMenuItem25.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem25.Size = New System.Drawing.Size(107, 22)
         Me.ToolStripMenuItem25.Text = "&About"
         '
         'ToolStripMenuItem26
@@ -933,6 +934,11 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(268, 6)
+        '
         'EmailModuleResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1078,4 +1084,5 @@ Partial Class EmailModuleResults
     Friend WithEvents chkFinalFeedback As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeMeritDistinctionResults As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
 End Class

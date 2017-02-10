@@ -201,26 +201,6 @@ Friend Class StudentAssignmentDetails
     End Sub
     Private Function SaveChanges() As Boolean
         Dim intPassedOutcomes As Integer = PassedOutcomes()
-        'If intPassedOutcomes < m_studentAssignment.Outcomes.Count Then
-        '    If chkM1.Checked OrElse _
-        '        chkM2.Checked OrElse _
-        '        chkM3.Checked OrElse _
-        '        chkD1.Checked OrElse _
-        '        chkD2.Checked OrElse _
-        '        chkD3.Checked Then
-
-        '        MessageBox.Show("You cannot grant M1-D3 unless all outcomes were passed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '        Return False
-        '    End If
-        'End If
-
-
-        'm_studentAssignment.M1Achieved = chkM1.Checked
-        'm_studentAssignment.M2Achieved = chkM2.Checked
-        'm_studentAssignment.M3Achieved = chkM3.Checked
-        'm_studentAssignment.D1Achieved = chkD1.Checked
-        'm_studentAssignment.D2Achieved = chkD2.Checked
-        'm_studentAssignment.D3Achieved = chkD3.Checked
 
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
@@ -272,6 +252,10 @@ Friend Class StudentAssignmentDetails
                 MessageBox.Show("Tags changed on this form but also somewhere else. Unclear which tags should be used so tags on this form ignored.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         End If
+
+        For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
+            item.IncludeToday()
+        Next
 
         AddHistory("Finished marking student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
 
@@ -1836,7 +1820,7 @@ Friend Class StudentAssignmentDetails
             End If
         End If
 
-        If item.DateRemoved = DATE_NO_DATE Then
+        If item.DateLastIncluded = DATE_NO_DATE Then
             olvi.SubItems(olvcolDateRemoved.Index).Text = String.Empty
         End If
 
