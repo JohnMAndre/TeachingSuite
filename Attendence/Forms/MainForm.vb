@@ -2792,4 +2792,18 @@ Public Class MainForm
             frm.Show()
         End If
     End Sub
+
+    Private Sub llblAddTag_LinkClicked(sender As Object, e As EventArgs) Handles llblAddTag.LinkClicked
+        If txtTag.Text.Trim().Length = 0 Then
+            '-- do nothing
+        Else
+            For Each stud As Student In olvStudents.SelectedObjects
+                If stud.Tags.Length > 0 Then
+                    stud.Tags &= " " '-- add a space to separate this tag from other tags
+                End If
+                stud.Tags &= txtTag.Text.Trim()
+                olvStudents.RefreshObject(stud)
+            Next
+        End If
+    End Sub
 End Class
