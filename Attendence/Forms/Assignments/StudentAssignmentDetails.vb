@@ -1196,150 +1196,46 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub btnGenerateImprovementComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementComments.LinkClicked
-
-        '============================ DELETE BELOW HERE once 2.0 is fully working ================================
-
-        'Dim objResults As Student.StudentModuleResult = LoadModuleResults()
-        'Dim boolPassedAll As Boolean = True
-        'For Each oc As OutcomeResult In m_studentAssignment.Outcomes
-        '    Select Case m_try
-        '        Case MarkingTry.FirstTry
-        '            If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
-        '                boolPassedAll = False
-        '                Exit For
-        '            End If
-        '        Case MarkingTry.SecondTry
-        '            If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Achieved Then
-        '                boolPassedAll = False
-        '                Exit For
-        '            End If
-        '        Case MarkingTry.ThirdTry
-        '            If oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso oc.ThirdTryStatus <> OutcomeResultStatusEnum.Achieved Then
-        '                boolPassedAll = False
-        '                Exit For
-        '            End If
-        '    End Select
-        'Next
-
-        'Dim strImprovement As String
-
-        'If boolPassedAll Then
-        '    boolPassedAll = True
-        '    Dim boolGotMerit As Boolean = True
-        '    If chkM1.Enabled AndAlso Not chkM1.Checked Then
-        '        boolGotMerit = False
-        '    End If
-        '    If chkM2.Enabled AndAlso Not chkM2.Checked Then
-        '        boolGotMerit = False
-        '    End If
-        '    If chkM3.Enabled AndAlso Not chkM3.Checked Then
-        '        boolGotMerit = False
-        '    End If
-
-
-        '    Dim boolGotDistinction As Boolean = boolGotMerit '-- must get merit to get distinction
-        '    If chkD1.Enabled AndAlso Not chkD1.Checked Then
-        '        boolGotDistinction = False
-        '    End If
-        '    If chkD2.Enabled AndAlso Not chkD2.Checked Then
-        '        boolGotDistinction = False
-        '    End If
-        '    If chkD3.Enabled AndAlso Not chkD3.Checked Then
-        '        boolGotDistinction = False
-        '    End If
-
-        '    If boolGotMerit AndAlso boolGotDistinction Then
-        '        strImprovement = "Keep up the good work"
-        '    ElseIf boolGotMerit Then
-        '        Dim boolNeedAnd As Boolean
-        '        strImprovement = "To achieve DISTINCTION, student should fulfill the requirements for "
-        '        If chkD1.Enabled AndAlso Not chkD1.Checked Then
-        '            strImprovement &= "D1"
-        '            boolNeedAnd = True
-        '        End If
-        '        If chkD2.Enabled AndAlso Not chkD2.Checked Then
-        '            If boolNeedAnd Then
-        '                strImprovement &= " and "
-        '            End If
-        '            strImprovement &= "D2"
-        '            boolNeedAnd = True
-        '        End If
-        '        If chkD3.Enabled AndAlso Not chkD3.Checked Then
-        '            If boolNeedAnd Then
-        '                strImprovement &= " and "
-        '            End If
-        '            strImprovement &= "D3"
-        '        End If
-        '    Else
-        '        If m_try = MarkingTry.FirstTry Then
-        '            strImprovement = "To achieve MERIT, student should"
-        '        Else
-        '            strImprovement = AppSettings.RedoPassAllDefaultComment
-        '        End If
-        '    End If
-
-        '    If m_try = MarkingTry.FirstTry Then
-        '        If rtbImprovementComments.Text.Trim.Length = 0 Then
-        '            rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
-        '        Else
-        '            rtbImprovementComments.Text = strImprovement & " " & rtbImprovementComments.Text & " " & GetImprovementNotes()
-        '        End If
-        '    Else
-        '        rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
-        '    End If
-
-        'Else
-        '    If StudentPlagiarized() Then
-        '        strImprovement = "To pass, student should not plagiarize"
-        '    Else
-        '        strImprovement = "To pass, student should show proper understanding of all outcomes"
-        '    End If
-
-        '    If m_try = MarkingTry.FirstTry Then
-        '        rtbImprovementComments.Text = strImprovement & " " & rtbImprovementComments.Text & " " & GetImprovementNotes()
-        '    Else
-        '        rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
-        '    End If
-        'End If
-        '============================ DELETE ABOVE HERE once 2.0 is fully working ================================
-
-        GenerateImprovementFeedback(False)
+        GenerateImprovementFeedback(False, True)
     End Sub
-    Private Sub GenerateImprovementFeedback(late As Boolean)
-        Dim strImprovement As String
+    Private Sub GenerateImprovementFeedback(late As Boolean, includeGradeHint As Boolean)
+        Dim strImprovement As String = String.Empty
 
-        If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
-            If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
-                If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
-                    '- Distinction
-                    strImprovement = AppSettings.ImprovementFeedbackForDistinction
-                Else
-                    '-- Just merit
-                    strImprovement = AppSettings.ImprovementFeedbackForMerit
-                End If
-            Else
-                '-- Just pass
-                If m_try = MarkingTry.FirstTry Then
-                    If late Then
-                        strImprovement = AppSettings.LateSubmitDefaultComment
+        If includeGradeHint Then
+            If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
+                If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
+                    If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
+                        '- Distinction
+                        strImprovement = AppSettings.ImprovementFeedbackForDistinction
                     Else
-                        strImprovement = AppSettings.ImprovementFeedbackForPassAll
+                        '-- Just merit
+                        strImprovement = AppSettings.ImprovementFeedbackForMerit
                     End If
                 Else
-                    strImprovement = AppSettings.RedoPassAllDefaultComment
+                    '-- Just pass
+                    If m_try = MarkingTry.FirstTry Then
+                        If late Then
+                            strImprovement = AppSettings.LateSubmitDefaultComment
+                        Else
+                            strImprovement = AppSettings.ImprovementFeedbackForPassAll
+                        End If
+                    Else
+                        strImprovement = AppSettings.RedoPassAllDefaultComment
+                    End If
                 End If
-            End If
-        Else
-            '-- Not passed yet
-            Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
-            If intAchieved > 0 Then
-                strImprovement = AppSettings.ImprovementFeedbackForFailSome
             Else
-                strImprovement = AppSettings.ImprovementFeedbackForFailAll
+                '-- Not passed yet
+                Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
+                If intAchieved > 0 Then
+                    strImprovement = AppSettings.ImprovementFeedbackForFailSome
+                Else
+                    strImprovement = AppSettings.ImprovementFeedbackForFailAll
+                End If
             End If
         End If
 
         rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
+        rtbImprovementComments.Text = rtbImprovementComments.Text.Trim()
     End Sub
     Private Function GetImprovementNotes() As String
         Try
@@ -1423,42 +1319,8 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub btnGenerateImprovementCommentsLate_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementCommentsLate.LinkClicked
-        '============================ DELETE BELOW HERE once 2.0 is fully working ================================
-
-        'Dim intPassedOutcomes As Integer = PassedOutcomes()
-        'Dim intFailedOutcomes As Integer = FailedOutcomes()
-
-        'If intPassedOutcomes = -1 Then
-        '    MessageBox.Show("You must mark all outcomes before generating text.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Exit Sub
-        'End If
-
-        'If chkM1.Checked OrElse chkM2.Checked OrElse chkM3.Checked OrElse chkD1.Checked OrElse chkD2.Checked OrElse chkD3.Checked Then
-        '    MessageBox.Show("M and D qualifiers not available for late submissions.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Exit Sub
-        'End If
-
-        'Dim strImprovement As String
-
-        ''If intPassedOutcomes = m_studentAssignment.Outcomes.Count Then
-        'If intFailedOutcomes = 0 Then
-        '    strImprovement = AppSettings.LateSubmitDefaultComment
-        'Else
-        '    If StudentPlagiarized() Then
-        '        strImprovement = "To pass, student should not plagiarize"
-        '    Else
-        '        strImprovement = "To pass, student should show proper understanding of all outcomes"
-        '    End If
-        'End If
-
-        'If m_try = MarkingTry.FirstTry Then
-        '    rtbImprovementComments.Text = strImprovement & ". " & rtbImprovementComments.Text & " " & GetImprovementNotes()
-        'Else
-        '    rtbImprovementComments.Text = strImprovement & ". " & GetImprovementNotes()
-        'End If
-        '============================ DELETE ABOVE HERE once 2.0 is fully working ================================
-
-        GenerateImprovementFeedback(True)
+        
+        GenerateImprovementFeedback(True, True)
 
     End Sub
     Private Function GetSavedAssignmentFilename() As String
@@ -2043,4 +1905,7 @@ Friend Class StudentAssignmentDetails
         Clipboard.SetText(sb.ToString())
     End Sub
 
+    Private Sub btnGenerateImprovementCommentsNoGradeHint_LinkClicked(sender As Object, e As EventArgs) Handles btnGenerateImprovementCommentsNoGradeHint.LinkClicked
+        GenerateImprovementFeedback(False, False)
+    End Sub
 End Class

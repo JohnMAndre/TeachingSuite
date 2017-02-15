@@ -48,6 +48,7 @@ Partial Class StudentAssignmentDetails
         Me.olv1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvModuleResultsPassFail = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.imglstFeedback = New System.Windows.Forms.ImageList(Me.components)
+        Me.btnGenerateImprovementCommentsNoGradeHint = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.rtbObservationComments = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.rtbImprovementComments = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
@@ -378,6 +379,7 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonSplitContainer4.Panel2
         '
+        Me.KryptonSplitContainer4.Panel2.Controls.Add(Me.btnGenerateImprovementCommentsNoGradeHint)
         Me.KryptonSplitContainer4.Panel2.Controls.Add(Me.KryptonLabel13)
         Me.KryptonSplitContainer4.Panel2.Controls.Add(Me.rtbObservationComments)
         Me.KryptonSplitContainer4.Panel2.Controls.Add(Me.rtbImprovementComments)
@@ -545,6 +547,19 @@ Partial Class StudentAssignmentDetails
         Me.imglstFeedback.Images.SetKeyName(0, "erase_16.png")
         Me.imglstFeedback.Images.SetKeyName(1, "checkmark_16.png")
         Me.imglstFeedback.Images.SetKeyName(2, "no.png")
+        '
+        'btnGenerateImprovementCommentsNoGradeHint
+        '
+        Me.btnGenerateImprovementCommentsNoGradeHint.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnGenerateImprovementCommentsNoGradeHint.Location = New System.Drawing.Point(695, 32)
+        Me.btnGenerateImprovementCommentsNoGradeHint.Name = "btnGenerateImprovementCommentsNoGradeHint"
+        Me.btnGenerateImprovementCommentsNoGradeHint.Palette = Me.KryptonPalette1
+        Me.btnGenerateImprovementCommentsNoGradeHint.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.btnGenerateImprovementCommentsNoGradeHint.Size = New System.Drawing.Size(38, 34)
+        Me.btnGenerateImprovementCommentsNoGradeHint.TabIndex = 105
+        Me.ToolTip1.SetToolTip(Me.btnGenerateImprovementCommentsNoGradeHint, "Generate improvement comments within a grade hint")
+        Me.btnGenerateImprovementCommentsNoGradeHint.Values.Image = Global.Teaching.My.Resources.Resources.notes_32
+        Me.btnGenerateImprovementCommentsNoGradeHint.Values.Text = ""
         '
         'KryptonLabel13
         '
@@ -1732,4 +1747,5 @@ Partial Class StudentAssignmentDetails
     Private WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
+    Private WithEvents btnGenerateImprovementCommentsNoGradeHint As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class
