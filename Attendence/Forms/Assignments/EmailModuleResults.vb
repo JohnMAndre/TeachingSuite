@@ -721,37 +721,51 @@ Public Class EmailModuleResults
                         Else
                             sbReturn.Append("<td bgcolor='Red' align='center'>" & strResult & "</td>")
                         End If
+
+                        If Me.chkIncludeFeedback.Checked Then
+                            sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
+                        Else
+                            '-- We are not supposed to send the feedback
+                            '   So just send blank
+                            sbReturn.Append("<td>&nbsp;</td>")
+                        End If
                     Else
+                        '-- Do not include merit or distinction means
+                        '   do not include the feedback for merit or distinction
+                        '   also do not include the grade
                         sbReturn.Append("<td align='center'>&nbsp;</td>")
+                        sbReturn.Append("<td>&nbsp;</td>")
                     End If
                 Else
                     '-- We are not supposed to send the grade
                     '   So just send blank, no color coding
-                    sbReturn.Append("<td align='center'>&nbsp;</td>")
+
+                    If oc.Outcome.GradeGroup = BTECGradeGroup.Merit OrElse oc.Outcome.GradeGroup = BTECGradeGroup.Distinction Then
+                        '-- Do not include grade means
+                        '   do not include the feedback for merit or distinction
+                        '   also do not include the grade
+                        sbReturn.Append("<td align='center'>&nbsp;</td>")
+                        sbReturn.Append("<td>&nbsp;</td>")
+                    Else
+                        '-- pass
+                        sbReturn.Append("<td align='center'>&nbsp;</td>")
+
+                        If Me.chkIncludeFeedback.Checked Then
+                            sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
+                        Else
+                            '-- We are not supposed to send the feedback
+                            '   So just send blank
+                            sbReturn.Append("<td>&nbsp;</td>")
+                        End If
+                End If
                 End If
 
-                If Me.chkIncludeFeedback.Checked Then
-                    sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
-                Else
-                    '-- We are not supposed to send the feedback
-                    '   So just send blank
-                    sbReturn.Append("<td>&nbsp;</td>")
-                End If
+
 
                 '-- Last part of the line is the same no matter what
                 sbReturn.Append("</tr>")
 
-                'If Me.chkIncludeFeedback.Checked Then
-                '    If oc.Status = OutcomeResultStatusEnum.Pass Then
-                '        sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td bgcolor='LightGreen'>" & strResult & "</td><td>" & strFeedback & "</td></tr>")
-                '    Else
-                '        sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td bgcolor='Red'>" & strResult & "</td><td>" & strFeedback & "</td></tr>")
-                '    End If
-                'Else
-                '    '-- should never get here
-                '    sbReturn.Append("<tr><td>" & oc.Outcome.Name & "</td><td>" & strResult & "</td><td>&nbsp;</td></tr>")
-                'End If
-            End If
+                End If
         Next
 
         sbReturn.Append("</table>")
