@@ -42,7 +42,6 @@ Partial Class ModuleResults
         Me.LoadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.lblFailPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblPassPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()

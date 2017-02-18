@@ -3041,6 +3041,8 @@ Public Class Student
             End If
         Next
 
+        objReturn.Outcomes.Sort()
+
         Return objReturn
     End Function
     Public Function AddAssignment(assignment As IClassAssignment) As IStudentAssignment
@@ -3511,7 +3513,10 @@ Public Class Student
             Return Outcome.Name
         End Function
         Public Function CompareTo(other As StudentModuleOutcomeResult) As Integer Implements IComparable(Of StudentModuleOutcomeResult).CompareTo
-            Return Me.Outcome.Name.CompareTo(other.Outcome.Name)
+            '-- Changing for 2.0 for BTEC RQF  --      Return Me.Outcome.Name.CompareTo(other.Outcome.Name)
+            Dim strThisOne As String = ConvertToInt32(Me.Outcome.GradeGroup, 0).ToString() & Me.Outcome.Name
+            Dim strTheOther As String = ConvertToInt32(other.Outcome.GradeGroup, 0).ToString() & other.Outcome.Name
+            Return strThisOne.CompareTo(strTheOther)
         End Function
     End Class
     Public Class DetailAssignmentResults

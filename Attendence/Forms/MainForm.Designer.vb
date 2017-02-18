@@ -69,8 +69,12 @@ Partial Class MainForm
         Me.AssignmentMoveUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignmentMoveDownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblAddTag = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.txtStudentFilter = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.lblStudentCount = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtTag = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.lblRenumberAdminResetNumber = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblRenumberAdminCurrent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblRenumberAdminCurrentLabel = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.splitStudentsSchedule = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
@@ -146,7 +150,6 @@ Partial Class MainForm
         Me.btnRemoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblRemoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnEditStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.txtStudentFilter = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.btnSelectRandomStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblMoveStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblClearFilter = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -279,6 +282,7 @@ Partial Class MainForm
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
@@ -292,9 +296,6 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtTag = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.llblAddTag = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -797,6 +798,26 @@ Partial Class MainForm
         Me.KryptonLabel1.TabIndex = 3
         Me.KryptonLabel1.Values.Text = "Assignments"
         '
+        'llblAddTag
+        '
+        Me.llblAddTag.Location = New System.Drawing.Point(489, 0)
+        Me.llblAddTag.Name = "llblAddTag"
+        Me.llblAddTag.Size = New System.Drawing.Size(22, 18)
+        Me.llblAddTag.TabIndex = 35
+        Me.ToolTip1.SetToolTip(Me.llblAddTag, "Add tag to selected student(s)")
+        Me.llblAddTag.Values.Image = Global.Teaching.My.Resources.Resources.add_icon_16
+        Me.llblAddTag.Values.Text = ""
+        '
+        'txtStudentFilter
+        '
+        Me.txtStudentFilter.Location = New System.Drawing.Point(42, 0)
+        Me.txtStudentFilter.Name = "txtStudentFilter"
+        Me.txtStudentFilter.Palette = Me.KryptonPalette1
+        Me.txtStudentFilter.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtStudentFilter.TabIndex = 25
+        Me.ToolTip1.SetToolTip(Me.txtStudentFilter, "Student filter")
+        '
         'lblStudentCount
         '
         Me.lblStudentCount.Location = New System.Drawing.Point(189, 0)
@@ -806,6 +827,16 @@ Partial Class MainForm
         Me.lblStudentCount.Size = New System.Drawing.Size(6, 2)
         Me.lblStudentCount.TabIndex = 32
         Me.lblStudentCount.Values.Text = ""
+        '
+        'txtTag
+        '
+        Me.txtTag.Location = New System.Drawing.Point(370, -1)
+        Me.txtTag.Name = "txtTag"
+        Me.txtTag.Palette = Me.KryptonPalette1
+        Me.txtTag.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.txtTag.Size = New System.Drawing.Size(117, 20)
+        Me.txtTag.TabIndex = 34
+        Me.ToolTip1.SetToolTip(Me.txtTag, "Student filter")
         '
         'lblRenumberAdminResetNumber
         '
@@ -818,6 +849,16 @@ Partial Class MainForm
         Me.lblRenumberAdminResetNumber.TabIndex = 31
         Me.lblRenumberAdminResetNumber.Values.Text = "Reset all to 999"
         Me.lblRenumberAdminResetNumber.Visible = False
+        '
+        'KryptonLabel13
+        '
+        Me.KryptonLabel13.Location = New System.Drawing.Point(336, -1)
+        Me.KryptonLabel13.Name = "KryptonLabel13"
+        Me.KryptonLabel13.Palette = Me.KryptonPalette1
+        Me.KryptonLabel13.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel13.Size = New System.Drawing.Size(33, 20)
+        Me.KryptonLabel13.TabIndex = 33
+        Me.KryptonLabel13.Values.Text = "Tag:"
         '
         'lblRenumberAdminCurrent
         '
@@ -1581,16 +1622,6 @@ Partial Class MainForm
         Me.ToolTip1.SetToolTip(Me.btnEditStudent, "Edit selected student")
         Me.btnEditStudent.Values.Image = Global.Teaching.My.Resources.Resources.AutoText_16
         Me.btnEditStudent.Values.Text = ""
-        '
-        'txtStudentFilter
-        '
-        Me.txtStudentFilter.Location = New System.Drawing.Point(42, 0)
-        Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Palette = Me.KryptonPalette1
-        Me.txtStudentFilter.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
-        Me.txtStudentFilter.TabIndex = 25
-        Me.ToolTip1.SetToolTip(Me.txtStudentFilter, "Student filter")
         '
         'btnSelectRandomStudent
         '
@@ -2577,6 +2608,10 @@ Partial Class MainForm
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -2635,36 +2670,6 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'KryptonLabel13
-        '
-        Me.KryptonLabel13.Location = New System.Drawing.Point(336, -1)
-        Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.Palette = Me.KryptonPalette1
-        Me.KryptonLabel13.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel13.Size = New System.Drawing.Size(33, 20)
-        Me.KryptonLabel13.TabIndex = 33
-        Me.KryptonLabel13.Values.Text = "Tag:"
-        '
-        'txtTag
-        '
-        Me.txtTag.Location = New System.Drawing.Point(370, -1)
-        Me.txtTag.Name = "txtTag"
-        Me.txtTag.Palette = Me.KryptonPalette1
-        Me.txtTag.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtTag.Size = New System.Drawing.Size(117, 20)
-        Me.txtTag.TabIndex = 34
-        Me.ToolTip1.SetToolTip(Me.txtTag, "Student filter")
-        '
-        'llblAddTag
-        '
-        Me.llblAddTag.Location = New System.Drawing.Point(489, 0)
-        Me.llblAddTag.Name = "llblAddTag"
-        Me.llblAddTag.Size = New System.Drawing.Size(22, 18)
-        Me.llblAddTag.TabIndex = 35
-        Me.ToolTip1.SetToolTip(Me.llblAddTag, "Add tag to selected student(s)")
-        Me.llblAddTag.Values.Image = Global.Teaching.My.Resources.Resources.add_icon_16
-        Me.llblAddTag.Values.Text = ""
         '
         'MainForm
         '
