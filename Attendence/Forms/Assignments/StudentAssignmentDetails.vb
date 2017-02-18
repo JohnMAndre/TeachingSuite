@@ -546,7 +546,7 @@ Friend Class StudentAssignmentDetails
         Return strReturn.Substring(0, strReturn.Length - 2)
     End Function
     Private Function GetFailedOutcomes() As List(Of OutcomeResult)
-        Dim rslts As Student.StudentModuleResult = m_student.ModuleResults
+        Dim rslts As Student.StudentModuleResult = m_student.ModuleResults(True)
         Dim lstReturn As New List(Of OutcomeResult)
 
         '-- check each outcome on this assignment, anything failed gets returned
@@ -568,7 +568,7 @@ Friend Class StudentAssignmentDetails
 
         '-- only refresh if data was never populated (leave up to caller to keep it refreshed)
         If m_studentModuleResults Is Nothing Then
-            m_studentModuleResults = m_student.ModuleResults
+            m_studentModuleResults = m_student.ModuleResults(True)
         End If
 
         boolOutcomeMatch = False
@@ -624,7 +624,7 @@ Friend Class StudentAssignmentDetails
             Const BLANK As String = " "
 
             '-- refresh module results (may use many times)
-            m_studentModuleResults = m_student.ModuleResults
+            m_studentModuleResults = m_student.ModuleResults(True)
 
             Dim objFirstColumnMark As OutcomeResultStatusEnum '-- Pass=check; fail=X; unknown=blank
             Dim objSecondColumnMark As OutcomeResultStatusEnum
@@ -1234,14 +1234,20 @@ Friend Class StudentAssignmentDetails
             End If
         End If
 
-        rtbImprovementComments.Text = strImprovement & " " & GetImprovementNotes()
+        rtbImprovementComments.Text = strImprovement
+
+        If strImprovement.Trim.Length > 0 Then
+            rtbImprovementComments.Text &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
+        End If
+
+        rtbImprovementComments.Text &= GetImprovementNotes()
         rtbImprovementComments.Text = rtbImprovementComments.Text.Trim()
     End Sub
     Private Function GetImprovementNotes() As String
         Try
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-                strReturn &= " " & item.BaseImprovementItem.Description
+                strReturn &= " " & item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
             Next
 
             Return strReturn.Trim()
@@ -1767,7 +1773,7 @@ Friend Class StudentAssignmentDetails
     Private Function LoadModuleResults() As Student.StudentModuleResult
         '-- Load up the module results
         olvModuleResults.ClearObjects()
-        Dim rslts As Student.StudentModuleResult = m_student.ModuleResults()
+        Dim rslts As Student.StudentModuleResult = m_student.ModuleResults(True)
         olvModuleResults.SetObjects(rslts.Outcomes)
 
         Return rslts

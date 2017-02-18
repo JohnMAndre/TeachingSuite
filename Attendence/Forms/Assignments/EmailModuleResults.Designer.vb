@@ -50,6 +50,7 @@ Partial Class EmailModuleResults
         Me.LoadToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SethiddenForSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearHiddenForSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.IncludeattachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripMenuItem()
@@ -109,7 +110,7 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.chkIncludeUnprocessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -369,6 +370,11 @@ Partial Class EmailModuleResults
         Me.ClearHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ClearHiddenForSelectedToolStripMenuItem.Text = "Clear h&idden for selected"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(268, 6)
+        '
         'IncludeattachmentToolStripMenuItem
         '
         Me.IncludeattachmentToolStripMenuItem.CheckOnClick = True
@@ -464,6 +470,7 @@ Partial Class EmailModuleResults
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeUnprocessed)
         Me.splitOverall.Panel1.Controls.Add(Me.btnOK)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeMeritDistinctionResults)
         Me.splitOverall.Panel1.Controls.Add(Me.chkFinalFeedback)
@@ -934,10 +941,19 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
-        'ToolStripSeparator1
+        'chkIncludeUnprocessed
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(268, 6)
+        Me.chkIncludeUnprocessed.Checked = True
+        Me.chkIncludeUnprocessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeUnprocessed.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeUnprocessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeUnprocessed.Location = New System.Drawing.Point(84, 204)
+        Me.chkIncludeUnprocessed.Name = "chkIncludeUnprocessed"
+        Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(147, 19)
+        Me.chkIncludeUnprocessed.TabIndex = 65
+        Me.chkIncludeUnprocessed.Text = "Include unprocessed"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeUnprocessed, "Check to include assignments not processed (for weekly workshops)")
+        Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
         '
         'EmailModuleResults
         '
@@ -1085,4 +1101,5 @@ Partial Class EmailModuleResults
     Friend WithEvents chkIncludeMeritDistinctionResults As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents chkIncludeUnprocessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

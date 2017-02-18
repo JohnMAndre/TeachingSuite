@@ -39,7 +39,7 @@ Public Class ModuleResults
                 dataItem.Student = stu
                 m_lstResults.Add(dataItem)
 
-                rslt = stu.ModuleResults()
+                rslt = stu.ModuleResults(chkIncludeUnprocessed.Checked)
 
                 dataItem.FailedOutcomes = intTotalPassOutcomes - rslt.PassOutcomesPassed
 

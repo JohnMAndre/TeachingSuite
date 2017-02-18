@@ -81,7 +81,7 @@ Public Class EmailModuleResults
                 objData.AppearsReady = EmailResultData.AppearsReadyState.NotReady
             End If
 
-            Dim rslts As Student.StudentModuleResult = stud.ModuleResults
+            Dim rslts As Student.StudentModuleResult = stud.ModuleResults(chkIncludeUnprocessed.Checked)
 
             '-- We must remove outcomes which are not on selected assignments
             Dim lstToRemove As New List(Of Student.StudentModuleOutcomeResult)()
@@ -519,11 +519,11 @@ Public Class EmailModuleResults
                 '-- If not sending grades, then don't send summary of grades either
                 If chkIncludeGrade.Checked Then
                     str.Append("<br>")
-                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(Environment.NewLine, "<br>"))
+                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
                     str.Append("<br>")
                 End If
                 str.Append("<br>")
-                str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(Environment.NewLine, "<br>"))
+                str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
                 str.Append("<br>")
                 str.Append("<br>")
             End If
@@ -549,12 +549,12 @@ Public Class EmailModuleResults
                     str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
                     str.Append("<br>")
                     str.Append("<br>")
-                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(Environment.NewLine, "<br>"))
+                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
                     str.Append("<br>")
                     str.Append("<br>")
                 End If
 
-                str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(Environment.NewLine, "<br>"))
+                str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>"))
                 str.Append("<br>")
                 str.Append("<br>")
             End If
@@ -634,11 +634,11 @@ Public Class EmailModuleResults
                 End If
 
                 If chkFinalFeedback.Checked Then
-                    If item.PassedOutcomes >= m_intAssignmentsSoFar Then
+                    If item.PassedOutcomes >= m_intModuleOutcomes Then
                         str.Append("Congratulations!!!<br><br>")
                     Else
                         If m_try = MarkingTry.FirstTry Then
-                            str.Append("Don't worry. You can still fix it.<br><br>")
+                            str.Append("Don't worry. There is still time to do better.<br><br>")
                         Else
                             str.Append("I am sure you will do better next time.<br><br>")
                         End If
@@ -687,7 +687,7 @@ Public Class EmailModuleResults
         Dim strFeedback As String = String.Empty
         Dim sbReturn As New System.Text.StringBuilder()
         sbReturn.Append("<table border='1'>")
-        Dim rslts As Student.StudentModuleResult = student.ModuleResults
+        Dim rslts As Student.StudentModuleResult = student.ModuleResults(chkIncludeUnprocessed.Checked)
 
         sbReturn.Append("<tr><td align=center>Outcome</td><td align=center>Result</td><td>Feedback</td></tr>")
 

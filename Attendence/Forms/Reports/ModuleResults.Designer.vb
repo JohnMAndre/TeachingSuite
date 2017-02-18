@@ -42,6 +42,7 @@ Partial Class ModuleResults
         Me.LoadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.lblFailPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblPassPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -60,6 +61,7 @@ Partial Class ModuleResults
         Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.tmrFilter = New System.Windows.Forms.Timer(Me.components)
+        Me.chkIncludeUnprocessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,6 +182,7 @@ Partial Class ModuleResults
         '
         'KryptonPanel2
         '
+        Me.KryptonPanel2.Controls.Add(Me.chkIncludeUnprocessed)
         Me.KryptonPanel2.Controls.Add(Me.KryptonLabel4)
         Me.KryptonPanel2.Controls.Add(Me.txtFilter)
         Me.KryptonPanel2.Controls.Add(Me.llblClearFilter)
@@ -266,6 +269,10 @@ Partial Class ModuleResults
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'lblFailPercent
         '
@@ -414,6 +421,20 @@ Partial Class ModuleResults
         '
         Me.tmrFilter.Interval = 200
         '
+        'chkIncludeUnprocessed
+        '
+        Me.chkIncludeUnprocessed.Checked = True
+        Me.chkIncludeUnprocessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeUnprocessed.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeUnprocessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeUnprocessed.Location = New System.Drawing.Point(225, 3)
+        Me.chkIncludeUnprocessed.Name = "chkIncludeUnprocessed"
+        Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(147, 19)
+        Me.chkIncludeUnprocessed.TabIndex = 66
+        Me.chkIncludeUnprocessed.Text = "Include unprocessed"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeUnprocessed, "Check to include assignments not processed (for weekly workshops)")
+        Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
+        '
         'ModuleResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -491,4 +512,5 @@ Partial Class ModuleResults
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadDataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents chkIncludeUnprocessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

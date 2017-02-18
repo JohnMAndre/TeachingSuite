@@ -251,7 +251,7 @@
         Try
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-                strReturn &= " " & item.BaseImprovementItem.Description
+                strReturn &= " " & item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
             Next
 
             Return strReturn.Trim()

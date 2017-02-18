@@ -120,7 +120,8 @@ Public Class OralExamDetails
         End If
     End Sub
     Private Function StudentCanOralOutcome(student As Student, outcome As AssignmentOutcome) As Boolean
-        For Each rslt As Student.StudentModuleOutcomeResult In student.ModuleResults.Outcomes
+        Dim modResults As Student.StudentModuleResult = student.ModuleResults(True)
+        For Each rslt As Student.StudentModuleOutcomeResult In modResults.Outcomes
             If rslt.Outcome Is outcome Then
                 If rslt.Status = OutcomeResultStatusEnum.Unknown Then
                     Return True
@@ -170,29 +171,13 @@ Public Class OralExamDetails
         Next
     End Function
     Private Function StudentPassedOutcomeAlready(student As Student, outcome As AssignmentOutcome) As Boolean
-        'Private Function StudentPassedOutcomeAlready(student As Student, outcome As AssignmentOutcome, markingTry As MarkingTry) As Boolean
-        For Each rslt As Student.StudentModuleOutcomeResult In student.ModuleResults.Outcomes
+        Dim modResults As Student.StudentModuleResult = student.ModuleResults(False)
+        For Each rslt As Student.StudentModuleOutcomeResult In modResults.Outcomes
             If rslt.Outcome Is outcome Then
                 '-- done, get out
                 Return rslt.Status = OutcomeResultStatusEnum.Achieved
             End If
         Next
-
-        'For Each asmt As StudentAssignment In student.Assignments
-        '    For Each oc As OutcomeResult In asmt.Outcomes
-
-        '        If oc.BaseOutcome Is outcome Then
-        '            Select Case markingTry
-        '                Case Globals.MarkingTry.FirstTry
-        '                    '-- done, get out
-        '                    Return oc.FirstTryStatus = OutcomeResultStatusEnum.Pass
-        '                Case Globals.MarkingTry.SecondTry
-        '                    '-- done, get out
-        '                    Return oc.SecondTryStatus = OutcomeResultStatusEnum.Pass
-        '            End Select
-        '        End If
-        '    Next
-        'Next
 
         '-- if we get here, the student didn't submit
         Return False
@@ -207,24 +192,6 @@ Public Class OralExamDetails
 
         If m_studentAssignment IsNot Nothing Then
             Dim strAwarded As String = String.Empty
-            'If m_studentAssignment.M1Achieved Then
-            '    strAwarded &= " M1"
-            'End If
-            'If m_studentAssignment.M2Achieved Then
-            '    strAwarded &= " M2"
-            'End If
-            'If m_studentAssignment.M3Achieved Then
-            '    strAwarded &= " M3"
-            'End If
-            'If m_studentAssignment.D1Achieved Then
-            '    strAwarded &= " D1"
-            'End If
-            'If m_studentAssignment.D2Achieved Then
-            '    strAwarded &= " D2"
-            'End If
-            'If m_studentAssignment.D3Achieved Then
-            '    strAwarded &= " D3"
-            'End If
         End If
     End Sub
     Private Sub SetStudentAssignment()

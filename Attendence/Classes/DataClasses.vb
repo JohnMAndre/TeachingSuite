@@ -873,7 +873,7 @@ Public Class ClassGroup '-- teaching module
                             Continue For '-- the student is not on the list, so skip this student
                         End If
                     End If
-                    Dim studentResults As Student.StudentModuleResult = stu.ModuleResults() '-- Should result in each module outcome one time, regardless of how many asmts it was on
+                    Dim studentResults As Student.StudentModuleResult = stu.ModuleResults(False) '-- Should result in each module outcome one time, regardless of how many asmts it was on
 
                     tw.Write(stu.AdminNumber & DELIMITER & stu.AltNumber & DELIMITER & cls.Name & DELIMITER & stu.StudentID & DELIMITER & stu.LocalName & DELIMITER & stu.Nickname & DELIMITER)
 
@@ -2627,7 +2627,7 @@ Public Class Student
             '-- We are assuming that there will be either BTEC or normal assignments, ==== not a combination of the two types for the same student ====
 
             If Me.AssignmentsBTEC.Count > 0 Then
-                Dim rslt As StudentModuleResult = Me.ModuleResults()
+                Dim rslt As StudentModuleResult = Me.ModuleResults(False)
                 Return rslt.OverallGrade
             ElseIf Me.Assignments.Count > 0 Then
                 Dim dblOverall As Double
@@ -2970,9 +2970,10 @@ Public Class Student
     ''' <summary>
     ''' Returns all outcomes on the module and the student results for that outcome (each outcome is included one time)
     ''' </summary>
+    ''' <param name="includeUnprocessed">If false, assignments not marked as processed will be ignored</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function ModuleResults() As StudentModuleResult
+    Public Function ModuleResults(includeUnprocessed As Boolean) As StudentModuleResult
         Dim objReturn As New StudentModuleResult
 
         '-- First add all the module outcomes
@@ -2987,7 +2988,7 @@ Public Class Student
 
         '-- walk through each assignment and check off M's and D's
         For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
-            If asmt.Processed Then
+            If includeUnprocessed OrElse asmt.Processed Then
                 '-- only use processed assignment
                 '   So if oral exam on an assignment which was never submitted, it will be completely ignored
 
