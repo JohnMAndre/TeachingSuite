@@ -591,12 +591,12 @@ Partial Class StudentAssignmentNormalDetails
         Me.chkProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkProcessed.Location = New System.Drawing.Point(664, 35)
+        Me.chkProcessed.Location = New System.Drawing.Point(674, 34)
         Me.chkProcessed.Name = "chkProcessed"
-        Me.chkProcessed.Size = New System.Drawing.Size(91, 19)
+        Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
         Me.chkProcessed.TabIndex = 48
-        Me.chkProcessed.Text = "Processed:"
-        Me.chkProcessed.Values.Text = "Processed:"
+        Me.chkProcessed.Text = "&Processed:"
+        Me.chkProcessed.Values.Text = "&Processed:"
         '
         'btnPrintMarkingSheet
         '

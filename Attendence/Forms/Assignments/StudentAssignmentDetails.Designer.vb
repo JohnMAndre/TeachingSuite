@@ -896,8 +896,8 @@ Partial Class StudentAssignmentDetails
         Me.chkProcessed.Name = "chkProcessed"
         Me.chkProcessed.Size = New System.Drawing.Size(91, 19)
         Me.chkProcessed.TabIndex = 48
-        Me.chkProcessed.Text = "Processed:"
-        Me.chkProcessed.Values.Text = "Processed:"
+        Me.chkProcessed.Text = "&Processed:"
+        Me.chkProcessed.Values.Text = "&Processed:"
         '
         'btnPrintMarkingSheet
         '

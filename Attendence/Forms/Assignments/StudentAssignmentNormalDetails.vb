@@ -208,6 +208,13 @@
         Close()
     End Sub
     Private Function SaveChanges() As Boolean
+        '-- validation checks
+        If nudFirstTryPoints.Value > m_studentAssignment.BaseAssignment.MaxPoints OrElse _
+            nudSecondTryPoints.Value > m_studentAssignment.BaseAssignment.MaxPoints OrElse _
+            nudThirdTryPoints.Value > m_studentAssignment.BaseAssignment.MaxPoints Then
+            MessageBox.Show("Points are set above the maximum for this assignment.")
+            Return False
+        End If
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
 

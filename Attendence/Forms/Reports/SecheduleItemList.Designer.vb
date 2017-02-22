@@ -61,7 +61,7 @@ Partial Class SecheduleItemList
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Size = New System.Drawing.Size(898, 513)
+        Me.KryptonPanel.Size = New System.Drawing.Size(951, 513)
         Me.KryptonPanel.TabIndex = 0
         '
         'llblLoadUnsentSessions
@@ -98,10 +98,12 @@ Partial Class SecheduleItemList
         Me.olvSchedule.AllowColumnReorder = True
         Me.olvSchedule.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvSchedule.CellEditUseWholeCell = False
         Me.olvSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn29, Me.OlvColumn1, Me.OlvColumn30, Me.OlvColumn16, Me.OlvColumn31, Me.OlvColumn33, Me.OlvColumn32, Me.OlvColumn17, Me.OlvColumn34, Me.OlvColumn35, Me.OlvColumn36})
         Me.olvSchedule.ContextMenuStrip = Me.ctxmnuItems
         Me.olvSchedule.CopySelectionOnControlC = False
         Me.olvSchedule.CopySelectionOnControlCUsesDragSource = False
+        Me.olvSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvSchedule.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvSchedule.EmptyListMsg = "Nothing scheduled for this day"
         Me.olvSchedule.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -111,12 +113,11 @@ Partial Class SecheduleItemList
         Me.olvSchedule.HideSelection = False
         Me.olvSchedule.Location = New System.Drawing.Point(0, 19)
         Me.olvSchedule.Name = "olvSchedule"
-        Me.olvSchedule.OwnerDraw = True
         Me.olvSchedule.SelectAllOnControlA = False
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(898, 494)
+        Me.olvSchedule.Size = New System.Drawing.Size(951, 494)
         Me.olvSchedule.TabIndex = 29
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -243,18 +244,18 @@ Partial Class SecheduleItemList
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(898, 19)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(951, 19)
         Me.KryptonLabel2.TabIndex = 26
         Me.KryptonLabel2.Values.Text = "Filter:"
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilterSessions
         '
@@ -264,7 +265,7 @@ Partial Class SecheduleItemList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(898, 513)
+        Me.ClientSize = New System.Drawing.Size(951, 513)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "SecheduleItemList"
