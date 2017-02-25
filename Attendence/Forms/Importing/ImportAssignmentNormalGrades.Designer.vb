@@ -34,6 +34,7 @@ Partial Class ImportAssignmentNormalGrades
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtOutput = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -46,7 +47,6 @@ Partial Class ImportAssignmentNormalGrades
         Me.lblStudentsSearched = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsSearchedCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -146,7 +146,7 @@ Partial Class ImportAssignmentNormalGrades
         '
         Me.OlvColumn1.AspectName = "ExtStudentID"
         Me.OlvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn1.Text = "ExtStudentID"
+        Me.OlvColumn1.Text = "ID"
         Me.OlvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn1.Width = 140
         '
@@ -169,6 +169,12 @@ Partial Class ImportAssignmentNormalGrades
         Me.OlvColumn4.Text = "Grade"
         Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn4.Width = 75
+        '
+        'OlvColumn5
+        '
+        Me.OlvColumn5.AspectName = "OverallComments"
+        Me.OlvColumn5.Text = "Comments"
+        Me.OlvColumn5.Width = 150
         '
         'txtOutput
         '
@@ -286,12 +292,6 @@ Partial Class ImportAssignmentNormalGrades
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 200
-        '
-        'OlvColumn5
-        '
-        Me.OlvColumn5.AspectName = "OverallComments"
-        Me.OlvColumn5.Text = "Comments"
-        Me.OlvColumn5.Width = 150
         '
         'ImportAssignmentNormalGrades
         '

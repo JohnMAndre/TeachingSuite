@@ -2523,6 +2523,7 @@ Partial Class MainForm
         '
         'ExportScheduleAsICalToolStripMenuItem
         '
+        Me.ExportScheduleAsICalToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.calendar_16
         Me.ExportScheduleAsICalToolStripMenuItem.Name = "ExportScheduleAsICalToolStripMenuItem"
         Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ExportScheduleAsICalToolStripMenuItem.Text = "Export schedule as iCalendar..."
@@ -2607,10 +2608,6 @@ Partial Class MainForm
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '

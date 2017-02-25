@@ -142,6 +142,8 @@
 
     Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
         Try
+            txtOutput.Text = String.Empty
+
             '-- Create asmt for student and populate with data
             Dim intCounter As Integer
             Dim asmtToUse As StudentAssignment
@@ -164,13 +166,14 @@
                     intCounter += 1
                 Else
                     '-- what to do if there is no student? Write to output panel I guess.
-                    txtOutput.Text &= "Student (ExtID: " & data.ExtStudentID & ") could not be found in database."
+                    txtOutput.Text &= "Student (ExtID: " & data.ExtStudentID & ") could not be found in database." & Environment.NewLine
                 End If
             Next
 
             AddHistory("Imported normal assignment grades (Module: " & m_asmt.ClassGroup.ToString() & ", assignment: " & m_asmt.ToString() & ").")
 
-            MessageBox.Show("Imported " & intCounter.ToString("#,##0") & " records.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            txtOutput.Text &= "Imported " & intCounter.ToString("#,##0") & " records." & Environment.NewLine
+            'MessageBox.Show("Imported " & intCounter.ToString("#,##0") & " records.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error importing: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)

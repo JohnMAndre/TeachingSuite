@@ -2,11 +2,11 @@ Public Class StudentDetail
 
     Private m_student As Student
     Private m_class As SchoolClass
-    Private m_lstRickerTeachingSessionData As New List(Of RicherTeachingSession)
+    Private m_lstRicherTeachingSessionData As New List(Of RicherTeachingSession)
 
     Public Class RicherTeachingSession
         Private m_objActualClassSession As ActualSessionItem
-      
+
         Public Property TeachingSession As TeachingSession
         Public ReadOnly Property ActualSessionItem As ActualSessionItem
             Get
@@ -107,10 +107,12 @@ Public Class StudentDetail
     Private Sub StudentDetail_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.olvOutcomes.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
         Me.olvTeachingSessions.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf AttendanceRowFormatter)
+        Me.olvImprovementItems.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ImprovementItemRowFormatter)
 
         LoadSessionList()
         LoadOutcomes()
         LoadAssignments()
+        LoadImprovementItems()
         ShowSessions()
 
         Select Case AppSettings.LastStudentDetailTab
@@ -157,6 +159,40 @@ Public Class StudentDetail
             Next
         End If
     End Function
+    Private Function ImprovementItemRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
+        Dim item As StudentImprovementItem = CType(olvi.RowObject, StudentImprovementItem)
+
+        Dim RESOLVED_ISSUE_COLOR As Color = Color.LightGreen
+        Dim CURRENT_ISSUE_COLOR As Color = Color.Yellow
+        Dim NON_ISSUE_COLOR As Color = Color.White
+        Dim newColor As Color
+
+        If item.DateAdded = DATE_NO_DATE Then
+            newColor = NON_ISSUE_COLOR
+            olvi.SubItems(olvcolDataAdded.Index).Text = String.Empty
+        Else
+            '-- so it was a problem
+            If item.DateRemoved = DATE_NO_DATE Then
+                '-- and it is still a problem
+                newColor = CURRENT_ISSUE_COLOR
+            Else
+                '-- the student has fixed this problem
+                newColor = RESOLVED_ISSUE_COLOR
+            End If
+        End If
+
+        If item.DateLastIncluded = DATE_NO_DATE Then
+            olvi.SubItems(olvcolDateRemoved.Index).Text = String.Empty
+        End If
+
+        If item IsNot Nothing Then
+            olvi.BackColor = newColor
+            For intCounter As Integer = 0 To olvi.SubItems.Count - 1
+                olvi.SubItems(intCounter).BackColor = newColor
+            Next
+        End If
+    End Function
+
     Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim ocrslt As OutcomeResult = CType(olvi.RowObject, OutcomeResult)
 
@@ -182,6 +218,16 @@ Public Class StudentDetail
             Next
         End If
     End Function
+    Private Sub LoadImprovementItems()
+        Try
+            If m_student IsNot Nothing Then
+                olvImprovementItems.SetObjects(m_student.ImprovementItems)
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the improvement items for this student: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub LoadSessionList()
         Try
             If m_student IsNot Nothing Then
@@ -190,14 +236,14 @@ Public Class StudentDetail
 
                 '-- Populate the teaching topics for each session
                 Dim objRichSession As RicherTeachingSession
-                m_lstRickerTeachingSessionData.Clear()
+                m_lstRicherTeachingSessionData.Clear()
                 For Each session As TeachingSession In m_student.TeachingSessions
                     objRichSession = New RicherTeachingSession(session)
-                    m_lstRickerTeachingSessionData.Add(objRichSession)
+                    m_lstRicherTeachingSessionData.Add(objRichSession)
                 Next
 
                 '-- Now load the list
-                olvTeachingSessions.SetObjects(m_lstRickerTeachingSessionData)
+                olvTeachingSessions.SetObjects(m_lstRicherTeachingSessionData)
 
             End If
         Catch ex As Exception
@@ -350,21 +396,21 @@ Public Class StudentDetail
         pnlAssignments.Hide()
         rtbNotes.Show()
         rtbNotes.BringToFront()
-        pbButtonHighlight.Location = New Point(99, 127)
+        pbButtonHighlight.Location = New Point(btnShowStudentNotes.Left - 7, btnShowStudentNotes.Top - 8)
     End Sub
     Private Sub ShowLog()
         pnlAttendance.Hide()
         pnlAssignments.Hide()
         rtbLog.Show()
         rtbLog.BringToFront()
-        pbButtonHighlight.Location = New Point(149, 127)
+        pbButtonHighlight.Location = New Point(btnShowStudentLog.Left - 7, btnShowStudentLog.Top - 8)
     End Sub
     Private Sub ShowOutcomes()
         pnlAttendance.Hide()
         pnlAssignments.Hide()
         pnlOutcomes.Show()
         pnlOutcomes.BringToFront()
-        pbButtonHighlight.Location = New Point(5, 127)
+        pbButtonHighlight.Location = New Point(llblShowOutcomes.Left - 7, llblShowOutcomes.Top - 8)
     End Sub
     Private Sub ShowAssignments()
         pnlAttendance.Hide()
@@ -390,7 +436,7 @@ Public Class StudentDetail
         End If
 
 
-        pbButtonHighlight.Location = New Point(200, 127)
+        pbButtonHighlight.Location = New Point(btnShowAssignments.Left - 7, btnShowAssignments.Top - 8)
     End Sub
     Private Sub ShowSessions()
         pnlAttendance.Show()
@@ -398,7 +444,15 @@ Public Class StudentDetail
         pnlAttendance.BringToFront()
         olvTeachingSessions.Show()
         olvTeachingSessions.BringToFront()
-        pbButtonHighlight.Location = New Point(51, 127)
+        pbButtonHighlight.Location = New Point(llblShowSessions.Left - 7, llblShowSessions.Top - 8)
+    End Sub
+    Private Sub ShowImprovementItems()
+        olvImprovementItems.Show()
+        olvImprovementItems.BringToFront()
+        pnlAttendance.Hide()
+        pnlAssignments.Hide()
+        olvTeachingSessions.Hide()
+        pbButtonHighlight.Location = New Point(btnShowImprovementItems.Left - 7, btnShowImprovementItems.Top - 8)
     End Sub
 
     Private Sub btnShowStudentLog_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnShowStudentLog.LinkClicked
@@ -469,4 +523,8 @@ Public Class StudentDetail
         rtbNotes.Text = rtbNotes.Text & Environment.NewLine & Date.Now.ToString() & "   "
     End Sub
 
+    Private Sub btnShowImprovementItems_LinkClicked(sender As Object, e As EventArgs) Handles btnShowImprovementItems.LinkClicked
+        ShowImprovementItems()
+        AppSettings.LastStudentDetailTab = 1
+    End Sub
 End Class

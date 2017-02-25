@@ -1711,12 +1711,17 @@ Public Class StudentAssignmentBTEC
             End If
         End Get
     End Property
-    Public ReadOnly Property PassedAllOutcomes
+    Public ReadOnly Property PassedOutcomesAtPass As Integer
+        Get
+            Return AchievedOutcomesAtGradeAndTry(BTECGradeGroup.Pass, MarkingTry.ThirdTry)
+        End Get
+    End Property
+    Public ReadOnly Property PassedAllOutcomes As Boolean
         Get
             Return AchievedAllAtGrade(BTECGradeGroup.Pass)
         End Get
     End Property
-    Public ReadOnly Property AvailableOutcomes
+    Public ReadOnly Property AvailableOutcomes As Integer
         Get
             Return OutcomesAtGrade(BTECGradeGroup.Pass)
         End Get

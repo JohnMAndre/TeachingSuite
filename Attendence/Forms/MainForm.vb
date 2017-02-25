@@ -1718,9 +1718,12 @@ Public Class MainForm
         ElseIf GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to close.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to close first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
-                               "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
-                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+            Dim strMessage As String = "Are you sure you want to close first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?"
+            If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
+                strMessage &= Environment.NewLine & Environment.NewLine &
+                               "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)."
+            End If
+            If MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.FirstTry)
                 MessageBox.Show("The first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -1733,9 +1736,13 @@ Public Class MainForm
         ElseIf GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to close.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to close rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
-                               "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
-                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+            Dim strMessage As String = "Are you sure you want to close rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?"
+            If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
+                strMessage &= Environment.NewLine & Environment.NewLine &
+                               "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)."
+            End If
+
+            If MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 Try
                     CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.SecondTry)
                     MessageBox.Show("The rework submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1752,9 +1759,13 @@ Public Class MainForm
         ElseIf GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment to close.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to close 2nd rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?" & Environment.NewLine & Environment.NewLine &
-                               "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)." _
-                               , Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+            Dim strMessage As String = "Are you sure you want to close 2nd rework for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ")?"
+            If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
+                strMessage &= Environment.NewLine & Environment.NewLine &
+                               "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)."
+            End If
+
+            If MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 Try
                     CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.ThirdTry)
                     MessageBox.Show("The 2nd rework submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
