@@ -49,8 +49,17 @@ Public Class OptionsForm
         AppSettings.EmailQuizTrailingText = txtEmailQuizTrailingText.Text
 
         '-- Attendance
-        AppSettings.HighlightAttendanceNoPresentationQuality = chkHighlightAttendanceUnknownPresentationQuality.Checked
-        AppSettings.HighlightAttendanceUnknownGender = chkHighlightAttendanceUnknownGender.Checked
+        If rdoAttendanceHighlightUnknownPresentationQuality.Checked Then
+            AppSettings.HighlightAttendanceNoPresentationQuality = True
+            AppSettings.HighlightAttendanceUnknownGender = False
+        ElseIf rdoAttendanceHighlightUnknownGender.Checked Then
+            AppSettings.HighlightAttendanceUnknownGender = True
+            AppSettings.HighlightAttendanceNoPresentationQuality = False
+        Else
+            AppSettings.HighlightAttendanceUnknownGender = False
+            AppSettings.HighlightAttendanceNoPresentationQuality = False
+        End If
+
 
         AppSettings.DataBackupsToRetain = nudDataBackupsToRetain.Value
         AppSettings.OutcomeExportMarkPass = txtOutcomeMarkPass.Text
@@ -127,8 +136,13 @@ Public Class OptionsForm
             txtEmailQuizTrailingText.Text = AppSettings.EmailQuizTrailingText
 
             '-- Attendance
-            chkHighlightAttendanceUnknownPresentationQuality.Checked = AppSettings.HighlightAttendanceNoPresentationQuality
-            chkHighlightAttendanceUnknownGender.Checked = AppSettings.HighlightAttendanceUnknownGender
+            If AppSettings.HighlightAttendanceNoPresentationQuality Then
+                rdoAttendanceHighlightUnknownPresentationQuality.Checked = True
+            ElseIf AppSettings.HighlightAttendanceUnknownGender Then
+                rdoAttendanceHighlightUnknownGender.Checked = True
+            Else
+                rdoAttendanceHighlightNothing.Checked = True
+            End If
 
 
             txtPassResultsText.Text = AppSettings.PassResultsText
