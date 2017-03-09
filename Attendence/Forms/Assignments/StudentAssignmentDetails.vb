@@ -106,6 +106,7 @@ Friend Class StudentAssignmentDetails
         txtAssignmentName.Text = m_studentAssignment.BaseAssignment.Name
         nudAltNumber.Text = m_student.AltNumber
         txtSchoolClass.Text = m_student.SchoolClass.Name
+        txtTeam.Text = m_student.StudentTeam
         Me.Text &= " - " & m_student.LocalName
         txtTags.Text = m_student.Tags
         m_strStudentTagsOriginal = m_student.Tags
@@ -325,105 +326,6 @@ Friend Class StudentAssignmentDetails
         Return False
     End Function
     Private Sub btnGenerateOverallComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateOverallComments.LinkClicked
-
-        '============================ DELETE BELOW HERE once 2.0 is fully working ================================
-
-        'Dim objResults As Student.StudentModuleResult = LoadModuleResults()
-        'Dim boolPassedAll As Boolean = True
-        'For Each oc As Student.StudentModuleOutcomeResult In objResults.Outcomes
-        '    If oc.Status <> OutcomeResultStatusEnum.Achieved Then
-        '        boolPassedAll = False
-        '        Exit For
-        '    End If
-        'Next
-
-        'Dim intPassedOutcomes As Integer = PassedOutcomes()
-
-        'If intPassedOutcomes = -1 Then
-        '    MessageBox.Show("You must mark all outcomes before generating text.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Exit Sub
-        'End If
-
-        'Dim strOverall As String
-
-        'If intPassedOutcomes = m_studentAssignment.Outcomes.Count Then
-        '    strOverall = "Passed all outcomes"
-        'Dim boolGotMerit As Boolean = True
-        'Dim boolMeritPossible As Boolean = chkM1.Enabled OrElse chkM2.Enabled OrElse chkM3.Enabled
-        'If chkM1.Enabled AndAlso Not chkM1.Checked Then
-        '    boolGotMerit = False
-        '    boolMeritPossible = True
-        'End If
-        'If chkM2.Enabled AndAlso Not chkM2.Checked Then
-        '    boolGotMerit = False
-        '    boolMeritPossible = True
-        'End If
-        'If chkM3.Enabled AndAlso Not chkM3.Checked Then
-        '    boolGotMerit = False
-        '    boolMeritPossible = True
-        'End If
-        '
-        'If boolGotMerit AndAlso boolMeritPossible Then
-        ' strOverall &= " and achieved MERIT"
-        'End If
-
-        'Dim boolGotDistinction As Boolean = boolGotMerit '-- must get merit to get distinction
-        'Dim boolDistinctionPossible As Boolean = boolMeritPossible AndAlso (chkD1.Enabled OrElse chkD2.Enabled OrElse chkD3.Enabled)
-        'If chkD1.Enabled AndAlso Not chkD1.Checked Then
-        '    boolGotDistinction = False
-        '    boolDistinctionPossible = True
-        'End If
-        'If chkD2.Enabled AndAlso Not chkD2.Checked Then
-        '    boolGotDistinction = False
-        '    boolDistinctionPossible = True
-        'End If
-        'If chkD3.Enabled AndAlso Not chkD3.Checked Then
-        '    boolGotDistinction = False
-        '    boolDistinctionPossible = True
-        'End If
-
-        'If boolGotDistinction AndAlso boolDistinctionPossible Then
-        '    strOverall &= " and DISTINCTION"
-        'End If
-
-        'rtbOverallComments.Text = strOverall & "."
-
-        'Else
-        'Select Case intPassedOutcomes
-        '    Case 0
-        '        rtbOverallComments.Text = "Referred all outcomes."
-        '    Case 1
-        '        If boolPassedAll Then
-        '            rtbOverallComments.Text = "Passed all remaining outcomes."
-        '        Else
-        '            rtbOverallComments.Text = "Passed " & intPassedOutcomes.ToString() & " outcome."
-        '        End If
-        '    Case Else
-        '        If boolPassedAll Then
-        '            rtbOverallComments.Text = "Passed all remaining outcomes."
-        '        Else
-        '            rtbOverallComments.Text = "Passed " & intPassedOutcomes.ToString() & " outcomes."
-        '        End If
-        'End Select
-        'End If
-
-        'Dim lst As List(Of OutcomeResult) = GetFailedOutcomes()
-        'If lst.Count > 0 Then
-        '    Dim intCounter As Integer
-        '    rtbOverallComments.Text &= Environment.NewLine & "Referral outcomes: "
-        '    For Each ocr As OutcomeResult In lst
-        '        intCounter += 1
-        '        If intCounter > 1 Then
-        '            rtbOverallComments.Text &= "; "
-        '        End If
-        '        rtbOverallComments.Text &= ocr.Name
-        '    Next
-        'End If
-        '============================ DELETE ABOVE HERE once 2.0 is fully working ================================
-
-
-        '-- For 2.0 in order to support RQF this has been completely changed
-        '   Now M's and D's are outcomes and each outcome has a grade group
         '   The new rules are:
         '   "Achieved Pass" requires all outcomes with gradegroup of pass to be achieved, and number of outcomes @ pass > 0
         '   "Achieved Merit" requires "Achieve Pass" and all outcomes with gradegroup of merit to be achieved, and number of outcomes @ merit > 0
@@ -1247,7 +1149,7 @@ Friend Class StudentAssignmentDetails
         Try
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-                strReturn &= " " & item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
+                strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
             Next
 
             Return strReturn.Trim()

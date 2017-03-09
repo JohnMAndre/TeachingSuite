@@ -248,17 +248,20 @@
         Return True
     End Function
 
-    Private Sub AutoGenImprovementComments()
-        rtbImprovementComments.AppendText(GetImprovementNotes())
+    Private Sub AutoGenImprovementComments(includePerformanceLevel As Boolean)
+        rtbImprovementComments.AppendText(GetImprovementNotes(includePerformanceLevel))
     End Sub
     Private Sub llblAutoGenImprovements_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovements.LinkClicked
-        AutoGenImprovementComments()
+        AutoGenImprovementComments(True)
     End Sub
-    Private Function GetImprovementNotes() As String
+    Private Function GetImprovementNotes(includePerformanceLevel As Boolean) As String
         Try
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-                strReturn &= " " & item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
+                strReturn &= " " & item.BaseImprovementItem.Description
+                If includePerformanceLevel Then
+                    strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
+                End If
             Next
 
             Return strReturn.Trim()
@@ -399,7 +402,7 @@
     End Sub
 
     Private Sub AutogenImprovementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutogenImprovementsToolStripMenuItem.Click
-        AutoGenImprovementComments()
+        AutoGenImprovementComments(True)
     End Sub
 
     Private Sub llblEditStudent_LinkClicked(sender As Object, e As EventArgs) Handles llblEditStudent.LinkClicked
@@ -407,4 +410,9 @@
             frm.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub llblAutoGenImprovementsWithoutPerformanceLevel_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsWithoutPerformanceLevel.LinkClicked
+        AutoGenImprovementComments(False)
+    End Sub
+
 End Class

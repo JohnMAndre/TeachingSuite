@@ -50,6 +50,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.rtbOverallComments = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblAutoGenImprovements = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -170,6 +171,7 @@ Partial Class StudentAssignmentNormalDetails
             Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
         Me.AutogenImprovementsToolStripMenuItem.Size = New System.Drawing.Size(279, 22)
         Me.AutogenImprovementsToolStripMenuItem.Text = "Auto-gen improvements"
+        Me.AutogenImprovementsToolStripMenuItem.ToolTipText = "With performance levels"
         '
         'KryptonPanel
         '
@@ -259,6 +261,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.rtbOverallComments)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonLabel3)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonLabel4)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsWithoutPerformanceLevel)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovements)
         '
         'KryptonSplitContainer1.Panel2
@@ -371,7 +374,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(6, 5)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(59, 19)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(54, 20)
         Me.KryptonLabel2.TabIndex = 127
         Me.KryptonLabel2.Values.Text = "First try:"
         '
@@ -400,7 +403,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(6, 55)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(57, 19)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(51, 20)
         Me.KryptonLabel3.TabIndex = 64
         Me.KryptonLabel3.Values.Text = "Overall:"
         '
@@ -408,18 +411,29 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(6, 173)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(93, 19)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(87, 20)
         Me.KryptonLabel4.TabIndex = 65
         Me.KryptonLabel4.Values.Text = "Improvement:"
         '
+        'llblAutoGenImprovementsWithoutPerformanceLevel
+        '
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Location = New System.Drawing.Point(1, 242)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Name = "llblAutoGenImprovementsWithoutPerformanceLevel"
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Size = New System.Drawing.Size(94, 20)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel.TabIndex = 140
+        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsWithoutPerformanceLevel, "Automatically generate improvement comments based on checked improvement items (w" & _
+        "ithout performance level)")
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Values.Text = "Auto-gen (w/o)"
+        '
         'llblAutoGenImprovements
         '
-        Me.llblAutoGenImprovements.Location = New System.Drawing.Point(6, 199)
+        Me.llblAutoGenImprovements.Location = New System.Drawing.Point(1, 199)
         Me.llblAutoGenImprovements.Name = "llblAutoGenImprovements"
-        Me.llblAutoGenImprovements.Size = New System.Drawing.Size(65, 19)
+        Me.llblAutoGenImprovements.Size = New System.Drawing.Size(87, 20)
         Me.llblAutoGenImprovements.TabIndex = 137
-        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovements, "Automatically generate improvement comments based on checked improvement items")
-        Me.llblAutoGenImprovements.Values.Text = "Auto-gen"
+        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovements, "Automatically generate improvement comments based on checked improvement items (w" & _
+        "ith performance level)")
+        Me.llblAutoGenImprovements.Values.Text = "Auto-gen (w/)"
         '
         'olvImprovementItems
         '
@@ -756,7 +770,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 3)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(76, 19)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
         Me.KryptonLabel1.TabIndex = 56
         Me.KryptonLabel1.Values.Text = "NickName:"
         '
@@ -764,7 +778,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.llblOpenStudent.Location = New System.Drawing.Point(273, 3)
         Me.llblOpenStudent.Name = "llblOpenStudent"
-        Me.llblOpenStudent.Size = New System.Drawing.Size(78, 19)
+        Me.llblOpenStudent.Size = New System.Drawing.Size(71, 20)
         Me.llblOpenStudent.TabIndex = 120
         Me.llblOpenStudent.Values.Text = "Student ID:"
         '
@@ -907,4 +921,5 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents AutocalcScoreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AutogenImprovementsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class

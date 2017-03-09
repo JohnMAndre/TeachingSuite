@@ -144,6 +144,8 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtTeam = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -193,6 +195,7 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel12)
         Me.KryptonPanel.Controls.Add(Me.nudPlagiarismSeverity)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel10)
+        Me.KryptonPanel.Controls.Add(Me.txtTeam)
         Me.KryptonPanel.Controls.Add(Me.txtSchoolClass)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel11)
         Me.KryptonPanel.Controls.Add(Me.llblRefreshOutcomeCount)
@@ -210,7 +213,6 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Controls.Add(Me.llblFailAll)
         Me.KryptonPanel.Controls.Add(Me.llblPassAll)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel7)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel6)
         Me.KryptonPanel.Controls.Add(Me.txtAssignmentName)
         Me.KryptonPanel.Controls.Add(Me.txtStudentID)
@@ -223,6 +225,8 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Controls.Add(Me.chkM2)
         Me.KryptonPanel.Controls.Add(Me.chkM1)
         Me.KryptonPanel.Controls.Add(Me.llblOpenStudent)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel15)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 24)
         Me.KryptonPanel.Name = "KryptonPanel"
@@ -271,9 +275,9 @@ Partial Class StudentAssignmentDetails
         '
         Me.txtTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtTags.Location = New System.Drawing.Point(633, 26)
+        Me.txtTags.Location = New System.Drawing.Point(782, 26)
         Me.txtTags.Name = "txtTags"
-        Me.txtTags.Size = New System.Drawing.Size(532, 19)
+        Me.txtTags.Size = New System.Drawing.Size(383, 19)
         Me.txtTags.TabIndex = 70
         '
         'llblClearImprovementItem
@@ -1279,7 +1283,7 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonLabel2
         '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(591, 26)
+        Me.KryptonLabel2.Location = New System.Drawing.Point(739, 27)
         Me.KryptonLabel2.Name = "KryptonLabel2"
         Me.KryptonLabel2.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel2.TabIndex = 71
@@ -1556,6 +1560,22 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
         '
+        'KryptonLabel15
+        '
+        Me.KryptonLabel15.Location = New System.Drawing.Point(598, 26)
+        Me.KryptonLabel15.Name = "KryptonLabel15"
+        Me.KryptonLabel15.Size = New System.Drawing.Size(49, 19)
+        Me.KryptonLabel15.TabIndex = 110
+        Me.KryptonLabel15.Values.Text = "Team:"
+        '
+        'txtTeam
+        '
+        Me.txtTeam.Location = New System.Drawing.Point(642, 26)
+        Me.txtTeam.Name = "txtTeam"
+        Me.txtTeam.ReadOnly = True
+        Me.txtTeam.Size = New System.Drawing.Size(91, 19)
+        Me.txtTeam.TabIndex = 111
+        '
         'StudentAssignmentDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1748,4 +1768,6 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
     Private WithEvents btnGenerateImprovementCommentsNoGradeHint As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Private WithEvents txtTeam As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Private WithEvents KryptonLabel15 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

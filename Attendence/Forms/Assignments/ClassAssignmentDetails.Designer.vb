@@ -24,21 +24,10 @@ Partial Class ClassAssignmentDetails
         Dim OlvColumn4 As BrightIdeasSoftware.OLVColumn
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ClassAssignmentDetails))
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonSplitContainer2 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
-        Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtM1Description = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtM2Description = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtM3Description = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtD1Description = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtD3Description = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtD2Description = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.chkIncludesAttachment = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.olvClassGroupOutcomes = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -53,30 +42,16 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblBrowseForAssignmentBrief = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.txtAssignmentBriefFilename = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonGroupBox1 = New ComponentFactory.Krypton.Toolkit.KryptonGroupBox()
-        Me.chkM1Available = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM2Available = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD3Available = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM3Available = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD2Available = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD1Available = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.txtName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.chkIncludesAttachment = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
-        CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonSplitContainer2.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonSplitContainer2.Panel1.SuspendLayout()
-        CType(Me.KryptonSplitContainer2.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonSplitContainer2.Panel2.SuspendLayout()
-        Me.KryptonSplitContainer2.SuspendLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel1.SuspendLayout()
@@ -85,10 +60,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonSplitContainer1.SuspendLayout()
         CType(Me.olvClassGroupOutcomes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvAssignmentOutcomes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonGroupBox1.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonGroupBox1.Panel.SuspendLayout()
-        Me.KryptonGroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'OlvColumn2
@@ -104,17 +75,24 @@ Partial Class ClassAssignmentDetails
         OlvColumn4.Text = "Description"
         OlvColumn4.Width = 400
         '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'KryptonPanel
         '
         Me.KryptonPanel.Controls.Add(Me.chkIncludesAttachment)
-        Me.KryptonPanel.Controls.Add(Me.KryptonSplitContainer2)
         Me.KryptonPanel.Controls.Add(Me.KryptonSplitContainer1)
         Me.KryptonPanel.Controls.Add(Me.llblBrowseForAssignmentsPath)
         Me.KryptonPanel.Controls.Add(Me.txtSavedAssignmentsPath)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Controls.Add(Me.llblBrowseForAssignmentBrief)
         Me.KryptonPanel.Controls.Add(Me.txtAssignmentBriefFilename)
-        Me.KryptonPanel.Controls.Add(Me.KryptonGroupBox1)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel.Controls.Add(Me.btnOK)
         Me.KryptonPanel.Controls.Add(Me.btnCancel)
@@ -128,158 +106,20 @@ Partial Class ClassAssignmentDetails
         Me.KryptonPanel.Size = New System.Drawing.Size(788, 452)
         Me.KryptonPanel.TabIndex = 1
         '
-        'KryptonSplitContainer2
+        'chkIncludesAttachment
         '
-        Me.KryptonSplitContainer2.Cursor = System.Windows.Forms.Cursors.Default
-        Me.KryptonSplitContainer2.Location = New System.Drawing.Point(8, 148)
-        Me.KryptonSplitContainer2.Name = "KryptonSplitContainer2"
-        '
-        'KryptonSplitContainer2.Panel1
-        '
-        Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.KryptonLabel4)
-        Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.txtM1Description)
-        Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.KryptonLabel5)
-        Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.txtM2Description)
-        Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.KryptonLabel6)
-        Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.txtM3Description)
-        '
-        'KryptonSplitContainer2.Panel2
-        '
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel9)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtD1Description)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtD3Description)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel8)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel7)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtD2Description)
-        Me.KryptonSplitContainer2.Size = New System.Drawing.Size(776, 76)
-        Me.KryptonSplitContainer2.SplitterDistance = 379
-        Me.KryptonSplitContainer2.TabIndex = 66
-        '
-        'KryptonLabel4
-        '
-        Me.KryptonLabel4.Location = New System.Drawing.Point(3, 3)
-        Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Palette = Me.KryptonPalette1
-        Me.KryptonLabel4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel4.Size = New System.Drawing.Size(95, 20)
-        Me.KryptonLabel4.TabIndex = 50
-        Me.KryptonLabel4.Values.Text = "M1 description:"
-        '
-        'txtM1Description
-        '
-        Me.txtM1Description.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtM1Description.Location = New System.Drawing.Point(104, 3)
-        Me.txtM1Description.Name = "txtM1Description"
-        Me.txtM1Description.Palette = Me.KryptonPalette1
-        Me.txtM1Description.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtM1Description.Size = New System.Drawing.Size(272, 20)
-        Me.txtM1Description.TabIndex = 51
-        '
-        'KryptonLabel5
-        '
-        Me.KryptonLabel5.Location = New System.Drawing.Point(3, 26)
-        Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Palette = Me.KryptonPalette1
-        Me.KryptonLabel5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel5.Size = New System.Drawing.Size(95, 20)
-        Me.KryptonLabel5.TabIndex = 52
-        Me.KryptonLabel5.Values.Text = "M2 description:"
-        '
-        'txtM2Description
-        '
-        Me.txtM2Description.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtM2Description.Location = New System.Drawing.Point(104, 26)
-        Me.txtM2Description.Name = "txtM2Description"
-        Me.txtM2Description.Palette = Me.KryptonPalette1
-        Me.txtM2Description.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtM2Description.Size = New System.Drawing.Size(272, 20)
-        Me.txtM2Description.TabIndex = 53
-        '
-        'KryptonLabel6
-        '
-        Me.KryptonLabel6.Location = New System.Drawing.Point(3, 48)
-        Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Palette = Me.KryptonPalette1
-        Me.KryptonLabel6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel6.Size = New System.Drawing.Size(95, 20)
-        Me.KryptonLabel6.TabIndex = 54
-        Me.KryptonLabel6.Values.Text = "M3 description:"
-        '
-        'txtM3Description
-        '
-        Me.txtM3Description.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtM3Description.Location = New System.Drawing.Point(104, 48)
-        Me.txtM3Description.Name = "txtM3Description"
-        Me.txtM3Description.Palette = Me.KryptonPalette1
-        Me.txtM3Description.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtM3Description.Size = New System.Drawing.Size(272, 20)
-        Me.txtM3Description.TabIndex = 55
-        '
-        'KryptonLabel9
-        '
-        Me.KryptonLabel9.Location = New System.Drawing.Point(3, 3)
-        Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Palette = Me.KryptonPalette1
-        Me.KryptonLabel9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel9.Size = New System.Drawing.Size(93, 20)
-        Me.KryptonLabel9.TabIndex = 56
-        Me.KryptonLabel9.Values.Text = "D1 description:"
-        '
-        'txtD1Description
-        '
-        Me.txtD1Description.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtD1Description.Location = New System.Drawing.Point(104, 3)
-        Me.txtD1Description.Name = "txtD1Description"
-        Me.txtD1Description.Palette = Me.KryptonPalette1
-        Me.txtD1Description.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtD1Description.Size = New System.Drawing.Size(285, 20)
-        Me.txtD1Description.TabIndex = 57
-        '
-        'txtD3Description
-        '
-        Me.txtD3Description.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtD3Description.Location = New System.Drawing.Point(104, 48)
-        Me.txtD3Description.Name = "txtD3Description"
-        Me.txtD3Description.Palette = Me.KryptonPalette1
-        Me.txtD3Description.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtD3Description.Size = New System.Drawing.Size(285, 20)
-        Me.txtD3Description.TabIndex = 61
-        '
-        'KryptonLabel8
-        '
-        Me.KryptonLabel8.Location = New System.Drawing.Point(3, 26)
-        Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Palette = Me.KryptonPalette1
-        Me.KryptonLabel8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel8.Size = New System.Drawing.Size(93, 20)
-        Me.KryptonLabel8.TabIndex = 58
-        Me.KryptonLabel8.Values.Text = "D2 description:"
-        '
-        'KryptonLabel7
-        '
-        Me.KryptonLabel7.Location = New System.Drawing.Point(3, 48)
-        Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Palette = Me.KryptonPalette1
-        Me.KryptonLabel7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel7.Size = New System.Drawing.Size(93, 20)
-        Me.KryptonLabel7.TabIndex = 60
-        Me.KryptonLabel7.Values.Text = "D3 description:"
-        '
-        'txtD2Description
-        '
-        Me.txtD2Description.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtD2Description.Location = New System.Drawing.Point(104, 26)
-        Me.txtD2Description.Name = "txtD2Description"
-        Me.txtD2Description.Palette = Me.KryptonPalette1
-        Me.txtD2Description.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtD2Description.Size = New System.Drawing.Size(285, 20)
-        Me.txtD2Description.TabIndex = 59
+        Me.chkIncludesAttachment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkIncludesAttachment.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludesAttachment.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludesAttachment.Location = New System.Drawing.Point(615, 12)
+        Me.chkIncludesAttachment.Name = "chkIncludesAttachment"
+        Me.chkIncludesAttachment.Palette = Me.KryptonPalette1
+        Me.chkIncludesAttachment.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.chkIncludesAttachment.Size = New System.Drawing.Size(136, 20)
+        Me.chkIncludesAttachment.TabIndex = 67
+        Me.chkIncludesAttachment.Text = "Includes attachment:"
+        Me.ToolTip1.SetToolTip(Me.chkIncludesAttachment, "If checked, when emailing module results, user will be prompted for attachment")
+        Me.chkIncludesAttachment.Values.Text = "Includes attachment:"
         '
         'KryptonSplitContainer1
         '
@@ -287,7 +127,7 @@ Partial Class ClassAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.KryptonSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.KryptonSplitContainer1.Location = New System.Drawing.Point(-1, 227)
+        Me.KryptonSplitContainer1.Location = New System.Drawing.Point(-1, 90)
         Me.KryptonSplitContainer1.Name = "KryptonSplitContainer1"
         '
         'KryptonSplitContainer1.Panel1
@@ -301,7 +141,7 @@ Partial Class ClassAssignmentDetails
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblAddOutcome)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblRemoveOutcome)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.KryptonLabel11)
-        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(788, 190)
+        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(788, 327)
         Me.KryptonSplitContainer1.SplitterDistance = 383
         Me.KryptonSplitContainer1.TabIndex = 65
         '
@@ -314,12 +154,14 @@ Partial Class ClassAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvClassGroupOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvClassGroupOutcomes.CellEditUseWholeCell = False
         Me.olvClassGroupOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn3, OlvColumn4})
+        Me.olvClassGroupOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvClassGroupOutcomes.FullRowSelect = True
         Me.olvClassGroupOutcomes.Location = New System.Drawing.Point(3, 21)
         Me.olvClassGroupOutcomes.Name = "olvClassGroupOutcomes"
         Me.olvClassGroupOutcomes.ShowGroups = False
-        Me.olvClassGroupOutcomes.Size = New System.Drawing.Size(379, 169)
+        Me.olvClassGroupOutcomes.Size = New System.Drawing.Size(379, 306)
         Me.olvClassGroupOutcomes.TabIndex = 62
         Me.olvClassGroupOutcomes.UseCompatibleStateImageBehavior = False
         Me.olvClassGroupOutcomes.UseFiltering = True
@@ -351,12 +193,14 @@ Partial Class ClassAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAssignmentOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvAssignmentOutcomes.CellEditUseWholeCell = False
         Me.olvAssignmentOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, OlvColumn2})
+        Me.olvAssignmentOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvAssignmentOutcomes.FullRowSelect = True
         Me.olvAssignmentOutcomes.Location = New System.Drawing.Point(28, 21)
         Me.olvAssignmentOutcomes.Name = "olvAssignmentOutcomes"
         Me.olvAssignmentOutcomes.ShowGroups = False
-        Me.olvAssignmentOutcomes.Size = New System.Drawing.Size(372, 169)
+        Me.olvAssignmentOutcomes.Size = New System.Drawing.Size(372, 306)
         Me.olvAssignmentOutcomes.TabIndex = 4
         Me.olvAssignmentOutcomes.UseCompatibleStateImageBehavior = False
         Me.olvAssignmentOutcomes.UseFiltering = True
@@ -459,102 +303,6 @@ Partial Class ClassAssignmentDetails
         Me.txtAssignmentBriefFilename.Size = New System.Drawing.Size(658, 20)
         Me.txtAssignmentBriefFilename.TabIndex = 45
         '
-        'KryptonGroupBox1
-        '
-        Me.KryptonGroupBox1.Location = New System.Drawing.Point(12, 90)
-        Me.KryptonGroupBox1.Name = "KryptonGroupBox1"
-        '
-        'KryptonGroupBox1.Panel
-        '
-        Me.KryptonGroupBox1.Panel.Controls.Add(Me.chkM1Available)
-        Me.KryptonGroupBox1.Panel.Controls.Add(Me.chkM2Available)
-        Me.KryptonGroupBox1.Panel.Controls.Add(Me.chkD3Available)
-        Me.KryptonGroupBox1.Panel.Controls.Add(Me.chkM3Available)
-        Me.KryptonGroupBox1.Panel.Controls.Add(Me.chkD2Available)
-        Me.KryptonGroupBox1.Panel.Controls.Add(Me.chkD1Available)
-        Me.KryptonGroupBox1.Size = New System.Drawing.Size(772, 57)
-        Me.KryptonGroupBox1.TabIndex = 44
-        Me.KryptonGroupBox1.Text = "Available"
-        Me.KryptonGroupBox1.Values.Heading = "Available"
-        '
-        'chkM1Available
-        '
-        Me.chkM1Available.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkM1Available.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkM1Available.Location = New System.Drawing.Point(3, 4)
-        Me.chkM1Available.Name = "chkM1Available"
-        Me.chkM1Available.Palette = Me.KryptonPalette1
-        Me.chkM1Available.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkM1Available.Size = New System.Drawing.Size(44, 20)
-        Me.chkM1Available.TabIndex = 37
-        Me.chkM1Available.Text = "M1:"
-        Me.chkM1Available.Values.Text = "M1:"
-        '
-        'chkM2Available
-        '
-        Me.chkM2Available.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkM2Available.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkM2Available.Location = New System.Drawing.Point(88, 4)
-        Me.chkM2Available.Name = "chkM2Available"
-        Me.chkM2Available.Palette = Me.KryptonPalette1
-        Me.chkM2Available.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkM2Available.Size = New System.Drawing.Size(44, 20)
-        Me.chkM2Available.TabIndex = 38
-        Me.chkM2Available.Text = "M2:"
-        Me.chkM2Available.Values.Text = "M2:"
-        '
-        'chkD3Available
-        '
-        Me.chkD3Available.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkD3Available.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkD3Available.Location = New System.Drawing.Point(453, 4)
-        Me.chkD3Available.Name = "chkD3Available"
-        Me.chkD3Available.Palette = Me.KryptonPalette1
-        Me.chkD3Available.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkD3Available.Size = New System.Drawing.Size(42, 20)
-        Me.chkD3Available.TabIndex = 42
-        Me.chkD3Available.Text = "D3:"
-        Me.chkD3Available.Values.Text = "D3:"
-        '
-        'chkM3Available
-        '
-        Me.chkM3Available.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkM3Available.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkM3Available.Location = New System.Drawing.Point(185, 4)
-        Me.chkM3Available.Name = "chkM3Available"
-        Me.chkM3Available.Palette = Me.KryptonPalette1
-        Me.chkM3Available.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkM3Available.Size = New System.Drawing.Size(44, 20)
-        Me.chkM3Available.TabIndex = 39
-        Me.chkM3Available.Text = "M3:"
-        Me.chkM3Available.Values.Text = "M3:"
-        '
-        'chkD2Available
-        '
-        Me.chkD2Available.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkD2Available.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkD2Available.Location = New System.Drawing.Point(356, 4)
-        Me.chkD2Available.Name = "chkD2Available"
-        Me.chkD2Available.Palette = Me.KryptonPalette1
-        Me.chkD2Available.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkD2Available.Size = New System.Drawing.Size(42, 20)
-        Me.chkD2Available.TabIndex = 41
-        Me.chkD2Available.Text = "D2:"
-        Me.chkD2Available.Values.Text = "D2:"
-        '
-        'chkD1Available
-        '
-        Me.chkD1Available.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkD1Available.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkD1Available.Location = New System.Drawing.Point(271, 4)
-        Me.chkD1Available.Name = "chkD1Available"
-        Me.chkD1Available.Palette = Me.KryptonPalette1
-        Me.chkD1Available.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkD1Available.Size = New System.Drawing.Size(42, 20)
-        Me.chkD1Available.TabIndex = 40
-        Me.chkD1Available.Text = "D1:"
-        Me.chkD1Available.Values.Text = "D1:"
-        '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(12, 38)
@@ -611,21 +359,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel3.TabIndex = 23
         Me.KryptonLabel3.Values.Text = "Name:"
         '
-        'chkIncludesAttachment
-        '
-        Me.chkIncludesAttachment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkIncludesAttachment.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludesAttachment.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludesAttachment.Location = New System.Drawing.Point(615, 12)
-        Me.chkIncludesAttachment.Name = "chkIncludesAttachment"
-        Me.chkIncludesAttachment.Palette = Me.KryptonPalette1
-        Me.chkIncludesAttachment.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkIncludesAttachment.Size = New System.Drawing.Size(136, 20)
-        Me.chkIncludesAttachment.TabIndex = 67
-        Me.chkIncludesAttachment.Text = "Includes attachment:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludesAttachment, "If checked, when emailing module results, user will be prompted for attachment")
-        Me.chkIncludesAttachment.Values.Text = "Includes attachment:"
-        '
         'ClassAssignmentDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -642,14 +375,6 @@ Partial Class ClassAssignmentDetails
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel.ResumeLayout(False)
         Me.KryptonPanel.PerformLayout()
-        CType(Me.KryptonSplitContainer2.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonSplitContainer2.Panel1.ResumeLayout(False)
-        Me.KryptonSplitContainer2.Panel1.PerformLayout()
-        CType(Me.KryptonSplitContainer2.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonSplitContainer2.Panel2.ResumeLayout(False)
-        Me.KryptonSplitContainer2.Panel2.PerformLayout()
-        CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonSplitContainer2.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.Panel1.ResumeLayout(False)
         Me.KryptonSplitContainer1.Panel1.PerformLayout()
@@ -660,11 +385,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonSplitContainer1.ResumeLayout(False)
         CType(Me.olvClassGroupOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvAssignmentOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.KryptonGroupBox1.Panel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonGroupBox1.Panel.ResumeLayout(False)
-        Me.KryptonGroupBox1.Panel.PerformLayout()
-        CType(Me.KryptonGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonGroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -692,37 +412,18 @@ Partial Class ClassAssignmentDetails
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents olvAssignmentOutcomes As BrightIdeasSoftware.ObjectListView
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents chkD3Available As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkD2Available As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkD1Available As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkM3Available As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkM2Available As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkM1Available As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents KryptonGroupBox1 As ComponentFactory.Krypton.Toolkit.KryptonGroupBox
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents llblBrowseForAssignmentBrief As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents txtAssignmentBriefFilename As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents llblBrowseForAssignmentsPath As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents txtSavedAssignmentsPath As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtM1Description As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtD3Description As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtD2Description As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtD1Description As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel9 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtM3Description As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel6 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtM2Description As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel5 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel11 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents olvClassGroupOutcomes As BrightIdeasSoftware.ObjectListView
     Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents KryptonSplitContainer1 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
-    Friend WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
     Friend WithEvents chkIncludesAttachment As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class
