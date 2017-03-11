@@ -23,6 +23,7 @@ Partial Class ImportAssignmentNormalGrades
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportAssignmentNormalGrades))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -47,6 +48,8 @@ Partial Class ImportAssignmentNormalGrades
         Me.lblStudentsSearched = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsSearchedCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.chkIncludeImportingData = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkMarkAssignmentProcessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -190,6 +193,8 @@ Partial Class ImportAssignmentNormalGrades
         '
         'KryptonPanel2
         '
+        Me.KryptonPanel2.Controls.Add(Me.chkMarkAssignmentProcessed)
+        Me.KryptonPanel2.Controls.Add(Me.chkIncludeImportingData)
         Me.KryptonPanel2.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel2.Controls.Add(Me.cboIDToUse)
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Top
@@ -293,6 +298,28 @@ Partial Class ImportAssignmentNormalGrades
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 200
         '
+        'chkIncludeImportingData
+        '
+        Me.chkIncludeImportingData.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeImportingData.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeImportingData.Location = New System.Drawing.Point(335, 6)
+        Me.chkIncludeImportingData.Name = "chkIncludeImportingData"
+        Me.chkIncludeImportingData.Size = New System.Drawing.Size(190, 19)
+        Me.chkIncludeImportingData.TabIndex = 54
+        Me.chkIncludeImportingData.Text = "Include ""Imported on {date}"""
+        Me.chkIncludeImportingData.Values.Text = "Include ""Imported on {date}"""
+        '
+        'chkMarkAssignmentProcessed
+        '
+        Me.chkMarkAssignmentProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkMarkAssignmentProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkMarkAssignmentProcessed.Location = New System.Drawing.Point(571, 6)
+        Me.chkMarkAssignmentProcessed.Name = "chkMarkAssignmentProcessed"
+        Me.chkMarkAssignmentProcessed.Size = New System.Drawing.Size(207, 19)
+        Me.chkMarkAssignmentProcessed.TabIndex = 54
+        Me.chkMarkAssignmentProcessed.Text = "Mark assignments ""processed"""
+        Me.chkMarkAssignmentProcessed.Values.Text = "Mark assignments ""processed"""
+        '
         'ImportAssignmentNormalGrades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -300,6 +327,7 @@ Partial Class ImportAssignmentNormalGrades
         Me.ClientSize = New System.Drawing.Size(955, 503)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ImportAssignmentNormalGrades"
         Me.Text = "Import Assignment Grades"
         Me.MenuStrip1.ResumeLayout(False)
@@ -343,4 +371,6 @@ Partial Class ImportAssignmentNormalGrades
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents cboIDToUse As ComponentFactory.Krypton.Toolkit.KryptonComboBox
     Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
+    Private WithEvents chkMarkAssignmentProcessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Private WithEvents chkIncludeImportingData As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

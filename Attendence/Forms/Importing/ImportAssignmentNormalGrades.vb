@@ -160,13 +160,20 @@
                     If asmtToUse Is Nothing Then
                         asmtToUse = data.Student.AddAssignment(m_asmt)
                         asmtToUse.FirstTryPoints = data.Grade
-                        asmtToUse.OverallComments = data.OverallComments & Environment.NewLine & Environment.NewLine & "Imported on " & Date.Today.ToString("dd-MM-yyyy")
+                        asmtToUse.OverallComments = data.OverallComments
+                        If chkIncludeImportingData.Checked Then
+                            asmtToUse.OverallComments &= Environment.NewLine & Environment.NewLine & "Imported on " & Date.Today.ToString("dd-MM-yyyy")
+                        End If
+
+                        If chkMarkAssignmentProcessed.Checked Then
+                            asmtToUse.Processed = True
+                        End If
                     End If
 
                     intCounter += 1
                 Else
                     '-- what to do if there is no student? Write to output panel I guess.
-                    txtOutput.Text &= "Student (ExtID: " & data.ExtStudentID & ") could not be found in database." & Environment.NewLine
+                    txtOutput.Text &= "Student (ID: " & data.ExtStudentID & ") could not be found in database." & Environment.NewLine
                 End If
             Next
 

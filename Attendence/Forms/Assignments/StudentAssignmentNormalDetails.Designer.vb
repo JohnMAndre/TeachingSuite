@@ -374,7 +374,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(6, 5)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(54, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel2.TabIndex = 127
         Me.KryptonLabel2.Values.Text = "First try:"
         '
@@ -403,15 +403,15 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(6, 55)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(57, 19)
         Me.KryptonLabel3.TabIndex = 64
         Me.KryptonLabel3.Values.Text = "Overall:"
         '
         'KryptonLabel4
         '
-        Me.KryptonLabel4.Location = New System.Drawing.Point(6, 173)
+        Me.KryptonLabel4.Location = New System.Drawing.Point(1, 173)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(87, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(93, 19)
         Me.KryptonLabel4.TabIndex = 65
         Me.KryptonLabel4.Values.Text = "Improvement:"
         '
@@ -419,7 +419,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.llblAutoGenImprovementsWithoutPerformanceLevel.Location = New System.Drawing.Point(1, 242)
         Me.llblAutoGenImprovementsWithoutPerformanceLevel.Name = "llblAutoGenImprovementsWithoutPerformanceLevel"
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Size = New System.Drawing.Size(94, 20)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Size = New System.Drawing.Size(99, 19)
         Me.llblAutoGenImprovementsWithoutPerformanceLevel.TabIndex = 140
         Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsWithoutPerformanceLevel, "Automatically generate improvement comments based on checked improvement items (w" & _
         "ithout performance level)")
@@ -429,7 +429,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.llblAutoGenImprovements.Location = New System.Drawing.Point(1, 199)
         Me.llblAutoGenImprovements.Name = "llblAutoGenImprovements"
-        Me.llblAutoGenImprovements.Size = New System.Drawing.Size(87, 20)
+        Me.llblAutoGenImprovements.Size = New System.Drawing.Size(91, 19)
         Me.llblAutoGenImprovements.TabIndex = 137
         Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovements, "Automatically generate improvement comments based on checked improvement items (w" & _
         "ith performance level)")
@@ -605,9 +605,9 @@ Partial Class StudentAssignmentNormalDetails
         Me.chkProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkProcessed.Location = New System.Drawing.Point(674, 34)
+        Me.chkProcessed.Location = New System.Drawing.Point(664, 35)
         Me.chkProcessed.Name = "chkProcessed"
-        Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
+        Me.chkProcessed.Size = New System.Drawing.Size(91, 19)
         Me.chkProcessed.TabIndex = 48
         Me.chkProcessed.Text = "&Processed:"
         Me.chkProcessed.Values.Text = "&Processed:"
@@ -770,7 +770,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 3)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel1.TabIndex = 56
         Me.KryptonLabel1.Values.Text = "NickName:"
         '
@@ -778,7 +778,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.llblOpenStudent.Location = New System.Drawing.Point(273, 3)
         Me.llblOpenStudent.Name = "llblOpenStudent"
-        Me.llblOpenStudent.Size = New System.Drawing.Size(71, 20)
+        Me.llblOpenStudent.Size = New System.Drawing.Size(78, 19)
         Me.llblOpenStudent.TabIndex = 120
         Me.llblOpenStudent.Values.Text = "Student ID:"
         '

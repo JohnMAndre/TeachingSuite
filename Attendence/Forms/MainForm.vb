@@ -2092,9 +2092,17 @@ Public Class MainForm
     Private Sub AssignmentMoveUpToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AssignmentMoveUpToolStripMenuItem.Click
         Dim intIndex As Integer = lstAssignments.SelectedIndex
         If intIndex > 0 Then
-            Dim asmt As ClassAssignmentBTEC = lstAssignments.SelectedItem
-            GetSelectedClassGroup.AssignmentsBTEC.Remove(asmt)
-            GetSelectedClassGroup.AssignmentsBTEC.Insert(intIndex - 1, asmt)
+            '-- We are assuming that we never mix btec and regular assignments
+            Dim asmt As IClassAssignment = lstAssignments.SelectedItem
+            If asmt.AssignmentType = AssignmentType.BTEC Then
+                '-- BTEC assignments
+                GetSelectedClassGroup.AssignmentsBTEC.Remove(asmt)
+                GetSelectedClassGroup.AssignmentsBTEC.Insert(intIndex - 1, asmt)
+            Else
+                '-- normal assignments
+                GetSelectedClassGroup.Assignments.Remove(asmt)
+                GetSelectedClassGroup.Assignments.Insert(intIndex - 1, asmt)
+            End If
             LoadClassAssignments()
         End If
 

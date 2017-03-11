@@ -208,11 +208,17 @@
         Close()
     End Sub
     Private Function SaveChanges() As Boolean
+        If chkProcessed.Checked AndAlso (rtbOverallComments.Text.Trim.Length = 0 OrElse rtbImprovementComments.Text.Trim.Length = 0) Then
+            If MessageBox.Show("Are you sure you want to mark this processed without complete Overall and Improvement notes?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = System.Windows.Forms.DialogResult.No Then
+                Return False
+            End If
+        End If
+
         '-- validation checks
         If nudFirstTryPoints.Value > m_studentAssignment.BaseAssignment.MaxPoints OrElse _
             nudSecondTryPoints.Value > m_studentAssignment.BaseAssignment.MaxPoints OrElse _
             nudThirdTryPoints.Value > m_studentAssignment.BaseAssignment.MaxPoints Then
-            MessageBox.Show("Points are set above the maximum for this assignment.")
+            MessageBox.Show("Points are set above the maximum for this assignment.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         m_studentAssignment.OverallComments = rtbOverallComments.Text
