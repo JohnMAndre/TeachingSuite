@@ -406,6 +406,13 @@
                     ImprovementFeedbackForFailAll = "Student should arrange a time to meet their teacher for assistance."
                 End If
 
+                xElement = xDoc.SelectSingleNode("//PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements")
+                If xElement IsNot Nothing Then
+                    PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements = ConvertToBool(xElement.InnerText, True)
+                Else
+                    PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements = True
+                End If
+
 
 
                 LoadAutoTexts(xDoc)
@@ -544,6 +551,8 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForFailSome", ImprovementFeedbackForFailSome))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForFailAll", ImprovementFeedbackForFailAll))
 
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements", PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements))
+
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
 
@@ -632,6 +641,7 @@
     End Sub
 #Region " Public Properties "
     Private m_dtLastUpdateCheck As Date
+    Public Property PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements As Boolean
     Public ReadOnly Property LastUpdateCheck As Date
         Get
             Return m_dtLastUpdateCheck

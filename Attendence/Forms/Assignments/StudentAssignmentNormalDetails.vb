@@ -208,7 +208,7 @@
         Close()
     End Sub
     Private Function SaveChanges() As Boolean
-        If chkProcessed.Checked AndAlso (rtbOverallComments.Text.Trim.Length = 0 OrElse rtbImprovementComments.Text.Trim.Length = 0) Then
+        If AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements AndAlso chkProcessed.Checked AndAlso (rtbOverallComments.Text.Trim.Length = 0 OrElse rtbImprovementComments.Text.Trim.Length = 0) Then
             If MessageBox.Show("Are you sure you want to mark this processed without complete Overall and Improvement notes?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = System.Windows.Forms.DialogResult.No Then
                 Return False
             End If

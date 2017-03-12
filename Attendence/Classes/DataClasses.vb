@@ -2612,11 +2612,24 @@ Public Class Student
         Male
         Female
     End Enum
-
-    Public ReadOnly Property AssessmentResultsOverallNumeric As Integer
+    ''' <summary>
+    ''' Only works for Normal assignments (not BTEC)
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public ReadOnly Property AssessmentResultsOverallNumeric As Double
         Get
-            'todo: implement this property
-            Return 0
+            Dim dblOverall As Double
+            Dim intScore As Integer
+
+            For Each asmt In Me.Assignments
+                intScore = Math.Max(Math.Max(asmt.FirstTryPoints, asmt.SecondTryPoints), asmt.ThirdTryPoints) '-- get highest score of first 3 submissions
+
+                dblOverall += (intScore / asmt.BaseAssignment.MaxPoints) * asmt.BaseAssignment.Weighting
+            Next
+
+            Return dblOverall
         End Get
     End Property
     Public ReadOnly Property AssessmentResultOverall As String
@@ -2635,16 +2648,7 @@ Public Class Student
                 Dim rslt As StudentModuleResult = Me.ModuleResults(False)
                 Return rslt.OverallGrade
             ElseIf Me.Assignments.Count > 0 Then
-                Dim dblOverall As Double
-                Dim intScore As Integer
-
-                For Each asmt In Me.Assignments
-                    intScore = Math.Max(Math.Max(asmt.FirstTryPoints, asmt.SecondTryPoints), asmt.ThirdTryPoints) '-- get highest score of first 3 submissions
-
-                    dblOverall += (intScore / asmt.BaseAssignment.MaxPoints) * asmt.BaseAssignment.Weighting
-                Next
-
-                Return dblOverall.ToString("#,##0%")
+                Return AssessmentResultsOverallNumeric.ToString("#,##0%")
             Else
                 '-- no assignments as all
                 Return "n/a"

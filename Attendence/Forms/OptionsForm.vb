@@ -83,6 +83,7 @@ Public Class OptionsForm
         AppSettings.ImprovementFeedbackForFailSome = txtImprovementWithFailSome.Text
         AppSettings.ImprovementFeedbackForFailAll = txtImprovementWithFailAll.Text
 
+        AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements = chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked
 
         Me.DialogResult = DialogResult.OK
 
@@ -173,6 +174,8 @@ Public Class OptionsForm
             txtImprovementWithPassAll.Text = AppSettings.ImprovementFeedbackForPassAll
             txtImprovementWithFailSome.Text = AppSettings.ImprovementFeedbackForFailSome
             txtImprovementWithFailAll.Text = AppSettings.ImprovementFeedbackForFailAll
+
+            chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked = AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements
 
         Catch ex As Exception
             Log(ex)

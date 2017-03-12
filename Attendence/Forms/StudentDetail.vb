@@ -261,6 +261,9 @@ Public Class StudentDetail
 
             If m_student.Assignments.Count > 0 Then
                 olvNormalAssignments.SetObjects(m_student.Assignments)
+
+                '-- Now calculate the overall grade
+                lblGradeAsOfToday.Text = m_student.AssessmentResultOverall
             End If
         End If
     End Sub
@@ -427,11 +430,11 @@ Public Class StudentDetail
 
         If m_student.Assignments.Count > 0 OrElse olvAssignments.Visible = False Then '-- we need something visible, even if there are no assignments of any kind
             olvNormalAssignments.SetObjects(m_student.Assignments)
-            olvNormalAssignments.Visible = True
-            olvNormalAssignments.Show()
-            olvNormalAssignments.BringToFront()
+            pnlNormalAssignments.Visible = True
+            pnlNormalAssignments.Show()
+            pnlNormalAssignments.BringToFront()
         Else
-            olvNormalAssignments.Visible = False
+            pnlNormalAssignments.Visible = False
 
         End If
 
