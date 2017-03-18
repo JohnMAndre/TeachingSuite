@@ -715,6 +715,8 @@ Public Class EmailModuleResults
                     Else
                         boolOKToInclude = True
                     End If
+
+
                     If boolOKToInclude Then
                         If oc.Status = OutcomeResultStatusEnum.Achieved Then
                             sbReturn.Append("<td bgcolor='LightGreen' align='center'>" & strResult & "</td>")
@@ -757,7 +759,7 @@ Public Class EmailModuleResults
                             '   So just send blank
                             sbReturn.Append("<td>&nbsp;</td>")
                         End If
-                End If
+                    End If
                 End If
 
 
@@ -765,7 +767,7 @@ Public Class EmailModuleResults
                 '-- Last part of the line is the same no matter what
                 sbReturn.Append("</tr>")
 
-                End If
+            End If
         Next
 
         sbReturn.Append("</table>")

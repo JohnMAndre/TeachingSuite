@@ -530,4 +530,8 @@ Public Class StudentDetail
         ShowImprovementItems()
         AppSettings.LastStudentDetailTab = 1
     End Sub
+
+    Private Sub llblRefreshGradeAsOfToday_LinkClicked(sender As Object, e As EventArgs) Handles llblRefreshGradeAsOfToday.LinkClicked
+        lblGradeAsOfToday.Text = m_student.AssessmentResultOverall
+    End Sub
 End Class

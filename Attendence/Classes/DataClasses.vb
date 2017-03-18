@@ -3038,6 +3038,10 @@ Public Class Student
                                     '   Unknown means the student has not attempted the outcome yet
                                     objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved
                                     objModuleOutcomeResult.LatestFeedback = objStudentOutcome.FirstTryComments
+                                ElseIf objModuleOutcomeResult.Status = OutcomeResultStatusEnum.NotAchieved Then
+                                    '-- Did not achieve before (specifically not achieved, not unknown)
+                                    '   so leave it and do nothing
+                                    Application.DoEvents() '-- only for a breakpoint
                                 Else
                                     '-- If we get here, actually this outcome never passed, never failed...so never submitted
                                     objModuleOutcomeResult.Status = OutcomeResultStatusEnum.Unknown
