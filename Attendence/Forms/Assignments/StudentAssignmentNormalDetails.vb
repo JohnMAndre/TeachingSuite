@@ -420,5 +420,15 @@
     Private Sub llblAutoGenImprovementsWithoutPerformanceLevel_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsWithoutPerformanceLevel.LinkClicked
         AutoGenImprovementComments(False)
     End Sub
-
+    Private Sub olvImprovementItems_KeyDown(sender As Object, e As KeyEventArgs) Handles olvImprovementItems.KeyDown
+        Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
+        If selItem IsNot Nothing Then
+            If e.KeyCode = Keys.Add Then
+                selItem.PerformanceLevel += 1
+            ElseIf e.KeyCode = Keys.Subtract Then
+                selItem.PerformanceLevel -= 1
+            End If
+        End If
+        olvImprovementItems.RefreshObject(selItem)
+    End Sub
 End Class

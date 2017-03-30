@@ -92,6 +92,7 @@ Partial Class StudentAssignmentDetails
         Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudPlagiarismSeverity = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtTeam = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtSchoolClass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblRefreshOutcomeCount = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -109,7 +110,6 @@ Partial Class StudentAssignmentDetails
         Me.llblFailAll = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblPassAll = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtAssignmentName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -122,6 +122,8 @@ Partial Class StudentAssignmentDetails
         Me.chkM2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkM1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.llblOpenStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -144,8 +146,6 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtTeam = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1100,6 +1100,14 @@ Partial Class StudentAssignmentDetails
         Me.KryptonLabel10.TabIndex = 113
         Me.KryptonLabel10.Values.Text = "Plag:"
         '
+        'txtTeam
+        '
+        Me.txtTeam.Location = New System.Drawing.Point(642, 26)
+        Me.txtTeam.Name = "txtTeam"
+        Me.txtTeam.ReadOnly = True
+        Me.txtTeam.Size = New System.Drawing.Size(91, 19)
+        Me.txtTeam.TabIndex = 111
+        '
         'txtSchoolClass
         '
         Me.txtSchoolClass.Location = New System.Drawing.Point(544, 3)
@@ -1281,14 +1289,6 @@ Partial Class StudentAssignmentDetails
         Me.KryptonLabel7.TabIndex = 74
         Me.KryptonLabel7.Values.Text = "Presentation:"
         '
-        'KryptonLabel2
-        '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(739, 27)
-        Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(44, 19)
-        Me.KryptonLabel2.TabIndex = 71
-        Me.KryptonLabel2.Values.Text = "Tags:"
-        '
         'KryptonLabel6
         '
         Me.KryptonLabel6.Location = New System.Drawing.Point(646, 3)
@@ -1434,6 +1434,22 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblOpenStudent, "Open student")
         Me.llblOpenStudent.Values.Text = "Student ID:"
         '
+        'KryptonLabel15
+        '
+        Me.KryptonLabel15.Location = New System.Drawing.Point(598, 26)
+        Me.KryptonLabel15.Name = "KryptonLabel15"
+        Me.KryptonLabel15.Size = New System.Drawing.Size(49, 19)
+        Me.KryptonLabel15.TabIndex = 110
+        Me.KryptonLabel15.Values.Text = "Team:"
+        '
+        'KryptonLabel2
+        '
+        Me.KryptonLabel2.Location = New System.Drawing.Point(739, 27)
+        Me.KryptonLabel2.Name = "KryptonLabel2"
+        Me.KryptonLabel2.Size = New System.Drawing.Size(44, 19)
+        Me.KryptonLabel2.TabIndex = 71
+        Me.KryptonLabel2.Values.Text = "Tags:"
+        '
         'KryptonManager
         '
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
@@ -1559,22 +1575,6 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Name = "MarkStudentDidNotSubmitToolStripMenuItem"
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
-        '
-        'KryptonLabel15
-        '
-        Me.KryptonLabel15.Location = New System.Drawing.Point(598, 26)
-        Me.KryptonLabel15.Name = "KryptonLabel15"
-        Me.KryptonLabel15.Size = New System.Drawing.Size(49, 19)
-        Me.KryptonLabel15.TabIndex = 110
-        Me.KryptonLabel15.Values.Text = "Team:"
-        '
-        'txtTeam
-        '
-        Me.txtTeam.Location = New System.Drawing.Point(642, 26)
-        Me.txtTeam.Name = "txtTeam"
-        Me.txtTeam.ReadOnly = True
-        Me.txtTeam.Size = New System.Drawing.Size(91, 19)
-        Me.txtTeam.TabIndex = 111
         '
         'StudentAssignmentDetails
         '

@@ -432,7 +432,7 @@ Friend Class StudentAssignmentDetails
                 '-- first or second try count
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     If ocResult.BaseOutcome.GradeGroup = grade Then
-                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved OrElse _
+                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso _
                             ocResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved Then
                             strReturn &= ocResult.BaseOutcome.Name & "; "
                         End If
@@ -442,8 +442,8 @@ Friend Class StudentAssignmentDetails
                 '-- First, second, or third try count
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     If ocResult.BaseOutcome.GradeGroup = grade Then
-                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved OrElse _
-                            ocResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved OrElse _
+                        If ocResult.FirstTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso _
+                            ocResult.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso _
                             ocResult.ThirdTryStatus <> OutcomeResultStatusEnum.Achieved Then
                             strReturn &= ocResult.BaseOutcome.Name & "; "
                         End If
@@ -1821,5 +1821,17 @@ Friend Class StudentAssignmentDetails
 
     Private Sub btnGenerateImprovementCommentsNoGradeHint_LinkClicked(sender As Object, e As EventArgs) Handles btnGenerateImprovementCommentsNoGradeHint.LinkClicked
         GenerateImprovementFeedback(False, False)
+    End Sub
+
+    Private Sub olvImprovementItems_KeyDown(sender As Object, e As KeyEventArgs) Handles olvImprovementItems.KeyDown
+        Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
+        If selItem IsNot Nothing Then
+            If e.KeyCode = Keys.Add Then
+                selItem.PerformanceLevel += 1
+            ElseIf e.KeyCode = Keys.Subtract Then
+                selItem.PerformanceLevel -= 1
+            End If
+        End If
+        olvImprovementItems.RefreshObject(selItem)
     End Sub
 End Class
