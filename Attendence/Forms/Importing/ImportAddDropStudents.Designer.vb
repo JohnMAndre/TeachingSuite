@@ -25,6 +25,7 @@ Partial Class ImportAddDropStudents
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportAddDropStudents))
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.splitAddDrop = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.olvStudentsToAdd = New BrightIdeasSoftware.ObjectListView()
@@ -83,6 +84,11 @@ Partial Class ImportAddDropStudents
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPanel
@@ -127,9 +133,11 @@ Partial Class ImportAddDropStudents
         Me.olvStudentsToAdd.AllowColumnReorder = True
         Me.olvStudentsToAdd.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudentsToAdd.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudentsToAdd.CellEditUseWholeCell = False
         Me.olvStudentsToAdd.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13})
         Me.olvStudentsToAdd.CopySelectionOnControlC = False
         Me.olvStudentsToAdd.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudentsToAdd.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudentsToAdd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudentsToAdd.EmptyListMsg = "Copy and paste from spreadsheet."
         Me.olvStudentsToAdd.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -139,7 +147,6 @@ Partial Class ImportAddDropStudents
         Me.olvStudentsToAdd.HideSelection = False
         Me.olvStudentsToAdd.Location = New System.Drawing.Point(0, 34)
         Me.olvStudentsToAdd.Name = "olvStudentsToAdd"
-        Me.olvStudentsToAdd.OwnerDraw = True
         Me.olvStudentsToAdd.ShowGroups = False
         Me.olvStudentsToAdd.ShowImagesOnSubItems = True
         Me.olvStudentsToAdd.ShowItemCountOnGroups = True
@@ -232,9 +239,11 @@ Partial Class ImportAddDropStudents
         Me.olvStudentsToDrop.AllowColumnReorder = True
         Me.olvStudentsToDrop.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudentsToDrop.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudentsToDrop.CellEditUseWholeCell = False
         Me.olvStudentsToDrop.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn12, Me.OlvColumn14})
         Me.olvStudentsToDrop.CopySelectionOnControlC = False
         Me.olvStudentsToDrop.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudentsToDrop.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudentsToDrop.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudentsToDrop.EmptyListMsg = "Copy and paste from spreadsheet."
         Me.olvStudentsToDrop.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -244,7 +253,6 @@ Partial Class ImportAddDropStudents
         Me.olvStudentsToDrop.HideSelection = False
         Me.olvStudentsToDrop.Location = New System.Drawing.Point(0, 34)
         Me.olvStudentsToDrop.Name = "olvStudentsToDrop"
-        Me.olvStudentsToDrop.OwnerDraw = True
         Me.olvStudentsToDrop.ShowGroups = False
         Me.olvStudentsToDrop.ShowImagesOnSubItems = True
         Me.olvStudentsToDrop.ShowItemCountOnGroups = True
@@ -440,7 +448,8 @@ Partial Class ImportAddDropStudents
         '
         Me.PasteToolStripMenuItem.Enabled = False
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
+        Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
         '
         'Timer1
@@ -521,4 +530,5 @@ Partial Class ImportAddDropStudents
     Friend WithEvents PasteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents KryptonPalette1 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

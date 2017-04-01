@@ -1143,10 +1143,32 @@ Public Class SchoolClass
             tw.Write(DELIMITER)
             tw.Write(DELIMITER)
 
+            Dim intFirstNonZeroStudentGroup As Integer
+            Dim dtLastNonZeroCheckDate As Date
             For Each session As ClassSession In ClassSessions
                 '-- First add the dates
-                tw.Write(session.StartDate.ToString("d"))
-                tw.Write(DELIMITER)
+
+                '-- Rule: If 1/1/2001 Group 1 has been written, then 1/1/2001 Group 2 should not get a new header,
+                '   because the data will not line up
+                If session.StudentGroup <> 0 Then
+                    If intFirstNonZeroStudentGroup > 0 AndAlso dtLastNonZeroCheckDate = session.StartDate Then
+                        '-- we already used one of the group numbers for this date
+                        If session.StudentGroup <> intFirstNonZeroStudentGroup Then
+                            '-- Ignore this, just loop around
+                        End If
+                    Else
+                        intFirstNonZeroStudentGroup = session.StudentGroup
+                        dtLastNonZeroCheckDate = session.StartDate
+
+                        '-- This is the first non-zero group, so use this, ignore others
+                        tw.Write(session.StartDate.ToString("d"))
+                        tw.Write(DELIMITER)
+                    End If
+                Else
+                    '-- This is an "all" (zero) student group session
+                    tw.Write(session.StartDate.ToString("d"))
+                    tw.Write(DELIMITER)
+                End If
             Next
             tw.Write("Current")
             tw.Write(DELIMITER)
