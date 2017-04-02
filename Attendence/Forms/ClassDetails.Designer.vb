@@ -22,6 +22,7 @@ Partial Class ClassDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ClassDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.btnShowAttendanceSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblCalculateTotalTime = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -84,6 +85,12 @@ Partial Class ClassDetails
         Me.MoveupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tmrResetDuration = New System.Windows.Forms.Timer(Me.components)
+        Me.olvAttendanceSessions = New BrightIdeasSoftware.ObjectListView()
+        Me.OlvColumn21 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.ctxmnuAttendanceSession = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteAttendanceSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddAttendanceSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -93,10 +100,13 @@ Partial Class ClassDetails
         Me.ctxmnuSkipSessions.SuspendLayout()
         CType(Me.olvActualSessions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ctxmnuActualSessions.SuspendLayout()
+        CType(Me.olvAttendanceSessions, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuAttendanceSession.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.btnShowAttendanceSessions)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel.Controls.Add(Me.txtNotes)
         Me.KryptonPanel.Controls.Add(Me.llblCalculateTotalTime)
@@ -116,6 +126,17 @@ Partial Class ClassDetails
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Size = New System.Drawing.Size(885, 442)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'btnShowAttendanceSessions
+        '
+        Me.btnShowAttendanceSessions.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnShowAttendanceSessions.Location = New System.Drawing.Point(597, 85)
+        Me.btnShowAttendanceSessions.Name = "btnShowAttendanceSessions"
+        Me.btnShowAttendanceSessions.Size = New System.Drawing.Size(38, 34)
+        Me.btnShowAttendanceSessions.TabIndex = 80
+        Me.ToolTip1.SetToolTip(Me.btnShowAttendanceSessions, "List of all attendance records for this class")
+        Me.btnShowAttendanceSessions.Values.Image = Global.Teaching.My.Resources.Resources.calendar_32
+        Me.btnShowAttendanceSessions.Values.Text = ""
         '
         'KryptonLabel3
         '
@@ -283,10 +304,6 @@ Partial Class ClassDetails
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -297,30 +314,33 @@ Partial Class ClassDetails
         'btnShowNormalSchedule
         '
         Me.btnShowNormalSchedule.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowNormalSchedule.Location = New System.Drawing.Point(533, 85)
+        Me.btnShowNormalSchedule.Location = New System.Drawing.Point(509, 85)
         Me.btnShowNormalSchedule.Name = "btnShowNormalSchedule"
         Me.btnShowNormalSchedule.Size = New System.Drawing.Size(38, 34)
         Me.btnShowNormalSchedule.TabIndex = 79
+        Me.ToolTip1.SetToolTip(Me.btnShowNormalSchedule, "List of planned sessions")
         Me.btnShowNormalSchedule.Values.Image = Global.Teaching.My.Resources.Resources.calendar_P_32
         Me.btnShowNormalSchedule.Values.Text = ""
         '
         'btnShowSkips
         '
         Me.btnShowSkips.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowSkips.Location = New System.Drawing.Point(489, 85)
+        Me.btnShowSkips.Location = New System.Drawing.Point(465, 85)
         Me.btnShowSkips.Name = "btnShowSkips"
         Me.btnShowSkips.Size = New System.Drawing.Size(38, 34)
         Me.btnShowSkips.TabIndex = 78
+        Me.ToolTip1.SetToolTip(Me.btnShowSkips, "List of sessions to skip")
         Me.btnShowSkips.Values.Image = Global.Teaching.My.Resources.Resources.calendar_X_32
         Me.btnShowSkips.Values.Text = ""
         '
         'btnShowActualSessions
         '
         Me.btnShowActualSessions.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowActualSessions.Location = New System.Drawing.Point(577, 85)
+        Me.btnShowActualSessions.Location = New System.Drawing.Point(553, 85)
         Me.btnShowActualSessions.Name = "btnShowActualSessions"
         Me.btnShowActualSessions.Size = New System.Drawing.Size(38, 34)
         Me.btnShowActualSessions.TabIndex = 77
+        Me.ToolTip1.SetToolTip(Me.btnShowActualSessions, "List of actually scheduled sessions")
         Me.btnShowActualSessions.Values.Image = Global.Teaching.My.Resources.Resources.calendar_A_32
         Me.btnShowActualSessions.Values.Text = ""
         '
@@ -336,8 +356,10 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvPlannedSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvPlannedSchedule.CellEditUseWholeCell = False
         Me.olvPlannedSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn2, Me.OlvColumn7, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvPlannedSchedule.ContextMenuStrip = Me.ctxmnuPlannedSchedule
+        Me.olvPlannedSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvPlannedSchedule.FullRowSelect = True
         Me.olvPlannedSchedule.Location = New System.Drawing.Point(3, 126)
         Me.olvPlannedSchedule.Name = "olvPlannedSchedule"
@@ -420,8 +442,10 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvSessionsToSkip.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvSessionsToSkip.CellEditUseWholeCell = False
         Me.olvSessionsToSkip.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn16})
         Me.olvSessionsToSkip.ContextMenuStrip = Me.ctxmnuSkipSessions
+        Me.olvSessionsToSkip.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvSessionsToSkip.FullRowSelect = True
         Me.olvSessionsToSkip.Location = New System.Drawing.Point(3, 126)
         Me.olvSessionsToSkip.Name = "olvSessionsToSkip"
@@ -499,13 +523,15 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvActualSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvActualSessions.CellEditUseWholeCell = False
         Me.olvActualSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn18})
         Me.olvActualSessions.ContextMenuStrip = Me.ctxmnuActualSessions
+        Me.olvActualSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvActualSessions.FullRowSelect = True
         Me.olvActualSessions.Location = New System.Drawing.Point(3, 126)
         Me.olvActualSessions.Name = "olvActualSessions"
-        Me.olvActualSessions.OwnerDraw = True
         Me.olvActualSessions.ShowGroups = False
+        Me.olvActualSessions.ShowImagesOnSubItems = True
         Me.olvActualSessions.Size = New System.Drawing.Size(881, 273)
         Me.olvActualSessions.TabIndex = 76
         Me.olvActualSessions.UseCompatibleStateImageBehavior = False
@@ -641,6 +667,70 @@ Partial Class ClassDetails
         '
         Me.tmrResetDuration.Interval = 5000
         '
+        'olvAttendanceSessions
+        '
+        Me.olvAttendanceSessions.Activation = System.Windows.Forms.ItemActivation.TwoClick
+        Me.olvAttendanceSessions.AllColumns.Add(Me.OlvColumn21)
+        Me.olvAttendanceSessions.AllColumns.Add(Me.OlvColumn28)
+        Me.olvAttendanceSessions.AllowColumnReorder = True
+        Me.olvAttendanceSessions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.olvAttendanceSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvAttendanceSessions.CellEditUseWholeCell = False
+        Me.olvAttendanceSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn21, Me.OlvColumn28})
+        Me.olvAttendanceSessions.ContextMenuStrip = Me.ctxmnuAttendanceSession
+        Me.olvAttendanceSessions.Cursor = System.Windows.Forms.Cursors.Default
+        Me.olvAttendanceSessions.FullRowSelect = True
+        Me.olvAttendanceSessions.Location = New System.Drawing.Point(2, 126)
+        Me.olvAttendanceSessions.Name = "olvAttendanceSessions"
+        Me.olvAttendanceSessions.ShowGroups = False
+        Me.olvAttendanceSessions.ShowImagesOnSubItems = True
+        Me.olvAttendanceSessions.Size = New System.Drawing.Size(881, 273)
+        Me.olvAttendanceSessions.TabIndex = 80
+        Me.olvAttendanceSessions.UseCompatibleStateImageBehavior = False
+        Me.olvAttendanceSessions.UseFiltering = True
+        Me.olvAttendanceSessions.UseSubItemCheckBoxes = True
+        Me.olvAttendanceSessions.View = System.Windows.Forms.View.Details
+        '
+        'OlvColumn21
+        '
+        Me.OlvColumn21.AspectName = "StartDate"
+        Me.OlvColumn21.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn21.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn21.Text = "Start"
+        Me.OlvColumn21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn21.Width = 159
+        '
+        'OlvColumn28
+        '
+        Me.OlvColumn28.AspectName = "StudentGroup"
+        Me.OlvColumn28.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn28.Text = "Group"
+        Me.OlvColumn28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn28.Width = 64
+        '
+        'ctxmnuAttendanceSession
+        '
+        Me.ctxmnuAttendanceSession.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ctxmnuAttendanceSession.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteAttendanceSessionToolStripMenuItem, Me.AddAttendanceSessionToolStripMenuItem})
+        Me.ctxmnuAttendanceSession.Name = "ctxmnuPlannedSchedule"
+        Me.ctxmnuAttendanceSession.Size = New System.Drawing.Size(211, 48)
+        '
+        'DeleteAttendanceSessionToolStripMenuItem
+        '
+        Me.DeleteAttendanceSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
+        Me.DeleteAttendanceSessionToolStripMenuItem.Name = "DeleteAttendanceSessionToolStripMenuItem"
+        Me.DeleteAttendanceSessionToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.DeleteAttendanceSessionToolStripMenuItem.Text = "&Delete attendance session"
+        '
+        'AddAttendanceSessionToolStripMenuItem
+        '
+        Me.AddAttendanceSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.add_icon_16
+        Me.AddAttendanceSessionToolStripMenuItem.Name = "AddAttendanceSessionToolStripMenuItem"
+        Me.AddAttendanceSessionToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.AddAttendanceSessionToolStripMenuItem.Text = "&Add attendance session"
+        '
         'ClassDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -655,6 +745,7 @@ Partial Class ClassDetails
         Me.Controls.Add(Me.olvPlannedSchedule)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Controls.Add(Me.olvSessionsToSkip)
+        Me.Controls.Add(Me.olvAttendanceSessions)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "ClassDetails"
@@ -670,6 +761,8 @@ Partial Class ClassDetails
         Me.ctxmnuSkipSessions.ResumeLayout(False)
         CType(Me.olvActualSessions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ctxmnuActualSessions.ResumeLayout(False)
+        CType(Me.olvAttendanceSessions, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuAttendanceSession.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -750,4 +843,11 @@ Partial Class ClassDetails
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtNotes As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents btnShowAttendanceSessions As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents olvAttendanceSessions As BrightIdeasSoftware.ObjectListView
+    Friend WithEvents OlvColumn21 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn28 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents ctxmnuAttendanceSession As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents DeleteAttendanceSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AddAttendanceSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

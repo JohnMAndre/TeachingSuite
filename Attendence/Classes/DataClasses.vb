@@ -1155,6 +1155,12 @@ Public Class SchoolClass
                         '-- we already used one of the group numbers for this date
                         If session.StudentGroup <> intFirstNonZeroStudentGroup Then
                             '-- Ignore this, just loop around
+                        Else
+                            '-- same group, same date, so we have multiple workshops for the same group on this day (can happen)
+                            '   write header
+
+                            tw.Write(session.StartDate.ToString("d"))
+                            tw.Write(DELIMITER)
                         End If
                     Else
                         intFirstNonZeroStudentGroup = session.StudentGroup
@@ -1599,7 +1605,7 @@ Public Class SchoolClass
 
 
         ClassSessions.Sort()
-        For Each objClassSession In ClassSessions
+        For Each objClassSession As ClassSession In ClassSessions
             Dim xClassSessionElement As Xml.XmlElement = xDoc.CreateElement("ClassSession")
             xClassSessionElement.SetAttribute("Date", objClassSession.StartDate.ToString(DATE_FORMAT_XML))
             xClassSessionElement.SetAttribute("StudentGroup", objClassSession.StudentGroup)
@@ -3743,7 +3749,12 @@ Public Class ClassSession
     End Sub
 
     Public Function CompareTo(other As ClassSession) As Integer Implements System.IComparable(Of ClassSession).CompareTo
-        Return StartDate.CompareTo(other.StartDate)
+        '-- first sort by start date, then by student group
+        If StartDate.Equals(other.StartDate) Then
+            Return StudentGroup.CompareTo(other.StudentGroup)
+        Else
+            Return StartDate.CompareTo(other.StartDate)
+        End If
     End Function
 End Class
 

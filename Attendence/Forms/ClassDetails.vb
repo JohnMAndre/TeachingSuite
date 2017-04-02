@@ -40,6 +40,9 @@ Public Class ClassDetails
     Private Sub LoadActualSessions()
         olvActualSessions.SetObjects(m_class.ActualSessions)
     End Sub
+    Private Sub LoadAttendanceSessions()
+        olvAttendanceSessions.SetObjects(m_class.ClassSessions)
+    End Sub
 
     Private Sub ClassGroupForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
@@ -48,6 +51,7 @@ Public Class ClassDetails
             LoadSkipSessions()
             LoadPlannedSchedule()
             LoadActualSessions()
+            LoadAttendanceSessions()
 
             SetupForLiteVersion()
 
@@ -365,5 +369,23 @@ Public Class ClassDetails
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Close()
+    End Sub
+
+    Private Sub DeleteAttendanceSessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteAttendanceSessionToolStripMenuItem.Click
+        Dim session As ClassSession = olvAttendanceSessions.GetSelectedObject
+        If session Is Nothing Then
+            MessageBox.Show("Please select an attendance record to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.m_class.ClassSessions.Remove(session)
+            olvAttendanceSessions.RemoveObject(session)
+        End If
+    End Sub
+
+    Private Sub AddAttendanceSessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddAttendanceSessionToolStripMenuItem.Click
+        Dim session As New ClassSession()
+        session.StudentGroup = 0
+        session.StartDate = Date.Today
+        Me.m_class.ClassSessions.Add(session)
+        olvAttendanceSessions.AddObject(session)
     End Sub
 End Class
