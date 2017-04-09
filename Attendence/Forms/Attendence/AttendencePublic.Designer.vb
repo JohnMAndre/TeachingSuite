@@ -31,12 +31,12 @@ Partial Class AttendencePublic
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblClock = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +156,11 @@ Partial Class AttendencePublic
         Me.OlvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn1.ToolTipText = "Date of Birth"
         '
+        'OlvColumn4
+        '
+        Me.OlvColumn4.AspectName = "StudentTeam"
+        Me.OlvColumn4.Text = "Team"
+        '
         'lblClock
         '
         Me.lblClock.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -178,17 +183,12 @@ Partial Class AttendencePublic
         'Timer1
         '
         Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 2000
+        Me.Timer1.Interval = 1000
         '
         'tmrFilterHiddenStudents
         '
         Me.tmrFilterHiddenStudents.Enabled = True
         Me.tmrFilterHiddenStudents.Interval = 3000
-        '
-        'OlvColumn4
-        '
-        Me.OlvColumn4.AspectName = "StudentTeam"
-        Me.OlvColumn4.Text = "Team"
         '
         'AttendencePublic
         '

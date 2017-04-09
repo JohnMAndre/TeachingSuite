@@ -1154,8 +1154,23 @@ Friend Class StudentAssignmentDetails
     Private Function GetImprovementNotes() As String
         Try
             Dim strReturn As String = String.Empty
+
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-                strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
+                'strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
+                strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                Select Case item.PerformanceLevel
+                    Case 1
+                        strReturn &= "unacceptable"
+                    Case 2
+                        strReturn &= "very weak, often incorrect"
+                    Case 3
+                        strReturn &= "OK, but inconsistent"
+                    Case 4
+                        strReturn &= "Good, but can improve more"
+                    Case 5
+                        strReturn &= "Already great"
+                End Select
+                strReturn &= ")" & Environment.NewLine
             Next
 
             Return strReturn.Trim()

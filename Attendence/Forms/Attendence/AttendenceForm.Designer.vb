@@ -34,6 +34,7 @@ Partial Class AttendenceForm
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
@@ -84,7 +85,6 @@ Partial Class AttendenceForm
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPublicFilter = New System.Windows.Forms.Timer(Me.components)
-        Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,16 +123,17 @@ Partial Class AttendenceForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn15)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn12, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvStudents.FullRowSelect = True
         Me.olvStudents.Location = New System.Drawing.Point(0, 0)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
@@ -220,6 +221,15 @@ Partial Class AttendenceForm
         Me.OlvColumn14.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn14.Text = "Group"
         Me.OlvColumn14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn15
+        '
+        Me.OlvColumn15.AspectName = "DateOfBirth"
+        Me.OlvColumn15.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn15.Text = "DoB"
+        Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn15.ToolTipText = "Date of Birth"
         '
         'KryptonManager
         '
@@ -560,15 +570,6 @@ Partial Class AttendenceForm
         '
         Me.tmrPublicFilter.Enabled = True
         Me.tmrPublicFilter.Interval = 2000
-        '
-        'OlvColumn15
-        '
-        Me.OlvColumn15.AspectName = "DateOfBirth"
-        Me.OlvColumn15.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn15.Text = "DoB"
-        Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn15.ToolTipText = "Date of Birth"
         '
         'AttendenceForm
         '

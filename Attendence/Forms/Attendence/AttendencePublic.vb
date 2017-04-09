@@ -69,7 +69,7 @@ Public Class AttendencePublic
     End Sub
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         'AutoSizeColumns(olvStudents)
-        lblClock.Text = "Current time: " & Date.Now.ToString("HH:mm")
+        lblClock.Text = "Current time: " & Date.Now.ToString("HH:mm:ss")
     End Sub
     Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim student As Student = CType(olvi.RowObject, Student)

@@ -449,4 +449,11 @@ Public Class AttendenceForm
             MessageBox.Show("There was an error marking all students: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub olvStudents_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles olvStudents.ColumnClick
+        '-- When changing the sort, change public form's sorder too
+        If m_frmPublic IsNot Nothing Then
+            m_frmPublic.SortColumn = e.Column
+        End If
+    End Sub
 End Class
