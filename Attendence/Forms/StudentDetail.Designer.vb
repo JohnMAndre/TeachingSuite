@@ -24,6 +24,7 @@ Partial Class StudentDetail
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.pnlNormalAssignments = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.llblRefreshGradeAsOfToday = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.lblGradeAsOfToday = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.olvNormalAssignments = New BrightIdeasSoftware.ObjectListView()
@@ -88,14 +89,6 @@ Partial Class StudentDetail
         Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.llblMeritAwarded = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblDistinctionAwarded = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.chkD3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkD1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM3 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkM1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.rtbLog = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.rtbNotes = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
@@ -128,8 +121,8 @@ Partial Class StudentDetail
         Me.OlvColumn24 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.llblRefreshGradeAsOfToday = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.pnlNormalAssignments.SuspendLayout()
@@ -148,7 +141,6 @@ Partial Class StudentDetail
         '
         'KryptonPanel
         '
-        Me.KryptonPanel.Controls.Add(Me.pnlNormalAssignments)
         Me.KryptonPanel.Controls.Add(Me.btnShowImprovementItems)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel14)
         Me.KryptonPanel.Controls.Add(Me.lblAbsentPercent)
@@ -191,6 +183,7 @@ Partial Class StudentDetail
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel.Controls.Add(Me.pbButtonHighlight)
         Me.KryptonPanel.Controls.Add(Me.pnlAssignments)
+        Me.KryptonPanel.Controls.Add(Me.pnlNormalAssignments)
         Me.KryptonPanel.Controls.Add(Me.pnlOutcomes)
         Me.KryptonPanel.Controls.Add(Me.rtbLog)
         Me.KryptonPanel.Controls.Add(Me.rtbNotes)
@@ -226,6 +219,15 @@ Partial Class StudentDetail
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(812, 44)
         Me.Panel2.TabIndex = 66
+        '
+        'llblRefreshGradeAsOfToday
+        '
+        Me.llblRefreshGradeAsOfToday.Location = New System.Drawing.Point(9, 4)
+        Me.llblRefreshGradeAsOfToday.Name = "llblRefreshGradeAsOfToday"
+        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(97, 19)
+        Me.llblRefreshGradeAsOfToday.TabIndex = 139
+        Me.ToolTip1.SetToolTip(Me.llblRefreshGradeAsOfToday, "Click to refresh")
+        Me.llblRefreshGradeAsOfToday.Values.Text = "Grade (today):"
         '
         'lblGradeAsOfToday
         '
@@ -266,6 +268,8 @@ Partial Class StudentDetail
         'OlvColumn28
         '
         Me.OlvColumn28.AspectName = "BaseAssignment.Name"
+        Me.OlvColumn28.AutoCompleteEditor = False
+        Me.OlvColumn28.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn28.IsEditable = False
         Me.OlvColumn28.Text = "Name"
         Me.OlvColumn28.Width = 122
@@ -273,6 +277,8 @@ Partial Class StudentDetail
         'OlvColumn29
         '
         Me.OlvColumn29.AspectName = "BaseAssignment.MaxPoints"
+        Me.OlvColumn29.AutoCompleteEditor = False
+        Me.OlvColumn29.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn29.Text = "Max"
         Me.OlvColumn29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn29.Width = 91
@@ -281,6 +287,8 @@ Partial Class StudentDetail
         '
         Me.OlvColumn33.AspectName = "BaseAssignment.Weighting"
         Me.OlvColumn33.AspectToStringFormat = "{0:0%}"
+        Me.OlvColumn33.AutoCompleteEditor = False
+        Me.OlvColumn33.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn33.Text = "Weight"
         Me.OlvColumn33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn33.Width = 74
@@ -288,6 +296,8 @@ Partial Class StudentDetail
         'OlvColumn30
         '
         Me.OlvColumn30.AspectName = "FirstTryPoints"
+        Me.OlvColumn30.AutoCompleteEditor = False
+        Me.OlvColumn30.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn30.Text = "1st Try"
         Me.OlvColumn30.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn30.Width = 86
@@ -295,6 +305,8 @@ Partial Class StudentDetail
         'OlvColumn31
         '
         Me.OlvColumn31.AspectName = "SecondTryPoints"
+        Me.OlvColumn31.AutoCompleteEditor = False
+        Me.OlvColumn31.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn31.Text = "2nd Try"
         Me.OlvColumn31.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn31.Width = 94
@@ -302,6 +314,8 @@ Partial Class StudentDetail
         'OlvColumn32
         '
         Me.OlvColumn32.AspectName = "ThirdTryPoints"
+        Me.OlvColumn32.AutoCompleteEditor = False
+        Me.OlvColumn32.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn32.Text = "3rd Try"
         Me.OlvColumn32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn32.Width = 82
@@ -828,14 +842,6 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlOutcomes.Controls.Add(Me.olvOutcomes)
-        Me.pnlOutcomes.Controls.Add(Me.llblMeritAwarded)
-        Me.pnlOutcomes.Controls.Add(Me.llblDistinctionAwarded)
-        Me.pnlOutcomes.Controls.Add(Me.chkD3)
-        Me.pnlOutcomes.Controls.Add(Me.chkD2)
-        Me.pnlOutcomes.Controls.Add(Me.chkD1)
-        Me.pnlOutcomes.Controls.Add(Me.chkM3)
-        Me.pnlOutcomes.Controls.Add(Me.chkM2)
-        Me.pnlOutcomes.Controls.Add(Me.chkM1)
         Me.pnlOutcomes.Location = New System.Drawing.Point(0, 175)
         Me.pnlOutcomes.Name = "pnlOutcomes"
         Me.pnlOutcomes.Palette = Me.KryptonPalette1
@@ -861,10 +867,10 @@ Partial Class StudentDetail
         Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
         Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvOutcomes.FullRowSelect = True
-        Me.olvOutcomes.Location = New System.Drawing.Point(0, 20)
+        Me.olvOutcomes.Location = New System.Drawing.Point(0, 0)
         Me.olvOutcomes.Name = "olvOutcomes"
         Me.olvOutcomes.ShowGroups = False
-        Me.olvOutcomes.Size = New System.Drawing.Size(812, 259)
+        Me.olvOutcomes.Size = New System.Drawing.Size(812, 279)
         Me.olvOutcomes.TabIndex = 41
         Me.olvOutcomes.UseCompatibleStateImageBehavior = False
         Me.olvOutcomes.UseFiltering = True
@@ -873,12 +879,16 @@ Partial Class StudentDetail
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "Name"
+        Me.OlvColumn5.AutoCompleteEditor = False
+        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn5.IsEditable = False
         Me.OlvColumn5.Text = "Name"
         '
         'OlvColumn6
         '
         Me.OlvColumn6.AspectName = "Description"
+        Me.OlvColumn6.AutoCompleteEditor = False
+        Me.OlvColumn6.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Description"
         Me.OlvColumn6.Width = 157
@@ -886,144 +896,46 @@ Partial Class StudentDetail
         'OlvColumn7
         '
         Me.OlvColumn7.AspectName = "FirstTryStatus"
+        Me.OlvColumn7.AutoCompleteEditor = False
+        Me.OlvColumn7.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn7.Text = "First"
         '
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "FirstTryComments"
+        Me.OlvColumn8.AutoCompleteEditor = False
+        Me.OlvColumn8.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn8.Text = "Feedback"
         Me.OlvColumn8.Width = 130
         '
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "SecondTryStatus"
+        Me.OlvColumn9.AutoCompleteEditor = False
+        Me.OlvColumn9.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn9.Text = "Rework"
         '
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "SecondTryComments"
+        Me.OlvColumn10.AutoCompleteEditor = False
+        Me.OlvColumn10.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn10.Text = "Feedback"
         '
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "ThirdTryStatus"
+        Me.OlvColumn11.AutoCompleteEditor = False
+        Me.OlvColumn11.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn11.Text = "2nd Rework"
         Me.OlvColumn11.Width = 100
         '
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "ThirdTryComments"
+        Me.OlvColumn12.AutoCompleteEditor = False
+        Me.OlvColumn12.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn12.Text = "Feedback"
-        '
-        'llblMeritAwarded
-        '
-        Me.llblMeritAwarded.Location = New System.Drawing.Point(170, 3)
-        Me.llblMeritAwarded.Name = "llblMeritAwarded"
-        Me.llblMeritAwarded.Palette = Me.KryptonPalette1
-        Me.llblMeritAwarded.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblMeritAwarded.Size = New System.Drawing.Size(38, 34)
-        Me.llblMeritAwarded.TabIndex = 48
-        Me.ToolTip1.SetToolTip(Me.llblMeritAwarded, "You got merit!!!")
-        Me.llblMeritAwarded.Values.Image = Global.Teaching.My.Resources.Resources.smiley_32
-        Me.llblMeritAwarded.Values.Text = ""
-        Me.llblMeritAwarded.Visible = False
-        '
-        'llblDistinctionAwarded
-        '
-        Me.llblDistinctionAwarded.Location = New System.Drawing.Point(439, 3)
-        Me.llblDistinctionAwarded.Name = "llblDistinctionAwarded"
-        Me.llblDistinctionAwarded.Palette = Me.KryptonPalette1
-        Me.llblDistinctionAwarded.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblDistinctionAwarded.Size = New System.Drawing.Size(38, 34)
-        Me.llblDistinctionAwarded.TabIndex = 49
-        Me.ToolTip1.SetToolTip(Me.llblDistinctionAwarded, "You got distinction!!!")
-        Me.llblDistinctionAwarded.Values.Image = Global.Teaching.My.Resources.Resources.smileybig_32
-        Me.llblDistinctionAwarded.Values.Text = ""
-        Me.llblDistinctionAwarded.Visible = False
-        '
-        'chkD3
-        '
-        Me.chkD3.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkD3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkD3.Location = New System.Drawing.Point(381, 10)
-        Me.chkD3.Name = "chkD3"
-        Me.chkD3.Palette = Me.KryptonPalette1
-        Me.chkD3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkD3.Size = New System.Drawing.Size(42, 20)
-        Me.chkD3.TabIndex = 47
-        Me.chkD3.Text = "D3:"
-        Me.chkD3.Values.Text = "D3:"
-        Me.chkD3.Visible = False
-        '
-        'chkD2
-        '
-        Me.chkD2.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkD2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkD2.Location = New System.Drawing.Point(328, 10)
-        Me.chkD2.Name = "chkD2"
-        Me.chkD2.Palette = Me.KryptonPalette1
-        Me.chkD2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkD2.Size = New System.Drawing.Size(42, 20)
-        Me.chkD2.TabIndex = 46
-        Me.chkD2.Text = "D2:"
-        Me.chkD2.Values.Text = "D2:"
-        Me.chkD2.Visible = False
-        '
-        'chkD1
-        '
-        Me.chkD1.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkD1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkD1.Location = New System.Drawing.Point(280, 10)
-        Me.chkD1.Name = "chkD1"
-        Me.chkD1.Palette = Me.KryptonPalette1
-        Me.chkD1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkD1.Size = New System.Drawing.Size(42, 20)
-        Me.chkD1.TabIndex = 45
-        Me.chkD1.Text = "D1:"
-        Me.chkD1.Values.Text = "D1:"
-        Me.chkD1.Visible = False
-        '
-        'chkM3
-        '
-        Me.chkM3.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkM3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkM3.Location = New System.Drawing.Point(112, 10)
-        Me.chkM3.Name = "chkM3"
-        Me.chkM3.Palette = Me.KryptonPalette1
-        Me.chkM3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkM3.Size = New System.Drawing.Size(44, 20)
-        Me.chkM3.TabIndex = 44
-        Me.chkM3.Text = "M3:"
-        Me.chkM3.Values.Text = "M3:"
-        Me.chkM3.Visible = False
-        '
-        'chkM2
-        '
-        Me.chkM2.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkM2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkM2.Location = New System.Drawing.Point(62, 10)
-        Me.chkM2.Name = "chkM2"
-        Me.chkM2.Palette = Me.KryptonPalette1
-        Me.chkM2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkM2.Size = New System.Drawing.Size(44, 20)
-        Me.chkM2.TabIndex = 43
-        Me.chkM2.Text = "M2:"
-        Me.chkM2.Values.Text = "M2:"
-        Me.chkM2.Visible = False
-        '
-        'chkM1
-        '
-        Me.chkM1.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkM1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkM1.Location = New System.Drawing.Point(12, 10)
-        Me.chkM1.Name = "chkM1"
-        Me.chkM1.Palette = Me.KryptonPalette1
-        Me.chkM1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkM1.Size = New System.Drawing.Size(44, 20)
-        Me.chkM1.TabIndex = 42
-        Me.chkM1.Text = "M1:"
-        Me.chkM1.Values.Text = "M1:"
-        Me.chkM1.Visible = False
         '
         'rtbLog
         '
@@ -1089,6 +1001,8 @@ Partial Class StudentDetail
         '
         Me.OlvColumn18.AspectName = "BaseImprovementItem.Name"
         Me.OlvColumn18.AspectToStringFormat = ""
+        Me.OlvColumn18.AutoCompleteEditor = False
+        Me.OlvColumn18.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn18.IsEditable = False
         Me.OlvColumn18.Text = "Name"
         Me.OlvColumn18.Width = 124
@@ -1097,6 +1011,8 @@ Partial Class StudentDetail
         '
         Me.olvcolDataAdded.AspectName = "DateAdded"
         Me.olvcolDataAdded.AspectToStringFormat = "{0:d}"
+        Me.olvcolDataAdded.AutoCompleteEditor = False
+        Me.olvcolDataAdded.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolDataAdded.DisplayIndex = 2
         Me.olvcolDataAdded.Text = "Added"
         Me.olvcolDataAdded.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1106,6 +1022,8 @@ Partial Class StudentDetail
         '
         Me.olvcolDateRemoved.AspectName = "DateLastIncluded"
         Me.olvcolDateRemoved.AspectToStringFormat = "{0:d}"
+        Me.olvcolDateRemoved.AutoCompleteEditor = False
+        Me.olvcolDateRemoved.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolDateRemoved.DisplayIndex = 3
         Me.olvcolDateRemoved.Text = "Last time"
         Me.olvcolDateRemoved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1115,6 +1033,8 @@ Partial Class StudentDetail
         'OlvColumn19
         '
         Me.OlvColumn19.AspectName = "BaseImprovementItem.Description"
+        Me.OlvColumn19.AutoCompleteEditor = False
+        Me.OlvColumn19.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn19.DisplayIndex = 4
         Me.OlvColumn19.IsEditable = False
         Me.OlvColumn19.Text = "Description"
@@ -1123,6 +1043,8 @@ Partial Class StudentDetail
         'olvcolPerformanceLevel
         '
         Me.olvcolPerformanceLevel.AspectName = "PerformanceLevel"
+        Me.olvcolPerformanceLevel.AutoCompleteEditor = False
+        Me.olvcolPerformanceLevel.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolPerformanceLevel.DisplayIndex = 1
         Me.olvcolPerformanceLevel.MaximumWidth = 100
         Me.olvcolPerformanceLevel.MinimumWidth = 50
@@ -1159,6 +1081,8 @@ Partial Class StudentDetail
         'OlvColumn26
         '
         Me.OlvColumn26.AspectName = "TeachingSession.StartDate.DayOfWeek"
+        Me.OlvColumn26.AutoCompleteEditor = False
+        Me.OlvColumn26.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn26.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn26.IsEditable = False
         Me.OlvColumn26.Text = "Day"
@@ -1169,6 +1093,8 @@ Partial Class StudentDetail
         '
         Me.OlvColumn1.AspectName = "TeachingSession.StartDate"
         Me.OlvColumn1.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn1.Text = "Date"
         Me.OlvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1177,18 +1103,24 @@ Partial Class StudentDetail
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "TeachingSession.AttendenceStatus"
+        Me.OlvColumn2.AutoCompleteEditor = False
+        Me.OlvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn2.Text = "Status"
         Me.OlvColumn2.Width = 100
         '
         'OlvColumn25
         '
         Me.OlvColumn25.AspectName = "TeachingSession.Notes"
+        Me.OlvColumn25.AutoCompleteEditor = False
+        Me.OlvColumn25.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn25.Text = "Notes"
         Me.OlvColumn25.Width = 79
         '
         'OlvColumn27
         '
         Me.OlvColumn27.AspectName = "ActualSessionItem.Topic"
+        Me.OlvColumn27.AutoCompleteEditor = False
+        Me.OlvColumn27.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn27.IsEditable = False
         Me.OlvColumn27.Text = "Topic"
         Me.OlvColumn27.Width = 234
@@ -1226,6 +1158,8 @@ Partial Class StudentDetail
         'OlvColumn13
         '
         Me.OlvColumn13.AspectName = "BaseAssignment.Name"
+        Me.OlvColumn13.AutoCompleteEditor = False
+        Me.OlvColumn13.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn13.IsEditable = False
         Me.OlvColumn13.Text = "Name"
         Me.OlvColumn13.Width = 157
@@ -1233,18 +1167,24 @@ Partial Class StudentDetail
         'OlvColumn20
         '
         Me.OlvColumn20.AspectName = "AvailableOutcomes"
+        Me.OlvColumn20.AutoCompleteEditor = False
+        Me.OlvColumn20.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn20.Text = "Outcomes"
         Me.OlvColumn20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn21
         '
         Me.OlvColumn21.AspectName = "PassedOutcomesAtPass"
+        Me.OlvColumn21.AutoCompleteEditor = False
+        Me.OlvColumn21.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn21.Text = "Passed"
         Me.OlvColumn21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn34
         '
         Me.OlvColumn34.AspectName = "AchievedMerit"
+        Me.OlvColumn34.AutoCompleteEditor = False
+        Me.OlvColumn34.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn34.CheckBoxes = True
         Me.OlvColumn34.Text = "Merit"
         Me.OlvColumn34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1252,6 +1192,8 @@ Partial Class StudentDetail
         'OlvColumn35
         '
         Me.OlvColumn35.AspectName = "AchievedDistinction"
+        Me.OlvColumn35.AutoCompleteEditor = False
+        Me.OlvColumn35.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn35.CheckBoxes = True
         Me.OlvColumn35.Text = "Distinction"
         Me.OlvColumn35.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1260,6 +1202,8 @@ Partial Class StudentDetail
         'OlvColumn36
         '
         Me.OlvColumn36.AspectName = "FirstTryPrint"
+        Me.OlvColumn36.AutoCompleteEditor = False
+        Me.OlvColumn36.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn36.Text = "1st"
         Me.OlvColumn36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn36.Width = 83
@@ -1267,6 +1211,8 @@ Partial Class StudentDetail
         'OlvColumn37
         '
         Me.OlvColumn37.AspectName = "SecondTryPrint"
+        Me.OlvColumn37.AutoCompleteEditor = False
+        Me.OlvColumn37.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn37.Text = "2nd"
         Me.OlvColumn37.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn37.Width = 84
@@ -1274,6 +1220,8 @@ Partial Class StudentDetail
         'OlvColumn38
         '
         Me.OlvColumn38.AspectName = "ThirdTryPrint"
+        Me.OlvColumn38.AutoCompleteEditor = False
+        Me.OlvColumn38.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn38.Text = "3rd"
         Me.OlvColumn38.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn38.Width = 86
@@ -1347,20 +1295,16 @@ Partial Class StudentDetail
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
-        'llblRefreshGradeAsOfToday
-        '
-        Me.llblRefreshGradeAsOfToday.Location = New System.Drawing.Point(9, 4)
-        Me.llblRefreshGradeAsOfToday.Name = "llblRefreshGradeAsOfToday"
-        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(97, 19)
-        Me.llblRefreshGradeAsOfToday.TabIndex = 139
-        Me.ToolTip1.SetToolTip(Me.llblRefreshGradeAsOfToday, "Click to refresh")
-        Me.llblRefreshGradeAsOfToday.Values.Text = "Grade (today):"
         '
         'StudentDetail
         '
@@ -1388,7 +1332,6 @@ Partial Class StudentDetail
         Me.pnlAssignments.PerformLayout()
         CType(Me.pnlOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlOutcomes.ResumeLayout(False)
-        Me.pnlOutcomes.PerformLayout()
         CType(Me.olvOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1446,14 +1389,6 @@ Partial Class StudentDetail
     Friend WithEvents llblShowOutcomes As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents llblShowSessions As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents pnlOutcomes As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents chkM3 As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkM2 As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkM1 As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkD3 As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkD2 As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkD1 As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents llblMeritAwarded As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblDistinctionAwarded As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents nudPresentationQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents KryptonLabel6 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudAltNumber As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown

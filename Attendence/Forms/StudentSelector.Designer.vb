@@ -275,6 +275,8 @@ Partial Class StudentSelector
         'OlvColumn4
         '
         Me.OlvColumn4.AspectName = "AdminNumber"
+        Me.OlvColumn4.AutoCompleteEditor = False
+        Me.OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn4.Text = "Admin"
         Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -282,6 +284,8 @@ Partial Class StudentSelector
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "AltNumber"
+        Me.OlvColumn11.AutoCompleteEditor = False
+        Me.OlvColumn11.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn11.Text = "Alt"
         Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -290,18 +294,24 @@ Partial Class StudentSelector
         'OlvColumn1
         '
         Me.OlvColumn1.AspectName = "LocalName"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn1.Text = "Name"
         Me.OlvColumn1.Width = 150
         '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Nickname"
+        Me.OlvColumn2.AutoCompleteEditor = False
+        Me.OlvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn2.Text = "Nickname"
         Me.OlvColumn2.Width = 108
         '
         'OlvColumn3
         '
         Me.OlvColumn3.AspectName = "StudentID"
+        Me.OlvColumn3.AutoCompleteEditor = False
+        Me.OlvColumn3.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn3.Text = "Student ID"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -310,6 +320,8 @@ Partial Class StudentSelector
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "MeritPoints"
+        Me.OlvColumn5.AutoCompleteEditor = False
+        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn5.Text = "Merit"
         Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -318,6 +330,8 @@ Partial Class StudentSelector
         'OlvColumn6
         '
         Me.OlvColumn6.AspectName = "CurrentAbsences"
+        Me.OlvColumn6.AutoCompleteEditor = False
+        Me.OlvColumn6.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Abs"
@@ -328,6 +342,8 @@ Partial Class StudentSelector
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "TotalAbsences"
+        Me.OlvColumn8.AutoCompleteEditor = False
+        Me.OlvColumn8.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn8.IsEditable = False
         Me.OlvColumn8.Text = "Total"
@@ -338,6 +354,8 @@ Partial Class StudentSelector
         'OlvColumn7
         '
         Me.OlvColumn7.AspectName = "Hidden"
+        Me.OlvColumn7.AutoCompleteEditor = False
+        Me.OlvColumn7.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn7.CheckBoxes = True
         Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn7.IsEditable = False
@@ -348,6 +366,8 @@ Partial Class StudentSelector
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "PresentationQuality"
+        Me.OlvColumn9.AutoCompleteEditor = False
+        Me.OlvColumn9.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn9.Text = "Pres"
         Me.OlvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -355,6 +375,8 @@ Partial Class StudentSelector
         'OlvColumn18
         '
         Me.OlvColumn18.AspectName = "WritingQuality"
+        Me.OlvColumn18.AutoCompleteEditor = False
+        Me.OlvColumn18.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn18.Text = "Write"
         Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -362,6 +384,8 @@ Partial Class StudentSelector
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "Assignments.Count"
+        Me.OlvColumn10.AutoCompleteEditor = False
+        Me.OlvColumn10.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn10.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn10.IsEditable = False
         Me.OlvColumn10.Text = "Asmt"
@@ -372,6 +396,8 @@ Partial Class StudentSelector
         'OlvColumn20
         '
         Me.OlvColumn20.AspectName = "ProcessedAssignments"
+        Me.OlvColumn20.AutoCompleteEditor = False
+        Me.OlvColumn20.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn20.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn20.IsEditable = False
         Me.OlvColumn20.Text = "P.Asmts"
@@ -381,6 +407,8 @@ Partial Class StudentSelector
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "LatestAttendenceStatus"
+        Me.OlvColumn12.AutoCompleteEditor = False
+        Me.OlvColumn12.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn12.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn12.Text = "Status"
         Me.OlvColumn12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -389,11 +417,15 @@ Partial Class StudentSelector
         'OlvColumn13
         '
         Me.OlvColumn13.AspectName = "Tags"
+        Me.OlvColumn13.AutoCompleteEditor = False
+        Me.OlvColumn13.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn13.Text = "Tags"
         '
         'OlvColumn14
         '
         Me.OlvColumn14.AspectName = "EmailAddress"
+        Me.OlvColumn14.AutoCompleteEditor = False
+        Me.OlvColumn14.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn14.IsEditable = False
         Me.OlvColumn14.Text = "Email"
         Me.OlvColumn14.ToolTipText = "Student's email address"
@@ -401,6 +433,8 @@ Partial Class StudentSelector
         'OlvColumn15
         '
         Me.OlvColumn15.AspectName = "LocalNameLatinLetters"
+        Me.OlvColumn15.AutoCompleteEditor = False
+        Me.OlvColumn15.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn15.IsEditable = False
         Me.OlvColumn15.Text = "Standard"
         Me.OlvColumn15.Width = 150
@@ -408,6 +442,8 @@ Partial Class StudentSelector
         'OlvColumn19
         '
         Me.OlvColumn19.AspectName = "SchoolClass.Name"
+        Me.OlvColumn19.AutoCompleteEditor = False
+        Me.OlvColumn19.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn19.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn19.IsEditable = False
         Me.OlvColumn19.Text = "Class"
@@ -462,12 +498,12 @@ Partial Class StudentSelector
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilter
         '

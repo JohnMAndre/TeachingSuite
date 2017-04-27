@@ -967,6 +967,8 @@ Partial Class MainForm
         'OlvColumn4
         '
         Me.OlvColumn4.AspectName = "AdminNumber"
+        Me.OlvColumn4.AutoCompleteEditor = False
+        Me.OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn4.Text = "Admin"
         Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -975,6 +977,8 @@ Partial Class MainForm
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "AltNumber"
+        Me.OlvColumn11.AutoCompleteEditor = False
+        Me.OlvColumn11.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn11.Text = "Alt"
         Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -983,6 +987,8 @@ Partial Class MainForm
         'OlvColumn1
         '
         Me.OlvColumn1.AspectName = "LocalName"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn1.Text = "Name"
         Me.OlvColumn1.ToolTipText = "Student's name in student's language"
         Me.OlvColumn1.Width = 150
@@ -990,6 +996,8 @@ Partial Class MainForm
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Nickname"
+        Me.OlvColumn2.AutoCompleteEditor = False
+        Me.OlvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn2.Text = "Nickname"
         Me.OlvColumn2.ToolTipText = "What the student prefers to be called"
         Me.OlvColumn2.Width = 108
@@ -997,6 +1005,8 @@ Partial Class MainForm
         'OlvColumn3
         '
         Me.OlvColumn3.AspectName = "StudentID"
+        Me.OlvColumn3.AutoCompleteEditor = False
+        Me.OlvColumn3.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn3.Text = "Student ID"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1006,6 +1016,8 @@ Partial Class MainForm
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "MeritPoints"
+        Me.OlvColumn5.AutoCompleteEditor = False
+        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn5.Text = "Merit"
         Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1015,6 +1027,8 @@ Partial Class MainForm
         'olvcolCurrentAbsences
         '
         Me.olvcolCurrentAbsences.AspectName = "CurrentAbsences"
+        Me.olvcolCurrentAbsences.AutoCompleteEditor = False
+        Me.olvcolCurrentAbsences.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolCurrentAbsences.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolCurrentAbsences.IsEditable = False
         Me.olvcolCurrentAbsences.Text = "Abs"
@@ -1025,6 +1039,8 @@ Partial Class MainForm
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "TotalAbsences"
+        Me.OlvColumn8.AutoCompleteEditor = False
+        Me.OlvColumn8.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn8.IsEditable = False
         Me.OlvColumn8.Text = "Total"
@@ -1035,6 +1051,8 @@ Partial Class MainForm
         'OlvColumn7
         '
         Me.OlvColumn7.AspectName = "Hidden"
+        Me.OlvColumn7.AutoCompleteEditor = False
+        Me.OlvColumn7.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn7.CheckBoxes = True
         Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn7.IsEditable = False
@@ -1047,6 +1065,8 @@ Partial Class MainForm
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "PresentationQuality"
+        Me.OlvColumn9.AutoCompleteEditor = False
+        Me.OlvColumn9.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn9.Text = "Pres"
         Me.OlvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1055,6 +1075,8 @@ Partial Class MainForm
         'OlvColumn18
         '
         Me.OlvColumn18.AspectName = "WritingQuality"
+        Me.OlvColumn18.AutoCompleteEditor = False
+        Me.OlvColumn18.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn18.Text = "Write"
         Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1063,6 +1085,8 @@ Partial Class MainForm
         'olvcolAssignmentCount
         '
         Me.olvcolAssignmentCount.AspectName = "AssignmentCount"
+        Me.olvcolAssignmentCount.AutoCompleteEditor = False
+        Me.olvcolAssignmentCount.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolAssignmentCount.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolAssignmentCount.IsEditable = False
         Me.olvcolAssignmentCount.Text = "Asmt"
@@ -1073,6 +1097,8 @@ Partial Class MainForm
         'olvcolProcessedAssignments
         '
         Me.olvcolProcessedAssignments.AspectName = "ProcessedAssignments"
+        Me.olvcolProcessedAssignments.AutoCompleteEditor = False
+        Me.olvcolProcessedAssignments.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolProcessedAssignments.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolProcessedAssignments.IsEditable = False
         Me.olvcolProcessedAssignments.Text = "P.Asmts"
@@ -1083,6 +1109,8 @@ Partial Class MainForm
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "LatestAttendenceStatus"
+        Me.OlvColumn12.AutoCompleteEditor = False
+        Me.OlvColumn12.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn12.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn12.Text = "Status"
         Me.OlvColumn12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1092,12 +1120,16 @@ Partial Class MainForm
         'OlvColumn13
         '
         Me.OlvColumn13.AspectName = "Tags"
+        Me.OlvColumn13.AutoCompleteEditor = False
+        Me.OlvColumn13.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn13.Text = "Tags"
         Me.OlvColumn13.ToolTipText = "Tags can be for whatever you want (useful for filtering)"
         '
         'OlvColumn14
         '
         Me.OlvColumn14.AspectName = "EmailAddress"
+        Me.OlvColumn14.AutoCompleteEditor = False
+        Me.OlvColumn14.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn14.IsEditable = False
         Me.OlvColumn14.Text = "Email"
         Me.OlvColumn14.ToolTipText = "Student's email address"
@@ -1105,6 +1137,8 @@ Partial Class MainForm
         'OlvColumn15
         '
         Me.OlvColumn15.AspectName = "LocalNameLatinLetters"
+        Me.OlvColumn15.AutoCompleteEditor = False
+        Me.OlvColumn15.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn15.IsEditable = False
         Me.OlvColumn15.Text = "Standard"
         Me.OlvColumn15.ToolTipText = "Student's local name converted into Latin letters (diacritics removed)"
@@ -1113,6 +1147,8 @@ Partial Class MainForm
         'OlvColumn19
         '
         Me.OlvColumn19.AspectName = "SchoolClass.Name"
+        Me.OlvColumn19.AutoCompleteEditor = False
+        Me.OlvColumn19.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn19.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn19.IsEditable = False
         Me.OlvColumn19.Text = "Class"
@@ -1123,6 +1159,8 @@ Partial Class MainForm
         'OlvColumn21
         '
         Me.OlvColumn21.AspectName = "ExtStudentID"
+        Me.OlvColumn21.AutoCompleteEditor = False
+        Me.OlvColumn21.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn21.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn21.Text = "Ext ID"
         Me.OlvColumn21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1131,6 +1169,8 @@ Partial Class MainForm
         'OlvColumn22
         '
         Me.OlvColumn22.AspectName = "PlagiarismSeverity"
+        Me.OlvColumn22.AutoCompleteEditor = False
+        Me.OlvColumn22.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn22.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn22.Text = "Plag"
         Me.OlvColumn22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1139,6 +1179,8 @@ Partial Class MainForm
         'OlvColumn23
         '
         Me.OlvColumn23.AspectName = "TotalExcused"
+        Me.OlvColumn23.AutoCompleteEditor = False
+        Me.OlvColumn23.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn23.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn23.IsEditable = False
         Me.OlvColumn23.Text = "Excu"
@@ -1148,6 +1190,8 @@ Partial Class MainForm
         'OlvColumn24
         '
         Me.OlvColumn24.AspectName = "Gender"
+        Me.OlvColumn24.AutoCompleteEditor = False
+        Me.OlvColumn24.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn24.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn24.Text = "Gender"
         Me.OlvColumn24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1156,6 +1200,8 @@ Partial Class MainForm
         'olvcolStudentGroup
         '
         Me.olvcolStudentGroup.AspectName = "StudentGroup"
+        Me.olvcolStudentGroup.AutoCompleteEditor = False
+        Me.olvcolStudentGroup.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolStudentGroup.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolStudentGroup.Text = "Group"
         Me.olvcolStudentGroup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1164,6 +1210,8 @@ Partial Class MainForm
         'OlvColumn26
         '
         Me.OlvColumn26.AspectName = "DraftsChecked"
+        Me.OlvColumn26.AutoCompleteEditor = False
+        Me.OlvColumn26.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn26.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn26.Text = "Drafts"
         Me.OlvColumn26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1172,6 +1220,8 @@ Partial Class MainForm
         'OlvColumn27
         '
         Me.OlvColumn27.AspectName = "OfficeHoursVisited"
+        Me.OlvColumn27.AutoCompleteEditor = False
+        Me.OlvColumn27.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn27.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn27.Text = "OfficeHrs"
         Me.OlvColumn27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1180,6 +1230,8 @@ Partial Class MainForm
         'OlvColumn28
         '
         Me.OlvColumn28.AspectName = "ResearchQuality"
+        Me.OlvColumn28.AutoCompleteEditor = False
+        Me.OlvColumn28.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn28.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn28.Text = "Research"
         Me.OlvColumn28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1189,6 +1241,8 @@ Partial Class MainForm
         '
         Me.OlvColumn6.AspectName = "DateOfBirth"
         Me.OlvColumn6.AspectToStringFormat = "{0:d}"
+        Me.OlvColumn6.AutoCompleteEditor = False
+        Me.OlvColumn6.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.Text = "DoB"
         Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1197,6 +1251,8 @@ Partial Class MainForm
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "StudentTeam"
+        Me.OlvColumn10.AutoCompleteEditor = False
+        Me.OlvColumn10.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn10.Text = "Team"
         Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1325,6 +1381,8 @@ Partial Class MainForm
         'OlvColumn29
         '
         Me.OlvColumn29.AspectName = "StartDateTime.DayOfWeek"
+        Me.OlvColumn29.AutoCompleteEditor = False
+        Me.OlvColumn29.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn29.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn29.Text = "Day"
         Me.OlvColumn29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1332,6 +1390,8 @@ Partial Class MainForm
         'OlvColumn30
         '
         Me.OlvColumn30.AspectName = "StartDateTime"
+        Me.OlvColumn30.AutoCompleteEditor = False
+        Me.OlvColumn30.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn30.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn30.Text = "Starts"
         Me.OlvColumn30.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1340,6 +1400,8 @@ Partial Class MainForm
         'OlvColumn16
         '
         Me.OlvColumn16.AspectName = "SchoolClass.ClassGroup.Name"
+        Me.OlvColumn16.AutoCompleteEditor = False
+        Me.OlvColumn16.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn16.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn16.Text = "Module"
         Me.OlvColumn16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1348,6 +1410,8 @@ Partial Class MainForm
         'OlvColumn31
         '
         Me.OlvColumn31.AspectName = "SchoolClass"
+        Me.OlvColumn31.AutoCompleteEditor = False
+        Me.OlvColumn31.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn31.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn31.Text = "Class"
         Me.OlvColumn31.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1356,6 +1420,8 @@ Partial Class MainForm
         'OlvColumn33
         '
         Me.OlvColumn33.AspectName = "SessionNumber"
+        Me.OlvColumn33.AutoCompleteEditor = False
+        Me.OlvColumn33.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn33.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn33.Text = "Session"
         Me.OlvColumn33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1363,6 +1429,8 @@ Partial Class MainForm
         'OlvColumn32
         '
         Me.OlvColumn32.AspectName = "Topic"
+        Me.OlvColumn32.AutoCompleteEditor = False
+        Me.OlvColumn32.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn32.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn32.Text = "Topic"
         Me.OlvColumn32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1371,6 +1439,8 @@ Partial Class MainForm
         'OlvColumn17
         '
         Me.OlvColumn17.AspectName = "Location"
+        Me.OlvColumn17.AutoCompleteEditor = False
+        Me.OlvColumn17.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn17.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn17.Text = "Location"
         Me.OlvColumn17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1379,6 +1449,8 @@ Partial Class MainForm
         'OlvColumn34
         '
         Me.OlvColumn34.AspectName = "Notes"
+        Me.OlvColumn34.AutoCompleteEditor = False
+        Me.OlvColumn34.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn34.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn34.Text = "Notes"
         Me.OlvColumn34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1386,6 +1458,8 @@ Partial Class MainForm
         'OlvColumn35
         '
         Me.OlvColumn35.AspectName = "Prepped"
+        Me.OlvColumn35.AutoCompleteEditor = False
+        Me.OlvColumn35.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn35.CheckBoxes = True
         Me.OlvColumn35.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn35.Text = "Prepped"
@@ -1394,6 +1468,8 @@ Partial Class MainForm
         'OlvColumn36
         '
         Me.OlvColumn36.AspectName = "StudentsEmailed"
+        Me.OlvColumn36.AutoCompleteEditor = False
+        Me.OlvColumn36.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn36.CheckBoxes = True
         Me.OlvColumn36.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn36.Text = "Sent"
@@ -2189,7 +2265,7 @@ Partial Class MainForm
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ReorderAdminNumbersToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
         '
         'CloseAssignmentToolStripMenuItem
@@ -2275,102 +2351,102 @@ Partial Class MainForm
         'StudentAttendanceErrorsToolStripMenuItem
         '
         Me.StudentAttendanceErrorsToolStripMenuItem.Name = "StudentAttendanceErrorsToolStripMenuItem"
-        Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.StudentAttendanceErrorsToolStripMenuItem.Text = "Student &Attendance Errors..."
         '
         'ToolStripSeparator17
         '
         Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(249, 6)
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(248, 6)
         '
         'AssignmentResultsToolStripMenuItem
         '
         Me.AssignmentResultsToolStripMenuItem.Name = "AssignmentResultsToolStripMenuItem"
-        Me.AssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.AssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.AssignmentResultsToolStripMenuItem.Text = "Assignment &Results (BTEC)..."
         '
         'ModuleResultsToolStripMenuItem
         '
         Me.ModuleResultsToolStripMenuItem.Name = "ModuleResultsToolStripMenuItem"
-        Me.ModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.ModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.ModuleResultsToolStripMenuItem.Text = "&Module Results (BTEC)..."
         '
         'FailedoutcomesToolStripMenuItem
         '
         Me.FailedoutcomesToolStripMenuItem.Name = "FailedoutcomesToolStripMenuItem"
-        Me.FailedoutcomesToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.FailedoutcomesToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.FailedoutcomesToolStripMenuItem.Text = "Failed &outcomes (BTEC)..."
         '
         'ModuleFeedbackCheckToolStripMenuItem
         '
         Me.ModuleFeedbackCheckToolStripMenuItem.Name = "ModuleFeedbackCheckToolStripMenuItem"
-        Me.ModuleFeedbackCheckToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.ModuleFeedbackCheckToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.ModuleFeedbackCheckToolStripMenuItem.Text = "Module &Feedback Check (BTEC)..."
         '
         'StudentOutcomeResultsToolStripMenuItem
         '
         Me.StudentOutcomeResultsToolStripMenuItem.Name = "StudentOutcomeResultsToolStripMenuItem"
-        Me.StudentOutcomeResultsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.StudentOutcomeResultsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.StudentOutcomeResultsToolStripMenuItem.Text = "Student outcome results (BTEC)..."
         '
         'ToolStripSeparator18
         '
         Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
-        Me.ToolStripSeparator18.Size = New System.Drawing.Size(249, 6)
+        Me.ToolStripSeparator18.Size = New System.Drawing.Size(248, 6)
         '
         'SessionprepStatusToolStripMenuItem
         '
         Me.SessionprepStatusToolStripMenuItem.Name = "SessionprepStatusToolStripMenuItem"
-        Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.SessionprepStatusToolStripMenuItem.Text = "Session &prep status"
         '
         'AssignmentProcessingToolStripMenuItem
         '
         Me.AssignmentProcessingToolStripMenuItem.Name = "AssignmentProcessingToolStripMenuItem"
-        Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.AssignmentProcessingToolStripMenuItem.Text = "Assignment processing"
         '
         'ScheduledSessionsToolStripMenuItem
         '
         Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
         Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
-        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
         '
         'StudentQualityToolStripMenuItem
         '
         Me.StudentQualityToolStripMenuItem.Name = "StudentQualityToolStripMenuItem"
-        Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.StudentQualityToolStripMenuItem.Text = "Student quality..."
         '
         'StudentGradesToolStripMenuItem
         '
         Me.StudentGradesToolStripMenuItem.Name = "StudentGradesToolStripMenuItem"
-        Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.StudentGradesToolStripMenuItem.Text = "Student grades..."
         '
         'SemesterStatisticsToolStripMenuItem
         '
         Me.SemesterStatisticsToolStripMenuItem.Name = "SemesterStatisticsToolStripMenuItem"
-        Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.SemesterStatisticsToolStripMenuItem.Text = "Semester statistics..."
         '
         'ExcessiveAbsencesToolStripMenuItem
         '
         Me.ExcessiveAbsencesToolStripMenuItem.Name = "ExcessiveAbsencesToolStripMenuItem"
-        Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.ExcessiveAbsencesToolStripMenuItem.Text = "Excessive absences..."
         '
         'MissingGradeDataToolStripMenuItem
         '
         Me.MissingGradeDataToolStripMenuItem.Name = "MissingGradeDataToolStripMenuItem"
-        Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.MissingGradeDataToolStripMenuItem.Text = "&Missing grade data..."
         '
         'ImprovementItemsToolStripMenuItem
         '
         Me.ImprovementItemsToolStripMenuItem.Name = "ImprovementItemsToolStripMenuItem"
-        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
+        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.ImprovementItemsToolStripMenuItem.Text = "&Improvement items..."
         '
         'DataToolStripMenuItem

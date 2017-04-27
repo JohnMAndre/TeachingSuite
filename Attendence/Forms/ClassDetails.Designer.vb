@@ -373,6 +373,8 @@ Partial Class ClassDetails
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "DayOfWeek"
+        Me.OlvColumn2.AutoCompleteEditor = False
+        Me.OlvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn2.Text = "Day of Week"
         Me.OlvColumn2.Width = 150
         '
@@ -380,12 +382,16 @@ Partial Class ClassDetails
         '
         Me.OlvColumn7.AspectName = "StartTime"
         Me.OlvColumn7.AspectToStringFormat = "{0:t}"
+        Me.OlvColumn7.AutoCompleteEditor = False
+        Me.OlvColumn7.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn7.Text = "Start Time"
         Me.OlvColumn7.Width = 150
         '
         'OlvColumn13
         '
         Me.OlvColumn13.AspectName = "Location"
+        Me.OlvColumn13.AutoCompleteEditor = False
+        Me.OlvColumn13.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn13.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn13.Text = "Location"
         Me.OlvColumn13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -394,6 +400,8 @@ Partial Class ClassDetails
         'OlvColumn14
         '
         Me.OlvColumn14.AspectName = "DurationInMinutes"
+        Me.OlvColumn14.AutoCompleteEditor = False
+        Me.OlvColumn14.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn14.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn14.Text = "Minutes"
         Me.OlvColumn14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -402,6 +410,8 @@ Partial Class ClassDetails
         'OlvColumn15
         '
         Me.OlvColumn15.AspectName = "StudentGroup"
+        Me.OlvColumn15.AutoCompleteEditor = False
+        Me.OlvColumn15.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn15.Text = "Group"
         Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -460,12 +470,16 @@ Partial Class ClassDetails
         '
         Me.OlvColumn1.AspectName = "StartDateTime"
         Me.OlvColumn1.AspectToStringFormat = ""
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn1.Text = "Date"
         Me.OlvColumn1.Width = 168
         '
         'OlvColumn16
         '
         Me.OlvColumn16.AspectName = "Reason"
+        Me.OlvColumn16.AutoCompleteEditor = False
+        Me.OlvColumn16.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn16.Text = "Reason"
         Me.OlvColumn16.Width = 282
         '
@@ -542,6 +556,8 @@ Partial Class ClassDetails
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "SessionNumber"
+        Me.OlvColumn5.AutoCompleteEditor = False
+        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn5.IsEditable = False
         Me.OlvColumn5.Text = "#"
@@ -550,6 +566,8 @@ Partial Class ClassDetails
         'OlvColumn6
         '
         Me.OlvColumn6.AspectName = "WeekNumber"
+        Me.OlvColumn6.AutoCompleteEditor = False
+        Me.OlvColumn6.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Week"
@@ -558,6 +576,8 @@ Partial Class ClassDetails
         'OlvColumn3
         '
         Me.OlvColumn3.AspectName = "StartDateTime"
+        Me.OlvColumn3.AutoCompleteEditor = False
+        Me.OlvColumn3.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn3.Text = "Start"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -566,12 +586,16 @@ Partial Class ClassDetails
         'OlvColumn4
         '
         Me.OlvColumn4.AspectName = "Topic"
+        Me.OlvColumn4.AutoCompleteEditor = False
+        Me.OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn4.Text = "Topic"
         Me.OlvColumn4.Width = 174
         '
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "Prepped"
+        Me.OlvColumn8.AutoCompleteEditor = False
+        Me.OlvColumn8.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn8.CheckBoxes = True
         Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn8.Text = "Prepped"
@@ -580,6 +604,8 @@ Partial Class ClassDetails
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "StudentsEmailed"
+        Me.OlvColumn9.AutoCompleteEditor = False
+        Me.OlvColumn9.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn9.CheckBoxes = True
         Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn9.Text = "Sent"
@@ -588,6 +614,8 @@ Partial Class ClassDetails
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "ScheduleType"
+        Me.OlvColumn11.AutoCompleteEditor = False
+        Me.OlvColumn11.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn11.Text = "Type"
         Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -596,17 +624,23 @@ Partial Class ClassDetails
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "Location"
+        Me.OlvColumn12.AutoCompleteEditor = False
+        Me.OlvColumn12.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn12.Text = "Location"
         '
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "Notes"
+        Me.OlvColumn10.AutoCompleteEditor = False
+        Me.OlvColumn10.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn10.Text = "Notes"
         Me.OlvColumn10.Width = 162
         '
         'OlvColumn17
         '
         Me.OlvColumn17.AspectName = "StudentGroup"
+        Me.OlvColumn17.AutoCompleteEditor = False
+        Me.OlvColumn17.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn17.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn17.Text = "Group"
         Me.OlvColumn17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -614,6 +648,8 @@ Partial Class ClassDetails
         'OlvColumn18
         '
         Me.OlvColumn18.AspectName = "DurationInMinutes"
+        Me.OlvColumn18.AutoCompleteEditor = False
+        Me.OlvColumn18.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn18.Text = "Minutes"
         Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -741,11 +777,11 @@ Partial Class ClassDetails
         Me.Controls.Add(Me.btnShowActualSessions)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.olvSessionsToSkip)
+        Me.Controls.Add(Me.olvAttendanceSessions)
         Me.Controls.Add(Me.olvActualSessions)
         Me.Controls.Add(Me.olvPlannedSchedule)
         Me.Controls.Add(Me.KryptonPanel)
-        Me.Controls.Add(Me.olvSessionsToSkip)
-        Me.Controls.Add(Me.olvAttendanceSessions)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "ClassDetails"

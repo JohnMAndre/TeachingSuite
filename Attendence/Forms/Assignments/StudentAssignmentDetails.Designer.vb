@@ -418,6 +418,7 @@ Partial Class StudentAssignmentDetails
         Me.olvOutcomes.CellEditUseWholeCell = False
         Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumnOutcomeName, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn2})
         Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
+        Me.olvOutcomes.EmptyListMsg = "No learning outcomes for this assessment"
         Me.olvOutcomes.FullRowSelect = True
         Me.olvOutcomes.HideSelection = False
         Me.olvOutcomes.Location = New System.Drawing.Point(2, 0)
@@ -425,8 +426,8 @@ Partial Class StudentAssignmentDetails
         Me.olvOutcomes.ShowGroups = False
         Me.olvOutcomes.Size = New System.Drawing.Size(636, 221)
         Me.olvOutcomes.TabIndex = 42
+        Me.olvOutcomes.TriggerCellOverEventsWhenOverHeader = False
         Me.olvOutcomes.UseCompatibleStateImageBehavior = False
-        Me.olvOutcomes.UseFiltering = True
         Me.olvOutcomes.View = System.Windows.Forms.View.Details
         '
         'OlvColumnOutcomeName
@@ -453,6 +454,8 @@ Partial Class StudentAssignmentDetails
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "FirstTryComments"
+        Me.OlvColumn8.AutoCompleteEditor = False
+        Me.OlvColumn8.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn8.DisplayIndex = 4
         Me.OlvColumn8.Text = "Feedback"
         Me.OlvColumn8.Width = 299
@@ -466,6 +469,8 @@ Partial Class StudentAssignmentDetails
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "SecondTryComments"
+        Me.OlvColumn10.AutoCompleteEditor = False
+        Me.OlvColumn10.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn10.DisplayIndex = 6
         Me.OlvColumn10.Text = "Feedback"
         '
@@ -478,6 +483,8 @@ Partial Class StudentAssignmentDetails
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "ThirdTryComments"
+        Me.OlvColumn12.AutoCompleteEditor = False
+        Me.OlvColumn12.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn12.DisplayIndex = 8
         Me.OlvColumn12.Text = "Feedback"
         '

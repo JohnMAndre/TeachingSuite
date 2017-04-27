@@ -36,6 +36,7 @@ Partial Class UpdateEmailAddressForm
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +94,9 @@ Partial Class UpdateEmailAddressForm
         Me.olvStudents.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3})
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.FullRowSelect = True
         Me.olvStudents.Location = New System.Drawing.Point(0, 218)
         Me.olvStudents.Name = "olvStudents"
@@ -107,24 +110,32 @@ Partial Class UpdateEmailAddressForm
         'OlvColumn4
         '
         Me.OlvColumn4.AspectName = "EmailAddress"
+        Me.OlvColumn4.AutoCompleteEditor = False
+        Me.OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn4.Text = "Email"
         Me.OlvColumn4.Width = 200
         '
         'OlvColumn1
         '
         Me.OlvColumn1.AspectName = "SchoolClass.Name"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn1.Text = "Class"
         Me.OlvColumn1.Width = 120
         '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "LocalName"
+        Me.OlvColumn2.AutoCompleteEditor = False
+        Me.OlvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn2.Text = "Name"
         Me.OlvColumn2.Width = 130
         '
         'OlvColumn3
         '
         Me.OlvColumn3.AspectName = "Nickname"
+        Me.OlvColumn3.AutoCompleteEditor = False
+        Me.OlvColumn3.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn3.Text = "Nickname"
         Me.OlvColumn3.Width = 130
         '
@@ -132,7 +143,7 @@ Partial Class UpdateEmailAddressForm
         '
         Me.lblStudentsUpdated.Location = New System.Drawing.Point(167, 64)
         Me.lblStudentsUpdated.Name = "lblStudentsUpdated"
-        Me.lblStudentsUpdated.Size = New System.Drawing.Size(10, 20)
+        Me.lblStudentsUpdated.Size = New System.Drawing.Size(11, 19)
         Me.lblStudentsUpdated.TabIndex = 50
         Me.lblStudentsUpdated.Values.Text = " "
         '
@@ -140,7 +151,7 @@ Partial Class UpdateEmailAddressForm
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(12, 64)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(149, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(161, 19)
         Me.KryptonLabel2.TabIndex = 49
         Me.KryptonLabel2.Values.Text = "Student records updated:"
         '
@@ -148,21 +159,21 @@ Partial Class UpdateEmailAddressForm
         '
         Me.txtNewEmailAddress.Location = New System.Drawing.Point(84, 38)
         Me.txtNewEmailAddress.Name = "txtNewEmailAddress"
-        Me.txtNewEmailAddress.Size = New System.Drawing.Size(221, 20)
+        Me.txtNewEmailAddress.Size = New System.Drawing.Size(221, 19)
         Me.txtNewEmailAddress.TabIndex = 47
         '
         'txtOldEmailAddress
         '
         Me.txtOldEmailAddress.Location = New System.Drawing.Point(84, 12)
         Me.txtOldEmailAddress.Name = "txtOldEmailAddress"
-        Me.txtOldEmailAddress.Size = New System.Drawing.Size(221, 20)
+        Me.txtOldEmailAddress.Size = New System.Drawing.Size(221, 19)
         Me.txtOldEmailAddress.TabIndex = 46
         '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(12, 38)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(71, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(77, 19)
         Me.KryptonLabel1.TabIndex = 48
         Me.KryptonLabel1.Values.Text = "New email:"
         '
@@ -170,9 +181,18 @@ Partial Class UpdateEmailAddressForm
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(66, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(71, 19)
         Me.KryptonLabel3.TabIndex = 45
         Me.KryptonLabel3.Values.Text = "Old email:"
+        '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'btnOK
         '
@@ -245,4 +265,5 @@ Partial Class UpdateEmailAddressForm
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents picStudent As System.Windows.Forms.PictureBox
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

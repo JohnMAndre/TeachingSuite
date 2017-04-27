@@ -86,9 +86,11 @@ Partial Class ImprovementItemManager
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn1)
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn5)
         Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvImprovementItems.CellEditUseWholeCell = False
         Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn5})
         Me.olvImprovementItems.CopySelectionOnControlC = False
         Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False
+        Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvImprovementItems.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvImprovementItems.EmptyListMsg = "No improvement items"
         Me.olvImprovementItems.FullRowSelect = True
@@ -107,12 +109,16 @@ Partial Class ImprovementItemManager
         'OlvColumn1
         '
         Me.OlvColumn1.AspectName = "Name"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn1.Text = "Name"
         Me.OlvColumn1.Width = 128
         '
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "Description"
+        Me.OlvColumn5.AutoCompleteEditor = False
+        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn5.Text = "Description"
         Me.OlvColumn5.Width = 403
         '

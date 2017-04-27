@@ -45,6 +45,7 @@ Partial Class ClassGroupDetails
         Me.cboFramework = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.olvClassGroupOutcomes = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.llblSaveOutcomes = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblRemoveOutcome = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -53,7 +54,6 @@ Partial Class ClassGroupDetails
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -65,6 +65,8 @@ Partial Class ClassGroupDetails
         'OlvColumn4
         '
         OlvColumn4.AspectName = "Description"
+        OlvColumn4.AutoCompleteEditor = False
+        OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         OlvColumn4.Text = "Description"
         OlvColumn4.Width = 350
         '
@@ -299,8 +301,6 @@ Partial Class ClassGroupDetails
         Me.olvClassGroupOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn3, Me.OlvColumn1, OlvColumn4})
         Me.olvClassGroupOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvClassGroupOutcomes.FullRowSelect = True
-        Me.olvClassGroupOutcomes.HighlightBackgroundColor = System.Drawing.Color.Empty
-        Me.olvClassGroupOutcomes.HighlightForegroundColor = System.Drawing.Color.Empty
         Me.olvClassGroupOutcomes.IncludeColumnHeadersInCopy = True
         Me.olvClassGroupOutcomes.Location = New System.Drawing.Point(0, 33)
         Me.olvClassGroupOutcomes.Name = "olvClassGroupOutcomes"
@@ -316,8 +316,18 @@ Partial Class ClassGroupDetails
         '
         Me.OlvColumn3.AspectName = "Name"
         Me.OlvColumn3.AspectToStringFormat = ""
+        Me.OlvColumn3.AutoCompleteEditor = False
+        Me.OlvColumn3.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn3.Text = "Name"
         Me.OlvColumn3.Width = 75
+        '
+        'OlvColumn1
+        '
+        Me.OlvColumn1.AspectName = "GradeGroup"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
+        Me.OlvColumn1.Text = "Group"
+        Me.OlvColumn1.Width = 106
         '
         'llblSaveOutcomes
         '
@@ -377,12 +387,6 @@ Partial Class ClassGroupDetails
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
-        'OlvColumn1
-        '
-        Me.OlvColumn1.AspectName = "GradeGroup"
-        Me.OlvColumn1.Text = "Group"
-        Me.OlvColumn1.Width = 106
         '
         'ClassGroupDetails
         '

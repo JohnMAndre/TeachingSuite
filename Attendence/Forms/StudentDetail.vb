@@ -91,13 +91,6 @@ Public Class StudentDetail
             txtClassGroup.ReadOnly = True
             rtbLog.ReadOnly = True
 
-            chkM1.Enabled = False
-            chkM2.Enabled = False
-            chkM3.Enabled = False
-            chkD1.Enabled = False
-            chkD2.Enabled = False
-            chkD3.Enabled = False
-
             olvTeachingSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
             olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
             olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.None
