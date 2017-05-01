@@ -38,6 +38,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeFeedback = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkFinalFeedback = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkIncludeMeritDistinctionResults = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeUnprocessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonManager1 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
@@ -110,7 +111,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkIncludeUnprocessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -281,6 +281,20 @@ Partial Class EmailModuleResults
         Me.chkIncludeMeritDistinctionResults.Text = "Include M's/D's:"
         Me.ToolTip1.SetToolTip(Me.chkIncludeMeritDistinctionResults, "Check to include merit and distinction results for BTEC assignments")
         Me.chkIncludeMeritDistinctionResults.Values.Text = "Include M's/D's:"
+        '
+        'chkIncludeUnprocessed
+        '
+        Me.chkIncludeUnprocessed.Checked = True
+        Me.chkIncludeUnprocessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeUnprocessed.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeUnprocessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeUnprocessed.Location = New System.Drawing.Point(84, 204)
+        Me.chkIncludeUnprocessed.Name = "chkIncludeUnprocessed"
+        Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(147, 19)
+        Me.chkIncludeUnprocessed.TabIndex = 65
+        Me.chkIncludeUnprocessed.Text = "Include unprocessed"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeUnprocessed, "Check to include assignments not processed (for weekly workshops)")
+        Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
         '
         'KryptonManager1
         '
@@ -940,20 +954,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Name = "KryptonPanel4"
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
-        '
-        'chkIncludeUnprocessed
-        '
-        Me.chkIncludeUnprocessed.Checked = True
-        Me.chkIncludeUnprocessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeUnprocessed.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeUnprocessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeUnprocessed.Location = New System.Drawing.Point(84, 204)
-        Me.chkIncludeUnprocessed.Name = "chkIncludeUnprocessed"
-        Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(147, 19)
-        Me.chkIncludeUnprocessed.TabIndex = 65
-        Me.chkIncludeUnprocessed.Text = "Include unprocessed"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeUnprocessed, "Check to include assignments not processed (for weekly workshops)")
-        Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
         '
         'EmailModuleResults
         '

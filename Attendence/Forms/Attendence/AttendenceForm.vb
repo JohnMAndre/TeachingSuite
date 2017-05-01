@@ -323,6 +323,8 @@ Public Class AttendenceForm
         olvStudents.SetObjects(m_lstStudents)
         PublicToolStripMenuItem.Enabled = True
         SetStudentCountLabel()
+        Application.DoEvents()
+        AutoSizeColumns(olvStudents)
     End Sub
 
     Private Sub AttendenceForm_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
@@ -455,5 +457,15 @@ Public Class AttendenceForm
         If m_frmPublic IsNot Nothing Then
             m_frmPublic.SortColumn = e.Column
         End If
+    End Sub
+
+    Private Sub IncreaseFontToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IncreaseFontToolStripMenuItem.Click
+        Dim newFont As Font = New Font(olvStudents.Font.FontFamily, olvStudents.Font.Size + 4)
+        olvStudents.Font = newFont
+    End Sub
+
+    Private Sub DecreaseFontToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DecreaseFontToolStripMenuItem.Click
+        Dim newFont As Font = New Font(olvStudents.Font.FontFamily, olvStudents.Font.Size - 4)
+        olvStudents.Font = newFont
     End Sub
 End Class

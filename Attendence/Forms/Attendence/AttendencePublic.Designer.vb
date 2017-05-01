@@ -95,6 +95,7 @@ Partial Class AttendencePublic
         Me.OlvColumn8.IsEditable = False
         Me.OlvColumn8.Text = "#"
         Me.OlvColumn8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn8.ToolTipText = "Admin number"
         Me.OlvColumn8.Width = 75
         '
         'olvcolLocalName
@@ -102,6 +103,7 @@ Partial Class AttendencePublic
         Me.olvcolLocalName.AspectName = "LocalName"
         Me.olvcolLocalName.IsEditable = False
         Me.olvcolLocalName.Text = "Name"
+        Me.olvcolLocalName.ToolTipText = "Local name"
         Me.olvcolLocalName.Width = 350
         '
         'olvcolNickname
@@ -109,6 +111,7 @@ Partial Class AttendencePublic
         Me.olvcolNickname.AspectName = "Nickname"
         Me.olvcolNickname.IsEditable = False
         Me.olvcolNickname.Text = "Nickname"
+        Me.olvcolNickname.ToolTipText = "Nickname"
         Me.olvcolNickname.Width = 200
         '
         'OlvColumn6
@@ -117,6 +120,7 @@ Partial Class AttendencePublic
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Student ID"
+        Me.OlvColumn6.ToolTipText = "Student ID"
         Me.OlvColumn6.Width = 225
         '
         'olvColumnStatus
@@ -125,6 +129,7 @@ Partial Class AttendencePublic
         Me.olvColumnStatus.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvColumnStatus.IsEditable = False
         Me.olvColumnStatus.Text = "Status"
+        Me.olvColumnStatus.ToolTipText = "Attendance status"
         Me.olvColumnStatus.Width = 175
         '
         'OlvColumn2
@@ -134,6 +139,7 @@ Partial Class AttendencePublic
         Me.OlvColumn2.IsEditable = False
         Me.OlvColumn2.Text = "Abs"
         Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn2.ToolTipText = "Current absences"
         Me.OlvColumn2.Width = 62
         '
         'OlvColumn3
@@ -144,6 +150,7 @@ Partial Class AttendencePublic
         Me.OlvColumn3.IsEditable = False
         Me.OlvColumn3.Text = "Abs%"
         Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn3.ToolTipText = "Current absence percent"
         Me.OlvColumn3.Width = 95
         '
         'OlvColumn1
@@ -160,6 +167,7 @@ Partial Class AttendencePublic
         '
         Me.OlvColumn4.AspectName = "StudentTeam"
         Me.OlvColumn4.Text = "Team"
+        Me.OlvColumn4.ToolTipText = "Student team"
         '
         'lblClock
         '
@@ -173,6 +181,10 @@ Partial Class AttendencePublic
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '

@@ -38,6 +38,7 @@ Partial Class AttendenceForm
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -85,6 +86,9 @@ Partial Class AttendenceForm
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPublicFilter = New System.Windows.Forms.Timer(Me.components)
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IncreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DecreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +108,7 @@ Partial Class AttendenceForm
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Palette = Me.KryptonPalette1
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonPanel.Size = New System.Drawing.Size(752, 281)
+        Me.KryptonPanel.Size = New System.Drawing.Size(790, 281)
         Me.KryptonPanel.TabIndex = 0
         '
         'olvStudents
@@ -137,7 +141,7 @@ Partial Class AttendenceForm
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
-        Me.olvStudents.Size = New System.Drawing.Size(752, 281)
+        Me.olvStudents.Size = New System.Drawing.Size(790, 281)
         Me.olvStudents.TabIndex = 4
         Me.olvStudents.UseCompatibleStateImageBehavior = False
         Me.olvStudents.UseFiltering = True
@@ -150,17 +154,20 @@ Partial Class AttendenceForm
         Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn8.IsEditable = False
         Me.OlvColumn8.Text = "Admin"
+        Me.OlvColumn8.ToolTipText = "Admin number"
         '
         'OlvColumn1
         '
         Me.OlvColumn1.AspectName = "LocalName"
         Me.OlvColumn1.Text = "Name"
+        Me.OlvColumn1.ToolTipText = "Local name"
         Me.OlvColumn1.Width = 150
         '
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "Nickname"
         Me.OlvColumn5.Text = "Nickname"
+        Me.OlvColumn5.ToolTipText = "Nickname"
         Me.OlvColumn5.Width = 150
         '
         'OlvColumn6
@@ -168,6 +175,7 @@ Partial Class AttendenceForm
         Me.OlvColumn6.AspectName = "StudentID"
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.Text = "Student ID"
+        Me.OlvColumn6.ToolTipText = "Student ID"
         Me.OlvColumn6.Width = 140
         '
         'OlvColumn7
@@ -175,6 +183,7 @@ Partial Class AttendenceForm
         Me.OlvColumn7.AspectName = "CurrentAttendenceStatus"
         Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn7.Text = "Status"
+        Me.OlvColumn7.ToolTipText = "Current absence status"
         Me.OlvColumn7.Width = 100
         '
         'OlvColumn12
@@ -183,6 +192,7 @@ Partial Class AttendenceForm
         Me.OlvColumn12.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn12.Text = "Pres"
         Me.OlvColumn12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn12.ToolTipText = "Presentation quality"
         '
         'OlvColumn9
         '
@@ -200,12 +210,14 @@ Partial Class AttendenceForm
         Me.OlvColumn10.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn10.Text = "Absences"
         Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn10.ToolTipText = "Current absences"
         Me.OlvColumn10.Width = 75
         '
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "LocalNameLatinLetters"
         Me.OlvColumn11.Text = "Plain"
+        Me.OlvColumn11.ToolTipText = "Local name (Latin letters)"
         Me.OlvColumn11.Width = 120
         '
         'OlvColumn13
@@ -214,6 +226,7 @@ Partial Class AttendenceForm
         Me.OlvColumn13.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn13.Text = "Gender"
         Me.OlvColumn13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn13.ToolTipText = "Gender"
         '
         'OlvColumn14
         '
@@ -221,6 +234,7 @@ Partial Class AttendenceForm
         Me.OlvColumn14.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn14.Text = "Group"
         Me.OlvColumn14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn14.ToolTipText = "Student group"
         '
         'OlvColumn15
         '
@@ -233,6 +247,10 @@ Partial Class AttendenceForm
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -271,11 +289,11 @@ Partial Class AttendenceForm
         '
         Me.ToolStripContainer1.ContentPanel.AutoScroll = True
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.KryptonPanel)
-        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(752, 281)
+        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(790, 281)
         Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainer1.Name = "ToolStripContainer1"
-        Me.ToolStripContainer1.Size = New System.Drawing.Size(752, 330)
+        Me.ToolStripContainer1.Size = New System.Drawing.Size(790, 330)
         Me.ToolStripContainer1.TabIndex = 0
         Me.ToolStripContainer1.Text = "ToolStripContainer1"
         '
@@ -289,7 +307,7 @@ Partial Class AttendenceForm
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 0)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(752, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
         Me.StatusStrip1.TabIndex = 0
         '
         'lblStudentsPresent
@@ -301,10 +319,10 @@ Partial Class AttendenceForm
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.MarkToolStripMenuItem, Me.SetQualityToolStripMenuItem, Me.HelpToolStripMenuItem, Me.txtSessionDate, Me.txtFilter, Me.txtStudentGroup, Me.ToolStripMenuItem1, Me.PublicToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.MarkToolStripMenuItem, Me.SetQualityToolStripMenuItem, Me.HelpToolStripMenuItem, Me.txtSessionDate, Me.txtFilter, Me.txtStudentGroup, Me.ToolStripMenuItem1, Me.PublicToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(752, 27)
+        Me.MenuStrip1.Size = New System.Drawing.Size(790, 27)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -511,7 +529,7 @@ Partial Class AttendenceForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'txtSessionDate
@@ -571,11 +589,32 @@ Partial Class AttendenceForm
         Me.tmrPublicFilter.Enabled = True
         Me.tmrPublicFilter.Interval = 2000
         '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
+        Me.ViewToolStripMenuItem.Text = "&View"
+        '
+        'IncreaseFontToolStripMenuItem
+        '
+        Me.IncreaseFontToolStripMenuItem.Name = "IncreaseFontToolStripMenuItem"
+        Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Oemplus), System.Windows.Forms.Keys)
+        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.IncreaseFontToolStripMenuItem.Text = "Increase font"
+        '
+        'DecreaseFontToolStripMenuItem
+        '
+        Me.DecreaseFontToolStripMenuItem.Name = "DecreaseFontToolStripMenuItem"
+        Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.OemMinus), System.Windows.Forms.Keys)
+        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.DecreaseFontToolStripMenuItem.Text = "Decrease font"
+        '
         'AttendenceForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(752, 330)
+        Me.ClientSize = New System.Drawing.Size(790, 330)
         Me.Controls.Add(Me.ToolStripContainer1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
@@ -678,4 +717,7 @@ Partial Class AttendenceForm
     Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AllStudentsExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents IncreaseFontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DecreaseFontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

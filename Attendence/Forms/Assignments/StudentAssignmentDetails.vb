@@ -270,6 +270,7 @@ Friend Class StudentAssignmentDetails
     End Function
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         If SaveChanges() Then
+            MainFormReference.AutoSave()
             Close()
         End If
     End Sub

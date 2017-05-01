@@ -195,9 +195,9 @@
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         If SaveChanges() Then
+            MainFormReference.AutoSave()
             Close()
         End If
-
     End Sub
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
         '-- If we created it and canceled then we must remove it

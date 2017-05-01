@@ -8,6 +8,7 @@ Public Class EmailModuleResults
     Private m_boolCancel As Boolean
     Private m_lstAssignments As New List(Of IClassAssignment)
     Private m_strAttachmentPath As String
+    Private m_boolAssignmentSelectionDirty As Boolean
 
     Public Sub New(clas As SchoolClass)
 
@@ -55,6 +56,7 @@ Public Class EmailModuleResults
             MessageBox.Show("You should select at least one assignment before loading the data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         m_lst.Clear()
+        m_boolAssignmentSelectionDirty = False
         Dim intUnknownOutcomes As Integer
 
         For Each stud In m_clas.Students
@@ -96,19 +98,11 @@ Public Class EmailModuleResults
                 rslts.Outcomes.Remove(oc)
             Next
 
-
-            'objData.M1 = rslts.M1Achieved
-            'objData.M2 = rslts.M2Achieved
-            'objData.M3 = rslts.M3Achieved
-            'objData.D1 = rslts.D1Achieved
-            'objData.D2 = rslts.D2Achieved
-            'objData.D3 = rslts.D3Achieved
-
             '-- Make sure there are no unknown outcomes
             For Each oc As Student.StudentModuleOutcomeResult In rslts.Outcomes
                 If oc.Status = OutcomeResultStatusEnum.Unknown Then
                     intUnknownOutcomes += 1
-                ElseIf oc.Status = OutcomeResultStatusEnum.Achieved AndAlso oc.Outcome.GradeGroup = BTECGradeGroup.Pass Then
+                ElseIf oc.Status = OutcomeResultStatusEnum.Achieved AndAlso oc.Outcome.GradeGroup = BTECGradeGroup.Pass AndAlso OutcomeShouldBeSent(oc.Outcome) Then
                     objData.PassedOutcomes += 1
                 End If
             Next
@@ -496,7 +490,11 @@ Public Class EmailModuleResults
         str.Append("</ul>")
 
         If boolAtLeastOneBTECAssignment Then
-            str.Append("This module has " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
+            If olvAssignments.CheckedItems.Count = 1 Then
+                str.Append("This assessment has " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
+            Else
+                str.Append("These assessments have " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
+            End If
             Dim intFailedOutcomes As Integer = m_intModuleOutcomes - item.PassedOutcomes
 
             '-- If not sending grades, then don't send summary of grades either
@@ -777,6 +775,14 @@ Public Class EmailModuleResults
     End Function
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
+        If m_boolAssignmentSelectionDirty Then
+            '-- changing assignment selection will change many things
+            '   user really should reload the data, but we will allow them to override
+            If MessageBox.Show("You should reload the data after you change which assessments will be sent. Override and send anyway?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) <> Windows.Forms.DialogResult.Yes Then
+                Exit Sub
+            End If
+        End If
+
         Dim boolSendNow As Boolean = True
         If RecommendAttachment() AndAlso (IncludeattachmentToolStripMenuItem.Checked = False) Then
             If MessageBox.Show("At least one assignment includes an attachment. Would you like to continue, ignoring all attachments?", "Attachment Missing", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
@@ -845,7 +851,9 @@ Public Class EmailModuleResults
         m_intModuleOutcomes = 0 '-- reset and only count pass outcomes
         For Each oc As AssignmentOutcome In m_clas.ClassGroup.Outcomes
             If oc.GradeGroup = BTECGradeGroup.Pass Then
-                m_intModuleOutcomes += 1
+                If OutcomeShouldBeSent(oc) Then
+                    m_intModuleOutcomes += 1
+                End If
             End If
         Next
 
@@ -866,6 +874,7 @@ Public Class EmailModuleResults
 
     End Sub
     Private Sub olvAssignments_ItemChecked(sender As System.Object, e As System.Windows.Forms.ItemCheckedEventArgs) Handles olvAssignments.ItemChecked
+        m_boolAssignmentSelectionDirty = True
         CalculateOutcomes()
     End Sub
 
@@ -882,6 +891,18 @@ Public Class EmailModuleResults
             If ofd.ShowDialog = DialogResult.OK Then
                 m_strAttachmentPath = System.IO.Path.GetDirectoryName(ofd.FileName)
             End If
+        End If
+    End Sub
+
+    Private Sub olvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles olvStudents.KeyDown
+        '-- pressing space will toggle send/don't send
+        If e.KeyCode = Keys.Space Then
+            For Each obj As EmailResultData In olvStudents.SelectedObjects
+                obj.Selected = Not obj.Selected
+            Next
+
+            olvStudents.RefreshSelectedObjects()
+            CalculateSelectedStudents()
         End If
     End Sub
 End Class

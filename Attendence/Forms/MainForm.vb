@@ -1885,10 +1885,8 @@ Public Class MainForm
                     AutoSave()
                 End If
 
-                'Me.Text &= " - LastAutoSave: " & ThisSemester.LastAutoSaveDate.ToString("HH:mm")
             End If
 
-            UpdateLastSaved()
 
         End If
     End Sub
@@ -1900,8 +1898,14 @@ Public Class MainForm
         End If
 
     End Sub
-    Private Sub AutoSave()
-        m_bkgndAutoSave.RunWorkerAsync()
+    Public Delegate Sub NoParamSubDelegate()
+    Public Sub AutoSave()
+        If InvokeRequired Then
+            Dim deleg As New NoParamSubDelegate(AddressOf AutoSave)
+            Invoke(deleg)
+        Else
+            m_bkgndAutoSave.RunWorkerAsync()
+        End If
     End Sub
 
     Private Sub m_bkgndAutoSave_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles m_bkgndAutoSave.DoWork
@@ -1916,6 +1920,7 @@ Public Class MainForm
 
     Private Sub m_bkgndAutoSave_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles m_bkgndAutoSave.RunWorkerCompleted
         tmrAutoSave.Start()
+        UpdateLastSaved()
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AboutToolStripMenuItem.Click
