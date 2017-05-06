@@ -19,14 +19,12 @@ Partial Class AssignmentDocumentSelector
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AssignmentDocumentSelector))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.lstAssignments = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.btnPreview = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
-        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.SuspendLayout()
@@ -100,7 +98,6 @@ Partial Class AssignmentDocumentSelector
 
     End Sub
     Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents KryptonManager As ComponentFactory.Krypton.Toolkit.KryptonManager
 
     Public Sub New()
 

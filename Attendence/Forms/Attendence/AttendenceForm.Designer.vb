@@ -36,9 +36,6 @@ Partial Class AttendenceForm
         Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -51,6 +48,9 @@ Partial Class AttendenceForm
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.SaveAndCloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IncreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DecreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -86,9 +86,6 @@ Partial Class AttendenceForm
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
         Me.tmrPublicFilter = New System.Windows.Forms.Timer(Me.components)
-        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IncreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DecreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -245,19 +242,6 @@ Partial Class AttendenceForm
         Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn15.ToolTipText = "Date of Birth"
         '
-        'KryptonManager
-        '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Nickname"
@@ -357,6 +341,27 @@ Partial Class AttendenceForm
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
+        Me.ViewToolStripMenuItem.Text = "&View"
+        '
+        'IncreaseFontToolStripMenuItem
+        '
+        Me.IncreaseFontToolStripMenuItem.Name = "IncreaseFontToolStripMenuItem"
+        Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Oemplus), System.Windows.Forms.Keys)
+        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.IncreaseFontToolStripMenuItem.Text = "Increase font"
+        '
+        'DecreaseFontToolStripMenuItem
+        '
+        Me.DecreaseFontToolStripMenuItem.Name = "DecreaseFontToolStripMenuItem"
+        Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.OemMinus), System.Windows.Forms.Keys)
+        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.DecreaseFontToolStripMenuItem.Text = "Decrease font"
         '
         'MarkToolStripMenuItem
         '
@@ -529,7 +534,7 @@ Partial Class AttendenceForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'txtSessionDate
@@ -589,27 +594,6 @@ Partial Class AttendenceForm
         Me.tmrPublicFilter.Enabled = True
         Me.tmrPublicFilter.Interval = 2000
         '
-        'ViewToolStripMenuItem
-        '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem})
-        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
-        Me.ViewToolStripMenuItem.Text = "&View"
-        '
-        'IncreaseFontToolStripMenuItem
-        '
-        Me.IncreaseFontToolStripMenuItem.Name = "IncreaseFontToolStripMenuItem"
-        Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Oemplus), System.Windows.Forms.Keys)
-        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.IncreaseFontToolStripMenuItem.Text = "Increase font"
-        '
-        'DecreaseFontToolStripMenuItem
-        '
-        Me.DecreaseFontToolStripMenuItem.Name = "DecreaseFontToolStripMenuItem"
-        Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.OemMinus), System.Windows.Forms.Keys)
-        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.DecreaseFontToolStripMenuItem.Text = "Decrease font"
-        '
         'AttendenceForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -641,7 +625,6 @@ Partial Class AttendenceForm
 
     End Sub
     Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents KryptonManager As ComponentFactory.Krypton.Toolkit.KryptonManager
 
     Public Sub New()
 
@@ -711,7 +694,6 @@ Partial Class AttendenceForm
     Friend WithEvents txtStudentGroup As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents tmrPublicFilter As System.Windows.Forms.Timer
     Friend WithEvents ExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents AllStudentsPresentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

@@ -1203,7 +1203,7 @@ Friend Class StudentAssignmentDetails
         End If
     End Sub
 
-    Private Sub llblPassAll_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblPassAll.LinkClicked
+    Private Sub llblAchieveAllDistinction_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAchieveAllDistinction.LinkClicked
         Try
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
@@ -1500,12 +1500,6 @@ Friend Class StudentAssignmentDetails
     End Sub
     Private Sub RefreshOutcomeResults()
         Dim rslt As Student.QuickAssignmentResults = m_student.GetQuickAssignmentResults(MarkingTry.ThirdTry)
-        llblAlreadyM1.Visible = rslt.M1Achieved
-        llblAlreadyM2.Visible = rslt.M2Achieved
-        llblAlreadyM3.Visible = rslt.M3Achieved
-        llblAlreadyD1.Visible = rslt.D1Achieved
-        llblAlreadyD2.Visible = rslt.D2Achieved
-        llblAlreadyD3.Visible = rslt.D3Achieved
         lblOutcomesPassed.Text = rslt.OutcomesPassed.ToString() & " of " & rslt.OutcomesIncluded.ToString()
     End Sub
     Private Sub llblRefreshOutcomeCount_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRefreshOutcomeCount.LinkClicked
@@ -1850,4 +1844,64 @@ Friend Class StudentAssignmentDetails
         End If
         olvImprovementItems.RefreshObject(selItem)
     End Sub
+
+    Private Sub llblAchieveAllPass_LinkClicked(sender As Object, e As EventArgs) Handles llblAchieveAllPass.LinkClicked
+        Try
+            For Each item As OutcomeResult In m_studentAssignment.Outcomes
+                If item.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
+                    Select Case m_try
+                        Case MarkingTry.FirstTry
+                            item.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                        Case MarkingTry.SecondTry
+                            If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                item.SecondTryStatus = OutcomeResultStatusEnum.Achieved
+                            End If
+                        Case MarkingTry.ThirdTry
+                            If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                item.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
+                            End If
+                    End Select
+                    olvOutcomes.RefreshObject(item)
+                End If
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub llblAchieveAllMerit_LinkClicked(sender As Object, e As EventArgs) Handles llblAchieveAllMerit.LinkClicked
+        Try
+            For Each item As OutcomeResult In m_studentAssignment.Outcomes
+                If item.BaseOutcome.GradeGroup = BTECGradeGroup.Pass OrElse item.BaseOutcome.GradeGroup = BTECGradeGroup.Merit Then
+                    Select Case m_try
+                        Case MarkingTry.FirstTry
+                            item.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                        Case MarkingTry.SecondTry
+                            If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                item.SecondTryStatus = OutcomeResultStatusEnum.Achieved
+                            End If
+                        Case MarkingTry.ThirdTry
+                            If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                item.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
+                            End If
+                    End Select
+                    olvOutcomes.RefreshObject(item)
+                End If
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub chkShowImprovement_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowImprovement.CheckedChanged, chkShowFeedback.CheckedChanged
+        If chkShowImprovement.Checked = False AndAlso chkShowFeedback.Checked = False Then
+            KryptonSplitContainer1.Panel2Collapsed = True
+        Else
+            KryptonSplitContainer1.Panel2Collapsed = False
+            KryptonSplitContainer3.Panel1Collapsed = Not chkShowFeedback.Checked
+            KryptonSplitContainer3.Panel2Collapsed = Not chkShowImprovement.Checked
+        End If
+    End Sub
+
 End Class

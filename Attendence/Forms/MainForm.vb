@@ -1900,6 +1900,11 @@ Public Class MainForm
     End Sub
     Public Delegate Sub NoParamSubDelegate()
     Public Sub AutoSave()
+        If m_bkgndAutoSave.IsBusy Then
+            '-- If we are already auto-saving, then just let it be
+            Exit Sub
+        End If
+
         If InvokeRequired Then
             Dim deleg As New NoParamSubDelegate(AddressOf AutoSave)
             Invoke(deleg)
