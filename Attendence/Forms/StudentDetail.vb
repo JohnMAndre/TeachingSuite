@@ -165,13 +165,7 @@ Public Class StudentDetail
             olvi.SubItems(olvcolDataAdded.Index).Text = String.Empty
         Else
             '-- so it was a problem
-            If item.DateRemoved = DATE_NO_DATE Then
-                '-- and it is still a problem
-                newColor = CURRENT_ISSUE_COLOR
-            Else
-                '-- the student has fixed this problem
-                newColor = RESOLVED_ISSUE_COLOR
-            End If
+            newColor = CURRENT_ISSUE_COLOR
         End If
 
         If item.DateLastIncluded = DATE_NO_DATE Then

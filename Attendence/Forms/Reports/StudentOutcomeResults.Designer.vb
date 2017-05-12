@@ -23,6 +23,7 @@ Partial Class StudentOutcomeResults
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentOutcomeResults))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
         Me.olvcolAdmin = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -66,6 +67,15 @@ Partial Class StudentOutcomeResults
         Me.KryptonPanel.Size = New System.Drawing.Size(875, 515)
         Me.KryptonPanel.TabIndex = 0
         '
+        'KryptonManager
+        '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
         'KryptonPanel1
         '
         Me.KryptonPanel1.Controls.Add(Me.olvStudents)
@@ -95,9 +105,11 @@ Partial Class StudentOutcomeResults
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.olvcolAdmin, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn4, Me.olvcolStudentID, Me.OlvColumn6, Me.olvcolOutcomeName, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn13})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No data for this assignment...click menu above."
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -107,7 +119,6 @@ Partial Class StudentOutcomeResults
         Me.olvStudents.Location = New System.Drawing.Point(0, 52)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowGroups = False
@@ -125,6 +136,8 @@ Partial Class StudentOutcomeResults
         'olvcolAdmin
         '
         Me.olvcolAdmin.AspectName = "Assignment.Student.AdminNumber"
+        Me.olvcolAdmin.AutoCompleteEditor = False
+        Me.olvcolAdmin.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolAdmin.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolAdmin.IsEditable = False
         Me.olvcolAdmin.Text = "Admin"
@@ -134,6 +147,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "Assignment.Student.AltNumber"
+        Me.OlvColumn2.AutoCompleteEditor = False
+        Me.OlvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn2.IsEditable = False
         Me.OlvColumn2.Text = "Alt"
@@ -142,6 +157,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn3
         '
         Me.OlvColumn3.AspectName = "Assignment.Student.LocalName"
+        Me.OlvColumn3.AutoCompleteEditor = False
+        Me.OlvColumn3.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn3.IsEditable = False
         Me.OlvColumn3.Text = "Local"
         Me.OlvColumn3.Width = 87
@@ -149,6 +166,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn4
         '
         Me.OlvColumn4.AspectName = "Assignment.Student.Nickname"
+        Me.OlvColumn4.AutoCompleteEditor = False
+        Me.OlvColumn4.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn4.IsEditable = False
         Me.OlvColumn4.Text = "Nickname"
         Me.OlvColumn4.Width = 96
@@ -156,6 +175,8 @@ Partial Class StudentOutcomeResults
         'olvcolStudentID
         '
         Me.olvcolStudentID.AspectName = "Assignment.Student.StudentID"
+        Me.olvcolStudentID.AutoCompleteEditor = False
+        Me.olvcolStudentID.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolStudentID.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolStudentID.IsEditable = False
         Me.olvcolStudentID.Text = "ID"
@@ -165,6 +186,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn6
         '
         Me.OlvColumn6.AspectName = "Assignment.BaseAssignment.Name"
+        Me.OlvColumn6.AutoCompleteEditor = False
+        Me.OlvColumn6.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "Asmt"
@@ -174,6 +197,8 @@ Partial Class StudentOutcomeResults
         'olvcolOutcomeName
         '
         Me.olvcolOutcomeName.AspectName = "BaseOutcome.Name"
+        Me.olvcolOutcomeName.AutoCompleteEditor = False
+        Me.olvcolOutcomeName.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.olvcolOutcomeName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolOutcomeName.IsEditable = False
         Me.olvcolOutcomeName.Text = "Outcome"
@@ -191,6 +216,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "FirstTryComments"
+        Me.OlvColumn9.AutoCompleteEditor = False
+        Me.OlvColumn9.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn9.Text = "First comments"
         Me.OlvColumn9.Width = 197
         '
@@ -204,6 +231,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn11
         '
         Me.OlvColumn11.AspectName = "SecondTryComments"
+        Me.OlvColumn11.AutoCompleteEditor = False
+        Me.OlvColumn11.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn11.Text = "Second comments"
         '
         'OlvColumn12
@@ -216,6 +245,8 @@ Partial Class StudentOutcomeResults
         'OlvColumn13
         '
         Me.OlvColumn13.AspectName = "ThirdTryComments"
+        Me.OlvColumn13.AutoCompleteEditor = False
+        Me.OlvColumn13.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn13.Text = "Third comments"
         '
         'KryptonPanel2
@@ -233,7 +264,7 @@ Partial Class StudentOutcomeResults
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 5)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(40, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel3.TabIndex = 66
         Me.KryptonLabel3.Values.Text = "Filter:"
         '
@@ -241,7 +272,7 @@ Partial Class StudentOutcomeResults
         '
         Me.txtFilter.Location = New System.Drawing.Point(49, 3)
         Me.txtFilter.Name = "txtFilter"
-        Me.txtFilter.Size = New System.Drawing.Size(405, 20)
+        Me.txtFilter.Size = New System.Drawing.Size(405, 19)
         Me.txtFilter.TabIndex = 27
         Me.ToolTip1.SetToolTip(Me.txtFilter, "Student filter")
         '
@@ -268,7 +299,7 @@ Partial Class StudentOutcomeResults
         'FirstTryToolStripMenuItem
         '
         Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
-        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.FirstTryToolStripMenuItem.Text = "First Try"
         '
         'RedoToolStripMenuItem
@@ -282,6 +313,11 @@ Partial Class StudentOutcomeResults
         Me.SecondRedoToolStripMenuItem.Name = "SecondRedoToolStripMenuItem"
         Me.SecondRedoToolStripMenuItem.Size = New System.Drawing.Size(69, 20)
         Me.SecondRedoToolStripMenuItem.Text = "2nd Redo"
+        '
+        'KryptonManager1
+        '
+        Me.KryptonManager1.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilterStudents
         '
@@ -351,4 +387,5 @@ Partial Class StudentOutcomeResults
     Friend WithEvents llblClearFilter As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents tmrFilterStudents As System.Windows.Forms.Timer
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
 End Class

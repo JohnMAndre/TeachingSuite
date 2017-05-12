@@ -352,15 +352,15 @@ Partial Class AttendenceForm
         'IncreaseFontToolStripMenuItem
         '
         Me.IncreaseFontToolStripMenuItem.Name = "IncreaseFontToolStripMenuItem"
-        Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Oemplus), System.Windows.Forms.Keys)
-        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
+        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.IncreaseFontToolStripMenuItem.Text = "Increase font"
         '
         'DecreaseFontToolStripMenuItem
         '
         Me.DecreaseFontToolStripMenuItem.Name = "DecreaseFontToolStripMenuItem"
-        Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.OemMinus), System.Windows.Forms.Keys)
-        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
+        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.DecreaseFontToolStripMenuItem.Text = "Decrease font"
         '
         'MarkToolStripMenuItem
@@ -534,7 +534,7 @@ Partial Class AttendenceForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'txtSessionDate

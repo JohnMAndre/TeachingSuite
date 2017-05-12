@@ -153,7 +153,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AutocalcScoreToolStripMenuItem, Me.AutogenImprovementsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
         '
         'AutocalcScoreToolStripMenuItem
@@ -635,7 +635,7 @@ Partial Class StudentAssignmentNormalDetails
         'nudWritingQuality
         '
         Me.nudWritingQuality.Location = New System.Drawing.Point(223, 25)
-        Me.nudWritingQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudWritingQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudWritingQuality.Name = "nudWritingQuality"
         Me.nudWritingQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudWritingQuality.TabIndex = 115
@@ -653,10 +653,10 @@ Partial Class StudentAssignmentNormalDetails
         '
         'nudPlagiarismSeverity
         '
-        Me.nudPlagiarismSeverity.Location = New System.Drawing.Point(367, 25)
-        Me.nudPlagiarismSeverity.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.nudPlagiarismSeverity.Location = New System.Drawing.Point(386, 25)
+        Me.nudPlagiarismSeverity.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPlagiarismSeverity.Name = "nudPlagiarismSeverity"
-        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(44, 21)
+        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(59, 21)
         Me.nudPlagiarismSeverity.TabIndex = 112
         Me.nudPlagiarismSeverity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPlagiarismSeverity.ThousandsSeparator = True
@@ -664,7 +664,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         'KryptonLabel10
         '
-        Me.KryptonLabel10.Location = New System.Drawing.Point(297, 26)
+        Me.KryptonLabel10.Location = New System.Drawing.Point(309, 26)
         Me.KryptonLabel10.Name = "KryptonLabel10"
         Me.KryptonLabel10.Size = New System.Drawing.Size(77, 19)
         Me.KryptonLabel10.TabIndex = 113
@@ -688,11 +688,11 @@ Partial Class StudentAssignmentNormalDetails
         '
         'nudAltNumber
         '
-        Me.nudAltNumber.Location = New System.Drawing.Point(484, 24)
-        Me.nudAltNumber.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudAltNumber.Minimum = New Decimal(New Integer() {10000, 0, 0, -2147483648})
+        Me.nudAltNumber.Location = New System.Drawing.Point(498, 24)
+        Me.nudAltNumber.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
+        Me.nudAltNumber.Minimum = New Decimal(New Integer() {100000, 0, 0, -2147483648})
         Me.nudAltNumber.Name = "nudAltNumber"
-        Me.nudAltNumber.Size = New System.Drawing.Size(68, 21)
+        Me.nudAltNumber.Size = New System.Drawing.Size(96, 21)
         Me.nudAltNumber.TabIndex = 100
         Me.nudAltNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAltNumber.ThousandsSeparator = True
@@ -701,7 +701,7 @@ Partial Class StudentAssignmentNormalDetails
         'nudPresentationQuality
         '
         Me.nudPresentationQuality.Location = New System.Drawing.Point(90, 25)
-        Me.nudPresentationQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudPresentationQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPresentationQuality.Name = "nudPresentationQuality"
         Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudPresentationQuality.TabIndex = 99
@@ -720,7 +720,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         'KryptonLabel8
         '
-        Me.KryptonLabel8.Location = New System.Drawing.Point(439, 26)
+        Me.KryptonLabel8.Location = New System.Drawing.Point(453, 26)
         Me.KryptonLabel8.Name = "KryptonLabel8"
         Me.KryptonLabel8.Size = New System.Drawing.Size(41, 19)
         Me.KryptonLabel8.TabIndex = 78

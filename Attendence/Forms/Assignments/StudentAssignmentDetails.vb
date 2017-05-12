@@ -151,7 +151,6 @@ Friend Class StudentAssignmentDetails
                 Dim studItem As New StudentImprovementItem(m_student)
                 studItem.BaseImprovementItem = item
                 studItem.DateAdded = DATE_NO_DATE
-                studItem.DateRemoved = DATE_NO_DATE
                 m_improvementItems.Add(studItem)
             End If
         Next
@@ -1596,14 +1595,8 @@ Friend Class StudentAssignmentDetails
             newColor = NON_ISSUE_COLOR
             olvi.SubItems(olvcolDateAdded.Index).Text = String.Empty
         Else
-            '-- so it was a problem
-            If item.DateRemoved = DATE_NO_DATE Then
-                '-- and it is still a problem
-                newColor = CURRENT_ISSUE_COLOR
-            Else
-                '-- the student has fixed this problem
-                newColor = RESOLVED_ISSUE_COLOR
-            End If
+            '-- so it was added before
+            newColor = CURRENT_ISSUE_COLOR
         End If
 
         If item.DateLastIncluded = DATE_NO_DATE Then
@@ -1721,39 +1714,18 @@ Friend Class StudentAssignmentDetails
             AutoSizeColumns(olvImprovementItems)
         End If
     End Sub
-    Private Sub llblRemoveImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles llblRemoveImprovementItem.LinkClicked
-        Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
-        If selItem Is Nothing Then
-            MessageBox.Show("Please select an improvement item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            If selItem.DateRemoved > DATE_NO_DATE Then
-                MessageBox.Show("This improvement item was already removed from this student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                '-- add item to student
-                selItem.DateRemoved = Date.Now
-                olvImprovementItems.RefreshObject(selItem)
-                olvImprovementItems.ModelToItem(selItem).Checked = False
-                AutoSizeColumns(olvImprovementItems)
-            End If
-        End If
-    End Sub
 
     Private Sub llblClearImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles llblClearImprovementItem.LinkClicked
         Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
         If selItem Is Nothing Then
             MessageBox.Show("Please select an improvement item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If selItem.DateAdded = DATE_NO_DATE AndAlso selItem.DateRemoved = DATE_NO_DATE Then
-                MessageBox.Show("This improvement item does not exist for this student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                '-- add item to student
-                m_student.ImprovementItems.Remove(selItem)
-                selItem.DateAdded = DATE_NO_DATE
-                selItem.DateRemoved = DATE_NO_DATE
-                olvImprovementItems.RefreshObject(selItem)
-                olvImprovementItems.ModelToItem(selItem).Checked = False
-                AutoSizeColumns(olvImprovementItems)
-            End If
+            '-- add item to student
+            m_student.ImprovementItems.Remove(selItem)
+            selItem.DateAdded = DATE_NO_DATE
+            olvImprovementItems.RefreshObject(selItem)
+            olvImprovementItems.ModelToItem(selItem).Checked = False
+            AutoSizeColumns(olvImprovementItems)
         End If
     End Sub
 

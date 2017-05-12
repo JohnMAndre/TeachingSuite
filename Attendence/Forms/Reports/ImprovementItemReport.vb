@@ -28,7 +28,7 @@
 
             For Each stud As Student In m_class.Students
                 For Each objItem As StudentImprovementItem In stud.ImprovementItems
-                    If objItem.PerformanceLevel > 0 AndAlso objItem.PerformanceLevel < 5 AndAlso objItem.DateRemoved = DATE_NO_DATE Then
+                    If objItem.PerformanceLevel > 0 AndAlso objItem.PerformanceLevel < 5 Then
                         '-- see if it exists for this student already
                         objFoundItem = m_lst.Find(Function(value As ImprovementData) value.ID = objItem.BaseImprovementItem.ID)
                         If objFoundItem Is Nothing Then

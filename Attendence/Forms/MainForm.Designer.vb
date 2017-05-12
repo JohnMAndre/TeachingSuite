@@ -356,7 +356,6 @@ Partial Class MainForm
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(1106, 558)
         Me.KryptonPanel.TabIndex = 0
         '
@@ -448,10 +447,9 @@ Partial Class MainForm
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClassGroups.Location = New System.Drawing.Point(0, 20)
+        Me.lstClassGroups.Location = New System.Drawing.Point(0, 19)
         Me.lstClassGroups.Name = "lstClassGroups"
-        Me.lstClassGroups.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lstClassGroups.Size = New System.Drawing.Size(185, 126)
+        Me.lstClassGroups.Size = New System.Drawing.Size(185, 127)
         Me.lstClassGroups.TabIndex = 28
         '
         'llblRemoveClassGroup
@@ -492,8 +490,7 @@ Partial Class MainForm
         Me.KryptonLabel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel11.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel11.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel11.TabIndex = 3
         Me.KryptonLabel11.Values.Text = "Module"
         '
@@ -550,10 +547,9 @@ Partial Class MainForm
         '
         Me.lstClasses.ContextMenuStrip = Me.ctxmnuClasses
         Me.lstClasses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClasses.Location = New System.Drawing.Point(0, 20)
+        Me.lstClasses.Location = New System.Drawing.Point(0, 19)
         Me.lstClasses.Name = "lstClasses"
-        Me.lstClasses.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lstClasses.Size = New System.Drawing.Size(185, 110)
+        Me.lstClasses.Size = New System.Drawing.Size(185, 111)
         Me.lstClasses.TabIndex = 0
         '
         'ctxmnuClasses
@@ -640,8 +636,7 @@ Partial Class MainForm
         Me.KryptonLabel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel10.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel10.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel10.TabIndex = 2
         Me.KryptonLabel10.Values.Text = "Classes"
         '
@@ -682,10 +677,9 @@ Partial Class MainForm
         '
         Me.lstAssignments.ContextMenuStrip = Me.ctxmnuAssignment
         Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstAssignments.Location = New System.Drawing.Point(0, 20)
+        Me.lstAssignments.Location = New System.Drawing.Point(0, 19)
         Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lstAssignments.Size = New System.Drawing.Size(185, 138)
+        Me.lstAssignments.Size = New System.Drawing.Size(185, 139)
         Me.lstAssignments.TabIndex = 4
         '
         'ctxmnuAssignment
@@ -782,8 +776,7 @@ Partial Class MainForm
         Me.KryptonLabel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel1.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel1.TabIndex = 3
         Me.KryptonLabel1.Values.Text = "Assignments"
         '
@@ -801,8 +794,7 @@ Partial Class MainForm
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(42, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 19)
         Me.txtStudentFilter.TabIndex = 25
         Me.ToolTip1.SetToolTip(Me.txtStudentFilter, "Student filter")
         '
@@ -810,7 +802,6 @@ Partial Class MainForm
         '
         Me.lblStudentCount.Location = New System.Drawing.Point(189, 0)
         Me.lblStudentCount.Name = "lblStudentCount"
-        Me.lblStudentCount.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.lblStudentCount.Size = New System.Drawing.Size(6, 2)
         Me.lblStudentCount.TabIndex = 32
         Me.lblStudentCount.Values.Text = ""
@@ -819,18 +810,16 @@ Partial Class MainForm
         '
         Me.txtTag.Location = New System.Drawing.Point(370, -1)
         Me.txtTag.Name = "txtTag"
-        Me.txtTag.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtTag.Size = New System.Drawing.Size(117, 20)
+        Me.txtTag.Size = New System.Drawing.Size(117, 19)
         Me.txtTag.TabIndex = 34
         Me.ToolTip1.SetToolTip(Me.txtTag, "Student filter")
         '
         'lblRenumberAdminResetNumber
         '
         Me.lblRenumberAdminResetNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminResetNumber.Location = New System.Drawing.Point(653, 0)
+        Me.lblRenumberAdminResetNumber.Location = New System.Drawing.Point(643, 0)
         Me.lblRenumberAdminResetNumber.Name = "lblRenumberAdminResetNumber"
-        Me.lblRenumberAdminResetNumber.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblRenumberAdminResetNumber.Size = New System.Drawing.Size(94, 20)
+        Me.lblRenumberAdminResetNumber.Size = New System.Drawing.Size(104, 19)
         Me.lblRenumberAdminResetNumber.TabIndex = 31
         Me.lblRenumberAdminResetNumber.Values.Text = "Reset all to 999"
         Me.lblRenumberAdminResetNumber.Visible = False
@@ -839,18 +828,16 @@ Partial Class MainForm
         '
         Me.KryptonLabel13.Location = New System.Drawing.Point(336, -1)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel13.Size = New System.Drawing.Size(33, 20)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel13.TabIndex = 33
         Me.KryptonLabel13.Values.Text = "Tag:"
         '
         'lblRenumberAdminCurrent
         '
         Me.lblRenumberAdminCurrent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminCurrent.Location = New System.Drawing.Point(593, 0)
+        Me.lblRenumberAdminCurrent.Location = New System.Drawing.Point(588, 0)
         Me.lblRenumberAdminCurrent.Name = "lblRenumberAdminCurrent"
-        Me.lblRenumberAdminCurrent.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblRenumberAdminCurrent.Size = New System.Drawing.Size(54, 20)
+        Me.lblRenumberAdminCurrent.Size = New System.Drawing.Size(59, 19)
         Me.lblRenumberAdminCurrent.TabIndex = 30
         Me.lblRenumberAdminCurrent.Values.Text = "Current:"
         Me.lblRenumberAdminCurrent.Visible = False
@@ -858,10 +845,9 @@ Partial Class MainForm
         'lblRenumberAdminCurrentLabel
         '
         Me.lblRenumberAdminCurrentLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminCurrentLabel.Location = New System.Drawing.Point(541, 1)
+        Me.lblRenumberAdminCurrentLabel.Location = New System.Drawing.Point(536, 1)
         Me.lblRenumberAdminCurrentLabel.Name = "lblRenumberAdminCurrentLabel"
-        Me.lblRenumberAdminCurrentLabel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblRenumberAdminCurrentLabel.Size = New System.Drawing.Size(54, 20)
+        Me.lblRenumberAdminCurrentLabel.Size = New System.Drawing.Size(59, 19)
         Me.lblRenumberAdminCurrentLabel.TabIndex = 29
         Me.lblRenumberAdminCurrentLabel.Values.Text = "Current:"
         Me.lblRenumberAdminCurrentLabel.Visible = False
@@ -870,7 +856,7 @@ Partial Class MainForm
         '
         Me.splitStudentsSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.splitStudentsSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 20)
+        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 19)
         Me.splitStudentsSchedule.Name = "splitStudentsSchedule"
         Me.splitStudentsSchedule.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -882,7 +868,7 @@ Partial Class MainForm
         '
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.ScheduleNotesSplitter)
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.pnlScheduleControls)
-        Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 424)
+        Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 425)
         Me.splitStudentsSchedule.SplitterDistance = 214
         Me.splitStudentsSchedule.TabIndex = 28
         '
@@ -1314,7 +1300,7 @@ Partial Class MainForm
         '
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.Panel1)
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.picStudent)
-        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 205)
+        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 206)
         Me.ScheduleNotesSplitter.SplitterDistance = 586
         Me.ScheduleNotesSplitter.TabIndex = 45
         '
@@ -1353,7 +1339,7 @@ Partial Class MainForm
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(586, 205)
+        Me.olvSchedule.Size = New System.Drawing.Size(586, 206)
         Me.olvSchedule.TabIndex = 4
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -1493,7 +1479,7 @@ Partial Class MainForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(215, 205)
+        Me.Panel1.Size = New System.Drawing.Size(215, 206)
         Me.Panel1.TabIndex = 46
         '
         'llblClearNotes
@@ -1510,10 +1496,9 @@ Partial Class MainForm
         '
         Me.lblStopwatchDuration.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStopwatchDuration.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl
-        Me.lblStopwatchDuration.Location = New System.Drawing.Point(132, 4)
+        Me.lblStopwatchDuration.Location = New System.Drawing.Point(152, 4)
         Me.lblStopwatchDuration.Name = "lblStopwatchDuration"
-        Me.lblStopwatchDuration.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblStopwatchDuration.Size = New System.Drawing.Size(76, 29)
+        Me.lblStopwatchDuration.Size = New System.Drawing.Size(56, 19)
         Me.lblStopwatchDuration.TabIndex = 45
         Me.lblStopwatchDuration.Values.Text = "0:00:00"
         '
@@ -1538,7 +1523,7 @@ Partial Class MainForm
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtNotes.Size = New System.Drawing.Size(215, 167)
+        Me.txtNotes.Size = New System.Drawing.Size(215, 168)
         Me.txtNotes.TabIndex = 45
         Me.ToolTip1.SetToolTip(Me.txtNotes, "Notes")
         '
@@ -1547,7 +1532,7 @@ Partial Class MainForm
         Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.picStudent.Location = New System.Drawing.Point(0, 0)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(215, 205)
+        Me.picStudent.Size = New System.Drawing.Size(215, 206)
         Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
@@ -1565,13 +1550,13 @@ Partial Class MainForm
         Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
         Me.pnlScheduleControls.Name = "pnlScheduleControls"
-        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 205)
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 206)
         Me.pnlScheduleControls.TabIndex = 5
         '
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 93)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 94)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
         Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
@@ -1582,7 +1567,7 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 119)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 120)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
         Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
@@ -1595,7 +1580,6 @@ Partial Class MainForm
         Me.lblScheduleDay.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblScheduleDay.Location = New System.Drawing.Point(27, 39)
         Me.lblScheduleDay.Name = "lblScheduleDay"
-        Me.lblScheduleDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.lblScheduleDay.Size = New System.Drawing.Size(6, 2)
         Me.lblScheduleDay.TabIndex = 32
         Me.lblScheduleDay.Values.Text = ""
@@ -1603,7 +1587,7 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 142)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 143)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
         Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
@@ -1614,7 +1598,7 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 142)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 143)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
         Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
@@ -1629,14 +1613,13 @@ Partial Class MainForm
         Me.dtpScheduleDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpScheduleDate.Location = New System.Drawing.Point(3, 12)
         Me.dtpScheduleDate.Name = "dtpScheduleDate"
-        Me.dtpScheduleDate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpScheduleDate.Size = New System.Drawing.Size(104, 21)
         Me.dtpScheduleDate.TabIndex = 29
         '
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 174)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 175)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
         Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
@@ -1727,8 +1710,7 @@ Partial Class MainForm
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel2.Size = New System.Drawing.Size(916, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(916, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Filter:"
         '
@@ -1737,7 +1719,6 @@ Partial Class MainForm
         Me.KryptonGroup1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonGroup1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonGroup1.Name = "KryptonGroup1"
-        Me.KryptonGroup1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         '
         'KryptonGroup1.Panel
         '
@@ -1769,8 +1750,7 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSemesterNotes.Location = New System.Drawing.Point(73, 54)
         Me.txtSemesterNotes.Name = "txtSemesterNotes"
-        Me.txtSemesterNotes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtSemesterNotes.Size = New System.Drawing.Size(1020, 20)
+        Me.txtSemesterNotes.Size = New System.Drawing.Size(1020, 19)
         Me.txtSemesterNotes.TabIndex = 35
         Me.ToolTip1.SetToolTip(Me.txtSemesterNotes, "Student filter")
         '
@@ -1778,8 +1758,7 @@ Partial Class MainForm
         '
         Me.KryptonLabel12.Location = New System.Drawing.Point(11, 54)
         Me.KryptonLabel12.Name = "KryptonLabel12"
-        Me.KryptonLabel12.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel12.Size = New System.Drawing.Size(46, 20)
+        Me.KryptonLabel12.Size = New System.Drawing.Size(50, 19)
         Me.KryptonLabel12.TabIndex = 34
         Me.KryptonLabel12.Values.Text = "Notes:"
         '
@@ -1816,30 +1795,27 @@ Partial Class MainForm
         'KryptonLabel7
         '
         Me.KryptonLabel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel7.Location = New System.Drawing.Point(598, 30)
+        Me.KryptonLabel7.Location = New System.Drawing.Point(593, 30)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel7.Size = New System.Drawing.Size(54, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel7.TabIndex = 28
         Me.KryptonLabel7.Values.Text = "Current:"
         '
         'KryptonLabel8
         '
         Me.KryptonLabel8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel8.Location = New System.Drawing.Point(858, 30)
+        Me.KryptonLabel8.Location = New System.Drawing.Point(854, 30)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel8.Size = New System.Drawing.Size(34, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel8.TabIndex = 27
         Me.KryptonLabel8.Values.Text = "End:"
         '
         'KryptonLabel9
         '
         Me.KryptonLabel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel9.Location = New System.Drawing.Point(655, 30)
+        Me.KryptonLabel9.Location = New System.Drawing.Point(651, 30)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel9.Size = New System.Drawing.Size(39, 20)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(43, 19)
         Me.KryptonLabel9.TabIndex = 26
         Me.KryptonLabel9.Values.Text = "Start:"
         '
@@ -1851,7 +1827,6 @@ Partial Class MainForm
         Me.dtpSemesterEndCurrent.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpSemesterEndCurrent.Location = New System.Drawing.Point(903, 30)
         Me.dtpSemesterEndCurrent.Name = "dtpSemesterEndCurrent"
-        Me.dtpSemesterEndCurrent.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpSemesterEndCurrent.Size = New System.Drawing.Size(127, 21)
         Me.dtpSemesterEndCurrent.TabIndex = 25
         '
@@ -1863,17 +1838,15 @@ Partial Class MainForm
         Me.dtpSemesterStartCurrent.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpSemesterStartCurrent.Location = New System.Drawing.Point(700, 29)
         Me.dtpSemesterStartCurrent.Name = "dtpSemesterStartCurrent"
-        Me.dtpSemesterStartCurrent.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpSemesterStartCurrent.Size = New System.Drawing.Size(127, 21)
         Me.dtpSemesterStartCurrent.TabIndex = 24
         '
         'KryptonLabel6
         '
         Me.KryptonLabel6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel6.Location = New System.Drawing.Point(598, 4)
+        Me.KryptonLabel6.Location = New System.Drawing.Point(592, 4)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel6.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(57, 19)
         Me.KryptonLabel6.TabIndex = 23
         Me.KryptonLabel6.Values.Text = "Overall:"
         '
@@ -1902,20 +1875,18 @@ Partial Class MainForm
         'KryptonLabel5
         '
         Me.KryptonLabel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel5.Location = New System.Drawing.Point(858, 4)
+        Me.KryptonLabel5.Location = New System.Drawing.Point(854, 4)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel5.Size = New System.Drawing.Size(34, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel5.TabIndex = 14
         Me.KryptonLabel5.Values.Text = "End:"
         '
         'KryptonLabel4
         '
         Me.KryptonLabel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel4.Location = New System.Drawing.Point(655, 4)
+        Me.KryptonLabel4.Location = New System.Drawing.Point(651, 4)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel4.Size = New System.Drawing.Size(39, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(43, 19)
         Me.KryptonLabel4.TabIndex = 13
         Me.KryptonLabel4.Values.Text = "Start:"
         '
@@ -1927,7 +1898,6 @@ Partial Class MainForm
         Me.dtpSemesterEnd.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpSemesterEnd.Location = New System.Drawing.Point(903, 4)
         Me.dtpSemesterEnd.Name = "dtpSemesterEnd"
-        Me.dtpSemesterEnd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpSemesterEnd.Size = New System.Drawing.Size(127, 21)
         Me.dtpSemesterEnd.TabIndex = 12
         '
@@ -1939,7 +1909,6 @@ Partial Class MainForm
         Me.dtpSemesterStart.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpSemesterStart.Location = New System.Drawing.Point(700, 3)
         Me.dtpSemesterStart.Name = "dtpSemesterStart"
-        Me.dtpSemesterStart.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.dtpSemesterStart.Size = New System.Drawing.Size(127, 21)
         Me.dtpSemesterStart.TabIndex = 11
         '
@@ -1947,8 +1916,7 @@ Partial Class MainForm
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 2)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel3.Size = New System.Drawing.Size(64, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(72, 19)
         Me.KryptonLabel3.TabIndex = 5
         Me.KryptonLabel3.Values.Text = "Semester:"
         '
@@ -1960,8 +1928,7 @@ Partial Class MainForm
         Me.cboSemester.DropDownWidth = 121
         Me.cboSemester.Location = New System.Drawing.Point(73, 1)
         Me.cboSemester.Name = "cboSemester"
-        Me.cboSemester.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.cboSemester.Size = New System.Drawing.Size(491, 21)
+        Me.cboSemester.Size = New System.Drawing.Size(491, 20)
         Me.cboSemester.TabIndex = 0
         '
         'MenuStrip1
@@ -2594,6 +2561,7 @@ Partial Class MainForm
         'FindhistoricalStudentToolStripMenuItem
         '
         Me.FindhistoricalStudentToolStripMenuItem.Name = "FindhistoricalStudentToolStripMenuItem"
+        Me.FindhistoricalStudentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
         Me.FindhistoricalStudentToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.FindhistoricalStudentToolStripMenuItem.Text = "Find &historical student..."
         '
@@ -2707,7 +2675,6 @@ Partial Class MainForm
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MainForm"
-        Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.Text = "Teaching"
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel.ResumeLayout(False)

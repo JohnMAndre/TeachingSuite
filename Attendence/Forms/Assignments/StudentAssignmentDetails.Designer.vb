@@ -22,12 +22,10 @@ Partial Class StudentAssignmentDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentAssignmentDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.nudResearchQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudWritingQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.txtTags = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblClearImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblRemoveImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblAddImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonSplitContainer2 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
@@ -135,6 +133,7 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.nudResearchQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,7 +176,6 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Controls.Add(Me.nudWritingQuality)
         Me.KryptonPanel.Controls.Add(Me.txtTags)
         Me.KryptonPanel.Controls.Add(Me.llblClearImprovementItem)
-        Me.KryptonPanel.Controls.Add(Me.llblRemoveImprovementItem)
         Me.KryptonPanel.Controls.Add(Me.llblAddImprovementItem)
         Me.KryptonPanel.Controls.Add(Me.KryptonSplitContainer2)
         Me.KryptonPanel.Controls.Add(Me.llblStudentPic)
@@ -211,36 +209,21 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 24)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(1169, 596)
         Me.KryptonPanel.TabIndex = 0
-        '
-        'nudResearchQuality
-        '
-        Me.nudResearchQuality.Location = New System.Drawing.Point(339, 24)
-        Me.nudResearchQuality.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.nudResearchQuality.Name = "nudResearchQuality"
-        Me.nudResearchQuality.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.nudResearchQuality.Size = New System.Drawing.Size(44, 22)
-        Me.nudResearchQuality.TabIndex = 127
-        Me.nudResearchQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudResearchQuality.ThousandsSeparator = True
-        Me.ToolTip1.SetToolTip(Me.nudResearchQuality, "0=not concerned, 5=watch 5 next asmts for plagiarism")
-        Me.nudResearchQuality.Value = New Decimal(New Integer() {3, 0, 0, 0})
         '
         'KryptonLabel14
         '
         Me.KryptonLabel14.Location = New System.Drawing.Point(293, 26)
         Me.KryptonLabel14.Name = "KryptonLabel14"
-        Me.KryptonLabel14.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel14.Size = New System.Drawing.Size(49, 20)
+        Me.KryptonLabel14.Size = New System.Drawing.Size(57, 19)
         Me.KryptonLabel14.TabIndex = 128
         Me.KryptonLabel14.Values.Text = "Resrch:"
         '
         'nudWritingQuality
         '
         Me.nudWritingQuality.Location = New System.Drawing.Point(219, 25)
-        Me.nudWritingQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudWritingQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudWritingQuality.Name = "nudWritingQuality"
         Me.nudWritingQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudWritingQuality.TabIndex = 115
@@ -253,9 +236,9 @@ Partial Class StudentAssignmentDetails
         '
         Me.txtTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtTags.Location = New System.Drawing.Point(782, 26)
+        Me.txtTags.Location = New System.Drawing.Point(796, 26)
         Me.txtTags.Name = "txtTags"
-        Me.txtTags.Size = New System.Drawing.Size(383, 19)
+        Me.txtTags.Size = New System.Drawing.Size(369, 19)
         Me.txtTags.TabIndex = 70
         '
         'llblClearImprovementItem
@@ -268,17 +251,6 @@ Partial Class StudentAssignmentDetails
         Me.ToolTip1.SetToolTip(Me.llblClearImprovementItem, "Clear improvement item from student")
         Me.llblClearImprovementItem.Values.Image = Global.Teaching.My.Resources.Resources.no_16
         Me.llblClearImprovementItem.Values.Text = ""
-        '
-        'llblRemoveImprovementItem
-        '
-        Me.llblRemoveImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveImprovementItem.Location = New System.Drawing.Point(1109, 72)
-        Me.llblRemoveImprovementItem.Name = "llblRemoveImprovementItem"
-        Me.llblRemoveImprovementItem.Size = New System.Drawing.Size(22, 18)
-        Me.llblRemoveImprovementItem.TabIndex = 125
-        Me.ToolTip1.SetToolTip(Me.llblRemoveImprovementItem, "Remove improvement item from student")
-        Me.llblRemoveImprovementItem.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.llblRemoveImprovementItem.Values.Text = ""
         '
         'llblAddImprovementItem
         '
@@ -477,10 +449,9 @@ Partial Class StudentAssignmentDetails
         'llblModuleResults
         '
         Me.llblModuleResults.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblModuleResults.Location = New System.Drawing.Point(638, 4)
+        Me.llblModuleResults.Location = New System.Drawing.Point(631, 4)
         Me.llblModuleResults.Name = "llblModuleResults"
-        Me.llblModuleResults.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblModuleResults.Size = New System.Drawing.Size(91, 20)
+        Me.llblModuleResults.Size = New System.Drawing.Size(98, 19)
         Me.llblModuleResults.TabIndex = 124
         Me.ToolTip1.SetToolTip(Me.llblModuleResults, "Click to refresh module results")
         Me.llblModuleResults.Values.Text = "Module results"
@@ -539,9 +510,8 @@ Partial Class StudentAssignmentDetails
         'btnGenerateImprovementCommentsNoGradeHint
         '
         Me.btnGenerateImprovementCommentsNoGradeHint.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGenerateImprovementCommentsNoGradeHint.Location = New System.Drawing.Point(695, 32)
+        Me.btnGenerateImprovementCommentsNoGradeHint.Location = New System.Drawing.Point(695, 31)
         Me.btnGenerateImprovementCommentsNoGradeHint.Name = "btnGenerateImprovementCommentsNoGradeHint"
-        Me.btnGenerateImprovementCommentsNoGradeHint.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnGenerateImprovementCommentsNoGradeHint.Size = New System.Drawing.Size(38, 34)
         Me.btnGenerateImprovementCommentsNoGradeHint.TabIndex = 105
         Me.ToolTip1.SetToolTip(Me.btnGenerateImprovementCommentsNoGradeHint, "Generate improvement comments within a grade hint")
@@ -551,10 +521,9 @@ Partial Class StudentAssignmentDetails
         'KryptonLabel13
         '
         Me.KryptonLabel13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel13.Location = New System.Drawing.Point(6, 133)
+        Me.KryptonLabel13.Location = New System.Drawing.Point(6, 134)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel13.Size = New System.Drawing.Size(79, 20)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(87, 19)
         Me.KryptonLabel13.TabIndex = 104
         Me.KryptonLabel13.Values.Text = "Observation:"
         '
@@ -564,7 +533,6 @@ Partial Class StudentAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbObservationComments.Location = New System.Drawing.Point(90, 129)
         Me.rtbObservationComments.Name = "rtbObservationComments"
-        Me.rtbObservationComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.rtbObservationComments.Size = New System.Drawing.Size(602, 68)
         Me.rtbObservationComments.TabIndex = 103
         Me.rtbObservationComments.Text = ""
@@ -576,7 +544,6 @@ Partial Class StudentAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbImprovementComments.Location = New System.Drawing.Point(90, 56)
         Me.rtbImprovementComments.Name = "rtbImprovementComments"
-        Me.rtbImprovementComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.rtbImprovementComments.Size = New System.Drawing.Size(602, 67)
         Me.rtbImprovementComments.TabIndex = 55
         Me.rtbImprovementComments.Text = ""
@@ -587,7 +554,6 @@ Partial Class StudentAssignmentDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbOverallComments.Location = New System.Drawing.Point(90, 0)
         Me.rtbOverallComments.Name = "rtbOverallComments"
-        Me.rtbOverallComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.rtbOverallComments.Size = New System.Drawing.Size(602, 50)
         Me.rtbOverallComments.TabIndex = 54
         Me.rtbOverallComments.Text = ""
@@ -596,8 +562,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(6, 3)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel3.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(57, 19)
         Me.KryptonLabel3.TabIndex = 60
         Me.KryptonLabel3.Values.Text = "Overall:"
         '
@@ -605,8 +570,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(6, 60)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel4.Size = New System.Drawing.Size(87, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(93, 19)
         Me.KryptonLabel4.TabIndex = 61
         Me.KryptonLabel4.Values.Text = "Improvement:"
         '
@@ -615,7 +579,6 @@ Partial Class StudentAssignmentDetails
         Me.btnGenerateOverallComments.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnGenerateOverallComments.Location = New System.Drawing.Point(695, 3)
         Me.btnGenerateOverallComments.Name = "btnGenerateOverallComments"
-        Me.btnGenerateOverallComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnGenerateOverallComments.Size = New System.Drawing.Size(38, 34)
         Me.btnGenerateOverallComments.TabIndex = 64
         Me.ToolTip1.SetToolTip(Me.btnGenerateOverallComments, "Generate overall comments")
@@ -625,9 +588,8 @@ Partial Class StudentAssignmentDetails
         'btnGenerateImprovementComments
         '
         Me.btnGenerateImprovementComments.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGenerateImprovementComments.Location = New System.Drawing.Point(695, 60)
+        Me.btnGenerateImprovementComments.Location = New System.Drawing.Point(695, 61)
         Me.btnGenerateImprovementComments.Name = "btnGenerateImprovementComments"
-        Me.btnGenerateImprovementComments.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnGenerateImprovementComments.Size = New System.Drawing.Size(38, 34)
         Me.btnGenerateImprovementComments.TabIndex = 66
         Me.ToolTip1.SetToolTip(Me.btnGenerateImprovementComments, "Generate improvement comments")
@@ -637,9 +599,8 @@ Partial Class StudentAssignmentDetails
         'btnGenerateImprovementCommentsLate
         '
         Me.btnGenerateImprovementCommentsLate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGenerateImprovementCommentsLate.Location = New System.Drawing.Point(695, 91)
+        Me.btnGenerateImprovementCommentsLate.Location = New System.Drawing.Point(695, 93)
         Me.btnGenerateImprovementCommentsLate.Name = "btnGenerateImprovementCommentsLate"
-        Me.btnGenerateImprovementCommentsLate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnGenerateImprovementCommentsLate.Size = New System.Drawing.Size(38, 34)
         Me.btnGenerateImprovementCommentsLate.TabIndex = 79
         Me.ToolTip1.SetToolTip(Me.btnGenerateImprovementCommentsLate, "Generate improvement comments (late)")
@@ -650,8 +611,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.lblImprovementCharCount.Location = New System.Drawing.Point(6, 77)
         Me.lblImprovementCharCount.Name = "lblImprovementCharCount"
-        Me.lblImprovementCharCount.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblImprovementCharCount.Size = New System.Drawing.Size(68, 20)
+        Me.lblImprovementCharCount.Size = New System.Drawing.Size(76, 19)
         Me.lblImprovementCharCount.TabIndex = 101
         Me.ToolTip1.SetToolTip(Me.lblImprovementCharCount, "Characters")
         Me.lblImprovementCharCount.Values.Text = "Characters"
@@ -742,16 +702,14 @@ Partial Class StudentAssignmentDetails
         Me.txtFeedbackFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtFeedbackFilter.Location = New System.Drawing.Point(55, 2)
         Me.txtFeedbackFilter.Name = "txtFeedbackFilter"
-        Me.txtFeedbackFilter.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtFeedbackFilter.Size = New System.Drawing.Size(150, 20)
+        Me.txtFeedbackFilter.Size = New System.Drawing.Size(150, 19)
         Me.txtFeedbackFilter.TabIndex = 92
         '
         'KryptonLabel5
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(12, 1)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel5.Size = New System.Drawing.Size(40, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel5.TabIndex = 68
         Me.KryptonLabel5.Values.Text = "Filter:"
         '
@@ -843,7 +801,6 @@ Partial Class StudentAssignmentDetails
         Me.llblOpenSavedMarkingPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblOpenSavedMarkingPage.Location = New System.Drawing.Point(1073, 3)
         Me.llblOpenSavedMarkingPage.Name = "llblOpenSavedMarkingPage"
-        Me.llblOpenSavedMarkingPage.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblOpenSavedMarkingPage.Size = New System.Drawing.Size(22, 18)
         Me.llblOpenSavedMarkingPage.TabIndex = 124
         Me.ToolTip1.SetToolTip(Me.llblOpenSavedMarkingPage, "Open saved marking page")
@@ -878,7 +835,6 @@ Partial Class StudentAssignmentDetails
         Me.btnPrintMarkingSheet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPrintMarkingSheet.Location = New System.Drawing.Point(1127, 26)
         Me.btnPrintMarkingSheet.Name = "btnPrintMarkingSheet"
-        Me.btnPrintMarkingSheet.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnPrintMarkingSheet.Size = New System.Drawing.Size(38, 34)
         Me.btnPrintMarkingSheet.TabIndex = 65
         Me.ToolTip1.SetToolTip(Me.btnPrintMarkingSheet, "Print marking sheet")
@@ -890,7 +846,6 @@ Partial Class StudentAssignmentDetails
         Me.llblSaveFeedbackSheet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblSaveFeedbackSheet.Location = New System.Drawing.Point(1067, 26)
         Me.llblSaveFeedbackSheet.Name = "llblSaveFeedbackSheet"
-        Me.llblSaveFeedbackSheet.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblSaveFeedbackSheet.Size = New System.Drawing.Size(38, 34)
         Me.llblSaveFeedbackSheet.TabIndex = 122
         Me.ToolTip1.SetToolTip(Me.llblSaveFeedbackSheet, "Save marking sheet")
@@ -903,7 +858,6 @@ Partial Class StudentAssignmentDetails
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(464, 26)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnCancel.Size = New System.Drawing.Size(90, 25)
         Me.btnCancel.TabIndex = 62
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
@@ -914,7 +868,6 @@ Partial Class StudentAssignmentDetails
         Me.llblExistingAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.llblExistingAssignment.Location = New System.Drawing.Point(396, 26)
         Me.llblExistingAssignment.Name = "llblExistingAssignment"
-        Me.llblExistingAssignment.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblExistingAssignment.Size = New System.Drawing.Size(38, 34)
         Me.llblExistingAssignment.TabIndex = 103
         Me.ToolTip1.SetToolTip(Me.llblExistingAssignment, "Open saved assignment")
@@ -927,7 +880,6 @@ Partial Class StudentAssignmentDetails
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnOK.Location = New System.Drawing.Point(591, 26)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnOK.Size = New System.Drawing.Size(90, 25)
         Me.btnOK.TabIndex = 63
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
@@ -938,7 +890,6 @@ Partial Class StudentAssignmentDetails
         Me.llblDeleteAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.llblDeleteAssignment.Location = New System.Drawing.Point(1, 28)
         Me.llblDeleteAssignment.Name = "llblDeleteAssignment"
-        Me.llblDeleteAssignment.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblDeleteAssignment.Size = New System.Drawing.Size(38, 34)
         Me.llblDeleteAssignment.TabIndex = 72
         Me.ToolTip1.SetToolTip(Me.llblDeleteAssignment, "Delete this student's assignment")
@@ -951,7 +902,6 @@ Partial Class StudentAssignmentDetails
         Me.llblCopyAssignmentFromCD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.llblCopyAssignmentFromCD.Location = New System.Drawing.Point(313, 20)
         Me.llblCopyAssignmentFromCD.Name = "llblCopyAssignmentFromCD"
-        Me.llblCopyAssignmentFromCD.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblCopyAssignmentFromCD.Size = New System.Drawing.Size(38, 34)
         Me.llblCopyAssignmentFromCD.TabIndex = 80
         Me.ToolTip1.SetToolTip(Me.llblCopyAssignmentFromCD, "Copy assignment from CD")
@@ -962,10 +912,9 @@ Partial Class StudentAssignmentDetails
         'KryptonLabel9
         '
         Me.KryptonLabel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel9.Location = New System.Drawing.Point(96, 14)
+        Me.KryptonLabel9.Location = New System.Drawing.Point(96, 15)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel9.Size = New System.Drawing.Size(44, 20)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(49, 19)
         Me.KryptonLabel9.TabIndex = 97
         Me.KryptonLabel9.Values.Text = "Timer:"
         '
@@ -974,7 +923,6 @@ Partial Class StudentAssignmentDetails
         Me.llblEjectCD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.llblEjectCD.Location = New System.Drawing.Point(352, 17)
         Me.llblEjectCD.Name = "llblEjectCD"
-        Me.llblEjectCD.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblEjectCD.Size = New System.Drawing.Size(38, 34)
         Me.llblEjectCD.TabIndex = 88
         Me.ToolTip1.SetToolTip(Me.llblEjectCD, "Eject CD")
@@ -987,9 +935,8 @@ Partial Class StudentAssignmentDetails
         Me.txtTimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtTimer.Location = New System.Drawing.Point(146, 12)
         Me.txtTimer.Name = "txtTimer"
-        Me.txtTimer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.txtTimer.ReadOnly = True
-        Me.txtTimer.Size = New System.Drawing.Size(71, 20)
+        Me.txtTimer.Size = New System.Drawing.Size(71, 19)
         Me.txtTimer.StateNormal.Content.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTimer.TabIndex = 95
         Me.txtTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1030,18 +977,16 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel12.Location = New System.Drawing.Point(164, 26)
         Me.KryptonLabel12.Name = "KryptonLabel12"
-        Me.KryptonLabel12.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel12.Size = New System.Drawing.Size(53, 20)
+        Me.KryptonLabel12.Size = New System.Drawing.Size(56, 19)
         Me.KryptonLabel12.TabIndex = 114
         Me.KryptonLabel12.Values.Text = "Writing:"
         '
         'nudPlagiarismSeverity
         '
         Me.nudPlagiarismSeverity.Location = New System.Drawing.Point(435, 24)
-        Me.nudPlagiarismSeverity.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.nudPlagiarismSeverity.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPlagiarismSeverity.Name = "nudPlagiarismSeverity"
-        Me.nudPlagiarismSeverity.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(44, 22)
+        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(57, 21)
         Me.nudPlagiarismSeverity.TabIndex = 112
         Me.nudPlagiarismSeverity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPlagiarismSeverity.ThousandsSeparator = True
@@ -1052,14 +997,13 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel10.Location = New System.Drawing.Point(397, 25)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel10.Size = New System.Drawing.Size(37, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(41, 19)
         Me.KryptonLabel10.TabIndex = 113
         Me.KryptonLabel10.Values.Text = "Plag:"
         '
         'txtTeam
         '
-        Me.txtTeam.Location = New System.Drawing.Point(642, 26)
+        Me.txtTeam.Location = New System.Drawing.Point(663, 26)
         Me.txtTeam.Name = "txtTeam"
         Me.txtTeam.ReadOnly = True
         Me.txtTeam.Size = New System.Drawing.Size(91, 19)
@@ -1069,17 +1013,15 @@ Partial Class StudentAssignmentDetails
         '
         Me.txtSchoolClass.Location = New System.Drawing.Point(544, 3)
         Me.txtSchoolClass.Name = "txtSchoolClass"
-        Me.txtSchoolClass.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.txtSchoolClass.ReadOnly = True
-        Me.txtSchoolClass.Size = New System.Drawing.Size(84, 20)
+        Me.txtSchoolClass.Size = New System.Drawing.Size(84, 19)
         Me.txtSchoolClass.TabIndex = 111
         '
         'KryptonLabel11
         '
         Me.KryptonLabel11.Location = New System.Drawing.Point(497, 3)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel11.Size = New System.Drawing.Size(41, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(48, 19)
         Me.KryptonLabel11.TabIndex = 110
         Me.KryptonLabel11.Values.Text = "Class:"
         '
@@ -1095,11 +1037,11 @@ Partial Class StudentAssignmentDetails
         '
         'nudAltNumber
         '
-        Me.nudAltNumber.Location = New System.Drawing.Point(521, 24)
-        Me.nudAltNumber.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudAltNumber.Minimum = New Decimal(New Integer() {10000, 0, 0, -2147483648})
+        Me.nudAltNumber.Location = New System.Drawing.Point(536, 24)
+        Me.nudAltNumber.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
+        Me.nudAltNumber.Minimum = New Decimal(New Integer() {100000, 0, 0, -2147483648})
         Me.nudAltNumber.Name = "nudAltNumber"
-        Me.nudAltNumber.Size = New System.Drawing.Size(68, 21)
+        Me.nudAltNumber.Size = New System.Drawing.Size(77, 21)
         Me.nudAltNumber.TabIndex = 100
         Me.nudAltNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAltNumber.ThousandsSeparator = True
@@ -1108,7 +1050,7 @@ Partial Class StudentAssignmentDetails
         'nudPresentationQuality
         '
         Me.nudPresentationQuality.Location = New System.Drawing.Point(90, 25)
-        Me.nudPresentationQuality.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudPresentationQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPresentationQuality.Name = "nudPresentationQuality"
         Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 21)
         Me.nudPresentationQuality.TabIndex = 99
@@ -1121,8 +1063,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.lblOutcomesPassed.Location = New System.Drawing.Point(188, 52)
         Me.lblOutcomesPassed.Name = "lblOutcomesPassed"
-        Me.lblOutcomesPassed.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.lblOutcomesPassed.Size = New System.Drawing.Size(17, 20)
+        Me.lblOutcomesPassed.Size = New System.Drawing.Size(18, 19)
         Me.lblOutcomesPassed.TabIndex = 94
         Me.ToolTip1.SetToolTip(Me.lblOutcomesPassed, "Total outcomes passed")
         Me.lblOutcomesPassed.Values.Text = "0"
@@ -1159,10 +1100,9 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonLabel8
         '
-        Me.KryptonLabel8.Location = New System.Drawing.Point(476, 26)
+        Me.KryptonLabel8.Location = New System.Drawing.Point(494, 26)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel8.Size = New System.Drawing.Size(39, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(41, 19)
         Me.KryptonLabel8.TabIndex = 78
         Me.KryptonLabel8.Values.Text = "Alt #:"
         '
@@ -1190,8 +1130,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(3, 26)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel7.Size = New System.Drawing.Size(81, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(90, 19)
         Me.KryptonLabel7.TabIndex = 74
         Me.KryptonLabel7.Values.Text = "Presentation:"
         '
@@ -1199,8 +1138,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel6.Location = New System.Drawing.Point(646, 3)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel6.Size = New System.Drawing.Size(77, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(85, 19)
         Me.KryptonLabel6.TabIndex = 71
         Me.KryptonLabel6.Values.Text = "Assignment:"
         '
@@ -1208,35 +1146,31 @@ Partial Class StudentAssignmentDetails
         '
         Me.txtAssignmentName.Location = New System.Drawing.Point(729, 3)
         Me.txtAssignmentName.Name = "txtAssignmentName"
-        Me.txtAssignmentName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.txtAssignmentName.ReadOnly = True
-        Me.txtAssignmentName.Size = New System.Drawing.Size(147, 20)
+        Me.txtAssignmentName.Size = New System.Drawing.Size(147, 19)
         Me.txtAssignmentName.TabIndex = 70
         '
         'txtStudentID
         '
         Me.txtStudentID.Location = New System.Drawing.Point(344, 3)
         Me.txtStudentID.Name = "txtStudentID"
-        Me.txtStudentID.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.txtStudentID.ReadOnly = True
-        Me.txtStudentID.Size = New System.Drawing.Size(147, 20)
+        Me.txtStudentID.Size = New System.Drawing.Size(147, 19)
         Me.txtStudentID.TabIndex = 58
         '
         'txtNickName
         '
         Me.txtNickName.Location = New System.Drawing.Point(90, 3)
         Me.txtNickName.Name = "txtNickName"
-        Me.txtNickName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.txtNickName.ReadOnly = True
-        Me.txtNickName.Size = New System.Drawing.Size(138, 20)
+        Me.txtNickName.Size = New System.Drawing.Size(138, 19)
         Me.txtNickName.TabIndex = 57
         '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 3)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel1.TabIndex = 56
         Me.KryptonLabel1.Values.Text = "NickName:"
         '
@@ -1248,8 +1182,7 @@ Partial Class StudentAssignmentDetails
         Me.chkShowFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkShowFeedback.Location = New System.Drawing.Point(404, 66)
         Me.chkShowFeedback.Name = "chkShowFeedback"
-        Me.chkShowFeedback.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkShowFeedback.Size = New System.Drawing.Size(78, 20)
+        Me.chkShowFeedback.Size = New System.Drawing.Size(86, 19)
         Me.chkShowFeedback.TabIndex = 53
         Me.chkShowFeedback.Text = "&Feedback:"
         Me.chkShowFeedback.Values.Text = "&Feedback:"
@@ -1262,8 +1195,7 @@ Partial Class StudentAssignmentDetails
         Me.chkShowImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkShowImprovement.Location = New System.Drawing.Point(503, 66)
         Me.chkShowImprovement.Name = "chkShowImprovement"
-        Me.chkShowImprovement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkShowImprovement.Size = New System.Drawing.Size(100, 20)
+        Me.chkShowImprovement.Size = New System.Drawing.Size(106, 19)
         Me.chkShowImprovement.TabIndex = 52
         Me.chkShowImprovement.Text = "&Improvement:"
         Me.chkShowImprovement.Values.Text = "&Improvement:"
@@ -1272,15 +1204,14 @@ Partial Class StudentAssignmentDetails
         '
         Me.llblOpenStudent.Location = New System.Drawing.Point(273, 3)
         Me.llblOpenStudent.Name = "llblOpenStudent"
-        Me.llblOpenStudent.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblOpenStudent.Size = New System.Drawing.Size(71, 20)
+        Me.llblOpenStudent.Size = New System.Drawing.Size(78, 19)
         Me.llblOpenStudent.TabIndex = 120
         Me.ToolTip1.SetToolTip(Me.llblOpenStudent, "Open student")
         Me.llblOpenStudent.Values.Text = "Student ID:"
         '
         'KryptonLabel15
         '
-        Me.KryptonLabel15.Location = New System.Drawing.Point(598, 26)
+        Me.KryptonLabel15.Location = New System.Drawing.Point(619, 26)
         Me.KryptonLabel15.Name = "KryptonLabel15"
         Me.KryptonLabel15.Size = New System.Drawing.Size(49, 19)
         Me.KryptonLabel15.TabIndex = 110
@@ -1288,7 +1219,7 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonLabel2
         '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(739, 27)
+        Me.KryptonLabel2.Location = New System.Drawing.Point(756, 27)
         Me.KryptonLabel2.Name = "KryptonLabel2"
         Me.KryptonLabel2.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel2.TabIndex = 71
@@ -1411,6 +1342,18 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
         '
+        'nudResearchQuality
+        '
+        Me.nudResearchQuality.Location = New System.Drawing.Point(344, 25)
+        Me.nudResearchQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
+        Me.nudResearchQuality.Name = "nudResearchQuality"
+        Me.nudResearchQuality.Size = New System.Drawing.Size(55, 21)
+        Me.nudResearchQuality.TabIndex = 129
+        Me.nudResearchQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudResearchQuality.ThousandsSeparator = True
+        Me.ToolTip1.SetToolTip(Me.nudResearchQuality, "Writing quality of student")
+        Me.nudResearchQuality.Value = New Decimal(New Integer() {2, 0, 0, 0})
+        '
         'StudentAssignmentDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1420,7 +1363,6 @@ Partial Class StudentAssignmentDetails
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "StudentAssignmentDetails"
-        Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Student Assignment Details"
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1536,7 +1478,6 @@ Partial Class StudentAssignmentDetails
     Private WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents llblStudentPic As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents llblOpenStudent As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Private WithEvents llblRemoveImprovementItem As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents llblAddImprovementItem As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents llblClearImprovementItem As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
@@ -1577,7 +1518,6 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents OlvColumn13 As BrightIdeasSoftware.OLVColumn
     Private WithEvents KryptonLabel13 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents rtbObservationComments As ComponentFactory.Krypton.Toolkit.KryptonRichTextBox
-    Private WithEvents nudResearchQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Private WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
     Private WithEvents btnGenerateImprovementCommentsNoGradeHint As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
@@ -1593,4 +1533,5 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn12 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
+    Private WithEvents nudResearchQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
 End Class
