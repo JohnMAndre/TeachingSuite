@@ -113,7 +113,7 @@ Public Class EmailQuizResults
                         txtOutput.Text &= obj.Identifier & " -- student not found" & Environment.NewLine
                         intStudentsWithErrors += 1
                     ElseIf stud.EmailAddress.Trim.Length = 0 Then
-                        txtOutput.Text &= obj.Identifier & " -- email addresses missing" & Environment.NewLine
+                        txtOutput.Text &= obj.Identifier & " -- email address missing" & Environment.NewLine
                         intStudentsWithErrors += 1
                     Else
                         '-- Check the answers and prepare the email

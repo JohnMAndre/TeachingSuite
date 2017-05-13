@@ -106,6 +106,7 @@
     <Compile Include="Classes\ApplicationSettings.vb" />
     <Compile Include="Classes\AutoTexts.vb" />
     <Compile Include="Classes\Emailer.vb" />
+    <Compile Include="Classes\HistoricalStudentData.vb" />
     <Compile Include="Classes\OLVRenders.vb">
       <SubType>Component</SubType>
     </Compile>

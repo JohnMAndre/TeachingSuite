@@ -187,7 +187,7 @@ Public Class AttendenceForm
 
             m_boolDirty = False
 
-            AddHistory("Recorded attendance (" & m_class.ToString() & ").")
+            AddApplicationHistory("Recorded attendance (" & m_class.ToString() & ").")
 
             Me.DialogResult = DialogResult.OK
 

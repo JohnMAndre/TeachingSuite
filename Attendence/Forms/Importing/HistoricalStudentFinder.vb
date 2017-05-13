@@ -222,7 +222,7 @@ Public Class HistoricalStudentFinder
 
                 olvStudents.RemoveObject(stud)
 
-                AddHistory("Added historical student (" & stud.ToString() & ") to class (" & cls.ToString() & ").")
+                AddApplicationHistory("Added historical student (" & stud.ToString() & ") to class (" & cls.ToString() & ").")
 
             End If
         Catch ex As Exception

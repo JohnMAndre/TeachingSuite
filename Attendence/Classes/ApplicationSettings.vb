@@ -413,6 +413,23 @@
                     PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements = True
                 End If
 
+                xElement = xDoc.SelectSingleNode("//ApplicationHistoryMaxFileSize")
+                If xElement IsNot Nothing Then
+                    ApplicationHistoryMaxFileSize = ConvertToInt32(xElement.InnerText, 12000)
+                Else
+                    ApplicationHistoryMaxFileSize = 12000
+                End If
+
+
+                xElement = xDoc.SelectSingleNode("//EnableStudentDataHistory")
+                If xElement IsNot Nothing Then
+                    EnableStudentDataHistory = ConvertToBool(xElement.InnerText, True)
+                Else
+                    EnableStudentDataHistory = True
+                End If
+
+
+
 
 
                 LoadAutoTexts(xDoc)
@@ -552,6 +569,8 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ImprovementFeedbackForFailAll", ImprovementFeedbackForFailAll))
 
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements", PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ApplicationHistoryMaxFileSize", ApplicationHistoryMaxFileSize))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EnableStudentDataHistory", EnableStudentDataHistory))
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
@@ -640,6 +659,9 @@
         End Try
     End Sub
 #Region " Public Properties "
+    Public Property EnableStudentDataHistory As Boolean
+    Public Property ApplicationHistoryMaxFileSize As PerformanceCounterInstanceLifetime '-- size in bytes
+
     Private m_dtLastUpdateCheck As Date
     Public Property PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements As Boolean
     Public ReadOnly Property LastUpdateCheck As Date

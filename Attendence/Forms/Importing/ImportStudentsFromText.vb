@@ -76,7 +76,7 @@ Public Class ImportStudentsFromText
                 Me.DialogResult = DialogResult.Cancel
             End If
 
-            AddHistory("Imported students from spreadsheet (Class: " & m_class.ToString() & ", Students: " & intStudentsImported.ToString("#,##0") & ").")
+            AddApplicationHistory("Imported students from spreadsheet (Class: " & m_class.ToString() & ", Students: " & intStudentsImported.ToString("#,##0") & ").")
 
 
             Close()

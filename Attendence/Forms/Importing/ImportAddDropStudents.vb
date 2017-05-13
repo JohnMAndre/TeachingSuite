@@ -203,7 +203,7 @@
                 stud.Tags &= " Dropped " & Date.Now.ToString()
             Next
 
-            AddHistory("Processed Add-Drop students (" & m_class.ToString() & ").")
+            AddApplicationHistory("Processed Add-Drop students (" & m_class.ToString() & ").")
 
             Me.Close()
         Catch ex As Exception

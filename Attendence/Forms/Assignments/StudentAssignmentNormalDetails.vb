@@ -242,7 +242,7 @@
             item.IncludeToday()
         Next
 
-        AddHistory("Finished marking student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
+        AddApplicationHistory("Finished marking student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
 
         Return True
     End Function

@@ -95,7 +95,7 @@ Public Class ImportClassFromSemester
                     'stud.AdminNumber=0
                     stud.AssignmentsBTEC.Clear()
                 Next
-                AddHistory("Imported class from previous semester (Prev Semester: " & m_sourceSemester.Name & ", Class: " & clas.ToString() & ").")
+                AddApplicationHistory("Imported class from previous semester (Prev Semester: " & m_sourceSemester.Name & ", Class: " & clas.ToString() & ").")
             Next
 
             '-- Should we import class assignment(s)?

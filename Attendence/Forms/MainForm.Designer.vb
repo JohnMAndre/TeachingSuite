@@ -292,6 +292,7 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        Me.OlvColumn20 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -902,11 +903,12 @@ Partial Class MainForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn28)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn10)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn20)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6, Me.OlvColumn10})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.olvcolCurrentAbsences, Me.OlvColumn8, Me.OlvColumn7, Me.OlvColumn9, Me.OlvColumn18, Me.olvcolAssignmentCount, Me.olvcolProcessedAssignments, Me.OlvColumn12, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn21, Me.OlvColumn22, Me.OlvColumn23, Me.OlvColumn24, Me.olvcolStudentGroup, Me.OlvColumn26, Me.OlvColumn27, Me.OlvColumn28, Me.OlvColumn6, Me.OlvColumn10, Me.OlvColumn20})
         Me.olvStudents.ContextMenuStrip = Me.ctxmnuStudents
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
@@ -2666,6 +2668,13 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'OlvColumn20
+        '
+        Me.OlvColumn20.AspectName = "PerformanceLastOnlineQuiz"
+        Me.OlvColumn20.Text = "Quiz"
+        Me.OlvColumn20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn20.ToolTipText = "Performance on last online quiz"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3029,4 +3038,5 @@ Partial Class MainForm
     Friend WithEvents llblAddTag As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents txtTag As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel13 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents OlvColumn20 As BrightIdeasSoftware.OLVColumn
 End Class

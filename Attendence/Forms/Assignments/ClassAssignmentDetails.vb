@@ -93,7 +93,7 @@ Public Class ClassAssignmentDetails
         'm_assignment.D3Description = txtD3Description.Text
         m_assignment.IncludesAttachment = chkIncludesAttachment.Checked
 
-        AddHistory("Modified module assignment (Module: " & m_classGroup.Name & ", Assignment: " & m_assignment.Name & ").")
+        AddApplicationHistory("Modified module assignment (Module: " & m_classGroup.Name & ", Assignment: " & m_assignment.Name & ").")
 
 
         Me.DialogResult = DialogResult.OK

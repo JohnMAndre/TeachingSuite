@@ -177,7 +177,7 @@
                 End If
             Next
 
-            AddHistory("Imported normal assignment grades (Module: " & m_asmt.ClassGroup.ToString() & ", assignment: " & m_asmt.ToString() & ").")
+            AddApplicationHistory("Imported normal assignment grades (Module: " & m_asmt.ClassGroup.ToString() & ", assignment: " & m_asmt.ToString() & ").")
 
             txtOutput.Text &= "Imported " & intCounter.ToString("#,##0") & " records." & Environment.NewLine
             'MessageBox.Show("Imported " & intCounter.ToString("#,##0") & " records.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)

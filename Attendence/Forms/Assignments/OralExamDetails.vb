@@ -605,7 +605,7 @@ Public Class OralExamDetails
             Next
         End If
 
-        AddHistory("Oral exam (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
+        AddApplicationHistory("Oral exam (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
 
     End Sub
     Private Sub SetFontSize()

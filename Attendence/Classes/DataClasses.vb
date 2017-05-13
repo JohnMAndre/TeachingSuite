@@ -2639,6 +2639,7 @@ Public Class Student
         Unknown
         Male
         Female
+        Other
     End Enum
     ''' <summary>
     ''' Only works for Normal assignments (not BTEC)
@@ -2696,13 +2697,40 @@ Public Class Student
         Set(value As SchoolClass)
             If m_schoolClass IsNot Nothing AndAlso m_schoolClass IsNot value Then
                 AddToActivityLog("Class changed from " & m_schoolClass.Name & " to " & value.Name & ".")
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "SchoolClass", m_schoolClass.Name)
             End If
             m_schoolClass = value
         End Set
     End Property
     Public Property TempTag As String = String.Empty '-- this is never persisted and is used for processing (for example, processing add/drop students)
-    Public Property LocalNameLatinLetters As String
+    Private m_strLocalNameLatinLetters As String
+    Private Sub SetLocalNameLatinLetters()
+        If m_strLocalNameLatinLetters Is Nothing OrElse m_strLocalNameLatinLetters.Length = 0 AndAlso LocalName IsNot Nothing AndAlso LocalName.Length > 0 Then
+            m_strLocalNameLatinLetters = RemoveAccents(LocalName).Replace("  ", " ") '-- remove extra spaces
+        End If
+    End Sub
+    Public ReadOnly Property LocalNameLatinLetters As String
+        Get
+            SetLocalNameLatinLetters()
+
+            Return m_strLocalNameLatinLetters
+        End Get
+    End Property
+    Private m_strLocalName As String
     Public Property LocalName As String
+        Get
+            Return m_strLocalName
+        End Get
+        Set(value As String)
+            If value <> m_strLocalName Then
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "LocalName", m_strLocalName)
+                m_strLocalName = value
+
+                '-- keep plain version in sync
+                SetLocalNameLatinLetters()
+            End If
+        End Set
+    End Property
     Private m_strNickname As String
     Public Property Nickname As String
         Get
@@ -2711,6 +2739,7 @@ Public Class Student
         Set(value As String)
             If value <> m_strNickname Then
                 AddToActivityLog("Nickname changed from " & m_strNickname & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "Nickname", m_strNickname)
             End If
             m_strNickname = value
         End Set
@@ -2723,6 +2752,7 @@ Public Class Student
         Set(value As String)
             If value <> m_strStudentID Then
                 AddToActivityLog("StudentID changed from " & m_strStudentID & " to " & value)
+                HistoricalStudentData.AddHistoricalData(value, String.Empty, "StudentID", m_strStudentID)
             End If
             m_strStudentID = value
         End Set
@@ -2735,26 +2765,63 @@ Public Class Student
         Set(value As String)
             If value <> m_strStudentID Then
                 AddToActivityLog("ExtStudentID changed from " & m_strExtStudentID & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "ExtStudentID", m_strExtStudentID)
             End If
             m_strExtStudentID = value
         End Set
     End Property
+    Private m_intAdminNumber As Integer
     Public Property AdminNumber As Integer
+        Get
+            Return m_intAdminNumber
+        End Get
+        Set(value As Integer)
+            If value <> m_intAdminNumber Then
+                AddToActivityLog("AdminNumber changed from " & m_intAdminNumber & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "AdminNumber", m_intAdminNumber)
+            End If
+            m_intAdminNumber = value
+        End Set
+    End Property
+    Private m_intAltNumber As Integer
     Public Property AltNumber As Integer
-    Public Property DateOfBirth As Date = DATE_NO_DATE '-- initiate to no_date
+        Get
+            Return m_intAltNumber
+        End Get
+        Set(value As Integer)
+            If value <> m_intAltNumber Then
+                AddToActivityLog("AltNumber changed from " & m_intAltNumber & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "AltNumber", m_intAltNumber)
+            End If
+            m_intAltNumber = value
+        End Set
+    End Property
+    Private m_dtDateOfBirth As Date = DATE_NO_DATE '-- initiate to no_date
+    Public Property DateOfBirth As Date
+        Get
+            Return m_dtDateOfBirth
+        End Get
+        Set(value As Date)
+            If value <> m_dtDateOfBirth AndAlso m_dtDateOfBirth <> DATE_NO_DATE Then
+                AddToActivityLog("DateOfBirth changed from " & m_dtDateOfBirth & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "DateOfBirth", m_dtDateOfBirth.ToString(DATE_FORMAT_XML))
+            End If
+            m_dtDateOfBirth = value
+        End Set
+    End Property
     Public Property TeachingSessions As New List(Of TeachingSession)
     Public Property CurrentAttendenceStatus As AttendenceStatusEnum
-    Private m_studentTeam As String = String.Empty
+    Private m_strStudentTeam As String = String.Empty
     Public Property StudentTeam As String
         Get
-            Return m_studentTeam
+            Return m_strStudentTeam
         End Get
         Set(value As String)
-            If value Is Nothing Then
-                m_studentTeam = String.Empty
-            Else
-                m_studentTeam = value.Trim()
+            If value <> m_strStudentTeam Then
+                AddToActivityLog("StudentTeam changed from " & m_strStudentTeam & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "StudentTeam", m_strStudentTeam)
             End If
+            m_strStudentTeam = value
         End Set
     End Property
 
@@ -2766,12 +2833,24 @@ Public Class Student
         Set(value As Integer)
             If value <> m_intMeritPoints Then
                 AddToActivityLog("Merit points changed from " & m_intMeritPoints.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "MeritPoints", m_intMeritPoints.ToString())
             End If
             m_intMeritPoints = value
         End Set
     End Property
-
+    Private m_gender As GenderEnum
     Public Property Gender As GenderEnum
+        Get
+            Return m_gender
+        End Get
+        Set(value As GenderEnum)
+            If value <> m_intMeritPoints Then
+                AddToActivityLog("Gender changed from " & m_gender.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "Gender", m_gender.ToString())
+            End If
+            m_gender = value
+        End Set
+    End Property
     Public Property Notes As String
     Public Property ActivityLog As String '-- Semester-specific notes
     Private m_boolHidden As Boolean
@@ -2782,6 +2861,7 @@ Public Class Student
         Set(value As Boolean)
             If value <> m_boolHidden Then
                 AddToActivityLog("Hidden changed from " & m_boolHidden.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "Hidden", m_boolHidden.ToString())
             End If
             m_boolHidden = value
         End Set
@@ -2799,6 +2879,7 @@ Public Class Student
             '-- we want to log every change in presentation quality so we can see progression over time
             If value <> m_intPresentationQuality Then
                 AddToActivityLog("Changed presentation quality from " & m_intPresentationQuality.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "PresentationQuality", m_intPresentationQuality.ToString())
             End If
             m_intPresentationQuality = value
         End Set
@@ -2811,12 +2892,25 @@ Public Class Student
         Set(value As Integer)
             If value <> m_intWritingQuality Then
                 AddToActivityLog("Writing quality changed from " & m_intWritingQuality.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "WritingQuality", m_intWritingQuality.ToString())
             End If
             m_intWritingQuality = value
         End Set
     End Property
     Private Property m_strEmailAddress As String
+    Private m_intStudentGroup As Integer
     Public Property StudentGroup As Integer '-- 0=no group, groups should be >0 (this is used in scheduling sclasses
+        Get
+            Return m_intStudentGroup
+        End Get
+        Set(value As Integer)
+            If value <> m_intStudentGroup Then
+                AddToActivityLog("Student group changed from " & m_intStudentGroup.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "StudentGroup", m_intStudentGroup.ToString())
+            End If
+            m_intStudentGroup = value
+        End Set
+    End Property
     Private m_intDraftsChecked As Integer
     Public Property DraftsChecked As Integer '-- to monitor which students had drafts checked
         Get
@@ -2825,6 +2919,7 @@ Public Class Student
         Set(value As Integer)
             If value <> m_intDraftsChecked Then
                 AddToActivityLog("Drafts checked changed from " & m_intDraftsChecked.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "DraftsChecked", m_intDraftsChecked.ToString())
             End If
             m_intDraftsChecked = value
         End Set
@@ -2837,6 +2932,7 @@ Public Class Student
         Set(value As Integer)
             If value <> m_intOfficeHoursVisited Then
                 AddToActivityLog("Office hours visited changed from " & m_intOfficeHoursVisited.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "OfficeHoursVisited", m_intOfficeHoursVisited.ToString())
             End If
             m_intOfficeHoursVisited = value
         End Set
@@ -2849,6 +2945,7 @@ Public Class Student
         Set(value As Integer)
             If value <> m_intResearchQuality Then
                 AddToActivityLog("Research quality changed from " & m_intResearchQuality.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "ResearchQuality", m_intResearchQuality.ToString())
             End If
             m_intResearchQuality = value
         End Set
@@ -2863,6 +2960,7 @@ Public Class Student
                 If m_strEmailAddress.ToLower() <> value.ToLower() Then
                     '-- record change
                     AddToActivityLog("Changed email from: " & m_strEmailAddress & " to: " & value)
+                    HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "EmailAddress", m_strEmailAddress)
                 End If
             End If
             m_strEmailAddress = value
@@ -2925,7 +3023,19 @@ Public Class Student
     End Property
 #End Region
 
+    Private m_strTags As String = String.Empty
     Public Property Tags As String
+        Get
+            Return m_strTags
+        End Get
+        Set(value As String)
+            If value <> m_strTags Then
+                AddToActivityLog("Tags changed from " & m_strTags & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "Tags", m_strTags)
+            End If
+            m_strTags = value
+        End Set
+    End Property
     Public Property EmailedData As String '-- for emailing, supporting multiple dates
     Private m_intPlagiarismSeverity As Integer
     Public Property PlagiarismSeverity As Integer '-- 0=none, 5=check for five sequential works without palg to make zero.
@@ -2935,8 +3045,22 @@ Public Class Student
         Set(value As Integer)
             If value <> m_intPlagiarismSeverity Then
                 AddToActivityLog("Plagiarism severity changed from " & m_intPlagiarismSeverity.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "PlagiarismSeverity", m_intPlagiarismSeverity)
             End If
             m_intPlagiarismSeverity = value
+        End Set
+    End Property
+    Private m_intPerformanceLastOnlineQuiz As Integer
+    Public Property PerformanceLastOnlineQuiz As Integer
+        Get
+            Return m_intPerformanceLastOnlineQuiz
+        End Get
+        Set(value As Integer)
+            If value <> m_intPerformanceLastOnlineQuiz Then
+                AddToActivityLog("Performance on last online quiz changed from " & m_intPerformanceLastOnlineQuiz.ToString() & " to " & value.ToString())
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "PerformanceLastOnlineQuiz", m_intPerformanceLastOnlineQuiz)
+            End If
+            m_intPerformanceLastOnlineQuiz = value
         End Set
     End Property
     ''' <summary>
@@ -3239,6 +3363,8 @@ Public Class Student
             xStudentElement.SetAttribute("PlagiarismSeverity", PlagiarismSeverity.ToString())
             xStudentElement.SetAttribute("ResearchQuality", ResearchQuality.ToString())
             xStudentElement.SetAttribute("DateOfBirth", DateOfBirth.ToString(DATE_FORMAT_XML))
+            xStudentElement.SetAttribute("PerformanceLastOnlineQuiz", PerformanceLastOnlineQuiz.ToString())
+
 
             TeachingSessions.Sort()
             For Each objSession As TeachingSession In TeachingSessions
@@ -3326,7 +3452,8 @@ Public Class Student
         Me.SchoolClass = schoolClass
         LocalName = xElement.GetAttribute("LocalName").Replace("  ", " ").Trim '-- remove extra spaces
 
-        LocalNameLatinLetters = RemoveAccents(LocalName).Replace("  ", " ") '-- remove extra spaces
+        SetLocalNameLatinLetters()
+        'LocalNameLatinLetters = RemoveAccents(LocalName).Replace("  ", " ") '-- remove extra spaces
 
         Nickname = xElement.GetAttribute("NickName").Replace("  ", " ").Trim '-- remove extra spaces
         ExtStudentID = xElement.GetAttribute("ExtStudentID").Trim
@@ -3361,7 +3488,7 @@ Public Class Student
         m_boolHidden = ConvertToBool(xElement.GetAttribute("Hidden"), False)
         m_strEmailAddress = xElement.GetAttribute("EmailAddress")
         m_intPlagiarismSeverity = ConvertToInt32(xElement.GetAttribute("PlagiarismSeverity"), 0)
-
+        m_intPerformanceLastOnlineQuiz = ConvertToInt32(xElement.GetAttribute("PerformanceLastOnlineQuiz"), 0)
         DateOfBirth = ConvertToDateFromXML(xElement.GetAttribute("DateOfBirth"), DATE_NO_DATE)
 
 
@@ -3832,6 +3959,7 @@ Public Class StudentImprovementItem '-- This is for the student and references t
                     strExtra = String.Empty
                 End If
                 Me.Student.AddToActivityLog("Improvement item: " & BaseImprovementItem.Name & " performance level changed from " & m_bytPerformanceLevel.ToString() & " to " & value.ToString() & strExtra)
+                HistoricalStudentData.AddHistoricalData(Me.Student.StudentID, BaseImprovementItem.ID, BaseImprovementItem.Name, m_bytPerformanceLevel.ToString())
             End If
             m_bytPerformanceLevel = value
         End Set

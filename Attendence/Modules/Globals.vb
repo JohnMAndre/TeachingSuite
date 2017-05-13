@@ -127,7 +127,7 @@
         Dim strHistoryFilename As String = System.IO.Path.GetFileNameWithoutExtension(ThisSemester.DataFilename) & ".History.txt"
         Return System.IO.Path.Combine(GetDataFolder(), strHistoryFilename)
     End Function
-    Public Sub AddHistory(text As String)
+    Public Sub AddApplicationHistory(text As String)
         Try
             If ThisSemester Is Nothing Then
                 '-- ignore, there is no semester to worry about
@@ -143,8 +143,8 @@
                 If System.IO.File.Exists(GetHistoryLocation()) Then
                     Dim strPreviousLogContents As String
                     strPreviousLogContents = System.IO.File.ReadAllText(GetHistoryLocation())
-                    If strPreviousLogContents.Length > 10000 Then '-- we want to keep the log file small
-                        strPreviousLogContents = strPreviousLogContents.Substring(0, 8000)
+                    If strPreviousLogContents.Length > AppSettings.ApplicationHistoryMaxFileSize Then '-- we want to keep the log file small
+                        strPreviousLogContents = strPreviousLogContents.Substring(0, AppSettings.ApplicationHistoryMaxFileSize - 200)
                     End If
                     System.IO.File.Delete(GetHistoryLocation())
                     System.IO.File.AppendAllText(GetHistoryLocation(), Date.Now.ToString("yyyy-MM-dd HH:mm") & " " & text & " [Semester: " & strSemester & "]." & Environment.NewLine)
@@ -287,4 +287,20 @@
         End If
     End Sub
 #End Region
+
+    ''' <summary>
+    ''' Changes illegal characters (e.g., ":" or "?") into spaces
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Friend Function MakeFilenameLegal(ByVal filename As String) As String
+        Dim strBadChars() As String = {"\", "/", ":", "*", "?", """", "<", ">", "|", vbCr, vbLf}
+        Dim sb As New System.Text.StringBuilder(filename)
+        For Each character As String In strBadChars
+            sb.Replace(character, " ")
+        Next
+        Return sb.ToString()
+    End Function
+
 End Module

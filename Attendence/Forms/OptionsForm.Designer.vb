@@ -30,8 +30,11 @@ Partial Class OptionsForm
         Me.pnlData = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.cboDictionary = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.chkAutoSaveEnabled = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.KryptonLabel24 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel22 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudAutoSave = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.nudMaxAppHistoryFileSize = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.KryptonLabel23 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudLoggingThreshold = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel18 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudDataBackupsToRetain = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
@@ -82,6 +85,7 @@ Partial Class OptionsForm
         Me.txtPathToTrulyMail = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.tabMarking = New System.Windows.Forms.TabPage()
         Me.pnlMarking = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.txtImprovementWithPassAll = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtImprovementWithMerit = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtReworkPassAllDefaultComment = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -125,7 +129,7 @@ Partial Class OptionsForm
         Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkEnableStudentDataHistory = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,11 +219,15 @@ Partial Class OptionsForm
         '
         'pnlData
         '
+        Me.pnlData.Controls.Add(Me.chkEnableStudentDataHistory)
         Me.pnlData.Controls.Add(Me.llblDictionaryInfo)
         Me.pnlData.Controls.Add(Me.cboDictionary)
         Me.pnlData.Controls.Add(Me.chkAutoSaveEnabled)
+        Me.pnlData.Controls.Add(Me.KryptonLabel24)
         Me.pnlData.Controls.Add(Me.KryptonLabel22)
         Me.pnlData.Controls.Add(Me.nudAutoSave)
+        Me.pnlData.Controls.Add(Me.nudMaxAppHistoryFileSize)
+        Me.pnlData.Controls.Add(Me.KryptonLabel23)
         Me.pnlData.Controls.Add(Me.nudLoggingThreshold)
         Me.pnlData.Controls.Add(Me.KryptonLabel18)
         Me.pnlData.Controls.Add(Me.nudDataBackupsToRetain)
@@ -254,6 +262,14 @@ Partial Class OptionsForm
         Me.chkAutoSaveEnabled.Text = "Auto save every:"
         Me.chkAutoSaveEnabled.Values.Text = "Auto save every:"
         '
+        'KryptonLabel24
+        '
+        Me.KryptonLabel24.Location = New System.Drawing.Point(301, 147)
+        Me.KryptonLabel24.Name = "KryptonLabel24"
+        Me.KryptonLabel24.Size = New System.Drawing.Size(172, 20)
+        Me.KryptonLabel24.TabIndex = 137
+        Me.KryptonLabel24.Values.Text = "bytes (recommended: 12,000)"
+        '
         'KryptonLabel22
         '
         Me.KryptonLabel22.Location = New System.Drawing.Point(268, 41)
@@ -273,6 +289,26 @@ Partial Class OptionsForm
         Me.nudAutoSave.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAutoSave.ThousandsSeparator = True
         Me.nudAutoSave.Value = New Decimal(New Integer() {90, 0, 0, 0})
+        '
+        'nudMaxAppHistoryFileSize
+        '
+        Me.nudMaxAppHistoryFileSize.Location = New System.Drawing.Point(191, 144)
+        Me.nudMaxAppHistoryFileSize.Maximum = New Decimal(New Integer() {100000000, 0, 0, 0})
+        Me.nudMaxAppHistoryFileSize.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudMaxAppHistoryFileSize.Name = "nudMaxAppHistoryFileSize"
+        Me.nudMaxAppHistoryFileSize.Size = New System.Drawing.Size(104, 22)
+        Me.nudMaxAppHistoryFileSize.TabIndex = 135
+        Me.nudMaxAppHistoryFileSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudMaxAppHistoryFileSize.ThousandsSeparator = True
+        Me.nudMaxAppHistoryFileSize.Value = New Decimal(New Integer() {1000, 0, 0, 0})
+        '
+        'KryptonLabel23
+        '
+        Me.KryptonLabel23.Location = New System.Drawing.Point(41, 144)
+        Me.KryptonLabel23.Name = "KryptonLabel23"
+        Me.KryptonLabel23.Size = New System.Drawing.Size(144, 20)
+        Me.KryptonLabel23.TabIndex = 134
+        Me.KryptonLabel23.Values.Text = "Max app history file size:"
         '
         'nudLoggingThreshold
         '
@@ -306,7 +342,7 @@ Partial Class OptionsForm
         '
         'KryptonLabel11
         '
-        Me.KryptonLabel11.Location = New System.Drawing.Point(71, 117)
+        Me.KryptonLabel11.Location = New System.Drawing.Point(80, 117)
         Me.KryptonLabel11.Name = "KryptonLabel11"
         Me.KryptonLabel11.Size = New System.Drawing.Size(105, 20)
         Me.KryptonLabel11.TabIndex = 132
@@ -812,6 +848,19 @@ Partial Class OptionsForm
         Me.pnlMarking.Size = New System.Drawing.Size(815, 460)
         Me.pnlMarking.TabIndex = 0
         '
+        'chkPromptWhenMarkingAssignmentProcessedWithoutFullText
+        '
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Location = New System.Drawing.Point(9, 225)
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Name = "chkPromptWhenMarkingAssignmentProcessedWithoutFullText"
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Size = New System.Drawing.Size(509, 20)
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.TabIndex = 145
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" & _
+    "sing"
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Values.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" & _
+    "sing"
+        '
         'txtImprovementWithPassAll
         '
         Me.txtImprovementWithPassAll.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -1192,18 +1241,17 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
         '
-        'chkPromptWhenMarkingAssignmentProcessedWithoutFullText
+        'chkEnableStudentDataHistory
         '
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Location = New System.Drawing.Point(9, 225)
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Name = "chkPromptWhenMarkingAssignmentProcessedWithoutFullText"
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Size = New System.Drawing.Size(509, 20)
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.TabIndex = 145
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" & _
-    "sing"
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Values.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" & _
-    "sing"
+        Me.chkEnableStudentDataHistory.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkEnableStudentDataHistory.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkEnableStudentDataHistory.Location = New System.Drawing.Point(35, 172)
+        Me.chkEnableStudentDataHistory.Name = "chkEnableStudentDataHistory"
+        Me.chkEnableStudentDataHistory.Size = New System.Drawing.Size(168, 20)
+        Me.chkEnableStudentDataHistory.TabIndex = 141
+        Me.chkEnableStudentDataHistory.Text = "Track student data history: "
+        Me.ToolTip1.SetToolTip(Me.chkEnableStudentDataHistory, "Uncheck to stop logging student data changes in the StudentHistory folder")
+        Me.chkEnableStudentDataHistory.Values.Text = "Track student data history: "
         '
         'OptionsForm
         '
@@ -1371,4 +1419,8 @@ Partial Class OptionsForm
     Friend WithEvents rdoAttendanceHighlightUnknownGender As System.Windows.Forms.RadioButton
     Friend WithEvents chkShowHiddenStudents As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkPromptWhenMarkingAssignmentProcessedWithoutFullText As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents KryptonLabel24 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents nudMaxAppHistoryFileSize As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents KryptonLabel23 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents chkEnableStudentDataHistory As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

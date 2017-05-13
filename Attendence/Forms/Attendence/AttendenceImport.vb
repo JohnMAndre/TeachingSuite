@@ -120,7 +120,7 @@ Public Class AttendenceImport
                     End If
                 Next
 
-                AddHistory("Imported attendance from alternate data file (Class: " & GetSelectedClass.ToString() & ", Session date: " & dt.ToString("yyyy-MMMM-dd") & ").")
+                AddApplicationHistory("Imported attendance from alternate data file (Class: " & GetSelectedClass.ToString() & ", Session date: " & dt.ToString("yyyy-MMMM-dd") & ").")
 
 
                 lstSessions.Items.Remove(GetSelectedClassSession())

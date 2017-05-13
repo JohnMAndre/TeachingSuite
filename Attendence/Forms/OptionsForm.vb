@@ -40,6 +40,8 @@ Public Class OptionsForm
         If cboDictionary.SelectedIndex >= 0 Then
             AppSettings.DictionaryName = cboDictionary.Items(cboDictionary.SelectedIndex)
         End If
+        AppSettings.ApplicationHistoryMaxFileSize = nudMaxAppHistoryFileSize.Value
+        AppSettings.EnableStudentDataHistory = chkEnableStudentDataHistory.Checked
 
         '-- Email
         AppSettings.PathToTrulyMailEXE = txtPathToTrulyMail.Text
@@ -124,6 +126,8 @@ Public Class OptionsForm
             If cboDictionary.Items.Count > 0 AndAlso intDictionaryIndex >= 0 Then
                 cboDictionary.SelectedIndex = intDictionaryIndex
             End If
+            nudMaxAppHistoryFileSize.Value = AppSettings.ApplicationHistoryMaxFileSize
+            chkEnableStudentDataHistory.Checked = AppSettings.EnableStudentDataHistory
 
             '-- Email
             txtPathToTrulyMail.Text = AppSettings.PathToTrulyMailEXE

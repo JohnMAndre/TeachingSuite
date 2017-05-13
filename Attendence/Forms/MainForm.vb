@@ -102,9 +102,9 @@ Public Class MainForm
         'Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
 
         If ThisSemester Is Nothing Then
-            AddHistory("Opened app without active semester")
+            AddApplicationHistory("Opened app without active semester")
         Else
-            AddHistory("Opened app. Active semester: " & ThisSemester.Name)
+            AddApplicationHistory("Opened app. Active semester: " & ThisSemester.Name)
         End If
 
     End Sub
@@ -348,7 +348,7 @@ Public Class MainForm
 
             txtSemesterNotes.Text = ThisSemester.Notes
 
-            AddHistory("Loaded semester: " & ThisSemester.Name)
+            AddApplicationHistory("Loaded semester: " & ThisSemester.Name)
 
             LoadClassGroups()
             olvStudents.ClearObjects()
@@ -1014,7 +1014,7 @@ Public Class MainForm
             End If
         End If
 
-        AddHistory("Marking " & assignment.Name & " (class: " & student.SchoolClass.Name & "; student: " & student.ToString() & ")")
+        AddApplicationHistory("Marking " & assignment.Name & " (class: " & student.SchoolClass.Name & "; student: " & student.ToString() & ")")
 
         Select Case assignment.AssignmentType
             Case AssignmentType.BTEC
@@ -1057,7 +1057,7 @@ Public Class MainForm
     End Sub
 
     Private Sub QuitWithoutSavingToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles QuitWithoutSavingToolStripMenuItem.Click
-        AddHistory("Closed app without saving.")
+        AddApplicationHistory("Closed app without saving.")
 
         ThisSemester = Nothing '-- this will stop backing and saving logic from firing
         Close()
@@ -1348,7 +1348,7 @@ Public Class MainForm
                     targetAssignment.ClosedThirdTry = True
             End Select
 
-            AddHistory("Closed assignment: " & targetAssignment.Name & " (" & submission.ToString() & ")")
+            AddApplicationHistory("Closed assignment: " & targetAssignment.Name & " (" & submission.ToString() & ")")
         Catch ex As Exception
             MessageBox.Show("There was an error cleaning up the student assignments: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
