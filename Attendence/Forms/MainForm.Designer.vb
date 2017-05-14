@@ -106,6 +106,7 @@ Partial Class MainForm
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn20 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ctxmnuStudents = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MeritToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -292,7 +293,6 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.OlvColumn20 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -467,7 +467,7 @@ Partial Class MainForm
         'llblEditClassGroup
         '
         Me.llblEditClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblEditClassGroup.Location = New System.Drawing.Point(104, 1)
+        Me.llblEditClassGroup.Location = New System.Drawing.Point(104, 0)
         Me.llblEditClassGroup.Name = "llblEditClassGroup"
         Me.llblEditClassGroup.Size = New System.Drawing.Size(22, 18)
         Me.llblEditClassGroup.TabIndex = 26
@@ -505,18 +505,18 @@ Partial Class MainForm
         '
         'KryptonSplitContainer1.Panel1
         '
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lstClasses)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblRemoveClass)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.btnEditClass)
-        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lstClasses)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.btnAddClass)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonLabel10)
         '
         'KryptonSplitContainer1.Panel2
         '
+        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.lstAssignments)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblRemoveAssignment)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblEditAssignment)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.llblAddAssignment)
-        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.lstAssignments)
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.KryptonLabel1)
         Me.KryptonSplitContainer1.Size = New System.Drawing.Size(185, 293)
         Me.KryptonSplitContainer1.SplitterDistance = 130
@@ -1226,6 +1226,13 @@ Partial Class MainForm
         Me.OlvColumn10.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn10.Text = "Team"
         Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn20
+        '
+        Me.OlvColumn20.AspectName = "PerformanceLastOnlineQuiz"
+        Me.OlvColumn20.Text = "Quiz"
+        Me.OlvColumn20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn20.ToolTipText = "Performance on last online quiz"
         '
         'ctxmnuStudents
         '
@@ -2667,13 +2674,6 @@ Partial Class MainForm
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'OlvColumn20
-        '
-        Me.OlvColumn20.AspectName = "PerformanceLastOnlineQuiz"
-        Me.OlvColumn20.Text = "Quiz"
-        Me.OlvColumn20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn20.ToolTipText = "Performance on last online quiz"
         '
         'MainForm
         '

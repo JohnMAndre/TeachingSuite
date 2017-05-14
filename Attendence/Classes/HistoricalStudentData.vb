@@ -5,7 +5,7 @@
         Public Property FieldID As String
         Public Property FieldName As String
         Public Property OldValue As String
-        Public Property EndDate As String
+        Public Property EndDate As Date
     End Class
 
     Private Shared m_qHistoricalItems As New Queue(Of HistoricalDataItem)
@@ -24,14 +24,12 @@
         '-- All we do here is enqueue the item, keep it responsive
         If AppSettings.EnableStudentDataHistory AndAlso studID IsNot Nothing Then
 
-            Dim strEndDate As String = Date.Now.ToString(DATE_TIME_FORMAT_XML)
-
             Dim objItem As New HistoricalDataItem()
             objItem.StudentID = studID.Trim()
             objItem.FieldID = fieldID
             objItem.FieldName = fieldName
             objItem.OldValue = oldValue
-            objItem.EndDate = strEndDate
+            objItem.EndDate = Date.Now
 
             m_qHistoricalItems.Enqueue(objItem)
 
@@ -44,7 +42,16 @@
             End If
         End If
     End Sub
+    Private Shared Function GetStudentFilename(studentID As String) As String
+        If m_strStudentDataHistoryFolder Is Nothing Then
+            m_strStudentDataHistoryFolder = System.IO.Path.Combine(GetDataFolder(), "StudentHistory\")
+            If Not System.IO.Directory.Exists(m_strStudentDataHistoryFolder) Then
+                System.IO.Directory.CreateDirectory(m_strStudentDataHistoryFolder)
+            End If
+        End If
 
+        Return m_strStudentDataHistoryFolder & MakeFilenameLegal(studentID) & ".xml"
+    End Function
     ''' <summary>
     ''' Drains the history queue
     ''' </summary>
@@ -59,19 +66,19 @@
                 AddApplicationHistory("Starting to write historical data with Transaction ID: " & m_strTransactionID)
             End If
 
-            If m_strStudentDataHistoryFolder Is Nothing Then
-                m_strStudentDataHistoryFolder = System.IO.Path.Combine(GetDataFolder(), "StudentHistory\")
-                If Not System.IO.Directory.Exists(m_strStudentDataHistoryFolder) Then
-                    System.IO.Directory.CreateDirectory(m_strStudentDataHistoryFolder)
-                End If
-            End If
+            'If m_strStudentDataHistoryFolder Is Nothing Then
+            '    m_strStudentDataHistoryFolder = System.IO.Path.Combine(GetDataFolder(), "StudentHistory\")
+            '    If Not System.IO.Directory.Exists(m_strStudentDataHistoryFolder) Then
+            '        System.IO.Directory.CreateDirectory(m_strStudentDataHistoryFolder)
+            '    End If
+            'End If
 
             Do While m_qHistoricalItems.Count > 0
 
                 Dim objItem As HistoricalDataItem = m_qHistoricalItems.Dequeue()
 
                 Dim strStudentFilename As String '-- filename to save to
-                strStudentFilename = m_strStudentDataHistoryFolder & MakeFilenameLegal(objItem.StudentID) & ".xml"
+                strStudentFilename = GetStudentFilename(objItem.StudentID) 'm_strStudentDataHistoryFolder & MakeFilenameLegal(objItem.StudentID) & ".xml"
 
                 Dim xDoc As New Xml.XmlDocument()
                 Dim xRoot As Xml.XmlElement
@@ -84,7 +91,7 @@
                     If objItem.FieldName = "StudentID" Then
                         '-- In this (rare) case, we must change the filename to reflect the new student ID
                         Dim strOldStudentFilename As String
-                        strOldStudentFilename = m_strStudentDataHistoryFolder & MakeFilenameLegal(objItem.OldValue) & ".xml"
+                        strOldStudentFilename = GetStudentFilename(objItem.OldValue) 'm_strStudentDataHistoryFolder & MakeFilenameLegal(objItem.OldValue) & ".xml"
 
                         System.IO.File.Move(strOldStudentFilename, strStudentFilename)
 
@@ -101,7 +108,7 @@
                 xNewData.SetAttribute("FieldID", objItem.FieldID)
                 xNewData.SetAttribute("FieldName", objItem.FieldName)
                 xNewData.SetAttribute("OldValue", objItem.OldValue)
-                xNewData.SetAttribute("EndDate", objItem.EndDate)
+                xNewData.SetAttribute("EndDate", objItem.EndDate.ToString(DATE_TIME_DETAILED_FORMAT_XML))
                 xRoot.AppendChild(xNewData)
 
                 xDoc.Save(strStudentFilename)
@@ -114,5 +121,105 @@
         End Try
 
     End Sub
+
+    Public Sub New(studentID As String)
+
+        HistoricalData = New List(Of HistoricalStudentDataItem)
+
+        Dim strStudentFilename As String = GetStudentFilename(studentID)
+
+        If System.IO.File.Exists(strStudentFilename) Then
+            Dim xDoc As New Xml.XmlDocument()
+            Dim xRoot As Xml.XmlElement
+            xDoc.Load(strStudentFilename)
+            xRoot = xDoc.DocumentElement
+
+            Dim xElement As Xml.XmlElement
+            Dim objThisItem As HistoricalStudentDataItem
+            'Dim objPreviousItem As HistoricalStudentDataItem
+
+            For Each xElement In xRoot.ChildNodes
+                objThisItem = New HistoricalStudentDataItem()
+                objThisItem.FieldID = xElement.GetAttribute("FieldID")
+                objThisItem.FieldName = xElement.GetAttribute("FieldName")
+                objThisItem.FromOldValue = xElement.GetAttribute("OldValue")
+                objThisItem.ChangeDate = ConvertToDateFromXML(xElement.GetAttribute("EndDate"), Date.Now)
+
+                HistoricalData.Add(objThisItem)
+                '-- The rest need to handle in post-processing (after all items are loaded, walk the list and post-process)
+                'item.ToNewValue = xElement.GetAttribute("FieldName")
+                'item.TimeInForce = xElement.GetAttribute("FieldName")
+            Next
+
+            Dim strCompareBase As String
+            Dim intOuterCounter, intInnerCounter, intMaxListIndex As Integer
+            Dim objOuterItem, objInnerItem As HistoricalStudentDataItem
+            objInnerItem = Nothing
+            Dim boolMatchFound As Boolean
+            Dim objStudent As Student = Student.GetByStudentID(studentID)
+
+            intMaxListIndex = HistoricalData.Count - 1
+            '-- Now do the post processing to fill in the extra data
+            For intOuterCounter = 0 To intMaxListIndex
+                objOuterItem = HistoricalData(intOuterCounter)
+
+                '-- walk the list in a double loop
+                If objOuterItem.FieldID.Length = 0 Then
+                    strCompareBase = objOuterItem.FieldName
+                Else
+                    strCompareBase = objOuterItem.FieldID
+                End If
+
+                '-- Now, the second loop
+                boolMatchFound = False '-- reset
+                If (intOuterCounter + 1) <= intMaxListIndex Then
+                    For intInnerCounter = intOuterCounter + 1 To intMaxListIndex
+                        objInnerItem = HistoricalData(intInnerCounter)
+
+                        If objInnerItem.FieldID.Length = 0 Then
+                            If strCompareBase = objInnerItem.FieldName Then
+                                '-- match
+                                boolMatchFound = True
+                                Exit For
+                            End If
+                        Else
+                            If strCompareBase = objInnerItem.FieldID Then
+                                '-- match
+                                boolMatchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+                End If
+
+                If boolMatchFound Then
+                    '-- fill OuterItem from InnerItem
+                    objOuterItem.ToNewValue = objInnerItem.FromOldValue
+                    objOuterItem.TimeInForce = objInnerItem.ChangeDate - objOuterItem.ChangeDate '-- how long was the ToNewValue the current value
+                Else
+                    '-- no match found, compare to current values
+                    objOuterItem.ToNewValue = objStudent.GetCurrentValue(strCompareBase)
+                    objOuterItem.TimeInForce = Date.Now - objOuterItem.ChangeDate '-- how long was the ToNewValue the current value
+                End If
+            Next
+
+        Else
+            '-- do nothing
+            Application.DoEvents() '-- for breakpoint only
+        End If
+    End Sub
+
+    Public Property HistoricalData As List(Of HistoricalStudentDataItem)
+
+    Public Class HistoricalStudentDataItem
+        'Public Property TransactionID As String
+        Public Property FieldID As String
+        Public Property FieldName As String
+        Public Property FromOldValue As String '-- This is the old value for the record
+        Public Property ToNewValue As String '-- This is either the current value or the old value from the next newer record
+        Public Property ChangeDate As Date '-- The date the change happend
+        Public Property TimeInForce As TimeSpan '-- The time FromOldValue was the current value. So:  this.ChangeDate - oneOlder.EndDate
+    End Class
+
 
 End Class

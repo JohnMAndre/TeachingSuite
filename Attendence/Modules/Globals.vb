@@ -13,6 +13,7 @@
     Public Const DATE_FORMAT_XML As String = "yyyy-MM-dd"
     Public Const TIME_FORMAT_XML As String = "HH:mm"
     Public Const DATE_TIME_FORMAT_XML As String = "yyyy-MM-ddTHH:mm:00"
+    Public Const DATE_TIME_DETAILED_FORMAT_XML As String = "yyyy-MM-ddTHH:mm:ss"
     Public Const DATE_TIME_FORMAT_DETAIL As String = "yyyy-MM-dd HH:mm"
     Public Const DATE_TIME_FORMAT_FILENAME As String = "yyyy-MM-dd HH-mm-ss"
     Public DATE_NO_DATE As Date = New Date(2010, 1, 1)

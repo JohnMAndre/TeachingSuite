@@ -107,6 +107,7 @@ Public Class StudentDetail
         LoadAssignments()
         LoadImprovementItems()
         ShowSessions()
+        LoadHistoricalData()
 
         Select Case AppSettings.LastStudentDetailTab
             Case 0
@@ -213,6 +214,45 @@ Public Class StudentDetail
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error loading the improvement items for this student: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub LoadHistoricalData()
+        Try
+            '-- If turned off in appsettings, will improve performance
+            If AppSettings.EnableStudentDataHistory AndAlso m_student IsNot Nothing Then
+                olvcolTimeInForce.AspectToStringConverter = New BrightIdeasSoftware.AspectToStringConverterDelegate(AddressOf Me.AspectToStringConverterTimeSpan)
+
+                Dim objHist As New HistoricalStudentData(m_student.StudentID)
+                olvHistoricalData.SetObjects(objHist.HistoricalData)
+
+                Dim ht As New Hashtable()
+                For Each item As HistoricalStudentData.HistoricalStudentDataItem In objHist.HistoricalData
+                    If item.FieldID.Length > 0 Then
+                        '-- must be an improvement item, look it up
+                        If ht.Contains(item.FieldID) Then
+                            '-- already there
+                            '   do nothing
+                        Else
+                            ht.Add(item.FieldID, item.FieldName) ':::: "lookup imp item"
+                        End If
+                    Else
+                        If ht.Contains(item.FieldName) Then
+                            '-- do nothing
+                        Else
+                            ht.Add(item.FieldName, item.FieldName)
+                        End If
+                    End If
+                Next
+
+                For Each obj As Object In ht.Values
+                    lstHistoricalFieldsAvailable.Items.Add(obj)
+                Next
+
+                'AutoSizeColumns(olvHistoricalData)
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the historical data for this student: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub LoadSessionList()
@@ -444,7 +484,15 @@ Public Class StudentDetail
         olvTeachingSessions.Hide()
         pbButtonHighlight.Location = New Point(btnShowImprovementItems.Left - 7, btnShowImprovementItems.Top - 8)
     End Sub
-
+    Private Sub ShowHistoricalData()
+        pnlHistoricalData.Show()
+        pnlHistoricalData.BringToFront()
+        olvImprovementItems.Hide()
+        pnlAttendance.Hide()
+        pnlAssignments.Hide()
+        olvTeachingSessions.Hide()
+        pbButtonHighlight.Location = New Point(btnShowHistoricalData.Left - 7, btnShowHistoricalData.Top - 8)
+    End Sub
     Private Sub btnShowStudentLog_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnShowStudentLog.LinkClicked
         ShowLog()
         AppSettings.LastStudentDetailTab = 3
@@ -521,4 +569,38 @@ Public Class StudentDetail
     Private Sub llblRefreshGradeAsOfToday_LinkClicked(sender As Object, e As EventArgs) Handles llblRefreshGradeAsOfToday.LinkClicked
         lblGradeAsOfToday.Text = m_student.AssessmentResultOverall
     End Sub
+
+    Private Sub btnShowHistoricalData_LinkClicked(sender As Object, e As EventArgs) Handles btnShowHistoricalData.LinkClicked
+        ShowHistoricalData()
+        AppSettings.LastStudentDetailTab = 5
+    End Sub
+
+    Private Sub lstHistoricalFieldsAvailable_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstHistoricalFieldsAvailable.SelectedIndexChanged
+        '-- Load just the data for this field
+        'olvHistoricalData.ModelFilter = New BrightIdeasSoftware.TextMatchFilter(olvHistoricalData, lstHistoricalFieldsAvailable.Items(lstHistoricalFieldsAvailable.SelectedIndex))
+        olvHistoricalData.ModelFilter = New BrightIdeasSoftware.ModelFilter(Function(x) CType(x, HistoricalStudentData.HistoricalStudentDataItem).FieldName = lstHistoricalFieldsAvailable.Items(lstHistoricalFieldsAvailable.SelectedIndex))
+        'AutoSizeColumns(olvHistoricalData)
+    End Sub
+    Private Function AspectToStringConverterTimeSpan(ByVal ts As TimeSpan) As String
+        Dim strReturn As String = String.Empty
+
+        If ts.Days > 0 Then
+            strReturn &= ts.Days & "d "
+        End If
+
+        If ts.Hours > 0 OrElse strReturn.Length > 0 Then
+            strReturn &= ts.Hours & "h "
+        End If
+
+        If ts.Minutes > 0 OrElse strReturn.Length > 0 Then
+            strReturn &= ts.Minutes & "m "
+        End If
+
+        If ts.Seconds > 0 OrElse strReturn.Length = 0 Then '-- "5m 0s" can just be written "5m" but if time is zero, should write "0s"
+            strReturn &= ts.Seconds & "s "
+        End If
+
+        Return strReturn
+    End Function
+
 End Class

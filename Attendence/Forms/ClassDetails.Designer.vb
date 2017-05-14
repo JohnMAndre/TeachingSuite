@@ -777,11 +777,11 @@ Partial Class ClassDetails
         Me.Controls.Add(Me.btnShowActualSessions)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.olvSessionsToSkip)
-        Me.Controls.Add(Me.olvAttendanceSessions)
         Me.Controls.Add(Me.olvActualSessions)
         Me.Controls.Add(Me.olvPlannedSchedule)
         Me.Controls.Add(Me.KryptonPanel)
+        Me.Controls.Add(Me.olvSessionsToSkip)
+        Me.Controls.Add(Me.olvAttendanceSessions)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "ClassDetails"

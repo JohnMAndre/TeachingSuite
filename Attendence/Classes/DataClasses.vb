@@ -3816,7 +3816,75 @@ Public Class Student
 
         Return rtn
     End Function
-
+    Public Shared Function GetByStudentID(studentID As String) As Student
+        For Each clsgrp As ClassGroup In ThisSemester.ClassGroups
+            For Each clas As SchoolClass In clsgrp.Classes
+                For Each stud In clas.Students
+                    If stud.StudentID = studentID Then
+                        Return stud '-- return first match (user must keep them unique)
+                    End If
+                    Application.DoEvents()
+                Next
+            Next
+        Next
+    End Function
+    ''' <summary>
+    ''' Will return the current value for this student
+    ''' </summary>
+    ''' <param name="attributeIDorName">ID of ImprovementItem or name of attribute (e.g., 'PresentationQuality')</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetCurrentValue(attributeIDorName As String) As String
+        Select Case attributeIDorName
+            Case "LocalName"
+                Return Me.LocalName
+            Case "Nickname"
+                Return Me.Nickname
+            Case "StudentID"
+                Return Me.StudentID
+            Case "AdminNumber"
+                Return Me.AdminNumber.ToString()
+            Case "AltNumber"
+                Return Me.AltNumber.ToString()
+            Case "DateOfBirth"
+                Return Me.DateOfBirth.ToString()
+            Case "StudentTeam"
+                Return Me.StudentTeam
+            Case "MeritPoints"
+                Return Me.MeritPoints.ToString()
+            Case "Hidden"
+                Return Me.Hidden.ToString()
+            Case "PresentationQuality"
+                Return Me.PresentationQuality.ToString()
+            Case "WritingQuality"
+                Return Me.WritingQuality.ToString()
+            Case "ResearchQuality"
+                Return Me.ResearchQuality.ToString()
+            Case "DraftsChecked"
+                Return Me.DraftsChecked.ToString()
+            Case "OfficeHoursVisited"
+                Return Me.OfficeHoursVisited.ToString()
+            Case "EmailAddress"
+                Return Me.EmailAddress
+            Case "PlagiarismSeverity"
+                Return Me.PlagiarismSeverity.ToString()
+            Case "SchoolClass"
+                Return Me.SchoolClass.Name
+            Case "Tags"
+                Return Me.Tags
+            Case "PerformanceLastOnlineQuiz"
+                Return Me.PerformanceLastOnlineQuiz.ToString()
+            Case Else
+                '-- must be an ImprovementItem (GUID)
+                For Each item As StudentImprovementItem In Me.ImprovementItems
+                    If item.BaseImprovementItem.ID = attributeIDorName Then
+                        '-- match
+                        Return item.PerformanceLevel.ToString()
+                    End If
+                Next
+                Return String.Empty '-- found no match
+        End Select
+    End Function
     Public Function CompareTo(other As Student) As Integer Implements System.IComparable(Of Student).CompareTo
         Return Me.AdminNumber.CompareTo(other.AdminNumber)
     End Function
