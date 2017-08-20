@@ -3,6 +3,7 @@ Public Class Semester
     Private m_strFilename As String
 
     Public Property Name As String
+    Public Property ID As String
     Public Property StartDateOverall As Date
     Public Property EndDateOverall As Date
     Public Property StartDateCurrent As Date
@@ -13,6 +14,7 @@ Public Class Semester
     Public Property LastSaveDate As Date
     Public Property LastAutoSaveDate As Date
     Public Property Notes As String
+
     Public ReadOnly Property DataFilename As String
         Get
             Return m_strFilename
@@ -147,6 +149,12 @@ Public Class Semester
 #End If
                 'xDoc.Load(m_strFilename)
                 Me.Name = xDoc.DocumentElement.GetAttribute("Name")
+                Me.ID = xDoc.DocumentElement.GetAttribute("ID")
+
+                If Me.ID.Length = 0 Then
+                    Me.ID = Guid.NewGuid.ToString()
+                End If
+
                 StartDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
                 EndDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
                 'Closed = ConvertToBool(xDoc.DocumentElement.GetAttribute("Closed"), False)
@@ -179,6 +187,7 @@ Public Class Semester
             Else
                 '-- create a new semester file
                 Me.Name = name
+                Me.ID = Guid.NewGuid.ToString()
                 StartDateOverall = Date.Today
                 EndDateOverall = Date.Today.AddMonths(4)
                 StartDateCurrent = Date.Today
@@ -205,6 +214,7 @@ Public Class Semester
             Dim xDoc As New Xml.XmlDocument()
             xDoc.AppendChild(xDoc.CreateElement("Semester"))
             xDoc.DocumentElement.SetAttribute("Name", Me.Name)
+            xDoc.DocumentElement.SetAttribute("ID", Me.ID)
             xDoc.DocumentElement.SetAttribute("StartDate", Me.StartDateOverall.ToString(DATE_FORMAT_XML))
             xDoc.DocumentElement.SetAttribute("EndDate", Me.EndDateOverall.ToString(DATE_FORMAT_XML))
             xDoc.DocumentElement.SetAttribute("StartDateCurrent", Me.StartDateCurrent.ToString(DATE_FORMAT_XML))
@@ -231,34 +241,40 @@ Public Class Semester
 
 #If SUPPORT_ZIP Then
             If forceXMLOnly Then
-                xDoc.Save(filename)
+                'xDoc.Save(filename)
+                SaveXMLData(xDoc, filename, False)
             Else
-                Using zip As New Ionic.Zip.ZipFile()
-                    Dim byteArray() As Byte = System.Text.Encoding.Unicode.GetBytes(xDoc.OuterXml())
+                'Using zip As New Ionic.Zip.ZipFile()
+                '    Dim byteArray() As Byte = System.Text.Encoding.Unicode.GetBytes(xDoc.OuterXml())
 
-                    zip.AddEntry(DATA_FILE_CONTENTS_NAME, byteArray)
-                    If filename Is Nothing Then
-                        '-- Regular save
-                        zip.Save(m_strFilename)
-                        LastSaveDate = Date.Now
-                        Dim strAutoSaveFilename As String
-                        strAutoSaveFilename = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(m_strFilename), System.IO.Path.GetFileNameWithoutExtension(m_strFilename) & DATA_FILE_AUTOSAVE_EXTENSION)
-                        If System.IO.File.Exists(strAutoSaveFilename) Then
-                            Try
-                                System.IO.File.Delete(strAutoSaveFilename)
-                            Catch ex As Exception
-                                Log(ex) '-- log and continue
-                            End Try
-                        End If
-                    Else
-                        '-- AutoSave
-                        zip.Save(filename)
-                        LastAutoSaveDate = Date.Now
+                '    zip.AddEntry(DATA_FILE_CONTENTS_NAME, byteArray)
+                If filename Is Nothing Then
+                    '-- Regular save
+                    'zip.Save(m_strFilename)
+
+                    '-- 20 Aug 2017, changed from zipping here to using centralized zipping routine
+                    SaveXMLData(xDoc, m_strFilename, True)
+                    LastSaveDate = Date.Now
+                    Dim strAutoSaveFilename As String
+                    strAutoSaveFilename = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(m_strFilename), System.IO.Path.GetFileNameWithoutExtension(m_strFilename) & DATA_FILE_AUTOSAVE_EXTENSION)
+                    If System.IO.File.Exists(strAutoSaveFilename) Then
+                        Try
+                            System.IO.File.Delete(strAutoSaveFilename)
+                        Catch ex As Exception
+                            Log(ex) '-- log and continue
+                        End Try
                     End If
-                End Using
+                Else
+                    '-- AutoSave
+                    'zip.Save(filename)
+                    SaveXMLData(xDoc, filename, True)
+                    LastAutoSaveDate = Date.Now
+                End If
+                'End Using
             End If
 #Else
-            xDoc.Save(m_strFilename)
+            'xDoc.Save(m_strFilename)
+            SaveXMLData(xDoc, m_strFilename, false)
 #End If
                 'xDoc.Save("c:\temp\test.xml")
 
@@ -268,6 +284,7 @@ Public Class Semester
         End Try
 
     End Sub
+   
 End Class
 
 Public Class UnicodeTextWriter
@@ -334,6 +351,7 @@ End Class
 Public Class ClassGroup '-- teaching module
     Public Property Semester As Semester '-- parent
     Public Property Name As String
+    Public Property ID As String
     Public Property Closed As Boolean
 
     Public Property EndDateOverall As Date
@@ -388,6 +406,7 @@ Public Class ClassGroup '-- teaching module
     End Function
     Public Sub New(semester As Semester)
         Me.Semester = semester
+        ID = Guid.NewGuid.ToString()
     End Sub
     ''' <summary>
     ''' Rehydrates object from persisted xml
@@ -396,6 +415,10 @@ Public Class ClassGroup '-- teaching module
     ''' <remarks></remarks>
     Public Sub New(xElement As Xml.XmlElement, semester As Semester)
         Name = xElement.GetAttribute("Name")
+        ID = xElement.GetAttribute("ID")
+        If ID.Length = 0 Then
+            ID = Guid.NewGuid.ToString()
+        End If
         NumberOfSessions = ConvertToInt32(xElement.GetAttribute("NumberOfSessions"), 32)
         SessionLength = ConvertToInt32(xElement.GetAttribute("SessionLength"), 120)
         Closed = ConvertToBool(xElement.GetAttribute("Closed"), False)
@@ -495,6 +518,7 @@ Public Class ClassGroup '-- teaching module
     End Sub
     Public Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
         Dim xClassGroupElement As Xml.XmlElement = xDoc.CreateElement("ClassGroup")
+        xClassGroupElement.SetAttribute("ID", ID)
         xClassGroupElement.SetAttribute("Name", Name)
         xClassGroupElement.SetAttribute("StartDate", StartDate.ToString(DATE_FORMAT_XML))
         xClassGroupElement.SetAttribute("SessionLength", SessionLength.ToString())
@@ -690,27 +714,34 @@ Public Class ClassGroup '-- teaching module
                         If asmt.BaseAssignment Is assignment Then
                             '-- ok, this student has this assignment, now are they in this marking try?
                             '   if so, add to the list, otherwise, just keep going around
-                            Select Case markingTry
-                                Case Globals.MarkingTry.FirstTry
-                                    If asmt.FirstTryPrint.Length > 0 Then
-                                        lst.Add(stu)
-                                    End If
-                                Case Globals.MarkingTry.SecondTry
-                                    If asmt.SecondTryPrint.Length > 0 Then
-                                        lst.Add(stu)
-                                    End If
-                                Case Globals.MarkingTry.ThirdTry
-                                    If asmt.ThirdTryPrint.Length > 0 Then
-                                        lst.Add(stu)
-                                    End If
-                            End Select
+
+                            '-- Changing this logic on 22 June 2017
+                            '   I don't print anymore so using printdate does not work
+                            '   I will simply add all students 
+                            lst.Add(stu)
+
+                            'Select Case markingTry
+                            '    Case Globals.MarkingTry.FirstTry
+                            '        If asmt.FirstTryPrint.Length > 0 Then
+                            '            lst.Add(stu)
+                            '        End If
+                            '    Case Globals.MarkingTry.SecondTry
+                            '        If asmt.SecondTryPrint.Length > 0 Then
+                            '            lst.Add(stu)
+                            '        End If
+                            '    Case Globals.MarkingTry.ThirdTry
+                            '        If asmt.ThirdTryPrint.Length > 0 Then
+                            '            lst.Add(stu)
+                            '        End If
+                            'End Select
                         End If
                     Next
                 Else
                     '-- "normal" assignment
                     For Each asmt As StudentAssignment In stu.Assignments
                         If asmt.BaseAssignment Is assignment Then
-                            MessageBox.Show("GenerateMarkingListIsolated not implemented for normal assignments.")
+                            '-- Changing this 22 June 2017. Should not show messagebox from anything other than presentation layer
+                            Throw New Exception("GenerateMarkingListIsolated not implemented for normal assignments.")
                             Exit Sub
                         End If
                     Next
@@ -960,6 +991,7 @@ End Class
 Public Class SchoolClass
     Public Property ClassGroup As ClassGroup '-- parent
     Public Property Name As String
+    Public Property ID As String
     Public Property Students As New List(Of Student)
     Public Property EmailAddress As String
     Public Property SessionsToSkip As New List(Of SkipSession)
@@ -1214,17 +1246,17 @@ Public Class SchoolClass
                         '   That is, if the next session's date matches then we just assume a single error and keep moving forward
                         If session.StartDate = ClassSessions(intSessionCounter).StartDate Then
                             Select Case session.AttendenceStatus
-                                Case AttendenceStatusEnum.Absent
+                                Case AttendanceStatusEnum.Absent
                                     strStatus = AppSettings.AttendenceReportMarkAbsent
-                                Case AttendenceStatusEnum.Late
+                                Case AttendanceStatusEnum.Late
                                     strStatus = AppSettings.AttendenceReportMarkLate
-                                Case AttendenceStatusEnum.Present
+                                Case AttendanceStatusEnum.Present
                                     strStatus = AppSettings.AttendenceReportMarkPresent
-                                Case AttendenceStatusEnum.Removed
+                                Case AttendanceStatusEnum.Removed
                                     strStatus = AppSettings.AttendenceReportMarkRemoved
-                                Case AttendenceStatusEnum.Unknown
+                                Case AttendanceStatusEnum.Unknown
                                     strStatus = AppSettings.AttendenceReportMarkUnknown
-                                Case AttendenceStatusEnum.Excused
+                                Case AttendanceStatusEnum.Excused
                                     strStatus = AppSettings.AttendenceReportMarkExcused
                                 Case Else
                                     strStatus = AppSettings.AttendenceReportMarkUnknown
@@ -1251,6 +1283,116 @@ Public Class SchoolClass
             Next
             tw.Close()
         End Using
+
+    End Sub
+    Public Sub GenerateStudentGradesExportXML(filename As String, attendanceDates As Dictionary(Of Date, Object))
+        '-- just like the sub below but it is in xml
+        Dim strAssignmentID As String
+
+        Dim xDoc As New Xml.XmlDocument()
+        Dim xRoot As Xml.XmlElement = xDoc.AppendChild(xDoc.CreateElement("ExportData"))
+        xRoot.SetAttribute("SemesterID", ThisSemester.ID)
+        xRoot.SetAttribute("SemesterName", ThisSemester.Name)
+        xRoot.SetAttribute("ClassGroupID", Me.ClassGroup.ID)
+        xRoot.SetAttribute("ClassGroupName", Me.ClassGroup.Name)
+        xRoot.SetAttribute("ClassID", Me.ID)
+        xRoot.SetAttribute("ClassName", Me.Name)
+        strAssignmentID = Me.ClassGroup.Assignments(0).ID
+        xRoot.SetAttribute("AssignmentID", strAssignmentID)
+        xRoot.SetAttribute("AssignmentName", Me.ClassGroup.Assignments(0).Name)
+        xRoot.SetAttribute("IncludeAttendance", attendanceDates.Count > 0)
+
+        Dim strDates As String = String.Empty
+        For Each dt As Date In attendanceDates.Keys
+            strDates &= dt.ToString(DATE_FORMAT_XML) & ";"
+        Next
+
+        If strDates.Length > 2 Then
+            strDates = strDates.Substring(0, strDates.Length - 1) '-- get rid of final delimiter
+        End If
+
+        xRoot.SetAttribute("AttendanceDates", strDates)
+
+        Dim xStudent, xStudents As Xml.XmlElement
+        Dim xDate, xDates As Xml.XmlElement
+        Dim xStudentItem, xStudentItems As Xml.XmlElement
+        Dim xImprovementItem, xImprovementItems As Xml.XmlElement '-- master list
+
+        Dim intScore As Integer
+        Dim status As AttendanceStatusEnum
+
+        '-- first export improvement item data irrespective of students
+        xImprovementItems = xDoc.CreateElement("ImprovementItems")
+        For Each item As ImprovementItem In ThisSemester.ImprovementItems
+            xImprovementItem = xDoc.CreateElement("ImprovementItem")
+            xImprovementItem.SetAttribute("ID", item.ID)
+            xImprovementItem.SetAttribute("Name", item.Name)
+            xImprovementItem.SetAttribute("Description", item.Description)
+            xImprovementItems.AppendChild(xImprovementItem)
+        Next
+        If xImprovementItems.ChildNodes.Count > 0 Then
+            xRoot.AppendChild(xImprovementItems)
+        End If
+
+
+
+        '-- Now export student date
+        xStudents = xDoc.CreateElement("Students")
+        xRoot.AppendChild(xStudents)
+        For Each student As Student In Students
+            '-- reset variables
+            intScore = 0
+            status = AttendanceStatusEnum.Unknown
+
+            xStudent = xDoc.CreateElement("Student")
+            xStudent.SetAttribute("StudentID", student.StudentID)
+
+            '-- Student score for asmt is the greatest of all three tries
+            For Each asmt As StudentAssignment In student.Assignments
+                If asmt.BaseAssignment.ID = strAssignmentID Then
+                    intScore = Math.Max(asmt.FirstTryPoints, asmt.SecondTryPoints)
+                    intScore = Math.Max(intScore, asmt.ThirdTryPoints)
+                    Exit For
+                End If
+            Next
+
+            xStudent.SetAttribute("Score", intScore.ToString())
+
+            '-- Now add student improvement items
+            xStudentItems = xDoc.CreateElement("StudentImprovementItems")
+            For Each item As StudentImprovementItem In student.ImprovementItems
+                xStudentItem = xDoc.CreateElement("StudentImprovementItem")
+                xStudentItem.SetAttribute("ID", item.BaseImprovementItem.ID)
+                xStudentItem.SetAttribute("DateAdded", item.DateAdded.ToString(DATE_FORMAT_XML))
+                xStudentItem.SetAttribute("DateLastIncluded", item.DateLastIncluded.ToString(DATE_FORMAT_XML))
+                xStudentItem.SetAttribute("PerformanceLevel", item.PerformanceLevel.ToString())
+                xStudentItems.AppendChild(xStudentItem)
+            Next
+            If xStudentItems.ChildNodes.Count > 0 Then
+                xStudent.AppendChild(xStudentItems)
+            End If
+
+
+            If attendanceDates.Count > 0 Then
+                '-- Could be multiple
+                xDates = xDoc.CreateElement("Sessions")
+                For Each session As TeachingSession In student.TeachingSessions
+                    If attendanceDates.ContainsKey(session.StartDate.Date) Then
+                        xDate = xDoc.CreateElement("Session")
+                        xDate.SetAttribute("Date", session.StartDate.ToString(DATE_FORMAT_XML))
+                        xDate.SetAttribute("Status", session.AttendenceStatus.ToString())
+                        xDate.SetAttribute("Notes", session.Notes)
+                        xDates.AppendChild(xDate)
+                    End If
+                Next
+                xStudent.AppendChild(xDates)
+            End If
+
+            xStudents.AppendChild(xStudent)
+        Next
+
+        'xDoc.Save(filename)
+        SaveXMLData(xDoc, filename, True)
 
     End Sub
     ''' <summary>
@@ -1470,6 +1612,7 @@ Public Class SchoolClass
         Me.ClassGroup = classGroup
         EmailAddress = String.Empty
         EmailSendingAccount = AppSettings.EmailSendingAccount
+        ID = Guid.NewGuid.ToString()
     End Sub
     ''' <summary>
     ''' Rehydrates object from persisted xml
@@ -1478,6 +1621,11 @@ Public Class SchoolClass
     ''' <remarks></remarks>
     Public Sub New(xElement As Xml.XmlElement, classGroup As ClassGroup)
         Name = xElement.GetAttribute("Name")
+        ID = xElement.GetAttribute("ID")
+        If ID.Length = 0 Then
+            ID = Guid.NewGuid.ToString()
+        End If
+
         Me.ClassGroup = classGroup
         EmailAddress = xElement.GetAttribute("EmailAddress")
         EmailSendingAccount = ConvertToInt32(xElement.GetAttribute("EmailSendingAccount"), AppSettings.EmailSendingAccount)
@@ -1548,6 +1696,7 @@ Public Class SchoolClass
     End Sub
     Public Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
         Dim xClassElement As Xml.XmlElement = xDoc.CreateElement("Class")
+        xClassElement.SetAttribute("ID", ID)
         xClassElement.SetAttribute("Name", Name)
         xClassElement.SetAttribute("EmailAddress", EmailAddress)
         xClassElement.SetAttribute("EmailSendingAccount", EmailSendingAccount)
@@ -1838,7 +1987,7 @@ Public Class StudentAssignmentBTEC
     End Property
 
     Public Sub New(xElement As Xml.XmlElement, Student As Student)
-       
+
         Dim strBaseAssignmentID As String = xElement.GetAttribute("BaseAssignmentID")
 
 
@@ -2810,7 +2959,7 @@ Public Class Student
         End Set
     End Property
     Public Property TeachingSessions As New List(Of TeachingSession)
-    Public Property CurrentAttendenceStatus As AttendenceStatusEnum
+    Public Property CurrentAttendenceStatus As AttendanceStatusEnum
     Private m_strStudentTeam As String = String.Empty
     Public Property StudentTeam As String
         Get
@@ -3222,15 +3371,15 @@ Public Class Student
                 Return asmt
         End Select
     End Function
-    Public Property LatestAttendenceStatus As AttendenceStatusEnum
+    Public Property LatestAttendenceStatus As AttendanceStatusEnum
         Get
             If TeachingSessions.Count > 0 Then
                 Return TeachingSessions(TeachingSessions.Count - 1).AttendenceStatus
             Else
-                Return AttendenceStatusEnum.Unknown
+                Return AttendanceStatusEnum.Unknown
             End If
         End Get
-        Set(value As AttendenceStatusEnum)
+        Set(value As AttendanceStatusEnum)
             If TeachingSessions.Count > 0 Then
                 TeachingSessions(TeachingSessions.Count - 1).AttendenceStatus = value
             Else
@@ -3263,15 +3412,15 @@ Public Class Student
             Dim decReturn As Decimal
             For Each session As TeachingSession In TeachingSessions
                 Select Case session.AttendenceStatus
-                    Case AttendenceStatusEnum.Absent
+                    Case AttendanceStatusEnum.Absent
                         decReturn += 1
-                    Case AttendenceStatusEnum.Late
+                    Case AttendanceStatusEnum.Late
                         decReturn += 0.5
-                    Case AttendenceStatusEnum.Present
+                    Case AttendanceStatusEnum.Present
                         Application.DoEvents()
-                    Case AttendenceStatusEnum.Removed
+                    Case AttendanceStatusEnum.Removed
                         decReturn += 1
-                    Case AttendenceStatusEnum.Unknown
+                    Case AttendanceStatusEnum.Unknown
                         decReturn += 1
                 End Select
             Next
@@ -3283,7 +3432,7 @@ Public Class Student
             Dim decReturn As Decimal
             For Each session As TeachingSession In TeachingSessions
                 Select Case session.AttendenceStatus
-                    Case AttendenceStatusEnum.Excused
+                    Case AttendanceStatusEnum.Excused
                         decReturn += 1
                 End Select
             Next
@@ -3300,15 +3449,15 @@ Public Class Student
                 'If session.StartDate >= Me.SchoolClass.ClassGroup.Semester.StartDateCurrent AndAlso session.StartDate <= Me.SchoolClass.ClassGroup.Semester.EndDateCurrent Then
                 If session.StartDate >= Me.SchoolClass.ClassGroup.StartDateCurrent AndAlso session.StartDate <= Me.SchoolClass.ClassGroup.EndDateCurrent Then
                     Select Case session.AttendenceStatus
-                        Case AttendenceStatusEnum.Absent
+                        Case AttendanceStatusEnum.Absent
                             decReturn += 1
-                        Case AttendenceStatusEnum.Late
+                        Case AttendanceStatusEnum.Late
                             decReturn += 0.5
-                        Case AttendenceStatusEnum.Present, AttendenceStatusEnum.Excused
+                        Case AttendanceStatusEnum.Present, AttendanceStatusEnum.Excused
                             Application.DoEvents()
-                        Case AttendenceStatusEnum.Removed
+                        Case AttendanceStatusEnum.Removed
                             decReturn += 1
-                        Case AttendenceStatusEnum.Unknown
+                        Case AttendanceStatusEnum.Unknown
                             decReturn += 1
                     End Select
                 End If
@@ -3900,7 +4049,7 @@ Public Class TeachingSession
     Implements IComparable(Of TeachingSession)
 
     Public Property StartDate As Date
-    Public Property AttendenceStatus As AttendenceStatusEnum
+    Public Property AttendenceStatus As AttendanceStatusEnum
     Public Property Notes As String
     Public Property Student As Student
 
@@ -3912,7 +4061,7 @@ Public Class TeachingSession
         StartDate = Xml.XmlConvert.ToDateTime(xElement.GetAttribute("Date"), Xml.XmlDateTimeSerializationMode.Unspecified)
 
         Dim strValue As String = xElement.GetAttribute("Status")
-        AttendenceStatus = [Enum].Parse(GetType(AttendenceStatusEnum), strValue, True)
+        AttendenceStatus = [Enum].Parse(GetType(AttendanceStatusEnum), strValue, True)
 
         Notes = xElement.GetAttribute("Notes")
         Me.Student = student
@@ -3951,7 +4100,7 @@ Public Class ClassSession
     End Function
 End Class
 
-Public Enum AttendenceStatusEnum
+Public Enum AttendanceStatusEnum
     Unknown
     Present
     Absent

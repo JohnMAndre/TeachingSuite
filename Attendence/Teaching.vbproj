@@ -152,6 +152,12 @@
     <Compile Include="Forms\Dialogs\InputBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Exporting\ExportToTeachingAppExportFile.Designer.vb">
+      <DependentUpon>ExportToTeachingAppExportFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Exporting\ExportToTeachingAppExportFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Importing\HistoricalStudentFinder.Designer.vb">
       <DependentUpon>HistoricalStudentFinder.vb</DependentUpon>
     </Compile>
@@ -170,10 +176,22 @@
     <Compile Include="Forms\Importing\ImportAssignmentNormalGrades.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Importing\ImportFromTeachingAppExportFile.Designer.vb">
+      <DependentUpon>ImportFromTeachingAppExportFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportFromTeachingAppExportFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.Designer.vb">
       <DependentUpon>ImportImprovementItemsFromOtherSemester.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportTeachingAppExportFile.Designer.vb">
+      <DependentUpon>ImportTeachingAppExportFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportTeachingAppExportFile.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ImprovementItemManager.Designer.vb">
@@ -538,14 +556,23 @@
     <EmbeddedResource Include="Forms\Dialogs\InputBox.resx">
       <DependentUpon>InputBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Exporting\ExportToTeachingAppExportFile.resx">
+      <DependentUpon>ExportToTeachingAppExportFile.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportAddDropStudents.resx">
       <DependentUpon>ImportAddDropStudents.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportAssignmentNormalGrades.resx">
       <DependentUpon>ImportAssignmentNormalGrades.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportFromTeachingAppExportFile.resx">
+      <DependentUpon>ImportFromTeachingAppExportFile.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.resx">
       <DependentUpon>ImportImprovementItemsFromOtherSemester.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportTeachingAppExportFile.resx">
+      <DependentUpon>ImportTeachingAppExportFile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ImprovementItemManager.resx">
       <DependentUpon>ImprovementItemManager.vb</DependentUpon>
@@ -692,7 +719,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Forms\Exporting\TeachingAppFullDataFile.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Notes.txt" />
+    <Content Include="XMLFile1.xml" />
     <None Include="Resources\download.png" />
     <None Include="Resources\download_16.png" />
     <None Include="Resources\download_32.png" />

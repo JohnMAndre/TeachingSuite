@@ -136,11 +136,11 @@ Public Class StudentDetail
         Dim newColor As Color
 
         Select Case item.TeachingSession.AttendenceStatus
-            Case AttendenceStatusEnum.Absent
+            Case AttendanceStatusEnum.Absent
                 newColor = ABSENT_COLOR
-            Case AttendenceStatusEnum.Present
+            Case AttendanceStatusEnum.Present
                 newColor = PRESENT_COLOR
-            Case AttendenceStatusEnum.Excused
+            Case AttendanceStatusEnum.Excused
                 newColor = EXCUSED_COLOR
             Case Else
                 newColor = OTHER_COLOR
@@ -354,7 +354,7 @@ Public Class StudentDetail
 
         Dim session As New TeachingSession(m_student)
         session.StartDate = Date.Today
-        session.AttendenceStatus = AttendenceStatusEnum.Present
+        session.AttendenceStatus = AttendanceStatusEnum.Present
         m_student.TeachingSessions.Add(session)
         LoadSessionList()
     End Sub
@@ -386,8 +386,8 @@ Public Class StudentDetail
                     Exit For
                 End If
 
-                If m_student.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Absent Then
-                    m_student.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Excused
+                If m_student.TeachingSessions(intCounter).AttendenceStatus = AttendanceStatusEnum.Absent Then
+                    m_student.TeachingSessions(intCounter).AttendenceStatus = AttendanceStatusEnum.Excused
                     intAbsencesExcused += 1
                 End If
             Next

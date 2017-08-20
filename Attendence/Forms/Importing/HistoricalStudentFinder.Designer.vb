@@ -69,6 +69,8 @@ Partial Class HistoricalStudentFinder
         'KryptonPanel
         '
         Me.KryptonPanel.Controls.Add(Me.txtExtStudentID)
+        Me.KryptonPanel.Controls.Add(Me.txtEmail)
+        Me.KryptonPanel.Controls.Add(Me.txtLocalName)
         Me.KryptonPanel.Controls.Add(Me.lblStudentsLoaded)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel5)
         Me.KryptonPanel.Controls.Add(Me.lblStudentsSearched)
@@ -80,10 +82,8 @@ Partial Class HistoricalStudentFinder
         Me.KryptonPanel.Controls.Add(Me.olvStudents)
         Me.KryptonPanel.Controls.Add(Me.v)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
-        Me.KryptonPanel.Controls.Add(Me.txtLocalName)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel8)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
-        Me.KryptonPanel.Controls.Add(Me.txtEmail)
         Me.KryptonPanel.Controls.Add(Me.txtNickName)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel.Controls.Add(Me.txtStudentID)
@@ -200,9 +200,11 @@ Partial Class HistoricalStudentFinder
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn7, Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn18, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn19, Me.OlvColumn6, Me.OlvColumn21, Me.OlvColumn10})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.EmptyListMsg = "No students found. Please search again."
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvStudents.FullRowSelect = True
@@ -211,7 +213,6 @@ Partial Class HistoricalStudentFinder
         Me.olvStudents.Location = New System.Drawing.Point(0, 130)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowCommandMenuOnRightClick = True
         Me.olvStudents.ShowGroups = False

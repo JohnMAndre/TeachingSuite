@@ -304,4 +304,27 @@
         Return sb.ToString()
     End Function
 
+    Friend Class ExportClassData
+        Public SchoolClass As SchoolClass
+        Public Filename As String
+    End Class
+
+    ''' <summary>
+    ''' Centralized routine to make sure a consistent save and zipping format is used throughout
+    ''' </summary>
+    ''' <param name="xDoc">XMLDocument to save</param>
+    ''' <param name="filename">Destination filename</param>
+    ''' <param name="zipFile">False if you want to save as xml, true if you want to compress as a zip file</param>
+    ''' <remarks></remarks>
+    Public Sub SaveXMLData(xDoc As Xml.XmlDocument, filename As String, zipFile As Boolean)
+        If zipFile Then
+            Dim byteArray() As Byte = System.Text.Encoding.Unicode.GetBytes(xDoc.OuterXml())
+            Using zip As New Ionic.Zip.ZipFile()
+                zip.AddEntry(DATA_FILE_CONTENTS_NAME, byteArray)
+                zip.Save(filename)
+            End Using
+        Else
+            xDoc.Save(filename)
+        End If
+    End Sub
 End Module

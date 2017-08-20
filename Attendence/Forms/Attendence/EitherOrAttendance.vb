@@ -47,19 +47,19 @@
                     Next
                     If bool1 AndAlso bool2 Then
                         '-- have data for both sessions, now process
-                        If session1.AttendenceStatus = AttendenceStatusEnum.Present AndAlso session2.AttendenceStatus = AttendenceStatusEnum.Absent Then
-                            session2.AttendenceStatus = AttendenceStatusEnum.Excused
+                        If session1.AttendenceStatus = AttendanceStatusEnum.Present AndAlso session2.AttendenceStatus = AttendanceStatusEnum.Absent Then
+                            session2.AttendenceStatus = AttendanceStatusEnum.Excused
                             stud.AddToActivityLog("Changing status to excused for Either Or process (" & session2.StartDate & ").")
                             result.Results = "Session 2 excused"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Absent AndAlso session2.AttendenceStatus = AttendenceStatusEnum.Present Then
-                            session1.AttendenceStatus = AttendenceStatusEnum.Excused
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Absent AndAlso session2.AttendenceStatus = AttendanceStatusEnum.Present Then
+                            session1.AttendenceStatus = AttendanceStatusEnum.Excused
                             stud.AddToActivityLog("Changing status to excused for Either Or process (" & session1.StartDate & ").")
                             result.Results = "Session 1 excused"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Present AndAlso session2.AttendenceStatus = AttendenceStatusEnum.Present Then
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Present AndAlso session2.AttendenceStatus = AttendanceStatusEnum.Present Then
                             result.Results = "Present both sessions"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Absent AndAlso session2.AttendenceStatus = AttendenceStatusEnum.Absent Then
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Absent AndAlso session2.AttendenceStatus = AttendanceStatusEnum.Absent Then
                             result.Results = "Absent both sessions"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Removed OrElse session2.AttendenceStatus = AttendenceStatusEnum.Removed Then
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Removed OrElse session2.AttendenceStatus = AttendanceStatusEnum.Removed Then
                             result.Results = "At least one removed"
                         Else
                             result.Results = "Special: Session1=" & session1.AttendenceStatus.ToString() & "; Session2=" & session2.AttendenceStatus.ToString()
@@ -137,19 +137,19 @@
                         result = New EitherOrAttendanceResults
                         result.Student = stud
 
-                        If session1.AttendenceStatus = AttendenceStatusEnum.Present AndAlso session3.AttendenceStatus = AttendenceStatusEnum.Absent Then
-                            session3.AttendenceStatus = AttendenceStatusEnum.Excused
+                        If session1.AttendenceStatus = AttendanceStatusEnum.Present AndAlso session3.AttendenceStatus = AttendanceStatusEnum.Absent Then
+                            session3.AttendenceStatus = AttendanceStatusEnum.Excused
                             stud.AddToActivityLog("Changing status to excused for either or process (" & session3.StartDate & ").")
                             result.Results = "Session 3 excused"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Absent AndAlso session3.AttendenceStatus = AttendenceStatusEnum.Present Then
-                            session1.AttendenceStatus = AttendenceStatusEnum.Excused
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Absent AndAlso session3.AttendenceStatus = AttendanceStatusEnum.Present Then
+                            session1.AttendenceStatus = AttendanceStatusEnum.Excused
                             stud.AddToActivityLog("Changing status to excused for either or process (" & session1.StartDate & ").")
                             result.Results = "Session 1 excused"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Present AndAlso session3.AttendenceStatus = AttendenceStatusEnum.Present Then
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Present AndAlso session3.AttendenceStatus = AttendanceStatusEnum.Present Then
                             result.Results = "Present both sessions 1 and 3"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Absent AndAlso session3.AttendenceStatus = AttendenceStatusEnum.Absent Then
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Absent AndAlso session3.AttendenceStatus = AttendanceStatusEnum.Absent Then
                             result.Results = "Absent both sessions 1 and 3"
-                        ElseIf session1.AttendenceStatus = AttendenceStatusEnum.Removed OrElse session3.AttendenceStatus = AttendenceStatusEnum.Removed Then
+                        ElseIf session1.AttendenceStatus = AttendanceStatusEnum.Removed OrElse session3.AttendenceStatus = AttendanceStatusEnum.Removed Then
                             result.Results = "At least one removed (1 or 3)"
                         Else
                             result.Results = "Special: Session1=" & session1.AttendenceStatus.ToString() & "; Session3=" & session3.AttendenceStatus.ToString()
@@ -161,19 +161,19 @@
                         result = New EitherOrAttendanceResults
                         result.Student = stud
 
-                        If session2.AttendenceStatus = AttendenceStatusEnum.Present AndAlso session4.AttendenceStatus = AttendenceStatusEnum.Absent Then
-                            session4.AttendenceStatus = AttendenceStatusEnum.Excused
+                        If session2.AttendenceStatus = AttendanceStatusEnum.Present AndAlso session4.AttendenceStatus = AttendanceStatusEnum.Absent Then
+                            session4.AttendenceStatus = AttendanceStatusEnum.Excused
                             stud.AddToActivityLog("Changing status to excused for either or process (" & session4.StartDate & ").")
                             result.Results = "Session 4 excused"
-                        ElseIf session2.AttendenceStatus = AttendenceStatusEnum.Absent AndAlso session4.AttendenceStatus = AttendenceStatusEnum.Present Then
-                            session2.AttendenceStatus = AttendenceStatusEnum.Excused
+                        ElseIf session2.AttendenceStatus = AttendanceStatusEnum.Absent AndAlso session4.AttendenceStatus = AttendanceStatusEnum.Present Then
+                            session2.AttendenceStatus = AttendanceStatusEnum.Excused
                             stud.AddToActivityLog("Changing status to excused for either or process (" & session2.StartDate & ").")
                             result.Results = "Session 2 excused"
-                        ElseIf session2.AttendenceStatus = AttendenceStatusEnum.Present AndAlso session4.AttendenceStatus = AttendenceStatusEnum.Present Then
+                        ElseIf session2.AttendenceStatus = AttendanceStatusEnum.Present AndAlso session4.AttendenceStatus = AttendanceStatusEnum.Present Then
                             result.Results = "Present both sessions 2 and 4"
-                        ElseIf session2.AttendenceStatus = AttendenceStatusEnum.Absent AndAlso session4.AttendenceStatus = AttendenceStatusEnum.Absent Then
+                        ElseIf session2.AttendenceStatus = AttendanceStatusEnum.Absent AndAlso session4.AttendenceStatus = AttendanceStatusEnum.Absent Then
                             result.Results = "Absent both sessions 2 and 4"
-                        ElseIf session2.AttendenceStatus = AttendenceStatusEnum.Removed OrElse session4.AttendenceStatus = AttendenceStatusEnum.Removed Then
+                        ElseIf session2.AttendenceStatus = AttendanceStatusEnum.Removed OrElse session4.AttendenceStatus = AttendanceStatusEnum.Removed Then
                             result.Results = "At least one removed (2 or 4)"
                         Else
                             result.Results = "Special: Session2=" & session2.AttendenceStatus.ToString() & "; Session4=" & session4.AttendenceStatus.ToString()

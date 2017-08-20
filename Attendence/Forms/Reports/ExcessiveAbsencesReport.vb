@@ -34,7 +34,7 @@
                     intCurrentAbsences = 0 '-- reset
                     For intCounter As Integer = stud.TeachingSessions.Count - 1 To 0 Step -1
                         Dim session As TeachingSession = stud.TeachingSessions(intCounter)
-                        If session.AttendenceStatus = AttendenceStatusEnum.Absent Then
+                        If session.AttendenceStatus = AttendanceStatusEnum.Absent Then
                             intCurrentAbsences += 1
                         Else
                             '-- not absent, so process student

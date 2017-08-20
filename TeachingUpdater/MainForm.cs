@@ -206,8 +206,8 @@ namespace Teaching
             }
             else
             {
-                prgCurrentFile.Value = fileProgress;
-                prgOverall.Value = _intDownloadedAlready;
+                prgCurrentFile.Value = Math.Min(fileProgress, prgCurrentFile.Maximum);
+                prgOverall.Value = Math.Min( _intDownloadedAlready,prgOverall.Maximum);
                 Application.DoEvents();
             }
 
@@ -757,10 +757,10 @@ namespace Teaching
         private bool VersionIsSameOrLater(string serverVersion, string currentVersion)
         {
             Log("Checking version. Server version=" + serverVersion + "; Current Version=" + currentVersion);
-
+            // Local Version Is Same Or Later (True means no need to update)
             // 1.0.0 vs. 1.2.3
-            int intMajor1, intMinor1, intRevision1;
-            int intMajor2, intMinor2, intRevision2;
+            int intMajor1, intMinor1, intRevision1;// for server
+            int intMajor2, intMinor2, intRevision2;// for current local
             const string VERSION_DELIMITER=".";
             int intStartPos1=0;
             int intStartPos2=0;
@@ -770,10 +770,10 @@ namespace Teaching
             intMajor1=Convert.ToInt32(serverVersion.Substring(intStartPos1, intEndPos1));
             intMajor2=Convert.ToInt32(currentVersion.Substring(intStartPos2, intEndPos2));
 
-            if (intMajor2>intMajor1)
-                return true; // major smaller (4.x vs 3.x) so no need to check more
+            if (intMajor1>intMajor2)
+                return false; // server major bigger (4.x vs 3.x) so no need to check more
             else if (intMajor2>intMajor1)
-                return false; // major smaller (4.x vs 5.x) so no need to check more
+                return true; // server major smaller (4.x vs 5.x) so no need to check more
 
             intStartPos1=intEndPos1+1;
             intStartPos2=intEndPos2+1;
@@ -783,10 +783,10 @@ namespace Teaching
             intMinor1 = Convert.ToInt32(serverVersion.Substring(intStartPos1, intEndPos1 - intStartPos1));
             intMinor2 = Convert.ToInt32(currentVersion.Substring(intStartPos2, intEndPos2 - intStartPos2));
         
-            if(intMinor2>intMinor1)
-                return true;
-            else if(intMinor2<intMinor1)
-                return false;
+            if(intMinor1>intMinor2)
+                return false;// server minor is bigger, no need to check more
+            else if(intMinor2>intMinor1)
+                return true;// server minor is smaller, no need to check more
 
             intStartPos1 = intEndPos1 + 1;
             intStartPos2 = intEndPos2 + 1;
@@ -794,10 +794,10 @@ namespace Teaching
             intRevision1 = Convert.ToInt32(serverVersion.Substring(intStartPos1));
             intRevision2 = Convert.ToInt32(currentVersion.Substring(intStartPos2));
 
-            if(intRevision2 >= intRevision1)
-                return true;
+            if(intRevision1 > intRevision2)
+                return false;// server revision is bigger
             else
-                return false;
+                return true;// server revision is smaller or the same, so no need to update
         }
 
         private void EnableDownload()

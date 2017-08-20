@@ -15,7 +15,7 @@ Public Class AttendenceErrors
     End Sub
 
     Private Sub AttendenceErrors_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        cboStatus.SelectedIndex = Convert.ToInt32(AttendenceStatusEnum.Excused)
+        cboStatus.SelectedIndex = Convert.ToInt32(AttendanceStatusEnum.Excused)
     End Sub
 
     Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvStudents.ItemActivate
@@ -46,7 +46,7 @@ Public Class AttendenceErrors
                 Dim stud As Student = CType(olvStudents.SelectedObject, Student)
                 Dim session As New TeachingSession(stud)
                 session.StartDate = classSession.StartDate
-                session.AttendenceStatus = CType(cboStatus.SelectedIndex, AttendenceStatusEnum)
+                session.AttendenceStatus = CType(cboStatus.SelectedIndex, AttendanceStatusEnum)
                 stud.TeachingSessions.Add(session)
                 LoadStudentSessions(stud)
                 Application.DoEvents()

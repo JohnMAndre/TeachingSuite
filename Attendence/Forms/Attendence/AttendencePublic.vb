@@ -85,11 +85,11 @@ Public Class AttendencePublic
 
         If student IsNot Nothing Then
             Select Case student.CurrentAttendenceStatus
-                Case AttendenceStatusEnum.Absent
+                Case AttendanceStatusEnum.Absent
                     newForeColor = ABSENT_COLOR
-                Case AttendenceStatusEnum.Present
+                Case AttendanceStatusEnum.Present
                     newForeColor = PRESENT_COLOR
-                Case AttendenceStatusEnum.Unknown
+                Case AttendanceStatusEnum.Unknown
                     newForeColor = UNKNOWN_COLOR
                 Case Else
                     newForeColor = OTHER_COLOR

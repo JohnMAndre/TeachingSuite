@@ -1,3 +1,4 @@
+Imports System.Windows.Forms
 
 Public Class MainForm
 
@@ -737,10 +738,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Class ExportClassData
-        Public SchoolClass As SchoolClass
-        Public Filename As String
-    End Class
+    
     Private Class ExportModuleResultData
         Public ClassGroup As ClassGroup
         Public Filename As String
@@ -1113,8 +1111,8 @@ Public Class MainForm
         Dim lstStudents As List(Of Student) = GetSelectedStudents()
 
         For Each stud As Student In lstStudents
-            stud.CurrentAttendenceStatus = AttendenceStatusEnum.Removed
-            stud.TeachingSessions(stud.TeachingSessions.Count - 1).AttendenceStatus = AttendenceStatusEnum.Removed
+            stud.CurrentAttendenceStatus = AttendanceStatusEnum.Removed
+            stud.TeachingSessions(stud.TeachingSessions.Count - 1).AttendenceStatus = AttendanceStatusEnum.Removed
             stud.MeritPoints -= 1 '-- 1 demerit for removal
             olvStudents.RefreshSelectedObjects()
         Next
@@ -1979,8 +1977,8 @@ Public Class MainForm
             Else
                 For Each stud In lstStudents
                     For intCounter = stud.TeachingSessions.Count - 1 To 0 Step -1
-                        If stud.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Absent Then
-                            stud.TeachingSessions(intCounter).AttendenceStatus = AttendenceStatusEnum.Excused
+                        If stud.TeachingSessions(intCounter).AttendenceStatus = AttendanceStatusEnum.Absent Then
+                            stud.TeachingSessions(intCounter).AttendenceStatus = AttendanceStatusEnum.Excused
                             Exit For
                         End If
                     Next
@@ -2431,6 +2429,7 @@ Public Class MainForm
             End If
 
         Catch ex As Exception
+            Log(ex)
         End Try
     End Sub
 
@@ -2834,5 +2833,16 @@ Public Class MainForm
                 olvStudents.RefreshObject(stud)
             Next
         End If
+    End Sub
+
+    Private Sub ExportModuleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportModuleToolStripMenuItem.Click
+        Dim frm As New ExportToTeachingAppExportFile(GetSelectedClassGroup, GetSelectedClass, GetSelectedAssignment)
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub ImportSpecialToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportSpecialToolStripMenuItem.Click
+        Dim frm As New ImportTeachingAppExportFile
+        frm.ShowDialog()
+
     End Sub
 End Class

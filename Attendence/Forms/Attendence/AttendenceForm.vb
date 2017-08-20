@@ -110,7 +110,7 @@ Public Class AttendenceForm
     Private Sub SetStudentCountLabel()
         Dim intStudents As Integer
         For Each Student As Student In m_class.Students
-            If Student.CurrentAttendenceStatus = AttendenceStatusEnum.Late OrElse Student.CurrentAttendenceStatus = AttendenceStatusEnum.Present Then
+            If Student.CurrentAttendenceStatus = AttendanceStatusEnum.Late OrElse Student.CurrentAttendenceStatus = AttendanceStatusEnum.Present Then
                 intStudents += 1
             End If
         Next
@@ -133,7 +133,7 @@ Public Class AttendenceForm
             m_frmPublic.UpdateStudent(obj)
         End If
     End Sub
-    Private Sub SetStudentStatus(status As AttendenceStatusEnum)
+    Private Sub SetStudentStatus(status As AttendanceStatusEnum)
         If olvStudents.SelectedIndex = -1 Then
             olvStudents.SelectedIndex = 0
         End If
@@ -151,19 +151,19 @@ Public Class AttendenceForm
         End If
     End Sub
     Private Sub PresentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles PresentToolStripMenuItem.Click
-        SetStudentStatus(AttendenceStatusEnum.Present)
+        SetStudentStatus(AttendanceStatusEnum.Present)
     End Sub
 
     Private Sub LateToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles LateToolStripMenuItem.Click
-        SetStudentStatus(AttendenceStatusEnum.Late)
+        SetStudentStatus(AttendanceStatusEnum.Late)
     End Sub
 
     Private Sub RemovedToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RemovedToolStripMenuItem.Click
-        SetStudentStatus(AttendenceStatusEnum.Removed)
+        SetStudentStatus(AttendanceStatusEnum.Removed)
     End Sub
 
     Private Sub AbsentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AbsentToolStripMenuItem.Click
-        SetStudentStatus(AttendenceStatusEnum.Absent)
+        SetStudentStatus(AttendanceStatusEnum.Absent)
     End Sub
     Private Sub SaveSessionStatuses()
         Try
@@ -172,7 +172,7 @@ Public Class AttendenceForm
             '-- Create new class session for each student
             Dim lstStudents As List(Of Student) = olvStudents.Objects
             For Each stu In lstStudents
-                If stu.CurrentAttendenceStatus <> AttendenceStatusEnum.Unknown Then
+                If stu.CurrentAttendenceStatus <> AttendanceStatusEnum.Unknown Then
                     Dim session As New TeachingSession(stu)
                     session.StartDate = dtSessionDate
                     session.AttendenceStatus = stu.CurrentAttendenceStatus
@@ -279,7 +279,7 @@ Public Class AttendenceForm
             If olvStudents.Objects IsNot Nothing Then
                 For Each stud As Student In olvStudents.Objects
                     If stud.Hidden Then
-                        stud.CurrentAttendenceStatus = AttendenceStatusEnum.Absent
+                        stud.CurrentAttendenceStatus = AttendanceStatusEnum.Absent
                     End If
                 Next
             End If
@@ -342,15 +342,15 @@ Public Class AttendenceForm
         Select Case e.KeyCode
             Case Keys.Next
                 '-- present
-                SetStudentStatus(AttendenceStatusEnum.Present)
+                SetStudentStatus(AttendanceStatusEnum.Present)
                 e.Handled = True
             Case Keys.OemPeriod
                 '-- absent
-                SetStudentStatus(AttendenceStatusEnum.Absent)
+                SetStudentStatus(AttendanceStatusEnum.Absent)
                 e.Handled = True
             Case Keys.F5
                 '-- late
-                SetStudentStatus(AttendenceStatusEnum.Late)
+                SetStudentStatus(AttendanceStatusEnum.Late)
                 e.Handled = True
             Case Keys.PageUp
                 '-- Go up / back one student
@@ -418,21 +418,21 @@ Public Class AttendenceForm
     End Sub
 
     Private Sub ExcusedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExcusedToolStripMenuItem.Click
-        SetStudentStatus(AttendenceStatusEnum.Excused)
+        SetStudentStatus(AttendanceStatusEnum.Excused)
     End Sub
 
     Private Sub AllStudentsPresentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStudentsPresentToolStripMenuItem.Click
-        MarkAllStudents(AttendenceStatusEnum.Present)
+        MarkAllStudents(AttendanceStatusEnum.Present)
     End Sub
 
     Private Sub AllStuentsAbsentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStuentsAbsentToolStripMenuItem.Click
-        MarkAllStudents(AttendenceStatusEnum.Absent)
+        MarkAllStudents(AttendanceStatusEnum.Absent)
     End Sub
 
     Private Sub AllStudentsExcusedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStudentsExcusedToolStripMenuItem.Click
-        MarkAllStudents(AttendenceStatusEnum.Excused)
+        MarkAllStudents(AttendanceStatusEnum.Excused)
     End Sub
-    Private Sub MarkAllStudents(status As AttendenceStatusEnum)
+    Private Sub MarkAllStudents(status As AttendanceStatusEnum)
         Try
             For Each stud As Student In olvStudents.Objects
                 stud.CurrentAttendenceStatus = status
