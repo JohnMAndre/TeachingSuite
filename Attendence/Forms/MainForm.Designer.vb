@@ -295,6 +295,7 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        Me.TakeAttendancealtFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -450,9 +451,9 @@ Partial Class MainForm
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClassGroups.Location = New System.Drawing.Point(0, 20)
+        Me.lstClassGroups.Location = New System.Drawing.Point(0, 19)
         Me.lstClassGroups.Name = "lstClassGroups"
-        Me.lstClassGroups.Size = New System.Drawing.Size(185, 126)
+        Me.lstClassGroups.Size = New System.Drawing.Size(185, 127)
         Me.lstClassGroups.TabIndex = 28
         '
         'llblRemoveClassGroup
@@ -493,7 +494,7 @@ Partial Class MainForm
         Me.KryptonLabel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel11.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel11.TabIndex = 3
         Me.KryptonLabel11.Values.Text = "Module"
         '
@@ -528,9 +529,9 @@ Partial Class MainForm
         '
         Me.lstClasses.ContextMenuStrip = Me.ctxmnuClasses
         Me.lstClasses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClasses.Location = New System.Drawing.Point(0, 20)
+        Me.lstClasses.Location = New System.Drawing.Point(0, 19)
         Me.lstClasses.Name = "lstClasses"
-        Me.lstClasses.Size = New System.Drawing.Size(185, 110)
+        Me.lstClasses.Size = New System.Drawing.Size(185, 111)
         Me.lstClasses.TabIndex = 0
         '
         'ctxmnuClasses
@@ -639,7 +640,7 @@ Partial Class MainForm
         Me.KryptonLabel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel10.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel10.TabIndex = 2
         Me.KryptonLabel10.Values.Text = "Classes"
         '
@@ -647,9 +648,9 @@ Partial Class MainForm
         '
         Me.lstAssignments.ContextMenuStrip = Me.ctxmnuAssignment
         Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstAssignments.Location = New System.Drawing.Point(0, 20)
+        Me.lstAssignments.Location = New System.Drawing.Point(0, 19)
         Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.Size = New System.Drawing.Size(185, 138)
+        Me.lstAssignments.Size = New System.Drawing.Size(185, 139)
         Me.lstAssignments.TabIndex = 4
         '
         'ctxmnuAssignment
@@ -779,7 +780,7 @@ Partial Class MainForm
         Me.KryptonLabel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel1.TabIndex = 3
         Me.KryptonLabel1.Values.Text = "Assignments"
         '
@@ -820,9 +821,9 @@ Partial Class MainForm
         'lblRenumberAdminResetNumber
         '
         Me.lblRenumberAdminResetNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminResetNumber.Location = New System.Drawing.Point(653, 0)
+        Me.lblRenumberAdminResetNumber.Location = New System.Drawing.Point(643, 0)
         Me.lblRenumberAdminResetNumber.Name = "lblRenumberAdminResetNumber"
-        Me.lblRenumberAdminResetNumber.Size = New System.Drawing.Size(94, 20)
+        Me.lblRenumberAdminResetNumber.Size = New System.Drawing.Size(104, 19)
         Me.lblRenumberAdminResetNumber.TabIndex = 31
         Me.lblRenumberAdminResetNumber.Values.Text = "Reset all to 999"
         Me.lblRenumberAdminResetNumber.Visible = False
@@ -831,16 +832,16 @@ Partial Class MainForm
         '
         Me.KryptonLabel13.Location = New System.Drawing.Point(336, -1)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.Size = New System.Drawing.Size(33, 20)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel13.TabIndex = 33
         Me.KryptonLabel13.Values.Text = "Tag:"
         '
         'lblRenumberAdminCurrent
         '
         Me.lblRenumberAdminCurrent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminCurrent.Location = New System.Drawing.Point(593, 0)
+        Me.lblRenumberAdminCurrent.Location = New System.Drawing.Point(588, 0)
         Me.lblRenumberAdminCurrent.Name = "lblRenumberAdminCurrent"
-        Me.lblRenumberAdminCurrent.Size = New System.Drawing.Size(54, 20)
+        Me.lblRenumberAdminCurrent.Size = New System.Drawing.Size(59, 19)
         Me.lblRenumberAdminCurrent.TabIndex = 30
         Me.lblRenumberAdminCurrent.Values.Text = "Current:"
         Me.lblRenumberAdminCurrent.Visible = False
@@ -848,9 +849,9 @@ Partial Class MainForm
         'lblRenumberAdminCurrentLabel
         '
         Me.lblRenumberAdminCurrentLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminCurrentLabel.Location = New System.Drawing.Point(541, 1)
+        Me.lblRenumberAdminCurrentLabel.Location = New System.Drawing.Point(536, 1)
         Me.lblRenumberAdminCurrentLabel.Name = "lblRenumberAdminCurrentLabel"
-        Me.lblRenumberAdminCurrentLabel.Size = New System.Drawing.Size(54, 20)
+        Me.lblRenumberAdminCurrentLabel.Size = New System.Drawing.Size(59, 19)
         Me.lblRenumberAdminCurrentLabel.TabIndex = 29
         Me.lblRenumberAdminCurrentLabel.Values.Text = "Current:"
         Me.lblRenumberAdminCurrentLabel.Visible = False
@@ -859,7 +860,7 @@ Partial Class MainForm
         '
         Me.splitStudentsSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.splitStudentsSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 20)
+        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 19)
         Me.splitStudentsSchedule.Name = "splitStudentsSchedule"
         Me.splitStudentsSchedule.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -871,7 +872,7 @@ Partial Class MainForm
         '
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.ScheduleNotesSplitter)
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.pnlScheduleControls)
-        Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 424)
+        Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 425)
         Me.splitStudentsSchedule.SplitterDistance = 213
         Me.splitStudentsSchedule.TabIndex = 28
         '
@@ -1311,7 +1312,7 @@ Partial Class MainForm
         '
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.Panel1)
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.picStudent)
-        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 206)
+        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 207)
         Me.ScheduleNotesSplitter.SplitterDistance = 586
         Me.ScheduleNotesSplitter.TabIndex = 45
         '
@@ -1350,7 +1351,7 @@ Partial Class MainForm
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(586, 206)
+        Me.olvSchedule.Size = New System.Drawing.Size(586, 207)
         Me.olvSchedule.TabIndex = 4
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -1458,27 +1459,27 @@ Partial Class MainForm
         'ctxmnuActualSessions
         '
         Me.ctxmnuActualSessions.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ctxmnuActualSessions.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SkipActualSessionToolStripMenuItem, Me.TakeAttendanceToolStripMenuItem, Me.LoadClassToolStripMenuItem})
+        Me.ctxmnuActualSessions.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SkipActualSessionToolStripMenuItem, Me.TakeAttendanceToolStripMenuItem, Me.TakeAttendancealtFormToolStripMenuItem, Me.LoadClassToolStripMenuItem})
         Me.ctxmnuActualSessions.Name = "ctxmnuPlannedSchedule"
-        Me.ctxmnuActualSessions.Size = New System.Drawing.Size(184, 70)
+        Me.ctxmnuActualSessions.Size = New System.Drawing.Size(214, 114)
         '
         'SkipActualSessionToolStripMenuItem
         '
         Me.SkipActualSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.SkipActualSessionToolStripMenuItem.Name = "SkipActualSessionToolStripMenuItem"
-        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.SkipActualSessionToolStripMenuItem.Text = "Skip selected session"
         '
         'TakeAttendanceToolStripMenuItem
         '
         Me.TakeAttendanceToolStripMenuItem.Name = "TakeAttendanceToolStripMenuItem"
-        Me.TakeAttendanceToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.TakeAttendanceToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.TakeAttendanceToolStripMenuItem.Text = "Take &attendance"
         '
         'LoadClassToolStripMenuItem
         '
         Me.LoadClassToolStripMenuItem.Name = "LoadClassToolStripMenuItem"
-        Me.LoadClassToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.LoadClassToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.LoadClassToolStripMenuItem.Text = "Load &class"
         '
         'Panel1
@@ -1490,7 +1491,7 @@ Partial Class MainForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(215, 206)
+        Me.Panel1.Size = New System.Drawing.Size(215, 207)
         Me.Panel1.TabIndex = 46
         '
         'llblClearNotes
@@ -1507,9 +1508,9 @@ Partial Class MainForm
         '
         Me.lblStopwatchDuration.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStopwatchDuration.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl
-        Me.lblStopwatchDuration.Location = New System.Drawing.Point(132, 4)
+        Me.lblStopwatchDuration.Location = New System.Drawing.Point(152, 4)
         Me.lblStopwatchDuration.Name = "lblStopwatchDuration"
-        Me.lblStopwatchDuration.Size = New System.Drawing.Size(76, 29)
+        Me.lblStopwatchDuration.Size = New System.Drawing.Size(56, 19)
         Me.lblStopwatchDuration.TabIndex = 45
         Me.lblStopwatchDuration.Values.Text = "0:00:00"
         '
@@ -1534,7 +1535,7 @@ Partial Class MainForm
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtNotes.Size = New System.Drawing.Size(215, 168)
+        Me.txtNotes.Size = New System.Drawing.Size(215, 169)
         Me.txtNotes.TabIndex = 45
         Me.ToolTip1.SetToolTip(Me.txtNotes, "Notes")
         '
@@ -1543,7 +1544,7 @@ Partial Class MainForm
         Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.picStudent.Location = New System.Drawing.Point(0, 0)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(215, 206)
+        Me.picStudent.Size = New System.Drawing.Size(215, 207)
         Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
@@ -1561,15 +1562,15 @@ Partial Class MainForm
         Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
         Me.pnlScheduleControls.Name = "pnlScheduleControls"
-        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 206)
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 207)
         Me.pnlScheduleControls.TabIndex = 5
         '
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 93)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 95)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
-        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(88, 20)
+        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
         Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1578,9 +1579,9 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 119)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 121)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
-        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(79, 20)
+        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
         Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1598,9 +1599,9 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 142)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 144)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
-        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
         Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1609,9 +1610,9 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 142)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 144)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
-        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
         Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
         Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1630,9 +1631,9 @@ Partial Class MainForm
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 174)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 176)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
-        Me.llblRefreshSchedule.Size = New System.Drawing.Size(51, 20)
+        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
         Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
         Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1721,7 +1722,7 @@ Partial Class MainForm
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(916, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(916, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Filter:"
         '
@@ -2693,6 +2694,12 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'TakeAttendancealtFormToolStripMenuItem
+        '
+        Me.TakeAttendancealtFormToolStripMenuItem.Name = "TakeAttendancealtFormToolStripMenuItem"
+        Me.TakeAttendancealtFormToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.TakeAttendancealtFormToolStripMenuItem.Text = "&Take attendance (alt form)"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3059,4 +3066,5 @@ Partial Class MainForm
     Friend WithEvents OlvColumn20 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ExportModuleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportSpecialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TakeAttendancealtFormToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

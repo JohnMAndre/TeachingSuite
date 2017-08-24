@@ -63,7 +63,7 @@
             '-- This needs to happen on another thread or during idle time to maintain app performance
             If m_strTransactionID Is Nothing Then
                 m_strTransactionID = Guid.NewGuid.ToString()
-                AddApplicationHistory("Starting to write historical data with Transaction ID: " & m_strTransactionID)
+                AddApplicationHistory("Starting to write historical data (queue depth: " & m_qHistoricalItems.Count.ToString("#,##0") & ") with Transaction ID: " & m_strTransactionID)
             End If
 
             'If m_strStudentDataHistoryFolder Is Nothing Then

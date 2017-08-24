@@ -468,4 +468,5 @@ Public Class AttendenceForm
         Dim newFont As Font = New Font(olvStudents.Font.FontFamily, olvStudents.Font.Size - 4)
         olvStudents.Font = newFont
     End Sub
+
 End Class

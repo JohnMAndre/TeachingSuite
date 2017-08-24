@@ -134,6 +134,12 @@
     <Compile Include="Forms\Assignments\StudentAssignmentNormalDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Attendence\Attendance2Form.Designer.vb">
+      <DependentUpon>Attendance2Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attendence\Attendance2Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Attendence\EitherOrAttendance.Designer.vb">
       <DependentUpon>EitherOrAttendance.vb</DependentUpon>
     </Compile>
@@ -501,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\StudentAssignmentNormalDetails.resx">
       <DependentUpon>StudentAssignmentNormalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attendence\Attendance2Form.resx">
+      <DependentUpon>Attendance2Form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Attendence\AttendenceImport.resx">
       <DependentUpon>AttendenceImport.vb</DependentUpon>

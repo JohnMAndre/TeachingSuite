@@ -59,6 +59,8 @@ Public Class ImportAdditionalStudentData
                 End If
             Next
 
+            AddApplicationHistory("Imported additional student data for " & m_lstImportData.Count.ToString("#,##0") & " students. ")
+
         Catch ex As Exception
             MessageBox.Show("There was an error importing some of the data (" & ex.Message & ").")
         End Try

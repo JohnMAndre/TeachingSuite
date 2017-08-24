@@ -1,14 +1,17 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class AttendenceForm
-    Inherits ComponentFactory.Krypton.Toolkit.KryptonForm
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Attendance2Form
+    Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        If disposing AndAlso components IsNot Nothing Then
-            components.Dispose()
-        End If
-        MyBase.Dispose(disposing)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
     End Sub
 
     'Required by the Windows Form Designer
@@ -20,28 +23,7 @@ Partial Class AttendenceForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AttendenceForm))
-        Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
-        Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Attendance2Form))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReloadStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -82,242 +64,30 @@ Partial Class AttendenceForm
         Me.txtStudentGroup = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PublicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dgvStudents = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrFilterHiddenStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrPublicFilter = New System.Windows.Forms.Timer(Me.components)
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPanel.SuspendLayout()
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStripContainer1.BottomToolStripPanel.SuspendLayout()
-        Me.ToolStripContainer1.ContentPanel.SuspendLayout()
-        Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout()
-        Me.ToolStripContainer1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'KryptonPanel
-        '
-        Me.KryptonPanel.Controls.Add(Me.olvStudents)
-        Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
-        Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Palette = Me.KryptonPalette1
-        Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonPanel.Size = New System.Drawing.Size(790, 281)
-        Me.KryptonPanel.TabIndex = 0
-        '
-        'olvStudents
-        '
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn8)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn1)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn5)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn12)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn9)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn10)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn11)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn14)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn15)
-        Me.olvStudents.AllowColumnReorder = True
-        Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn12, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
-        Me.olvStudents.CopySelectionOnControlC = False
-        Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
-        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
-        Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.olvStudents.FullRowSelect = True
-        Me.olvStudents.Location = New System.Drawing.Point(0, 0)
-        Me.olvStudents.MultiSelect = False
-        Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.SelectAllOnControlA = False
-        Me.olvStudents.ShowGroups = False
-        Me.olvStudents.ShowImagesOnSubItems = True
-        Me.olvStudents.Size = New System.Drawing.Size(790, 281)
-        Me.olvStudents.TabIndex = 4
-        Me.olvStudents.UseCompatibleStateImageBehavior = False
-        Me.olvStudents.UseFiltering = True
-        Me.olvStudents.UseSubItemCheckBoxes = True
-        Me.olvStudents.View = System.Windows.Forms.View.Details
-        '
-        'OlvColumn8
-        '
-        Me.OlvColumn8.AspectName = "AdminNumber"
-        Me.OlvColumn8.AutoCompleteEditor = False
-        Me.OlvColumn8.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn8.IsEditable = False
-        Me.OlvColumn8.Text = "Admin"
-        Me.OlvColumn8.ToolTipText = "Admin number"
-        '
-        'OlvColumn1
-        '
-        Me.OlvColumn1.AspectName = "LocalName"
-        Me.OlvColumn1.AutoCompleteEditor = False
-        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn1.Text = "Name"
-        Me.OlvColumn1.ToolTipText = "Local name"
-        Me.OlvColumn1.Width = 150
-        '
-        'OlvColumn5
-        '
-        Me.OlvColumn5.AspectName = "Nickname"
-        Me.OlvColumn5.AutoCompleteEditor = False
-        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn5.Text = "Nickname"
-        Me.OlvColumn5.ToolTipText = "Nickname"
-        Me.OlvColumn5.Width = 150
-        '
-        'OlvColumn6
-        '
-        Me.OlvColumn6.AspectName = "StudentID"
-        Me.OlvColumn6.AutoCompleteEditor = False
-        Me.OlvColumn6.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.Text = "Student ID"
-        Me.OlvColumn6.ToolTipText = "Student ID"
-        Me.OlvColumn6.Width = 140
-        '
-        'OlvColumn7
-        '
-        Me.OlvColumn7.AspectName = "CurrentAttendenceStatus"
-        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Text = "Status"
-        Me.OlvColumn7.ToolTipText = "Current absence status"
-        Me.OlvColumn7.Width = 100
-        '
-        'OlvColumn12
-        '
-        Me.OlvColumn12.AspectName = "PresentationQuality"
-        Me.OlvColumn12.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn12.Text = "Pres"
-        Me.OlvColumn12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn12.ToolTipText = "Presentation quality"
-        '
-        'OlvColumn9
-        '
-        Me.OlvColumn9.AspectName = "Hidden"
-        Me.OlvColumn9.CheckBoxes = True
-        Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn9.IsEditable = False
-        Me.OlvColumn9.Text = "Hid"
-        Me.OlvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn9.ToolTipText = "Is student marked as hidden?"
-        '
-        'OlvColumn10
-        '
-        Me.OlvColumn10.AspectName = "CurrentAbsences"
-        Me.OlvColumn10.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn10.Text = "Absences"
-        Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn10.ToolTipText = "Current absences"
-        Me.OlvColumn10.Width = 75
-        '
-        'OlvColumn11
-        '
-        Me.OlvColumn11.AspectName = "LocalNameLatinLetters"
-        Me.OlvColumn11.Text = "Plain"
-        Me.OlvColumn11.ToolTipText = "Local name (Latin letters)"
-        Me.OlvColumn11.Width = 120
-        '
-        'OlvColumn13
-        '
-        Me.OlvColumn13.AspectName = "Gender"
-        Me.OlvColumn13.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn13.Text = "Gender"
-        Me.OlvColumn13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn13.ToolTipText = "Gender"
-        '
-        'OlvColumn14
-        '
-        Me.OlvColumn14.AspectName = "StudentGroup"
-        Me.OlvColumn14.AutoCompleteEditor = False
-        Me.OlvColumn14.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn14.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn14.Text = "Group"
-        Me.OlvColumn14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn14.ToolTipText = "Student group"
-        '
-        'OlvColumn15
-        '
-        Me.OlvColumn15.AspectName = "DateOfBirth"
-        Me.OlvColumn15.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn15.Text = "DoB"
-        Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn15.ToolTipText = "Date of Birth"
-        '
-        'OlvColumn2
-        '
-        Me.OlvColumn2.AspectName = "Nickname"
-        Me.OlvColumn2.DisplayIndex = 1
-        Me.OlvColumn2.Text = "Nickname"
-        Me.OlvColumn2.Width = 150
-        '
-        'OlvColumn3
-        '
-        Me.OlvColumn3.AspectName = "StudentID"
-        Me.OlvColumn3.DisplayIndex = 2
-        Me.OlvColumn3.Text = "Student ID"
-        Me.OlvColumn3.Width = 110
-        '
-        'OlvColumn4
-        '
-        Me.OlvColumn4.AspectName = "AttendenceStatus"
-        Me.OlvColumn4.DisplayIndex = 3
-        Me.OlvColumn4.Text = "Status"
-        '
-        'ToolStripContainer1
-        '
-        '
-        'ToolStripContainer1.BottomToolStripPanel
-        '
-        Me.ToolStripContainer1.BottomToolStripPanel.Controls.Add(Me.StatusStrip1)
-        '
-        'ToolStripContainer1.ContentPanel
-        '
-        Me.ToolStripContainer1.ContentPanel.AutoScroll = True
-        Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.KryptonPanel)
-        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(790, 281)
-        Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStripContainer1.Name = "ToolStripContainer1"
-        Me.ToolStripContainer1.Size = New System.Drawing.Size(790, 330)
-        Me.ToolStripContainer1.TabIndex = 0
-        Me.ToolStripContainer1.Text = "ToolStripContainer1"
-        '
-        'ToolStripContainer1.TopToolStripPanel
-        '
-        Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.MenuStrip1)
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
-        Me.StatusStrip1.TabIndex = 0
-        '
-        'lblStudentsPresent
-        '
-        Me.lblStudentsPresent.Name = "lblStudentsPresent"
-        Me.lblStudentsPresent.Size = New System.Drawing.Size(0, 17)
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.MarkToolStripMenuItem, Me.SetQualityToolStripMenuItem, Me.HelpToolStripMenuItem, Me.txtSessionDate, Me.txtFilter, Me.txtStudentGroup, Me.ToolStripMenuItem1, Me.PublicToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(790, 27)
-        Me.MenuStrip1.TabIndex = 0
+        Me.MenuStrip1.Size = New System.Drawing.Size(719, 27)
+        Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'FileToolStripMenuItem
@@ -584,106 +354,126 @@ Partial Class AttendenceForm
         Me.PublicToolStripMenuItem.Text = "Public"
         Me.PublicToolStripMenuItem.ToolTipText = "Open public window"
         '
+        'dgvStudents
+        '
+        Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column7, Me.Column6})
+        Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvStudents.Location = New System.Drawing.Point(0, 27)
+        Me.dgvStudents.MultiSelect = False
+        Me.dgvStudents.Name = "dgvStudents"
+        Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudents.Size = New System.Drawing.Size(719, 429)
+        Me.dgvStudents.TabIndex = 2
+        '
+        'Column1
+        '
+        Me.Column1.DataPropertyName = "AdminNumber"
+        Me.Column1.HeaderText = "#"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.DataPropertyName = "LocalName"
+        Me.Column2.HeaderText = "Name"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.DataPropertyName = "Nickname"
+        Me.Column3.HeaderText = "Nickname"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        '
+        'Column4
+        '
+        Me.Column4.DataPropertyName = "StudentID"
+        Me.Column4.HeaderText = "ID"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        '
+        'Column5
+        '
+        Me.Column5.DataPropertyName = "CurrentAttendenceStatus"
+        Me.Column5.HeaderText = "Status"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.DataPropertyName = "CurrentAbsences"
+        Me.Column7.HeaderText = "Absent"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.DataPropertyName = "Hidden"
+        Me.Column6.HeaderText = "Hidden"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 456)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(719, 22)
+        Me.StatusStrip1.TabIndex = 3
+        '
+        'lblStudentsPresent
+        '
+        Me.lblStudentsPresent.Name = "lblStudentsPresent"
+        Me.lblStudentsPresent.Size = New System.Drawing.Size(0, 17)
+        '
         'tmrStudentCount
         '
         Me.tmrStudentCount.Enabled = True
         Me.tmrStudentCount.Interval = 2000
         '
-        'tmrFilterStudents
-        '
-        Me.tmrFilterStudents.Enabled = True
-        Me.tmrFilterStudents.Interval = 200
-        '
-        'tmrFilterHiddenStudents
-        '
-        Me.tmrFilterHiddenStudents.Enabled = True
-        Me.tmrFilterHiddenStudents.Interval = 500
-        '
-        'tmrPublicFilter
-        '
-        Me.tmrPublicFilter.Enabled = True
-        Me.tmrPublicFilter.Interval = 2000
-        '
-        'AttendenceForm
+        'Attendance2Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(790, 330)
-        Me.Controls.Add(Me.ToolStripContainer1)
+        Me.ClientSize = New System.Drawing.Size(719, 478)
+        Me.Controls.Add(Me.dgvStudents)
+        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.KeyPreview = True
-        Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "AttendenceForm"
-        Me.Palette = Me.KryptonPalette1
-        Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.Text = "Taking Attendence"
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPanel.ResumeLayout(False)
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ToolStripContainer1.BottomToolStripPanel.ResumeLayout(False)
-        Me.ToolStripContainer1.BottomToolStripPanel.PerformLayout()
-        Me.ToolStripContainer1.ContentPanel.ResumeLayout(False)
-        Me.ToolStripContainer1.TopToolStripPanel.ResumeLayout(False)
-        Me.ToolStripContainer1.TopToolStripPanel.PerformLayout()
-        Me.ToolStripContainer1.ResumeLayout(False)
-        Me.ToolStripContainer1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
+        Me.Name = "Attendance2Form"
+        Me.Text = "Taking Attendance"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-
-    Public Sub New()
-
-        ' This call is required by the Windows Form Designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-
-    End Sub
-
-    Protected Overrides Sub Finalize()
-        MyBase.Finalize()
-    End Sub
-    Friend WithEvents KryptonPalette1 As ComponentFactory.Krypton.Toolkit.KryptonPalette
-    Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn4 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents ToolStripContainer1 As System.Windows.Forms.ToolStripContainer
-    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
-    Friend WithEvents olvStudents As BrightIdeasSoftware.ObjectListView
-    Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn8 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReloadStudentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents SaveAndCloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents IncreaseFontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DecreaseFontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MarkToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PresentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RemovedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SaveAndCloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents txtSessionDate As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents lblStudentsPresent As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents tmrStudentCount As System.Windows.Forms.Timer
-    Friend WithEvents txtFilter As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents tmrFilterStudents As System.Windows.Forms.Timer
-    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents tmrFilterHiddenStudents As System.Windows.Forms.Timer
-    Friend WithEvents OlvColumn9 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents PublicToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn10 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents ReloadStudentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn12 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents ExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents AllStudentsPresentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AllStudentsExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetQualityToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Presentation1ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Presentation2ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -694,22 +484,26 @@ Partial Class AttendenceForm
     Friend WithEvents Presentation7ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Presentation8ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Presentation9ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SetGendermaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetGenderfemaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetGenderUnknownToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn13 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn14 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents txtSessionDate As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents txtFilter As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents txtStudentGroup As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents tmrPublicFilter As System.Windows.Forms.Timer
-    Friend WithEvents ExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents AllStudentsPresentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AllStudentsExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents IncreaseFontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DecreaseFontToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PublicToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents dgvStudents As System.Windows.Forms.DataGridView
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents lblStudentsPresent As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents tmrStudentCount As System.Windows.Forms.Timer
 End Class

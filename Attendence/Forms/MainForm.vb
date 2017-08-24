@@ -60,7 +60,6 @@ Public Class MainForm
         LoadSemesters()
 
 
-
         If AppSettings.LastSemesterFile.Length > 0 Then
             '-- Select previously used semester file
             For Each item As String In cboSemester.Items
@@ -2844,5 +2843,20 @@ Public Class MainForm
         Dim frm As New ImportTeachingAppExportFile
         frm.ShowDialog()
 
+    End Sub
+
+    Private Sub TakeAttendancealtFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TakeAttendancealtFormToolStripMenuItem.Click
+        Attendance2FromSchedule()
+    End Sub
+    Private Sub Attendance2FromSchedule()
+        If olvSchedule.SelectedObject IsNot Nothing Then
+            Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
+            'Using frm As New AttendenceForm(item.SchoolClass)
+            Using frm As New Attendance2Form(item)
+                frm.ShowDialog()
+            End Using
+        Else
+            MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 End Class
