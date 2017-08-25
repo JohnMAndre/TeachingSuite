@@ -267,4 +267,8 @@
 
     End Sub
 
+    Private Sub EditCurrentStudentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditCurrentStudentToolStripMenuItem.Click
+        dgvStudents.CurrentCell = dgvStudents.Rows(dgvStudents.CurrentRow.Index).Cells(2)
+        dgvStudents.BeginEdit(True)
+    End Sub
 End Class
