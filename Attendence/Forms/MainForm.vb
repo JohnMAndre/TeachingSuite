@@ -379,6 +379,8 @@ Public Class MainForm
             Dim strNewClass As String = GetInput("What would you like to call the new class?", False, strDefaultName)
             If strNewClass = Chr(0) Then
                 '-- do nothing
+            ElseIf strNewClass.ToLower() = COMBINED_VIEW_NAME.ToLower() Then
+                MessageBox.Show(COMBINED_VIEW_NAME & " is a protected name. Please choose a different name for your class.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 '--  add class
                 Dim objNewClass As New SchoolClass(GetSelectedClassGroup())
@@ -479,6 +481,8 @@ Public Class MainForm
         Dim clas As SchoolClass = GetSelectedClass()
         If clas Is Nothing Then
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf ClassIsCombinedView(clas) Then
+            MessageBox.Show("You cannot add to 'Combined View' class.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Using frm As New StudentDetail(clas)
                 If frm.ShowDialog = DialogResult.OK Then
@@ -545,7 +549,7 @@ Public Class MainForm
 
         If lstStudents.Count > 0 Then
             For Each stud As Student In lstStudents
-                If MessageBox.Show("Are you sure you want to remove " & stud.LocalName & " (" & stud.Nickname & ")" & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+                If MessageBox.Show("Are you sure you want to remove " & stud.LocalName & " (" & stud.Nickname & ")" & " from " & stud.SchoolClass.Name & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                     stud.SchoolClass.Students.Remove(stud)
                     olvStudents.RemoveObject(stud)
                 End If
@@ -1399,17 +1403,19 @@ Public Class MainForm
     Private Sub SkipActualSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SkipActualSessionToolStripMenuItem.Click
         If olvSchedule.SelectedObject IsNot Nothing Then
             Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
-            Dim objSkip As New SkipSession()
-            objSkip.StartDateTime = item.StartDateTime
-            item.SchoolClass.SessionsToSkip.Add(objSkip)
-            olvSchedule.RemoveObject(item)
-            item.SchoolClass.ActualSessions.Remove(item)
+            If MessageBox.Show("Are you sure you want to skip the selected session (" & item.Topic & ")?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+                Dim objSkip As New SkipSession()
+                objSkip.StartDateTime = item.StartDateTime
+                item.SchoolClass.SessionsToSkip.Add(objSkip)
+                olvSchedule.RemoveObject(item)
+                item.SchoolClass.ActualSessions.Remove(item)
 
-            Using frm As New ClassDetails(item.SchoolClass)
-                If frm.ShowDialog(Me) = DialogResult.OK Then
-                    LoadClasses()
-                End If
-            End Using
+                Using frm As New ClassDetails(item.SchoolClass)
+                    If frm.ShowDialog(Me) = DialogResult.OK Then
+                        LoadClasses()
+                    End If
+                End Using
+            End If
         End If
     End Sub
 

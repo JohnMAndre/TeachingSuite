@@ -286,7 +286,7 @@ Partial Class BulkEmailer
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 40)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(53, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel3.TabIndex = 32
         Me.KryptonLabel3.Values.Text = "Subject:"
         '
@@ -294,7 +294,7 @@ Partial Class BulkEmailer
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 10)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(104, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel1.TabIndex = 31
         Me.KryptonLabel1.Values.Text = "Sending account:"
         '
@@ -311,12 +311,12 @@ Partial Class BulkEmailer
         '
         'llblMakeQuiz
         '
-        Me.llblMakeQuiz.Location = New System.Drawing.Point(161, 40)
+        Me.llblMakeQuiz.Location = New System.Drawing.Point(98, 40)
         Me.llblMakeQuiz.Name = "llblMakeQuiz"
-        Me.llblMakeQuiz.Size = New System.Drawing.Size(35, 20)
+        Me.llblMakeQuiz.Size = New System.Drawing.Size(106, 19)
         Me.llblMakeQuiz.TabIndex = 63
         Me.llblMakeQuiz.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblMakeQuiz.Values.Text = "Quiz"
+        Me.llblMakeQuiz.Values.Text = "Load quiz name"
         '
         'lblRecipientCount
         '
@@ -340,9 +340,11 @@ Partial Class BulkEmailer
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn7, Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn8, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn9})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No students, check filter and Submission menu"
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -350,13 +352,12 @@ Partial Class BulkEmailer
         Me.olvStudents.GridLines = True
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
-        Me.olvStudents.Location = New System.Drawing.Point(0, 20)
+        Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(1039, 577)
+        Me.olvStudents.Size = New System.Drawing.Size(1039, 578)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -468,7 +469,7 @@ Partial Class BulkEmailer
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(1039, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(1039, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
@@ -511,12 +512,12 @@ Partial Class BulkEmailer
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'tmrFilterStudents
         '

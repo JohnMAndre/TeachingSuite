@@ -120,6 +120,10 @@ Public Class ClassDetails
     End Sub
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
+        If txtClassName.Text.ToLower() = COMBINED_VIEW_NAME.ToLower Then
+            MessageBox.Show(COMBINED_VIEW_NAME & " is a protected name. Please choose a different name for your class.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
         m_class.Name = txtClassName.Text
         m_class.EmailAddress = txtEmailAddress.Text
         m_class.EmailSendingAccount = nudEmailAccountToUse.Value

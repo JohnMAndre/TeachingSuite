@@ -149,8 +149,8 @@ Public Class BulkEmailer
 
     Private Function GenerateEmailBodyForStudent(item As BulkEmailData)
         Dim str As New System.Text.StringBuilder()
-        If m_clas.ClassGroup.UseNickname Then
-            str.Append("Dear " & item.Student.Nickname & ":<br><br>")
+        If m_clas.ClassGroup.UseNickname AndAlso item.Student.Nickname.Trim.Length > 0 Then
+            str.Append("Dear " & item.Student.Nickname & ":<br><br>") '-- use nickname if we are suppsed to and if it exists
         Else
             str.Append("Dear " & item.Student.LocalNameLatinLetters & ":<br><br>")
         End If
