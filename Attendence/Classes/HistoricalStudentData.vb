@@ -87,8 +87,8 @@
                     xDoc.Load(strStudentFilename)
                     xRoot = xDoc.DocumentElement
                 Else
-                    '-- Check if student ID (filename key) has changed
-                    If objItem.FieldName = "StudentID" Then
+                    '-- Check if student ID (filename key) has changed (but don't worry for new students
+                    If objItem.FieldName = "StudentID" AndAlso (objItem.OldValue IsNot Nothing AndAlso objItem.OldValue.Length > 0) Then
                         '-- In this (rare) case, we must change the filename to reflect the new student ID
                         Dim strOldStudentFilename As String
                         strOldStudentFilename = GetStudentFilename(objItem.OldValue) 'm_strStudentDataHistoryFolder & MakeFilenameLegal(objItem.OldValue) & ".xml"

@@ -157,6 +157,7 @@ Partial Class MainForm
         Me.llblAddStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonGroup1 = New ComponentFactory.Krypton.Toolkit.KryptonGroup()
+        Me.cboSemester = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.txtSemesterNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblLoadFutureOneSemester = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -175,7 +176,6 @@ Partial Class MainForm
         Me.dtpSemesterEnd = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
         Me.dtpSemesterStart = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.cboSemester = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadSemesterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -224,6 +224,7 @@ Partial Class MainForm
         Me.ReorderAdminNumbersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManageImprovementItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EitherOrToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SpecialAttendanceToolToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -873,7 +874,7 @@ Partial Class MainForm
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.ScheduleNotesSplitter)
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.pnlScheduleControls)
         Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 425)
-        Me.splitStudentsSchedule.SplitterDistance = 212
+        Me.splitStudentsSchedule.SplitterDistance = 211
         Me.splitStudentsSchedule.TabIndex = 28
         '
         'olvStudents
@@ -927,7 +928,7 @@ Partial Class MainForm
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(916, 212)
+        Me.olvStudents.Size = New System.Drawing.Size(916, 211)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.TriggerCellOverEventsWhenOverHeader = False
         Me.olvStudents.UseAlternatingBackColors = True
@@ -1312,7 +1313,7 @@ Partial Class MainForm
         '
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.Panel1)
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.picStudent)
-        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 208)
+        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 209)
         Me.ScheduleNotesSplitter.SplitterDistance = 586
         Me.ScheduleNotesSplitter.TabIndex = 45
         '
@@ -1351,7 +1352,7 @@ Partial Class MainForm
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(586, 208)
+        Me.olvSchedule.Size = New System.Drawing.Size(586, 209)
         Me.olvSchedule.TabIndex = 4
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -1497,7 +1498,7 @@ Partial Class MainForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(215, 208)
+        Me.Panel1.Size = New System.Drawing.Size(215, 209)
         Me.Panel1.TabIndex = 46
         '
         'llblClearNotes
@@ -1541,7 +1542,7 @@ Partial Class MainForm
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtNotes.Size = New System.Drawing.Size(215, 170)
+        Me.txtNotes.Size = New System.Drawing.Size(215, 171)
         Me.txtNotes.TabIndex = 45
         Me.ToolTip1.SetToolTip(Me.txtNotes, "Notes")
         '
@@ -1550,7 +1551,7 @@ Partial Class MainForm
         Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.picStudent.Location = New System.Drawing.Point(0, 0)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(215, 208)
+        Me.picStudent.Size = New System.Drawing.Size(215, 209)
         Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
@@ -1568,13 +1569,13 @@ Partial Class MainForm
         Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
         Me.pnlScheduleControls.Name = "pnlScheduleControls"
-        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 208)
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 209)
         Me.pnlScheduleControls.TabIndex = 5
         '
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 96)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 97)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
         Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
@@ -1585,7 +1586,7 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 122)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 123)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
         Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
@@ -1605,7 +1606,7 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 145)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 146)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
         Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
@@ -1616,7 +1617,7 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 145)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 146)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
         Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
@@ -1638,7 +1639,7 @@ Partial Class MainForm
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 177)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 178)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
         Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
@@ -1762,6 +1763,17 @@ Partial Class MainForm
         Me.KryptonGroup1.Panel.Controls.Add(Me.KryptonLabel3)
         Me.KryptonGroup1.Size = New System.Drawing.Size(1106, 90)
         Me.KryptonGroup1.TabIndex = 8
+        '
+        'cboSemester
+        '
+        Me.cboSemester.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboSemester.DropDownWidth = 121
+        Me.cboSemester.Location = New System.Drawing.Point(73, 1)
+        Me.cboSemester.Name = "cboSemester"
+        Me.cboSemester.Size = New System.Drawing.Size(491, 20)
+        Me.cboSemester.TabIndex = 0
         '
         'txtSemesterNotes
         '
@@ -1938,17 +1950,6 @@ Partial Class MainForm
         Me.KryptonLabel3.Size = New System.Drawing.Size(72, 19)
         Me.KryptonLabel3.TabIndex = 5
         Me.KryptonLabel3.Values.Text = "Semester:"
-        '
-        'cboSemester
-        '
-        Me.cboSemester.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboSemester.DropDownWidth = 121
-        Me.cboSemester.Location = New System.Drawing.Point(73, 1)
-        Me.cboSemester.Name = "cboSemester"
-        Me.cboSemester.Size = New System.Drawing.Size(491, 20)
-        Me.cboSemester.TabIndex = 0
         '
         'MenuStrip1
         '
@@ -2213,7 +2214,7 @@ Partial Class MainForm
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ReorderAdminNumbersToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ReorderAdminNumbersToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
@@ -2259,26 +2260,32 @@ Partial Class MainForm
         Me.ReorderAdminNumbersToolStripMenuItem.CheckOnClick = True
         Me.ReorderAdminNumbersToolStripMenuItem.Name = "ReorderAdminNumbersToolStripMenuItem"
         Me.ReorderAdminNumbersToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
-        Me.ReorderAdminNumbersToolStripMenuItem.Text = "Reorder admin numbers"
+        Me.ReorderAdminNumbersToolStripMenuItem.Text = "&Reorder admin numbers"
         '
         'ManageImprovementItemsToolStripMenuItem
         '
         Me.ManageImprovementItemsToolStripMenuItem.Name = "ManageImprovementItemsToolStripMenuItem"
         Me.ManageImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
-        Me.ManageImprovementItemsToolStripMenuItem.Text = "Manage improvement items..."
+        Me.ManageImprovementItemsToolStripMenuItem.Text = "Manage &improvement items..."
         '
         'EitherOrToolStripMenuItem
         '
         Me.EitherOrToolStripMenuItem.Name = "EitherOrToolStripMenuItem"
         Me.EitherOrToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
-        Me.EitherOrToolStripMenuItem.Text = "Either or..."
+        Me.EitherOrToolStripMenuItem.Text = "&Either or attendance tool..."
         Me.EitherOrToolStripMenuItem.ToolTipText = "Allow students to be in one session or the other to get attendance for both"
+        '
+        'SpecialAttendanceToolToolStripMenuItem
+        '
+        Me.SpecialAttendanceToolToolStripMenuItem.Name = "SpecialAttendanceToolToolStripMenuItem"
+        Me.SpecialAttendanceToolToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.SpecialAttendanceToolToolStripMenuItem.Text = "Special &attendance tool..."
         '
         'RemoveAllStudentsFromSelectedClassToolStripMenuItem
         '
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Name = "RemoveAllStudentsFromSelectedClassToolStripMenuItem"
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
-        Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Text = "Remove all students from selected class"
+        Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Text = "Remove all students &from selected class"
         '
         'ToolStripSeparator11
         '
@@ -2443,8 +2450,8 @@ Partial Class MainForm
         'ImportAttendanceToolStripMenuItem
         '
         Me.ImportAttendanceToolStripMenuItem.Name = "ImportAttendanceToolStripMenuItem"
-        Me.ImportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.ImportAttendanceToolStripMenuItem.Text = "Import &attendance..."
+        Me.ImportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ImportAttendanceToolStripMenuItem.Text = "Import &attendance from other database..."
         '
         'ImportEmailAddressesToolStripMenuItem
         '
@@ -3068,4 +3075,5 @@ Partial Class MainForm
     Friend WithEvents ExportModuleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportSpecialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TakeAttendancealtFormToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SpecialAttendanceToolToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

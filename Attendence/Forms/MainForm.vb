@@ -1094,7 +1094,7 @@ Public Class MainForm
 
     Private Sub ImportAttendanceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ImportAttendanceToolStripMenuItem.Click
         Dim ofd As New OpenFileDialog()
-        ofd.Filter = "Attendence data files|*" & DATA_FILE_EXTENSION
+        ofd.Filter = "Teaching App databases|*" & DATA_FILE_EXTENSION
         ofd.Title = "Select attendence file to access."
         If ofd.ShowDialog = DialogResult.OK Then
             Dim frm As New AttendenceImport(ofd.FileName)
@@ -2863,6 +2863,15 @@ Public Class MainForm
             End Using
         Else
             MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub SpecialAttendanceToolToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SpecialAttendanceToolToolStripMenuItem.Click
+        If GetSelectedClass() IsNot Nothing Then
+            Dim frm As New AttendanceFromAssignment(GetSelectedClass())
+            frm.Show()
+        Else
+            MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 End Class

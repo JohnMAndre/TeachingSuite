@@ -1156,7 +1156,6 @@ Friend Class StudentAssignmentDetails
             Dim strReturn As String = String.Empty
 
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-                'strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
                 strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                 Select Case item.PerformanceLevel
                     Case 1

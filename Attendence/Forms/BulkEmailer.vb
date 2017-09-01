@@ -229,6 +229,17 @@ Public Class BulkEmailer
     Private Sub llblMakeQuiz_LinkClicked(sender As Object, e As EventArgs) Handles llblMakeQuiz.LinkClicked
         txtSubject.Text = m_clas.ClassGroup.LastQuizName
     End Sub
+
+    Private Sub olvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles olvStudents.KeyDown
+        '-- pressing space will toggle send/don't send
+        If e.KeyCode = Keys.Space Then
+            For Each obj As EmailResultData In olvStudents.SelectedObjects
+                obj.Selected = Not obj.Selected
+            Next
+
+            olvStudents.RefreshSelectedObjects()
+        End If
+    End Sub
 End Class
 
 Public Class BulkEmailData

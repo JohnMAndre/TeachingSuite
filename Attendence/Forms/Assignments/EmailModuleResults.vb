@@ -455,7 +455,9 @@ Public Class EmailModuleResults
             str.Append("Dear " & item.LocalName & " (" & item.StudentID & "):<br><br>")
         End If
 
-        str.Append("Below are your module results as of today.<br><br>")
+        If chkIncludeGrade.Checked Then
+            str.Append("Below are your module results as of today.<br><br>")
+        End If
         str.Append("The following assignments have been processed:<br>")
 
         str.Append("<ul>")

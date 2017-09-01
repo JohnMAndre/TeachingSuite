@@ -136,7 +136,9 @@
 
         Dim row As DataGridViewRow
         Dim intIndex As Integer = dgvStudents.CurrentRow.Index
-        dgvStudents.FirstDisplayedScrollingRowIndex = intIndex '-- last one processed is on top
+        If intIndex > 2 Then
+            dgvStudents.FirstDisplayedScrollingRowIndex = intIndex - 2 '-- last three processed are on top
+        End If
 
         If dgvStudents.CurrentRow.Index < m_lstStudents.Count - 1 Then
             row = dgvStudents.Rows(intIndex)
@@ -270,5 +272,15 @@
     Private Sub EditCurrentStudentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditCurrentStudentToolStripMenuItem.Click
         dgvStudents.CurrentCell = dgvStudents.Rows(dgvStudents.CurrentRow.Index).Cells(2)
         dgvStudents.BeginEdit(True)
+    End Sub
+
+    Private Sub dgvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvStudents.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Enter
+                e.Handled = True '-- do not let enter go down a row
+        End Select
+    End Sub
+    Private Sub txtStudentGroup_TextChanged(sender As Object, e As EventArgs) Handles txtStudentGroup.TextChanged
+        m_intStudentGroup = ConvertToInt32(txtStudentGroup.Text, 0)
     End Sub
 End Class

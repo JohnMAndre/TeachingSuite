@@ -33,6 +33,8 @@ Partial Class Attendance2Form
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IncreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DecreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.EditCurrentStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -65,11 +67,6 @@ Partial Class Attendance2Form
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PublicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.EditCurrentStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -77,6 +74,9 @@ Partial Class Attendance2Form
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -144,6 +144,18 @@ Partial Class Attendance2Form
         Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.DecreaseFontToolStripMenuItem.Text = "Decrease font"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(194, 6)
+        '
+        'EditCurrentStudentToolStripMenuItem
+        '
+        Me.EditCurrentStudentToolStripMenuItem.Name = "EditCurrentStudentToolStripMenuItem"
+        Me.EditCurrentStudentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
+        Me.EditCurrentStudentToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.EditCurrentStudentToolStripMenuItem.Text = "&Edit current student"
         '
         'MarkToolStripMenuItem
         '
@@ -358,45 +370,19 @@ Partial Class Attendance2Form
         '
         'dgvStudents
         '
+        Me.dgvStudents.AllowUserToAddRows = False
+        Me.dgvStudents.AllowUserToDeleteRows = False
         Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column7, Me.Column6})
         Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudents.Location = New System.Drawing.Point(0, 27)
         Me.dgvStudents.MultiSelect = False
         Me.dgvStudents.Name = "dgvStudents"
+        Me.dgvStudents.RowHeadersVisible = False
         Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudents.ShowCellToolTips = False
         Me.dgvStudents.Size = New System.Drawing.Size(719, 429)
         Me.dgvStudents.TabIndex = 2
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 456)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(719, 22)
-        Me.StatusStrip1.TabIndex = 3
-        '
-        'lblStudentsPresent
-        '
-        Me.lblStudentsPresent.Name = "lblStudentsPresent"
-        Me.lblStudentsPresent.Size = New System.Drawing.Size(0, 17)
-        '
-        'tmrStudentCount
-        '
-        Me.tmrStudentCount.Enabled = True
-        Me.tmrStudentCount.Interval = 2000
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(194, 6)
-        '
-        'EditCurrentStudentToolStripMenuItem
-        '
-        Me.EditCurrentStudentToolStripMenuItem.Name = "EditCurrentStudentToolStripMenuItem"
-        Me.EditCurrentStudentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
-        Me.EditCurrentStudentToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.EditCurrentStudentToolStripMenuItem.Text = "&Edit current student"
         '
         'Column1
         '
@@ -447,6 +433,24 @@ Partial Class Attendance2Form
         Me.Column6.ReadOnly = True
         Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 456)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(719, 22)
+        Me.StatusStrip1.TabIndex = 3
+        '
+        'lblStudentsPresent
+        '
+        Me.lblStudentsPresent.Name = "lblStudentsPresent"
+        Me.lblStudentsPresent.Size = New System.Drawing.Size(0, 17)
+        '
+        'tmrStudentCount
+        '
+        Me.tmrStudentCount.Enabled = True
+        Me.tmrStudentCount.Interval = 2000
         '
         'Attendance2Form
         '

@@ -324,13 +324,18 @@ Public Class StudentDetail
         m_student.Tags = txtTags.Text
     End Sub
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
+        If txtStudentID.Text.Trim().Length = 0 Then
+            MessageBox.Show("Student ID is required (ID connects everything).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         If m_student Is Nothing Then
             AddNewStudent()
         End If
 
         m_student.LocalName = txtLocalName.Text
         m_student.Nickname = txtNickName.Text
-        m_student.StudentID = txtStudentID.Text
+        m_student.StudentID = txtStudentID.Text.Trim()
         m_student.ExtStudentID = txtExtStudentID.Text
         m_student.AdminNumber = nudAdminNumber.Value
         m_student.AltNumber = nudAltNumber.Value

@@ -104,7 +104,8 @@
         nudAltNumber.Text = m_student.AltNumber
         txtSchoolClass.Text = m_student.SchoolClass.Name
         Me.Text &= " - " & m_student.LocalName
-
+        txtGroup.Text = m_student.StudentGroup.ToString()
+        txtTeam.Text = m_student.StudentTeam
 
         nudFirstTryPoints.Value = m_studentAssignment.FirstTryPoints
         nudSecondTryPoints.Value = m_studentAssignment.SecondTryPoints
@@ -259,8 +260,7 @@
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
                 strReturn &= " " & item.BaseImprovementItem.Description
                 If includePerformanceLevel Then
-                    'strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5)" & Environment.NewLine
-                    strReturn &= item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                    strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                     Select Case item.PerformanceLevel
                         Case 1
                             strReturn &= "unacceptable"
