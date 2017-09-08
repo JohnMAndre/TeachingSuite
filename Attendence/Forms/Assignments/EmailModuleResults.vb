@@ -518,14 +518,22 @@ Public Class EmailModuleResults
             If ShouldIncludeAssignment(asmt.BaseAssignment) Then
                 '-- If not sending grades, then don't send summary of grades either
                 If chkIncludeGrade.Checked Then
+                    '-- Grade is normally in overall, so for BTEC there is nothing to do here
+
+                End If
+
+                If chkIncludeOverall.Checked Then
                     str.Append("<br>")
                     str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
                     str.Append("<br>")
                 End If
-                str.Append("<br>")
-                str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
-                str.Append("<br>")
-                str.Append("<br>")
+
+                If chkIncludeImprovement.Checked Then
+                    str.Append("<br>")
+                    str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
+                    str.Append("<br>")
+                    str.Append("<br>")
+                End If
             End If
         Next
 
@@ -533,8 +541,10 @@ Public Class EmailModuleResults
         '-- This is for Normal assignments
         Dim intGrade As Integer
         Dim dblPercent As Double
+        Dim intAssignmentSent As Integer
         For Each asmt As StudentAssignment In item.Assignments
             If ShouldIncludeAssignment(asmt.BaseAssignment) Then
+                intAssignmentSent += 1
                 str.Append("<br>")
                 intGrade = asmt.FirstTryPoints
                 If asmt.SecondTryPoints > intGrade Then
@@ -549,16 +559,32 @@ Public Class EmailModuleResults
                     str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
                     str.Append("<br>")
                     str.Append("<br>")
+                End If
+
+                If chkIncludeOverall.Checked Then
                     str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
                     str.Append("<br>")
                     str.Append("<br>")
                 End If
 
-                str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>"))
-                str.Append("<br>")
-                str.Append("<br>")
+                If chkIncludeImprovement.Checked Then
+                    str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>"))
+                    str.Append("<br>")
+                    str.Append("<br>")
+                End If
             End If
         Next
+
+        If intAssignmentSent < olvAssignments.CheckedItems.Count Then
+            '-- This students seems to be missing at least one of the checked assignments
+            '   Notify student about this
+            '== RECONSIDER - for some assignments, like news reports, not all students might do them at the same time
+            '               Since teachers might handle this differently, it needs to be highly configurable...which means we do this later
+            str.Append("It seems you are missing at least one assignment. If you believe you did all of the assignments, please come to see me in class.")
+            str.Append("<br>")
+            str.Append("<br>")
+        End If
+
 
         If chkIncludeGrade.Checked Then
             If boolAtLeastOneNormalAssignment Then

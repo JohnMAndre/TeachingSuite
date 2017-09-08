@@ -258,6 +258,7 @@
         Try
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
+
                 strReturn &= " " & item.BaseImprovementItem.Description
                 If includePerformanceLevel Then
                     strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
@@ -298,8 +299,8 @@
                 m_student.ImprovementItems.Add(selItem)
                 selItem.DateAdded = Date.Now
                 selItem.PerformanceLevel = 3 '-- default to 3
-                olvImprovementItems.RefreshObject(selItem)
                 olvImprovementItems.ModelToItem(selItem).Checked = True
+                olvImprovementItems.RefreshObject(selItem)
                 AutoSizeColumns(olvImprovementItems)
             End If
         End If

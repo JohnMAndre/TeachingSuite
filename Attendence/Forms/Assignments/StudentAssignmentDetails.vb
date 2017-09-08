@@ -107,6 +107,7 @@ Friend Class StudentAssignmentDetails
         nudAltNumber.Text = m_student.AltNumber
         txtSchoolClass.Text = m_student.SchoolClass.Name
         txtTeam.Text = m_student.StudentTeam
+        txtGroup.Text = m_student.StudentGroup
         Me.Text &= " - " & m_student.LocalName
         txtTags.Text = m_student.Tags
         m_strStudentTagsOriginal = m_student.Tags

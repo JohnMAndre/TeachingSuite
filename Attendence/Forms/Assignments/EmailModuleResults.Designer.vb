@@ -111,6 +111,8 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.chkIncludeOverall = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeImprovement = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -274,7 +276,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeMeritDistinctionResults.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludeMeritDistinctionResults.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkIncludeMeritDistinctionResults.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeMeritDistinctionResults.Location = New System.Drawing.Point(4, 341)
+        Me.chkIncludeMeritDistinctionResults.Location = New System.Drawing.Point(4, 339)
         Me.chkIncludeMeritDistinctionResults.Name = "chkIncludeMeritDistinctionResults"
         Me.chkIncludeMeritDistinctionResults.Size = New System.Drawing.Size(117, 19)
         Me.chkIncludeMeritDistinctionResults.TabIndex = 64
@@ -484,6 +486,8 @@ Partial Class EmailModuleResults
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeImprovement)
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeOverall)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeUnprocessed)
         Me.splitOverall.Panel1.Controls.Add(Me.btnOK)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeMeritDistinctionResults)
@@ -527,11 +531,11 @@ Partial Class EmailModuleResults
         Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 395)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 423)
         Me.txtEmailTrailingText.Multiline = True
         Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
         Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(235, 124)
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(235, 96)
         Me.txtEmailTrailingText.TabIndex = 41
         '
         'olvAssignments
@@ -620,7 +624,7 @@ Partial Class EmailModuleResults
         '
         'KryptonLabel7
         '
-        Me.KryptonLabel7.Location = New System.Drawing.Point(4, 370)
+        Me.KryptonLabel7.Location = New System.Drawing.Point(4, 393)
         Me.KryptonLabel7.Name = "KryptonLabel7"
         Me.KryptonLabel7.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel7.TabIndex = 42
@@ -955,6 +959,34 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
+        'chkIncludeOverall
+        '
+        Me.chkIncludeOverall.Checked = True
+        Me.chkIncludeOverall.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeOverall.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeOverall.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeOverall.Location = New System.Drawing.Point(111, 379)
+        Me.chkIncludeOverall.Name = "chkIncludeOverall"
+        Me.chkIncludeOverall.Size = New System.Drawing.Size(110, 19)
+        Me.chkIncludeOverall.TabIndex = 66
+        Me.chkIncludeOverall.Text = "Include overall"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeOverall, "Check to include overall text for each assignment")
+        Me.chkIncludeOverall.Values.Text = "Include overall"
+        '
+        'chkIncludeImprovement
+        '
+        Me.chkIncludeImprovement.Checked = True
+        Me.chkIncludeImprovement.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeImprovement.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeImprovement.Location = New System.Drawing.Point(73, 360)
+        Me.chkIncludeImprovement.Name = "chkIncludeImprovement"
+        Me.chkIncludeImprovement.Size = New System.Drawing.Size(148, 19)
+        Me.chkIncludeImprovement.TabIndex = 67
+        Me.chkIncludeImprovement.Text = "Include improvement"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeImprovement, "Check to include improvement text for each assignment")
+        Me.chkIncludeImprovement.Values.Text = "Include improvement"
+        '
         'EmailModuleResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1102,4 +1134,6 @@ Partial Class EmailModuleResults
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents chkIncludeUnprocessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents chkIncludeImprovement As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents chkIncludeOverall As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

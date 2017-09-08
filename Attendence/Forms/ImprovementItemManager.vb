@@ -16,7 +16,7 @@
     End Sub
 
     Private Sub DeleteSelectedImprovementItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedImprovementItemToolStripMenuItem.Click
-        Dim item As ImprovementItem = olvImprovementItems.GetSelectedObject()
+        Dim item As ImprovementItem = CType(olvImprovementItems.SelectedObject, ImprovementItem)
 
         If item Is Nothing Then
             MessageBox.Show("Please select an item to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -25,5 +25,22 @@
             ThisSemester.ImprovementItems.Remove(item)
         End If
 
+    End Sub
+
+    Private Sub MoveItemupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveItemupToolStripMenuItem.Click
+        Dim item As ImprovementItem = CType(olvImprovementItems.SelectedObject, ImprovementItem)
+        Dim intOldID As Integer = item.OrderingID
+        Dim intNewID As Integer = intOldID - 1
+        item.OrderingID = intNewID
+        olvImprovementItems.RefreshObject(item)
+
+        '-- change positions with other
+        For Each other As ImprovementItem In ThisSemester.ImprovementItems
+            If other.OrderingID = intNewID Then
+                other.OrderingID = intOldID
+                olvImprovementItems.RefreshObject(other)
+                Exit For
+            End If
+        Next
     End Sub
 End Class

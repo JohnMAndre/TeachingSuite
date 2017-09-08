@@ -169,11 +169,14 @@ Public Class Semester
 
                 '-- ImprovementItems must come before students
                 Dim xImprovements As Xml.XmlNodeList = xDoc.SelectNodes("//ImprovementItem")
+                Dim intOrderingID As Integer
                 For Each xItem As Xml.XmlElement In xImprovements
                     Dim objItem As New ImprovementItem()
                     objItem.ID = xItem.GetAttribute("ID")
                     objItem.Name = xItem.GetAttribute("Name")
                     objItem.Description = xItem.GetAttribute("Description")
+                    intOrderingID += 1
+                    objItem.OrderingID = intOrderingID '-- just for positioning
                     Me.ImprovementItems.Add(objItem)
                 Next
 
@@ -229,6 +232,10 @@ Public Class Semester
             '-- append improvement items
             Dim xParent As Xml.XmlElement = xDoc.CreateElement("ImprovementItems")
             Dim xItem As Xml.XmlElement
+
+            '-- First, sort them
+            Me.ImprovementItems.Sort()
+
             For Each item As ImprovementItem In Me.ImprovementItems
                 xItem = xDoc.CreateElement("ImprovementItem")
                 xItem.SetAttribute("ID", item.ID)
@@ -3694,6 +3701,8 @@ Public Class Student
             item.DateLastIncluded = ConvertToDateFromXML(xItem.GetAttribute("DateLastIncluded"), DATE_NO_DATE)
 
             item.PerformanceLevel = ConvertToByte(strTemp, 3) '-- If the data has no perfLevel then we just start at 3 (wrong but not horrible)
+            item.PreviousPerformanceLevel = item.PerformanceLevel '-- Show value when data was last loaded
+
 
 
             For Each baseItem As ImprovementItem In Me.SchoolClass.ClassGroup.Semester.ImprovementItems
@@ -4119,9 +4128,17 @@ Public Class Result
     Public Property ItemCount As Integer
 End Class
 Public Class ImprovementItem '-- This is the master list of what counts as an improvement item (for the semester)
+    Implements IComparable(Of ImprovementItem)
+
     Public Property ID As String = Guid.NewGuid.ToString()
+    Public Property OrderingID As Integer '-- so we know which order to display in the list
     Public Property Name As String
     Public Property Description As String
+
+    Public Function CompareTo(other As ImprovementItem) As Integer Implements IComparable(Of ImprovementItem).CompareTo
+        '-- Sort on OrderingID
+        Return OrderingID.CompareTo(other.OrderingID)
+    End Function
 End Class
 Public Class StudentImprovementItem '-- This is for the student and references the base item
     Public Sub New(student As Student)
@@ -4133,6 +4150,8 @@ Public Class StudentImprovementItem '-- This is for the student and references t
     Public Property BaseImprovementItem As ImprovementItem
     Public Property DateAdded As Date
     Public Property DateLastIncluded As Date
+    Public Property PreviousPerformanceLevel As Integer '-- not persisted, just for working with while marking (to show user pre-marking value)
+
     Public Overrides Function ToString() As String
         If BaseImprovementItem IsNot Nothing Then
             Return BaseImprovementItem.Name & " (" & BaseImprovementItem.ID & ")"
@@ -4150,7 +4169,7 @@ Public Class StudentImprovementItem '-- This is for the student and references t
         Student.AddToActivityLog("Improvement item included: " & Me.ToString())
     End Sub
 
-    Private m_bytPerformanceLevel As Integer
+    Private m_intPerformanceLevel As Integer
     '0=Not evaluated
     '1=Completely unacceptable
     '2=Very weak, incorrect very often
@@ -4159,7 +4178,7 @@ Public Class StudentImprovementItem '-- This is for the student and references t
     '5=Completely correct
     Public Property PerformanceLevel As Integer
         Get
-            Return m_bytPerformanceLevel
+            Return m_intPerformanceLevel
         End Get
         Set(value As Integer)
             If value > 5 Then
@@ -4167,7 +4186,7 @@ Public Class StudentImprovementItem '-- This is for the student and references t
             ElseIf value < 0 Then
                 value = 0 '-- cannot be neg
             End If
-            If BaseImprovementItem IsNot Nothing AndAlso value <> m_bytPerformanceLevel Then '-- make sure we are fully initialized
+            If BaseImprovementItem IsNot Nothing AndAlso value <> m_intPerformanceLevel Then '-- make sure we are fully initialized
                 '-- Log change
                 Dim strExtra As String
                 If DateAdded = DATE_NO_DATE Then
@@ -4175,10 +4194,10 @@ Public Class StudentImprovementItem '-- This is for the student and references t
                 Else
                     strExtra = String.Empty
                 End If
-                Me.Student.AddToActivityLog("Improvement item: " & BaseImprovementItem.Name & " performance level changed from " & m_bytPerformanceLevel.ToString() & " to " & value.ToString() & strExtra)
-                HistoricalStudentData.AddHistoricalData(Me.Student.StudentID, BaseImprovementItem.ID, BaseImprovementItem.Name, m_bytPerformanceLevel.ToString())
+                Me.Student.AddToActivityLog("Improvement item: " & BaseImprovementItem.Name & " performance level changed from " & m_intPerformanceLevel.ToString() & " to " & value.ToString() & strExtra)
+                HistoricalStudentData.AddHistoricalData(Me.Student.StudentID, BaseImprovementItem.ID, BaseImprovementItem.Name, m_intPerformanceLevel.ToString())
             End If
-            m_bytPerformanceLevel = value
+            m_intPerformanceLevel = value
         End Set
     End Property
 End Class

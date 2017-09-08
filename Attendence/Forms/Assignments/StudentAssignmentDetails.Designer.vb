@@ -22,6 +22,8 @@ Partial Class StudentAssignmentDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentAssignmentDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.txtGroup = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel17 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudResearchQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudWritingQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
@@ -134,6 +136,7 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,6 +174,8 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.txtGroup)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel17)
         Me.KryptonPanel.Controls.Add(Me.nudResearchQuality)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel14)
         Me.KryptonPanel.Controls.Add(Me.nudWritingQuality)
@@ -212,6 +217,22 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Size = New System.Drawing.Size(1169, 596)
         Me.KryptonPanel.TabIndex = 0
         '
+        'txtGroup
+        '
+        Me.txtGroup.Location = New System.Drawing.Point(662, 24)
+        Me.txtGroup.Name = "txtGroup"
+        Me.txtGroup.ReadOnly = True
+        Me.txtGroup.Size = New System.Drawing.Size(60, 19)
+        Me.txtGroup.TabIndex = 131
+        '
+        'KryptonLabel17
+        '
+        Me.KryptonLabel17.Location = New System.Drawing.Point(609, 24)
+        Me.KryptonLabel17.Name = "KryptonLabel17"
+        Me.KryptonLabel17.Size = New System.Drawing.Size(52, 19)
+        Me.KryptonLabel17.TabIndex = 130
+        Me.KryptonLabel17.Values.Text = "Group:"
+        '
         'nudResearchQuality
         '
         Me.nudResearchQuality.Location = New System.Drawing.Point(344, 25)
@@ -248,9 +269,9 @@ Partial Class StudentAssignmentDetails
         '
         Me.txtTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtTags.Location = New System.Drawing.Point(796, 26)
+        Me.txtTags.Location = New System.Drawing.Point(922, 26)
         Me.txtTags.Name = "txtTags"
-        Me.txtTags.Size = New System.Drawing.Size(369, 19)
+        Me.txtTags.Size = New System.Drawing.Size(243, 19)
         Me.txtTags.TabIndex = 70
         '
         'llblClearImprovementItem
@@ -744,10 +765,11 @@ Partial Class StudentAssignmentDetails
         Me.olvImprovementItems.AllColumns.Add(Me.olvcolDateRemoved)
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn5)
         Me.olvImprovementItems.AllColumns.Add(Me.olvcolPerformanceLevel)
+        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn3)
         Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvImprovementItems.CellEditUseWholeCell = False
         Me.olvImprovementItems.CheckBoxes = True
-        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.olvcolDateAdded, Me.olvcolDateRemoved, Me.OlvColumn5, Me.olvcolPerformanceLevel})
+        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.olvcolDateAdded, Me.olvcolDateRemoved, Me.OlvColumn5, Me.olvcolPerformanceLevel, Me.OlvColumn3})
         Me.olvImprovementItems.CopySelectionOnControlC = False
         Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False
         Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
@@ -778,7 +800,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.olvcolDateAdded.AspectName = "DateAdded"
         Me.olvcolDateAdded.AspectToStringFormat = "{0:d}"
-        Me.olvcolDateAdded.DisplayIndex = 2
+        Me.olvcolDateAdded.DisplayIndex = 3
         Me.olvcolDateAdded.Text = "Added"
         Me.olvcolDateAdded.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -786,7 +808,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.olvcolDateRemoved.AspectName = "DateLastIncluded"
         Me.olvcolDateRemoved.AspectToStringFormat = "{0:d}"
-        Me.olvcolDateRemoved.DisplayIndex = 3
+        Me.olvcolDateRemoved.DisplayIndex = 4
         Me.olvcolDateRemoved.Text = "Last time"
         Me.olvcolDateRemoved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolDateRemoved.ToolTipText = "Date this was last included in student feedback"
@@ -794,7 +816,7 @@ Partial Class StudentAssignmentDetails
         'OlvColumn5
         '
         Me.OlvColumn5.AspectName = "BaseImprovementItem.Description"
-        Me.OlvColumn5.DisplayIndex = 4
+        Me.OlvColumn5.DisplayIndex = 5
         Me.OlvColumn5.IsEditable = False
         Me.OlvColumn5.Text = "Description"
         '
@@ -1015,7 +1037,7 @@ Partial Class StudentAssignmentDetails
         '
         'txtTeam
         '
-        Me.txtTeam.Location = New System.Drawing.Point(663, 26)
+        Me.txtTeam.Location = New System.Drawing.Point(781, 26)
         Me.txtTeam.Name = "txtTeam"
         Me.txtTeam.ReadOnly = True
         Me.txtTeam.Size = New System.Drawing.Size(91, 19)
@@ -1053,7 +1075,7 @@ Partial Class StudentAssignmentDetails
         Me.nudAltNumber.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
         Me.nudAltNumber.Minimum = New Decimal(New Integer() {100000, 0, 0, -2147483648})
         Me.nudAltNumber.Name = "nudAltNumber"
-        Me.nudAltNumber.Size = New System.Drawing.Size(77, 21)
+        Me.nudAltNumber.Size = New System.Drawing.Size(67, 21)
         Me.nudAltNumber.TabIndex = 100
         Me.nudAltNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAltNumber.ThousandsSeparator = True
@@ -1223,7 +1245,7 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonLabel15
         '
-        Me.KryptonLabel15.Location = New System.Drawing.Point(619, 26)
+        Me.KryptonLabel15.Location = New System.Drawing.Point(732, 27)
         Me.KryptonLabel15.Name = "KryptonLabel15"
         Me.KryptonLabel15.Size = New System.Drawing.Size(43, 20)
         Me.KryptonLabel15.TabIndex = 110
@@ -1231,7 +1253,7 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonLabel2
         '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(756, 27)
+        Me.KryptonLabel2.Location = New System.Drawing.Point(878, 26)
         Me.KryptonLabel2.Name = "KryptonLabel2"
         Me.KryptonLabel2.Size = New System.Drawing.Size(38, 20)
         Me.KryptonLabel2.TabIndex = 71
@@ -1353,6 +1375,13 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Name = "MarkStudentDidNotSubmitToolStripMenuItem"
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
+        '
+        'OlvColumn3
+        '
+        Me.OlvColumn3.AspectName = "PreviousPerformanceLevel "
+        Me.OlvColumn3.DisplayIndex = 2
+        Me.OlvColumn3.Text = "Prev"
+        Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'StudentAssignmentDetails
         '
@@ -1534,4 +1563,7 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents OlvColumn12 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
     Private WithEvents nudResearchQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents txtGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel17 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
 End Class
