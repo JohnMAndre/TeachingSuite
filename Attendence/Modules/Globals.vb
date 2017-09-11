@@ -327,4 +327,15 @@
             xDoc.Save(filename)
         End If
     End Sub
+    Public Function GetRowsFromSpreadsheetClipboardData(data As String) As String()
+        Dim strRows() As String
+
+        '-- Under Ubuntu, WPS spreadsheet gives chr(13) chr(13) chr(10) for a new line
+        '   This correction should not impact window machines since they will never have chr(13) chr(13) together
+        Dim strHolding As String = data.Replace(Chr(13) & Chr(13), Chr(13))
+
+        strRows = strHolding.Split(Environment.NewLine)
+
+        Return strRows
+    End Function
 End Module

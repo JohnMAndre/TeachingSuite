@@ -1020,6 +1020,15 @@ Public Class SchoolClass
         stud.ClearStudentOfHistoricalData()
         Me.Students.Add(stud)
     End Sub
+    Public Function GetStudentByStudentID(studentID As String) As Student
+        For Each stud In Students
+            If stud.StudentID = studentID Then
+                Return stud '-- return first match (user must keep them unique)
+            End If
+            Application.DoEvents()
+        Next
+        Return Nothing
+    End Function
     ''' <summary>
     ''' Generates auto actual sessions, leaving manual sessions
     ''' </summary>

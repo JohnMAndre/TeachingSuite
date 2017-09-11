@@ -37,7 +37,8 @@ Partial Class EmailQuizResults
         Me.OlvColumn19 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtOutput = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.txtQuizName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtNewStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.llblViewQuizResultsFolder = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -52,13 +53,19 @@ Partial Class EmailQuizResults
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.txtQuizName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblReplaceStudentID = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.ReplaceSelectedStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblDuplicatesExist = New System.Windows.Forms.Label()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvQuizDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,12 +102,15 @@ Partial Class EmailQuizResults
         Me.olvQuizDetails.AllColumns.Add(Me.OlvColumn17)
         Me.olvQuizDetails.AllColumns.Add(Me.OlvColumn18)
         Me.olvQuizDetails.AllColumns.Add(Me.OlvColumn19)
+        Me.olvQuizDetails.AllColumns.Add(Me.OlvColumn1)
         Me.olvQuizDetails.AllowColumnReorder = True
         Me.olvQuizDetails.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvQuizDetails.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick
-        Me.olvQuizDetails.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn6, Me.olvcolRecordType, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn12, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn16, Me.OlvColumn17, Me.OlvColumn18, Me.OlvColumn19})
+        Me.olvQuizDetails.CellEditUseWholeCell = False
+        Me.olvQuizDetails.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn6, Me.olvcolRecordType, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn12, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn16, Me.OlvColumn17, Me.OlvColumn18, Me.OlvColumn19, Me.OlvColumn1})
         Me.olvQuizDetails.CopySelectionOnControlC = False
         Me.olvQuizDetails.CopySelectionOnControlCUsesDragSource = False
+        Me.olvQuizDetails.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvQuizDetails.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvQuizDetails.EmptyListMsg = "Copy and paste from spreadsheet."
         Me.olvQuizDetails.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -109,8 +119,8 @@ Partial Class EmailQuizResults
         Me.olvQuizDetails.HasCollapsibleGroups = False
         Me.olvQuizDetails.HideSelection = False
         Me.olvQuizDetails.Location = New System.Drawing.Point(0, 32)
+        Me.olvQuizDetails.MultiSelect = False
         Me.olvQuizDetails.Name = "olvQuizDetails"
-        Me.olvQuizDetails.OwnerDraw = True
         Me.olvQuizDetails.ShowGroups = False
         Me.olvQuizDetails.ShowImagesOnSubItems = True
         Me.olvQuizDetails.ShowItemCountOnGroups = True
@@ -125,13 +135,16 @@ Partial Class EmailQuizResults
         'OlvColumn6
         '
         Me.OlvColumn6.AspectName = "Identifier"
+        Me.OlvColumn6.DisplayIndex = 1
         Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn6.IsEditable = False
         Me.OlvColumn6.Text = "ID"
         Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'olvcolRecordType
         '
         Me.olvcolRecordType.AspectName = "RecordType"
+        Me.olvcolRecordType.DisplayIndex = 2
         Me.olvcolRecordType.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolRecordType.Text = "Type"
         Me.olvcolRecordType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -139,6 +152,7 @@ Partial Class EmailQuizResults
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "Question1"
+        Me.OlvColumn8.DisplayIndex = 3
         Me.OlvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn8.Text = "1"
         Me.OlvColumn8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -146,6 +160,7 @@ Partial Class EmailQuizResults
         'OlvColumn9
         '
         Me.OlvColumn9.AspectName = "Question2"
+        Me.OlvColumn9.DisplayIndex = 4
         Me.OlvColumn9.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn9.Text = "2"
         Me.OlvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -153,6 +168,7 @@ Partial Class EmailQuizResults
         'OlvColumn10
         '
         Me.OlvColumn10.AspectName = "Question3"
+        Me.OlvColumn10.DisplayIndex = 5
         Me.OlvColumn10.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn10.Text = "3"
         Me.OlvColumn10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -160,6 +176,7 @@ Partial Class EmailQuizResults
         'OlvColumn12
         '
         Me.OlvColumn12.AspectName = "Question4"
+        Me.OlvColumn12.DisplayIndex = 6
         Me.OlvColumn12.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn12.Text = "4"
         Me.OlvColumn12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -167,6 +184,7 @@ Partial Class EmailQuizResults
         'OlvColumn14
         '
         Me.OlvColumn14.AspectName = "Question5"
+        Me.OlvColumn14.DisplayIndex = 7
         Me.OlvColumn14.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn14.Text = "5"
         Me.OlvColumn14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -174,6 +192,7 @@ Partial Class EmailQuizResults
         'OlvColumn15
         '
         Me.OlvColumn15.AspectName = "Question6"
+        Me.OlvColumn15.DisplayIndex = 8
         Me.OlvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn15.Text = "6"
         Me.OlvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -181,6 +200,7 @@ Partial Class EmailQuizResults
         'OlvColumn16
         '
         Me.OlvColumn16.AspectName = "Question7"
+        Me.OlvColumn16.DisplayIndex = 9
         Me.OlvColumn16.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn16.Text = "7"
         Me.OlvColumn16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -188,6 +208,7 @@ Partial Class EmailQuizResults
         'OlvColumn17
         '
         Me.OlvColumn17.AspectName = "Question8"
+        Me.OlvColumn17.DisplayIndex = 10
         Me.OlvColumn17.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn17.Text = "8"
         Me.OlvColumn17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -195,6 +216,7 @@ Partial Class EmailQuizResults
         'OlvColumn18
         '
         Me.OlvColumn18.AspectName = "Question9"
+        Me.OlvColumn18.DisplayIndex = 11
         Me.OlvColumn18.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn18.Text = "9"
         Me.OlvColumn18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -202,6 +224,7 @@ Partial Class EmailQuizResults
         'OlvColumn19
         '
         Me.OlvColumn19.AspectName = "Question10"
+        Me.OlvColumn19.DisplayIndex = 12
         Me.OlvColumn19.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn19.Text = "10"
         Me.OlvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -220,7 +243,9 @@ Partial Class EmailQuizResults
         '
         'KryptonPanel2
         '
-        Me.KryptonPanel2.Controls.Add(Me.txtQuizName)
+        Me.KryptonPanel2.Controls.Add(Me.lblDuplicatesExist)
+        Me.KryptonPanel2.Controls.Add(Me.llblReplaceStudentID)
+        Me.KryptonPanel2.Controls.Add(Me.txtNewStudentID)
         Me.KryptonPanel2.Controls.Add(Me.KryptonLabel2)
         Me.KryptonPanel2.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Top
@@ -229,23 +254,34 @@ Partial Class EmailQuizResults
         Me.KryptonPanel2.Size = New System.Drawing.Size(991, 32)
         Me.KryptonPanel2.TabIndex = 6
         '
-        'txtQuizName
+        'txtNewStudentID
         '
-        Me.txtQuizName.Location = New System.Drawing.Point(97, 3)
-        Me.txtQuizName.Name = "txtQuizName"
-        Me.txtQuizName.Size = New System.Drawing.Size(243, 19)
-        Me.txtQuizName.TabIndex = 30
+        Me.txtNewStudentID.Location = New System.Drawing.Point(113, 3)
+        Me.txtNewStudentID.Name = "txtNewStudentID"
+        Me.txtNewStudentID.Size = New System.Drawing.Size(155, 19)
+        Me.txtNewStudentID.TabIndex = 30
+        '
+        'KryptonLabel2
+        '
+        Me.KryptonLabel2.Location = New System.Drawing.Point(440, 4)
+        Me.KryptonLabel2.Name = "KryptonLabel2"
+        Me.KryptonLabel2.Size = New System.Drawing.Size(524, 19)
+        Me.KryptonLabel2.TabIndex = 29
+        Me.KryptonLabel2.Values.Text = "Note: Any question where the answer row says STORE will be stored and not emailed" & _
+    "."
         '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(4, 4)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(93, 19)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(105, 19)
         Me.KryptonLabel1.TabIndex = 29
-        Me.KryptonLabel1.Values.Text = "Name of quiz:"
+        Me.KryptonLabel1.Values.Text = "New StudentID:"
         '
         'KryptonPanel1
         '
+        Me.KryptonPanel1.Controls.Add(Me.txtQuizName)
+        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel1.Controls.Add(Me.llblViewQuizResultsFolder)
         Me.KryptonPanel1.Controls.Add(Me.txtEmailTrailingText)
         Me.KryptonPanel1.Controls.Add(Me.KryptonLabel7)
@@ -356,6 +392,10 @@ Partial Class EmailQuizResults
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -388,7 +428,7 @@ Partial Class EmailQuizResults
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem, Me.DeleteRowToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem, Me.DeleteRowToolStripMenuItem, Me.ReplaceSelectedStudentIDToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "&Edit"
@@ -397,24 +437,66 @@ Partial Class EmailQuizResults
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
         Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
         '
         'DeleteRowToolStripMenuItem
         '
         Me.DeleteRowToolStripMenuItem.Name = "DeleteRowToolStripMenuItem"
         Me.DeleteRowToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.DeleteRowToolStripMenuItem.Text = "&Delete row"
         '
-        'KryptonLabel2
+        'OlvColumn1
         '
-        Me.KryptonLabel2.Location = New System.Drawing.Point(364, 4)
-        Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(524, 19)
-        Me.KryptonLabel2.TabIndex = 29
-        Me.KryptonLabel2.Values.Text = "Note: Any question where the answer row says STORE will be stored and not emailed" & _
-    "."
+        Me.OlvColumn1.AspectName = "Student.LocalName"
+        Me.OlvColumn1.DisplayIndex = 0
+        Me.OlvColumn1.IsEditable = False
+        Me.OlvColumn1.Text = "Student"
+        Me.OlvColumn1.Width = 97
+        '
+        'txtQuizName
+        '
+        Me.txtQuizName.Location = New System.Drawing.Point(476, 3)
+        Me.txtQuizName.Name = "txtQuizName"
+        Me.txtQuizName.Size = New System.Drawing.Size(243, 19)
+        Me.txtQuizName.TabIndex = 56
+        '
+        'KryptonLabel3
+        '
+        Me.KryptonLabel3.Location = New System.Drawing.Point(383, 4)
+        Me.KryptonLabel3.Name = "KryptonLabel3"
+        Me.KryptonLabel3.Size = New System.Drawing.Size(93, 19)
+        Me.KryptonLabel3.TabIndex = 55
+        Me.KryptonLabel3.Values.Text = "Name of quiz:"
+        '
+        'llblReplaceStudentID
+        '
+        Me.llblReplaceStudentID.Location = New System.Drawing.Point(274, 5)
+        Me.llblReplaceStudentID.Name = "llblReplaceStudentID"
+        Me.llblReplaceStudentID.Size = New System.Drawing.Size(22, 18)
+        Me.llblReplaceStudentID.TabIndex = 31
+        Me.llblReplaceStudentID.Values.Image = Global.Teaching.My.Resources.Resources.refresh_16
+        Me.llblReplaceStudentID.Values.Text = ""
+        '
+        'ReplaceSelectedStudentIDToolStripMenuItem
+        '
+        Me.ReplaceSelectedStudentIDToolStripMenuItem.Name = "ReplaceSelectedStudentIDToolStripMenuItem"
+        Me.ReplaceSelectedStudentIDToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.ReplaceSelectedStudentIDToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
+        Me.ReplaceSelectedStudentIDToolStripMenuItem.Text = "&Replace selected StudentID"
+        '
+        'lblDuplicatesExist
+        '
+        Me.lblDuplicatesExist.AutoSize = True
+        Me.lblDuplicatesExist.BackColor = System.Drawing.Color.Yellow
+        Me.lblDuplicatesExist.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDuplicatesExist.Location = New System.Drawing.Point(314, 5)
+        Me.lblDuplicatesExist.Name = "lblDuplicatesExist"
+        Me.lblDuplicatesExist.Size = New System.Drawing.Size(120, 18)
+        Me.lblDuplicatesExist.TabIndex = 33
+        Me.lblDuplicatesExist.Text = "Duplicates Exist"
+        Me.lblDuplicatesExist.Visible = False
         '
         'EmailQuizResults
         '
@@ -462,7 +544,7 @@ Partial Class EmailQuizResults
     Friend WithEvents btnCancel As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents KryptonPanel2 As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtQuizName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents txtNewStudentID As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents txtOutput As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudSendInXHours As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
@@ -493,4 +575,10 @@ Partial Class EmailQuizResults
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents DeleteRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents txtQuizName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents llblReplaceStudentID As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents ReplaceSelectedStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lblDuplicatesExist As System.Windows.Forms.Label
 End Class

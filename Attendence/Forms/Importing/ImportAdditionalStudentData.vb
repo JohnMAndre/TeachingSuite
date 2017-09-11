@@ -85,11 +85,8 @@ Public Class ImportAdditionalStudentData
             Else
                 Dim strRows() As String
 
-                '-- Under Ubuntu, WPS spreadsheet gives chr(13) chr (13) chr(10) for a new line
-                '   This correction should not impact window machines since they will never have chr(13) chr(13) together
-                Dim strHolding As String = strClipboard.Replace(Chr(13) & Chr(13), Chr(13))
+                strRows = GetRowsFromSpreadsheetClipboardData(strClipboard)
 
-                strRows = strHolding.Split(Environment.NewLine)
                 Dim row() As String
                 Dim intIndexStudentID As Integer = 0
                 Dim intIndexNickname As Integer

@@ -18,6 +18,7 @@ Public Class EmailQuizResults
         Public Question8 As String
         Public Question9 As String
         Public Question10 As String
+        Public Student As Student
     End Class
     Private m_students As List(Of Student)
     Private m_lstToEmail As List(Of StudentResults)
@@ -653,7 +654,9 @@ Public Class EmailQuizResults
                 MessageBox.Show("The clipboard does not contain multiple lines but it needs to.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 Dim strRows() As String
-                strRows = strClipboard.Split(Environment.NewLine)
+
+                strRows = GetRowsFromSpreadsheetClipboardData(strClipboard)
+
                 Dim row() As String
                 Dim boolIgnore As Boolean
                 For intCounter As Integer = 0 To strRows.Count - 1
@@ -679,6 +682,15 @@ Public Class EmailQuizResults
                     Else
                         objResults.RecordType = QuizDetailRecordType.Responses
                         objResults.Identifier = row(0).Trim()
+
+                        For Each stud In m_students
+                            If stud.StudentID = objResults.Identifier Then
+                                objResults.Student = stud '-- use first match (user must keep them unique)
+                                Exit For
+                            End If
+                            Application.DoEvents()
+                        Next
+
                     End If
 
                     If Not boolIgnore Then
@@ -718,6 +730,9 @@ Public Class EmailQuizResults
                 AutoSizeColumns(olvQuizDetails)
                 olvQuizDetails.Sort(olvcolRecordType, SortOrder.Ascending)
             End If
+
+            CheckForDuplicates()
+
         Catch ex As Exception
             MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -734,5 +749,66 @@ Public Class EmailQuizResults
             m_lstQuizResults.Remove(olvQuizDetails.SelectedObject)
             olvQuizDetails.RemoveObject(olvQuizDetails.SelectedObject)
         End If
+
+        CheckForDuplicates()
+    End Sub
+
+    Private Sub llblReplaceStudentID_LinkClicked(sender As Object, e As EventArgs) Handles llblReplaceStudentID.LinkClicked
+        ReplaceSelectedStudentID()
+    End Sub
+
+    Private Sub ReplaceSelectedStudentIDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReplaceSelectedStudentIDToolStripMenuItem.Click
+        ReplaceSelectedStudentID()
+    End Sub
+    Private Sub ReplaceSelectedStudentID()
+        If txtNewStudentID.Text.Trim.Length = 0 Then
+            MessageBox.Show("Please enter a new StudentID.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        Dim qd As QuizDetails = CType(olvQuizDetails.SelectedObject, QuizDetails)
+        If qd Is Nothing Then
+            MessageBox.Show("Please select an entry to change.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        qd.Identifier = txtNewStudentID.Text.Trim()
+
+        '-- Update student ref
+        For Each stud In m_students
+            If stud.StudentID = qd.Identifier Then
+                qd.Student = stud '-- use first match (user must keep them unique)
+                Exit For
+            End If
+            Application.DoEvents()
+        Next
+
+        Me.olvQuizDetails.RefreshSelectedObjects()
+
+        CheckForDuplicates()
+    End Sub
+
+    Private Sub CheckForDuplicates()
+        lblDuplicatesExist.Hide()
+
+        Dim dict As New Dictionary(Of String, String)
+
+        For Each qd As QuizDetails In m_lstQuizResults
+            If dict.ContainsKey(qd.Identifier) Then
+                lblDuplicatesExist.Show()
+                Exit For
+            Else
+                dict.Add(qd.Identifier, Nothing)
+            End If
+        Next
+    End Sub
+
+    Private Sub olvQuizDetails_ItemActivate(sender As Object, e As EventArgs) Handles olvQuizDetails.ItemActivate
+        Dim qd As QuizDetails = CType(olvQuizDetails.SelectedObject, QuizDetails)
+        If qd Is Nothing Then
+            Exit Sub
+        End If
+
+        txtNewStudentID.Text = qd.Identifier
     End Sub
 End Class
