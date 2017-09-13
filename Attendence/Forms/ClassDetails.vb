@@ -392,4 +392,8 @@ Public Class ClassDetails
         Me.m_class.ClassSessions.Add(session)
         olvAttendanceSessions.AddObject(session)
     End Sub
+
+    Private Sub btnShowAttendanceSessions_LinkClicked(sender As Object, e As EventArgs) Handles btnShowAttendanceSessions.LinkClicked
+        olvAttendanceSessions.BringToFront()
+    End Sub
 End Class

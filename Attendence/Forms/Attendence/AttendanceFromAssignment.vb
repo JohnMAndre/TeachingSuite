@@ -156,6 +156,12 @@
                 stud.TeachingSessions.Add(session)
             Next
 
+            Dim objNewSession As New ClassSession()
+            objNewSession.StartDate = dtpSessionDate.Value.Date
+            objNewSession.StudentGroup = 0 '-- for all students
+
+            clas.ClassSessions.Add(objNewSession)
+
             MessageBox.Show(clas.Students.Count.ToString("#,##0") & " students processed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             AddApplicationHistory(clas.Students.Count.ToString("#,##0") & " students processed in Attendance from Assignment.")
             Close()

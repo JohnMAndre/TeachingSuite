@@ -299,10 +299,10 @@
                 m_student.ImprovementItems.Add(selItem)
                 selItem.DateAdded = Date.Now
                 selItem.PerformanceLevel = 3 '-- default to 3
-                olvImprovementItems.ModelToItem(selItem).Checked = True
-                olvImprovementItems.RefreshObject(selItem)
-                AutoSizeColumns(olvImprovementItems)
             End If
+            olvImprovementItems.ModelToItem(selItem).Checked = True
+            olvImprovementItems.RefreshObject(selItem)
+            AutoSizeColumns(olvImprovementItems)
         End If
     End Sub
     Private Sub llblRemoveImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles llblRemoveImprovementItem.LinkClicked
