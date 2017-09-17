@@ -170,4 +170,8 @@
         End If
 
     End Sub
+
+    Private Sub llblToday_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblToday.LinkClicked
+        dtpSessionDate.Value = Today
+    End Sub
 End Class

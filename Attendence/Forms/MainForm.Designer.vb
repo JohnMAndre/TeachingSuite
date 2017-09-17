@@ -874,7 +874,7 @@ Partial Class MainForm
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.ScheduleNotesSplitter)
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.pnlScheduleControls)
         Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 425)
-        Me.splitStudentsSchedule.SplitterDistance = 211
+        Me.splitStudentsSchedule.SplitterDistance = 210
         Me.splitStudentsSchedule.TabIndex = 28
         '
         'olvStudents
@@ -928,7 +928,7 @@ Partial Class MainForm
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(916, 211)
+        Me.olvStudents.Size = New System.Drawing.Size(916, 210)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.TriggerCellOverEventsWhenOverHeader = False
         Me.olvStudents.UseAlternatingBackColors = True
@@ -1313,7 +1313,7 @@ Partial Class MainForm
         '
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.Panel1)
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.picStudent)
-        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 209)
+        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 210)
         Me.ScheduleNotesSplitter.SplitterDistance = 586
         Me.ScheduleNotesSplitter.TabIndex = 45
         '
@@ -1352,7 +1352,7 @@ Partial Class MainForm
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(586, 209)
+        Me.olvSchedule.Size = New System.Drawing.Size(586, 210)
         Me.olvSchedule.TabIndex = 4
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -1498,7 +1498,7 @@ Partial Class MainForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(215, 209)
+        Me.Panel1.Size = New System.Drawing.Size(215, 210)
         Me.Panel1.TabIndex = 46
         '
         'llblClearNotes
@@ -1542,7 +1542,7 @@ Partial Class MainForm
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtNotes.Size = New System.Drawing.Size(215, 171)
+        Me.txtNotes.Size = New System.Drawing.Size(215, 172)
         Me.txtNotes.TabIndex = 45
         Me.ToolTip1.SetToolTip(Me.txtNotes, "Notes")
         '
@@ -1551,7 +1551,7 @@ Partial Class MainForm
         Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.picStudent.Location = New System.Drawing.Point(0, 0)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(215, 209)
+        Me.picStudent.Size = New System.Drawing.Size(215, 210)
         Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
@@ -1569,13 +1569,13 @@ Partial Class MainForm
         Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
         Me.pnlScheduleControls.Name = "pnlScheduleControls"
-        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 209)
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 210)
         Me.pnlScheduleControls.TabIndex = 5
         '
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 97)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 98)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
         Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
@@ -1586,7 +1586,7 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 123)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 124)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
         Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
@@ -1606,7 +1606,7 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 146)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 147)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
         Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
@@ -1617,7 +1617,7 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 146)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 147)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
         Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
@@ -1639,7 +1639,7 @@ Partial Class MainForm
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 178)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 179)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
         Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
@@ -2416,14 +2416,14 @@ Partial Class MainForm
         'ImportSpecialToolStripMenuItem
         '
         Me.ImportSpecialToolStripMenuItem.Name = "ImportSpecialToolStripMenuItem"
-        Me.ImportSpecialToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ImportSpecialToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportSpecialToolStripMenuItem.Text = "Import special..."
         Me.ImportSpecialToolStripMenuItem.ToolTipText = "Import data exported by another user of this app"
         '
         'ImportClassToolStripMenuItem
         '
         Me.ImportClassToolStripMenuItem.Name = "ImportClassToolStripMenuItem"
-        Me.ImportClassToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ImportClassToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportClassToolStripMenuItem.Text = "Import &class..."
         Me.ImportClassToolStripMenuItem.ToolTipText = "Import class, students, assignments (but not student assignment results or attend" & _
     "ance records) from previous semester"
@@ -2432,7 +2432,7 @@ Partial Class MainForm
         '
         Me.ImportSToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentsFromTextToolStripMenuItem, Me.ImportStudentsFromOtherSemesterToolStripMenuItem})
         Me.ImportSToolStripMenuItem.Name = "ImportSToolStripMenuItem"
-        Me.ImportSToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ImportSToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportSToolStripMenuItem.Text = "Import &students..."
         '
         'ImportStudentsFromTextToolStripMenuItem
@@ -2456,44 +2456,44 @@ Partial Class MainForm
         'ImportEmailAddressesToolStripMenuItem
         '
         Me.ImportEmailAddressesToolStripMenuItem.Name = "ImportEmailAddressesToolStripMenuItem"
-        Me.ImportEmailAddressesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ImportEmailAddressesToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportEmailAddressesToolStripMenuItem.Text = "Import additional student &data..."
         '
         'ImportStudentAssignmentScoresToolStripMenuItem
         '
         Me.ImportStudentAssignmentScoresToolStripMenuItem.Name = "ImportStudentAssignmentScoresToolStripMenuItem"
-        Me.ImportStudentAssignmentScoresToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ImportStudentAssignmentScoresToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportStudentAssignmentScoresToolStripMenuItem.Text = "Import student assignment scores..."
         '
         'ImportImprovementItemsToolStripMenuItem
         '
         Me.ImportImprovementItemsToolStripMenuItem.Name = "ImportImprovementItemsToolStripMenuItem"
-        Me.ImportImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ImportImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportImprovementItemsToolStripMenuItem.Text = "Import improvement items"
         Me.ImportImprovementItemsToolStripMenuItem.ToolTipText = "Import improvement items from other semester"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(267, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(288, 6)
         '
         'ExportAttendanceToolStripMenuItem
         '
         Me.ExportAttendanceToolStripMenuItem.Name = "ExportAttendanceToolStripMenuItem"
-        Me.ExportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportAttendanceToolStripMenuItem.Text = "Export a&ttendance..."
         '
         'ExportModuleResultsToolStripMenuItem
         '
         Me.ExportModuleResultsToolStripMenuItem.Name = "ExportModuleResultsToolStripMenuItem"
-        Me.ExportModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportModuleResultsToolStripMenuItem.Text = "Export &module results (BTEC)..."
         '
         'ExportMarkingResultsToolStripMenuItem
         '
         Me.ExportMarkingResultsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMarkingResultsFirstSubmitToolStripMenuItem, Me.ExportMarkingResultsSecondSubmitToolStripMenuItem, Me.ExportMarkingResultsThirdSubmitToolStripMenuItem})
         Me.ExportMarkingResultsToolStripMenuItem.Name = "ExportMarkingResultsToolStripMenuItem"
-        Me.ExportMarkingResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportMarkingResultsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportMarkingResultsToolStripMenuItem.Text = "Export marking results (cumulative)..."
         '
         'ExportMarkingResultsFirstSubmitToolStripMenuItem
@@ -2524,7 +2524,7 @@ Partial Class MainForm
         '
         Me.ExportMarkingResultsIsolatedToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem, Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem, Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem})
         Me.ExportMarkingResultsIsolatedToolStripMenuItem.Name = "ExportMarkingResultsIsolatedToolStripMenuItem"
-        Me.ExportMarkingResultsIsolatedToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportMarkingResultsIsolatedToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportMarkingResultsIsolatedToolStripMenuItem.Text = "Export marking results (isolated)..."
         '
         'ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem
@@ -2554,63 +2554,63 @@ Partial Class MainForm
         'ExportStudentsToolStripMenuItem
         '
         Me.ExportStudentsToolStripMenuItem.Name = "ExportStudentsToolStripMenuItem"
-        Me.ExportStudentsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportStudentsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportStudentsToolStripMenuItem.Text = "Export st&udents..."
         '
         'ExportStudentGradesToolStripMenuItem
         '
         Me.ExportStudentGradesToolStripMenuItem.Name = "ExportStudentGradesToolStripMenuItem"
-        Me.ExportStudentGradesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportStudentGradesToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportStudentGradesToolStripMenuItem.Text = "Export student grades (normal)..."
         Me.ExportStudentGradesToolStripMenuItem.Visible = False
         '
         'ExportModuleToolStripMenuItem
         '
         Me.ExportModuleToolStripMenuItem.Name = "ExportModuleToolStripMenuItem"
-        Me.ExportModuleToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportModuleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportModuleToolStripMenuItem.Text = "Export student grades (normal)..."
         '
         'ExportScheduleAsICalToolStripMenuItem
         '
         Me.ExportScheduleAsICalToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.calendar_16
         Me.ExportScheduleAsICalToolStripMenuItem.Name = "ExportScheduleAsICalToolStripMenuItem"
-        Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportScheduleAsICalToolStripMenuItem.Text = "Export schedule as iCalendar..."
         '
         'ExportEntireSemesterAsXMLToolStripMenuItem
         '
         Me.ExportEntireSemesterAsXMLToolStripMenuItem.Name = "ExportEntireSemesterAsXMLToolStripMenuItem"
-        Me.ExportEntireSemesterAsXMLToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ExportEntireSemesterAsXMLToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportEntireSemesterAsXMLToolStripMenuItem.Text = "Export entire semester as XML..."
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(267, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(288, 6)
         '
         'UpdateEmailAddressToolStripMenuItem
         '
         Me.UpdateEmailAddressToolStripMenuItem.Name = "UpdateEmailAddressToolStripMenuItem"
-        Me.UpdateEmailAddressToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.UpdateEmailAddressToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.UpdateEmailAddressToolStripMenuItem.Text = "Update Email Address..."
         '
         'FindDuplicateStudentsToolStripMenuItem
         '
         Me.FindDuplicateStudentsToolStripMenuItem.Name = "FindDuplicateStudentsToolStripMenuItem"
-        Me.FindDuplicateStudentsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.FindDuplicateStudentsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.FindDuplicateStudentsToolStripMenuItem.Text = "Find duplicate students..."
         '
         'FindhistoricalStudentToolStripMenuItem
         '
         Me.FindhistoricalStudentToolStripMenuItem.Name = "FindhistoricalStudentToolStripMenuItem"
         Me.FindhistoricalStudentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
-        Me.FindhistoricalStudentToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.FindhistoricalStudentToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.FindhistoricalStudentToolStripMenuItem.Text = "Find &historical student..."
         '
         'ProcessAddDropStudentsToolStripMenuItem
         '
         Me.ProcessAddDropStudentsToolStripMenuItem.Name = "ProcessAddDropStudentsToolStripMenuItem"
-        Me.ProcessAddDropStudentsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ProcessAddDropStudentsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ProcessAddDropStudentsToolStripMenuItem.Text = "Process add / drop students..."
         '
         'HelpToolStripMenuItem
@@ -2654,7 +2654,6 @@ Partial Class MainForm
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(179, 22)
         Me.ToolStripMenuItem2.Text = "Test...do not use"
-        Me.ToolStripMenuItem2.Visible = False
         '
         'tmrFilterStudents
         '
@@ -3026,7 +3025,6 @@ Partial Class MainForm
     Friend WithEvents OlvColumn27 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn28 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ScheduleNotesSplitter As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
-    Friend WithEvents txtNotes As System.Windows.Forms.TextBox
     Friend WithEvents NotesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
@@ -3076,4 +3074,5 @@ Partial Class MainForm
     Friend WithEvents ImportSpecialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TakeAttendancealtFormToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SpecialAttendanceToolToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents txtNotes As System.Windows.Forms.TextBox
 End Class

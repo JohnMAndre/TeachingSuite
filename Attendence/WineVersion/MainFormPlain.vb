@@ -1,6 +1,6 @@
-Imports System.Windows.Forms
+﻿Imports System.Windows.Forms
 
-Public Class MainForm
+Public Class MainFormPlain
     Implements IMainForm
 
     Private WithEvents m_bkgndExportAttendence As System.ComponentModel.BackgroundWorker
@@ -54,7 +54,7 @@ Public Class MainForm
         MainFormReference = Me
 
         '-- stupid krypton
-        AddHandler lstAssignments.ListBox.DoubleClick, AddressOf lstAssignments_DoubleClick
+        AddHandler lstAssignments.DoubleClick, AddressOf lstAssignments_DoubleClick
 
 
         '-- Load semester list
@@ -67,7 +67,7 @@ Public Class MainForm
                 If item = AppSettings.LastSemesterFile Then
                     cboSemester.SelectedItem = item
                     LoadSemester()
-                    Me.KryptonGroup1.Hide()
+                    Me.pnlSelectSemester.Hide()
                     Exit For
                 End If
             Next
@@ -85,11 +85,10 @@ Public Class MainForm
 
         tmrAutoSave.Start()
 
-        SetupForLiteVersion()
 
         '-- setup spell check for notes
-        C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
-        C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
+        'C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
+        'C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
 
         '-- Check for update
         Dim ts As TimeSpan = Date.Now - AppSettings.LastUpdateCheck
@@ -109,79 +108,7 @@ Public Class MainForm
         End If
 
     End Sub
-    ''' <summary>
-    ''' Removes UI elements for Lite (free) version
-    ''' </summary>
-    Private Sub SetupForLiteVersion()
-        Try
-            If Not AppSettings.PremiumFeaturesEnabled Then
-                ScheduleNotesSplitter.Panel1Collapsed = True
-                pnlScheduleControls.Visible = False
 
-                '-- olvcolumns
-                olvStudents.Columns.Remove(olvcolAssignmentCount)
-                olvStudents.Columns.Remove(olvcolProcessedAssignments)
-                olvStudents.Columns.Remove(olvcolStudentGroup)
-
-                '-- View
-                ViewScheduleToolStripMenuItem.Text = "&Notes"
-                ViewScheduleToolStripMenuItem.Checked = False
-                splitStudentsSchedule.Panel2Collapsed = True '-- hide for lite
-                NotesToolStripMenuItem.Visible = False
-
-                '-- Action
-                KryptonSplitContainer1.Panel2Collapsed = True
-                ExamToolStripMenuItem.Visible = False
-                ExamRedoToolStripMenuItem.Visible = False
-                Exam2ndRedoToolStripMenuItem.Visible = False
-                ToolStripSeparator4.Visible = False
-                ToolStripSeparator15.Visible = False
-
-                MarkSelectedAssignmentToolStripMenuItem.Visible = False
-                EmailAssignmentResultsToolStripMenuItem.Visible = False
-                SendBulkEmailToolStripMenuItem.Visible = False
-                EmailOnlineQuizResultsToolStripMenuItem.Visible = False
-                BatchSaveMarkingSheetsToolStripMenuItem.Visible = False
-
-                FilterForSelectedGroupToolStripMenuItem.Visible = False
-
-                CloseAssignmentToolStripMenuItem.Visible = False
-                EitherOrToolStripMenuItem.Visible = False
-                RemoveAllStudentsFromSelectedClassToolStripMenuItem.Visible = False
-                ManageImprovementItemsToolStripMenuItem.Visible = False
-
-                '-- reports
-                StudentAttendanceErrorsToolStripMenuItem.Visible = False
-                AssignmentResultsToolStripMenuItem.Visible = False
-                ModuleResultsToolStripMenuItem.Visible = False
-                FailedoutcomesToolStripMenuItem.Visible = False
-                ModuleFeedbackCheckToolStripMenuItem.Visible = False
-                StudentOutcomeResultsToolStripMenuItem.Visible = False
-                SessionprepStatusToolStripMenuItem.Visible = False
-                AssignmentProcessingToolStripMenuItem.Visible = False
-                StudentQualityToolStripMenuItem.Visible = False
-                StudentGradesToolStripMenuItem.Visible = False
-                SemesterStatisticsToolStripMenuItem.Visible = False
-                ExcessiveAbsencesReport.Visible = False
-                ScheduledSessionsToolStripMenuItem.Visible = False
-
-                '-- Data
-                ImportStudentAssignmentScoresToolStripMenuItem.Visible = False
-                ImportImprovementItemsToolStripMenuItem.Visible = False
-                ExportModuleResultsToolStripMenuItem.Visible = False
-                ExportMarkingResultsToolStripMenuItem.Visible = False
-                ExportMarkingResultsIsolatedToolStripMenuItem.Visible = False
-                ExportStudentGradesToolStripMenuItem.Visible = False
-                ExportScheduleAsICalToolStripMenuItem.Visible = False
-                UpdateEmailAddressToolStripMenuItem.Visible = False
-                FindDuplicateStudentsToolStripMenuItem.Visible = False
-
-            End If
-
-        Catch ex As Exception
-            Log(ex)
-        End Try
-    End Sub
     Private Sub LoadSemesters()
         Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
         'Dim files() As String
@@ -244,8 +171,8 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblCloseSemesterPanel_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblCloseSemesterPanel.LinkClicked
-        Me.KryptonGroup1.Hide()
+    Private Sub llblCloseSemesterPanel_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblCloseSemesterPanel.Click
+        Me.pnlSelectSemester.Hide()
     End Sub
 
     Private Sub LoadClassGroups()
@@ -359,7 +286,7 @@ Public Class MainForm
             MessageBox.Show("There was an error loading the selected semester: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub btnLoadSemester_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnLoadSemester.LinkClicked
+    Private Sub btnLoadSemester_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnLoadSemester.Click
         LoadSemester()
     End Sub
 
@@ -371,7 +298,7 @@ Public Class MainForm
         ThisSemester.EndDateOverall = dtpSemesterEnd.Value
     End Sub
 
-    Private Sub llblAddClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnAddClass.LinkClicked
+    Private Sub llblAddClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnAddClass.Click
         If GetSelectedClassGroup() Is Nothing Then
             MessageBox.Show("Please select a module first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
@@ -453,7 +380,7 @@ Public Class MainForm
             Return lstClasses.Items(lstClasses.SelectedIndex)
         End If
     End Function
-    Private Sub btnEditClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnEditClass.LinkClicked
+    Private Sub btnEditClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnEditClass.Click
         EditSelectedClass()
     End Sub
     Private Sub LoadStudents()
@@ -478,7 +405,7 @@ Public Class MainForm
         m_lstRandomlySelected.Clear()
         ShowStudentCount()
     End Sub
-    Private Sub llblAddStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddStudent.LinkClicked
+    Private Sub llblAddStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddStudent.Click
         Dim clas As SchoolClass = GetSelectedClass()
         If clas Is Nothing Then
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -497,7 +424,7 @@ Public Class MainForm
         LoadStudents()
     End Sub
 
-    Private Sub btnEditStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnEditStudent.LinkClicked
+    Private Sub btnEditStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnEditStudent.Click
         EditSelectedStudent()
     End Sub
     Private Sub EditSelectedStudent()
@@ -512,7 +439,7 @@ Public Class MainForm
             End Using
         End If
     End Sub
-    Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvStudents.ItemActivate
+    Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs)
         If ReorderAdminNumbersToolStripMenuItem.Checked Then
             Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
             If stud Is Nothing Then
@@ -545,7 +472,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveStudent.LinkClicked
+    Private Sub llblRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveStudent.Click
         Dim lstStudents As List(Of Student) = GetSelectedStudents()
 
         If lstStudents.Count > 0 Then
@@ -605,7 +532,7 @@ Public Class MainForm
         End If
 
     End Sub
-    Private Sub llblMoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblMoveStudent.LinkClicked
+    Private Sub llblMoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblMoveStudent.Click
         Dim lstStudents As List(Of Student) = GetSelectedStudents()
 
         If lstStudents.Count = 0 Then
@@ -627,7 +554,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblRemoveClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveClass.LinkClicked
+    Private Sub llblRemoveClass_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveClass.Click
         RemoveSelectedClass()
     End Sub
 
@@ -672,10 +599,10 @@ Public Class MainForm
     End Sub
 
     Private Sub LoadSemesterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles LoadSemesterToolStripMenuItem.Click
-        KryptonGroup1.Visible = Not KryptonGroup1.Visible
+        pnlSelectSemester.Visible = Not pnlSelectSemester.Visible
     End Sub
 
-    Private Sub llblClearFilter_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblClearFilter.LinkClicked
+    Private Sub llblClearFilter_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblClearFilter.Click
         txtStudentFilter.Text = String.Empty
         txtStudentFilter.Focus()
     End Sub
@@ -711,7 +638,7 @@ Public Class MainForm
             Return True
         End If
     End Function
-    Private Sub btnSelectRandomStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnSelectRandomStudent.LinkClicked
+    Private Sub btnSelectRandomStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnSelectRandomStudent.Click
         SelectRandomStudent()
     End Sub
 
@@ -742,7 +669,7 @@ Public Class MainForm
         End If
     End Sub
 
-    
+
     Private Class ExportModuleResultData
         Public ClassGroup As ClassGroup
         Public Filename As String
@@ -765,7 +692,7 @@ Public Class MainForm
         Using frm As New OptionsForm
             If frm.ShowDialog(Me) = DialogResult.OK Then
                 '-- reload data which might have changed
-                C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
+                'C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
             End If
         End Using
     End Sub
@@ -795,7 +722,7 @@ Public Class MainForm
             End Using
         End If
     End Sub
-    Private Sub llblAddAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddAssignment.LinkClicked
+    Private Sub llblAddAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddAssignment.Click
         ctxmnuNewAssignment.Show(llblAddAssignment, New Point(0, 0))
     End Sub
     Private Sub EditSelectedAssignment()
@@ -819,7 +746,7 @@ Public Class MainForm
             End Select
         End If
     End Sub
-    Private Sub llblEditAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblEditAssignment.LinkClicked
+    Private Sub llblEditAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblEditAssignment.Click
         EditSelectedAssignment()
     End Sub
     Private Sub DeleteSelectedAssignment()
@@ -837,7 +764,7 @@ Public Class MainForm
             End If
         End If
     End Sub
-    Private Sub llblRemoveAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveAssignment.LinkClicked
+    Private Sub llblRemoveAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveAssignment.Click
         DeleteSelectedAssignment()
     End Sub
 
@@ -939,7 +866,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblEditClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblEditClassGroup.LinkClicked
+    Private Sub llblEditClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblEditClassGroup.Click
         If GetSelectedClassGroup() Is Nothing Then
             MessageBox.Show("Please select a module to edit.", Application.ProductName)
         Else
@@ -951,7 +878,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblAddClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddClassGroup.LinkClicked
+    Private Sub llblAddClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddClassGroup.Click
         If ThisSemester Is Nothing Then
             MessageBox.Show("Please load a semester first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
@@ -968,7 +895,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblRemoveClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveClassGroup.LinkClicked
+    Private Sub llblRemoveClassGroup_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveClassGroup.Click
         Dim intClasses As Integer = GetSelectedClassGroup.Classes.Count
         If MessageBox.Show("Are you sure you want to delete " & GetSelectedClassGroup.Name & "?" &
                            Environment.NewLine & Environment.NewLine &
@@ -1121,7 +1048,7 @@ Public Class MainForm
             olvStudents.RefreshSelectedObjects()
         Next
     End Sub
-    Private Sub btnRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnRemoveStudent.LinkClicked
+    Private Sub btnRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnRemoveStudent.Click
         RemoveCurrentStudent()
     End Sub
 
@@ -1388,7 +1315,7 @@ Public Class MainForm
         lblScheduleDay.Text = dtpScheduleDate.Value.DayOfWeek.ToString()
     End Sub
     Private Sub ViewScheduleToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ViewScheduleToolStripMenuItem.Click
-        splitStudentsSchedule.Panel2Collapsed = Not ViewScheduleToolStripMenuItem.Checked
+        pnlStudentSchedulePanel.Visible = Not ViewScheduleToolStripMenuItem.Checked
     End Sub
 
     Private Sub llblScheduleForwardOneDay_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblScheduleForwardOneDay.LinkClicked
@@ -1816,10 +1743,10 @@ Public Class MainForm
     End Sub
 
     Private Sub StudentphotoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles StudentphotoToolStripMenuItem.Click
-        picStudent.Visible = Not picStudent.Visible
+        'picStudent.Visible = Not picStudent.Visible
     End Sub
 
-    Private Sub olvStudents_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles olvStudents.SelectedIndexChanged
+    Private Sub olvStudents_SelectedIndexChanged(sender As System.Object, e As System.EventArgs)
         'Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
         'If stud IsNot Nothing Then
         '    If stud.Photo Is Nothing Then
@@ -2488,51 +2415,13 @@ Public Class MainForm
     End Sub
 
     Private Sub NotesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotesToolStripMenuItem.Click
-        ScheduleNotesSplitter.Panel2Collapsed = Not NotesToolStripMenuItem.Checked
+        pnlNotes.Visible = NotesToolStripMenuItem.Checked
     End Sub
-    'Private Sub ImportAssignmentsFromOtherSemester()
-    '    Dim semesterAlternate As Semester = New Semester("C:\Users\John\Desktop\Teaching App Data\2016-2017 Spring.datx")
-    '    '-- First we will load up a list with alternate students (which includes their assignments
-    '    Dim lstAlternate As New List(Of Student)
-    '    For Each clasGroup As ClassGroup In semesterAlternate.ClassGroups
-    '        If clasGroup.Name = "BLaw" Then
-    '            For Each schClass As SchoolClass In clasGroup.Classes
-    '                For Each stud As Student In schClass.Students '-- Process ALL BLaw students
-    '                    lstAlternate.Add(stud)
-    '                Next
-    '            Next
-    '        End If
-    '    Next
-
-
-
-    '    '-- Now we will loop through this semester's students and copy over the assignments
-    '    Dim clsgrp As ClassGroup = GetSelectedClassGroup()
-    '    If clsgrp Is Nothing Then
-    '        MessageBox.Show("You should not use it, it will damage your data.")
-    '        Exit Sub
-    '    End If
-
-    '    Dim studAlternate As Student
-    '    For Each schClass As SchoolClass In clsgrp.Classes
-    '        For Each stud As Student In schClass.Students '-- Process ALL BLaw students in current semester
-    '            For Each studAlternate In lstAlternate
-    '                If stud.StudentID = studAlternate.StudentID Then
-    '                    '-- we have a match
-    '                    stud.Assignments.Add(studAlternate.Assignments(0))
-    '                    Exit For '-- Done with this student (just one asmt)
-    '                End If
-    '            Next
-    '        Next
-    '    Next
-    'End Sub
-
+    'Private
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
         'AppSettings.PremiumFeaturesEnabled = Not AppSettings.PremiumFeaturesEnabled
         '-- Going to import student Normal assignments from another database
         'ImportAssignmentsFromOtherSemester()
-        Dim frm As New MainFormPlain()
-        frm.Show()
     End Sub
 
     Private m_dtStopwatch As Date
@@ -2546,19 +2435,19 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblStartPauseStopwatch_LinkClicked(sender As Object, e As EventArgs) Handles llblStartPauseStopwatch.LinkClicked
+    Private Sub llblStartPauseStopwatch_LinkClicked(sender As Object, e As EventArgs) Handles llblStartPauseStopwatch.Click
         If m_boolStopwatchRunning Then
-            llblStartPauseStopwatch.Values.Image = My.Resources.play_32
+            llblStartPauseStopwatch.Image = My.Resources.play_32
             tmrStopwatch.Stop()
         Else
             m_dtStopwatch = Date.Now
-            llblStartPauseStopwatch.Values.Image = My.Resources.Pause_32
+            llblStartPauseStopwatch.Image = My.Resources.Pause_32
             tmrStopwatch.Start()
         End If
         m_boolStopwatchRunning = Not m_boolStopwatchRunning
     End Sub
 
-    Private Sub llblClearNotes_LinkClicked(sender As Object, e As EventArgs) Handles llblClearNotes.LinkClicked
+    Private Sub llblClearNotes_LinkClicked(sender As Object, e As EventArgs) Handles llblClearNotes.Click
         txtNotes.Text = String.Empty
     End Sub
 
@@ -2829,7 +2718,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub llblAddTag_LinkClicked(sender As Object, e As EventArgs) Handles llblAddTag.LinkClicked
+    Private Sub llblAddTag_LinkClicked(sender As Object, e As EventArgs) Handles llblAddTag.Click
         If txtTag.Text.Trim().Length = 0 Then
             '-- do nothing
         Else
@@ -2877,4 +2766,5 @@ Public Class MainForm
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+
 End Class

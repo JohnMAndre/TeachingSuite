@@ -23,7 +23,7 @@
     '== Global vars
     Public ThisSemester As Semester '-- current data set
     Public AppSettings As ApplicationSettings
-    Public MainFormReference As MainForm
+    Public MainFormReference As IMainForm
 
     Public Enum MarkingTry
         FirstTry

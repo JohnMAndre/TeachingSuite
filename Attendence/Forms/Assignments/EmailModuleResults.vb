@@ -575,15 +575,15 @@ Public Class EmailModuleResults
             End If
         Next
 
-        If intAssignmentSent < olvAssignments.CheckedItems.Count Then
-            '-- This students seems to be missing at least one of the checked assignments
-            '   Notify student about this
-            '== RECONSIDER - for some assignments, like news reports, not all students might do them at the same time
-            '               Since teachers might handle this differently, it needs to be highly configurable...which means we do this later
-            str.Append("It seems you are missing at least one assignment. If you believe you did all of the assignments, please come to see me in class.")
-            str.Append("<br>")
-            str.Append("<br>")
-        End If
+        'If intAssignmentSent < olvAssignments.CheckedItems.Count Then
+        '    '-- This students seems to be missing at least one of the checked assignments
+        '    '   Notify student about this
+        '    '== RECONSIDER - for some assignments, like news reports, not all students might do them at the same time
+        '    '               Since teachers might handle this differently, it needs to be highly configurable...which means we do this later
+        '    str.Append("It seems you are missing at least one assignment. If you believe you did all of the assignments, please come to see me in class.")
+        '    str.Append("<br>")
+        '    str.Append("<br>")
+        'End If
 
 
         If chkIncludeGrade.Checked Then

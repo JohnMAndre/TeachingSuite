@@ -1,0 +1,1 @@
+﻿This folder has the version for every form which is more general (no Krypton or ObjectListView because of concerns about how they interact with Windows)

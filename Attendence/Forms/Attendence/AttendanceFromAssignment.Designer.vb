@@ -40,8 +40,9 @@ Partial Class AttendanceFromAssignment
         Me.lblNormalAssignmentMaxScore = New System.Windows.Forms.Label()
         Me.pnlNormalAssignment = New System.Windows.Forms.Panel()
         Me.pnlBTECAssignment = New System.Windows.Forms.Panel()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.cboLearningOutcome = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.llblToday = New System.Windows.Forms.LinkLabel()
         CType(Me.nudNormalAssignmentScore, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlNormalAssignment.SuspendLayout()
         Me.pnlBTECAssignment.SuspendLayout()
@@ -156,7 +157,7 @@ Partial Class AttendanceFromAssignment
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpSessionDate.Location = New System.Drawing.Point(293, 265)
         Me.dtpSessionDate.Name = "dtpSessionDate"
-        Me.dtpSessionDate.Size = New System.Drawing.Size(464, 26)
+        Me.dtpSessionDate.Size = New System.Drawing.Size(409, 26)
         Me.dtpSessionDate.TabIndex = 9
         '
         'Label6
@@ -219,15 +220,6 @@ Partial Class AttendanceFromAssignment
         Me.pnlBTECAssignment.TabIndex = 15
         Me.pnlBTECAssignment.Visible = False
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(3, 7)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(201, 18)
-        Me.Label7.TabIndex = 11
-        Me.Label7.Text = "achieving learning outcome:"
-        '
         'cboLearningOutcome
         '
         Me.cboLearningOutcome.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -239,12 +231,33 @@ Partial Class AttendanceFromAssignment
         Me.cboLearningOutcome.Size = New System.Drawing.Size(412, 26)
         Me.cboLearningOutcome.TabIndex = 16
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(3, 7)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(201, 18)
+        Me.Label7.TabIndex = 11
+        Me.Label7.Text = "achieving learning outcome:"
+        '
+        'llblToday
+        '
+        Me.llblToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblToday.AutoSize = True
+        Me.llblToday.Location = New System.Drawing.Point(708, 268)
+        Me.llblToday.Name = "llblToday"
+        Me.llblToday.Size = New System.Drawing.Size(49, 18)
+        Me.llblToday.TabIndex = 16
+        Me.llblToday.TabStop = True
+        Me.llblToday.Text = "Today"
+        '
         'AttendanceFromAssignment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(770, 414)
+        Me.Controls.Add(Me.llblToday)
         Me.Controls.Add(Me.pnlNormalAssignment)
         Me.Controls.Add(Me.pnlBTECAssignment)
         Me.Controls.Add(Me.Label6)
@@ -292,4 +305,5 @@ Partial Class AttendanceFromAssignment
     Friend WithEvents pnlBTECAssignment As System.Windows.Forms.Panel
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents cboLearningOutcome As System.Windows.Forms.ComboBox
+    Friend WithEvents llblToday As System.Windows.Forms.LinkLabel
 End Class

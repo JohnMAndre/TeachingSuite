@@ -1,19 +1,9 @@
 Public Class HistoricalStudentFinder
 
-    Private m_mainForm As MainForm
     Private m_lstFoundStudents As List(Of Student)
     Private m_boolCancel As Boolean
     Private m_boolSearching As Boolean
     Private m_dictMostRecentStudents As New Dictionary(Of String, Student) '-- does not store duplicates (just the most recent incarnation of the student)
-
-    Public Sub New(frm As MainForm)
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        m_mainForm = frm
-
-    End Sub
 
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnCancel.Click
         If m_boolSearching Then
