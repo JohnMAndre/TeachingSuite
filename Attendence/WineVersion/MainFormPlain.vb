@@ -253,7 +253,6 @@ Public Class MainFormPlain
             lstClassGroups.Items.Clear()
             lstAssignments.Items.Clear()
             olvStudents.ClearObjects()
-            olvSchedule.ClearObjects()
 
             ThisSemester = New Semester(strSemesterName)
             AppSettings.LastSemesterFile = cboSemester.Items(cboSemester.SelectedIndex)
@@ -1311,7 +1310,14 @@ Public Class MainFormPlain
             Next
         End If
         m_lstCurrentScheduleItems.Sort()
-        olvSchedule.SetObjects(m_lstCurrentScheduleItems)
+
+        Dim bndSrc As New BindingSource()
+        bndSrc.DataSource = m_lstCurrentScheduleItems
+
+        dgvSchedule.AutoGenerateColumns = False
+        dgvSchedule.DataSource = bndSrc
+        dgvSchedule.AutoResizeColumns()
+
         lblScheduleDay.Text = dtpScheduleDate.Value.DayOfWeek.ToString()
     End Sub
     Private Sub ViewScheduleToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ViewScheduleToolStripMenuItem.Click
@@ -1328,25 +1334,7 @@ Public Class MainFormPlain
         LoadSchedule()
     End Sub
 
-    Private Sub SkipActualSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SkipActualSessionToolStripMenuItem.Click
-        If olvSchedule.SelectedObject IsNot Nothing Then
-            Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
-            If MessageBox.Show("Are you sure you want to skip the selected session (" & item.Topic & ")?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
-                Dim objSkip As New SkipSession()
-                objSkip.StartDateTime = item.StartDateTime
-                item.SchoolClass.SessionsToSkip.Add(objSkip)
-                olvSchedule.RemoveObject(item)
-                item.SchoolClass.ActualSessions.Remove(item)
-
-                Using frm As New ClassDetails(item.SchoolClass)
-                    If frm.ShowDialog(Me) = DialogResult.OK Then
-                        LoadClasses()
-                    End If
-                End Using
-            End If
-        End If
-    End Sub
-
+    
     Private Sub dtpScheduleDate_ValueChanged(sender As System.Object, e As System.EventArgs) Handles dtpScheduleDate.ValueChanged
         LoadSchedule()
     End Sub
@@ -1615,23 +1603,7 @@ Public Class MainFormPlain
         End If
     End Sub
 
-    Private Sub TakeAttendanceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles TakeAttendanceToolStripMenuItem.Click
-        AttendanceFromSchedule()
-    End Sub
-    Private Sub AttendanceFromSchedule()
-        If olvSchedule.SelectedObject IsNot Nothing Then
-            Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
-            'Using frm As New AttendenceForm(item.SchoolClass)
-            Using frm As New AttendenceForm(item)
-                frm.ShowDialog()
-            End Using
-        Else
-            MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-    End Sub
-    Private Sub olvSchedule_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvSchedule.ItemActivate
-        AttendanceFromSchedule()
-    End Sub
+   
 
     Private Sub StudentOutcomeResultsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles StudentOutcomeResultsToolStripMenuItem.Click
         If GetSelectedClassGroup() Is Nothing Then
@@ -2575,21 +2547,6 @@ Public Class MainFormPlain
             End If
         Next
     End Sub
-    Private Sub LoadClassToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadClassToolStripMenuItem.Click
-        Try
-            If olvSchedule.SelectedObject IsNot Nothing Then
-                Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
-                LoadSchoolClassForSession(item)
-            Else
-                MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
-
-        Catch ex As Exception
-            Log(ex)
-            MessageBox.Show("There was an error loading the scheduled session: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
 
     Private Sub ExportMarkingResultsIsolatedSubmitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Click, ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Click, ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Click
         If GetSelectedAssignment() Is Nothing Then
@@ -2743,13 +2700,9 @@ Public Class MainFormPlain
 
     End Sub
 
-    Private Sub TakeAttendancealtFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TakeAttendancealtFormToolStripMenuItem.Click
-        Attendance2FromSchedule()
-    End Sub
     Private Sub Attendance2FromSchedule()
-        If olvSchedule.SelectedObject IsNot Nothing Then
-            Dim item As ActualSessionItem = CType(olvSchedule.SelectedObject, ActualSessionItem)
-            'Using frm As New AttendenceForm(item.SchoolClass)
+        If dgvSchedule.CurrentRow IsNot Nothing Then
+            Dim item As ActualSessionItem = CType(dgvSchedule.CurrentRow.DataBoundItem, ActualSessionItem)
             Using frm As New Attendance2Form(item)
                 frm.ShowDialog()
             End Using
@@ -2765,6 +2718,79 @@ Public Class MainFormPlain
         Else
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
+    End Sub
+
+    Private Sub dgvSchedule_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvSchedule.CellFormatting
+        'If dgvSchedule.Columns(e.ColumnIndex).Name.Equals(dgcDay.Name) Then
+        'End If
+        If m_lstCurrentScheduleItems.Count > e.RowIndex Then
+            Select Case dgvSchedule.Columns(e.ColumnIndex).Name
+                Case dgcDay.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).StartDateTime.DayOfWeek.ToString()
+                Case dgcStarts.Name
+                    '-- Do nothing here
+                Case dgcModule.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).SchoolClass.ClassGroup.Name
+                Case dgcClass.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).SchoolClass.Name
+                Case dgcSession.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).SessionNumber
+                Case dgcTopic.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).Topic
+                Case dgcLocation.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).Location
+                Case dgcNotes.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).Notes
+                Case dgcPrepped.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).Prepped
+                Case dgcSent.Name
+                    e.Value = m_lstCurrentScheduleItems(e.RowIndex).StudentsEmailed
+            End Select
+        End If
+    End Sub
+
+    Private Sub ScheduleLoadClassMenuItem_Click(sender As Object, e As EventArgs) Handles ScheduleLoadClassMenuItem.Click
+        Try
+            If dgvSchedule.CurrentRow IsNot Nothing Then
+                Dim item As ActualSessionItem = CType(dgvSchedule.CurrentRow.DataBoundItem, ActualSessionItem)
+                LoadSchoolClassForSession(item)
+            Else
+                MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading the scheduled session: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ScheduleTakeAttendanceMenuItem_Click(sender As Object, e As EventArgs) Handles ScheduleTakeAttendanceMenuItem.Click
+        Attendance2FromSchedule()
+    End Sub
+
+    Private Sub ScheduleSkipSessionMenuItem_Click(sender As Object, e As EventArgs) Handles ScheduleSkipSessionMenuItem.Click
+        If dgvSchedule.CurrentRow IsNot Nothing Then
+            Dim item As ActualSessionItem = CType(dgvSchedule.CurrentRow.DataBoundItem, ActualSessionItem)
+            If MessageBox.Show("Are you sure you want to skip the selected session (" & item.Topic & ")?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+                Dim objSkip As New SkipSession()
+                objSkip.StartDateTime = item.StartDateTime
+                item.SchoolClass.SessionsToSkip.Add(objSkip)
+                
+                item.SchoolClass.ActualSessions.Remove(item)
+
+                Using frm As New ClassDetails(item.SchoolClass)
+                    If frm.ShowDialog(Me) = DialogResult.OK Then
+                        LoadClasses()
+                    End If
+                End Using
+
+                LoadSchedule()
+            End If
+        End If
+    End Sub
+
+    Private Sub dgvSchedule_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSchedule.CellDoubleClick
+        Attendance2FromSchedule()
     End Sub
 
 End Class
