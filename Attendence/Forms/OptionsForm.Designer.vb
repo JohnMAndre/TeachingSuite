@@ -80,7 +80,6 @@ Partial Class OptionsForm
         Me.txtEmailQuizResultsIncorrectFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.nudEmailAccountToUse = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel32 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.chkIncludeFeedbackWhenEmailing = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.llblBrowseForTrulyMail = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtPathToTrulyMail = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -130,7 +129,8 @@ Partial Class OptionsForm
         Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkEmailAsHTML = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkEmailAsHTML = New System.Windows.Forms.CheckBox()
+        Me.chkIncludeFeedbackWhenEmailing = New System.Windows.Forms.CheckBox()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -690,6 +690,7 @@ Partial Class OptionsForm
         '
         'pnlEmail
         '
+        Me.pnlEmail.Controls.Add(Me.chkIncludeFeedbackWhenEmailing)
         Me.pnlEmail.Controls.Add(Me.chkEmailAsHTML)
         Me.pnlEmail.Controls.Add(Me.KryptonLabel34)
         Me.pnlEmail.Controls.Add(Me.txtEmailQuizTrailingText)
@@ -697,7 +698,6 @@ Partial Class OptionsForm
         Me.pnlEmail.Controls.Add(Me.txtEmailQuizResultsIncorrectFeedback)
         Me.pnlEmail.Controls.Add(Me.nudEmailAccountToUse)
         Me.pnlEmail.Controls.Add(Me.KryptonLabel32)
-        Me.pnlEmail.Controls.Add(Me.chkIncludeFeedbackWhenEmailing)
         Me.pnlEmail.Controls.Add(Me.llblBrowseForTrulyMail)
         Me.pnlEmail.Controls.Add(Me.KryptonLabel12)
         Me.pnlEmail.Controls.Add(Me.txtPathToTrulyMail)
@@ -761,18 +761,6 @@ Partial Class OptionsForm
         Me.KryptonLabel32.Size = New System.Drawing.Size(99, 19)
         Me.KryptonLabel32.TabIndex = 133
         Me.KryptonLabel32.Values.Text = "Email account:"
-        '
-        'chkIncludeFeedbackWhenEmailing
-        '
-        Me.chkIncludeFeedbackWhenEmailing.AutoSize = False
-        Me.chkIncludeFeedbackWhenEmailing.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeFeedbackWhenEmailing.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeFeedbackWhenEmailing.Location = New System.Drawing.Point(5, 38)
-        Me.chkIncludeFeedbackWhenEmailing.Name = "chkIncludeFeedbackWhenEmailing"
-        Me.chkIncludeFeedbackWhenEmailing.Size = New System.Drawing.Size(251, 20)
-        Me.chkIncludeFeedbackWhenEmailing.TabIndex = 55
-        Me.chkIncludeFeedbackWhenEmailing.Text = "Include feedback when emailing"
-        Me.chkIncludeFeedbackWhenEmailing.Values.Text = "Include feedback when emailing"
         '
         'llblBrowseForTrulyMail
         '
@@ -1257,15 +1245,23 @@ Partial Class OptionsForm
         '
         'chkEmailAsHTML
         '
-        Me.chkEmailAsHTML.AutoSize = False
-        Me.chkEmailAsHTML.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkEmailAsHTML.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkEmailAsHTML.Location = New System.Drawing.Point(5, 93)
+        Me.chkEmailAsHTML.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkEmailAsHTML.Location = New System.Drawing.Point(5, 89)
         Me.chkEmailAsHTML.Name = "chkEmailAsHTML"
-        Me.chkEmailAsHTML.Size = New System.Drawing.Size(251, 20)
-        Me.chkEmailAsHTML.TabIndex = 139
-        Me.chkEmailAsHTML.Text = "Email in HTML"
-        Me.chkEmailAsHTML.Values.Text = "Email in HTML"
+        Me.chkEmailAsHTML.Size = New System.Drawing.Size(251, 24)
+        Me.chkEmailAsHTML.TabIndex = 140
+        Me.chkEmailAsHTML.Text = "Email in HTML:"
+        Me.chkEmailAsHTML.UseVisualStyleBackColor = True
+        '
+        'chkIncludeFeedbackWhenEmailing
+        '
+        Me.chkIncludeFeedbackWhenEmailing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkIncludeFeedbackWhenEmailing.Location = New System.Drawing.Point(5, 36)
+        Me.chkIncludeFeedbackWhenEmailing.Name = "chkIncludeFeedbackWhenEmailing"
+        Me.chkIncludeFeedbackWhenEmailing.Size = New System.Drawing.Size(251, 24)
+        Me.chkIncludeFeedbackWhenEmailing.TabIndex = 141
+        Me.chkIncludeFeedbackWhenEmailing.Text = "Include feedback when emailing:"
+        Me.chkIncludeFeedbackWhenEmailing.UseVisualStyleBackColor = True
         '
         'OptionsForm
         '
@@ -1368,7 +1364,6 @@ Partial Class OptionsForm
     Friend WithEvents txtCDDrive As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents tabEmail As System.Windows.Forms.TabPage
     Friend WithEvents pnlEmail As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents chkIncludeFeedbackWhenEmailing As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents llblBrowseForTrulyMail As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtPathToTrulyMail As ComponentFactory.Krypton.Toolkit.KryptonTextBox
@@ -1437,5 +1432,6 @@ Partial Class OptionsForm
     Friend WithEvents nudMaxAppHistoryFileSize As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents KryptonLabel23 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents chkEnableStudentDataHistory As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents chkEmailAsHTML As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents chkIncludeFeedbackWhenEmailing As System.Windows.Forms.CheckBox
+    Friend WithEvents chkEmailAsHTML As System.Windows.Forms.CheckBox
 End Class

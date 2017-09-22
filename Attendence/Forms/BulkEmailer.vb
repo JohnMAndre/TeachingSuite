@@ -102,7 +102,7 @@ Public Class BulkEmailer
                     dataItem.Student.EmailedData &= ", " & Date.Now.ToString("yyyy MMM dd")
                 End If
                 olvStudents.RefreshObject(dataItem)
-                tm = obj.CreateNewMessage()
+                tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- True to force plaintext
 
                 If m_clas.ClassGroup.UseNickname Then
                     If dataItem.Student.Nickname.Trim.Length = 0 Then
@@ -150,12 +150,19 @@ Public Class BulkEmailer
     Private Function GenerateEmailBodyForStudent(item As BulkEmailData)
         Dim str As New System.Text.StringBuilder()
         If m_clas.ClassGroup.UseNickname AndAlso item.Student.Nickname.Trim.Length > 0 Then
-            str.Append("Dear " & item.Student.Nickname & ":<br><br>") '-- use nickname if we are suppsed to and if it exists
+            str.Append("Dear " & item.Student.Nickname & ":") '-- use nickname if we are suppsed to and if it exists
         Else
-            str.Append("Dear " & item.Student.LocalNameLatinLetters & ":<br><br>")
+            str.Append("Dear " & item.Student.LocalNameLatinLetters & ":")
         End If
 
-        str.Append(txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br>"))
+        If AppSettings.EmailAsHTML Then
+            str.Append("<br /><br />")
+            str.Append(txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br />"))
+        Else
+            str.Append(Environment.NewLine)
+            str.Append(Environment.NewLine)
+            str.Append(txtEmailTrailingText.Text)
+        End If
 
         Return str.ToString()
     End Function
