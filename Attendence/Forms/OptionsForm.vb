@@ -49,6 +49,7 @@ Public Class OptionsForm
         AppSettings.EmailSendingAccount = nudEmailAccountToUse.Value
         AppSettings.EmailQuizResultsIncorrectComments = txtEmailQuizResultsIncorrectFeedback.Text
         AppSettings.EmailQuizTrailingText = txtEmailQuizTrailingText.Text
+        AppSettings.EmailAsHTML = chkEmailAsHTML.Checked
 
         '-- Attendance
         If rdoAttendanceHighlightUnknownPresentationQuality.Checked Then
@@ -139,6 +140,7 @@ Public Class OptionsForm
             End If
             txtEmailQuizResultsIncorrectFeedback.Text = AppSettings.EmailQuizResultsIncorrectComments
             txtEmailQuizTrailingText.Text = AppSettings.EmailQuizTrailingText
+            chkEmailAsHTML.Checked = AppSettings.EmailAsHTML
 
             '-- Attendance
             If AppSettings.HighlightAttendanceNoPresentationQuality Then
@@ -211,5 +213,9 @@ Public Class OptionsForm
 
     Private Sub llblDictionaryInfo_LinkClicked(sender As Object, e As EventArgs) Handles llblDictionaryInfo.LinkClicked
         MessageBox.Show("If you would like more dictionaries, just email John@JohnMAndre.com.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub chkEnableStudentDataHistory_CheckedChanged(sender As Object, e As EventArgs) Handles chkEnableStudentDataHistory.CheckedChanged
+
     End Sub
 End Class

@@ -428,6 +428,12 @@
                     EnableStudentDataHistory = True
                 End If
 
+                xElement = xDoc.SelectSingleNode("//EmailAsHTML")
+                If xElement IsNot Nothing Then
+                    EmailAsHTML = ConvertToBool(xElement.InnerText, True)
+                Else
+                    EmailAsHTML = True
+                End If
 
 
 
@@ -571,6 +577,7 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements", PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ApplicationHistoryMaxFileSize", ApplicationHistoryMaxFileSize))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EnableStudentDataHistory", EnableStudentDataHistory))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailAsHTML", EmailAsHTML))
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
@@ -716,6 +723,7 @@
             _attendancePublicFormStudentListViewStatePrivate = Convert.ToBase64String(value)
         End Set
     End Property
+    Public Property EmailAsHTML As Boolean
     Public Property AssignmentMarkingWarning1 As Integer
     Public Property AssignmentMarkingWarning2 As Integer
     Public Property OpenAssignmentDetailMaximized As Boolean

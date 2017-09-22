@@ -438,7 +438,7 @@ Public Class MainFormPlain
             End Using
         End If
     End Sub
-    Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs)
+    Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvStudents.ItemActivate
         If ReorderAdminNumbersToolStripMenuItem.Checked Then
             Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
             If stud Is Nothing Then
@@ -1441,7 +1441,7 @@ Public Class MainFormPlain
             obj = mainform.Unwrap()
             Application.DoEvents()
 
-            tm = obj.CreateNewMessage()
+            tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- true = force plaintext
 
             For Each stud As Student In lstStudent
                 If stud.Nickname.Trim.Length > 0 Then
@@ -1718,7 +1718,7 @@ Public Class MainFormPlain
         'picStudent.Visible = Not picStudent.Visible
     End Sub
 
-    Private Sub olvStudents_SelectedIndexChanged(sender As System.Object, e As System.EventArgs)
+    Private Sub olvStudents_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles olvStudents.SelectedIndexChanged
         'Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
         'If stud IsNot Nothing Then
         '    If stud.Photo Is Nothing Then
@@ -2145,7 +2145,7 @@ Public Class MainFormPlain
             obj = mainform.Unwrap()
             Application.DoEvents()
 
-            tm = obj.CreateNewMessage()
+            tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- true = force plaintext
             If ClassIsCombinedView(cls) Then
                 For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
                     tm.AddRecipient(GetClassNameToEmail(objCls), objCls.EmailAddress)

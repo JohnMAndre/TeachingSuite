@@ -6,19 +6,19 @@ Public Class EmailQuizResults
         Responses
     End Enum
     Private Class QuizDetails
-        Public Identifier As String
-        Public RecordType As QuizDetailRecordType
-        Public Question1 As String
-        Public Question2 As String
-        Public Question3 As String
-        Public Question4 As String
-        Public Question5 As String
-        Public Question6 As String
-        Public Question7 As String
-        Public Question8 As String
-        Public Question9 As String
-        Public Question10 As String
-        Public Student As Student
+        Public Property Identifier As String
+        Public Property RecordType As QuizDetailRecordType
+        Public Property Question1 As String
+        Public Property Question2 As String
+        Public Property Question3 As String
+        Public Property Question4 As String
+        Public Property Question5 As String
+        Public Property Question6 As String
+        Public Property Question7 As String
+        Public Property Question8 As String
+        Public Property Question9 As String
+        Public Property Question10 As String
+        Public Property Student As Student
     End Class
     Private m_students As List(Of Student)
     Private m_lstToEmail As List(Of StudentResults)
@@ -189,7 +189,7 @@ Public Class EmailQuizResults
             '        dataItem.Student.EmailedData &= ", " & Date.Now.ToString("yyyy MMM dd")
             '    End If
             '    olvStudents.RefreshObject(dataItem)
-            tm = obj.CreateNewMessage()
+            tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- true= force plaintext
 
             If m_schoolClass.ClassGroup.UseNickname Then
                 If dataItem.Student.Nickname.Trim.Length > 0 Then
@@ -354,213 +354,336 @@ Public Class EmailQuizResults
 
         If m_schoolClass.ClassGroup.UseNickname Then
             If student.Nickname.Trim.Length > 0 Then
-                strMessage &= "Dear " & student.Nickname & ",<br>" & Environment.NewLine
+                strMessage &= "Dear " & student.Nickname & ":" & Environment.NewLine
             Else
-                strMessage &= "Dear " & student.LocalNameLatinLetters & ",<br>" & Environment.NewLine
+                strMessage &= "Dear " & student.LocalNameLatinLetters & ":" & Environment.NewLine
             End If
         Else
-            strMessage &= "Dear " & student.LocalNameLatinLetters & ",<br />" & Environment.NewLine
+            strMessage &= "Dear " & student.LocalNameLatinLetters & ":" & Environment.NewLine
         End If
 
-        strMessage &= "<br>" & Environment.NewLine
-        strMessage &= "Here are your results from this online quiz.<br />" & Environment.NewLine
-        strMessage &= "<br>" & Environment.NewLine
+        If AppSettings.EmailAsHTML Then
+            strMessage &= "<br />" & Environment.NewLine
+            strMessage &= "<br />" & Environment.NewLine
+        Else
+            strMessage &= Environment.NewLine
+            strMessage &= Environment.NewLine
+        End If
 
-        If questions.Question1 IsNot Nothing Then
-            If correctAnswers.Question1.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q1: " & studentAnswers.Question1 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 1</b>: " & questions.Question1 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question1 & "<br />" & Environment.NewLine
+        strMessage &= "Here are your results from this online quiz." & Environment.NewLine
 
-                If studentAnswers.Question1 = correctAnswers.Question1 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
+        If AppSettings.EmailAsHTML Then
+            strMessage &= "<br />" & Environment.NewLine
+            strMessage &= "<br />" & Environment.NewLine
+        Else
+            strMessage &= Environment.NewLine
+        End If
+
+        '=========================================================
+        '=========================================================
+        '=========================================================
+        Dim typQuestions As Type = questions.GetType()
+        Dim typCorrectAnswers As Type = correctAnswers.GetType()
+        Dim typStudentAnswers As Type = studentAnswers.GetType()
+
+        For intCounter As Integer = 1 To 10
+
+            Dim propQuestions As System.Reflection.PropertyInfo = typQuestions.GetProperty("Question" & intCounter.ToString())
+            Dim strQuestion As String = propQuestions.GetValue(questions)
+
+
+            If strQuestion IsNot Nothing AndAlso strQuestion.Length > 0 Then
+                Dim propCorrectAnswers As System.Reflection.PropertyInfo = typCorrectAnswers.GetProperty("Question" & intCounter.ToString())
+                Dim strCorrectAnswer As String = propQuestions.GetValue(correctAnswers)
+
+                Dim propStudentAnswers As System.Reflection.PropertyInfo = typStudentAnswers.GetProperty("Question" & intCounter.ToString())
+                Dim strStudentAnswer As String = propQuestions.GetValue(studentAnswers)
+
+
+                If strCorrectAnswer.ToUpper() = "STORE" Then
+                    strInfoToStore &= "Q" & intCounter.ToString() & ": " & strStudentAnswer & "; "
                 Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question1 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question2 IsNot Nothing Then
-            If correctAnswers.Question2.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q2: " & studentAnswers.Question2 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 2</b>: " & questions.Question2 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question2 & "<br />" & Environment.NewLine
+                    intQuestions += 1
+                    If AppSettings.EmailAsHTML Then
+                        strMessage &= "<b>Question " & intCounter.ToString() & "</b>: " & strQuestion & "<br />" & Environment.NewLine
+                        strMessage &= "<b>Your answer</b>: " & strStudentAnswer & "<br />" & Environment.NewLine
+                    Else
+                        strMessage &= "Question  " & intCounter.ToString() & ": " & strQuestion & Environment.NewLine
+                        strMessage &= "Your answer: " & strStudentAnswer & Environment.NewLine
+                    End If
 
-                If studentAnswers.Question2 = correctAnswers.Question2 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question2 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question3 IsNot Nothing Then
-            If correctAnswers.Question3.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q3: " & studentAnswers.Question3 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 3</b>: " & questions.Question3 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question3 & "<br />" & Environment.NewLine
 
-                If studentAnswers.Question3 = correctAnswers.Question3 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question3 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question4 IsNot Nothing Then
-            If correctAnswers.Question4.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q4: " & studentAnswers.Question4 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 4</b>: " & questions.Question4 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question4 & "<br />" & Environment.NewLine
+                    If strStudentAnswer = strCorrectAnswer Then
+                        strMessage &= "Your answer is correct!" & Environment.NewLine
+                        If AppSettings.EmailAsHTML Then
+                            strMessage &= "<br />" & Environment.NewLine
+                        End If
 
-                If studentAnswers.Question4 = correctAnswers.Question4 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question4 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question5 IsNot Nothing Then
-            If correctAnswers.Question5.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q5: " & studentAnswers.Question5 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 5</b>: " & questions.Question5 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question5 & "<br />" & Environment.NewLine
+                        intCorrectAnswers += 1
+                    Else
+                        If AppSettings.EmailAsHTML Then
+                            strMessage &= "<b>Correct answer</b>: " & strCorrectAnswer & "<br />" & Environment.NewLine
+                        Else
+                            strMessage &= "Correct answer: " & strCorrectAnswer & Environment.NewLine
+                        End If
 
-                If studentAnswers.Question5 = correctAnswers.Question5 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question5 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question6 IsNot Nothing Then
-            If correctAnswers.Question6.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q6: " & studentAnswers.Question6 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 6</b>: " & questions.Question6 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question6 & "<br />" & Environment.NewLine
+                        strMessage &= AppSettings.EmailQuizResultsIncorrectComments & Environment.NewLine
+                        If AppSettings.EmailAsHTML Then
+                            strMessage &= "<br />" & Environment.NewLine
+                        Else
+                            strMessage &= Environment.NewLine
+                        End If
 
-                If studentAnswers.Question6 = correctAnswers.Question6 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question6 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question7 IsNot Nothing Then
-            If correctAnswers.Question7.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q7: " & studentAnswers.Question7 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 7</b>: " & questions.Question7 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question7 & "<br />" & Environment.NewLine
+                    End If
+                    If AppSettings.EmailAsHTML Then
+                        strMessage &= "<br>" & Environment.NewLine
+                    Else
+                        strMessage &= Environment.NewLine
+                    End If
 
-                If studentAnswers.Question7 = correctAnswers.Question7 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question7 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
                 End If
-                strMessage &= "<br>" & Environment.NewLine
             End If
-        End If
-        If questions.Question8 IsNot Nothing Then
-            If correctAnswers.Question8.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q8: " & studentAnswers.Question8 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 8</b>: " & questions.Question8 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question8 & "<br />" & Environment.NewLine
+        Next
+        '=========================================================
+        '=========================================================
+        '=========================================================
 
-                If studentAnswers.Question8 = correctAnswers.Question8 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question8 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question9 IsNot Nothing Then
-            If correctAnswers.Question9.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q9: " & studentAnswers.Question9 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 9</b>: " & questions.Question9 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question9 & "<br />" & Environment.NewLine
 
-                If studentAnswers.Question9 = correctAnswers.Question9 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question9 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
-        If questions.Question10 IsNot Nothing Then
-            If correctAnswers.Question10.ToUpper() = "STORE" Then
-                strInfoToStore &= "Q10: " & studentAnswers.Question10 & "; "
-            Else
-                intQuestions += 1
-                strMessage &= "<b>Question 10</b>: " & questions.Question10 & "<br />" & Environment.NewLine
-                strMessage &= "<b>Your answer</b>: " & studentAnswers.Question10 & "<br />" & Environment.NewLine
+        'If questions.Question1 IsNot Nothing Then
+        '    If correctAnswers.Question1.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q1: " & studentAnswers.Question1 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        If AppSettings.EmailAsHTML Then
+        '            strMessage &= "<b>Question 1</b>: " & questions.Question1 & "<br />" & Environment.NewLine
+        '            strMessage &= "<b>Your answer</b>: " & studentAnswers.Question1 & "<br />" & Environment.NewLine
+        '        Else
+        '            strMessage &= "Question 1: " & questions.Question1 & Environment.NewLine
+        '            strMessage &= "Your answer: " & studentAnswers.Question1 & Environment.NewLine
+        '        End If
 
-                If studentAnswers.Question10 = correctAnswers.Question10 Then
-                    strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
-                    intCorrectAnswers += 1
-                Else
-                    strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question10 & "<br />" & Environment.NewLine
-                    strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
-                End If
-                strMessage &= "<br>" & Environment.NewLine
-            End If
-        End If
+
+        '        If studentAnswers.Question1 = correctAnswers.Question1 Then
+        '            strMessage &= "Your answer is correct!" & Environment.NewLine
+        '            If AppSettings.EmailAsHTML Then
+        '                strMessage &= "<br />" & Environment.NewLine
+        '            End If
+
+        '            intCorrectAnswers += 1
+        '        Else
+        '            If AppSettings.EmailAsHTML Then
+        '                strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question1 & "<br />" & Environment.NewLine
+        '            Else
+        '                strMessage &= "Correct answer: " & correctAnswers.Question1 & Environment.NewLine
+        '            End If
+
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & Environment.NewLine
+        '            If AppSettings.EmailAsHTML Then
+        '                strMessage &= "<br />" & Environment.NewLine
+        '            End If
+
+        '        End If
+        '        If AppSettings.EmailAsHTML Then
+        '            strMessage &= "<br>" & Environment.NewLine
+        '        End If
+
+        '    End If
+        'End If
+
+
+        'If questions.Question2 IsNot Nothing Then
+        '    If correctAnswers.Question2.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q2: " & studentAnswers.Question2 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 2</b>: " & questions.Question2 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question2 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question2 = correctAnswers.Question2 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question2 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question3 IsNot Nothing Then
+        '    If correctAnswers.Question3.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q3: " & studentAnswers.Question3 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 3</b>: " & questions.Question3 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question3 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question3 = correctAnswers.Question3 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question3 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question4 IsNot Nothing Then
+        '    If correctAnswers.Question4.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q4: " & studentAnswers.Question4 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 4</b>: " & questions.Question4 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question4 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question4 = correctAnswers.Question4 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question4 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question5 IsNot Nothing Then
+        '    If correctAnswers.Question5.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q5: " & studentAnswers.Question5 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 5</b>: " & questions.Question5 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question5 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question5 = correctAnswers.Question5 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question5 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question6 IsNot Nothing Then
+        '    If correctAnswers.Question6.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q6: " & studentAnswers.Question6 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 6</b>: " & questions.Question6 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question6 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question6 = correctAnswers.Question6 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question6 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question7 IsNot Nothing Then
+        '    If correctAnswers.Question7.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q7: " & studentAnswers.Question7 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 7</b>: " & questions.Question7 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question7 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question7 = correctAnswers.Question7 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question7 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question8 IsNot Nothing Then
+        '    If correctAnswers.Question8.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q8: " & studentAnswers.Question8 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 8</b>: " & questions.Question8 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question8 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question8 = correctAnswers.Question8 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question8 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question9 IsNot Nothing Then
+        '    If correctAnswers.Question9.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q9: " & studentAnswers.Question9 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 9</b>: " & questions.Question9 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question9 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question9 = correctAnswers.Question9 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question9 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
+        'If questions.Question10 IsNot Nothing Then
+        '    If correctAnswers.Question10.ToUpper() = "STORE" Then
+        '        strInfoToStore &= "Q10: " & studentAnswers.Question10 & "; "
+        '    Else
+        '        intQuestions += 1
+        '        strMessage &= "<b>Question 10</b>: " & questions.Question10 & "<br />" & Environment.NewLine
+        '        strMessage &= "<b>Your answer</b>: " & studentAnswers.Question10 & "<br />" & Environment.NewLine
+
+        '        If studentAnswers.Question10 = correctAnswers.Question10 Then
+        '            strMessage &= "Your answer is correct!" & "<br>" & Environment.NewLine
+        '            intCorrectAnswers += 1
+        '        Else
+        '            strMessage &= "<b>Correct answer</b>: " & correctAnswers.Question10 & "<br />" & Environment.NewLine
+        '            strMessage &= AppSettings.EmailQuizResultsIncorrectComments & "<br />" & Environment.NewLine
+        '        End If
+        '        strMessage &= "<br>" & Environment.NewLine
+        '    End If
+        'End If
 
         Dim dblScore As Double = intCorrectAnswers / intQuestions
-        strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%") & "<br />" & Environment.NewLine
+        strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%")
+
+        If AppSettings.EmailAsHTML Then
+            strMessage &= "<br />" & Environment.NewLine
+        Else
+            strMessage &= Environment.NewLine
+        End If
 
         txtOutput.Text &= student.StudentID & " (" & student.Nickname & ") " & dblScore.ToString("##0%") & Environment.NewLine
 
 
         If intCorrectAnswers = intQuestions Then
-            strMessage &= "Keep up the good work!" & "<br /><br />" & Environment.NewLine
+            strMessage &= "Keep up the good work!"
         Else
-            strMessage &= "If you want to improve your score, you should read more about this subject." & "<br /><br />" & Environment.NewLine
+            strMessage &= "If you want to improve your score, you should read more about this subject."
         End If
 
+        If AppSettings.EmailAsHTML Then
+            strMessage &= "<br /><br />" & Environment.NewLine
+        Else
+            strMessage &= Environment.NewLine
+        End If
 
-        strMessage &= txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br />")
+        If AppSettings.EmailAsHTML Then
+            strMessage &= txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br />")
+        Else
+            strMessage &= txtEmailTrailingText.Text
+        End If
+
 
         '-- Update the student record
         student.AddToActivityLog(txtQuizName.Text & ": " & dblScore.ToString("##0%") & strInfoToStore)

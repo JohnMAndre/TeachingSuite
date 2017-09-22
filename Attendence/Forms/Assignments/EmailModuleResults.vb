@@ -380,7 +380,7 @@ Public Class EmailModuleResults
                 End If
                 olvStudents.RefreshObject(dataItem)
                 Try
-                    tm = obj.CreateNewMessage()
+                    tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- True = force plaintext
                     tm.show() '-- don't show, doesn't load all the smtp accounts
                     Application.DoEvents()
                 Catch ex As Exception
@@ -450,17 +450,45 @@ Public Class EmailModuleResults
     Private Function GenerateEmailBodyForStudent(item As EmailResultData)
         Dim str As New System.Text.StringBuilder()
         If m_clas.ClassGroup.UseNickname Then
-            str.Append("Dear " & item.Nickname & " (" & item.LocalName & " - " & item.StudentID & "):<br><br>")
+            str.Append("Dear " & item.Nickname & " (" & item.LocalName & " - " & item.StudentID & "):")
         Else
-            str.Append("Dear " & item.LocalName & " (" & item.StudentID & "):<br><br>")
+            str.Append("Dear " & item.LocalName & " (" & item.StudentID & "):")
+        End If
+
+        If AppSettings.EmailAsHTML Then
+            str.Append("<br>")
+            str.Append("<br>")
+        Else
+            str.Append(Environment.NewLine)
+            str.Append(Environment.NewLine)
         End If
 
         If chkIncludeGrade.Checked Then
-            str.Append("Below are your module results as of today.<br><br>")
+            str.Append("Below are your module results as of today.")
         End If
-        str.Append("The following assignments have been processed:<br>")
 
-        str.Append("<ul>")
+        If AppSettings.EmailAsHTML Then
+            str.Append("<br>")
+            str.Append("<br>")
+        Else
+            str.Append(Environment.NewLine)
+            str.Append(Environment.NewLine)
+        End If
+
+
+        str.Append("The following assignments have been processed:")
+
+        If AppSettings.EmailAsHTML Then
+            str.Append("<br>")
+        Else
+            str.Append(Environment.NewLine)
+        End If
+
+        If AppSettings.EmailAsHTML Then
+            str.Append("<ul>")
+        Else
+            str.Append(Environment.NewLine)
+        End If
 
         Dim boolAtLeastOneBTECAssignment As Boolean
         Dim boolAtLeastOneNormalAssignment As Boolean
@@ -469,16 +497,11 @@ Public Class EmailModuleResults
             boolAtLeastOneBTECAssignment = True
             If ShouldIncludeAssignment(asmt) Then
                 strText = asmt.Name & " "
-                'If asmt.ClosedThirdTry Then
-                '    strText &= "(2nd rework)"
-                'ElseIf asmt.ClosedSecondTry Then
-                '    strText &= "(1st rework)"
-                'ElseIf asmt.ClosedFirstTry Then
-                '    strText &= "(First submission)"
-                'Else
-                '    strText &= "(not processed)"
-                'End If
-                str.Append("<li>" & strText & "</li>")
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<li>" & strText & "</li>")
+                Else
+                    str.Append("  * " & strText & Environment.NewLine)
+                End If
             End If
         Next
 
@@ -486,31 +509,76 @@ Public Class EmailModuleResults
             boolAtLeastOneNormalAssignment = True
             If ShouldIncludeAssignment(asmt) Then
                 strText = asmt.Name & " "
-                str.Append("<li>" & strText & "</li>")
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<li>" & strText & "</li>")
+                Else
+                    str.Append("  * " & strText & Environment.NewLine)
+                End If
             End If
         Next
-        str.Append("</ul>")
+        If AppSettings.EmailAsHTML Then
+            str.Append("</ul>")
+        Else
+            str.Append(Environment.NewLine)
+        End If
 
         If boolAtLeastOneBTECAssignment Then
             If olvAssignments.CheckedItems.Count = 1 Then
-                str.Append("This assessment has " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
+                str.Append("This assessment has " & m_intModuleOutcomes.ToString() & " outcome")
             Else
-                str.Append("These assessments have " & m_intModuleOutcomes.ToString() & " outcomes.<br><br>")
+                str.Append("These assessments have " & m_intModuleOutcomes.ToString() & " outcome")
             End If
+
+            '-- Plural?
+            If m_intModuleOutcomes = 1 Then
+                str.Append(".")
+            Else
+                str.Append("s.")
+            End If
+           
+            If AppSettings.EmailAsHTML Then
+                str.Append("<br>")
+                str.Append("<br>")
+            Else
+                str.Append(Environment.NewLine)
+                str.Append(Environment.NewLine)
+            End If
+
             Dim intFailedOutcomes As Integer = m_intModuleOutcomes - item.PassedOutcomes
 
             '-- If not sending grades, then don't send summary of grades either
             If chkIncludeGrade.Checked Then
                 If intFailedOutcomes = 0 Then
-                    str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (yes, all of them).<br><br>")
+                    str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (yes, all of them).")
                 Else
-                    str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (still need the other " & intFailedOutcomes.ToString() & " of them).<br><br>")
+                    str.Append("You passed " & item.PassedOutcomes.ToString() & " of them (still need the other " & intFailedOutcomes.ToString() & " of them).")
                 End If
             End If
 
-            str.Append("Outcome details: <br><br>")
+            If AppSettings.EmailAsHTML Then
+                str.Append("<br>")
+                str.Append("<br>")
+            Else
+                str.Append(Environment.NewLine)
+                str.Append(Environment.NewLine)
+            End If
+
+            str.Append("Outcome details:")
+
+            If AppSettings.EmailAsHTML Then
+                str.Append("<br>")
+                str.Append("<br>")
+            Else
+                str.Append(Environment.NewLine)
+                str.Append(Environment.NewLine)
+            End If
+
             str.Append(GenerateOutcomeDetails(item.Student))
-            str.Append("<br>")
+            If AppSettings.EmailAsHTML Then
+                str.Append("<br>")
+            Else
+                str.Append(Environment.NewLine)
+            End If
         End If
 
         '-- overall and improvement
@@ -523,16 +591,29 @@ Public Class EmailModuleResults
                 End If
 
                 If chkIncludeOverall.Checked Then
-                    str.Append("<br>")
-                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
-                    str.Append("<br>")
+                    If AppSettings.EmailAsHTML Then
+                        str.Append("<br>")
+                        str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
+                        str.Append("<br>")
+                    Else
+                        str.Append(Environment.NewLine)
+                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & asmt.OverallComments)
+                        str.Append(Environment.NewLine)
+                    End If
                 End If
 
                 If chkIncludeImprovement.Checked Then
-                    str.Append("<br>")
-                    str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
-                    str.Append("<br>")
-                    str.Append("<br>")
+                    If AppSettings.EmailAsHTML Then
+                        str.Append("<br>")
+                        str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
+                        str.Append("<br>")
+                        str.Append("<br>")
+                    Else
+                        str.Append(Environment.NewLine)
+                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & asmt.ImprovementComments)
+                        str.Append(Environment.NewLine)
+                        str.Append(Environment.NewLine)
+                    End If
                 End If
             End If
         Next
@@ -545,7 +626,12 @@ Public Class EmailModuleResults
         For Each asmt As StudentAssignment In item.Assignments
             If ShouldIncludeAssignment(asmt.BaseAssignment) Then
                 intAssignmentSent += 1
-                str.Append("<br>")
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<br>")
+                Else
+                    str.Append(Environment.NewLine)
+                End If
+
                 intGrade = asmt.FirstTryPoints
                 If asmt.SecondTryPoints > intGrade Then
                     intGrade = asmt.SecondTryPoints
@@ -556,21 +642,41 @@ Public Class EmailModuleResults
                 dblPercent = intGrade / asmt.BaseAssignment.MaxPoints
 
                 If chkIncludeGrade.Checked Then
-                    str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
-                    str.Append("<br>")
-                    str.Append("<br>")
+                    If AppSettings.EmailAsHTML Then
+                        str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
+                        str.Append("<br>")
+                        str.Append("<br>")
+                    Else
+                        str.Append("Grade for " & asmt.BaseAssignment.Name & ": " & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
+                        str.Append(Environment.NewLine)
+                        str.Append(Environment.NewLine)
+                    End If
+                    
                 End If
 
                 If chkIncludeOverall.Checked Then
-                    str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
-                    str.Append("<br>")
-                    str.Append("<br>")
+                    If AppSettings.EmailAsHTML Then
+                        str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
+                        str.Append("<br>")
+                        str.Append("<br>")
+                    Else
+                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & asmt.OverallComments)
+                        str.Append(Environment.NewLine)
+                        str.Append(Environment.NewLine)
+                    End If
+                    
                 End If
 
                 If chkIncludeImprovement.Checked Then
-                    str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>"))
-                    str.Append("<br>")
-                    str.Append("<br>")
+                    If AppSettings.EmailAsHTML Then
+                        str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>"))
+                        str.Append("<br>")
+                        str.Append("<br>")
+                    Else
+                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & asmt.ImprovementComments)
+                        str.Append(Environment.NewLine)
+                        str.Append(Environment.NewLine)
+                    End If
                 End If
             End If
         Next
@@ -588,19 +694,38 @@ Public Class EmailModuleResults
 
         If chkIncludeGrade.Checked Then
             If boolAtLeastOneNormalAssignment Then
-                str.Append("<hr>")
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<hr>")
+                Else
+                    str.Append("------------------------------------------")
+                End If
+
                 str.Append("<b>Overall grade for module:</b> " & item.Student.AssessmentResultOverall)
-                str.Append("<br>")
-                str.Append("<hr>")
-                str.Append("<br>")
+
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<br>")
+                    str.Append("<hr>")
+                    str.Append("<br>")
+                Else
+                    str.Append(Environment.NewLine)
+                    str.Append("------------------------------------------")
+                    str.Append(Environment.NewLine)
+                End If
+
+
             End If
         End If
 
 
 
         If boolAtLeastOneBTECAssignment Then
-            str.Append("<br>")
-            str.Append("<br>")
+            If AppSettings.EmailAsHTML Then
+                str.Append("<br>")
+                str.Append("<br>")
+            Else
+                str.Append(Environment.NewLine)
+                str.Append(Environment.NewLine)
+            End If
 
 
             Const ACHIEVED As String = "Achieved"
@@ -608,65 +733,30 @@ Public Class EmailModuleResults
 
             '-- No grades means no M's or D's or congratulations
             If chkIncludeGrade.Checked Then
-                If chkIncludeMeritDistinctionResults.Checked Then
-                    'str.Append("<table border='1'>")
-                    'If item.M1 Then
-                    '    str.Append("<tr><td bgcolor='LightGreen'>M1: " & ACHIEVED & "</td></td>")
-                    'Else
-                    '    str.Append("<tr><td>M1: " & NOTACHIEVED & "</td></td>")
-                    'End If
-                    'If item.M2 Then
-                    '    str.Append("<tr><td bgcolor='LightGreen'>M2: " & ACHIEVED & "</td></td>")
-                    'Else
-                    '    str.Append("<tr><td>M2: " & NOTACHIEVED & "</td></td>")
-                    'End If
-
-                    'If item.M3 Then
-                    '    str.Append("<tr><td bgcolor='LightGreen'>M3: " & ACHIEVED & "</td></td>")
-                    'Else
-                    '    str.Append("<tr><td>M3: " & NOTACHIEVED & "</td></td>")
-                    'End If
-
-                    'str.Append("</table>")
-                    'If item.M1 AndAlso item.M2 AndAlso item.M3 Then
-                    '    str.Append("You achieved MERIT!<br>")
-                    'End If
-
-                    'str.Append("<br>")
-
-                    'str.Append("<table border='1'>")
-                    'If item.D1 Then
-                    '    str.Append("<tr><td bgcolor='LightGreen'>D1: " & ACHIEVED & "</td></td>")
-                    'Else
-                    '    str.Append("<tr><td>D1: " & NOTACHIEVED & "</td></td>")
-                    'End If
-                    'If item.D2 Then
-                    '    str.Append("<tr><td bgcolor='LightGreen'>D2: " & ACHIEVED & "</td></td>")
-                    'Else
-                    '    str.Append("<tr><td>D2: " & NOTACHIEVED & "</td></td>")
-                    'End If
-
-                    'If item.D3 Then
-                    '    str.Append("<tr><td bgcolor='LightGreen'>D3: " & ACHIEVED & "</td></td>")
-                    'Else
-                    '    str.Append("<tr><td>D3: " & NOTACHIEVED & "</td></td>")
-                    'End If
-                    'str.Append("</table>")
-
-                    'If item.D1 AndAlso item.D2 AndAlso item.D3 Then
-                    '    str.Append("You achieved DISTINCTION!!!<br>")
-                    'End If
-                    'str.Append("<br>")
-                End If
-
                 If chkFinalFeedback.Checked Then
                     If item.PassedOutcomes >= m_intModuleOutcomes Then
-                        str.Append("Congratulations!!!<br><br>")
+                        str.Append("Congratulations!!!")
+                        If AppSettings.EmailAsHTML Then
+                            str.Append("<br>")
+                            str.Append("<br>")
+                        Else
+                            str.Append(Environment.NewLine)
+                            str.Append(Environment.NewLine)
+                        End If
+
                     Else
                         If m_try = MarkingTry.FirstTry Then
-                            str.Append("Don't worry. There is still time to do better.<br><br>")
+                            str.Append("Don't worry. There is still time to do better.")
                         Else
-                            str.Append("I am sure you will do better next time.<br><br>")
+                            str.Append("I am sure you will do better next time.")
+                        End If
+
+                        If AppSettings.EmailAsHTML Then
+                            str.Append("<br>")
+                            str.Append("<br>")
+                        Else
+                            str.Append(Environment.NewLine)
+                            str.Append(Environment.NewLine)
                         End If
                     End If
                 End If
@@ -674,7 +764,11 @@ Public Class EmailModuleResults
         End If
 
 
-        str.Append(txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br>"))
+        If AppSettings.EmailAsHTML Then
+            str.Append(txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br>"))
+        Else
+            str.Append(txtEmailTrailingText.Text)
+        End If
 
 
         Return str.ToString()
@@ -712,22 +806,39 @@ Public Class EmailModuleResults
         Dim strResult As String = String.Empty
         Dim strFeedback As String = String.Empty
         Dim sbReturn As New System.Text.StringBuilder()
-        sbReturn.Append("<table border='1'>")
+
         Dim rslts As Student.StudentModuleResult = student.ModuleResults(chkIncludeUnprocessed.Checked)
 
-        sbReturn.Append("<tr><td align=center>Outcome</td><td align=center>Result</td><td>Feedback</td></tr>")
+        If AppSettings.EmailAsHTML Then
+            sbReturn.Append("<table border='1'>")
+            sbReturn.Append("<tr><td align=center>Outcome</td><td align=center>Result</td><td>Feedback</td></tr>")
+        Else
+            '-- First column 10
+            '   Second column 9
+            '   Third column whatever is left
+            sbReturn.Append("Outcome   Result   Feedback")
+            sbReturn.Append(Environment.NewLine)
+        End If
 
+        Const FIRST_COLUMN_LENGTH As Integer = 10
+        Const SECOND_COLUMN_LENGTH As Integer = 9
 
         rslts.Outcomes.Sort()
 
         For Each oc As Student.StudentModuleOutcomeResult In rslts.Outcomes
             If OutcomeShouldBeSent(oc.Outcome) Then
 
-                strResult = GetResultsText(oc.Status) & " &nbsp;" '-- make sure tables look ok with no text
-                strFeedback = oc.LatestFeedback & " &nbsp;"
+                strResult = GetResultsText(oc.Status)
+                strFeedback = oc.LatestFeedback
+
 
                 '-- First part of line is the same no matter what (outcome name)
-                sbReturn.Append("<tr><td align='center'>" & oc.Outcome.Name & "</td>")
+                If AppSettings.EmailAsHTML Then
+                    sbReturn.Append("<tr><td align='center'>" & oc.Outcome.Name & "</td>")
+                Else
+                    sbReturn.Append(GetSpacePaddedString(oc.Outcome.Name, FIRST_COLUMN_LENGTH))
+                End If
+
 
                 '-- Next is grade, but only include if that is checked
                 If chkIncludeGrade.Checked Then
@@ -744,25 +855,42 @@ Public Class EmailModuleResults
 
 
                     If boolOKToInclude Then
-                        If oc.Status = OutcomeResultStatusEnum.Achieved Then
-                            sbReturn.Append("<td bgcolor='LightGreen' align='center'>" & strResult & "</td>")
+                        If AppSettings.EmailAsHTML Then
+                            If oc.Status = OutcomeResultStatusEnum.Achieved Then
+                                sbReturn.Append("<td bgcolor='LightGreen' align='center'>" & strResult & " &nbsp;" & "</td>") '-- make sure tables look ok with no text
+                            Else
+                                sbReturn.Append("<td bgcolor='Red' align='center'>" & strResult & " &nbsp;" & "</td>")
+                            End If
                         Else
-                            sbReturn.Append("<td bgcolor='Red' align='center'>" & strResult & "</td>")
+                            sbReturn.Append(GetSpacePaddedString(strResult, SECOND_COLUMN_LENGTH))
                         End If
 
                         If Me.chkIncludeFeedback.Checked Then
-                            sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
+                            If AppSettings.EmailAsHTML Then
+                                sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
+                            Else
+                                sbReturn.Append(strFeedback)
+                            End If
+
                         Else
                             '-- We are not supposed to send the feedback
                             '   So just send blank
-                            sbReturn.Append("<td>&nbsp;</td>")
+                            If AppSettings.EmailAsHTML Then
+                                sbReturn.Append("<td>&nbsp;</td>")
+                            Else
+                                '-- nothing needed here
+                            End If
                         End If
                     Else
                         '-- Do not include merit or distinction means
                         '   do not include the feedback for merit or distinction
                         '   also do not include the grade
-                        sbReturn.Append("<td align='center'>&nbsp;</td>")
-                        sbReturn.Append("<td>&nbsp;</td>")
+                        If AppSettings.EmailAsHTML Then
+                            sbReturn.Append("<td align='center'>&nbsp;</td>")
+                            sbReturn.Append("<td>&nbsp;</td>")
+                        Else
+                            sbReturn.Append(GetSpacePaddedString(String.Empty, SECOND_COLUMN_LENGTH))
+                        End If
                     End If
                 Else
                     '-- We are not supposed to send the grade
@@ -772,31 +900,53 @@ Public Class EmailModuleResults
                         '-- Do not include grade means
                         '   do not include the feedback for merit or distinction
                         '   also do not include the grade
-                        sbReturn.Append("<td align='center'>&nbsp;</td>")
-                        sbReturn.Append("<td>&nbsp;</td>")
+                        If AppSettings.EmailAsHTML Then
+                            sbReturn.Append("<td align='center'>&nbsp;</td>")
+                            sbReturn.Append("<td>&nbsp;</td>")
+                        Else
+                            sbReturn.Append(GetSpacePaddedString(String.Empty, SECOND_COLUMN_LENGTH))
+                        End If
                     Else
-                        '-- pass
-                        sbReturn.Append("<td align='center'>&nbsp;</td>")
+                        '-- pass-level outcome
+                        If AppSettings.EmailAsHTML Then
+                            sbReturn.Append("<td align='center'>&nbsp;</td>")
+                        Else
+                            sbReturn.Append(GetSpacePaddedString(String.Empty, SECOND_COLUMN_LENGTH))
+                        End If
 
                         If Me.chkIncludeFeedback.Checked Then
-                            sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
+                            If AppSettings.EmailAsHTML Then
+                                sbReturn.Append("<td>" & strFeedback & "&nbsp;</td>")
+                            Else
+                                '-- nothing needed here
+                            End If
                         Else
                             '-- We are not supposed to send the feedback
                             '   So just send blank
-                            sbReturn.Append("<td>&nbsp;</td>")
+                            If AppSettings.EmailAsHTML Then
+                                sbReturn.Append("<td>&nbsp;</td>")
+                            Else
+                                '-- nothing needed here
+                            End If
                         End If
                     End If
-                End If
+                    End If
 
 
 
                 '-- Last part of the line is the same no matter what
-                sbReturn.Append("</tr>")
+                If AppSettings.EmailAsHTML Then
+                    sbReturn.Append("</tr>")
+                Else
+                    sbReturn.Append(Environment.NewLine)
+                End If
 
             End If
         Next
+        If AppSettings.EmailAsHTML Then
+            sbReturn.Append("</table>")
+        End If
 
-        sbReturn.Append("</table>")
 
 
         Return sbReturn.ToString()

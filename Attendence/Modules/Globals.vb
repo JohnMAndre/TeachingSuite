@@ -338,4 +338,16 @@
 
         Return strRows
     End Function
+    Public Function GetSpacePaddedString(text As String, totalLength As Integer) As String
+        Dim intSpaces As Integer = totalLength - text.Length
+        If intSpaces <= 0 Then
+            Return text
+        Else
+            For intCounter As Integer = 1 To intSpaces
+                text &= " "
+            Next
+        End If
+
+        Return text
+    End Function
 End Module
