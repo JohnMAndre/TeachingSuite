@@ -3186,6 +3186,11 @@ Public Class Student
             Return dblReturn
         End Get
     End Property
+    Public ReadOnly Property SchoolClassName As String
+        Get
+            Return Me.m_schoolClass.Name
+        End Get
+    End Property
 #End Region
 
     Private m_strTags As String = String.Empty

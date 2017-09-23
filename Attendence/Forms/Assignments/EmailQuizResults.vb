@@ -135,6 +135,8 @@ Public Class EmailQuizResults
                         rslts.EmailBody = strBody
                         m_lstToEmail.Add(rslts)
 
+
+
                         intStudentsEmailed += 1
                     End If
                 End If
@@ -487,6 +489,7 @@ Public Class EmailQuizResults
 
         '-- Update the student record
         student.AddToActivityLog(txtQuizName.Text & ": " & dblScore.ToString("##0%") & strInfoToStore)
+        student.PerformanceLastOnlineQuiz = dblScore * 100 '-- convert to base 100
 
         Return strMessage
 
