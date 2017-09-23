@@ -107,9 +107,22 @@
                 clas = New SchoolClass(m_clas.ClassGroup)
                 For Each cls As SchoolClass In m_clas.ClassGroup.Classes
                     clas.Students.AddRange(cls.Students)
+
+                    '-- Add class session to each class included for combined view
+                    Dim objNewSession As New ClassSession()
+                    objNewSession.StartDate = dtpSessionDate.Value.Date
+                    objNewSession.StudentGroup = 0 '-- for all students
+                    cls.ClassSessions.Add(objNewSession)
+
                 Next
             Else
                 clas = m_clas
+
+                '-- Add class session to class 
+                Dim objNewSession As New ClassSession()
+                objNewSession.StartDate = dtpSessionDate.Value.Date
+                objNewSession.StudentGroup = 0 '-- for all students
+                clas.ClassSessions.Add(objNewSession)
             End If
 
             For Each stud As Student In clas.Students
@@ -155,12 +168,6 @@
 
                 stud.TeachingSessions.Add(session)
             Next
-
-            Dim objNewSession As New ClassSession()
-            objNewSession.StartDate = dtpSessionDate.Value.Date
-            objNewSession.StudentGroup = 0 '-- for all students
-
-            clas.ClassSessions.Add(objNewSession)
 
             MessageBox.Show(clas.Students.Count.ToString("#,##0") & " students processed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             AddApplicationHistory(clas.Students.Count.ToString("#,##0") & " students processed in Attendance from Assignment.")
