@@ -357,7 +357,18 @@ Public Class MainFormPlain
     Private Function GetSelectedStudentsFromGrid() As List(Of Student)
         Dim lstReturn As New List(Of Student)
 
-        Dim cells As DataGridViewSelectedCellCollection = dgvStudents.SelectedCells
+        Dim cells As DataGridViewSelectedCellCollection
+        Dim grid As DataGridView
+
+        Select Case TabControl1.SelectedTab.Name
+            Case tabDataGrid.Name
+                grid = dgvStudents
+            Case tabFound.Name
+                grid = dgvFoundStudents
+        End Select
+
+        cells = grid.SelectedCells
+
         Dim row As DataGridViewRow
         Dim stud As Student
 
@@ -366,7 +377,7 @@ Public Class MainFormPlain
             If Not dict.ContainsKey(cell.RowIndex) Then
                 dict.Add(cell.RowIndex, Nothing)
 
-                row = dgvStudents.Rows(cell.RowIndex)
+                row = grid.Rows(cell.RowIndex)
                 stud = row.DataBoundItem
                 If stud IsNot Nothing Then
                     lstReturn.Add(stud)
