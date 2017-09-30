@@ -236,6 +236,12 @@
     <Compile Include="Forms\Reports\SemesterStatistics.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Reports\StudentAssessmentCompletionReport.Designer.vb">
+      <DependentUpon>StudentAssessmentCompletionReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentAssessmentCompletionReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Reports\StudentGrades.Designer.vb">
       <DependentUpon>StudentGrades.vb</DependentUpon>
     </Compile>
@@ -613,6 +619,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\SemesterStatistics.resx">
       <DependentUpon>SemesterStatistics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\StudentAssessmentCompletionReport.resx">
+      <DependentUpon>StudentAssessmentCompletionReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\StudentGrades.resx">
       <DependentUpon>StudentGrades.vb</DependentUpon>

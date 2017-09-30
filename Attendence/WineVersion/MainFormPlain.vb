@@ -3041,4 +3041,13 @@ Public Class MainFormPlain
         dgvFoundStudents.DataSource = m_lstFoundStudents
         dgvFoundStudents.Refresh()
     End Sub
+
+    Private Sub StudentAssessmentcompletionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentAssessmentcompletionToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim frm As New StudentAssessmentCompletionReport(GetSelectedClass())
+            frm.Show()
+        End If
+    End Sub
 End Class
