@@ -144,8 +144,10 @@ Public Class ClassDetails
 
     Private Sub SkipActualSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SkipActualSessionToolStripMenuItem.Click
         '-- Remove session and ignore /remove it from schedule (so we will no longer teach the subject of that session)
-        If olvActualSessions.SelectedObject IsNot Nothing Then
-            Dim objActual As ActualSessionItem = CType(olvActualSessions.SelectedObject, ActualSessionItem)
+        'If olvActualSessions.SelectedObject IsNot Nothing Then
+        For Each objActual As ActualSessionItem In olvActualSessions.SelectedObjects
+
+            'Dim objActual As ActualSessionItem = CType(olvActualSessions.SelectedObject, ActualSessionItem)
             Dim objSkip As New SkipSession()
             objSkip.StartDateTime = objActual.StartDateTime
             m_class.SessionsToSkip.Add(objSkip)
@@ -154,7 +156,8 @@ Public Class ClassDetails
             '-- remove from collection and from grid
             m_class.ActualSessions.Remove(objActual)
             olvActualSessions.RemoveObject(objActual)
-        End If
+        Next
+        '        End If
     End Sub
 
     Private Sub btnRegenerateActualSchedule_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnRegenerateActualSchedule.LinkClicked
@@ -253,8 +256,10 @@ Public Class ClassDetails
 
     Private Sub SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem.Click
         '-- Remove session and ignore /remove it from schedule (so we will no longer teach the subject of that session)
-        If olvActualSessions.SelectedObject IsNot Nothing Then
-            Dim objActual As ActualSessionItem = CType(olvActualSessions.SelectedObject, ActualSessionItem)
+        'If olvActualSessions.SelectedObject IsNot Nothing Then
+        For Each objActual As ActualSessionItem In olvActualSessions.SelectedObjects
+
+            'Dim objActual As ActualSessionItem = CType(olvActualSessions.SelectedObject, ActualSessionItem)
             Dim objSkip As New SkipSession()
             objSkip.StartDateTime = objActual.StartDateTime
             m_class.SessionsToSkip.Add(objSkip)
@@ -263,7 +268,8 @@ Public Class ClassDetails
             '-- Regen sessions
             m_class.GenerateActualSessions()
             LoadActualSessions()
-        End If
+        Next
+        'End If
     End Sub
 
     Private Sub InsertSessionBeforeSelectedSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles InsertSessionBeforeSelectedSessionToolStripMenuItem.Click

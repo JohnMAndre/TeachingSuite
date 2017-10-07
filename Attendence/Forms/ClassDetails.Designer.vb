@@ -660,43 +660,43 @@ Partial Class ClassDetails
         Me.ctxmnuActualSessions.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ctxmnuActualSessions.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SkipActualSessionToolStripMenuItem, Me.SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem, Me.InsertSessionBeforeSelectedSessionToolStripMenuItem, Me.ToolStripSeparator2, Me.MovedownToolStripMenuItem, Me.MoveupToolStripMenuItem})
         Me.ctxmnuActualSessions.Name = "ctxmnuPlannedSchedule"
-        Me.ctxmnuActualSessions.Size = New System.Drawing.Size(328, 120)
+        Me.ctxmnuActualSessions.Size = New System.Drawing.Size(341, 120)
         '
         'SkipActualSessionToolStripMenuItem
         '
         Me.SkipActualSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.SkipActualSessionToolStripMenuItem.Name = "SkipActualSessionToolStripMenuItem"
-        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(327, 22)
-        Me.SkipActualSessionToolStripMenuItem.Text = "Skip selected session (remove topic completely)"
+        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(340, 22)
+        Me.SkipActualSessionToolStripMenuItem.Text = "Skip selected session(s) (remove topic completely)"
         '
         'SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem
         '
         Me.SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem.Name = "SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem"
-        Me.SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem.Size = New System.Drawing.Size(327, 22)
-        Me.SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem.Text = "Skip selected session and recalculate all sessions"
+        Me.SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem.Size = New System.Drawing.Size(340, 22)
+        Me.SkipSelectedSessionAndRecalculateAllSessionsToolStripMenuItem.Text = "Skip selected session(s) and recalculate all sessions"
         '
         'InsertSessionBeforeSelectedSessionToolStripMenuItem
         '
         Me.InsertSessionBeforeSelectedSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.add_icon_16
         Me.InsertSessionBeforeSelectedSessionToolStripMenuItem.Name = "InsertSessionBeforeSelectedSessionToolStripMenuItem"
-        Me.InsertSessionBeforeSelectedSessionToolStripMenuItem.Size = New System.Drawing.Size(327, 22)
-        Me.InsertSessionBeforeSelectedSessionToolStripMenuItem.Text = "&Insert session before selected session"
+        Me.InsertSessionBeforeSelectedSessionToolStripMenuItem.Size = New System.Drawing.Size(340, 22)
+        Me.InsertSessionBeforeSelectedSessionToolStripMenuItem.Text = "&Insert 1 session before selected session"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(324, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(337, 6)
         '
         'MovedownToolStripMenuItem
         '
         Me.MovedownToolStripMenuItem.Name = "MovedownToolStripMenuItem"
-        Me.MovedownToolStripMenuItem.Size = New System.Drawing.Size(327, 22)
+        Me.MovedownToolStripMenuItem.Size = New System.Drawing.Size(340, 22)
         Me.MovedownToolStripMenuItem.Text = "Move &down"
         '
         'MoveupToolStripMenuItem
         '
         Me.MoveupToolStripMenuItem.Name = "MoveupToolStripMenuItem"
-        Me.MoveupToolStripMenuItem.Size = New System.Drawing.Size(327, 22)
+        Me.MoveupToolStripMenuItem.Size = New System.Drawing.Size(340, 22)
         Me.MoveupToolStripMenuItem.Text = "Move &up"
         '
         'tmrResetDuration
