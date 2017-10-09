@@ -2959,6 +2959,22 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub picSearch_Click(sender As Object, e As EventArgs) Handles picSearch.Click
+        FindStudentsFromSearchText()
+    End Sub
+
+    Private Sub StudentAssessmentcompletionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentAssessmentcompletionToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim frm As New StudentAssessmentCompletionReport(GetSelectedClass())
+            frm.Show()
+        End If
+    End Sub
+
+    Private Sub FindFromSearchTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FindFromSearchTextToolStripMenuItem.Click
+        FindStudentsFromSearchText()
+    End Sub
+    Private Sub FindStudentsFromSearchText()
         '-- Starting with selected class, search all students 
         '   any with matching LocalName, LocalNameLatinLetters, Nickname, StudentID, ExtStudentID, Tags, StudentTeam, or EmailAddress
         '   These will all appear on a new DGV on a new tab
@@ -2967,6 +2983,7 @@ Public Class MainFormPlain
         dgvFoundStudents.DataSource = Nothing
         dgvFoundStudents.Refresh()
         TabControl1.SelectedTab = Me.tabFound
+        Dim boolMatch As Boolean
 
         Dim boolAtLeastOneNonMatch As Boolean
         Dim strLocalName, strLocalNameLatinLetters As String
@@ -2975,6 +2992,8 @@ Public Class MainFormPlain
         For Each classgrp As ClassGroup In ThisSemester.ClassGroups
             For Each clas As SchoolClass In classgrp.Classes
                 For Each stud As Student In clas.Students
+                    boolMatch = False '-- reset to default
+
                     '-- First search on localname and localnameLatinLetters
                     If strFilter.Contains(" ") Then
                         Dim strNameForSearch As String
@@ -2999,39 +3018,43 @@ Public Class MainFormPlain
                             Application.DoEvents() '-- we're done, no match on this student
                         Else
                             '-- this student contains all of the multiple names
-                            m_lstFoundStudents.Add(stud)
+                            boolMatch = True
                         End If
                     Else
                         '-- just one name, simple
                         If stud.LocalNameLatinLetters.ToUpper().Contains(strFilter) OrElse _
                             stud.LocalName.ToUpper().Contains(strFilter) Then
                             '-- match on name version with and without diacritics
-                            m_lstFoundStudents.Add(stud)
+                            boolMatch = True
                         End If
                     End If
 
                     '-- Next, match on studentID
                     If stud.StudentID.ToUpper().Contains(strFilter) Then
-                        m_lstFoundStudents.Add(stud)
+                        boolMatch = True
                     End If
 
                     If stud.ExtStudentID.ToUpper().Contains(strFilter) Then
-                        m_lstFoundStudents.Add(stud)
+                        boolMatch = True
                     End If
 
                     If stud.Nickname.ToUpper().Contains(strFilter) Then
-                        m_lstFoundStudents.Add(stud)
+                        boolMatch = True
                     End If
 
                     If stud.EmailAddress.ToUpper().Contains(strFilter) Then
-                        m_lstFoundStudents.Add(stud)
+                        boolMatch = True
                     End If
 
                     If stud.StudentTeam.ToUpper().Contains(strFilter) Then
-                        m_lstFoundStudents.Add(stud)
+                        boolMatch = True
                     End If
 
                     If stud.Tags.ToUpper().Contains(strFilter) Then
+                        boolMatch = True
+                    End If
+
+                    If boolMatch Then
                         m_lstFoundStudents.Add(stud)
                     End If
 
@@ -3040,14 +3063,5 @@ Public Class MainFormPlain
         Next
         dgvFoundStudents.DataSource = m_lstFoundStudents
         dgvFoundStudents.Refresh()
-    End Sub
-
-    Private Sub StudentAssessmentcompletionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentAssessmentcompletionToolStripMenuItem.Click
-        If GetSelectedClass() Is Nothing Then
-            MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            Dim frm As New StudentAssessmentCompletionReport(GetSelectedClass())
-            frm.Show()
-        End If
     End Sub
 End Class
