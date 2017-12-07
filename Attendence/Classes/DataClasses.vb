@@ -2826,6 +2826,26 @@ Public Class Student
             Return dblOverall
         End Get
     End Property
+    ''' <summary>
+    ''' Only works for Normal assignments (not BTEC)
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public ReadOnly Property AssessmentTotalPoints As Double
+        Get
+            Dim dblOverall As Double
+            Dim intScore As Integer
+
+            For Each asmt In Me.Assignments
+                intScore = Math.Max(Math.Max(asmt.FirstTryPoints, asmt.SecondTryPoints), asmt.ThirdTryPoints) '-- get highest score of first 3 submissions
+
+                dblOverall += intScore
+            Next
+
+            Return dblOverall
+        End Get
+    End Property
     Public ReadOnly Property AssessmentResultOverall As String
         Get
             '-- Some values

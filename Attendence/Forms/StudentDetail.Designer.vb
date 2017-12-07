@@ -22,6 +22,7 @@ Partial Class StudentDetail
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentDetail))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.txtExtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.pnlHistoricalData = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.lstHistoricalFieldsAvailable = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.olvHistoricalData = New BrightIdeasSoftware.ObjectListView()
@@ -46,7 +47,6 @@ Partial Class StudentDetail
         Me.txtClass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtTags = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtExtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.nudWritingQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudPlagiarismSeverity = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
@@ -112,7 +112,7 @@ Partial Class StudentDetail
         Me.pnlNormalAssignments = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.llblRefreshGradeAsOfToday = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.lblGradeAsOfToday = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblGradeAsOfTodayPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.olvNormalAssignments = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn29 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -130,6 +130,7 @@ Partial Class StudentDetail
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lblGradeAsOfTodayPoints = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.pnlHistoricalData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,7 +153,6 @@ Partial Class StudentDetail
         'KryptonPanel
         '
         Me.KryptonPanel.Controls.Add(Me.txtExtStudentID)
-        Me.KryptonPanel.Controls.Add(Me.pnlHistoricalData)
         Me.KryptonPanel.Controls.Add(Me.btnShowHistoricalData)
         Me.KryptonPanel.Controls.Add(Me.btnShowImprovementItems)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel14)
@@ -195,18 +195,28 @@ Partial Class StudentDetail
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel.Controls.Add(Me.pbButtonHighlight)
         Me.KryptonPanel.Controls.Add(Me.pnlAssignments)
+        Me.KryptonPanel.Controls.Add(Me.pnlNormalAssignments)
+        Me.KryptonPanel.Controls.Add(Me.pnlHistoricalData)
         Me.KryptonPanel.Controls.Add(Me.pnlOutcomes)
         Me.KryptonPanel.Controls.Add(Me.rtbLog)
         Me.KryptonPanel.Controls.Add(Me.rtbNotes)
         Me.KryptonPanel.Controls.Add(Me.olvImprovementItems)
         Me.KryptonPanel.Controls.Add(Me.olvTeachingSessions)
         Me.KryptonPanel.Controls.Add(Me.olvAssignments)
-        Me.KryptonPanel.Controls.Add(Me.pnlNormalAssignments)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Size = New System.Drawing.Size(812, 454)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'txtExtStudentID
+        '
+        Me.txtExtStudentID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtExtStudentID.Location = New System.Drawing.Point(399, 64)
+        Me.txtExtStudentID.Name = "txtExtStudentID"
+        Me.txtExtStudentID.Size = New System.Drawing.Size(198, 19)
+        Me.txtExtStudentID.TabIndex = 11
         '
         'pnlHistoricalData
         '
@@ -441,15 +451,6 @@ Partial Class StudentDetail
         Me.txtTags.Name = "txtTags"
         Me.txtTags.Size = New System.Drawing.Size(306, 19)
         Me.txtTags.TabIndex = 8
-        '
-        'txtExtStudentID
-        '
-        Me.txtExtStudentID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtExtStudentID.Location = New System.Drawing.Point(399, 64)
-        Me.txtExtStudentID.Name = "txtExtStudentID"
-        Me.txtExtStudentID.Size = New System.Drawing.Size(198, 19)
-        Me.txtExtStudentID.TabIndex = 11
         '
         'nudWritingQuality
         '
@@ -1119,7 +1120,9 @@ Partial Class StudentDetail
         '
         'pnlNormalAssignments
         '
-        Me.pnlNormalAssignments.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlNormalAssignments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlNormalAssignments.BackColor = System.Drawing.Color.Transparent
         Me.pnlNormalAssignments.Controls.Add(Me.Panel2)
         Me.pnlNormalAssignments.Controls.Add(Me.olvNormalAssignments)
@@ -1131,8 +1134,9 @@ Partial Class StudentDetail
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Controls.Add(Me.lblGradeAsOfTodayPoints)
         Me.Panel2.Controls.Add(Me.llblRefreshGradeAsOfToday)
-        Me.Panel2.Controls.Add(Me.lblGradeAsOfToday)
+        Me.Panel2.Controls.Add(Me.lblGradeAsOfTodayPercent)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel2.Location = New System.Drawing.Point(0, 235)
         Me.Panel2.Name = "Panel2"
@@ -1148,13 +1152,13 @@ Partial Class StudentDetail
         Me.ToolTip1.SetToolTip(Me.llblRefreshGradeAsOfToday, "Click to refresh")
         Me.llblRefreshGradeAsOfToday.Values.Text = "Grade (today):"
         '
-        'lblGradeAsOfToday
+        'lblGradeAsOfTodayPercent
         '
-        Me.lblGradeAsOfToday.Location = New System.Drawing.Point(112, 3)
-        Me.lblGradeAsOfToday.Name = "lblGradeAsOfToday"
-        Me.lblGradeAsOfToday.Size = New System.Drawing.Size(18, 19)
-        Me.lblGradeAsOfToday.TabIndex = 49
-        Me.lblGradeAsOfToday.Values.Text = "0"
+        Me.lblGradeAsOfTodayPercent.Location = New System.Drawing.Point(112, 3)
+        Me.lblGradeAsOfTodayPercent.Name = "lblGradeAsOfTodayPercent"
+        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(18, 19)
+        Me.lblGradeAsOfTodayPercent.TabIndex = 49
+        Me.lblGradeAsOfTodayPercent.Values.Text = "0"
         '
         'olvNormalAssignments
         '
@@ -1306,12 +1310,20 @@ Partial Class StudentDetail
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        '
+        'lblGradeAsOfTodayPoints
+        '
+        Me.lblGradeAsOfTodayPoints.Location = New System.Drawing.Point(248, 4)
+        Me.lblGradeAsOfTodayPoints.Name = "lblGradeAsOfTodayPoints"
+        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(18, 19)
+        Me.lblGradeAsOfTodayPoints.TabIndex = 140
+        Me.lblGradeAsOfTodayPoints.Values.Text = "0"
         '
         'StudentDetail
         '
@@ -1459,7 +1471,7 @@ Partial Class StudentDetail
     Friend WithEvents OlvColumn38 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents pnlNormalAssignments As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents lblGradeAsOfToday As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblGradeAsOfTodayPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents llblRefreshGradeAsOfToday As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents btnShowHistoricalData As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents pnlHistoricalData As ComponentFactory.Krypton.Toolkit.KryptonPanel
@@ -1471,4 +1483,5 @@ Partial Class StudentDetail
     Friend WithEvents olvcolTimeInForce As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn40 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents lblGradeAsOfTodayPoints As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

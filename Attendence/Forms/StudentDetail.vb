@@ -290,7 +290,8 @@ Public Class StudentDetail
                 olvNormalAssignments.SetObjects(m_student.Assignments)
 
                 '-- Now calculate the overall grade
-                lblGradeAsOfToday.Text = m_student.AssessmentResultOverall
+                lblGradeAsOfTodayPercent.Text = m_student.AssessmentResultOverall
+                lblGradeAsOfTodayPoints.Text = m_student.AssessmentTotalPoints.ToString("#,##0")
             End If
         End If
     End Sub
@@ -572,7 +573,8 @@ Public Class StudentDetail
     End Sub
 
     Private Sub llblRefreshGradeAsOfToday_LinkClicked(sender As Object, e As EventArgs) Handles llblRefreshGradeAsOfToday.LinkClicked
-        lblGradeAsOfToday.Text = m_student.AssessmentResultOverall
+        lblGradeAsOfTodayPercent.Text = m_student.AssessmentResultOverall
+        lblGradeAsOfTodayPoints.Text = m_student.AssessmentTotalPoints.ToString("#,##0")
     End Sub
 
     Private Sub btnShowHistoricalData_LinkClicked(sender As Object, e As EventArgs) Handles btnShowHistoricalData.LinkClicked
