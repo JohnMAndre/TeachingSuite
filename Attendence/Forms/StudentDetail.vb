@@ -297,15 +297,6 @@ Public Class StudentDetail
     End Sub
     Private Sub LoadOutcomes()
         If m_student IsNot Nothing Then
-            'Dim rslt As Student.StudentModuleResult = 
-            'If rslt.AchievedDistinction Then
-            '    llblDistinctionAwarded.Show()
-            'End If
-
-            'If rslt.AchievedMerit Then
-            '    llblMeritAwarded.Show()
-            'End If
-
             olvOutcomes.SetObjects(m_student.OutcomePerformance())
         End If
     End Sub

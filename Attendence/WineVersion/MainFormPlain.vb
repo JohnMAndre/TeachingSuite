@@ -17,7 +17,7 @@ Public Class MainFormPlain
     Private m_dtLastAutoSave As Date
 
     Private m_lstFoundStudents As New List(Of Student)
-    Private m_lstCombinedViewStudents As List(Of Student)
+    Private m_lstCurrentListOfStudents As List(Of Student)
 
     Private Sub MainForm_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If ThisSemester IsNot Nothing Then
@@ -111,18 +111,6 @@ Public Class MainFormPlain
         typEnum = GetType(Student.GenderEnum)
         dcolGender.DataSource = [Enum].GetValues(typEnum)
         dcolGender.ValueType = typEnum
-
-        typEnum = GetType(AttendanceStatusEnum)
-        dcolFoundStatus.DataSource = [Enum].GetValues(typEnum)
-        dcolFoundStatus.ValueType = typEnum
-
-        typEnum = GetType(Student.GenderEnum)
-        dcolFoundGender.DataSource = [Enum].GetValues(typEnum)
-        dcolFoundGender.ValueType = typEnum
-
-
-
-        'Me.olvStudents.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
 
         If ThisSemester Is Nothing Then
             AddApplicationHistory("Opened app without active semester")
@@ -302,7 +290,7 @@ Public Class MainFormPlain
             AddApplicationHistory("Loaded semester: " & ThisSemester.Name)
 
             LoadClassGroups()
-            olvStudents.ClearObjects()
+            'olvStudents.ClearObjects()
             dgvStudents.DataSource = Nothing
             LoadSchedule()
 
@@ -358,16 +346,14 @@ Public Class MainFormPlain
         Dim lstReturn As New List(Of Student)
 
         Dim cells As DataGridViewSelectedCellCollection
-        Dim grid As DataGridView
+        'Dim grid As DataGridView
 
-        Select Case TabControl1.SelectedTab.Name
-            Case tabDataGrid.Name
-                grid = dgvStudents
-            Case tabFound.Name
-                grid = dgvFoundStudents
-        End Select
+        'Select Case TabControl1.SelectedTab.Name
+        '    Case tabDataGrid.Name
+        '        grid = 
+        'End Select
 
-        cells = grid.SelectedCells
+        cells = dgvStudents.SelectedCells
 
         Dim row As DataGridViewRow
         Dim stud As Student
@@ -377,7 +363,7 @@ Public Class MainFormPlain
             If Not dict.ContainsKey(cell.RowIndex) Then
                 dict.Add(cell.RowIndex, Nothing)
 
-                row = grid.Rows(cell.RowIndex)
+                row = dgvStudents.Rows(cell.RowIndex)
                 stud = row.DataBoundItem
                 If stud IsNot Nothing Then
                     lstReturn.Add(stud)
@@ -456,33 +442,33 @@ Public Class MainFormPlain
         Dim objClass As SchoolClass = GetSelectedClass()
         dgvStudents.AutoGenerateColumns = False
         If objClass Is Nothing Then
-            olvStudents.ClearObjects()
+            'olvStudents.ClearObjects()
             dgvStudents.DataSource = Nothing
         Else
             If ClassIsCombinedView(objClass) Then
-                m_lstCombinedViewStudents = New List(Of Student)
+                m_lstCurrentListOfStudents = New List(Of Student)
                 Dim boolSetAlready As Boolean
                 For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
                     If Not boolSetAlready Then
-                        m_lstCombinedViewStudents.AddRange(objCls.Students)
-                        olvStudents.SetObjects(objCls.Students)
+                        m_lstCurrentListOfStudents.AddRange(objCls.Students)
+                        'olvStudents.SetObjects(objCls.Students)
                         boolSetAlready = True
                     Else
                         '-- Need to ensure all students in all classes in this module are loaded
-                        m_lstCombinedViewStudents.AddRange(objCls.Students)
-                        olvStudents.AddObjects(objCls.Students)
+                        m_lstCurrentListOfStudents.AddRange(objCls.Students)
+                        'olvStudents.AddObjects(objCls.Students)
                     End If
                 Next
-                dgvStudents.DataSource = m_lstCombinedViewStudents
+                dgvStudents.DataSource = m_lstCurrentListOfStudents
             Else
-                olvStudents.SetObjects(objClass.Students)
-                dgvStudents.DataSource = objClass.Students
+                'olvStudents.SetObjects(objClass.Students)
+                m_lstCurrentListOfStudents = objClass.Students
+                dgvStudents.DataSource = m_lstCurrentListOfStudents
             End If
         End If
 
         Try
             dgvStudents.AutoResizeColumns()
-            dgvFoundStudents.AutoResizeColumns()
         Catch ex As Exception
             Log(ex) '-- Log and continue
         End Try
@@ -490,6 +476,28 @@ Public Class MainFormPlain
         m_lstRandomlySelected.Clear()
         ShowStudentCount()
     End Sub
+    Private Function ConvertStudentListToDataTable(Of T)(ByVal list As IList(Of T)) As DataTable
+        Try
+            Dim table As New DataTable()
+
+            Dim fields() As System.Reflection.FieldInfo = GetType(T).GetFields()
+            For Each field As System.Reflection.FieldInfo In fields
+                table.Columns.Add(field.Name, field.FieldType)
+            Next
+
+            For Each item As T In list
+                Dim row As DataRow = table.NewRow()
+                For Each field As System.Reflection.FieldInfo In fields
+                    row(field.Name) = field.GetValue(item)
+                Next
+                table.Rows.Add(row)
+            Next
+
+            Return table
+        Catch ex As Exception
+            Application.DoEvents()
+        End Try
+    End Function
     Private Sub llblAddStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblAddStudent.Click
         Dim clas As SchoolClass = GetSelectedClass()
         If clas Is Nothing Then
@@ -513,13 +521,14 @@ Public Class MainFormPlain
         EditSelectedStudent()
     End Sub
     Private Sub EditSelectedStudent()
-        Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud Is Nothing Then
             Exit Sub
         Else
             Using frm As New StudentDetail(stud)
                 If frm.ShowDialog = DialogResult.OK Then
-                    olvStudents.RefreshSelectedObjects()
+                    'olvStudents.RefreshSelectedObjects()
+                    dgvStudents.Refresh()
                 End If
             End Using
         End If
@@ -552,21 +561,21 @@ Public Class MainFormPlain
         'Next
     End Sub
 
-    Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvStudents.ItemActivate
-        If ReorderAdminNumbersToolStripMenuItem.Checked Then
-            Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
-            If stud Is Nothing Then
-                Exit Sub
-            Else
-                m_intReorderAdminCounter += 1
-                lblRenumberAdminCurrent.Text = m_intReorderAdminCounter.ToString("#,##0")
-                stud.AdminNumber = m_intReorderAdminCounter
-                olvStudents.RefreshSelectedObjects()
-            End If
-        Else
-            EditSelectedStudent()
-        End If
-    End Sub
+    'Private Sub olvStudents_ItemActivate(sender As System.Object, e As System.EventArgs) Handles olvStudents.ItemActivate
+    '    If ReorderAdminNumbersToolStripMenuItem.Checked Then
+    '        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
+    '        If stud Is Nothing Then
+    '            Exit Sub
+    '        Else
+    '            m_intReorderAdminCounter += 1
+    '            lblRenumberAdminCurrent.Text = m_intReorderAdminCounter.ToString("#,##0")
+    '            stud.AdminNumber = m_intReorderAdminCounter
+    '            olvStudents.RefreshSelectedObjects()
+    '        End If
+    '    Else
+    '        EditSelectedStudent()
+    '    End If
+    'End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Close()
@@ -586,7 +595,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub llblRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveStudent.Click
-        Dim lstStudents As List(Of Student) = GetSelectedStudents()
+        Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
 
         If lstStudents.Count > 0 Then
             For Each stud As Student In lstStudents
@@ -612,7 +621,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub tmrFilterStudents_Tick(sender As System.Object, e As System.EventArgs) Handles tmrFilterStudents.Tick
-        FilterStudents()
+        'FilterStudents()
     End Sub
     Private Sub FilterStudents()
         Try
@@ -635,18 +644,18 @@ Public Class MainFormPlain
     End Sub
     Private Sub ShowStudentCount()
         If txtStudentFilter.Text.Length = 0 Then
-            lblStudentCount.Text = "Students: " & olvStudents.GetItemCount().ToString("#,##0")
+            lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count().ToString("#,##0")
         Else
-            Dim intFilteredCount As Integer
-            For Each o As Object In olvStudents.FilteredObjects
-                intFilteredCount += 1
-            Next
-            lblStudentCount.Text = "Filtered: " & intFilteredCount.ToString("#,##0")
+            'Dim intFilteredCount As Integer
+            'For Each o As Object In olvStudents.FilteredObjects
+            '    intFilteredCount += 1
+            'Next
+            lblStudentCount.Text = "Filtered: " & m_lstCurrentListOfStudents.ToString("#,##0")
         End If
 
     End Sub
     Private Sub llblMoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblMoveStudent.Click
-        Dim lstStudents As List(Of Student) = GetSelectedStudents()
+        Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() ' GetSelectedStudents()
 
         If lstStudents.Count = 0 Then
             MessageBox.Show("Please select one or more students to move.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -659,7 +668,8 @@ Public Class MainFormPlain
                             frm.SelectedClass.Students.Add(stud)
 
                             stud.AddToActivityLog("Student moved from " & GetSelectedClass().Name & " to " & frm.SelectedClass.Name)
-                            olvStudents.RemoveObject(stud)
+                            'olvStudents.RemoveObject(stud)
+                            dgvStudents.Refresh() '-- Not sure this will work since it is not bound to a binding list (no notivation of list changes)
                         Next
                     End If
                 End If
@@ -673,20 +683,22 @@ Public Class MainFormPlain
 
     Private Sub MeritToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MeritToolStripMenuItem.Click
         '-- Give a merit point to each student
-        Dim lstStudents As List(Of Student) = GetSelectedStudents()
+        Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
         For Each stud As Student In lstStudents
             stud.MeritPoints += 1
         Next
-        olvStudents.RefreshSelectedObjects()
+        'olvStudents.RefreshSelectedObjects()
+        dgvStudents.Refresh()
     End Sub
 
     Private Sub DemeritToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DemeritToolStripMenuItem.Click
         '-- Deduct a merit point from each student
-        Dim lstStudents As List(Of Student) = GetSelectedStudents()
+        Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() ' GetSelectedStudents()
         For Each stud As Student In lstStudents
             stud.MeritPoints -= 1
         Next
-        olvStudents.RefreshSelectedObjects()
+        'olvStudents.RefreshSelectedObjects()
+        dgvStudents.Refresh()
     End Sub
 
     Private Sub llblImportStudents_LinkClicked(sender As System.Object, e As System.EventArgs)
@@ -730,7 +742,7 @@ Public Class MainFormPlain
             Dim int As Integer
 
             '-- don't select the same student twice unless all students have been selected. In that case, clear the list and start anew
-            If m_lstRandomlySelected.Count = olvStudents.GetItemCount Then
+            If m_lstRandomlySelected.Count = m_lstCurrentListOfStudents.Count Then
                 m_lstRandomlySelected.Clear()
             End If
 
@@ -739,15 +751,15 @@ Public Class MainFormPlain
                 int = rnd.Next Mod GetSelectedClass.Students.Count
             Loop While m_lstRandomlySelected.Contains(int) '-- select another one
 
-            If olvStudents.Items.Count <= int Then
-                MessageBox.Show("Too few students. Is the filter set?", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                m_lstRandomlySelected.Add(int)
-                olvStudents.Items(int).Selected = True
-                olvStudents.Items(int).EnsureVisible()
-            End If
+            'If olvStudents.Items.Count <= int Then
+            '    MessageBox.Show("Too few students. Is the filter set?", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'Else
+            '    m_lstRandomlySelected.Add(int)
+            '    olvStudents.Items(int).Selected = True
+            '    olvStudents.Items(int).EnsureVisible()
+            'End If
 
-            olvStudents.Focus()
+            'olvStudents.Focus()
             Return True
         End If
     End Function
@@ -961,7 +973,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub ProcessExamForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExamForStudent.Click
-        Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.FirstTry)
         End If
@@ -1019,7 +1031,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub lstClassGroups_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lstClassGroups.SelectedIndexChanged
-        olvStudents.ClearObjects()
+        'olvStudents.ClearObjects()
         dgvStudents.DataSource = Nothing
         LoadClassAssignments()
         LoadClasses()
@@ -1069,14 +1081,14 @@ Public Class MainFormPlain
         End Select
     End Sub
     Private Sub ProcessExamRedoForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExamRedoForStudent.Click
-        Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() ' GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.SecondTry)
         End If
     End Sub
 
     Private Sub ProcessExam2ndReDoForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExam2ndReDoForStudent.Click
-        Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.ThirdTry)
         End If
@@ -1153,13 +1165,14 @@ Public Class MainFormPlain
     End Sub
     Private Sub RemoveCurrentStudent()
         '-- take out of class for the day
-        Dim lstStudents As List(Of Student) = GetSelectedStudents()
+        Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
 
         For Each stud As Student In lstStudents
             stud.CurrentAttendenceStatus = AttendanceStatusEnum.Removed
             stud.TeachingSessions(stud.TeachingSessions.Count - 1).AttendenceStatus = AttendanceStatusEnum.Removed
             stud.MeritPoints -= 1 '-- 1 demerit for removal
-            olvStudents.RefreshSelectedObjects()
+            'olvStudents.RefreshSelectedObjects()
+            dgvStudents.Refresh() '--- Might need to bind to a binding list to make this work
         Next
     End Sub
     Private Sub btnRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnRemoveStudent.Click
@@ -1401,7 +1414,8 @@ Public Class MainFormPlain
     Private Sub lstClassGroups_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles lstClassGroups.SelectedValueChanged
         LoadClassAssignments()
         LoadClasses()
-        olvStudents.ClearObjects()
+        'olvStudents.ClearObjects()
+        dgvStudents.DataSource = Nothing
     End Sub
 
     Private Sub lstClasses_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles lstClasses.SelectedValueChanged
@@ -1505,8 +1519,9 @@ Public Class MainFormPlain
 
     Private Sub UpdateEmailAddressToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles UpdateEmailAddressToolStripMenuItem.Click
         Dim strEmail As String
-        If GetSelectedStudentCanOnlyBeOne() IsNot Nothing Then
-            strEmail = GetSelectedStudentCanOnlyBeOne.EmailAddress
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne
+        If stud IsNot Nothing Then
+            strEmail = stud.EmailAddress
         Else
             strEmail = String.Empty
         End If
@@ -1516,11 +1531,13 @@ Public Class MainFormPlain
     End Sub
     Private Sub SelectRandomStudentAndDisplayMessage()
         If SelectRandomStudent() Then
-            Select Case MessageBox.Show(GetSelectedStudentCanOnlyBeOne().Nickname & " - " & GetSelectedStudentCanOnlyBeOne().LocalName & " - " & GetSelectedStudentCanOnlyBeOne.CurrentAttendenceStatus.ToString() &
-                                                                                Environment.NewLine & Environment.NewLine & "Overall: " & GetSelectedStudentCanOnlyBeOne.PresentationQuality.ToString() &
-                                                                                Environment.NewLine & Environment.NewLine & "Mark removed and select a new student (yes)?" &
-                                                                                Environment.NewLine & "Ignore and select a new student (no)?" &
-                                                                                Environment.NewLine & "Do nothing (cancel)?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
+            Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne
+
+            Select Case MessageBox.Show(stud.Nickname & " - " & stud.LocalName & " - " & stud.CurrentAttendenceStatus.ToString() &
+                                                                    Environment.NewLine & Environment.NewLine & "Overall: " & stud.PresentationQuality.ToString() &
+                                                                    Environment.NewLine & Environment.NewLine & "Mark removed and select a new student (yes)?" &
+                                                                    Environment.NewLine & "Ignore and select a new student (no)?" &
+                                                                    Environment.NewLine & "Do nothing (cancel)?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
                 Case DialogResult.Yes
                     RemoveCurrentStudent()
                     SelectRandomStudentAndDisplayMessage()
@@ -1537,7 +1554,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub EmailstudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EmailstudentToolStripMenuItem.Click
-        EmailStudent(GetSelectedStudents)
+        EmailStudent(GetSelectedStudentsFromGrid())
     End Sub
     Private Sub EmailStudent(listOfStudents As List(Of Student))
         Try
@@ -1692,36 +1709,6 @@ Public Class MainFormPlain
         End If
     End Sub
 
-    Private Sub ReorderAdminNumbersToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ReorderAdminNumbersToolStripMenuItem.Click
-        If ReorderAdminNumbersToolStripMenuItem.Checked Then
-            m_intReorderAdminCounter = 0
-            lblRenumberAdminCurrentLabel.Show()
-            lblRenumberAdminCurrent.Show()
-            lblRenumberAdminCurrent.Text = m_intReorderAdminCounter.ToString("#,##0")
-            lblRenumberAdminResetNumber.Show()
-        Else
-            '-- return to normal
-            lblRenumberAdminCurrentLabel.Hide()
-            lblRenumberAdminCurrent.Hide()
-            lblRenumberAdminResetNumber.Hide()
-        End If
-    End Sub
-
-    Private Sub lblRenumberAdminResetNumber_MouseClick(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lblRenumberAdminResetNumber.MouseClick
-        If MessageBox.Show("Are you sure (reset all to 999)?", Application.ProductName, MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            If GetSelectedClass() Is Nothing Then
-                MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK)
-            Else
-                For Each stu As Student In GetSelectedClass.Students
-                    stu.AdminNumber = 999
-                Next
-            End If
-            olvStudents.RefreshObjects(olvStudents.Objects)
-        End If
-    End Sub
-
-   
-
     Private Sub StudentOutcomeResultsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles StudentOutcomeResultsToolStripMenuItem.Click
         If GetSelectedClassGroup() Is Nothing Then
             MessageBox.Show("Please select a module first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1850,12 +1837,14 @@ Public Class MainFormPlain
 
     Private Sub MarkSelectedAssignmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MarkSelectedAssignmentToolStripMenuItem.Click
         Try
-            If txtStudentFilter.Text.Length > 0 Then
-                If GetSelectedStudentCanOnlyBeOne() Is Nothing Then
-                    olvStudents.SelectedIndex = 0
-                End If
-            End If
-            Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
+            Dim stud As Student
+            'If txtStudentFilter.Text.Length > 0 Then
+            '    stud = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
+            '    If GetSelectedStudentGridCanOnlyBeOne() Is Nothing Then
+            '        dgvStudents.SelectedRows..SelectedIndex = 0
+            '    End If
+            'End If
+            stud = GetSelectedStudentGridCanOnlyBeOne()
             If stud Is Nothing Then
                 If txtStudentFilter.Text.Length > 0 Then
 
@@ -1883,12 +1872,13 @@ Public Class MainFormPlain
 
     Private Sub ToggleHiddenForSelectedToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ToggleHiddenForSelectedToolStripMenuItem.Click
         Try
-            Dim lstStudents As List(Of Student) = GetSelectedStudents()
+            Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() ' GetSelectedStudents()
 
             For Each stud As Student In lstStudents
                 stud.Hidden = Not stud.Hidden
             Next
-            olvStudents.RefreshSelectedObjects()
+            'olvStudents.RefreshSelectedObjects()
+            dgvStudents.Refresh()
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1993,7 +1983,7 @@ Public Class MainFormPlain
     Private Sub ExcuseMostRecentAbsenceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExcuseMostRecentAbsenceToolStripMenuItem.Click
         Try
             Dim stud As Student
-            Dim lstStudents As List(Of Student) = GetSelectedStudents()
+            Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
             If lstStudents.Count = 0 Then
                 MessageBox.Show("Please select a student to excuse.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
@@ -2004,7 +1994,8 @@ Public Class MainFormPlain
                             Exit For
                         End If
                     Next
-                    olvStudents.RefreshObject(stud)
+                    'olvStudents.RefreshObject(stud)
+                    dgvStudents.Refresh()
                 Next
             End If
         Catch ex As Exception
@@ -2201,13 +2192,14 @@ Public Class MainFormPlain
 
     Private Sub SetGendermaleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGendermaleToolStripMenuItem.Click
         Try
-            Dim lstStudent As List(Of Student) = GetSelectedStudents()
+            Dim lstStudent As List(Of Student) = GetSelectedStudentsFromGrid() ' GetSelectedStudents()
 
             For Each stud As Student In lstStudent
                 stud.Gender = Student.GenderEnum.Male
             Next
 
-            olvStudents.RefreshSelectedObjects()
+            'olvStudents.RefreshSelectedObjects()
+            dgvStudents.Refresh()
         Catch ex As Exception
             Log(ex)
         End Try
@@ -2215,13 +2207,14 @@ Public Class MainFormPlain
 
     Private Sub SetGenderfemaleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGenderfemaleToolStripMenuItem.Click
         Try
-            Dim lstStudent As List(Of Student) = GetSelectedStudents()
+            Dim lstStudent As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
 
             For Each stud As Student In lstStudent
                 stud.Gender = Student.GenderEnum.Female
             Next
 
-            olvStudents.RefreshSelectedObjects()
+            'olvStudents.RefreshSelectedObjects()
+            dgvStudents.Refresh()
         Catch ex As Exception
             Log(ex)
         End Try
@@ -2541,11 +2534,12 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub FilterForSelectedGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FilterForSelectedGroupToolStripMenuItem.Click
-        Dim stud As Student = GetSelectedStudentCanOnlyBeOne()
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() ' GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             Dim strGroup As String = stud.StudentTeam.Trim()
             If strGroup.Length > 0 Then
                 txtStudentFilter.Text = strGroup
+                FindStudentsFromSearchText()
             Else
                 MessageBox.Show("This student is not on a team.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -2971,97 +2965,28 @@ Public Class MainFormPlain
         End If
     End Sub
 
-    Private Sub FindFromSearchTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FindFromSearchTextToolStripMenuItem.Click
-        FindStudentsFromSearchText()
-    End Sub
     Private Sub FindStudentsFromSearchText()
-        '-- Starting with selected class, search all students 
-        '   any with matching LocalName, LocalNameLatinLetters, Nickname, StudentID, ExtStudentID, Tags, StudentTeam, or EmailAddress
-        '   These will all appear on a new DGV on a new tab
-        m_lstFoundStudents.Clear()
-        dgvFoundStudents.AutoGenerateColumns = False
-        dgvFoundStudents.DataSource = Nothing
-        dgvFoundStudents.Refresh()
-        TabControl1.SelectedTab = Me.tabFound
-        Dim boolMatch As Boolean
 
-        Dim boolAtLeastOneNonMatch As Boolean
-        Dim strLocalName, strLocalNameLatinLetters As String
-        Dim strFilter As String = txtStudentFilter.Text.ToUpper() '-- Just do this once
+        Dim strSearchFor As String
+        If txtStudentFilter.Text.Length = 0 Then
+            dgvStudents.DataSource = m_lstCurrentListOfStudents
+        Else
+            strSearchFor = txtStudentFilter.Text.ToLower
+            dgvStudents.DataSource = m_lstCurrentListOfStudents.Where(Function(x) x.StudentID.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.Nickname.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.LocalNameLatinLetters.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.ExtStudentID.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.Tags.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.EmailAddress.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.Nickname.ToLower.Contains(strSearchFor) OrElse _
+                                                                                 x.StudentTeam.ToLower.Contains(strSearchFor)).ToList()
 
-        For Each classgrp As ClassGroup In ThisSemester.ClassGroups
-            For Each clas As SchoolClass In classgrp.Classes
-                For Each stud As Student In clas.Students
-                    boolMatch = False '-- reset to default
+        End If
+    End Sub
 
-                    '-- First search on localname and localnameLatinLetters
-                    If strFilter.Contains(" ") Then
-                        Dim strNameForSearch As String
-                        strNameForSearch = strFilter.Replace("  ", " ") '-- remove multiple sequential spaces
-                        strNameForSearch = strNameForSearch.Replace("  ", " ") '-- should change this to regex one day
-                        strNameForSearch = strNameForSearch.Replace("  ", " ")
-                        Dim names() As String = strNameForSearch.Split(" ")
-                        strLocalName = stud.LocalName.ToUpper() '-- save some processing for multiple names
-                        strLocalNameLatinLetters = stud.LocalNameLatinLetters.ToUpper()
-
-                        boolAtLeastOneNonMatch = False '-- reset for this iteration
-                        For Each name As String In names
-                            If Not strLocalNameLatinLetters.Contains(name) AndAlso _
-                                Not strLocalName.Contains(name) Then
-                                '-- at least one of the multiple names did not match
-                                boolAtLeastOneNonMatch = True
-                                Exit For
-                            End If
-                        Next
-
-                        If boolAtLeastOneNonMatch Then
-                            Application.DoEvents() '-- we're done, no match on this student
-                        Else
-                            '-- this student contains all of the multiple names
-                            boolMatch = True
-                        End If
-                    Else
-                        '-- just one name, simple
-                        If stud.LocalNameLatinLetters.ToUpper().Contains(strFilter) OrElse _
-                            stud.LocalName.ToUpper().Contains(strFilter) Then
-                            '-- match on name version with and without diacritics
-                            boolMatch = True
-                        End If
-                    End If
-
-                    '-- Next, match on studentID
-                    If stud.StudentID.ToUpper().Contains(strFilter) Then
-                        boolMatch = True
-                    End If
-
-                    If stud.ExtStudentID.ToUpper().Contains(strFilter) Then
-                        boolMatch = True
-                    End If
-
-                    If stud.Nickname.ToUpper().Contains(strFilter) Then
-                        boolMatch = True
-                    End If
-
-                    If stud.EmailAddress.ToUpper().Contains(strFilter) Then
-                        boolMatch = True
-                    End If
-
-                    If stud.StudentTeam.ToUpper().Contains(strFilter) Then
-                        boolMatch = True
-                    End If
-
-                    If stud.Tags.ToUpper().Contains(strFilter) Then
-                        boolMatch = True
-                    End If
-
-                    If boolMatch Then
-                        m_lstFoundStudents.Add(stud)
-                    End If
-
-                Next
-            Next
-        Next
-        dgvFoundStudents.DataSource = m_lstFoundStudents
-        dgvFoundStudents.Refresh()
+    Private Sub txtStudentFilter_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles txtStudentFilter.PreviewKeyDown
+        If e.KeyCode = Keys.Enter Then
+            FindStudentsFromSearchText()
+        End If
     End Sub
 End Class
