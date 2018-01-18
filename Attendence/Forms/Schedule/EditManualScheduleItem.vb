@@ -48,4 +48,5 @@ Public Class EditManualScheduleItem
 
         txtTopic.Focus()
     End Sub
+
 End Class

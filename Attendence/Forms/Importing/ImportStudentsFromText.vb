@@ -306,7 +306,18 @@ Public Class ImportStudentsFromText
 
                 m_lstStudents.Add(objStud)
             Next
-            olvStudents.SetObjects(m_lstStudents)
+
+            '-- Add to DGV
+            dgvStudents.AutoGenerateColumns = False
+            dgvStudents.DataSource = m_lstStudents
+
+            Try
+                dgvStudents.AutoResizeColumns()
+            Catch ex As Exception
+                Log(ex) '-- Log and continue
+            End Try
+
+
             btnOK.Enabled = True
 
         Catch ex As Exception

@@ -20,18 +20,18 @@ Partial Class ImportStudentsFromText
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportStudentsFromText))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
-        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblTitle = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
@@ -52,17 +52,28 @@ Partial Class ImportStudentsFromText
         Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.dgvStudents = New System.Windows.Forms.DataGridView()
+        Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolAlt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolExtStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolDateOfBirth = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolGender = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolNameLatinLetters = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
         '
-        Me.KryptonPanel.Controls.Add(Me.olvStudents)
+        Me.KryptonPanel.Controls.Add(Me.dgvStudents)
         Me.KryptonPanel.Controls.Add(Me.lblTitle)
         Me.KryptonPanel.Controls.Add(Me.KryptonPanel1)
         Me.KryptonPanel.Controls.Add(Me.MenuStrip1)
@@ -73,116 +84,6 @@ Partial Class ImportStudentsFromText
         Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(852, 538)
         Me.KryptonPanel.TabIndex = 0
-        '
-        'olvStudents
-        '
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn4)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn11)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn3)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn1)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn2)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn5)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn6)
-        Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
-        Me.olvStudents.AllowColumnReorder = True
-        Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn3, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn6, Me.OlvColumn7})
-        Me.olvStudents.CopySelectionOnControlC = False
-        Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
-        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
-        Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.olvStudents.EmptyListMsg = "Copy and paste from spreadsheet."
-        Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.olvStudents.FullRowSelect = True
-        Me.olvStudents.GridLines = True
-        Me.olvStudents.HasCollapsibleGroups = False
-        Me.olvStudents.HideSelection = False
-        Me.olvStudents.HighlightBackgroundColor = System.Drawing.Color.Empty
-        Me.olvStudents.HighlightForegroundColor = System.Drawing.Color.Empty
-        Me.olvStudents.Location = New System.Drawing.Point(0, 53)
-        Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.ShowGroups = False
-        Me.olvStudents.ShowImagesOnSubItems = True
-        Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(852, 378)
-        Me.olvStudents.TabIndex = 4
-        Me.olvStudents.UseAlternatingBackColors = True
-        Me.olvStudents.UseCompatibleStateImageBehavior = False
-        Me.olvStudents.UseFiltering = True
-        Me.olvStudents.UseSubItemCheckBoxes = True
-        Me.olvStudents.View = System.Windows.Forms.View.Details
-        '
-        'OlvColumn4
-        '
-        Me.OlvColumn4.AspectName = "AdminNumber"
-        Me.OlvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn4.Text = "Admin"
-        Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'OlvColumn11
-        '
-        Me.OlvColumn11.AspectName = "AltNumber"
-        Me.OlvColumn11.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn11.Text = "Alt"
-        Me.OlvColumn11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn11.ToolTipText = "Alternate number"
-        '
-        'OlvColumn3
-        '
-        Me.OlvColumn3.AspectName = "StudentID"
-        Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn3.Text = "Student ID"
-        Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn3.Width = 90
-        '
-        'OlvColumn1
-        '
-        Me.OlvColumn1.AspectName = "LocalName"
-        Me.OlvColumn1.Text = "Name"
-        Me.OlvColumn1.Width = 150
-        '
-        'OlvColumn2
-        '
-        Me.OlvColumn2.AspectName = "Nickname"
-        Me.OlvColumn2.Text = "Nickname"
-        Me.OlvColumn2.Width = 108
-        '
-        'OlvColumn5
-        '
-        Me.OlvColumn5.AspectName = "EmailAddress"
-        Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn5.Text = "Email"
-        Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn5.Width = 120
-        '
-        'OlvColumn13
-        '
-        Me.OlvColumn13.AspectName = "ExtStudentID"
-        Me.OlvColumn13.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn13.Text = "ExtID"
-        Me.OlvColumn13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn13.Width = 97
-        '
-        'OlvColumn6
-        '
-        Me.OlvColumn6.AspectName = "DateOfBirth"
-        Me.OlvColumn6.AspectToStringFormat = "{0:d}"
-        Me.OlvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.Text = "DoB"
-        Me.OlvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn6.ToolTipText = "Date of Birth"
-        Me.OlvColumn6.Width = 76
-        '
-        'OlvColumn7
-        '
-        Me.OlvColumn7.AspectName = "Gender"
-        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Text = "Gender"
-        Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Width = 75
         '
         'lblTitle
         '
@@ -226,27 +127,27 @@ Partial Class ImportStudentsFromText
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(822, 50)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(823, 50)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(17, 20)
         Me.lblStudentsLoaded.TabIndex = 76
         Me.lblStudentsLoaded.Values.Text = "0"
         '
         'KryptonLabel3
         '
         Me.KryptonLabel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel3.Location = New System.Drawing.Point(674, 50)
+        Me.KryptonLabel3.Location = New System.Drawing.Point(683, 50)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(111, 19)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(102, 20)
         Me.KryptonLabel3.TabIndex = 75
         Me.KryptonLabel3.Values.Text = "Students loaded:"
         '
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(822, 30)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(823, 30)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(17, 20)
         Me.lblStudentsSearched.TabIndex = 74
         Me.lblStudentsSearched.Values.Text = "0"
         '
@@ -263,9 +164,9 @@ Partial Class ImportStudentsFromText
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(659, 30)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(672, 30)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
-        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
+        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(113, 20)
         Me.lblStudentsSearchedCaption.TabIndex = 73
         Me.lblStudentsSearchedCaption.Values.Text = "Students searched:"
         '
@@ -324,12 +225,8 @@ Partial Class ImportStudentsFromText
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
         Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
-        '
-        'KryptonManager
-        '
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPalette2
         '
@@ -344,6 +241,103 @@ Partial Class ImportStudentsFromText
         '
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 200
+        '
+        'dgvStudents
+        '
+        Me.dgvStudents.AllowUserToAddRows = False
+        Me.dgvStudents.AllowUserToDeleteRows = False
+        Me.dgvStudents.AllowUserToOrderColumns = True
+        Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolAlt, Me.dcolStudentID, Me.dcolLocalName, Me.dcolNickname, Me.dcolEmail, Me.dcolExtStudentID, Me.dcolDateOfBirth, Me.dcolGender, Me.dcolNameLatinLetters})
+        Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvStudents.Location = New System.Drawing.Point(0, 53)
+        Me.dgvStudents.Name = "dgvStudents"
+        Me.dgvStudents.Size = New System.Drawing.Size(852, 378)
+        Me.dgvStudents.TabIndex = 6
+        '
+        'dcolAdmin
+        '
+        Me.dcolAdmin.DataPropertyName = "AdminNumber"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
+        Me.dcolAdmin.HeaderText = "Admin"
+        Me.dcolAdmin.Name = "dcolAdmin"
+        '
+        'dcolAlt
+        '
+        Me.dcolAlt.DataPropertyName = "AltNumber"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dcolAlt.HeaderText = "Alt"
+        Me.dcolAlt.Name = "dcolAlt"
+        Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dcolAlt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'dcolStudentID
+        '
+        Me.dcolStudentID.DataPropertyName = "StudentID"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dcolStudentID.HeaderText = "StudentID"
+        Me.dcolStudentID.Name = "dcolStudentID"
+        '
+        'dcolLocalName
+        '
+        Me.dcolLocalName.DataPropertyName = "LocalName"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle4
+        Me.dcolLocalName.HeaderText = "Name"
+        Me.dcolLocalName.Name = "dcolLocalName"
+        '
+        'dcolNickname
+        '
+        Me.dcolNickname.DataPropertyName = "Nickname"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle5
+        Me.dcolNickname.HeaderText = "Nickname"
+        Me.dcolNickname.Name = "dcolNickname"
+        '
+        'dcolEmail
+        '
+        Me.dcolEmail.DataPropertyName = "EmailAddress"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dcolEmail.HeaderText = "Email"
+        Me.dcolEmail.Name = "dcolEmail"
+        Me.dcolEmail.ReadOnly = True
+        '
+        'dcolExtStudentID
+        '
+        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dcolExtStudentID.HeaderText = "ExtID"
+        Me.dcolExtStudentID.Name = "dcolExtStudentID"
+        '
+        'dcolDateOfBirth
+        '
+        Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle8
+        Me.dcolDateOfBirth.HeaderText = "DoB"
+        Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
+        '
+        'dcolGender
+        '
+        Me.dcolGender.DataPropertyName = "Gender"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle9
+        Me.dcolGender.HeaderText = "Gender"
+        Me.dcolGender.Name = "dcolGender"
+        Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'dcolNameLatinLetters
+        '
+        Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle10
+        Me.dcolNameLatinLetters.HeaderText = "Standard"
+        Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
         '
         'ImportStudentsFromText
         '
@@ -361,12 +355,12 @@ Partial Class ImportStudentsFromText
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel.ResumeLayout(False)
         Me.KryptonPanel.PerformLayout()
-        CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel1.ResumeLayout(False)
         Me.KryptonPanel1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -396,22 +390,23 @@ Partial Class ImportStudentsFromText
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblStudentsSearched As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblStudentsSearchedCaption As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents olvStudents As BrightIdeasSoftware.ObjectListView
-    Friend WithEvents OlvColumn4 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn11 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents OlvColumn13 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PasteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
-    Friend WithEvents OlvColumn6 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents lblLoadingHistoricalStudents As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents KryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents dgvStudents As System.Windows.Forms.DataGridView
+    Friend WithEvents dcolAdmin As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolAlt As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentID As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolLocalName As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolNickname As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolEmail As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolExtStudentID As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolDateOfBirth As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolGender As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dcolNameLatinLetters As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

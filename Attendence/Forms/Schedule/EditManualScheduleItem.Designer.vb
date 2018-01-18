@@ -22,6 +22,7 @@ Partial Class EditManualScheduleItem
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditManualScheduleItem))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.nudDurationInMinutes = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.dudType = New ComponentFactory.Krypton.Toolkit.KryptonDomainUpDown()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtLocation = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -30,6 +31,7 @@ Partial Class EditManualScheduleItem
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.chkSent = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkPrepped = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
@@ -37,8 +39,6 @@ Partial Class EditManualScheduleItem
         Me.dtpTime = New System.Windows.Forms.DateTimePicker()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.nudDurationInMinutes = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.SuspendLayout()
@@ -66,6 +66,17 @@ Partial Class EditManualScheduleItem
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Size = New System.Drawing.Size(437, 198)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'nudDurationInMinutes
+        '
+        Me.nudDurationInMinutes.Location = New System.Drawing.Point(367, 39)
+        Me.nudDurationInMinutes.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudDurationInMinutes.Name = "nudDurationInMinutes"
+        Me.nudDurationInMinutes.Size = New System.Drawing.Size(58, 22)
+        Me.nudDurationInMinutes.TabIndex = 137
+        Me.nudDurationInMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudDurationInMinutes.ThousandsSeparator = True
+        Me.nudDurationInMinutes.Value = New Decimal(New Integer() {15, 0, 0, 0})
         '
         'dudType
         '
@@ -140,6 +151,14 @@ Partial Class EditManualScheduleItem
         Me.txtNotes.Size = New System.Drawing.Size(363, 20)
         Me.txtNotes.TabIndex = 66
         '
+        'KryptonLabel5
+        '
+        Me.KryptonLabel5.Location = New System.Drawing.Point(274, 41)
+        Me.KryptonLabel5.Name = "KryptonLabel5"
+        Me.KryptonLabel5.Size = New System.Drawing.Size(92, 20)
+        Me.KryptonLabel5.TabIndex = 65
+        Me.KryptonLabel5.Values.Text = "Duration (min):"
+        '
         'KryptonLabel3
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(4, 39)
@@ -185,6 +204,7 @@ Partial Class EditManualScheduleItem
         Me.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.dtpTime.Location = New System.Drawing.Point(274, 13)
         Me.dtpTime.Name = "dtpTime"
+        Me.dtpTime.ShowUpDown = True
         Me.dtpTime.Size = New System.Drawing.Size(151, 20)
         Me.dtpTime.TabIndex = 1
         '
@@ -196,25 +216,6 @@ Partial Class EditManualScheduleItem
         Me.dtpDate.Name = "dtpDate"
         Me.dtpDate.Size = New System.Drawing.Size(255, 20)
         Me.dtpDate.TabIndex = 0
-        '
-        'nudDurationInMinutes
-        '
-        Me.nudDurationInMinutes.Location = New System.Drawing.Point(367, 39)
-        Me.nudDurationInMinutes.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.nudDurationInMinutes.Name = "nudDurationInMinutes"
-        Me.nudDurationInMinutes.Size = New System.Drawing.Size(58, 22)
-        Me.nudDurationInMinutes.TabIndex = 137
-        Me.nudDurationInMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudDurationInMinutes.ThousandsSeparator = True
-        Me.nudDurationInMinutes.Value = New Decimal(New Integer() {15, 0, 0, 0})
-        '
-        'KryptonLabel5
-        '
-        Me.KryptonLabel5.Location = New System.Drawing.Point(274, 41)
-        Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(92, 20)
-        Me.KryptonLabel5.TabIndex = 65
-        Me.KryptonLabel5.Values.Text = "Duration (min):"
         '
         'EditManualScheduleItem
         '

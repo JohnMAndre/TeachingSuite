@@ -2890,7 +2890,7 @@ Public Class Student
     Public Property TempTag As String = String.Empty '-- this is never persisted and is used for processing (for example, processing add/drop students)
     Private m_strLocalNameLatinLetters As String
     Private Sub SetLocalNameLatinLetters()
-        If m_strLocalNameLatinLetters Is Nothing OrElse m_strLocalNameLatinLetters.Length = 0 AndAlso LocalName IsNot Nothing AndAlso LocalName.Length > 0 Then
+        If (m_strLocalNameLatinLetters Is Nothing OrElse m_strLocalNameLatinLetters.Length = 0) AndAlso LocalName IsNot Nothing AndAlso LocalName.Length > 0 Then
             m_strLocalNameLatinLetters = RemoveAccents(LocalName).Replace("  ", " ") '-- remove extra spaces
         End If
     End Sub
