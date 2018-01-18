@@ -2158,7 +2158,6 @@ Public Class MainFormPlain
                 stud.Gender = Student.GenderEnum.Female
             Next
 
-            'olvStudents.RefreshSelectedObjects()
             dgvStudents.Refresh()
         Catch ex As Exception
             Log(ex)
@@ -2167,10 +2166,11 @@ Public Class MainFormPlain
 
     Private Sub ClearTagsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearTagsToolStripMenuItem.Click
         Try
-            'For Each stud As Student In olvStudents.FilteredObjects
-            '    stud.Tags = String.Empty
-            '    olvStudents.RefreshObject(stud)
-            'Next
+            Dim lst As List(Of Student) = dgvStudents.DataSource
+            For Each stud As Student In lst
+                stud.Tags = String.Empty
+            Next
+            dgvStudents.Refresh()
         Catch ex As Exception
             Log(ex)
         End Try
@@ -2937,5 +2937,17 @@ Public Class MainFormPlain
         If e.KeyCode = Keys.Enter Then
             FindStudentsFromSearchText()
         End If
+    End Sub
+
+    Private Sub ClearTeamForTheseStudentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearTeamForTheseStudentsToolStripMenuItem.Click
+        Try
+            Dim lst As List(Of Student) = dgvStudents.DataSource
+            For Each stud As Student In lst
+                stud.StudentTeam = String.Empty
+            Next
+            dgvStudents.Refresh()
+        Catch ex As Exception
+            Log(ex)
+        End Try
     End Sub
 End Class
