@@ -2950,4 +2950,56 @@ Public Class MainFormPlain
             Log(ex)
         End Try
     End Sub
+
+    Private Sub dgvStudents_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvStudents.ColumnHeaderMouseClick
+        '-- Manually sort
+        Try
+            Dim col As DataGridViewColumn = dgvStudents.Columns(e.ColumnIndex)
+            Dim lst As List(Of Student) = dgvStudents.DataSource
+            Dim cmp As IComparer(Of Student)
+            Dim boolSort As Boolean = True
+
+            If col IsNot Nothing Then
+                Select Case col.DataPropertyName
+                    Case "ExtStudentID"
+                        cmp = New StudentComparerByExtStudentID
+                    Case "StudentID"
+                        cmp = New StudentComparerByStudentID
+                    Case "StudentTeam"
+                        cmp = New StudentComparerByStudentTeam
+                    Case "StudentGroup"
+                        cmp = New StudentComparerByStudentGroup
+                    Case "DateOfBirth"
+                        cmp = New StudentComparerByDateOfBirth
+                    Case "Gender"
+                        cmp = New StudentComparerByGender
+                    Case "Tags"
+                        cmp = New StudentComparerByTags
+                    Case "LatestAttendenceStatus"
+                        cmp = New StudentComparerByLatestAttendenceStatus
+                    Case "Nickname"
+                        cmp = New StudentComparerByNickname
+                    Case "LocalName"
+                        cmp = New StudentComparerByLocalName
+                    Case "AltNumber"
+                        cmp = New StudentComparerByAltNumber
+                    Case "AdminNumber"
+                        cmp = New StudentComparerByAdminNumber
+                    Case Else
+                        boolSort = False
+                End Select
+
+                If boolSort Then
+                    lst.Sort(cmp)
+                    dgvStudents.DataSource = Nothing
+                    dgvStudents.Refresh()
+                    dgvStudents.DataSource = lst
+                    dgvStudents.Refresh()
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error sorting: " & ex.Message)
+        End Try
+
+    End Sub
 End Class
