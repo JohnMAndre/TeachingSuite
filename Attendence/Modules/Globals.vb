@@ -308,7 +308,35 @@
         Public SchoolClass As SchoolClass
         Public Filename As String
     End Class
+    ''' <summary>
+    ''' Centralized routine for reading back zipped (or not) xml data file
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function LoadXMLDataFromFile(filename As String) As Xml.XmlDocument
+#If SUPPORT_ZIP Then
+        Dim strContents As String
+        Dim xDoc As New Xml.XmlDocument
 
+        Using zip As New Ionic.Zip.ZipFile(filename)
+            Using ms As New System.IO.MemoryStream()
+                zip.Entries(0).Extract(ms)
+                ms.Position = 0
+                Using sr As New System.IO.StreamReader(ms, System.Text.Encoding.Unicode)
+                    strContents = sr.ReadToEnd
+                    sr.Close()
+                End Using
+                ms.Close()
+            End Using
+        End Using
+        xDoc.LoadXml(strContents)
+#Else
+        xDoc.Load(filename)
+#End If
+
+        Return xDoc
+    End Function
     ''' <summary>
     ''' Centralized routine to make sure a consistent save and zipping format is used throughout
     ''' </summary>

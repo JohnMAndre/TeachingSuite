@@ -1,5 +1,7 @@
 Public Class HistoricalStudentFinder
 
+    Private m_objSemesterCache As SemesterCache
+
     Private m_lstFoundStudents As List(Of Student)
     Private m_boolCancel As Boolean
     Private m_boolSearching As Boolean
@@ -23,41 +25,45 @@ Public Class HistoricalStudentFinder
         Try
 
             Timer1.Stop()
-            Dim ht As New Hashtable() '-- key  = studentID, value = student object
-            m_lstFoundStudents = New List(Of Student)
-            m_boolSearching = True
+            'Dim ht As New Hashtable() '-- key  = studentID, value = student object
+            'm_lstFoundStudents = New List(Of Student)
+            'm_boolSearching = True
 
-            Dim intStudentsAdded, intStudentsSearched As Integer
-            Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
-            Dim semCurrent As Semester
-            Dim strFilename As String
-            Do
-                For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
-                    strFilename = lstSemesters(intCounter)
-                    semCurrent = New Semester(strFilename)
-                    For Each clsgrp As ClassGroup In semCurrent.ClassGroups
-                        For Each clas As SchoolClass In clsgrp.Classes
-                            m_lstFoundStudents.AddRange(clas.Students)
-                            For Each stud In clas.Students
-                                intStudentsSearched += 1
-                                '-- add to collection, only if there IS a student ID
-                                If Not m_dictMostRecentStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
-                                    m_dictMostRecentStudents.Add(stud.StudentID.ToUpper, stud)
-                                    intStudentsAdded += 1
-                                End If
+            'Dim intStudentsAdded, intStudentsSearched As Integer
+            'Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
+            'Dim semCurrent As Semester
+            'Dim strFilename As String
+            'Do
+            '    For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
+            '        strFilename = lstSemesters(intCounter)
+            '        semCurrent = New Semester(strFilename)
+            '        For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+            '            For Each clas As SchoolClass In clsgrp.Classes
+            '                m_lstFoundStudents.AddRange(clas.Students)
+            '                For Each stud In clas.Students
+            '                    intStudentsSearched += 1
+            '                    '-- add to collection, only if there IS a student ID
+            '                    If Not m_dictMostRecentStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
+            '                        m_dictMostRecentStudents.Add(stud.StudentID.ToUpper, stud)
+            '                        intStudentsAdded += 1
+            '                    End If
 
-                                lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
-                                lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
-                                If m_boolCancel Then
-                                    Exit Do
-                                End If
-                                Application.DoEvents()
-                            Next
-                        Next
-                    Next
-                Next
-                Exit Do
-            Loop While True
+            '                    lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+            '                    lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
+            '                    If m_boolCancel Then
+            '                        Exit Do
+            '                    End If
+            '                    Application.DoEvents()
+            '                Next
+            '            Next
+            '        Next
+            '    Next
+            '    Exit Do
+            'Loop While True
+
+            '-- Trying new semester cache
+            m_objSemesterCache = SemesterCache.GetCache()
+
 
             btnSearch.Enabled = True
         Catch ex As Exception
@@ -94,61 +100,125 @@ Public Class HistoricalStudentFinder
             Dim boolAtLeastOneNonMatch As Boolean
             Dim strLocalName, strLocalNameLatinLetters As String
 
-            For Each stud In m_lstFoundStudents
-                intStudentsSearched += 1
+            'For Each stud In m_lstFoundStudents
+            '    intStudentsSearched += 1
 
-                '-- Now compare, if match, add to list
-                If txtStudentID.Text.Length > 0 AndAlso stud.StudentID.ToUpper() = txtStudentID.Text.ToUpper() Then
-                    '-- match
-                    olvStudents.AddObject(stud)
-                ElseIf txtNickName.Text.Length > 0 AndAlso stud.Nickname.ToUpper() = txtNickName.Text.ToUpper() Then
-                    olvStudents.AddObject(stud)
-                ElseIf txtExtStudentID.Text.Length > 0 AndAlso stud.ExtStudentID.ToUpper() = txtExtStudentID.Text.ToUpper() Then
-                    olvStudents.AddObject(stud)
-                ElseIf txtEmail.Text.Length > 0 AndAlso stud.EmailAddress.ToUpper() = txtEmail.Text.ToUpper() Then
-                    olvStudents.AddObject(stud)
-                ElseIf txtLocalName.Text.Length > 0 Then
-                    '-- Now we need to check for multiple names so we can do an AND compare
-                    If txtLocalName.Text.Contains(" ") Then
-                        Dim strNameForSearch As String
-                        strNameForSearch = txtLocalName.Text.Replace("  ", " ").ToUpper() '-- remove multiple sequential spaces
-                        strNameForSearch = strNameForSearch.Replace("  ", " ") '-- should change this to regex one day
-                        strNameForSearch = strNameForSearch.Replace("  ", " ")
-                        Dim names() As String = strNameForSearch.Split(" ")
-                        strLocalName = stud.LocalName.ToUpper() '-- save some processing for multiple names
-                        strLocalNameLatinLetters = stud.LocalNameLatinLetters.ToUpper()
+            '    '-- Now compare, if match, add to list
+            '    If txtStudentID.Text.Length > 0 AndAlso stud.StudentID.ToUpper() = txtStudentID.Text.ToUpper() Then
+            '        '-- match
+            '        olvStudents.AddObject(stud)
+            '    ElseIf txtNickName.Text.Length > 0 AndAlso stud.Nickname.ToUpper() = txtNickName.Text.ToUpper() Then
+            '        olvStudents.AddObject(stud)
+            '    ElseIf txtExtStudentID.Text.Length > 0 AndAlso stud.ExtStudentID.ToUpper() = txtExtStudentID.Text.ToUpper() Then
+            '        olvStudents.AddObject(stud)
+            '    ElseIf txtEmail.Text.Length > 0 AndAlso stud.EmailAddress.ToUpper() = txtEmail.Text.ToUpper() Then
+            '        olvStudents.AddObject(stud)
+            '    ElseIf txtLocalName.Text.Length > 0 Then
+            '        '-- Now we need to check for multiple names so we can do an AND compare
+            '        If txtLocalName.Text.Contains(" ") Then
+            '            Dim strNameForSearch As String
+            '            strNameForSearch = txtLocalName.Text.Replace("  ", " ").ToUpper() '-- remove multiple sequential spaces
+            '            strNameForSearch = strNameForSearch.Replace("  ", " ") '-- should change this to regex one day
+            '            strNameForSearch = strNameForSearch.Replace("  ", " ")
+            '            Dim names() As String = strNameForSearch.Split(" ")
+            '            strLocalName = stud.LocalName.ToUpper() '-- save some processing for multiple names
+            '            strLocalNameLatinLetters = stud.LocalNameLatinLetters.ToUpper()
 
-                        boolAtLeastOneNonMatch = False '-- reset for this iteration
-                        For Each name As String In names
-                            If Not strLocalNameLatinLetters.Contains(name) AndAlso _
-                                Not strLocalName.Contains(name) Then
-                                '-- at least one of the multiple names did not match
-                                boolAtLeastOneNonMatch = True
+            '            boolAtLeastOneNonMatch = False '-- reset for this iteration
+            '            For Each name As String In names
+            '                If Not strLocalNameLatinLetters.Contains(name) AndAlso _
+            '                    Not strLocalName.Contains(name) Then
+            '                    '-- at least one of the multiple names did not match
+            '                    boolAtLeastOneNonMatch = True
+            '                    Exit For
+            '                End If
+            '            Next
+
+            '            If boolAtLeastOneNonMatch Then
+            '                Application.DoEvents() '-- we're done, no match on this student
+            '            Else
+            '                '-- this student contains all of the multiple names
+            '                olvStudents.AddObject(stud)
+            '            End If
+            '        Else
+            '            '-- just one name, simple
+            '            If stud.LocalNameLatinLetters.ToUpper().Contains(txtLocalName.Text.ToUpper()) OrElse _
+            '                stud.LocalName.ToUpper().Contains(txtLocalName.Text.ToUpper()) Then
+            '                '-- match on name version with and without diacritics
+            '                olvStudents.AddObject(stud)
+            '            End If
+            '        End If
+            '    End If
+
+            '    lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+            '    If m_boolCancel Then
+            '        Exit For
+            '    End If
+            '    Application.DoEvents()
+            'Next
+
+            '-- Trying new cache
+            For Each sem As CachedSemester In m_objSemesterCache.Semesters
+                For Each clsGrp As ClassGroup In sem.ClassGroups
+                    For Each cls As SchoolClass In clsGrp.Classes
+                        For Each stud As Student In cls.Students
+                            intStudentsSearched += 1
+
+                            '-- Now compare, if match, add to list
+                            If txtStudentID.Text.Length > 0 AndAlso stud.StudentID.ToUpper() = txtStudentID.Text.ToUpper() Then
+                                '-- match
+                                olvStudents.AddObject(stud)
+                            ElseIf txtNickName.Text.Length > 0 AndAlso stud.Nickname.ToUpper() = txtNickName.Text.ToUpper() Then
+                                olvStudents.AddObject(stud)
+                            ElseIf txtExtStudentID.Text.Length > 0 AndAlso stud.ExtStudentID.ToUpper() = txtExtStudentID.Text.ToUpper() Then
+                                olvStudents.AddObject(stud)
+                            ElseIf txtEmail.Text.Length > 0 AndAlso stud.EmailAddress.ToUpper() = txtEmail.Text.ToUpper() Then
+                                olvStudents.AddObject(stud)
+                            ElseIf txtLocalName.Text.Length > 0 Then
+                                '-- Now we need to check for multiple names so we can do an AND compare
+                                If txtLocalName.Text.Contains(" ") Then
+                                    Dim strNameForSearch As String
+                                    strNameForSearch = txtLocalName.Text.Replace("  ", " ").ToUpper() '-- remove multiple sequential spaces
+                                    strNameForSearch = strNameForSearch.Replace("  ", " ") '-- should change this to regex one day
+                                    strNameForSearch = strNameForSearch.Replace("  ", " ")
+                                    Dim names() As String = strNameForSearch.Split(" ")
+                                    strLocalName = stud.LocalName.ToUpper() '-- save some processing for multiple names
+                                    strLocalNameLatinLetters = stud.LocalNameLatinLetters.ToUpper()
+
+                                    boolAtLeastOneNonMatch = False '-- reset for this iteration
+                                    For Each name As String In names
+                                        If Not strLocalNameLatinLetters.Contains(name) AndAlso _
+                                            Not strLocalName.Contains(name) Then
+                                            '-- at least one of the multiple names did not match
+                                            boolAtLeastOneNonMatch = True
+                                            Exit For
+                                        End If
+                                    Next
+
+                                    If boolAtLeastOneNonMatch Then
+                                        Application.DoEvents() '-- we're done, no match on this student
+                                    Else
+                                        '-- this student contains all of the multiple names
+                                        olvStudents.AddObject(stud)
+                                    End If
+                                Else
+                                    '-- just one name, simple
+                                    If stud.LocalNameLatinLetters.ToUpper().Contains(txtLocalName.Text.ToUpper()) OrElse _
+                                        stud.LocalName.ToUpper().Contains(txtLocalName.Text.ToUpper()) Then
+                                        '-- match on name version with and without diacritics
+                                        olvStudents.AddObject(stud)
+                                    End If
+                                End If
+                            End If
+
+                            lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+                            If m_boolCancel Then
                                 Exit For
                             End If
+                            Application.DoEvents()
                         Next
-
-                        If boolAtLeastOneNonMatch Then
-                            Application.DoEvents() '-- we're done, no match on this student
-                        Else
-                            '-- this student contains all of the multiple names
-                            olvStudents.AddObject(stud)
-                        End If
-                    Else
-                        '-- just one name, simple
-                        If stud.LocalNameLatinLetters.ToUpper().Contains(txtLocalName.Text.ToUpper()) OrElse _
-                            stud.LocalName.ToUpper().Contains(txtLocalName.Text.ToUpper()) Then
-                            '-- match on name version with and without diacritics
-                            olvStudents.AddObject(stud)
-                        End If
-                    End If
-                End If
-
-                lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
-                If m_boolCancel Then
-                    Exit For
-                End If
-                Application.DoEvents()
+                    Next
+                Next
             Next
 
 
@@ -241,4 +311,8 @@ Public Class HistoricalStudentFinder
     End Sub
 
 
+    Private Sub HistoricalStudentFinder_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        '-- Save cache
+        m_objSemesterCache.SaveCache()
+    End Sub
 End Class

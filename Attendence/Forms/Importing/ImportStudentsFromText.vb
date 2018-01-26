@@ -99,23 +99,58 @@ Public Class ImportStudentsFromText
             Dim intStudentsAdded, intStudentsSearched As Integer
             Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
             Dim semCurrent As Semester
-            Dim strFilename As String
-            Do
-                For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
-                    strFilename = lstSemesters(intCounter)
-                    'swReport2.Restart()
-                    semCurrent = New Semester(strFilename)
-                    'strReport &= "Loading " & semCurrent.Name & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
-                    'swReport2.Stop()
+            'Dim strFilename As String
 
+            lblLoadingHistoricalStudents.Text = "Populating cache, please wait..."
+            Application.DoEvents()
+
+            Dim objCache As SemesterCache = SemesterCache.GetCache
+
+            'Do
+            '    For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
+            '        strFilename = lstSemesters(intCounter)
+            '        'swReport2.Restart()
+            '        semCurrent = New Semester(strFilename)
+            '        'strReport &= "Loading " & semCurrent.Name & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
+            '        'swReport2.Stop()
+
+            '        lblLoadingHistoricalStudents.Text = strBaseHistoryLable & semCurrent.Name
+            '        Application.DoEvents()
+            '        For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+            '            'If strReportPrevious.Length > 0 Then
+            '            '    strReport &= strReportPrevious & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
+            '            'End If
+            '            'swReport1.Restart()
+            '            'strReportPrevious = "Sem: " & semCurrent.Name & "; Module: " & clsgrp.Name
+
+            '            For Each clas As SchoolClass In clsgrp.Classes
+            '                For Each stud In clas.Students
+            '                    intStudentsSearched += 1
+            '                    '-- add to collection, only if there IS a student ID
+            '                    If Not m_dictHistoricalStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
+            '                        m_dictHistoricalStudents.Add(stud.StudentID.ToUpper, stud)
+            '                        intStudentsAdded += 1
+            '                    End If
+
+            '                    lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+            '                    lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
+            '                    If m_boolCancel Then
+            '                        Exit Do
+            '                    End If
+            '                    Application.DoEvents()
+            '                Next
+            '            Next
+            '        Next
+            '    Next
+            '    Exit Do
+            'Loop While True
+
+            '-- Changing to use Cache
+            Do
+                For Each semCurrent In objCache.Semesters
                     lblLoadingHistoricalStudents.Text = strBaseHistoryLable & semCurrent.Name
                     Application.DoEvents()
                     For Each clsgrp As ClassGroup In semCurrent.ClassGroups
-                        'If strReportPrevious.Length > 0 Then
-                        '    strReport &= strReportPrevious & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
-                        'End If
-                        'swReport1.Restart()
-                        'strReportPrevious = "Sem: " & semCurrent.Name & "; Module: " & clsgrp.Name
 
                         For Each clas As SchoolClass In clsgrp.Classes
                             For Each stud In clas.Students
@@ -324,4 +359,5 @@ Public Class ImportStudentsFromText
             MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 End Class

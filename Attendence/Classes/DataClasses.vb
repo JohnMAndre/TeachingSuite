@@ -119,6 +119,52 @@ Public Class Semester
         System.IO.File.Move(strFilename, strReplacedFilename)
         System.IO.File.Move(strAutoSaveFilename, strFilename)
     End Sub
+    Private Sub PopulateFromXMLElement(xmlElement As Xml.XmlElement)
+        Me.Name = xmlElement.GetAttribute("Name")
+        Me.ID = xmlElement.GetAttribute("ID")
+
+        If Me.ID.Length = 0 Then
+            Me.ID = Guid.NewGuid.ToString()
+        End If
+
+        StartDateOverall = Xml.XmlConvert.ToDateTime(xmlElement.GetAttribute("StartDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
+        EndDateOverall = Xml.XmlConvert.ToDateTime(xmlElement.GetAttribute("EndDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
+
+        Try
+            Dim dt As Date
+            StartDateCurrent = ConvertToDateFromXML(xmlElement.GetAttribute("StartDateCurrent"), dt)
+            EndDateCurrent = ConvertToDateFromXML(xmlElement.GetAttribute("EndDateCurrent"), dt)
+        Catch ex As Exception
+            Application.DoEvents() '-- ignore
+        End Try
+
+        Me.Notes = xmlElement.GetAttribute("Notes")
+
+        '-- ImprovementItems must come before students
+        Dim xImprovements As Xml.XmlNodeList = xmlElement.SelectNodes("ImprovementItems/ImprovementItem")
+        Dim intOrderingID As Integer
+        For Each xItem As Xml.XmlElement In xImprovements
+            Dim objItem As New ImprovementItem()
+            objItem.ID = xItem.GetAttribute("ID")
+            objItem.Name = xItem.GetAttribute("Name")
+            objItem.Description = xItem.GetAttribute("Description")
+            intOrderingID += 1
+            objItem.OrderingID = intOrderingID '-- just for positioning
+            Me.ImprovementItems.Add(objItem)
+        Next
+
+
+        Dim xClassGroupList As Xml.XmlNodeList = xmlElement.SelectNodes("ClassGroup")
+        For Each xClassGroupNode As Xml.XmlElement In xClassGroupList
+            Dim objClassGroup As New ClassGroup(xClassGroupNode, Me)
+            ClassGroups.Add(objClassGroup)
+        Next
+    End Sub
+    Public Sub New(xmlElement As Xml.XmlElement)
+        '-- load from element, added for SemesterCache
+        PopulateFromXMLElement(xmlElement)
+
+    End Sub
     Public Sub New(name As String)
         Try
             '-- Load from data file
@@ -147,45 +193,8 @@ Public Class Semester
 #Else
             xDoc.Load(m_strFilename)
 #End If
-                'xDoc.Load(m_strFilename)
-                Me.Name = xDoc.DocumentElement.GetAttribute("Name")
-                Me.ID = xDoc.DocumentElement.GetAttribute("ID")
 
-                If Me.ID.Length = 0 Then
-                    Me.ID = Guid.NewGuid.ToString()
-                End If
-
-                StartDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
-                EndDateOverall = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDate"), Xml.XmlDateTimeSerializationMode.Unspecified)
-                'Closed = ConvertToBool(xDoc.DocumentElement.GetAttribute("Closed"), False)
-                Try
-                    StartDateCurrent = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("StartDateCurrent"), Xml.XmlDateTimeSerializationMode.Unspecified)
-                    EndDateCurrent = Xml.XmlConvert.ToDateTime(xDoc.DocumentElement.GetAttribute("EndDateCurrent"), Xml.XmlDateTimeSerializationMode.Unspecified)
-                Catch ex As Exception
-                    Application.DoEvents() '-- ignore
-                End Try
-
-                Me.Notes = xDoc.DocumentElement.GetAttribute("Notes")
-
-                '-- ImprovementItems must come before students
-                Dim xImprovements As Xml.XmlNodeList = xDoc.SelectNodes("//ImprovementItem")
-                Dim intOrderingID As Integer
-                For Each xItem As Xml.XmlElement In xImprovements
-                    Dim objItem As New ImprovementItem()
-                    objItem.ID = xItem.GetAttribute("ID")
-                    objItem.Name = xItem.GetAttribute("Name")
-                    objItem.Description = xItem.GetAttribute("Description")
-                    intOrderingID += 1
-                    objItem.OrderingID = intOrderingID '-- just for positioning
-                    Me.ImprovementItems.Add(objItem)
-                Next
-
-
-                Dim xClassGroupList As Xml.XmlNodeList = xDoc.SelectNodes("/Semester/ClassGroup")
-                For Each xClassGroupNode As Xml.XmlElement In xClassGroupList
-                    Dim objClassGroup As New ClassGroup(xClassGroupNode, Me)
-                    ClassGroups.Add(objClassGroup)
-                Next
+                PopulateFromXMLElement(xDoc.DocumentElement)
 
             Else
                 '-- create a new semester file
@@ -213,6 +222,12 @@ Public Class Semester
     ''' <remarks></remarks>
     Public Sub Save(Optional filename As String = Nothing, Optional forceXMLOnly As Boolean = False)
         Try
+
+            If System.IO.Path.GetFileNameWithoutExtension(filename) = DUMMY_SEMESTER_NAME Then
+                '-- never save dummy semester files
+                Exit Sub
+            End If
+
             '-- save back to data file
             Dim xDoc As Xml.XmlDocument = GetXMLDocumentToPersist()
 

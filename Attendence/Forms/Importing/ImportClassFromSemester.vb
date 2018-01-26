@@ -26,7 +26,7 @@ Public Class ImportClassFromSemester
     Private Sub LoadSemester()
         Try
             '-- Load the selected semester from data file
-            m_sourceSemester = New Semester(cboSemester.Items(cboSemester.SelectedIndex))
+            m_sourceSemester = New Semester(CType(cboSemester.Items(cboSemester.SelectedIndex), String))
             Me.Text = "Import From - " & m_sourceSemester.Name
             btnLoadSemester.Enabled = False
 

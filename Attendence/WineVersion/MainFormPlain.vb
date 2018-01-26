@@ -129,7 +129,7 @@ Public Class MainFormPlain
             If strFilename = DUMMY_SEMESTER_NAME Then
                 '-- Delete the dummy semester file (keep system clean)
                 Try
-                    System.IO.File.Delete(strFilename)
+                    System.IO.File.Delete(System.IO.Path.Combine(GetDataFolder(), strFilename & DATA_FILE_EXTENSION))
                 Catch ex As Exception
                     Log(ex) '-- just log and continue, not a huge problem if it stays there
                 End Try
