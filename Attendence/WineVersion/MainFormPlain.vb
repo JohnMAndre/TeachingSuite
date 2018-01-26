@@ -390,7 +390,7 @@ Public Class MainFormPlain
             Return lstClassGroups.Items(lstClassGroups.SelectedIndex)
         End If
     End Function
-    Public Function GetSelectedClass() As SchoolClass
+    Public Function GetSelectedClass() As SchoolClass Implements IMainForm.GetSelectedClass
         If lstClasses.SelectedIndex = -1 Then
             If lstClasses.Items.Count = 1 Then
                 lstClasses.SelectedIndex = 0
@@ -3001,5 +3001,44 @@ Public Class MainFormPlain
             MessageBox.Show("There was an error sorting: " & ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub ConvertLocalNamesToStandardnondiacriticToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Click
+        Dim boolConvertAll As Boolean
+        Select Case MessageBox.Show("Convert all classes?" & Environment.NewLine & _
+                                    Environment.NewLine & _
+                                    "Yes    = Convert all classes" & Environment.NewLine & _
+                                    "No     = Convert this class" & Environment.NewLine & _
+                                    "Cancel = Do nothing", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+            Case Windows.Forms.DialogResult.Yes
+                boolConvertAll = True
+            Case Windows.Forms.DialogResult.No
+                boolConvertAll = False
+            Case Windows.Forms.DialogResult.Cancel
+                Exit Sub
+        End Select
+
+        If boolConvertAll Then
+            For Each grp As ClassGroup In ThisSemester.ClassGroups
+                For Each cls As SchoolClass In grp.Classes
+                    For Each stud As Student In cls.Students
+                        '-- convert
+                        stud.LocalName = stud.LocalNameLatinLetters
+                    Next
+                Next
+            Next
+        Else
+            Dim cls As SchoolClass = GetSelectedClass()
+            If cls Is Nothing Then
+                MessageBox.Show("Please select a class to convert and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+            For Each stud As Student In cls.Students
+                '-- convert
+                stud.LocalName = stud.LocalNameLatinLetters
+            Next
+        End If
+
+        MessageBox.Show("Done.", Application.ProductName)
     End Sub
 End Class

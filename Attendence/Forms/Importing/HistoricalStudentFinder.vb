@@ -20,43 +20,51 @@ Public Class HistoricalStudentFinder
         End If
     End Function
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
-        Timer1.Stop()
-        Dim ht As New Hashtable() '-- key  = studentID, value = student object
-        m_lstFoundStudents = New List(Of Student)
+        Try
 
-        Dim intStudentsAdded, intStudentsSearched As Integer
-        Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
-        Dim semCurrent As Semester
-        Dim strFilename As String
-        Do
-            For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
-                strFilename = lstSemesters(intCounter)
-                semCurrent = New Semester(strFilename)
-                For Each clsgrp As ClassGroup In semCurrent.ClassGroups
-                    For Each clas As SchoolClass In clsgrp.Classes
-                        m_lstFoundStudents.AddRange(clas.Students)
-                        For Each stud In clas.Students
-                            intStudentsSearched += 1
-                            '-- add to collection, only if there IS a student ID
-                            If Not m_dictMostRecentStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
-                                m_dictMostRecentStudents.Add(stud.StudentID.ToUpper, stud)
-                                intStudentsAdded += 1
-                            End If
+            Timer1.Stop()
+            Dim ht As New Hashtable() '-- key  = studentID, value = student object
+            m_lstFoundStudents = New List(Of Student)
+            m_boolSearching = True
 
-                            lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
-                            lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
-                            If m_boolCancel Then
-                                Exit Do
-                            End If
-                            Application.DoEvents()
+            Dim intStudentsAdded, intStudentsSearched As Integer
+            Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
+            Dim semCurrent As Semester
+            Dim strFilename As String
+            Do
+                For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
+                    strFilename = lstSemesters(intCounter)
+                    semCurrent = New Semester(strFilename)
+                    For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+                        For Each clas As SchoolClass In clsgrp.Classes
+                            m_lstFoundStudents.AddRange(clas.Students)
+                            For Each stud In clas.Students
+                                intStudentsSearched += 1
+                                '-- add to collection, only if there IS a student ID
+                                If Not m_dictMostRecentStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
+                                    m_dictMostRecentStudents.Add(stud.StudentID.ToUpper, stud)
+                                    intStudentsAdded += 1
+                                End If
+
+                                lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+                                lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
+                                If m_boolCancel Then
+                                    Exit Do
+                                End If
+                                Application.DoEvents()
+                            Next
                         Next
                     Next
                 Next
-            Next
-            Exit Do
-        Loop While True
+                Exit Do
+            Loop While True
 
-        btnSearch.Enabled = True
+            btnSearch.Enabled = True
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error loading historical data: " & ex.Message)
+            btnSearch.Enabled = True
+        End Try
     End Sub
 
     Private Sub btnSearch_Click(sender As System.Object, e As System.EventArgs) Handles btnSearch.Click
@@ -200,7 +208,7 @@ Public Class HistoricalStudentFinder
 
     Private Sub btnAddStudentToClass_Click(sender As System.Object, e As System.EventArgs) Handles btnAddStudentToClass.Click
         Try
-            Dim cls As SchoolClass = MainForm.GetSelectedClass
+            Dim cls As SchoolClass = MainFormReference.GetSelectedClass
             If cls Is Nothing Then
                 MessageBox.Show("Please select a class on the main form.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else

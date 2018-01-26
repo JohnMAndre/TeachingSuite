@@ -499,6 +499,7 @@
     <Compile Include="Forms\StudentDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SemesterCache.vb" />
     <Compile Include="WineVersion\MainFormPlain.Designer.vb">
       <DependentUpon>MainFormPlain.vb</DependentUpon>
     </Compile>

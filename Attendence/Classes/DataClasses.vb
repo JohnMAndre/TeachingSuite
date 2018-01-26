@@ -214,36 +214,7 @@ Public Class Semester
     Public Sub Save(Optional filename As String = Nothing, Optional forceXMLOnly As Boolean = False)
         Try
             '-- save back to data file
-            Dim xDoc As New Xml.XmlDocument()
-            xDoc.AppendChild(xDoc.CreateElement("Semester"))
-            xDoc.DocumentElement.SetAttribute("Name", Me.Name)
-            xDoc.DocumentElement.SetAttribute("ID", Me.ID)
-            xDoc.DocumentElement.SetAttribute("StartDate", Me.StartDateOverall.ToString(DATE_FORMAT_XML))
-            xDoc.DocumentElement.SetAttribute("EndDate", Me.EndDateOverall.ToString(DATE_FORMAT_XML))
-            xDoc.DocumentElement.SetAttribute("StartDateCurrent", Me.StartDateCurrent.ToString(DATE_FORMAT_XML))
-            xDoc.DocumentElement.SetAttribute("EndDateCurrent", Me.EndDateCurrent.ToString(DATE_FORMAT_XML))
-            xDoc.DocumentElement.SetAttribute("Notes", Me.Notes)
-
-            '-- append ClassGroups
-            For Each objClassGroup As ClassGroup In Me.ClassGroups
-                xDoc.DocumentElement.AppendChild(objClassGroup.GetXMLElementToPersist(xDoc))
-            Next
-
-            '-- append improvement items
-            Dim xParent As Xml.XmlElement = xDoc.CreateElement("ImprovementItems")
-            Dim xItem As Xml.XmlElement
-
-            '-- First, sort them
-            Me.ImprovementItems.Sort()
-
-            For Each item As ImprovementItem In Me.ImprovementItems
-                xItem = xDoc.CreateElement("ImprovementItem")
-                xItem.SetAttribute("ID", item.ID)
-                xItem.SetAttribute("Name", item.Name)
-                xItem.SetAttribute("Description", item.Description)
-                xParent.AppendChild(xItem)
-            Next
-            xDoc.DocumentElement.AppendChild(xParent)
+            Dim xDoc As Xml.XmlDocument = GetXMLDocumentToPersist()
 
 
 #If SUPPORT_ZIP Then
@@ -283,7 +254,7 @@ Public Class Semester
             'xDoc.Save(m_strFilename)
             SaveXMLData(xDoc, m_strFilename, false)
 #End If
-                'xDoc.Save("c:\temp\test.xml")
+            'xDoc.Save("c:\temp\test.xml")
 
 
         Catch ex As Exception
@@ -291,7 +262,40 @@ Public Class Semester
         End Try
 
     End Sub
-   
+    Friend Function GetXMLDocumentToPersist() As Xml.XmlDocument
+        Dim xDoc As New Xml.XmlDocument()
+        xDoc.AppendChild(xDoc.CreateElement("Semester"))
+        xDoc.DocumentElement.SetAttribute("Name", Me.Name)
+        xDoc.DocumentElement.SetAttribute("ID", Me.ID)
+        xDoc.DocumentElement.SetAttribute("StartDate", Me.StartDateOverall.ToString(DATE_FORMAT_XML))
+        xDoc.DocumentElement.SetAttribute("EndDate", Me.EndDateOverall.ToString(DATE_FORMAT_XML))
+        xDoc.DocumentElement.SetAttribute("StartDateCurrent", Me.StartDateCurrent.ToString(DATE_FORMAT_XML))
+        xDoc.DocumentElement.SetAttribute("EndDateCurrent", Me.EndDateCurrent.ToString(DATE_FORMAT_XML))
+        xDoc.DocumentElement.SetAttribute("Notes", Me.Notes)
+
+        '-- append ClassGroups
+        For Each objClassGroup As ClassGroup In Me.ClassGroups
+            xDoc.DocumentElement.AppendChild(objClassGroup.GetXMLElementToPersist(xDoc))
+        Next
+
+        '-- append improvement items
+        Dim xParent As Xml.XmlElement = xDoc.CreateElement("ImprovementItems")
+        Dim xItem As Xml.XmlElement
+
+        '-- First, sort them
+        Me.ImprovementItems.Sort()
+
+        For Each item As ImprovementItem In Me.ImprovementItems
+            xItem = xDoc.CreateElement("ImprovementItem")
+            xItem.SetAttribute("ID", item.ID)
+            xItem.SetAttribute("Name", item.Name)
+            xItem.SetAttribute("Description", item.Description)
+            xParent.AppendChild(xItem)
+        Next
+        xDoc.DocumentElement.AppendChild(xParent)
+
+        Return xDoc
+    End Function
 End Class
 
 Public Class UnicodeTextWriter
@@ -3450,22 +3454,33 @@ Public Class Student
     End Property
     Public ReadOnly Property TotalAbsences As Decimal
         Get
-            Dim decReturn As Decimal
-            For Each session As TeachingSession In TeachingSessions
-                Select Case session.AttendenceStatus
-                    Case AttendanceStatusEnum.Absent
-                        decReturn += 1
-                    Case AttendanceStatusEnum.Late
-                        decReturn += 0.5
-                    Case AttendanceStatusEnum.Present
-                        Application.DoEvents()
-                    Case AttendanceStatusEnum.Removed
-                        decReturn += 1
-                    Case AttendanceStatusEnum.Unknown
-                        decReturn += 1
-                End Select
-            Next
-            Return decReturn
+            Try
+
+                Dim decReturn As Decimal
+                For Each session As TeachingSession In TeachingSessions
+                    Select Case session.AttendenceStatus
+                        Case AttendanceStatusEnum.Absent
+                            decReturn += 1
+                        Case AttendanceStatusEnum.Late
+                            decReturn += 0.5
+                        Case AttendanceStatusEnum.Present
+                            Application.DoEvents()
+                        Case AttendanceStatusEnum.Removed
+                            decReturn += 1
+                        Case AttendanceStatusEnum.Unknown
+                            decReturn += 1
+                    End Select
+                Next
+                Return decReturn
+            Catch ex As Exception
+                Log(ex)
+                If TeachingSessions.Count = 0 Then
+                    Return 0
+                Else
+                    Return -1 '-- Notify UI of issue
+                End If
+            End Try
+
         End Get
     End Property
     Public ReadOnly Property TotalExcused As Decimal

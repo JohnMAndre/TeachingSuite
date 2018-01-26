@@ -441,7 +441,7 @@ Public Class MainForm
             Return lstClassGroups.Items(lstClassGroups.SelectedIndex)
         End If
     End Function
-    Public Function GetSelectedClass() As SchoolClass
+    Public Function GetSelectedClass() As SchoolClass Implements IMainForm.GetSelectedClass
         If lstClasses.SelectedIndex = -1 Then
             If lstClasses.Items.Count = 1 Then
                 lstClasses.SelectedIndex = 0
