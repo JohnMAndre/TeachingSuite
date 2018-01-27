@@ -435,6 +435,12 @@
                     EmailAsHTML = True
                 End If
 
+                xElement = xDoc.SelectSingleNode("//LoadSemesterCacheOnStartup")
+                If xElement IsNot Nothing Then
+                    LoadSemesterCacheOnStartup = ConvertToBool(xElement.InnerText, False)
+                Else
+                    LoadSemesterCacheOnStartup = False
+                End If
 
 
 
@@ -578,6 +584,7 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ApplicationHistoryMaxFileSize", ApplicationHistoryMaxFileSize))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EnableStudentDataHistory", EnableStudentDataHistory))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailAsHTML", EmailAsHTML))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "LoadSemesterCacheOnStartup", LoadSemesterCacheOnStartup))
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
@@ -666,6 +673,7 @@
         End Try
     End Sub
 #Region " Public Properties "
+    Public Property LoadSemesterCacheOnStartup As Boolean
     Public Property EnableStudentDataHistory As Boolean
     Public Property ApplicationHistoryMaxFileSize As PerformanceCounterInstanceLifetime '-- size in bytes
 

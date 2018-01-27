@@ -74,6 +74,8 @@ Partial Class OptionsForm
         Me.txtAttendenceMarkAbsent = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.tabEmail = New System.Windows.Forms.TabPage()
         Me.pnlEmail = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.chkIncludeFeedbackWhenEmailing = New System.Windows.Forms.CheckBox()
+        Me.chkEmailAsHTML = New System.Windows.Forms.CheckBox()
         Me.KryptonLabel34 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtEmailQuizTrailingText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel33 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -129,8 +131,7 @@ Partial Class OptionsForm
         Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkEmailAsHTML = New System.Windows.Forms.CheckBox()
-        Me.chkIncludeFeedbackWhenEmailing = New System.Windows.Forms.CheckBox()
+        Me.chkLoadSemesterCacheOnStartup = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +177,7 @@ Partial Class OptionsForm
         '
         Me.chkEnableStudentDataHistory.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkEnableStudentDataHistory.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkEnableStudentDataHistory.Location = New System.Drawing.Point(35, 172)
+        Me.chkEnableStudentDataHistory.Location = New System.Drawing.Point(28, 172)
         Me.chkEnableStudentDataHistory.Name = "chkEnableStudentDataHistory"
         Me.chkEnableStudentDataHistory.Size = New System.Drawing.Size(182, 19)
         Me.chkEnableStudentDataHistory.TabIndex = 141
@@ -232,22 +233,23 @@ Partial Class OptionsForm
         '
         'pnlData
         '
-        Me.pnlData.Controls.Add(Me.chkEnableStudentDataHistory)
+        Me.pnlData.Controls.Add(Me.chkLoadSemesterCacheOnStartup)
         Me.pnlData.Controls.Add(Me.llblDictionaryInfo)
         Me.pnlData.Controls.Add(Me.cboDictionary)
-        Me.pnlData.Controls.Add(Me.chkAutoSaveEnabled)
         Me.pnlData.Controls.Add(Me.KryptonLabel24)
         Me.pnlData.Controls.Add(Me.KryptonLabel22)
         Me.pnlData.Controls.Add(Me.nudAutoSave)
         Me.pnlData.Controls.Add(Me.nudMaxAppHistoryFileSize)
-        Me.pnlData.Controls.Add(Me.KryptonLabel23)
         Me.pnlData.Controls.Add(Me.nudLoggingThreshold)
-        Me.pnlData.Controls.Add(Me.KryptonLabel18)
         Me.pnlData.Controls.Add(Me.nudDataBackupsToRetain)
+        Me.pnlData.Controls.Add(Me.txtCDDrive)
+        Me.pnlData.Controls.Add(Me.chkEnableStudentDataHistory)
+        Me.pnlData.Controls.Add(Me.chkAutoSaveEnabled)
+        Me.pnlData.Controls.Add(Me.KryptonLabel23)
+        Me.pnlData.Controls.Add(Me.KryptonLabel18)
         Me.pnlData.Controls.Add(Me.KryptonLabel11)
         Me.pnlData.Controls.Add(Me.KryptonLabel13)
         Me.pnlData.Controls.Add(Me.lblCDDrive)
-        Me.pnlData.Controls.Add(Me.txtCDDrive)
         Me.pnlData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlData.Location = New System.Drawing.Point(3, 3)
         Me.pnlData.Name = "pnlData"
@@ -268,7 +270,7 @@ Partial Class OptionsForm
         'chkAutoSaveEnabled
         '
         Me.chkAutoSaveEnabled.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkAutoSaveEnabled.Location = New System.Drawing.Point(73, 41)
+        Me.chkAutoSaveEnabled.Location = New System.Drawing.Point(66, 41)
         Me.chkAutoSaveEnabled.Name = "chkAutoSaveEnabled"
         Me.chkAutoSaveEnabled.Size = New System.Drawing.Size(124, 19)
         Me.chkAutoSaveEnabled.TabIndex = 138
@@ -317,7 +319,7 @@ Partial Class OptionsForm
         '
         'KryptonLabel23
         '
-        Me.KryptonLabel23.Location = New System.Drawing.Point(41, 144)
+        Me.KryptonLabel23.Location = New System.Drawing.Point(34, 144)
         Me.KryptonLabel23.Name = "KryptonLabel23"
         Me.KryptonLabel23.Size = New System.Drawing.Size(157, 19)
         Me.KryptonLabel23.TabIndex = 134
@@ -337,7 +339,7 @@ Partial Class OptionsForm
         '
         'KryptonLabel18
         '
-        Me.KryptonLabel18.Location = New System.Drawing.Point(72, 92)
+        Me.KryptonLabel18.Location = New System.Drawing.Point(65, 92)
         Me.KryptonLabel18.Name = "KryptonLabel18"
         Me.KryptonLabel18.Size = New System.Drawing.Size(121, 19)
         Me.KryptonLabel18.TabIndex = 134
@@ -355,7 +357,7 @@ Partial Class OptionsForm
         '
         'KryptonLabel11
         '
-        Me.KryptonLabel11.Location = New System.Drawing.Point(80, 117)
+        Me.KryptonLabel11.Location = New System.Drawing.Point(73, 117)
         Me.KryptonLabel11.Name = "KryptonLabel11"
         Me.KryptonLabel11.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel11.TabIndex = 132
@@ -363,7 +365,7 @@ Partial Class OptionsForm
         '
         'KryptonLabel13
         '
-        Me.KryptonLabel13.Location = New System.Drawing.Point(49, 13)
+        Me.KryptonLabel13.Location = New System.Drawing.Point(42, 13)
         Me.KryptonLabel13.Name = "KryptonLabel13"
         Me.KryptonLabel13.Size = New System.Drawing.Size(149, 19)
         Me.KryptonLabel13.TabIndex = 132
@@ -371,7 +373,7 @@ Partial Class OptionsForm
         '
         'lblCDDrive
         '
-        Me.lblCDDrive.Location = New System.Drawing.Point(124, 66)
+        Me.lblCDDrive.Location = New System.Drawing.Point(117, 66)
         Me.lblCDDrive.Name = "lblCDDrive"
         Me.lblCDDrive.Size = New System.Drawing.Size(69, 19)
         Me.lblCDDrive.TabIndex = 131
@@ -706,6 +708,26 @@ Partial Class OptionsForm
         Me.pnlEmail.Name = "pnlEmail"
         Me.pnlEmail.Size = New System.Drawing.Size(815, 460)
         Me.pnlEmail.TabIndex = 2
+        '
+        'chkIncludeFeedbackWhenEmailing
+        '
+        Me.chkIncludeFeedbackWhenEmailing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkIncludeFeedbackWhenEmailing.Location = New System.Drawing.Point(5, 36)
+        Me.chkIncludeFeedbackWhenEmailing.Name = "chkIncludeFeedbackWhenEmailing"
+        Me.chkIncludeFeedbackWhenEmailing.Size = New System.Drawing.Size(251, 24)
+        Me.chkIncludeFeedbackWhenEmailing.TabIndex = 141
+        Me.chkIncludeFeedbackWhenEmailing.Text = "Include feedback when emailing:"
+        Me.chkIncludeFeedbackWhenEmailing.UseVisualStyleBackColor = True
+        '
+        'chkEmailAsHTML
+        '
+        Me.chkEmailAsHTML.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkEmailAsHTML.Location = New System.Drawing.Point(5, 89)
+        Me.chkEmailAsHTML.Name = "chkEmailAsHTML"
+        Me.chkEmailAsHTML.Size = New System.Drawing.Size(251, 24)
+        Me.chkEmailAsHTML.TabIndex = 140
+        Me.chkEmailAsHTML.Text = "Email in HTML:"
+        Me.chkEmailAsHTML.UseVisualStyleBackColor = True
         '
         'KryptonLabel34
         '
@@ -1243,25 +1265,16 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
         '
-        'chkEmailAsHTML
+        'chkLoadSemesterCacheOnStartup
         '
-        Me.chkEmailAsHTML.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkEmailAsHTML.Location = New System.Drawing.Point(5, 89)
-        Me.chkEmailAsHTML.Name = "chkEmailAsHTML"
-        Me.chkEmailAsHTML.Size = New System.Drawing.Size(251, 24)
-        Me.chkEmailAsHTML.TabIndex = 140
-        Me.chkEmailAsHTML.Text = "Email in HTML:"
-        Me.chkEmailAsHTML.UseVisualStyleBackColor = True
-        '
-        'chkIncludeFeedbackWhenEmailing
-        '
-        Me.chkIncludeFeedbackWhenEmailing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkIncludeFeedbackWhenEmailing.Location = New System.Drawing.Point(5, 36)
-        Me.chkIncludeFeedbackWhenEmailing.Name = "chkIncludeFeedbackWhenEmailing"
-        Me.chkIncludeFeedbackWhenEmailing.Size = New System.Drawing.Size(251, 24)
-        Me.chkIncludeFeedbackWhenEmailing.TabIndex = 141
-        Me.chkIncludeFeedbackWhenEmailing.Text = "Include feedback when emailing:"
-        Me.chkIncludeFeedbackWhenEmailing.UseVisualStyleBackColor = True
+        Me.chkLoadSemesterCacheOnStartup.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkLoadSemesterCacheOnStartup.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkLoadSemesterCacheOnStartup.Location = New System.Drawing.Point(28, 197)
+        Me.chkLoadSemesterCacheOnStartup.Name = "chkLoadSemesterCacheOnStartup"
+        Me.chkLoadSemesterCacheOnStartup.Size = New System.Drawing.Size(219, 19)
+        Me.chkLoadSemesterCacheOnStartup.TabIndex = 142
+        Me.chkLoadSemesterCacheOnStartup.Text = "Load semester cache on startup:"
+        Me.chkLoadSemesterCacheOnStartup.Values.Text = "Load semester cache on startup:"
         '
         'OptionsForm
         '
@@ -1434,4 +1447,5 @@ Partial Class OptionsForm
     Friend WithEvents chkEnableStudentDataHistory As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeFeedbackWhenEmailing As System.Windows.Forms.CheckBox
     Friend WithEvents chkEmailAsHTML As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLoadSemesterCacheOnStartup As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

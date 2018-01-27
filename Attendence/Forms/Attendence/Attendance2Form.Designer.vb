@@ -35,6 +35,7 @@ Partial Class Attendance2Form
         Me.DecreaseFontToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditCurrentStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OverlayClockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -77,9 +78,12 @@ Partial Class Attendance2Form
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
+        Me.pbTimer = New System.Windows.Forms.PictureBox()
+        Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.pbTimer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -126,7 +130,7 @@ Partial Class Attendance2Form
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem, Me.ToolStripSeparator4, Me.EditCurrentStudentToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem, Me.ToolStripSeparator4, Me.EditCurrentStudentToolStripMenuItem, Me.OverlayClockToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
         Me.ViewToolStripMenuItem.Text = "&View"
@@ -136,14 +140,14 @@ Partial Class Attendance2Form
         Me.IncreaseFontToolStripMenuItem.Name = "IncreaseFontToolStripMenuItem"
         Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
         Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.IncreaseFontToolStripMenuItem.Text = "Increase font"
+        Me.IncreaseFontToolStripMenuItem.Text = "&Increase font"
         '
         'DecreaseFontToolStripMenuItem
         '
         Me.DecreaseFontToolStripMenuItem.Name = "DecreaseFontToolStripMenuItem"
         Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.DecreaseFontToolStripMenuItem.Text = "Decrease font"
+        Me.DecreaseFontToolStripMenuItem.Text = "&Decrease font"
         '
         'ToolStripSeparator4
         '
@@ -156,6 +160,13 @@ Partial Class Attendance2Form
         Me.EditCurrentStudentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
         Me.EditCurrentStudentToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.EditCurrentStudentToolStripMenuItem.Text = "&Edit current student"
+        '
+        'OverlayClockToolStripMenuItem
+        '
+        Me.OverlayClockToolStripMenuItem.Name = "OverlayClockToolStripMenuItem"
+        Me.OverlayClockToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.OverlayClockToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.OverlayClockToolStripMenuItem.Text = "&Overlay clock"
         '
         'MarkToolStripMenuItem
         '
@@ -452,11 +463,28 @@ Partial Class Attendance2Form
         Me.tmrStudentCount.Enabled = True
         Me.tmrStudentCount.Interval = 2000
         '
+        'pbTimer
+        '
+        Me.pbTimer.BackColor = System.Drawing.Color.Black
+        Me.pbTimer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbTimer.Location = New System.Drawing.Point(0, 27)
+        Me.pbTimer.Name = "pbTimer"
+        Me.pbTimer.Size = New System.Drawing.Size(719, 429)
+        Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbTimer.TabIndex = 4
+        Me.pbTimer.TabStop = False
+        Me.pbTimer.Visible = False
+        '
+        'tmrClock
+        '
+        Me.tmrClock.Interval = 1000
+        '
         'Attendance2Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(719, 478)
+        Me.Controls.Add(Me.pbTimer)
         Me.Controls.Add(Me.dgvStudents)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -468,6 +496,7 @@ Partial Class Attendance2Form
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.pbTimer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -525,4 +554,7 @@ Partial Class Attendance2Form
     Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column6 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents OverlayClockToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents pbTimer As System.Windows.Forms.PictureBox
+    Friend WithEvents tmrClock As System.Windows.Forms.Timer
 End Class

@@ -42,6 +42,7 @@ Public Class OptionsForm
         End If
         AppSettings.ApplicationHistoryMaxFileSize = nudMaxAppHistoryFileSize.Value
         AppSettings.EnableStudentDataHistory = chkEnableStudentDataHistory.Checked
+        AppSettings.LoadSemesterCacheOnStartup = chkLoadSemesterCacheOnStartup.Checked
 
         '-- Email
         AppSettings.PathToTrulyMailEXE = txtPathToTrulyMail.Text
@@ -129,6 +130,7 @@ Public Class OptionsForm
             End If
             nudMaxAppHistoryFileSize.Value = AppSettings.ApplicationHistoryMaxFileSize
             chkEnableStudentDataHistory.Checked = AppSettings.EnableStudentDataHistory
+            chkLoadSemesterCacheOnStartup.Checked = AppSettings.LoadSemesterCacheOnStartup
 
             '-- Email
             txtPathToTrulyMail.Text = AppSettings.PathToTrulyMailEXE
@@ -183,6 +185,8 @@ Public Class OptionsForm
 
             chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked = AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements
 
+            btnOK.Enabled = False
+
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error loading the options form: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -216,6 +220,10 @@ Public Class OptionsForm
     End Sub
 
     Private Sub chkEnableStudentDataHistory_CheckedChanged(sender As Object, e As EventArgs) Handles chkEnableStudentDataHistory.CheckedChanged
+        btnOK.Enabled = True
+    End Sub
 
+    Private Sub chkLoadSemesterCacheOnStartup_CheckedChanged(sender As Object, e As EventArgs) Handles chkLoadSemesterCacheOnStartup.CheckedChanged
+        btnOK.Enabled = True
     End Sub
 End Class

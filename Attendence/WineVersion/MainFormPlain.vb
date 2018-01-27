@@ -10,6 +10,7 @@ Public Class MainFormPlain
     Private WithEvents m_bkgndExportMarkingResults As System.ComponentModel.BackgroundWorker
     Private WithEvents m_bkgndExportMarkingResultsIsolated As System.ComponentModel.BackgroundWorker
     Private WithEvents m_bkgndAutoSave As New System.ComponentModel.BackgroundWorker()
+    Private WithEvents m_bkgndDelayedActions As New System.ComponentModel.BackgroundWorker()
 
 
     Private m_lstCurrentScheduleItems As New List(Of ActualSessionItem)
@@ -114,6 +115,7 @@ Public Class MainFormPlain
             AddApplicationHistory("Opened app. Active semester: " & ThisSemester.Name)
         End If
 
+        m_bkgndDelayedActions.RunWorkerAsync()
     End Sub
 
     Private Sub LoadSemesters()
@@ -329,7 +331,7 @@ Public Class MainFormPlain
         Dim lstReturn As New List(Of Student)
 
         Dim cells As DataGridViewSelectedCellCollection
-    
+
         cells = dgvStudents.SelectedCells
 
         Dim row As DataGridViewRow
@@ -1408,7 +1410,7 @@ Public Class MainFormPlain
         LoadSchedule()
     End Sub
 
-    
+
     Private Sub dtpScheduleDate_ValueChanged(sender As System.Object, e As System.EventArgs) Handles dtpScheduleDate.ValueChanged
         LoadSchedule()
     End Sub
@@ -2833,7 +2835,7 @@ Public Class MainFormPlain
                 Dim objSkip As New SkipSession()
                 objSkip.StartDateTime = item.StartDateTime
                 item.SchoolClass.SessionsToSkip.Add(objSkip)
-                
+
                 item.SchoolClass.ActualSessions.Remove(item)
 
                 Using frm As New ClassDetails(item.SchoolClass)
@@ -3041,4 +3043,20 @@ Public Class MainFormPlain
 
         MessageBox.Show("Done.", Application.ProductName)
     End Sub
+
+    Private Sub m_bkgndDelayedActions_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles m_bkgndDelayedActions.DoWork
+        '-- This is for actions that should be done off-main-thread and after startup
+
+        '-- Load up the SemesterCache so it will be faster (but will consume more memory)
+        If AppSettings.LoadSemesterCacheOnStartup Then
+            Dim cache As SemesterCache = SemesterCache.GetCache() '-- should not need to do more than get an instance
+        End If
+
+    End Sub
+
+    Private Sub llblScheduleToday_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblScheduleToday.LinkClicked
+        dtpScheduleDate.Value = Date.Today
+        LoadSchedule()
+    End Sub
+
 End Class

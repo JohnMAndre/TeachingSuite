@@ -5,6 +5,11 @@
     Private m_intStudentGroup As Integer
     Private m_lstStudents As List(Of Student)
 
+    Private m_dtStartTime As Date
+    Private m_font As Font
+    Private m_tsCurrent As TimeSpan
+
+
     Public Sub New(schoolClass As SchoolClass)
 
         ' This call is required by the designer.
@@ -26,6 +31,7 @@
         m_intStudentGroup = item.StudentGroup
         m_class = item.SchoolClass
         txtStudentGroup.Text = item.StudentGroup
+        m_dtStartTime = item.StartDateTime
 
     End Sub
 
@@ -282,5 +288,90 @@
     End Sub
     Private Sub txtStudentGroup_TextChanged(sender As Object, e As EventArgs) Handles txtStudentGroup.TextChanged
         m_intStudentGroup = ConvertToInt32(txtStudentGroup.Text, 0)
+    End Sub
+
+    Private Sub OverlayClockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OverlayClockToolStripMenuItem.Click
+        '-- Show countdown timer until class begins (per schedule)
+        '   After class begins, timer hides and cannot be shown again
+        If m_dtStartTime <> DATE_NO_DATE Then
+            Dim ts As TimeSpan = m_dtStartTime - Date.Now
+            If ts.TotalSeconds > 0 Then
+                '-- Toggle visible
+                If pbTimer.Visible Then
+                    HideTimer()
+                Else
+                    ShowTimer()
+                End If
+            Else
+                HideTimer()
+            End If
+        Else
+            HideTimer()
+        End If
+    End Sub
+
+    Private Sub HideTimer()
+        pbTimer.Visible = False
+        tmrClock.Stop()
+    End Sub
+    Private Sub ShowTimer()
+        pbTimer.Visible = True
+        tmrClock.Start()
+    End Sub
+
+    Private Sub tmrClock_Tick(sender As Object, e As EventArgs) Handles tmrClock.Tick
+        If m_dtStartTime > Date.Now Then
+            If pbTimer.Visible Then
+                m_tsCurrent = m_dtStartTime - Date.Now
+                Me.pbTimer.Invalidate()
+            End If
+        Else
+            '-- Auto-hide at zero
+            HideTimer()
+        End If
+    End Sub
+
+    Private Delegate Sub DratTimeCallback(g As Graphics)
+    Private Sub DrawTime(g As Graphics)
+        If InvokeRequired Then
+            Dim deleg As New DratTimeCallback(AddressOf DrawTime)
+            Invoke(deleg, g)
+        Else
+            SetFontSize()
+            Dim strText As String = System.Math.Abs(m_tsCurrent.Minutes).ToString("#0") & ":" & System.Math.Abs(m_tsCurrent.Seconds).ToString("00")
+            If m_tsCurrent.TotalSeconds < 0 Then
+                strText = "-" & strText
+            End If
+            g.DrawString(strText, m_font, New SolidBrush(Color.White), New PointF(1, 1))
+        End If
+    End Sub
+    Private Sub pbTimer_Paint(sender As Object, e As System.Windows.Forms.PaintEventArgs) Handles pbTimer.Paint
+        DrawTime(e.Graphics)
+    End Sub
+  
+    Private Sub SetFontSize()
+        Using g As Graphics = pbTimer.CreateGraphics()
+
+            Dim strText As String = System.Math.Abs(m_tsCurrent.Minutes).ToString("#0") & ":" & System.Math.Abs(m_tsCurrent.Seconds).ToString("00")
+            If m_tsCurrent.TotalSeconds < 0 Then
+                strText = "-" & strText
+            End If
+
+            Dim sz As SizeF
+            Dim intFontSize As Integer = 8
+            Const INCREMENT As Integer = 4
+            Do While True
+                m_font = New Font("Arial", intFontSize)
+                sz = g.MeasureString(strText, m_font)
+                If sz.Width > pbTimer.Width OrElse sz.Height > pbTimer.Height Then
+                    '-- just past limit
+                    Exit Do
+                Else
+                    intFontSize += INCREMENT
+                End If
+            Loop
+            intFontSize -= INCREMENT
+            m_font = New Font("Arial", intFontSize)
+        End Using
     End Sub
 End Class
