@@ -647,7 +647,7 @@ Public Class EmailModuleResults
                         str.Append("<br>")
                         str.Append("<br>")
                     Else
-                        str.Append("Grade for " & asmt.BaseAssignment.Name & ": " & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
+                        str.Append("Grade for " & asmt.BaseAssignment.Name & ": " & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & "%)") '-- % sign does not show but needs to be there for .Net calc (so need both)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
@@ -692,27 +692,22 @@ Public Class EmailModuleResults
         'End If
 
 
-        If chkIncludeGrade.Checked Then
+        If chkIncludeOverallGrade.Checked Then
             If boolAtLeastOneNormalAssignment Then
                 If AppSettings.EmailAsHTML Then
                     str.Append("<hr>")
-                Else
-                    str.Append("------------------------------------------")
-                End If
-
-                str.Append("<b>Overall grade for module:</b> " & item.Student.AssessmentResultOverall)
-
-                If AppSettings.EmailAsHTML Then
+                    str.Append("<b>Overall grade for module:</b> " & item.Student.AssessmentResultOverall)
                     str.Append("<br>")
                     str.Append("<hr>")
                     str.Append("<br>")
                 Else
+                    str.Append("------------------------------------------")
+                    str.Append(Environment.NewLine)
+                    str.Append("Overall grade for module: " & item.Student.AssessmentResultOverall)
                     str.Append(Environment.NewLine)
                     str.Append("------------------------------------------")
                     str.Append(Environment.NewLine)
                 End If
-
-
             End If
         End If
 

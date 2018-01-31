@@ -303,10 +303,22 @@
                     ShowTimer()
                 End If
             Else
-                HideTimer()
+                If IsNumeric(txtFilter.Text) Then
+                    '-- Allow user to put in number of minutes in txtFilter
+                    m_dtStartTime = Date.Now.AddMinutes(ConvertToInt32(txtFilter.Text, 5))
+                    ShowTimer()
+                Else
+                    HideTimer()
+                End If
             End If
         Else
-            HideTimer()
+            If IsNumeric(txtFilter.Text) Then
+                '-- Allow user to put in number of minutes in txtFilter
+                m_dtStartTime = Date.Now.AddMinutes(ConvertToInt32(txtFilter.Text, 5))
+                ShowTimer()
+            Else
+                HideTimer()
+            End If
         End If
     End Sub
 

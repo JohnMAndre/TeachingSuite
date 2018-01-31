@@ -39,6 +39,8 @@ Partial Class EmailModuleResults
         Me.chkFinalFeedback = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkIncludeMeritDistinctionResults = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkIncludeUnprocessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeOverall = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeImprovement = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonManager1 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
@@ -111,8 +113,7 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkIncludeOverall = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkIncludeImprovement = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeOverallGrade = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -297,6 +298,34 @@ Partial Class EmailModuleResults
         Me.chkIncludeUnprocessed.Text = "Include unprocessed"
         Me.ToolTip1.SetToolTip(Me.chkIncludeUnprocessed, "Check to include assignments not processed (for weekly workshops)")
         Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
+        '
+        'chkIncludeOverall
+        '
+        Me.chkIncludeOverall.Checked = True
+        Me.chkIncludeOverall.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeOverall.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeOverall.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeOverall.Location = New System.Drawing.Point(111, 379)
+        Me.chkIncludeOverall.Name = "chkIncludeOverall"
+        Me.chkIncludeOverall.Size = New System.Drawing.Size(110, 19)
+        Me.chkIncludeOverall.TabIndex = 66
+        Me.chkIncludeOverall.Text = "Include overall"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeOverall, "Check to include overall text for each assignment")
+        Me.chkIncludeOverall.Values.Text = "Include overall"
+        '
+        'chkIncludeImprovement
+        '
+        Me.chkIncludeImprovement.Checked = True
+        Me.chkIncludeImprovement.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeImprovement.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeImprovement.Location = New System.Drawing.Point(73, 360)
+        Me.chkIncludeImprovement.Name = "chkIncludeImprovement"
+        Me.chkIncludeImprovement.Size = New System.Drawing.Size(148, 19)
+        Me.chkIncludeImprovement.TabIndex = 67
+        Me.chkIncludeImprovement.Text = "Include improvement"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeImprovement, "Check to include improvement text for each assignment")
+        Me.chkIncludeImprovement.Values.Text = "Include improvement"
         '
         'KryptonManager1
         '
@@ -486,6 +515,7 @@ Partial Class EmailModuleResults
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeOverallGrade)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeImprovement)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeOverall)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeUnprocessed)
@@ -531,11 +561,11 @@ Partial Class EmailModuleResults
         Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 423)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 442)
         Me.txtEmailTrailingText.Multiline = True
         Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
         Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(235, 96)
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(235, 77)
         Me.txtEmailTrailingText.TabIndex = 41
         '
         'olvAssignments
@@ -624,7 +654,7 @@ Partial Class EmailModuleResults
         '
         'KryptonLabel7
         '
-        Me.KryptonLabel7.Location = New System.Drawing.Point(4, 393)
+        Me.KryptonLabel7.Location = New System.Drawing.Point(4, 415)
         Me.KryptonLabel7.Name = "KryptonLabel7"
         Me.KryptonLabel7.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel7.TabIndex = 42
@@ -959,33 +989,19 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
-        'chkIncludeOverall
+        'chkIncludeOverallGrade
         '
-        Me.chkIncludeOverall.Checked = True
-        Me.chkIncludeOverall.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeOverall.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeOverall.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeOverall.Location = New System.Drawing.Point(111, 379)
-        Me.chkIncludeOverall.Name = "chkIncludeOverall"
-        Me.chkIncludeOverall.Size = New System.Drawing.Size(110, 19)
-        Me.chkIncludeOverall.TabIndex = 66
-        Me.chkIncludeOverall.Text = "Include overall"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeOverall, "Check to include overall text for each assignment")
-        Me.chkIncludeOverall.Values.Text = "Include overall"
-        '
-        'chkIncludeImprovement
-        '
-        Me.chkIncludeImprovement.Checked = True
-        Me.chkIncludeImprovement.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeImprovement.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeImprovement.Location = New System.Drawing.Point(73, 360)
-        Me.chkIncludeImprovement.Name = "chkIncludeImprovement"
-        Me.chkIncludeImprovement.Size = New System.Drawing.Size(148, 19)
-        Me.chkIncludeImprovement.TabIndex = 67
-        Me.chkIncludeImprovement.Text = "Include improvement"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeImprovement, "Check to include improvement text for each assignment")
-        Me.chkIncludeImprovement.Values.Text = "Include improvement"
+        Me.chkIncludeOverallGrade.Checked = True
+        Me.chkIncludeOverallGrade.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeOverallGrade.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeOverallGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeOverallGrade.Location = New System.Drawing.Point(69, 396)
+        Me.chkIncludeOverallGrade.Name = "chkIncludeOverallGrade"
+        Me.chkIncludeOverallGrade.Size = New System.Drawing.Size(152, 19)
+        Me.chkIncludeOverallGrade.TabIndex = 68
+        Me.chkIncludeOverallGrade.Text = "Include overall grade:"
+        Me.ToolTip1.SetToolTip(Me.chkIncludeOverallGrade, "Check to include overall grade for module text")
+        Me.chkIncludeOverallGrade.Values.Text = "Include overall grade:"
         '
         'EmailModuleResults
         '
@@ -1136,4 +1152,5 @@ Partial Class EmailModuleResults
     Friend WithEvents chkIncludeUnprocessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeImprovement As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeOverall As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents chkIncludeOverallGrade As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class
