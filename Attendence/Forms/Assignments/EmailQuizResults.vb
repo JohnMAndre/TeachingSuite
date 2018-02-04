@@ -65,6 +65,13 @@ Public Class EmailQuizResults
                     Exit Sub
                 End If
             End If
+
+            If lblDuplicatesExist.Visible Then
+                If MessageBox.Show("Send even with the duplicates?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) <> DialogResult.Yes Then
+                    Exit Sub
+                End If
+            End If
+
             olvQuizDetails.Sort(olvcolRecordType, SortOrder.Ascending)
             Application.DoEvents()
 
@@ -457,7 +464,14 @@ Public Class EmailQuizResults
 
 
         Dim dblScore As Double = intCorrectAnswers / intQuestions
+
         strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%")
+
+        If AppSettings.EmailAsHTML Then
+            strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%")
+        Else
+            strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%") & "%" '-- running under wine drops % from .ToString call
+        End If
 
         If AppSettings.EmailAsHTML Then
             strMessage &= "<br />" & Environment.NewLine
