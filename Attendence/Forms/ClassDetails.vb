@@ -136,10 +136,10 @@ Public Class ClassDetails
     End Sub
 
     Private Sub RemoveSkipSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RemoveSkipSessionToolStripMenuItem.Click
-        If olvSessionsToSkip.SelectedObject IsNot Nothing Then
-            m_class.SessionsToSkip.Remove(olvSessionsToSkip.SelectedObject)
-            LoadSkipSessions()
-        End If
+        For Each session As SkipSession In olvSessionsToSkip.SelectedObjects
+            m_class.SessionsToSkip.Remove(session)
+        Next
+        LoadSkipSessions()
     End Sub
 
     Private Sub SkipActualSessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SkipActualSessionToolStripMenuItem.Click
