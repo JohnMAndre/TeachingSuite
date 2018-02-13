@@ -2941,15 +2941,15 @@ Public Class MainFormPlain
             txtStudentFilter.Text = txtStudentFilter.Text.Replace(Chr(10), "")
             txtStudentFilter.Text = txtStudentFilter.Text.Replace(Chr(13), "")
 
-            If ModifierKeys And Keys.Shift = Keys.Shift Then
-                Dim strReturn As String = "Shift was pressed" & Environment.NewLine
-                For Each ch As Char In txtStudentFilter.Text
-                    strReturn &= Asc(ch).ToString() & Environment.NewLine
-                Next
-                MessageBox.Show(strReturn)
-            Else
-                FindStudentsFromSearchText()
-            End If
+            'If ModifierKeys And Keys.Shift = Keys.Shift Then
+            '    Dim strReturn As String = "Shift was pressed" & Environment.NewLine
+            '    For Each ch As Char In txtStudentFilter.Text
+            '        strReturn &= Asc(ch).ToString() & Environment.NewLine
+            '    Next
+            '    MessageBox.Show(strReturn)
+            'Else
+            FindStudentsFromSearchText()
+            'End If
         End If
     End Sub
 
