@@ -2541,7 +2541,10 @@ Public Class MainFormPlain
                         End If
 
                         Dim boolOKToProcessStudent As Boolean
-                        For Each stud As Student In objClassToProcess.Students
+                        Dim intCounterMax As Integer = objClassToProcess.Students.Count - 1
+                        'For Each stud As Student In objClassToProcess.Students
+                        For intCounter As Integer = 0 To intCounterMax '-- See if this stops MoveNextRare error
+                            Dim stud As Student = objClassToProcess.Students(intCounter)
                             boolOKToProcessStudent = False '-- reset for each student
                             For Each studasmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
                                 If studasmt.BaseAssignment Is asmt Then
@@ -2562,7 +2565,6 @@ Public Class MainFormPlain
                                 End Using
                             End If
                         Next
-
                     End If
                 End If
             End If
