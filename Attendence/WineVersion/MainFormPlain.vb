@@ -2519,52 +2519,12 @@ Public Class MainFormPlain
                     If GetSelectedAssignment().AssignmentType = AssignmentType.Normal Then
                         MessageBox.Show("Please select a BTEC assignment first. This process will not work with normal assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Else
+
                         Dim asmt As ClassAssignmentBTEC = CType(GetSelectedAssignment(), ClassAssignmentBTEC)
 
-                        Dim objClassToProcess As SchoolClass
-                        Dim objClass As SchoolClass = CType(lstClasses.Items(lstClasses.SelectedIndex), SchoolClass)
-                        If ClassIsCombinedView(objClass) Then
-                            Dim boolSetAlready As Boolean
-                            For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
-                                If Not boolSetAlready Then
-                                    Dim grp As New ClassGroup(Nothing)
-                                    grp.UseNickname = GetSelectedClassGroup.UseNickname
-                                    objClassToProcess = New SchoolClass(grp)
-                                    objClassToProcess.Students.AddRange(objCls.Students)
-                                    boolSetAlready = True
-                                Else
-                                    objClassToProcess.Students.AddRange(objCls.Students)
-                                End If
-                            Next
-                        Else
-                            objClassToProcess = objClass
-                        End If
+                        Dim frm As New BulkGenerateMarkingSheets(GetSelectedClassGroup(), GetSelectedClass(), asmt, markTry)
+                        frm.Show()
 
-                        Dim boolOKToProcessStudent As Boolean
-                        Dim intCounterMax As Integer = objClassToProcess.Students.Count - 1
-                        'For Each stud As Student In objClassToProcess.Students
-                        For intCounter As Integer = 0 To intCounterMax '-- See if this stops MoveNextRare error
-                            Dim stud As Student = objClassToProcess.Students(intCounter)
-                            boolOKToProcessStudent = False '-- reset for each student
-                            For Each studasmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
-                                If studasmt.BaseAssignment Is asmt Then
-                                    If studasmt.Processed Then
-                                        boolOKToProcessStudent = True
-                                        Exit For
-                                    End If
-                                End If
-                            Next
-
-                            '-- We only process students who have an assignment which has been marked
-                            If boolOKToProcessStudent Then
-                                Using frm As New StudentAssignmentDetails(stud, asmt, markTry)
-                                    frm.Show()
-                                    Application.DoEvents()
-                                    frm.PrepareMarkingPage(True)
-                                    frm.Close()
-                                End Using
-                            End If
-                        Next
                     End If
                 End If
             End If
@@ -2572,6 +2532,7 @@ Public Class MainFormPlain
         Catch ex As Exception
             MessageBox.Show("There was an error with the batch: " & ex.Message)
         End Try
+
 
     End Sub
 
