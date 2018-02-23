@@ -2053,7 +2053,8 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub ScheduledSessionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ScheduledSessionsToolStripMenuItem.Click
-        Dim frm As New SecheduleItemList
+        'Dim frm As New SecheduleItemList
+        Dim frm As New ScheduledItemListPlain()
         frm.Show()
     End Sub
 

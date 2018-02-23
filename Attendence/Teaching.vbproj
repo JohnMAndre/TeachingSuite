@@ -237,6 +237,12 @@
     <Compile Include="Forms\Reports\MissingGradeDataReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Reports\ScheduledItemListPlain.Designer.vb">
+      <DependentUpon>ScheduledItemListPlain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ScheduledItemListPlain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Reports\SemesterStatistics.Designer.vb">
       <DependentUpon>SemesterStatistics.vb</DependentUpon>
     </Compile>
@@ -627,6 +633,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\MissingGradeDataReport.resx">
       <DependentUpon>MissingGradeDataReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ScheduledItemListPlain.resx">
+      <DependentUpon>ScheduledItemListPlain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\SemesterStatistics.resx">
       <DependentUpon>SemesterStatistics.vb</DependentUpon>

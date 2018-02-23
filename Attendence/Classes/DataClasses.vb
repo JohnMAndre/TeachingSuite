@@ -358,18 +358,48 @@ Public Class ActualSessionItem
     Public Property DurationInMinutes As Integer '-- need here for exporting schedule (may be able to find a work around but too busy now)
     Public Property UniqueID As String '-- for iCal support
     Public Property NumberOfTimesExported '-- for iCal support
+
+#Region " These properties are for UI support (DGV limitations) "
+    Public ReadOnly Property DayOfWeek As String
+        Get
+            Return StartDateTime.DayOfWeek.ToString()
+        End Get
+    End Property
+    Public ReadOnly Property TimeOfDay As String
+        Get
+            Return StartDateTime.ToString("H:mm")
+        End Get
+    End Property
+
+    Public ReadOnly Property ClassGroupName As String
+        Get
+            Return Me.SchoolClass.ClassGroup.Name
+        End Get
+    End Property
+    Public ReadOnly Property SchoolClassName As String
+        Get
+            Return Me.SchoolClass.Name
+        End Get
+    End Property
+    Public ReadOnly Property NumberOfStudents As Integer
+        Get
+            Return Me.SchoolClass.Students.Count
+        End Get
+    End Property
     Public ReadOnly Property WeekNumber As Integer
         Get
             Dim ts As TimeSpan = StartDateTime.Date - SchoolClass.ClassGroup.StartDate
             Return (ts.TotalDays \ 7) + 1
         End Get
     End Property
-    Public ReadOnly Property DaysInFuture As Double
+    Public ReadOnly Property DaysInFuture As String
         Get
             Dim ts As TimeSpan = StartDateTime - Date.Now
-            Return ts.TotalDays
+            Return ts.TotalDays.ToString("#,##0")
         End Get
     End Property
+#End Region
+
     Public Function CompareTo(ByVal other As ActualSessionItem) As Integer Implements System.IComparable(Of ActualSessionItem).CompareTo
         Return StartDateTime.CompareTo(other.StartDateTime)
     End Function
