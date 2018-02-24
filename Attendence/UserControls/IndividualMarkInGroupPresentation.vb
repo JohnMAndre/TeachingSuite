@@ -3,6 +3,24 @@
     Private m_intContentGrade As Integer
     Private m_intPresentationGrade As Integer
     Private m_intLanguageGrade As Integer
+    Private m_student As Student
+
+    Public Sub LoadStudent(stud As Student)
+        m_student = stud
+        txtNickname.Text = m_student.Nickname
+        txtLocalName.Text = m_student.LocalNameLatinLetters
+        txtExtID.Text = m_student.ExtStudentID
+        txtStudentID.Text = m_student.StudentID
+        txtTeam.Text = m_student.StudentTeam
+        txtTags.Text = m_student.Tags
+        nudPresentationQuality.Value = m_student.PresentationQuality
+        nudResearchQuality.Value = m_student.ResearchQuality
+
+        '-- Load improvement items
+
+
+    End Sub
+
 
     Private Sub picMark_Click(sender As Object, e As EventArgs) Handles picContentMark.Click, picPresentationMark.Click, picLanguageMark.Click
         Dim pic As PictureBox = CType(sender, PictureBox)
@@ -84,8 +102,10 @@
     End Sub
 
     Private Sub IndividualMarkInGroupPresentation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblContentWeight.Text = AppSettings.PresentationContentWeight.ToString() & "%"
-        lblPresentationWeight.Text = AppSettings.PresentationPresentationWeight.ToString() & "%"
-        lblLanguageWeight.Text = AppSettings.PresentationLanguageWeight.ToString() & "%"
+        If Not DesignMode Then
+            lblContentWeight.Text = AppSettings.PresentationContentWeight.ToString() & "%"
+            lblPresentationWeight.Text = AppSettings.PresentationPresentationWeight.ToString() & "%"
+            lblLanguageWeight.Text = AppSettings.PresentationLanguageWeight.ToString() & "%"
+        End If
     End Sub
 End Class

@@ -2238,6 +2238,7 @@ Public Interface IClassAssignment
     Property IncludesAttachment As Boolean
     Property ReleaseDate As Date
     Property SubmitDate As Date
+    Property AssessmentCategories As List(Of Semester.AssessmentCategory)
     Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
 
 End Interface
@@ -2262,6 +2263,7 @@ Public Class ClassAssignment
     Public Property SubmitDate As Date Implements IClassAssignment.SubmitDate
 
     Public Property OverallDefaultText As String
+    Public Property AssessmentCategories As New List(Of Semester.AssessmentCategory) Implements IClassAssignment.AssessmentCategories
 
     Public Overrides Function ToString() As String
         Dim strToReturn As String = Me.Name & " "
@@ -2291,6 +2293,16 @@ Public Class ClassAssignment
         xAssignmentElement.SetAttribute("ReleaseDate", ReleaseDate.ToString(DATE_FORMAT_XML))
         xAssignmentElement.SetAttribute("SubmitDate", SubmitDate.ToString(DATE_FORMAT_XML))
         xAssignmentElement.SetAttribute("Weighting", Weighting.ToString())
+
+        '-- Add on AssessmentCategories
+        Dim xCat, xCats As Xml.XmlElement
+        xCats = xDoc.CreateElement("AssessmentCategories")
+        xAssignmentElement.AppendChild(xCats)
+        For Each cat As Semester.AssessmentCategory In Me.AssessmentCategories
+            xCat = xDoc.CreateElement("AssessmentCategory")
+            xCat.InnerText = cat
+            xCats.AppendChild(xCat)
+        Next
 
         Return xAssignmentElement
     End Function
@@ -2324,6 +2336,13 @@ Public Class ClassAssignment
         SubmitDate = ConvertToDateFromXML(xElement.GetAttribute("SubmitDate"), Date.MinValue)
         Weighting = ConvertToDecimal(xElement.GetAttribute("Weighting"), 1)
 
+        '-- get the categories
+        Dim catList As Xml.XmlNodeList = xElement.SelectNodes("AssessmentCategories/AssessmentCategory")
+        For Each xCat As Xml.XmlElement In catList
+            Dim cat As Semester.AssessmentCategory = [Enum].Parse(GetType(Semester.AssessmentCategory), xCat.InnerText, True)
+            Me.AssessmentCategories.Add(cat)
+        Next
+
     End Sub
 
 End Class
@@ -2347,21 +2366,8 @@ Public Class ClassAssignmentBTEC
     Public Property AssignmentBriefFilename As String
     Public Property SavedAssignmentsFolder As String
     Public Property Outcomes As New List(Of AssignmentOutcome)
+    Public Property AssessmentCategories As New List(Of Semester.AssessmentCategory) Implements IClassAssignment.AssessmentCategories
 
-    '====== Following are deprecated, keeping just to convert old data on load
-    'Public Property M1Available As Boolean
-    'Public Property M2Available As Boolean
-    'Public Property M3Available As Boolean
-    'Public Property D1Available As Boolean
-    'Public Property D2Available As Boolean
-    'Public Property D3Available As Boolean
-    'Public Property M1Description As String
-    'Public Property M2Description As String
-    'Public Property M3Description As String
-    'Public Property D1Description As String
-    'Public Property D2Description As String
-    'Public Property D3Description As String
-    '============= End deprecated
 
     Public Overrides Function ToString() As String
         Dim strToReturn As String = Me.Name & " "
@@ -2382,18 +2388,6 @@ Public Class ClassAssignmentBTEC
         Dim xAssignmentElement As Xml.XmlElement = xDoc.CreateElement("ClassAssignment")
         xAssignmentElement.SetAttribute("ID", ID)
         xAssignmentElement.SetAttribute("Name", Name)
-        'xAssignmentElement.SetAttribute("M1Available", M1Available)
-        'xAssignmentElement.SetAttribute("M2Available", M2Available)
-        'xAssignmentElement.SetAttribute("M3Available", M3Available)
-        'xAssignmentElement.SetAttribute("D1Available", D1Available)
-        'xAssignmentElement.SetAttribute("D2Available", D2Available)
-        'xAssignmentElement.SetAttribute("D3Available", D3Available)
-        'xAssignmentElement.SetAttribute("M1Description", M1Description)
-        'xAssignmentElement.SetAttribute("M2Description", M2Description)
-        'xAssignmentElement.SetAttribute("M3Description", M3Description)
-        'xAssignmentElement.SetAttribute("D1Description", D1Description)
-        'xAssignmentElement.SetAttribute("D2Description", D2Description)
-        'xAssignmentElement.SetAttribute("D3Description", D3Description)
         xAssignmentElement.SetAttribute("AssignmentBriefFilename", AssignmentBriefFilename)
         xAssignmentElement.SetAttribute("SavedAssignmentsFolder", SavedAssignmentsFolder)
         xAssignmentElement.SetAttribute("ClosedFirstTry", ClosedFirstTry.ToString())
@@ -2402,6 +2396,16 @@ Public Class ClassAssignmentBTEC
         xAssignmentElement.SetAttribute("IncludesAttachment", IncludesAttachment.ToString())
         xAssignmentElement.SetAttribute("ReleaseDate", ReleaseDate.ToString(DATE_FORMAT_XML))
         xAssignmentElement.SetAttribute("SubmitDate", SubmitDate.ToString(DATE_FORMAT_XML))
+
+        '-- Add on AssessmentCategories
+        Dim xCat, xCats As Xml.XmlElement
+        xCats = xDoc.CreateElement("AssessmentCategories")
+        xAssignmentElement.AppendChild(xCats)
+        For Each cat As Semester.AssessmentCategory In Me.AssessmentCategories
+            xCat = xDoc.CreateElement("AssessmentCategory")
+            xCat.InnerText = cat
+            xCats.AppendChild(xCat)
+        Next
 
         '-- Must replace this old logic as we move outcomes to ClassGroup level
         'For Each objOutcome As AssignmentOutcome In Outcomes
@@ -2434,13 +2438,6 @@ Public Class ClassAssignmentBTEC
     Public Sub New(parent As ClassGroup)
         ID = Guid.NewGuid.ToString()
         Me.ClassGroup = parent
-        '== Removed for 2.0
-        'M1Description = String.Empty
-        'M2Description = String.Empty
-        'M3Description = String.Empty
-        'D1Description = String.Empty
-        'D2Description = String.Empty
-        'D3Description = String.Empty
         ReleaseDate = Date.MinValue
         SubmitDate = Date.MinValue
     End Sub
@@ -2451,18 +2448,6 @@ Public Class ClassAssignmentBTEC
         End If
         Me.ClassGroup = parent
         Name = xElement.GetAttribute("Name")
-        'M1Available = xElement.GetAttribute("M1Available")
-        'M2Available = xElement.GetAttribute("M2Available")
-        'M3Available = xElement.GetAttribute("M3Available")
-        'D1Available = xElement.GetAttribute("D1Available")
-        'D2Available = xElement.GetAttribute("D2Available")
-        'D3Available = xElement.GetAttribute("D3Available")
-        'M1Description = xElement.GetAttribute("M1Description")
-        'M2Description = xElement.GetAttribute("M2Description")
-        'M3Description = xElement.GetAttribute("M3Description")
-        'D1Description = xElement.GetAttribute("D1Description")
-        'D2Description = xElement.GetAttribute("D2Description")
-        'D3Description = xElement.GetAttribute("D3Description")
 
         '============= Start data conversion for 1.x to 2
         Dim objHigherOutcome As AssignmentOutcome
@@ -2577,6 +2562,13 @@ Public Class ClassAssignmentBTEC
         IncludesAttachment = ConvertToBool(xElement.GetAttribute("IncludesAttachment"), False)
         ReleaseDate = ConvertToDateFromXML(xElement.GetAttribute("ReleaseDate"), Date.MinValue)
         SubmitDate = ConvertToDateFromXML(xElement.GetAttribute("SubmitDate"), Date.MinValue)
+
+        '-- get the categories
+        Dim catList As Xml.XmlNodeList = xElement.SelectNodes("AssessmentCategories/AssessmentCategory")
+        For Each xCat As Xml.XmlElement In catList
+            Dim cat As Semester.AssessmentCategory = [Enum].Parse(GetType(Semester.AssessmentCategory), xCat.InnerText, True)
+            Me.AssessmentCategories.Add(cat)
+        Next
 
 
         '-- Move outcomes to ClassGroup level (this is only used during the conversion process
