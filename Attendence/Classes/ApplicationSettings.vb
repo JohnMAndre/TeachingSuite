@@ -442,6 +442,27 @@
                     LoadSemesterCacheOnStartup = False
                 End If
 
+                xElement = xDoc.SelectSingleNode("//PresentationContentWeight")
+                If xElement IsNot Nothing Then
+                    PresentationContentWeight = ConvertToInt32(xElement.InnerText, 34)
+                Else
+                    PresentationContentWeight = 34
+                End If
+
+                xElement = xDoc.SelectSingleNode("//PresentationPresentationWeight")
+                If xElement IsNot Nothing Then
+                    PresentationPresentationWeight = ConvertToInt32(xElement.InnerText, 33)
+                Else
+                    PresentationPresentationWeight = 33
+                End If
+
+                xElement = xDoc.SelectSingleNode("//PresentationLanguageWeight")
+                If xElement IsNot Nothing Then
+                    PresentationLanguageWeight = ConvertToInt32(xElement.InnerText, 33)
+                Else
+                    PresentationLanguageWeight = 33
+                End If
+
 
 
                 LoadAutoTexts(xDoc)
@@ -497,6 +518,10 @@
                 StudentAssignmentNormalWindowY = 50
                 Notes = "You can store notes here."
                 DictionaryName = "English (US).dct"
+
+                PresentationContentWeight = 34
+                PresentationPresentationWeight = 33
+                PresentationLanguageWeight = 33
 
                 LoadAutoTextDefaults()
             End If
@@ -586,6 +611,10 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailAsHTML", EmailAsHTML))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "LoadSemesterCacheOnStartup", LoadSemesterCacheOnStartup))
 
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationContentWeight", PresentationContentWeight))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationPresentationWeight", PresentationPresentationWeight))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationLanguageWeight", PresentationLanguageWeight))
+
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
 
@@ -673,6 +702,9 @@
         End Try
     End Sub
 #Region " Public Properties "
+    Public Property PresentationContentWeight As Integer
+    Public Property PresentationPresentationWeight As Integer
+    Public Property PresentationLanguageWeight As Integer
     Public Property LoadSemesterCacheOnStartup As Boolean
     Public Property EnableStudentDataHistory As Boolean
     Public Property ApplicationHistoryMaxFileSize As PerformanceCounterInstanceLifetime '-- size in bytes

@@ -3035,4 +3035,9 @@ Public Class MainFormPlain
         LoadSchedule()
     End Sub
 
+    Private Sub MarkGroupPresentationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkGroupPresentationToolStripMenuItem.Click
+        Dim frm As New GroupPresentationAssessment()
+        frm.Show()
+
+    End Sub
 End Class
