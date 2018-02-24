@@ -749,7 +749,7 @@ Public Class MainFormPlain
     Private Class ExportMarkingListData
         Public ClassGroup As ClassGroup
         Public Filename As String
-        Public MarkingTry As MarkingTry
+        Public MarkingTry As Semester.MarkingTry
         Public Assignment As IClassAssignment
     End Class
 
@@ -877,7 +877,7 @@ Public Class MainFormPlain
     Private Sub lstAssignments_DoubleClick(sender As System.Object, e As System.EventArgs)
         EditSelectedAssignment()
     End Sub
-    Private Sub StartOralExam(attempt As MarkingTry)
+    Private Sub StartOralExam(attempt As Semester.MarkingTry)
         If GetSelectedClass() Is Nothing Then
             MessageBox.Show("Please select a class first", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -888,18 +888,18 @@ Public Class MainFormPlain
             Exit Sub
         End If
 
-        If attempt = MarkingTry.FirstTry AndAlso GetSelectedAssignment.ClosedFirstTry Then
+        If attempt = Semester.MarkingTry.FirstTry AndAlso GetSelectedAssignment.ClosedFirstTry Then
             If MessageBox.Show("Are you sure you want to modify the first submission (for: " & GetSelectedAssignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
-        ElseIf attempt = MarkingTry.SecondTry AndAlso Not GetSelectedAssignment.ClosedSecondTry Then
+        ElseIf attempt = Semester.MarkingTry.SecondTry AndAlso Not GetSelectedAssignment.ClosedSecondTry Then
             If MessageBox.Show("Are you sure you want to modify the second submission (for: " & GetSelectedAssignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
         End If
 
         '-- Must select an assignment for first attempt (not other attempts)
-        If attempt = MarkingTry.FirstTry AndAlso GetSelectedAssignment() Is Nothing Then
+        If attempt = Semester.MarkingTry.FirstTry AndAlso GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment first", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
@@ -908,21 +908,21 @@ Public Class MainFormPlain
         frm.Show()
     End Sub
     Private Sub ExamToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExamToolStripMenuItem.Click
-        StartOralExam(MarkingTry.FirstTry)
+        StartOralExam(Semester.MarkingTry.FirstTry)
     End Sub
 
     Private Sub ExamRedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExamRedoToolStripMenuItem.Click
-        StartOralExam(MarkingTry.SecondTry)
+        StartOralExam(Semester.MarkingTry.SecondTry)
     End Sub
 
     Private Sub Exam2ndRedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Exam2ndRedoToolStripMenuItem.Click
-        StartOralExam(MarkingTry.ThirdTry)
+        StartOralExam(Semester.MarkingTry.ThirdTry)
     End Sub
 
     Private Sub ProcessExamForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExamForStudent.Click
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
-            MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.FirstTry)
+            MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.FirstTry)
         End If
     End Sub
 
@@ -993,7 +993,7 @@ Public Class MainFormPlain
         End If
     End Sub
 
-    Private Sub MarkExamForStudent(student As Student, assignment As IClassAssignment, attempt As MarkingTry)
+    Private Sub MarkExamForStudent(student As Student, assignment As IClassAssignment, attempt As Semester.MarkingTry)
         If assignment Is Nothing Then
             MessageBox.Show("Please select an assignment first", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -1004,12 +1004,12 @@ Public Class MainFormPlain
             Exit Sub
         End If
 
-        If attempt = MarkingTry.FirstTry AndAlso assignment.ClosedFirstTry Then
+        If attempt = Semester.MarkingTry.FirstTry AndAlso assignment.ClosedFirstTry Then
             If MessageBox.Show("Are you sure you want to modify the first submission (for: " & assignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
             End If
-            'ElseIf attempt = MarkingTry.SecondTry AndAlso Not student.SchoolClass.ClassGroup.Closed Then
-        ElseIf attempt = MarkingTry.SecondTry AndAlso assignment.ClosedSecondTry Then
+            'ElseIf attempt = Semester.MarkingTry.SecondTry AndAlso Not student.SchoolClass.ClassGroup.Closed Then
+        ElseIf attempt = Semester.MarkingTry.SecondTry AndAlso assignment.ClosedSecondTry Then
             'MessageBox.Show("You must 'close' the semester (for: " & student.SchoolClass.Name & ") before entering redo. Go to Tools->Close regular semeseter.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             If MessageBox.Show("Are you sure you want to modify the second submission (for: " & assignment.Name & ")? It has already been closed.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
                 Exit Sub
@@ -1030,14 +1030,14 @@ Public Class MainFormPlain
     Private Sub ProcessExamRedoForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExamRedoForStudent.Click
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() ' GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
-            MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.SecondTry)
+            MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.SecondTry)
         End If
     End Sub
 
     Private Sub ProcessExam2ndReDoForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExam2ndReDoForStudent.Click
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
-            MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.ThirdTry)
+            MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.ThirdTry)
         End If
     End Sub
 
@@ -1204,7 +1204,7 @@ Public Class MainFormPlain
     Private Sub m_bkgndExportModuleResults_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles m_bkgndExportModuleResults.DoWork
         Dim expData As ExportModuleResultData = CType(e.Argument, ExportModuleResultData)
 
-        expData.ClassGroup.GenerateModuleReultsExport(expData.Filename, MarkingTry.ThirdTry, Nothing)
+        expData.ClassGroup.GenerateModuleReultsExport(expData.Filename, Semester.MarkingTry.ThirdTry, Nothing)
     End Sub
 
     Private Sub m_bkgndExportMarkingResults_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles m_bkgndExportMarkingResults.DoWork
@@ -1242,17 +1242,17 @@ Public Class MainFormPlain
     ''' Will change outcome marks from pass to fail if there are any 'unknown' status on the matching assignment
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub CleanUpStudentAssignments(group As ClassGroup, targetAssignment As IClassAssignment, submission As MarkingTry)
+    Private Sub CleanUpStudentAssignments(group As ClassGroup, targetAssignment As IClassAssignment, submission As Semester.MarkingTry)
         Try
             'Dim boolAssignmentNotSubmitted As Boolean
 
             'For Each group As ClassGroup In ThisSemester.ClassGroups
 
             '-- first, check to see if earlier submissions are closed already
-            If submission = MarkingTry.SecondTry AndAlso Not targetAssignment.ClosedFirstTry Then
+            If submission = Semester.MarkingTry.SecondTry AndAlso Not targetAssignment.ClosedFirstTry Then
                 MessageBox.Show("You must close the first submission before closing rework.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Throw New Exception("Earlier submissions not closed yet.")
-            ElseIf submission = MarkingTry.ThirdTry AndAlso (Not targetAssignment.ClosedFirstTry OrElse Not targetAssignment.ClosedSecondTry) Then
+            ElseIf submission = Semester.MarkingTry.ThirdTry AndAlso (Not targetAssignment.ClosedFirstTry OrElse Not targetAssignment.ClosedSecondTry) Then
                 MessageBox.Show("You must close the first and second submission before closing third submission.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Throw New Exception("Earlier submissions not closed yet.")
             End If
@@ -1269,7 +1269,7 @@ Public Class MainFormPlain
             '            If asmt.BaseAssignment Is targetAssignment Then
             '                boolAssignmentNotSubmitted = False
             '                Select Case submission
-            '                    Case MarkingTry.FirstTry
+            '                    Case Semester.MarkingTry.FirstTry
             '                        For Each oc As OutcomeResult In asmt.Outcomes
             '                            If oc.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
             '                                boolAssignmentNotSubmitted = True
@@ -1283,7 +1283,7 @@ Public Class MainFormPlain
             '                                oc.FirstTryComments = AppSettings.AssignmentNotSubmittedDefaultOutcomeComment
             '                            Next
             '                        End If
-            '                    Case MarkingTry.SecondTry
+            '                    Case Semester.MarkingTry.SecondTry
             '                        For Each oc As OutcomeResult In asmt.Outcomes
             '                            If oc.SecondTryStatus = OutcomeResultStatusEnum.Unknown AndAlso oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass Then
             '                                '-- unknown expected if previous submission passed but if not passed, then unknown
@@ -1298,7 +1298,7 @@ Public Class MainFormPlain
             '                                oc.SecondTryComments = AppSettings.AssignmentNotSubmittedDefaultOutcomeComment
             '                            Next
             '                        End If
-            '                    Case MarkingTry.ThirdTry
+            '                    Case Semester.MarkingTry.ThirdTry
             '                        For Each oc As OutcomeResult In asmt.Outcomes
             '                            If oc.ThirdTryStatus = OutcomeResultStatusEnum.Unknown AndAlso oc.FirstTryStatus <> OutcomeResultStatusEnum.Pass AndAlso oc.SecondTryStatus <> OutcomeResultStatusEnum.Pass Then
             '                                boolAssignmentNotSubmitted = True
@@ -1317,7 +1317,7 @@ Public Class MainFormPlain
             '        Next
 
             '        '-- This next step is only for closing first try, after that, asmt must exist
-            '        If submission = MarkingTry.FirstTry Then
+            '        If submission = Semester.MarkingTry.FirstTry Then
             '            Dim boolExists As Boolean
             '            boolExists = False
             '            For Each asmt As StudentAssignment In stud.Assignments
@@ -1343,11 +1343,11 @@ Public Class MainFormPlain
 
             group.Closed = True
             Select Case submission
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     targetAssignment.ClosedFirstTry = True
-                Case MarkingTry.SecondTry
+                Case Semester.MarkingTry.SecondTry
                     targetAssignment.ClosedSecondTry = True
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     targetAssignment.ClosedThirdTry = True
             End Select
 
@@ -1678,7 +1678,7 @@ Public Class MainFormPlain
                                "This will change outcome markings from pass to fail if the student has any 'unknown' outcome statuses for that assignment (indicating they did not submit that assignment)."
             End If
             If MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
-                CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.FirstTry)
+                CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), Semester.MarkingTry.FirstTry)
                 MessageBox.Show("The first submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End If
@@ -1698,7 +1698,7 @@ Public Class MainFormPlain
 
             If MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 Try
-                    CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.SecondTry)
+                    CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), Semester.MarkingTry.SecondTry)
                     MessageBox.Show("The rework submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Catch ex As Exception
                     MessageBox.Show("Nothing was changed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1721,7 +1721,7 @@ Public Class MainFormPlain
 
             If MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 Try
-                    CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), MarkingTry.ThirdTry)
+                    CleanUpStudentAssignments(GetSelectedClassGroup(), GetSelectedAssignment(), Semester.MarkingTry.ThirdTry)
                     MessageBox.Show("The 2nd rework submission for this assignment (" & GetSelectedAssignment.Name & " for: " & GetSelectedClassGroup.Name & ") has been closed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Catch ex As Exception
                     MessageBox.Show("Nothing was changed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1806,11 +1806,11 @@ Public Class MainFormPlain
             End If
 
             If Not asmt.ClosedFirstTry Then
-                MarkExamForStudent(stud, asmt, MarkingTry.FirstTry)
+                MarkExamForStudent(stud, asmt, Semester.MarkingTry.FirstTry)
             ElseIf Not asmt.ClosedSecondTry Then
-                MarkExamForStudent(stud, asmt, MarkingTry.SecondTry)
+                MarkExamForStudent(stud, asmt, Semester.MarkingTry.SecondTry)
             Else
-                MarkExamForStudent(stud, asmt, MarkingTry.ThirdTry)
+                MarkExamForStudent(stud, asmt, Semester.MarkingTry.ThirdTry)
             End If
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2123,11 +2123,11 @@ Public Class MainFormPlain
             expData.Filename = sfd.FileName
             expData.Assignment = GetSelectedAssignment()
             If sender Is ExportMarkingResultsFirstSubmitToolStripMenuItem Then
-                expData.MarkingTry = MarkingTry.FirstTry
+                expData.MarkingTry = Semester.MarkingTry.FirstTry
             ElseIf sender Is ExportMarkingResultsSecondSubmitToolStripMenuItem Then
-                expData.MarkingTry = MarkingTry.SecondTry
+                expData.MarkingTry = Semester.MarkingTry.SecondTry
             ElseIf sender Is ExportMarkingResultsThirdSubmitToolStripMenuItem Then
-                expData.MarkingTry = MarkingTry.ThirdTry
+                expData.MarkingTry = Semester.MarkingTry.ThirdTry
             End If
             m_bkgndExportMarkingResults.RunWorkerAsync(expData)
         End If
@@ -2509,7 +2509,7 @@ Public Class MainFormPlain
         frm.Show()
     End Sub
 
-    Private Sub BatchSaveMarkingSheets(markTry As MarkingTry)
+    Private Sub BatchSaveMarkingSheets(markTry As Semester.MarkingTry)
         Try
             If GetSelectedClass() Is Nothing Then
                 MessageBox.Show("Please select a class to email.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2539,15 +2539,15 @@ Public Class MainFormPlain
 
 
     Private Sub FirstTryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FirstTryToolStripMenuItem.Click
-        BatchSaveMarkingSheets(MarkingTry.FirstTry)
+        BatchSaveMarkingSheets(Semester.MarkingTry.FirstTry)
     End Sub
 
     Private Sub SecondTryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SecondTryToolStripMenuItem.Click
-        BatchSaveMarkingSheets(MarkingTry.SecondTry)
+        BatchSaveMarkingSheets(Semester.MarkingTry.SecondTry)
     End Sub
 
     Private Sub ThirdTryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThirdTryToolStripMenuItem.Click
-        BatchSaveMarkingSheets(MarkingTry.ThirdTry)
+        BatchSaveMarkingSheets(Semester.MarkingTry.ThirdTry)
     End Sub
 
     Private Sub LoadSchoolClassForSession(session As ActualSessionItem)
@@ -2590,11 +2590,11 @@ Public Class MainFormPlain
             expData.Filename = sfd.FileName
             expData.Assignment = GetSelectedAssignment()
             If sender Is ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem Then
-                expData.MarkingTry = MarkingTry.FirstTry
+                expData.MarkingTry = Semester.MarkingTry.FirstTry
             ElseIf sender Is ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem Then
-                expData.MarkingTry = MarkingTry.SecondTry
+                expData.MarkingTry = Semester.MarkingTry.SecondTry
             ElseIf sender Is ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem Then
-                expData.MarkingTry = MarkingTry.ThirdTry
+                expData.MarkingTry = Semester.MarkingTry.ThirdTry
             End If
 
             m_bkgndExportMarkingResultsIsolated.RunWorkerAsync(expData)
@@ -2846,21 +2846,21 @@ Public Class MainFormPlain
     Private Sub MarkAssessment1GridToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkAssessment1GridToolStripMenuItem.Click
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne()
         If stud IsNot Nothing Then
-            MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.FirstTry)
+            MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.FirstTry)
         End If
     End Sub
 
     Private Sub MarkAssessment2GridToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkAssessment2GridToolStripMenuItem.Click
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne()
         If stud IsNot Nothing Then
-            MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.SecondTry)
+            MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.SecondTry)
         End If
     End Sub
 
     Private Sub MarkAssessment3GridToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkAssessment3GridToolStripMenuItem.Click
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne()
         If stud IsNot Nothing Then
-            MarkExamForStudent(stud, GetSelectedAssignment(), MarkingTry.ThirdTry)
+            MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.ThirdTry)
         End If
     End Sub
 
@@ -3035,15 +3035,53 @@ Public Class MainFormPlain
         LoadSchedule()
     End Sub
 
-    Private Sub MarkGroupPresentationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkGroupPresentationToolStripMenuItem.Click
-        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne()
+    Private Sub MarkGroupPresentation(attempt As Semester.MarkingTry)
+        Try
+            Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne()
 
-        Dim strTeam As String = stud.StudentTeam
+            If stud Is Nothing Then
+                MessageBox.Show("Please select a student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
 
-        Dim lstFiltered As List(Of Student) = GetSelectedClass.Students.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
 
-        Dim frm As New GroupPresentationAssessment(lstFiltered)
-        frm.Show()
+            If GetSelectedAssignment() Is Nothing Then
+                MessageBox.Show("Please select an assignment.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
 
+            Dim strTeam As String = stud.StudentTeam
+
+            Dim lstFiltered As List(Of Student)
+            If ClassIsCombinedView(GetSelectedClass) Then
+                Dim lst As New List(Of Student)
+                Dim boolSetAlready As Boolean
+                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                    If Not boolSetAlready Then
+                        lst.AddRange(objCls.Students)
+                        boolSetAlready = True
+                    Else
+                        lst.AddRange(objCls.Students)
+                    End If
+                Next
+                lstFiltered = lst.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+            Else
+                lstFiltered = GetSelectedClass.Students.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+            End If
+
+            Dim asmt As ClassAssignment = CType(GetSelectedAssignment(), ClassAssignment)
+            Dim frm As New GroupPresentationAssessment(lstFiltered, asmt, attempt)
+            frm.Show()
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
+    Private Sub FirstTryMarkGroupPresentationToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FirstTryMarkGroupPresentationToolStripMenuItem1.Click
+        MarkGroupPresentation(Semester.MarkingTry.FirstTry)
+    End Sub
+
+    Private Sub SecondTryMarkGroupPresentationToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SecondTryMarkGroupPresentationToolStripMenuItem1.Click
+        MarkGroupPresentation(Semester.MarkingTry.SecondTry)
+    End Sub
+
 End Class

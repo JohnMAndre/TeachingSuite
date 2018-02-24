@@ -2,7 +2,7 @@ Public Class EmailModuleResults
 
     Private m_clas As SchoolClass
     Private m_lst As New List(Of EmailResultData)
-    Private m_try As MarkingTry = -1
+    Private m_try As Semester.MarkingTry = -1
     Private m_intModuleOutcomes As Integer
     Private m_intAssignmentsSoFar As Integer
     Private m_boolCancel As Boolean
@@ -256,17 +256,17 @@ Public Class EmailModuleResults
     'End Sub
 
     Private Sub FirstTryToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-        m_try = MarkingTry.FirstTry
+        m_try = Semester.MarkingTry.FirstTry
         LoadData()
     End Sub
 
     Private Sub SecondTryToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-        m_try = MarkingTry.SecondTry
+        m_try = Semester.MarkingTry.SecondTry
         LoadData()
     End Sub
 
     Private Sub ThirdTryToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-        m_try = MarkingTry.ThirdTry
+        m_try = Semester.MarkingTry.ThirdTry
         LoadData()
     End Sub
 
@@ -740,7 +740,7 @@ Public Class EmailModuleResults
                         End If
 
                     Else
-                        If m_try = MarkingTry.FirstTry Then
+                        If m_try = Semester.MarkingTry.FirstTry Then
                             str.Append("Don't worry. There is still time to do better.")
                         Else
                             str.Append("I am sure you will do better next time.")

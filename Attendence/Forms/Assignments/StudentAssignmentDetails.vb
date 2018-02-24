@@ -6,7 +6,7 @@ Friend Class StudentAssignmentDetails
     Private m_studentAssignment As StudentAssignmentBTEC
     Private m_studentModuleResults As Student.StudentModuleResult
     Private m_boolAssignmentCreated As Boolean
-    Private m_try As MarkingTry
+    Private m_try As Semester.MarkingTry
     Private m_dtTimerStart As Date = Date.Now
     Private m_boolTimerRunning As Boolean = True
     Private m_tsTimer As TimeSpan
@@ -19,7 +19,7 @@ Friend Class StudentAssignmentDetails
         Public Property Text As String
 
     End Class
-    Public Sub New(student As Student, assignment As StudentAssignmentBTEC, attempt As MarkingTry)
+    Public Sub New(student As Student, assignment As StudentAssignmentBTEC, attempt As Semester.MarkingTry)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -29,7 +29,7 @@ Friend Class StudentAssignmentDetails
         m_try = attempt
     End Sub
 
-    Public Sub New(student As Student, assignment As ClassAssignmentBTEC, attempt As MarkingTry)
+    Public Sub New(student As Student, assignment As ClassAssignmentBTEC, attempt As Semester.MarkingTry)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -51,7 +51,7 @@ Friend Class StudentAssignmentDetails
             m_boolAssignmentCreated = True
         End If
 
-        If m_try <> MarkingTry.FirstTry Then
+        If m_try <> Semester.MarkingTry.FirstTry Then
             '-- mark first as fail, no submit
             For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
                 If outcome.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
@@ -74,20 +74,6 @@ Friend Class StudentAssignmentDetails
         Me.olvOutcomes.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf MainRowFormatter)
         Me.olvImprovementItems.RowFormatter = New BrightIdeasSoftware.RowFormatterDelegate(AddressOf ImprovementItemRowFormatter)
         olvcolPerformanceLevel.ToolTipText = "Performance level (0-5)" & Environment.NewLine & "0=Not evaluated" & Environment.NewLine & "1=Unacceptable" & Environment.NewLine & "2=Very weak, incorrect very often" & Environment.NewLine & "3=Sometimes OK but inconsistent" & Environment.NewLine & "4=Good but still room for improvement" & Environment.NewLine & "5=Completely correct"
-
-        'chkM1.Enabled = m_studentAssignment.BaseAssignment.M1Available
-        'chkM1.Checked = m_studentAssignment.M1Achieved
-        'chkM2.Enabled = m_studentAssignment.BaseAssignment.M2Available
-        'chkM2.Checked = m_studentAssignment.M2Achieved
-        'chkM3.Enabled = m_studentAssignment.BaseAssignment.M3Available
-        'chkM3.Checked = m_studentAssignment.M3Achieved
-
-        'chkD1.Enabled = m_studentAssignment.BaseAssignment.D1Available
-        'chkD1.Checked = m_studentAssignment.D1Achieved
-        'chkD2.Enabled = m_studentAssignment.BaseAssignment.D2Available
-        'chkD2.Checked = m_studentAssignment.D2Achieved
-        'chkD3.Enabled = m_studentAssignment.BaseAssignment.D3Available
-        'chkD3.Checked = m_studentAssignment.D3Achieved
 
         chkProcessed.Checked = m_studentAssignment.Processed
 
@@ -127,13 +113,6 @@ Friend Class StudentAssignmentDetails
         'llblStudentPic.Visible = m_student.Photo IsNot Nothing
 
         AutoSizeColumns(olvAutoFeedback)
-
-        'ToolTip1.SetToolTip(chkM1, m_studentAssignment.BaseAssignment.M1Description)
-        'ToolTip1.SetToolTip(chkM2, m_studentAssignment.BaseAssignment.M2Description)
-        'ToolTip1.SetToolTip(chkM3, m_studentAssignment.BaseAssignment.M3Description)
-        'ToolTip1.SetToolTip(chkD1, m_studentAssignment.BaseAssignment.D1Description)
-        'ToolTip1.SetToolTip(chkD2, m_studentAssignment.BaseAssignment.D2Description)
-        'ToolTip1.SetToolTip(chkD3, m_studentAssignment.BaseAssignment.D3Description)
 
         LoadModuleResults()
 
@@ -277,11 +256,11 @@ Friend Class StudentAssignmentDetails
     Private Function PassedOutcomes() As Integer
         Dim intPassedOutcomes As Integer
         For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
-            If m_try = MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+            If m_try = Semester.MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
                 intPassedOutcomes += 1
-            ElseIf m_try = MarkingTry.SecondTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved) Then
+            ElseIf m_try = Semester.MarkingTry.SecondTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved) Then
                 intPassedOutcomes += 1
-            ElseIf m_try = MarkingTry.ThirdTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved) Then
+            ElseIf m_try = Semester.MarkingTry.ThirdTry AndAlso (outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved) Then
                 intPassedOutcomes += 1
                 '== Remove this little block to support same outcome on multiple assignments
                 '   so some can be unknown and it's still ok
@@ -296,11 +275,11 @@ Friend Class StudentAssignmentDetails
     Private Function FailedOutcomes() As Integer
         Dim intFailedOutcomes As Integer
         For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
-            If m_try = MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+            If m_try = Semester.MarkingTry.FirstTry AndAlso outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                 intFailedOutcomes += 1
-            ElseIf m_try = MarkingTry.SecondTry AndAlso outcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+            ElseIf m_try = Semester.MarkingTry.SecondTry AndAlso outcome.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                 intFailedOutcomes += 1
-            ElseIf m_try = MarkingTry.ThirdTry AndAlso outcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+            ElseIf m_try = Semester.MarkingTry.ThirdTry AndAlso outcome.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                 intFailedOutcomes += 1
                 '== Remove this little block to support same outcome on multiple assignments
                 '   so some can be unknown and it's still ok
@@ -315,15 +294,15 @@ Friend Class StudentAssignmentDetails
     Private Function StudentPlagiarized() As Boolean
         For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
             Select Case m_try
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     If outcome.FirstTryComments.ToLower().Contains("plagiari") Then
                         Return True
                     End If
-                Case MarkingTry.SecondTry
+                Case Semester.MarkingTry.SecondTry
                     If outcome.SecondTryComments.ToLower().Contains("plagiari") Then
                         Return True
                     End If
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     If outcome.ThirdTryComments.ToLower().Contains("plagiari") Then
                         Return True
                     End If
@@ -383,7 +362,7 @@ Friend Class StudentAssignmentDetails
     Private Function AchievedOutcomesAtGrade(grade As BTECGradeGroup) As Integer
         Dim intReturn As Integer
         Select Case m_try
-            Case MarkingTry.FirstTry
+            Case Semester.MarkingTry.FirstTry
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     '-- only first try counts
                     If ocResult.BaseOutcome.GradeGroup = grade Then
@@ -392,7 +371,7 @@ Friend Class StudentAssignmentDetails
                         End If
                     End If
                 Next
-            Case MarkingTry.SecondTry
+            Case Semester.MarkingTry.SecondTry
                 '-- first or second try count
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     If ocResult.BaseOutcome.GradeGroup = grade Then
@@ -402,7 +381,7 @@ Friend Class StudentAssignmentDetails
                         End If
                     End If
                 Next
-            Case MarkingTry.ThirdTry
+            Case Semester.MarkingTry.ThirdTry
                 '-- First, second, or third try count
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     If ocResult.BaseOutcome.GradeGroup = grade Then
@@ -420,7 +399,7 @@ Friend Class StudentAssignmentDetails
     Private Function ListReferralOutcomes(grade As BTECGradeGroup) As String
         Dim strReturn As String = String.Empty
         Select Case m_try
-            Case MarkingTry.FirstTry
+            Case Semester.MarkingTry.FirstTry
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     '-- only first try counts
                     If ocResult.BaseOutcome.GradeGroup = grade Then
@@ -429,7 +408,7 @@ Friend Class StudentAssignmentDetails
                         End If
                     End If
                 Next
-            Case MarkingTry.SecondTry
+            Case Semester.MarkingTry.SecondTry
                 '-- first or second try count
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     If ocResult.BaseOutcome.GradeGroup = grade Then
@@ -439,7 +418,7 @@ Friend Class StudentAssignmentDetails
                         End If
                     End If
                 Next
-            Case MarkingTry.ThirdTry
+            Case Semester.MarkingTry.ThirdTry
                 '-- First, second, or third try count
                 For Each ocResult As OutcomeResult In m_studentAssignment.Outcomes
                     If ocResult.BaseOutcome.GradeGroup = grade Then
@@ -548,7 +527,7 @@ Friend Class StudentAssignmentDetails
                 With oWord.Selection.Find
                     .Text = "[[[OUTCOME" & outcome.BaseOutcome.Name & "COMMENTS]]]"
                     Select Case m_try
-                        Case MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             Select Case outcome.FirstTryStatus
                                 '-- Changed in 2.0. Now we will show results for this assignment only
                                 '   Potential issue: If one outcome is on multiple assignments (P1 or M1, does not matter)
@@ -572,7 +551,7 @@ Friend Class StudentAssignmentDetails
                                     objSecondColumnMark = OutcomeResultStatusEnum.Unknown
                                     .Replacement.Text = AppSettings.NoSubmitFeedback
                             End Select
-                        Case MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             Select Case outcome.SecondTryStatus
                                 Case OutcomeResultStatusEnum.Achieved
                                     '-- passing on rework does not mean fail before
@@ -610,7 +589,7 @@ Friend Class StudentAssignmentDetails
                                         .Replacement.Text = AppSettings.NoSubmitFeedback
                                     End If
                             End Select
-                        Case MarkingTry.ThirdTry
+                        Case Semester.MarkingTry.ThirdTry
                             Select Case outcome.ThirdTryStatus
                                 Case OutcomeResultStatusEnum.Achieved
                                     '-- passing on rework does not mean fail before
@@ -1081,11 +1060,11 @@ Friend Class StudentAssignmentDetails
 
             chkProcessed.Checked = True
             Select Case m_try
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     m_studentAssignment.FirstTryPrintDate = Date.Now
-                Case (MarkingTry.SecondTry)
+                Case (Semester.MarkingTry.SecondTry)
                     m_studentAssignment.SecondTryPrintDate = Date.Now
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     m_studentAssignment.ThirdTryPrintDate = Date.Now
             End Select
         Catch ex As Exception
@@ -1122,7 +1101,7 @@ Friend Class StudentAssignmentDetails
                     End If
                 Else
                     '-- Just pass
-                    If m_try = MarkingTry.FirstTry Then
+                    If m_try = Semester.MarkingTry.FirstTry Then
                         If late Then
                             strImprovement = AppSettings.LateSubmitDefaultComment
                         Else
@@ -1206,13 +1185,13 @@ Friend Class StudentAssignmentDetails
         Try
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
-                    Case MarkingTry.FirstTry
+                    Case Semester.MarkingTry.FirstTry
                         item.FirstTryStatus = OutcomeResultStatusEnum.Achieved
-                    Case MarkingTry.SecondTry
+                    Case Semester.MarkingTry.SecondTry
                         If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                             item.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                         End If
-                    Case MarkingTry.ThirdTry
+                    Case Semester.MarkingTry.ThirdTry
                         If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                             item.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
                         End If
@@ -1228,14 +1207,14 @@ Friend Class StudentAssignmentDetails
         Try
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
-                    Case MarkingTry.FirstTry
+                    Case Semester.MarkingTry.FirstTry
                         item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
-                    Case MarkingTry.SecondTry
+                    Case Semester.MarkingTry.SecondTry
                         '-- only mark those failed on first submission
                         If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                             item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
                         End If
-                    Case MarkingTry.ThirdTry
+                    Case Semester.MarkingTry.ThirdTry
                         If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                             item.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved
                         End If
@@ -1248,7 +1227,7 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub btnGenerateImprovementCommentsLate_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementCommentsLate.LinkClicked
-        
+
         GenerateImprovementFeedback(True, True)
 
     End Sub
@@ -1258,11 +1237,11 @@ Friend Class StudentAssignmentDetails
         Dim strDestination As String = System.IO.Path.Combine(strLocalDirectory, strLocalFilePrefix & m_student.StudentID)
         Dim strDestination2 As String = System.IO.Path.Combine(strLocalDirectory, strLocalFilePrefix.Replace(" ", "_") & m_student.StudentID)
         Select Case m_try
-            Case MarkingTry.FirstTry
+            Case Semester.MarkingTry.FirstTry
                 '-- nothing
-            Case MarkingTry.SecondTry
+            Case Semester.MarkingTry.SecondTry
                 strDestination &= "_redo"
-            Case MarkingTry.ThirdTry
+            Case Semester.MarkingTry.ThirdTry
                 strDestination &= "_redo2"
         End Select
 
@@ -1355,13 +1334,13 @@ Friend Class StudentAssignmentDetails
         Else
             Dim outcome As OutcomeResult = olvOutcomes.SelectedObject
             Select Case m_try
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     outcome.FirstTryComments = CType(olvAutoFeedback.SelectedObject, Result).Text
                     outcome.FirstTryStatus = CType(olvAutoFeedback.SelectedObject, Result).Status
-                Case MarkingTry.SecondTry
+                Case Semester.MarkingTry.SecondTry
                     outcome.SecondTryComments = CType(olvAutoFeedback.SelectedObject, Result).Text
                     outcome.SecondTryStatus = CType(olvAutoFeedback.SelectedObject, Result).Status
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     outcome.ThirdTryComments = CType(olvAutoFeedback.SelectedObject, Result).Text
                     outcome.ThirdTryStatus = CType(olvAutoFeedback.SelectedObject, Result).Status
             End Select
@@ -1374,13 +1353,13 @@ Friend Class StudentAssignmentDetails
         Else
             Dim outcome As OutcomeResult = olvOutcomes.SelectedObject
             Select Case m_try
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     outcome.FirstTryComments = olvAutoFeedback.SelectedItem.Text
                     outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved
-                Case MarkingTry.SecondTry
+                Case Semester.MarkingTry.SecondTry
                     outcome.SecondTryComments = olvAutoFeedback.SelectedItem.Text
                     outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     outcome.ThirdTryComments = olvAutoFeedback.SelectedItem.Text
                     outcome.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
             End Select
@@ -1498,7 +1477,7 @@ Friend Class StudentAssignmentDetails
         lblImprovementCharCount.Text = rtbImprovementComments.TextLength.ToString("#,##0")
     End Sub
     Private Sub RefreshOutcomeResults()
-        Dim rslt As Student.QuickAssignmentResults = m_student.GetQuickAssignmentResults(MarkingTry.ThirdTry)
+        Dim rslt As Student.QuickAssignmentResults = m_student.GetQuickAssignmentResults(Semester.MarkingTry.ThirdTry)
         lblOutcomesPassed.Text = rslt.OutcomesPassed.ToString() & " of " & rslt.OutcomesIncluded.ToString()
     End Sub
     Private Sub llblRefreshOutcomeCount_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRefreshOutcomeCount.LinkClicked
@@ -1753,16 +1732,16 @@ Friend Class StudentAssignmentDetails
 
     Private Sub MarkStudentDidNotSubmitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkStudentDidNotSubmitToolStripMenuItem.Click
         Try
-            '-- for every outcome on this assignment, mark as "did not submit" for the markingTry that we are in
+            '-- for every outcome on this assignment, mark as "did not submit" for the Semester.MarkingTry that we are in
             For Each oc As OutcomeResult In m_studentAssignment.Outcomes
                 Select Case m_try
-                    Case MarkingTry.FirstTry
+                    Case Semester.MarkingTry.FirstTry
                         oc.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                         oc.FirstTryComments = AppSettings.NoSubmitFeedback
-                    Case MarkingTry.SecondTry
+                    Case Semester.MarkingTry.SecondTry
                         oc.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
                         oc.SecondTryComments = AppSettings.NoSubmitFeedback
-                    Case MarkingTry.ThirdTry
+                    Case Semester.MarkingTry.ThirdTry
                         oc.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved
                         oc.ThirdTryComments = AppSettings.NoSubmitFeedback
                 End Select
@@ -1788,11 +1767,11 @@ Friend Class StudentAssignmentDetails
             sb.Append(" ")
 
             Select Case m_try
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     sb.Append(oc.FirstTryComments)
-                Case MarkingTry.SecondTry
+                Case Semester.MarkingTry.SecondTry
                     sb.Append(oc.SecondTryComments)
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     sb.Append(oc.ThirdTryComments)
             End Select
             sb.Append("  ")
@@ -1822,13 +1801,13 @@ Friend Class StudentAssignmentDetails
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 If item.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
                     Select Case m_try
-                        Case MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             item.FirstTryStatus = OutcomeResultStatusEnum.Achieved
-                        Case MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 item.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                             End If
-                        Case MarkingTry.ThirdTry
+                        Case Semester.MarkingTry.ThirdTry
                             If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 item.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
                             End If
@@ -1846,13 +1825,13 @@ Friend Class StudentAssignmentDetails
             For Each item As OutcomeResult In m_studentAssignment.Outcomes
                 If item.BaseOutcome.GradeGroup = BTECGradeGroup.Pass OrElse item.BaseOutcome.GradeGroup = BTECGradeGroup.Merit Then
                     Select Case m_try
-                        Case MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             item.FirstTryStatus = OutcomeResultStatusEnum.Achieved
-                        Case MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             If item.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 item.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                             End If
-                        Case MarkingTry.ThirdTry
+                        Case Semester.MarkingTry.ThirdTry
                             If item.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved Then
                                 item.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
                             End If

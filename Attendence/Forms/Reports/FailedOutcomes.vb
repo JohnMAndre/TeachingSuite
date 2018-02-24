@@ -1,7 +1,7 @@
 Public Class FailedOutcomes
 
     Private m_classGroup As ClassGroup
-    Dim m_try As MarkingTry
+    Dim m_try As Semester.MarkingTry
     Private m_lstResults As New List(Of FailedOutcomeReportResult)
 
     Public Sub New(classGroup As ClassGroup)
@@ -18,7 +18,7 @@ Public Class FailedOutcomes
         FirstTryToolStripMenuItem.Checked = True
         RedoToolStripMenuItem.Checked = False
         SecondRedoToolStripMenuItem.Checked = False
-        m_try = MarkingTry.FirstTry
+        m_try = Semester.MarkingTry.FirstTry
         LoadData()
     End Sub
 
@@ -43,11 +43,11 @@ Public Class FailedOutcomes
                
 
                 If FirstTryToolStripMenuItem.Checked Then
-                    rslt = stu.GetQuickAssignmentResults(MarkingTry.FirstTry)
+                    rslt = stu.GetQuickAssignmentResults(Semester.MarkingTry.FirstTry)
                 ElseIf RedoToolStripMenuItem.Checked Then
-                    rslt = stu.GetQuickAssignmentResults(MarkingTry.SecondTry)
+                    rslt = stu.GetQuickAssignmentResults(Semester.MarkingTry.SecondTry)
                 ElseIf SecondRedoToolStripMenuItem.Checked Then
-                    rslt = stu.GetQuickAssignmentResults(MarkingTry.ThirdTry)
+                    rslt = stu.GetQuickAssignmentResults(Semester.MarkingTry.ThirdTry)
                 Else
                     Continue For '-- should never get here
                 End If
@@ -61,7 +61,7 @@ Public Class FailedOutcomes
                     If outcom.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
                         boolFailed = False
                         Select Case m_try
-                            Case MarkingTry.FirstTry
+                            Case Semester.MarkingTry.FirstTry
                                 If outcom.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
                                     boolFailed = True
                                     objBaseOutcome = outcom.BaseOutcome
@@ -73,7 +73,7 @@ Public Class FailedOutcomes
                                     End If
 
                                 End If
-                            Case MarkingTry.SecondTry
+                            Case Semester.MarkingTry.SecondTry
                                 If outcom.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso outcom.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
                                     boolFailed = True
                                     objBaseOutcome = outcom.BaseOutcome
@@ -84,7 +84,7 @@ Public Class FailedOutcomes
                                         strComments = "Did not submit"
                                     End If
                                 End If
-                            Case MarkingTry.ThirdTry
+                            Case Semester.MarkingTry.ThirdTry
                                 If outcom.ThirdTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso outcom.SecondTryStatus <> OutcomeResultStatusEnum.Achieved AndAlso outcom.FirstTryStatus <> OutcomeResultStatusEnum.Achieved Then
                                     boolFailed = True
                                     objBaseOutcome = outcom.BaseOutcome
@@ -144,7 +144,7 @@ Public Class FailedOutcomes
         FirstTryToolStripMenuItem.Checked = False
         RedoToolStripMenuItem.Checked = True
         SecondRedoToolStripMenuItem.Checked = False
-        m_try = MarkingTry.SecondTry
+        m_try = Semester.MarkingTry.SecondTry
         LoadData()
     End Sub
 
@@ -152,7 +152,7 @@ Public Class FailedOutcomes
         FirstTryToolStripMenuItem.Checked = False
         RedoToolStripMenuItem.Checked = False
         SecondRedoToolStripMenuItem.Checked = True
-        m_try = MarkingTry.ThirdTry
+        m_try = Semester.MarkingTry.ThirdTry
         LoadData()
     End Sub
 End Class

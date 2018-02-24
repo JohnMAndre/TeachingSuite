@@ -11,7 +11,7 @@
     Private m_studentAssignment As StudentAssignmentBTEC
     Private m_student As Student
     Private m_currentOutcome As AssignmentOutcome
-    Private m_examNumber As MarkingTry
+    Private m_examNumber As Semester.MarkingTry
     Private m_intPassed As Integer
     Private m_intFailed As Integer
 
@@ -23,7 +23,7 @@
         '-- Use this for public form (new in 2013)
 
     End Sub
-    Public Sub New(schoolClass As SchoolClass, assignment As ClassAssignmentBTEC, attempt As MarkingTry)
+    Public Sub New(schoolClass As SchoolClass, assignment As ClassAssignmentBTEC, attempt As Semester.MarkingTry)
         InitializeComponent()
 
         m_tsBase = New TimeSpan(0, 0, AppSettings.ExamClockDuration)
@@ -139,7 +139,7 @@
     ''' <remarks></remarks>
     Private Sub SelectNewOutcome()
         Select Case m_examNumber
-            Case MarkingTry.FirstTry
+            Case Semester.MarkingTry.FirstTry
                 '-- Any outcome should be fine
                 Dim rnd As New Random()
                 Randomize()
@@ -147,7 +147,7 @@
                 m_currentOutcome = m_baseAssignment.Outcomes(intOutcome)
                 txtOutcomeText.Text = m_currentOutcome.Name & " - " & m_currentOutcome.Description
                 txtOutcomeText.TextBox.BackColor = Color.White
-            Case MarkingTry.SecondTry
+            Case Semester.MarkingTry.SecondTry
                 '-- Any outcome from any assignment which was failed or unknown for first try
                 Dim x As Boolean = True
                 Do While x
@@ -164,7 +164,7 @@
 
                             '-- Now, test to make sure this outcome has not been passed already
 
-                            If Not StudentPassedOutcomeAlready(m_student, m_currentOutcome, MarkingTry.FirstTry) Then
+                            If Not StudentPassedOutcomeAlready(m_student, m_currentOutcome, Semester.MarkingTry.FirstTry) Then
                                 x = False
                             Else
                                 '-- loop around and find another outcome
@@ -176,20 +176,20 @@
                         End If
                     Next
                 Loop
-            Case MarkingTry.ThirdTry
+            Case Semester.MarkingTry.ThirdTry
 
         End Select
     End Sub
-    Private Function StudentPassedOutcomeAlready(student As Student, outcome As AssignmentOutcome, markingTry As MarkingTry) As Boolean
+    Private Function StudentPassedOutcomeAlready(student As Student, outcome As AssignmentOutcome, markingTry As Semester.MarkingTry) As Boolean
         For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
             For Each oc As OutcomeResult In asmt.Outcomes
 
                 If oc.BaseOutcome Is outcome Then
                     Select Case markingTry
-                        Case Globals.MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             '-- done, get out
                             Return oc.FirstTryStatus = OutcomeResultStatusEnum.Achieved
-                        Case Globals.MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             '-- done, get out
                             Return oc.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                     End Select
@@ -202,7 +202,7 @@
     End Function
     Private Function StudentReadyForProcessing(student As Student) As Boolean
         Select Case m_examNumber
-            Case MarkingTry.FirstTry '-- normal submission
+            Case Semester.MarkingTry.FirstTry '-- normal submission
                 For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
                     If asmt.BaseAssignment Is m_baseAssignment Then
                         '-- rule for first is, any outcome marked with oral exam comments means skip this student.
@@ -214,10 +214,10 @@
                         Next
                     End If
                 Next
-            Case MarkingTry.SecondTry '-- redo
+            Case Semester.MarkingTry.SecondTry '-- redo
                 '-- rule for secondtry is, must have at least one fail/unknown in firsttry and all unknowns for secondtry
                 '   HOWEVER, must consider both assignments together, not just one (randomly select outcome from combined)
-                Dim rslt As Student.QuickAssignmentResults = student.GetQuickAssignmentResults(MarkingTry.FirstTry)
+                Dim rslt As Student.QuickAssignmentResults = student.GetQuickAssignmentResults(Semester.MarkingTry.FirstTry)
                 If rslt.OutcomesPassed < student.SchoolClass.ClassGroup.AssignmentOutcomeCount Then
                     For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
                         '-- rule for second is, any outcome marked (secondtry) with oral exam comments means skip this student.
@@ -251,7 +251,7 @@
                 'If boolAtLeastOneFailBefore AndAlso boolAllUnknownNow Then
 
                 'End If
-            Case MarkingTry.ThirdTry '-- second redo
+            Case Semester.MarkingTry.ThirdTry '-- second redo
                 '-- rule for third is, must have at least one fail in second and all unknowns for third
         End Select
 
@@ -340,7 +340,7 @@
         m_intPassed += 1
         UpdatePassFailTotals()
 
-        If m_examNumber = MarkingTry.FirstTry Then
+        If m_examNumber = Semester.MarkingTry.FirstTry Then
             SetStudentAssignment()
         End If
 
@@ -380,21 +380,21 @@
                 If result.BaseOutcome Is m_currentOutcome Then
                     '-- just need to match on the name of the outcome (therefore must be unique)
                     Select Case m_examNumber
-                        Case MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             result.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                             If weak Then
                                 result.FirstTryComments = AppSettings.ExamPassWeakDefaultFeedback
                             Else
                                 result.FirstTryComments = AppSettings.ExamPassDefaultFeedback
                             End If
-                        Case MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             result.SecondTryStatus = OutcomeResultStatusEnum.Achieved
                             If weak Then
                                 result.SecondTryComments = AppSettings.ExamPassWeakDefaultFeedback
                             Else
                                 result.SecondTryComments = AppSettings.ExamPassDefaultFeedback
                             End If
-                        Case MarkingTry.ThirdTry
+                        Case Semester.MarkingTry.ThirdTry
                             result.ThirdTryStatus = OutcomeResultStatusEnum.Achieved
                             If weak Then
                                 result.ThirdTryComments = AppSettings.ExamPassWeakDefaultFeedback
@@ -475,7 +475,7 @@
         m_intFailed += 1
         UpdatePassFailTotals()
 
-        If m_examNumber = MarkingTry.FirstTry Then
+        If m_examNumber = Semester.MarkingTry.FirstTry Then
             SetStudentAssignment()
         End If
 
@@ -484,13 +484,13 @@
                 If result.BaseOutcome Is m_currentOutcome Then
                     '-- need to match on the base outcome 
                     Select Case m_examNumber
-                        Case MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             result.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                             result.FirstTryComments = AppSettings.ExamFailDefaultFeedback
-                        Case MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             result.SecondTryStatus = OutcomeResultStatusEnum.NotAchieved
                             result.SecondTryComments = AppSettings.ExamFailDefaultFeedback
-                        Case MarkingTry.ThirdTry
+                        Case Semester.MarkingTry.ThirdTry
                             result.ThirdTryStatus = OutcomeResultStatusEnum.NotAchieved
                             result.ThirdTryComments = AppSettings.ExamFailDefaultFeedback
                     End Select

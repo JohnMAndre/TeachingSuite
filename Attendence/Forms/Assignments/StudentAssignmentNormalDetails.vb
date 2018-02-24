@@ -3,13 +3,13 @@
     Private m_studentAssignment As StudentAssignment
     Private m_studentModuleResults As Student.StudentModuleResult
     Private m_boolAssignmentCreated As Boolean
-    Private m_try As MarkingTry
+    Private m_try As Semester.MarkingTry
     Private m_dtTimerStart As Date = Date.Now
     Private m_boolTimerRunning As Boolean = True
     Private m_tsTimer As TimeSpan
     Private m_improvementItems As New List(Of StudentImprovementItem) '-- include those assigned to the student and those not
 
-    Public Sub New(student As Student, assignment As StudentAssignment, attempt As MarkingTry)
+    Public Sub New(student As Student, assignment As StudentAssignment, attempt As Semester.MarkingTry)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -18,7 +18,7 @@
         m_studentAssignment = assignment
         m_try = attempt
     End Sub
-    Public Sub New(student As Student, assignment As ClassAssignment, attempt As MarkingTry)
+    Public Sub New(student As Student, assignment As ClassAssignment, attempt As Semester.MarkingTry)
         Try
             ' This call is required by the designer.
             InitializeComponent()
@@ -346,11 +346,11 @@
             Next
 
             Select Case m_try
-                Case MarkingTry.FirstTry
+                Case Semester.MarkingTry.FirstTry
                     nudFirstTryPoints.Value = intPoints
-                Case MarkingTry.SecondTry
+                Case Semester.MarkingTry.SecondTry
                     nudSecondTryPoints.Value = intPoints
-                Case MarkingTry.ThirdTry
+                Case Semester.MarkingTry.ThirdTry
                     nudThirdTryPoints.Value = intPoints
             End Select
         Catch ex As Exception

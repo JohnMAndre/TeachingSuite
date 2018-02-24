@@ -24,6 +24,13 @@ Public Class Semester
 
     Public Event LastSaveChanged(lastSaveDate As Date, lastAutoSaveDate As Date)
 
+    '-- Enums need to be here because if they are in a code module they cannot be used in public forms
+    Public Enum MarkingTry
+        FirstTry
+        SecondTry
+        ThirdTry
+    End Enum
+
     Public Enum AssessmentCategory
         Report
         Presentation
@@ -642,7 +649,7 @@ Public Class ClassGroup '-- teaching module
 
         Return xClassGroupElement
     End Function
-    Friend Sub GenerateModuleReultsExportXLS(filename As String, markingTry As MarkingTry)
+    Friend Sub GenerateModuleReultsExportXLS(filename As String, markingTry As Semester.MarkingTry)
         'Const DELIMITER As String = vbTab
         'Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode) ' System.IO.File.Create(filename, 128, IO.FileOptions.None)
         '    tw.Write("Admin" & DELIMITER & "Alt#" & DELIMITER & "Class" & DELIMITER & "StudentID" & DELIMITER & "LocalName" & DELIMITER & "Nickname" & DELIMITER)
@@ -721,9 +728,9 @@ Public Class ClassGroup '-- teaching module
     ''' </summary>
     ''' <param name="filename"></param>
     ''' <param name="assignment"></param>
-    ''' <param name="markingTry"></param>
+    ''' <param name="MarkingTry"></param>
     ''' <remarks></remarks>
-    Friend Sub GenerateMarkingList(filename As String, assignment As IClassAssignment, markingTry As MarkingTry)
+    Friend Sub GenerateMarkingList(filename As String, assignment As IClassAssignment, markingTry As Semester.MarkingTry)
         Dim lst As New List(Of Student) '-- This is the list of students to include in the report
 
         For Each cls As SchoolClass In Classes
@@ -734,15 +741,15 @@ Public Class ClassGroup '-- teaching module
                             '-- ok, this student has this assignment, now are they in this marking try?
                             '   if so, add to the list, otherwise, just keep going around
                             Select Case markingTry
-                                Case Globals.MarkingTry.FirstTry
+                                Case Semester.MarkingTry.FirstTry
                                     If asmt.FirstTryPrint.Length > 0 Then
                                         lst.Add(stu)
                                     End If
-                                Case Globals.MarkingTry.SecondTry
+                                Case Semester.MarkingTry.SecondTry
                                     If asmt.SecondTryPrint.Length > 0 Then
                                         lst.Add(stu)
                                     End If
-                                Case Globals.MarkingTry.ThirdTry
+                                Case Semester.MarkingTry.ThirdTry
                                     If asmt.ThirdTryPrint.Length > 0 Then
                                         lst.Add(stu)
                                     End If
@@ -757,16 +764,16 @@ Public Class ClassGroup '-- teaching module
                             Exit Sub
                             '-- ok, this student has this assignment, now are they in this marking try?
                             '   if so, add to the list, otherwise, just keep going around
-                            'Select Case markingTry
-                            '    Case Globals.MarkingTry.FirstTry
+                            'Select Case Semester.MarkingTry
+                            '    Case Globals.Semester.MarkingTry.FirstTry
                             '        If asmt.FirstTryPrint.Length > 0 Then
                             '            lst.Add(stu)
                             '        End If
-                            '    Case Globals.MarkingTry.SecondTry
+                            '    Case Globals.Semester.MarkingTry.SecondTry
                             '        If asmt.SecondTryPrint.Length > 0 Then
                             '            lst.Add(stu)
                             '        End If
-                            '    Case Globals.MarkingTry.ThirdTry
+                            '    Case Globals.Semester.MarkingTry.ThirdTry
                             '        If asmt.ThirdTryPrint.Length > 0 Then
                             '            lst.Add(stu)
                             '        End If
@@ -786,7 +793,7 @@ Public Class ClassGroup '-- teaching module
     ''' <param name="assignment"></param>
     ''' <param name="markingTry"></param>
     ''' <remarks></remarks>
-    Friend Sub GenerateMarkingListIsolated(filename As String, assignment As IClassAssignment, markingTry As MarkingTry)
+    Friend Sub GenerateMarkingListIsolated(filename As String, assignment As IClassAssignment, markingTry As Semester.MarkingTry)
         Dim lst As New List(Of Student) '-- This is the list of students to include in the report
 
         For Each cls As SchoolClass In Classes
@@ -802,16 +809,16 @@ Public Class ClassGroup '-- teaching module
                             '   I will simply add all students 
                             lst.Add(stu)
 
-                            'Select Case markingTry
-                            '    Case Globals.MarkingTry.FirstTry
+                            'Select Case Semester.MarkingTry
+                            '    Case Globals.Semester.MarkingTry.FirstTry
                             '        If asmt.FirstTryPrint.Length > 0 Then
                             '            lst.Add(stu)
                             '        End If
-                            '    Case Globals.MarkingTry.SecondTry
+                            '    Case Globals.Semester.MarkingTry.SecondTry
                             '        If asmt.SecondTryPrint.Length > 0 Then
                             '            lst.Add(stu)
                             '        End If
-                            '    Case Globals.MarkingTry.ThirdTry
+                            '    Case Globals.Semester.MarkingTry.ThirdTry
                             '        If asmt.ThirdTryPrint.Length > 0 Then
                             '            lst.Add(stu)
                             '        End If
@@ -840,7 +847,7 @@ Public Class ClassGroup '-- teaching module
     ''' <param name="markingTry"></param>
     ''' <param name="studentList"></param>
     ''' <remarks></remarks>
-    Friend Sub GenerateMarkingReportIsolated(filename As String, markingTry As MarkingTry, studentList As List(Of Student), assignment As ClassAssignmentBTEC)
+    Friend Sub GenerateMarkingReportIsolated(filename As String, markingTry As Semester.MarkingTry, studentList As List(Of Student), assignment As ClassAssignmentBTEC)
         Const DELIMITER As String = vbTab
         Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode) ' System.IO.File.Create(filename, 128, IO.FileOptions.None)
             tw.Write("Admin" & DELIMITER & "Alt#" & DELIMITER & "Class" & DELIMITER & "StudentID" & DELIMITER & "LocalName" & DELIMITER & "Nickname" & DELIMITER)
@@ -886,7 +893,7 @@ Public Class ClassGroup '-- teaching module
                     End If
                     For Each ocr As OutcomeResult In asmtToUse.Outcomes
                         Select Case markingTry
-                            Case Globals.MarkingTry.FirstTry
+                            Case Semester.MarkingTry.FirstTry
                                 Select Case ocr.FirstTryStatus
                                     Case OutcomeResultStatusEnum.Achieved
                                         tw.Write(AppSettings.OutcomeExportMarkPass)
@@ -895,7 +902,7 @@ Public Class ClassGroup '-- teaching module
                                     Case OutcomeResultStatusEnum.Unknown
                                         tw.Write(AppSettings.OutcomeExportMarkUnknown)
                                 End Select
-                            Case Globals.MarkingTry.SecondTry
+                            Case Semester.MarkingTry.SecondTry
                                 Select Case ocr.SecondTryStatus
                                     Case OutcomeResultStatusEnum.Achieved
                                         tw.Write(AppSettings.OutcomeExportMarkPass)
@@ -904,7 +911,7 @@ Public Class ClassGroup '-- teaching module
                                     Case OutcomeResultStatusEnum.Unknown
                                         tw.Write(AppSettings.OutcomeExportMarkUnknown)
                                 End Select
-                            Case Globals.MarkingTry.ThirdTry
+                            Case Semester.MarkingTry.ThirdTry
                                 Select Case ocr.ThirdTryStatus
                                     Case OutcomeResultStatusEnum.Achieved
                                         tw.Write(AppSettings.OutcomeExportMarkPass)
@@ -964,7 +971,7 @@ Public Class ClassGroup '-- teaching module
         End Using
 
     End Sub
-    Friend Sub GenerateModuleReultsExport(filename As String, markingTry As MarkingTry, studentList As List(Of Student))
+    Friend Sub GenerateModuleReultsExport(filename As String, markingTry As Semester.MarkingTry, studentList As List(Of Student))
         Const DELIMITER As String = vbTab
         Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode) ' System.IO.File.Create(filename, 128, IO.FileOptions.None)
             tw.Write("Admin" & DELIMITER & "Alt#" & DELIMITER & "Class" & DELIMITER & "StudentID" & DELIMITER & "LocalName" & DELIMITER & "Nickname" & DELIMITER)
@@ -1982,7 +1989,7 @@ Public Class StudentAssignmentBTEC
     End Property
     Public ReadOnly Property PassedOutcomesAtPass As Integer
         Get
-            Return AchievedOutcomesAtGradeAndTry(BTECGradeGroup.Pass, MarkingTry.ThirdTry)
+            Return AchievedOutcomesAtGradeAndTry(BTECGradeGroup.Pass, Semester.MarkingTry.ThirdTry)
         End Get
     End Property
     Public ReadOnly Property PassedAllOutcomes As Boolean
@@ -2021,22 +2028,22 @@ Public Class StudentAssignmentBTEC
     ''' <param name="submission">First submission, rework, second rework</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Friend Function AchievedOutcomesAtGradeAndTry(grade As BTECGradeGroup, submission As MarkingTry) As Integer
+    Friend Function AchievedOutcomesAtGradeAndTry(grade As BTECGradeGroup, submission As Semester.MarkingTry) As Integer
         Dim intReturn As Integer
         '-- First, second, or third try all count
         For Each ocResult As OutcomeResult In Me.Outcomes
             If ocResult.BaseOutcome.GradeGroup = grade Then
                 Select Case submission
-                    Case MarkingTry.FirstTry
+                    Case Semester.MarkingTry.FirstTry
                         If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
                             intReturn += 1
                         End If
-                    Case MarkingTry.SecondTry '-- means passed first or second try
+                    Case Semester.MarkingTry.SecondTry '-- means passed first or second try
                         If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
                             ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
                             intReturn += 1
                         End If
-                    Case MarkingTry.ThirdTry '-- means passed on any try
+                    Case Semester.MarkingTry.ThirdTry '-- means passed on any try
                         If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
                             ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
                             ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
@@ -3975,7 +3982,7 @@ Public Class Student
         Public Property D2Achieved As Boolean
         Public Property D3Achieved As Boolean
     End Class
-    Friend Function GetDetailedAssignmentResults(attempt As MarkingTry) As DetailAssignmentResults
+    Friend Function GetDetailedAssignmentResults(attempt As Semester.MarkingTry) As DetailAssignmentResults
         Try
             Dim rtn As New DetailAssignmentResults()
             'For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
@@ -4043,7 +4050,7 @@ Public Class Student
         End Try
 
     End Function
-    Friend Function GetQuickAssignmentResults(attempt As MarkingTry) As QuickAssignmentResults
+    Friend Function GetQuickAssignmentResults(attempt As Semester.MarkingTry) As QuickAssignmentResults
         Dim rtn As New QuickAssignmentResults()
         For Each asmt As StudentAssignmentBTEC In Me.AssignmentsBTEC
             'If asmt.M1Achieved Then
@@ -4068,15 +4075,15 @@ Public Class Student
                 If rslt.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
                     rtn.OutcomesIncluded += 1
                     Select Case attempt
-                        Case MarkingTry.FirstTry
+                        Case Semester.MarkingTry.FirstTry
                             If rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
                                 rtn.OutcomesPassed += 1
                             End If
-                        Case MarkingTry.SecondTry
+                        Case Semester.MarkingTry.SecondTry
                             If rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse rslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
                                 rtn.OutcomesPassed += 1
                             End If
-                        Case MarkingTry.ThirdTry
+                        Case Semester.MarkingTry.ThirdTry
                             If rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse rslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse rslt.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
                                 rtn.OutcomesPassed += 1
                             End If
@@ -4282,6 +4289,22 @@ Public Class StudentImprovementItem '-- This is for the student and references t
     Public Property DateAdded As Date
     Public Property DateLastIncluded As Date
     Public Property PreviousPerformanceLevel As Integer '-- not persisted, just for working with while marking (to show user pre-marking value)
+    Public Property Included As Boolean '-- also not persisted, just for working while marking
+    Public ReadOnly Property Name As String
+        Get
+            Return BaseImprovementItem.Name
+        End Get
+    End Property
+    Public ReadOnly Property DaysSinceLastIncluded As String
+        Get
+            If DateLastIncluded = DATE_NO_DATE Then
+                Return String.Empty
+            Else
+                Dim ts As TimeSpan = Date.Now - DateLastIncluded
+                Return ts.Days
+            End If
+        End Get
+    End Property
 
     Public Overrides Function ToString() As String
         If BaseImprovementItem IsNot Nothing Then

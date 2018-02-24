@@ -2,7 +2,7 @@ Public Class OralExamDetails
 
     Private m_frmPublic As ExamClockForm
     Private m_class As SchoolClass
-    Private m_try As MarkingTry
+    Private m_try As Semester.MarkingTry
 
     Private m_tsCurrent As TimeSpan
     Private m_tsBase As TimeSpan
@@ -19,7 +19,7 @@ Public Class OralExamDetails
 
     Private m_boolDirty As Boolean
 
-    Friend Sub New(schoolClass As SchoolClass, assignment As ClassAssignmentBTEC, attempt As MarkingTry)
+    Friend Sub New(schoolClass As SchoolClass, assignment As ClassAssignmentBTEC, attempt As Semester.MarkingTry)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -53,7 +53,7 @@ Public Class OralExamDetails
         Dim x As Boolean = True
         Dim intOutcome As Integer
         Select Case m_try
-            Case MarkingTry.FirstTry
+            Case Semester.MarkingTry.FirstTry
                 ''-- Any outcome should be fine
                 'Dim rnd As New Random()
                 'Randomize()
@@ -67,7 +67,7 @@ Public Class OralExamDetails
                     intOutcome = rnd.Next Mod m_baseAssignment.Outcomes.Count
                     m_currentOutcome = m_baseAssignment.Outcomes(intOutcome)
 
-                    'If Not StudentPassedOutcomeAlready(m_student, m_currentOutcome, MarkingTry.FirstTry) Then
+                    'If Not StudentPassedOutcomeAlready(m_student, m_currentOutcome, Semester.MarkingTry.FirstTry) Then
                     If StudentCanOralOutcome(m_student, m_currentOutcome) Then
                         x = False
                     Else
@@ -77,7 +77,7 @@ Public Class OralExamDetails
                 Loop
                 txtOutcomeText.Text = m_currentOutcome.Name & " - " & m_currentOutcome.Description
                 txtOutcomeText.TextBox.BackColor = Color.White
-            Case MarkingTry.SecondTry
+            Case Semester.MarkingTry.SecondTry
                 '-- Any outcome from any assignment which was failed or unknown for first try
                 Do While x
                     Dim rnd As New Random()
@@ -93,7 +93,7 @@ Public Class OralExamDetails
 
                             '-- Now, test to make sure this outcome has not been passed already
 
-                            'If Not StudentPassedOutcomeAlready(m_student, m_currentOutcome, MarkingTry.FirstTry) Then
+                            'If Not StudentPassedOutcomeAlready(m_student, m_currentOutcome, Semester.MarkingTry.FirstTry) Then
                             If StudentCanOralOutcome(m_student, m_currentOutcome) Then
                                 x = False
                             Else
@@ -106,7 +106,7 @@ Public Class OralExamDetails
                         End If
                     Next
                 Loop
-            Case MarkingTry.ThirdTry
+            Case Semester.MarkingTry.ThirdTry
 
         End Select
 
@@ -133,14 +133,14 @@ Public Class OralExamDetails
                         Return False '-- already passed, do not reassess this outcome
                     Else
                         Select Case m_try
-                            Case MarkingTry.FirstTry
+                            Case Semester.MarkingTry.FirstTry
                                 '-- The rule is, can oral anything that is not passed
                                 '   so can pass in oral what you failed in report
                                 '   but cannot fail in oral unless for authenticity reasons
                                 '   If this outcome was failed, could be on this assignment, 
                                 '   or on previous (same outcome can be on multiple assignments)
                                 Return True
-                            Case MarkingTry.SecondTry
+                            Case Semester.MarkingTry.SecondTry
                                 '-- Must check ALL instances of this outcome (across all assignments) and secondtry status must be unknown
                                 '   if unknown, then return true, otherwise it was already passed/failed already, then return false
                                 For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
@@ -153,7 +153,7 @@ Public Class OralExamDetails
                                     Next
                                 Next
                                 Return True '-- if we went through all the outcomes and did not return false, then we can return true
-                            Case MarkingTry.ThirdTry
+                            Case Semester.MarkingTry.ThirdTry
                                 For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
                                     For Each oc As OutcomeResult In asmt.Outcomes
                                         If oc.BaseOutcome Is outcome Then
@@ -280,7 +280,7 @@ Public Class OralExamDetails
         Dim boolAtLeastOneUnknown As Boolean
         Dim boolAssignmentDoesExist As Boolean
         Select Case m_try
-            Case MarkingTry.FirstTry '-- normal submission
+            Case Semester.MarkingTry.FirstTry '-- normal submission
                 For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
                     If asmt.BaseAssignment Is m_baseAssignment Then
                         '-- rule for first is, any outcome marked with oral exam comments means skip this student
@@ -304,10 +304,10 @@ Public Class OralExamDetails
                 If (Not boolAtLeastOneUnknown) AndAlso boolAssignmentDoesExist Then
                     Return False '-- no unknowns so cannot do oral exam on this student
                 End If
-            Case MarkingTry.SecondTry '-- redo
+            Case Semester.MarkingTry.SecondTry '-- redo
                 '-- rule for secondtry is, must have at least one fail/unknown in firsttry and all unknowns for secondtry
                 '   HOWEVER, must consider both assignments together, not just one (randomly select outcome from combined)
-                Dim rslt As Student.QuickAssignmentResults = student.GetQuickAssignmentResults(MarkingTry.FirstTry)
+                Dim rslt As Student.QuickAssignmentResults = student.GetQuickAssignmentResults(Semester.MarkingTry.FirstTry)
                 If rslt.OutcomesPassed < student.SchoolClass.ClassGroup.AssignmentOutcomeCount Then
                     For Each asmt As StudentAssignmentBTEC In student.AssignmentsBTEC
                         '-- rule for second is, any outcome marked (secondtry) with oral exam comments means skip this student.
@@ -341,7 +341,7 @@ Public Class OralExamDetails
                 'If boolAtLeastOneFailBefore AndAlso boolAllUnknownNow Then
 
                 'End If
-            Case MarkingTry.ThirdTry '-- second redo
+            Case Semester.MarkingTry.ThirdTry '-- second redo
                 '-- rule for third is, must have at least one fail in second and all unknowns for third
         End Select
 
@@ -362,7 +362,7 @@ Public Class OralExamDetails
         MarkCurrentOutcomeFail()
     End Sub
     Private Sub MarkCurrentOutcomeFail()
-        If m_try = MarkingTry.FirstTry Then
+        If m_try = Semester.MarkingTry.FirstTry Then
             SetStudentAssignment()
         End If
 
@@ -406,7 +406,7 @@ Public Class OralExamDetails
         MarkCurrentOutcomePassed(False)
     End Sub
     Private Sub MarkCurrentOutcomePassed(weak As Boolean)
-        If m_try = MarkingTry.FirstTry Then
+        If m_try = Semester.MarkingTry.FirstTry Then
             SetStudentAssignment()
         End If
 
@@ -555,7 +555,7 @@ Public Class OralExamDetails
             status = OutcomeResultStatusEnum.NotAchieved
         End If
 
-        If m_try = MarkingTry.FirstTry Then
+        If m_try = Semester.MarkingTry.FirstTry Then
             '-- first try means just use this assignment
             For Each asmt As StudentAssignmentBTEC In m_student.AssignmentsBTEC
                 If asmt.BaseAssignment Is m_baseAssignment Then '<-- only consider THIS assignment
@@ -563,13 +563,13 @@ Public Class OralExamDetails
                         If result.BaseOutcome Is m_currentOutcome Then
                             '-- just need to match on the name of the outcome (therefore must be unique)
                             Select Case m_try
-                                Case MarkingTry.FirstTry
+                                Case Semester.MarkingTry.FirstTry
                                     result.FirstTryStatus = status
                                     result.FirstTryComments = txtFeedback.Text
-                                Case MarkingTry.SecondTry
+                                Case Semester.MarkingTry.SecondTry
                                     result.SecondTryStatus = status
                                     result.SecondTryComments = txtFeedback.Text
-                                Case MarkingTry.ThirdTry
+                                Case Semester.MarkingTry.ThirdTry
                                     result.ThirdTryStatus = status
                                     result.ThirdTryComments = txtFeedback.Text
                             End Select
@@ -587,13 +587,13 @@ Public Class OralExamDetails
                     If result.BaseOutcome Is m_currentOutcome Then
                         '-- just need to match on the name of the outcome (therefore must be unique)
                         Select Case m_try
-                            Case MarkingTry.FirstTry
+                            Case Semester.MarkingTry.FirstTry
                                 result.FirstTryStatus = status
                                 result.FirstTryComments = txtFeedback.Text
-                            Case MarkingTry.SecondTry
+                            Case Semester.MarkingTry.SecondTry
                                 result.SecondTryStatus = status
                                 result.SecondTryComments = txtFeedback.Text
-                            Case MarkingTry.ThirdTry
+                            Case Semester.MarkingTry.ThirdTry
                                 result.ThirdTryStatus = status
                                 result.ThirdTryComments = txtFeedback.Text
                         End Select

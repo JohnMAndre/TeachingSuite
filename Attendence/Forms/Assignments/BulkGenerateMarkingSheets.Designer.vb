@@ -197,11 +197,11 @@ Partial Class BulkGenerateMarkingSheets
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "Try:"
         '
-        'lblMarkingTry
+        'lblSemester.MarkingTry
         '
         Me.lblMarkingTry.AutoSize = True
         Me.lblMarkingTry.Location = New System.Drawing.Point(101, 196)
-        Me.lblMarkingTry.Name = "lblMarkingTry"
+        Me.lblMarkingTry.Name = "lblSemester.MarkingTry"
         Me.lblMarkingTry.Size = New System.Drawing.Size(12, 16)
         Me.lblMarkingTry.TabIndex = 9
         Me.lblMarkingTry.Text = " "

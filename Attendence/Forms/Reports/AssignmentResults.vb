@@ -3,7 +3,7 @@ Public Class AssignmentResults
     Private m_classGroup As ClassGroup
     Private m_assignment As ClassAssignmentBTEC
     Private m_lstResults As New List(Of AssignmentReportResult)
-    Private m_try As MarkingTry
+    Private m_try As Semester.MarkingTry
 
     Public Sub New(classGroup As ClassGroup, asmt As ClassAssignmentBTEC)
 
@@ -136,7 +136,7 @@ Public Class AssignmentResults
     End Sub
 
     Private Sub FirstTryToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles FirstTryToolStripMenuItem.Click
-        m_try = MarkingTry.FirstTry
+        m_try = Semester.MarkingTry.FirstTry
         lblSubmissionAttempt.Text = "First submission"
         FirstTryToolStripMenuItem.Checked = True
         RedoToolStripMenuItem.Checked = False
@@ -145,7 +145,7 @@ Public Class AssignmentResults
     End Sub
 
     Private Sub RedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RedoToolStripMenuItem.Click
-        m_try = MarkingTry.SecondTry
+        m_try = Semester.MarkingTry.SecondTry
         lblSubmissionAttempt.Text = "First rework"
         FirstTryToolStripMenuItem.Checked = False
         RedoToolStripMenuItem.Checked = True
@@ -154,7 +154,7 @@ Public Class AssignmentResults
     End Sub
 
     Private Sub SecondRedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SecondRedoToolStripMenuItem.Click
-        m_try = MarkingTry.ThirdTry
+        m_try = Semester.MarkingTry.ThirdTry
         lblSubmissionAttempt.Text = "Second rework"
         FirstTryToolStripMenuItem.Checked = False
         RedoToolStripMenuItem.Checked = False

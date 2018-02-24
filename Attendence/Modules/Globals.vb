@@ -25,11 +25,7 @@
     Public AppSettings As ApplicationSettings
     Public MainFormReference As IMainForm
 
-    Public Enum MarkingTry
-        FirstTry
-        SecondTry
-        ThirdTry
-    End Enum
+   
 
 
     Public Const DUMMY_SEMESTER_NAME As String = "dummy"

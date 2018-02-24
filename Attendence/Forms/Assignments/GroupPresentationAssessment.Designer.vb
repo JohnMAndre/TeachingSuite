@@ -36,13 +36,13 @@ Partial Class GroupPresentationAssessment
         Me.FlowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 2)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(717, 353)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(717, 370)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'btnSave
         '
-        Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSave.Location = New System.Drawing.Point(320, 361)
+        Me.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.btnSave.Location = New System.Drawing.Point(320, 373)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 43
@@ -61,6 +61,7 @@ Partial Class GroupPresentationAssessment
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "GroupPresentationAssessment"
         Me.Text = "Group Presentation Assessment"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
     End Sub

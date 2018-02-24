@@ -1,6 +1,6 @@
 Public Class ModuleFeedbackVerification
 
-    Private m_try As MarkingTry
+    Private m_try As Semester.MarkingTry
     Private m_classGroup As ClassGroup
     Private m_lst As New List(Of ReportItem)
 
@@ -18,7 +18,7 @@ Public Class ModuleFeedbackVerification
         m_classGroup = group
     End Sub
     Private Sub FirstTryToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles FirstTryToolStripMenuItem.Click
-        m_try = MarkingTry.FirstTry
+        m_try = Semester.MarkingTry.FirstTry
         loaddata()
     End Sub
     Private Sub LoadData()
@@ -33,13 +33,13 @@ Public Class ModuleFeedbackVerification
                         item.Outcome = oc.BaseOutcome.Name
                         m_lst.Add(item)
                         Select Case m_try
-                            Case MarkingTry.FirstTry
+                            Case Semester.MarkingTry.FirstTry
                                 item.Status = oc.FirstTryStatus
                                 item.Feedback = oc.FirstTryComments
-                            Case MarkingTry.SecondTry
+                            Case Semester.MarkingTry.SecondTry
                                 item.Status = oc.FirstTryStatus
                                 item.Feedback = oc.SecondTryComments
-                            Case MarkingTry.ThirdTry
+                            Case Semester.MarkingTry.ThirdTry
                                 item.Status = oc.ThirdTryStatus
                                 item.Feedback = oc.ThirdTryComments
                         End Select
@@ -51,12 +51,12 @@ Public Class ModuleFeedbackVerification
     End Sub
 
     Private Sub RedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RedoToolStripMenuItem.Click
-        m_try = MarkingTry.SecondTry
+        m_try = Semester.MarkingTry.SecondTry
         LoadData()
     End Sub
 
     Private Sub SecondRedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SecondRedoToolStripMenuItem.Click
-        m_try = MarkingTry.ThirdTry
+        m_try = Semester.MarkingTry.ThirdTry
         LoadData()
     End Sub
 End Class
