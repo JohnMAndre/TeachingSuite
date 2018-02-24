@@ -43,4 +43,10 @@
             End If
         Next
     End Sub
+
+    Private Sub EditSelectedImprovementItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditSelectedImprovementItemToolStripMenuItem.Click
+        Dim item As ImprovementItem = CType(olvImprovementItems.SelectedObject, ImprovementItem)
+        Dim frm As New ImprovementItemDetails(item)
+        frm.Show()
+    End Sub
 End Class

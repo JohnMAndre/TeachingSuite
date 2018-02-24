@@ -141,6 +141,12 @@
     <Compile Include="Forms\Assignments\GroupPresentationAssessment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Assignments\ImprovementItemDetails.Designer.vb">
+      <DependentUpon>ImprovementItemDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\ImprovementItemDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Assignments\StudentAssignmentNormalDetails.Designer.vb">
       <DependentUpon>StudentAssignmentNormalDetails.vb</DependentUpon>
     </Compile>
@@ -219,10 +225,10 @@
     <Compile Include="Forms\Importing\ImportTeachingAppExportFile.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ImprovementItemManager.Designer.vb">
+    <Compile Include="Forms\Assignments\ImprovementItemManager.Designer.vb">
       <DependentUpon>ImprovementItemManager.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ImprovementItemManager.vb">
+    <Compile Include="Forms\Assignments\ImprovementItemManager.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Reports\ExcessiveAbsencesReport.Designer.vb">
@@ -494,7 +500,6 @@
     <Compile Include="Forms\MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -551,6 +556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\GroupPresentationAssessment.resx">
       <DependentUpon>GroupPresentationAssessment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\ImprovementItemDetails.resx">
+      <DependentUpon>ImprovementItemDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\OralExamDetails.resx">
       <DependentUpon>OralExamDetails.vb</DependentUpon>
@@ -637,7 +645,7 @@
     <EmbeddedResource Include="Forms\Importing\ImportTeachingAppExportFile.resx">
       <DependentUpon>ImportTeachingAppExportFile.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ImprovementItemManager.resx">
+    <EmbeddedResource Include="Forms\Assignments\ImprovementItemManager.resx">
       <DependentUpon>ImprovementItemManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\ExcessiveAbsencesReport.resx">

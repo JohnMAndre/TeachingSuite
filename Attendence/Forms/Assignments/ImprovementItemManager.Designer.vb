@@ -29,13 +29,15 @@ Partial Class ImprovementItemManager
         Me.ActionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteSelectedImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
-        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ReorderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveItemupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveItemdownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
+        Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.EditSelectedImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,7 +48,7 @@ Partial Class ImprovementItemManager
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.ReorderToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(541, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(689, 24)
         Me.MenuStrip1.TabIndex = 125
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -60,12 +62,13 @@ Partial Class ImprovementItemManager
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
         'ActionsToolStripMenuItem
         '
-        Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewImprovementItemToolStripMenuItem, Me.DeleteSelectedImprovementItemToolStripMenuItem})
+        Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewImprovementItemToolStripMenuItem, Me.DeleteSelectedImprovementItemToolStripMenuItem, Me.EditSelectedImprovementItemToolStripMenuItem})
         Me.ActionsToolStripMenuItem.Name = "ActionsToolStripMenuItem"
         Me.ActionsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ActionsToolStripMenuItem.Text = "&Actions"
@@ -83,51 +86,6 @@ Partial Class ImprovementItemManager
         Me.DeleteSelectedImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DeleteSelectedImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
         Me.DeleteSelectedImprovementItemToolStripMenuItem.Text = "&Delete selected improvement item"
-        '
-        'olvImprovementItems
-        '
-        Me.olvImprovementItems.Activation = System.Windows.Forms.ItemActivation.TwoClick
-        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn1)
-        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn5)
-        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn2)
-        Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvImprovementItems.CellEditUseWholeCell = False
-        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn2})
-        Me.olvImprovementItems.CopySelectionOnControlC = False
-        Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False
-        Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
-        Me.olvImprovementItems.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.olvImprovementItems.EmptyListMsg = "No improvement items"
-        Me.olvImprovementItems.FullRowSelect = True
-        Me.olvImprovementItems.Location = New System.Drawing.Point(0, 24)
-        Me.olvImprovementItems.MultiSelect = False
-        Me.olvImprovementItems.Name = "olvImprovementItems"
-        Me.olvImprovementItems.ShowGroups = False
-        Me.olvImprovementItems.ShowImagesOnSubItems = True
-        Me.olvImprovementItems.ShowItemToolTips = True
-        Me.olvImprovementItems.Size = New System.Drawing.Size(541, 308)
-        Me.olvImprovementItems.TabIndex = 126
-        Me.olvImprovementItems.UseCompatibleStateImageBehavior = False
-        Me.olvImprovementItems.UseFiltering = True
-        Me.olvImprovementItems.View = System.Windows.Forms.View.Details
-        '
-        'OlvColumn1
-        '
-        Me.OlvColumn1.AspectName = "Name"
-        Me.OlvColumn1.AutoCompleteEditor = False
-        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn1.DisplayIndex = 1
-        Me.OlvColumn1.Text = "Name"
-        Me.OlvColumn1.Width = 128
-        '
-        'OlvColumn5
-        '
-        Me.OlvColumn5.AspectName = "Description"
-        Me.OlvColumn5.AutoCompleteEditor = False
-        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn5.DisplayIndex = 2
-        Me.OlvColumn5.Text = "Description"
-        Me.OlvColumn5.Width = 403
         '
         'ReorderToolStripMenuItem
         '
@@ -150,6 +108,52 @@ Partial Class ImprovementItemManager
         Me.MoveItemdownToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.MoveItemdownToolStripMenuItem.Text = "Move item &down"
         '
+        'olvImprovementItems
+        '
+        Me.olvImprovementItems.Activation = System.Windows.Forms.ItemActivation.TwoClick
+        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn1)
+        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn5)
+        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn2)
+        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn3)
+        Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvImprovementItems.CellEditUseWholeCell = False
+        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn2, Me.OlvColumn3})
+        Me.olvImprovementItems.CopySelectionOnControlC = False
+        Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False
+        Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
+        Me.olvImprovementItems.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.olvImprovementItems.EmptyListMsg = "No improvement items"
+        Me.olvImprovementItems.FullRowSelect = True
+        Me.olvImprovementItems.Location = New System.Drawing.Point(0, 24)
+        Me.olvImprovementItems.MultiSelect = False
+        Me.olvImprovementItems.Name = "olvImprovementItems"
+        Me.olvImprovementItems.ShowGroups = False
+        Me.olvImprovementItems.ShowImagesOnSubItems = True
+        Me.olvImprovementItems.ShowItemToolTips = True
+        Me.olvImprovementItems.Size = New System.Drawing.Size(689, 308)
+        Me.olvImprovementItems.TabIndex = 126
+        Me.olvImprovementItems.UseCompatibleStateImageBehavior = False
+        Me.olvImprovementItems.UseFiltering = True
+        Me.olvImprovementItems.View = System.Windows.Forms.View.Details
+        '
+        'OlvColumn1
+        '
+        Me.OlvColumn1.AspectName = "Name"
+        Me.OlvColumn1.AutoCompleteEditor = False
+        Me.OlvColumn1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
+        Me.OlvColumn1.DisplayIndex = 1
+        Me.OlvColumn1.Text = "Name"
+        Me.OlvColumn1.Width = 128
+        '
+        'OlvColumn5
+        '
+        Me.OlvColumn5.AspectName = "Description"
+        Me.OlvColumn5.AutoCompleteEditor = False
+        Me.OlvColumn5.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
+        Me.OlvColumn5.DisplayIndex = 2
+        Me.OlvColumn5.Text = "Description"
+        Me.OlvColumn5.Width = 378
+        '
         'OlvColumn2
         '
         Me.OlvColumn2.AspectName = "OrderingID"
@@ -157,11 +161,24 @@ Partial Class ImprovementItemManager
         Me.OlvColumn2.Text = "Pos"
         Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'OlvColumn3
+        '
+        Me.OlvColumn3.AspectName = "AssessmentCategoryList"
+        Me.OlvColumn3.Text = "Categories"
+        Me.OlvColumn3.Width = 107
+        '
+        'EditSelectedImprovementItemToolStripMenuItem
+        '
+        Me.EditSelectedImprovementItemToolStripMenuItem.Name = "EditSelectedImprovementItemToolStripMenuItem"
+        Me.EditSelectedImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.EditSelectedImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.EditSelectedImprovementItemToolStripMenuItem.Text = "&Edit selected improvement item..."
+        '
         'ImprovementItemManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(541, 332)
+        Me.ClientSize = New System.Drawing.Size(689, 332)
         Me.Controls.Add(Me.olvImprovementItems)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -187,4 +204,6 @@ Partial Class ImprovementItemManager
     Friend WithEvents MoveItemupToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoveItemdownToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents EditSelectedImprovementItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

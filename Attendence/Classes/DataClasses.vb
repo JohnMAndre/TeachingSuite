@@ -24,6 +24,12 @@ Public Class Semester
 
     Public Event LastSaveChanged(lastSaveDate As Date, lastAutoSaveDate As Date)
 
+    Public Enum AssessmentCategory
+        Report
+        Presentation
+        Exam
+        Portfolio
+    End Enum
 
     Public Shared Function ListExistingSemesters() As List(Of String)
         Dim files() As String
@@ -150,6 +156,14 @@ Public Class Semester
             objItem.Description = xItem.GetAttribute("Description")
             intOrderingID += 1
             objItem.OrderingID = intOrderingID '-- just for positioning
+
+            '-- get the categories
+            Dim catList As Xml.XmlNodeList = xItem.SelectNodes("AssessmentCategories/AssessmentCategory")
+            For Each xCat As Xml.XmlElement In catList
+                Dim cat As AssessmentCategory = [Enum].Parse(GetType(AssessmentCategory), xCat.InnerText, True)
+                objItem.AssessmentCategories.Add(cat)
+            Next
+
             Me.ImprovementItems.Add(objItem)
         Next
 
@@ -247,6 +261,7 @@ Public Class Semester
 
                     '-- 20 Aug 2017, changed from zipping here to using centralized zipping routine
                     SaveXMLData(xDoc, m_strFilename, True)
+
                     LastSaveDate = Date.Now
                     Dim strAutoSaveFilename As String
                     strAutoSaveFilename = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(m_strFilename), System.IO.Path.GetFileNameWithoutExtension(m_strFilename) & DATA_FILE_AUTOSAVE_EXTENSION)
@@ -300,11 +315,22 @@ Public Class Semester
         '-- First, sort them
         Me.ImprovementItems.Sort()
 
+        Dim xCat, xCats As Xml.XmlElement
         For Each item As ImprovementItem In Me.ImprovementItems
             xItem = xDoc.CreateElement("ImprovementItem")
             xItem.SetAttribute("ID", item.ID)
             xItem.SetAttribute("Name", item.Name)
             xItem.SetAttribute("Description", item.Description)
+
+            '-- Add on AssessmentCategories
+            xCats = xDoc.CreateElement("AssessmentCategories")
+            xItem.AppendChild(xCats)
+            For Each cat As AssessmentCategory In item.AssessmentCategories
+                xCat = xDoc.CreateElement("AssessmentCategory")
+                xCat.InnerText = cat
+                xCats.AppendChild(xCat)
+            Next
+
             xParent.AppendChild(xItem)
         Next
         xDoc.DocumentElement.AppendChild(xParent)
@@ -1395,6 +1421,7 @@ Public Class SchoolClass
             xImprovementItem.SetAttribute("Description", item.Description)
             xImprovementItems.AppendChild(xImprovementItem)
         Next
+
         If xImprovementItems.ChildNodes.Count > 0 Then
             xRoot.AppendChild(xImprovementItems)
         End If
@@ -4224,10 +4251,28 @@ End Class
 Public Class ImprovementItem '-- This is the master list of what counts as an improvement item (for the semester)
     Implements IComparable(Of ImprovementItem)
 
+    Public Sub New()
+        AssessmentCategories = New List(Of Semester.AssessmentCategory)
+    End Sub
+
     Public Property ID As String = Guid.NewGuid.ToString()
     Public Property OrderingID As Integer '-- so we know which order to display in the list
     Public Property Name As String
     Public Property Description As String
+    Public Property AssessmentCategories As List(Of Semester.AssessmentCategory) '-- All the assessment types that this improvement item  is relevant to
+    Public ReadOnly Property AssessmentCategoryList As String
+        Get
+            Dim strReturn As String = String.Empty
+            For Each cat As Semester.AssessmentCategory In AssessmentCategories
+                strReturn &= cat.ToString & ", "
+            Next
+            If strReturn.Length > 2 Then
+                strReturn = strReturn.Substring(0, strReturn.Length - 2) '-- Trim final comma
+            End If
+
+            Return strReturn
+        End Get
+    End Property
 
     Public Function CompareTo(other As ImprovementItem) As Integer Implements IComparable(Of ImprovementItem).CompareTo
         '-- Sort on OrderingID
@@ -4304,3 +4349,5 @@ Public Class EmailRecipient
         Me.EmailAddress = emailAddress
     End Sub
 End Class
+
+
