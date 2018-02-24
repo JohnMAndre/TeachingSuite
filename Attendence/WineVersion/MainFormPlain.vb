@@ -3036,7 +3036,13 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub MarkGroupPresentationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkGroupPresentationToolStripMenuItem.Click
-        Dim frm As New GroupPresentationAssessment()
+        Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne()
+
+        Dim strTeam As String = stud.StudentTeam
+
+        Dim lstFiltered As List(Of Student) = GetSelectedClass.Students.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+
+        Dim frm As New GroupPresentationAssessment(lstFiltered)
         frm.Show()
 
     End Sub
