@@ -117,7 +117,7 @@ Partial Class BulkGenerateMarkingSheets
         '
         'btnGenerate
         '
-        Me.btnGenerate.Location = New System.Drawing.Point(150, 232)
+        Me.btnGenerate.Location = New System.Drawing.Point(154, 232)
         Me.btnGenerate.Name = "btnGenerate"
         Me.btnGenerate.Size = New System.Drawing.Size(75, 23)
         Me.btnGenerate.TabIndex = 5
