@@ -47,7 +47,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.picContentMark = New System.Windows.Forms.PictureBox()
         Me.dgvImprovementItems = New System.Windows.Forms.DataGridView()
         Me.chkNominate = New System.Windows.Forms.CheckBox()
-        Me.chkAbsent = New System.Windows.Forms.CheckBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtLocalName = New System.Windows.Forms.TextBox()
         Me.txtNickname = New System.Windows.Forms.TextBox()
@@ -67,11 +66,12 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label27 = New System.Windows.Forms.Label()
         Me.nudPresentationQuality = New System.Windows.Forms.NumericUpDown()
         Me.llblGenerateImprovements = New System.Windows.Forms.LinkLabel()
-        Me.IncludeColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.llblAbsent = New System.Windows.Forms.LinkLabel()
         CType(Me.picLanguageMark, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picPresentationMark, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picContentMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -301,7 +301,7 @@ Partial Class IndividualMarkInGroupPresentation
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvImprovementItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvImprovementItems.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IncludeColumn, Me.NameColumn, Me.PerformanceLevelColumn, Me.PreviousPerformanceColumn, Me.LastTimeIncludedColumn})
+        Me.dgvImprovementItems.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IncludedColumn, Me.NameColumn, Me.PerformanceLevelColumn, Me.PreviousPerformanceColumn, Me.LastTimeIncludedColumn})
         Me.dgvImprovementItems.Location = New System.Drawing.Point(372, 0)
         Me.dgvImprovementItems.Name = "dgvImprovementItems"
         Me.dgvImprovementItems.RowHeadersVisible = False
@@ -317,16 +317,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.chkNominate.TabIndex = 29
         Me.chkNominate.Text = "Nominate"
         Me.chkNominate.UseVisualStyleBackColor = True
-        '
-        'chkAbsent
-        '
-        Me.chkAbsent.AutoSize = True
-        Me.chkAbsent.Location = New System.Drawing.Point(5, 86)
-        Me.chkAbsent.Name = "chkAbsent"
-        Me.chkAbsent.Size = New System.Drawing.Size(68, 20)
-        Me.chkAbsent.TabIndex = 30
-        Me.chkAbsent.Text = "Absent"
-        Me.chkAbsent.UseVisualStyleBackColor = True
         '
         'Label17
         '
@@ -493,13 +483,13 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblGenerateImprovements.TabStop = True
         Me.llblGenerateImprovements.Text = "<< Gen"
         '
-        'IncludeColumn
+        'IncludedColumn
         '
-        Me.IncludeColumn.DataPropertyName = "Include"
-        Me.IncludeColumn.FillWeight = 10.0!
-        Me.IncludeColumn.HeaderText = "O"
-        Me.IncludeColumn.Name = "IncludeColumn"
-        Me.IncludeColumn.Width = 20
+        Me.IncludedColumn.DataPropertyName = "Included"
+        Me.IncludedColumn.FillWeight = 10.0!
+        Me.IncludedColumn.HeaderText = "O"
+        Me.IncludedColumn.Name = "IncludedColumn"
+        Me.IncludedColumn.Width = 20
         '
         'NameColumn
         '
@@ -532,10 +522,21 @@ Partial Class IndividualMarkInGroupPresentation
         Me.LastTimeIncludedColumn.ReadOnly = True
         Me.LastTimeIncludedColumn.Width = 34
         '
+        'llblAbsent
+        '
+        Me.llblAbsent.AutoSize = True
+        Me.llblAbsent.Location = New System.Drawing.Point(2, 90)
+        Me.llblAbsent.Name = "llblAbsent"
+        Me.llblAbsent.Size = New System.Drawing.Size(49, 16)
+        Me.llblAbsent.TabIndex = 54
+        Me.llblAbsent.TabStop = True
+        Me.llblAbsent.Text = "Absent"
+        '
         'IndividualMarkInGroupPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.llblAbsent)
         Me.Controls.Add(Me.llblGenerateImprovements)
         Me.Controls.Add(Me.nudPresentationQuality)
         Me.Controls.Add(Me.nudResearchQuality)
@@ -555,7 +556,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.txtLocalName)
         Me.Controls.Add(Me.Label17)
-        Me.Controls.Add(Me.chkAbsent)
         Me.Controls.Add(Me.chkNominate)
         Me.Controls.Add(Me.dgvImprovementItems)
         Me.Controls.Add(Me.lblLanguageWeight)
@@ -620,7 +620,6 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents lblContentWeight As System.Windows.Forms.Label
     Friend WithEvents dgvImprovementItems As System.Windows.Forms.DataGridView
     Friend WithEvents chkNominate As System.Windows.Forms.CheckBox
-    Friend WithEvents chkAbsent As System.Windows.Forms.CheckBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents txtLocalName As System.Windows.Forms.TextBox
     Friend WithEvents txtNickname As System.Windows.Forms.TextBox
@@ -640,10 +639,11 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents nudPresentationQuality As System.Windows.Forms.NumericUpDown
     Friend WithEvents llblGenerateImprovements As System.Windows.Forms.LinkLabel
-    Friend WithEvents IncludeColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents IncludedColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents NameColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PerformanceLevelColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PreviousPerformanceColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LastTimeIncludedColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents llblAbsent As System.Windows.Forms.LinkLabel
 
 End Class

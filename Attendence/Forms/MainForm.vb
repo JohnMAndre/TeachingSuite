@@ -2877,4 +2877,13 @@ Public Class MainForm
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+    Public Property Notes As String Implements IMainForm.Notes
+        Get
+            Return txtNotes.Text
+        End Get
+        Set(value As String)
+            txtNotes.Text = value
+        End Set
+    End Property
+
 End Class

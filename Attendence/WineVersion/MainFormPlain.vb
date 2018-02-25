@@ -3083,5 +3083,13 @@ Public Class MainFormPlain
     Private Sub SecondTryMarkGroupPresentationToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SecondTryMarkGroupPresentationToolStripMenuItem1.Click
         MarkGroupPresentation(Semester.MarkingTry.SecondTry)
     End Sub
+    Public Property Notes As String Implements IMainForm.Notes
+        Get
+            Return txtNotes.Text
+        End Get
+        Set(value As String)
+            txtNotes.Text = value
+        End Set
+    End Property
 
 End Class

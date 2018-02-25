@@ -19,27 +19,6 @@
         nudPresentationQuality.Value = m_student.PresentationQuality
         nudResearchQuality.Value = m_student.ResearchQuality
 
-        '-- Load improvement items
-        '-- Load all the improvement items and include date added/removed for those that apply to this student
-        Dim boolItemAdded As Boolean
-        For Each item As ImprovementItem In ThisSemester.ImprovementItems
-            boolItemAdded = False
-            For Each studItem As StudentImprovementItem In m_student.ImprovementItems
-                If studItem.BaseImprovementItem Is item Then
-                    m_improvementItems.Add(studItem)
-                    boolItemAdded = True
-                    Exit For
-                End If
-            Next
-            If Not boolItemAdded Then
-                Dim studItem As New StudentImprovementItem(m_student)
-                studItem.BaseImprovementItem = item
-                studItem.DateAdded = DATE_NO_DATE
-                m_improvementItems.Add(studItem)
-            End If
-        Next
-        dgvImprovementItems.AutoGenerateColumns = False
-        dgvImprovementItems.DataSource = m_improvementItems
 
         nudFirstGrade.Maximum = assignment.MaxPoints
         nudSecondGrade.Maximum = assignment.MaxPoints
@@ -62,6 +41,51 @@
             m_studentAssignment = m_student.AddAssignment(assignment)
             m_studentAssignment.OverallComments = assignment.OverallDefaultText
         End If
+
+
+
+
+        '-- Load improvement items
+        '-- Load all the improvement items and include date added/removed for those that apply to this student
+        '   But we need to filter only for assignment categories on this assessment
+        Dim boolItemAdded, boolHasMatchingCategory As Boolean
+
+        For Each item As ImprovementItem In ThisSemester.ImprovementItems
+            boolHasMatchingCategory = False '-- default to false
+
+            For Each catItem As Semester.AssessmentCategory In item.AssessmentCategories
+                For Each catAssess As Semester.AssessmentCategory In m_studentAssignment.BaseAssignment.AssessmentCategories
+                    If catItem = catAssess Then
+                        boolHasMatchingCategory = True
+                        Exit For
+                    End If
+                Next
+                If boolHasMatchingCategory Then
+                    Exit For
+                End If
+            Next
+
+            '-- We only include matching improvement items. If no matching category, we completely ignore it on this assessment
+            If boolHasMatchingCategory Then
+                boolItemAdded = False
+                For Each studItem As StudentImprovementItem In m_student.ImprovementItems
+                    If studItem.BaseImprovementItem Is item Then
+                        m_improvementItems.Add(studItem)
+                        boolItemAdded = True
+                        Exit For
+                    End If
+                Next
+                If Not boolItemAdded Then
+                    Dim studItem As New StudentImprovementItem(m_student)
+                    studItem.BaseImprovementItem = item
+                    studItem.DateAdded = DATE_NO_DATE
+                    m_improvementItems.Add(studItem)
+                End If
+            End If
+        Next
+        dgvImprovementItems.AutoGenerateColumns = False
+        dgvImprovementItems.DataSource = m_improvementItems
+
 
         m_markTry = attempt
 
@@ -88,6 +112,12 @@
         m_student.ResearchQuality = nudResearchQuality.Value
         m_student.Nickname = txtNickname.Text
         m_student.Tags = txtTags.Text
+
+        AddSelectedImprovementItemsToStudent()
+
+        If chkNominate.Checked Then
+            MainFormReference.Notes = m_student.LocalNameLatinLetters & " (" & m_student.StudentID & "-" & m_student.StudentTeam & ") nominated @ " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL) & Environment.NewLine & MainFormReference.Notes
+        End If
 
     End Sub
     Private Sub picContentMark_MouseDown(sender As Object, e As MouseEventArgs) Handles picContentMark.MouseDown, picPresentationMark.MouseDown, picLanguageMark.MouseDown
@@ -180,8 +210,91 @@
     End Sub
 
     Private Sub llblGenerateImprovements_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblGenerateImprovements.LinkClicked
-        '-- Generate based on checked items in DGV
+        AutoGenImprovementComments(True)
+    End Sub
+    Private Sub AutoGenImprovementComments(includePerformanceLevel As Boolean)
+        txtImprovement.AppendText(GetImprovementNotes(includePerformanceLevel))
+    End Sub
+    Private Function GetImprovementNotes(includePerformanceLevel As Boolean) As String
+        Try
+            '-- Generate based on checked items in DGV
+            Dim strReturn As String = String.Empty
+            For Each item As StudentImprovementItem In m_improvementItems
+                If item.Included Then
+                    strReturn &= " " & item.BaseImprovementItem.Description
+                    If includePerformanceLevel Then
+                        strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                        Select Case item.PerformanceLevel
+                            Case 1
+                                strReturn &= "unacceptable"
+                            Case 2
+                                strReturn &= "very weak, often incorrect"
+                            Case 3
+                                strReturn &= "OK, but inconsistent"
+                            Case 4
+                                strReturn &= "Good, but can improve more"
+                            Case 5
+                                strReturn &= "Already great"
+                        End Select
+                        strReturn &= ")" & Environment.NewLine
+                    End If
+                End If
+            Next
 
+            Return strReturn.Trim()
+        Catch ex As Exception
+            MessageBox.Show("There was an error with the improvement note list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+
+    Private Sub AddSelectedImprovementItemsToStudent()
+
+        For Each item As StudentImprovementItem In m_improvementItems
+            If item.Included Then
+                If item.DateAdded > DATE_NO_DATE Then
+                    '-- This improvement item already exists for this student
+                Else
+                    '-- add item to student
+                    m_student.ImprovementItems.Add(item)
+                    item.DateAdded = Date.Now
+                    If item.PerformanceLevel = 0 Then
+                        item.PerformanceLevel = 3 '-- default to 3
+                    End If
+                End If
+            End If
+        Next
+    End Sub
+    Private Function GetSelectedImprovementItem() As StudentImprovementItem
+        Dim objReturn As StudentImprovementItem
+
+        If dgvImprovementItems.CurrentRow IsNot Nothing Then
+            Dim row As DataGridViewRow = dgvImprovementItems.CurrentRow
+            objReturn = row.DataBoundItem
+            Return objReturn
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Sub dgvImprovementItems_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvImprovementItems.KeyDown
+        Dim item As StudentImprovementItem = GetSelectedImprovementItem()
+        If item IsNot Nothing Then
+            Select Case e.KeyCode
+                Case Keys.Add
+                    item.PerformanceLevel += 1
+                    e.SuppressKeyPress = True
+                Case Keys.Subtract
+                    item.PerformanceLevel -= 1
+                    e.SuppressKeyPress = True
+                Case Keys.Enter
+                    item.Included = True
+                    e.SuppressKeyPress = True
+            End Select
+        End If
+        dgvImprovementItems.Refresh()
     End Sub
 
+    Private Sub llblAbsent_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblAbsent.LinkClicked
+        txtOverall.Text = "Student was absent."
+    End Sub
 End Class
