@@ -57,6 +57,14 @@
         m_item.Name = txtName.Text
         m_item.Description = txtDescription.Text
         m_item.OrderingID = nudOrderingID.Value
+        If txtID.Enabled = True Then
+            m_item.ID = txtID.Text '-- only save if user left it read-only
+        End If
         Close()
+    End Sub
+
+    Private Sub llblChangeID_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblChangeID.LinkClicked
+        MessageBox.Show("Everything internally is connected to the ID. Changing the ID will impact your data." & Environment.NewLine & Environment.NewLine & "Please be careful.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        txtID.ReadOnly = False
     End Sub
 End Class

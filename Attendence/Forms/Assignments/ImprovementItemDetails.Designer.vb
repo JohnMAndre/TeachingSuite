@@ -29,7 +29,6 @@ Partial Class ImprovementItemDetails
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.txtDescription = New System.Windows.Forms.TextBox()
         Me.txtID = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.nudOrderingID = New System.Windows.Forms.NumericUpDown()
         Me.cboAssessmentCategory = New System.Windows.Forms.ComboBox()
@@ -38,6 +37,7 @@ Partial Class ImprovementItemDetails
         Me.lstAssessmentCategories = New System.Windows.Forms.ListBox()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.llblChangeID = New System.Windows.Forms.LinkLabel()
         CType(Me.nudOrderingID, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -96,15 +96,6 @@ Partial Class ImprovementItemDetails
         Me.txtID.Size = New System.Drawing.Size(404, 22)
         Me.txtID.TabIndex = 6
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 71)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(24, 16)
-        Me.Label4.TabIndex = 5
-        Me.Label4.Text = "ID:"
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -134,7 +125,7 @@ Partial Class ImprovementItemDetails
         'llblAddCategory
         '
         Me.llblAddCategory.AutoSize = True
-        Me.llblAddCategory.Location = New System.Drawing.Point(76, 216)
+        Me.llblAddCategory.Location = New System.Drawing.Point(76, 238)
         Me.llblAddCategory.Name = "llblAddCategory"
         Me.llblAddCategory.Size = New System.Drawing.Size(85, 16)
         Me.llblAddCategory.TabIndex = 11
@@ -144,7 +135,7 @@ Partial Class ImprovementItemDetails
         'llblDeleteCategory
         '
         Me.llblDeleteCategory.AutoSize = True
-        Me.llblDeleteCategory.Location = New System.Drawing.Point(63, 245)
+        Me.llblDeleteCategory.Location = New System.Drawing.Point(63, 267)
         Me.llblDeleteCategory.Name = "llblDeleteCategory"
         Me.llblDeleteCategory.Size = New System.Drawing.Size(98, 16)
         Me.llblDeleteCategory.TabIndex = 12
@@ -183,11 +174,22 @@ Partial Class ImprovementItemDetails
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
+        'llblChangeID
+        '
+        Me.llblChangeID.AutoSize = True
+        Me.llblChangeID.Location = New System.Drawing.Point(12, 71)
+        Me.llblChangeID.Name = "llblChangeID"
+        Me.llblChangeID.Size = New System.Drawing.Size(24, 16)
+        Me.llblChangeID.TabIndex = 16
+        Me.llblChangeID.TabStop = True
+        Me.llblChangeID.Text = "ID:"
+        '
         'ImprovementItemDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(512, 368)
+        Me.Controls.Add(Me.llblChangeID)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.lstAssessmentCategories)
@@ -197,7 +199,6 @@ Partial Class ImprovementItemDetails
         Me.Controls.Add(Me.nudOrderingID)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txtID)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtDescription)
         Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.Label3)
@@ -219,7 +220,6 @@ Partial Class ImprovementItemDetails
     Friend WithEvents txtName As System.Windows.Forms.TextBox
     Friend WithEvents txtDescription As System.Windows.Forms.TextBox
     Friend WithEvents txtID As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents nudOrderingID As System.Windows.Forms.NumericUpDown
     Friend WithEvents cboAssessmentCategory As System.Windows.Forms.ComboBox
@@ -228,4 +228,5 @@ Partial Class ImprovementItemDetails
     Friend WithEvents lstAssessmentCategories As System.Windows.Forms.ListBox
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents llblChangeID As System.Windows.Forms.LinkLabel
 End Class
