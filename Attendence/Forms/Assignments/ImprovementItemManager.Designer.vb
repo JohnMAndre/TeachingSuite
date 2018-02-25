@@ -29,6 +29,7 @@ Partial Class ImprovementItemManager
         Me.ActionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteSelectedImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditSelectedImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReorderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveItemupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveItemdownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,7 +38,6 @@ Partial Class ImprovementItemManager
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.EditSelectedImprovementItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -63,7 +63,7 @@ Partial Class ImprovementItemManager
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
         'ActionsToolStripMenuItem
@@ -77,15 +77,22 @@ Partial Class ImprovementItemManager
         '
         Me.NewImprovementItemToolStripMenuItem.Name = "NewImprovementItemToolStripMenuItem"
         Me.NewImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.NewImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(306, 22)
         Me.NewImprovementItemToolStripMenuItem.Text = "&New improvement item"
         '
         'DeleteSelectedImprovementItemToolStripMenuItem
         '
         Me.DeleteSelectedImprovementItemToolStripMenuItem.Name = "DeleteSelectedImprovementItemToolStripMenuItem"
-        Me.DeleteSelectedImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.DeleteSelectedImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
+        Me.DeleteSelectedImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Delete), System.Windows.Forms.Keys)
+        Me.DeleteSelectedImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(306, 22)
         Me.DeleteSelectedImprovementItemToolStripMenuItem.Text = "&Delete selected improvement item"
+        '
+        'EditSelectedImprovementItemToolStripMenuItem
+        '
+        Me.EditSelectedImprovementItemToolStripMenuItem.Name = "EditSelectedImprovementItemToolStripMenuItem"
+        Me.EditSelectedImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.EditSelectedImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(306, 22)
+        Me.EditSelectedImprovementItemToolStripMenuItem.Text = "&Edit selected improvement item..."
         '
         'ReorderToolStripMenuItem
         '
@@ -166,13 +173,6 @@ Partial Class ImprovementItemManager
         Me.OlvColumn3.AspectName = "AssessmentCategoryList"
         Me.OlvColumn3.Text = "Categories"
         Me.OlvColumn3.Width = 107
-        '
-        'EditSelectedImprovementItemToolStripMenuItem
-        '
-        Me.EditSelectedImprovementItemToolStripMenuItem.Name = "EditSelectedImprovementItemToolStripMenuItem"
-        Me.EditSelectedImprovementItemToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.EditSelectedImprovementItemToolStripMenuItem.Size = New System.Drawing.Size(297, 22)
-        Me.EditSelectedImprovementItemToolStripMenuItem.Text = "&Edit selected improvement item..."
         '
         'ImprovementItemManager
         '

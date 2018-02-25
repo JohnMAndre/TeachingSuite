@@ -49,4 +49,21 @@
         Dim frm As New ImprovementItemDetails(item)
         frm.Show()
     End Sub
+
+    Private Sub MoveItemdownToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveItemdownToolStripMenuItem.Click
+        Dim item As ImprovementItem = CType(olvImprovementItems.SelectedObject, ImprovementItem)
+        Dim intOldID As Integer = item.OrderingID
+        Dim intNewID As Integer = intOldID + 1
+        item.OrderingID = intNewID
+        olvImprovementItems.RefreshObject(item)
+
+        '-- change positions with other
+        For Each other As ImprovementItem In ThisSemester.ImprovementItems
+            If other.OrderingID = intNewID AndAlso other.ID <> item.ID Then '-- do not get the one we just changed, just the other
+                other.OrderingID = intOldID
+                olvImprovementItems.RefreshObject(other)
+                Exit For
+            End If
+        Next
+    End Sub
 End Class
