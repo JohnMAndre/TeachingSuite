@@ -46,6 +46,11 @@ Partial Class IndividualMarkInGroupPresentation
         Me.picPresentationMark = New System.Windows.Forms.PictureBox()
         Me.picContentMark = New System.Windows.Forms.PictureBox()
         Me.dgvImprovementItems = New System.Windows.Forms.DataGridView()
+        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chkNominate = New System.Windows.Forms.CheckBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtLocalName = New System.Windows.Forms.TextBox()
@@ -66,11 +71,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label27 = New System.Windows.Forms.Label()
         Me.nudPresentationQuality = New System.Windows.Forms.NumericUpDown()
         Me.llblGenerateImprovements = New System.Windows.Forms.LinkLabel()
-        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.llblAbsent = New System.Windows.Forms.LinkLabel()
         CType(Me.picLanguageMark, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picPresentationMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,6 +308,45 @@ Partial Class IndividualMarkInGroupPresentation
         Me.dgvImprovementItems.Size = New System.Drawing.Size(272, 306)
         Me.dgvImprovementItems.TabIndex = 28
         '
+        'IncludedColumn
+        '
+        Me.IncludedColumn.DataPropertyName = "Included"
+        Me.IncludedColumn.FillWeight = 10.0!
+        Me.IncludedColumn.HeaderText = "O"
+        Me.IncludedColumn.Name = "IncludedColumn"
+        Me.IncludedColumn.Width = 20
+        '
+        'NameColumn
+        '
+        Me.NameColumn.DataPropertyName = "Name"
+        Me.NameColumn.HeaderText = "Name"
+        Me.NameColumn.Name = "NameColumn"
+        Me.NameColumn.ReadOnly = True
+        Me.NameColumn.Width = 140
+        '
+        'PerformanceLevelColumn
+        '
+        Me.PerformanceLevelColumn.DataPropertyName = "PerformanceLevel"
+        Me.PerformanceLevelColumn.HeaderText = "Pe"
+        Me.PerformanceLevelColumn.Name = "PerformanceLevelColumn"
+        Me.PerformanceLevelColumn.Width = 25
+        '
+        'PreviousPerformanceColumn
+        '
+        Me.PreviousPerformanceColumn.DataPropertyName = "PreviousPerformanceLevel"
+        Me.PreviousPerformanceColumn.HeaderText = "Pr"
+        Me.PreviousPerformanceColumn.Name = "PreviousPerformanceColumn"
+        Me.PreviousPerformanceColumn.ReadOnly = True
+        Me.PreviousPerformanceColumn.Width = 25
+        '
+        'LastTimeIncludedColumn
+        '
+        Me.LastTimeIncludedColumn.DataPropertyName = "DaysSinceLastIncluded"
+        Me.LastTimeIncludedColumn.HeaderText = "D"
+        Me.LastTimeIncludedColumn.Name = "LastTimeIncludedColumn"
+        Me.LastTimeIncludedColumn.ReadOnly = True
+        Me.LastTimeIncludedColumn.Width = 34
+        '
         'chkNominate
         '
         Me.chkNominate.AutoSize = True
@@ -408,7 +447,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.nudFirstGrade.Size = New System.Drawing.Size(47, 22)
         Me.nudFirstGrade.TabIndex = 45
         Me.nudFirstGrade.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudFirstGrade.Value = New Decimal(New Integer() {100, 0, 0, 0})
         '
         'Label24
         '
@@ -435,7 +473,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.nudSecondGrade.Size = New System.Drawing.Size(47, 22)
         Me.nudSecondGrade.TabIndex = 47
         Me.nudSecondGrade.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.nudSecondGrade.Value = New Decimal(New Integer() {100, 0, 0, 0})
         '
         'Label26
         '
@@ -482,45 +519,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblGenerateImprovements.TabIndex = 53
         Me.llblGenerateImprovements.TabStop = True
         Me.llblGenerateImprovements.Text = "<< Gen"
-        '
-        'IncludedColumn
-        '
-        Me.IncludedColumn.DataPropertyName = "Included"
-        Me.IncludedColumn.FillWeight = 10.0!
-        Me.IncludedColumn.HeaderText = "O"
-        Me.IncludedColumn.Name = "IncludedColumn"
-        Me.IncludedColumn.Width = 20
-        '
-        'NameColumn
-        '
-        Me.NameColumn.DataPropertyName = "Name"
-        Me.NameColumn.HeaderText = "Name"
-        Me.NameColumn.Name = "NameColumn"
-        Me.NameColumn.ReadOnly = True
-        Me.NameColumn.Width = 140
-        '
-        'PerformanceLevelColumn
-        '
-        Me.PerformanceLevelColumn.DataPropertyName = "PerformanceLevel"
-        Me.PerformanceLevelColumn.HeaderText = "Pe"
-        Me.PerformanceLevelColumn.Name = "PerformanceLevelColumn"
-        Me.PerformanceLevelColumn.Width = 25
-        '
-        'PreviousPerformanceColumn
-        '
-        Me.PreviousPerformanceColumn.DataPropertyName = "PreviousPerformanceLevel"
-        Me.PreviousPerformanceColumn.HeaderText = "Pr"
-        Me.PreviousPerformanceColumn.Name = "PreviousPerformanceColumn"
-        Me.PreviousPerformanceColumn.ReadOnly = True
-        Me.PreviousPerformanceColumn.Width = 25
-        '
-        'LastTimeIncludedColumn
-        '
-        Me.LastTimeIncludedColumn.DataPropertyName = "DaysSinceLastIncluded"
-        Me.LastTimeIncludedColumn.HeaderText = "D"
-        Me.LastTimeIncludedColumn.Name = "LastTimeIncludedColumn"
-        Me.LastTimeIncludedColumn.ReadOnly = True
-        Me.LastTimeIncludedColumn.Width = 34
         '
         'llblAbsent
         '

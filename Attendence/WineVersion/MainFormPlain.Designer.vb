@@ -1721,7 +1721,7 @@ Partial Class MainFormPlain
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.StudentToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.ReportsToolStripMenuItem, Me.DataToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.StudentToolStripMenuItem, Me.ReportsToolStripMenuItem, Me.DataToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1040, 24)
@@ -1905,19 +1905,19 @@ Partial Class MainFormPlain
         'FirstTryToolStripMenuItem
         '
         Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
-        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.FirstTryToolStripMenuItem.Text = "First try"
         '
         'SecondTryToolStripMenuItem
         '
         Me.SecondTryToolStripMenuItem.Name = "SecondTryToolStripMenuItem"
-        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.SecondTryToolStripMenuItem.Text = "Second try"
         '
         'ThirdTryToolStripMenuItem
         '
         Me.ThirdTryToolStripMenuItem.Name = "ThirdTryToolStripMenuItem"
-        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.ThirdTryToolStripMenuItem.Text = "Third try"
         '
         'MarkGroupPresentationToolStripMenuItem
@@ -1930,13 +1930,14 @@ Partial Class MainFormPlain
         'FirstTryMarkGroupPresentationToolStripMenuItem1
         '
         Me.FirstTryMarkGroupPresentationToolStripMenuItem1.Name = "FirstTryMarkGroupPresentationToolStripMenuItem1"
-        Me.FirstTryMarkGroupPresentationToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.FirstTryMarkGroupPresentationToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
+        Me.FirstTryMarkGroupPresentationToolStripMenuItem1.Size = New System.Drawing.Size(164, 22)
         Me.FirstTryMarkGroupPresentationToolStripMenuItem1.Text = "First try..."
         '
         'SecondTryMarkGroupPresentationToolStripMenuItem1
         '
         Me.SecondTryMarkGroupPresentationToolStripMenuItem1.Name = "SecondTryMarkGroupPresentationToolStripMenuItem1"
-        Me.SecondTryMarkGroupPresentationToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.SecondTryMarkGroupPresentationToolStripMenuItem1.Size = New System.Drawing.Size(164, 22)
         Me.SecondTryMarkGroupPresentationToolStripMenuItem1.Text = "&Second try..."
         '
         'StudentToolStripMenuItem

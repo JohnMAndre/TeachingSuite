@@ -1,5 +1,6 @@
 ﻿Public Class GroupPresentationAssessment
 
+    Private sw As Stopwatch
 
     Public Sub New(studentList As List(Of Student), asmt As ClassAssignment, attempt As Semester.MarkingTry)
 
@@ -13,6 +14,8 @@
         If studentList.Count > 0 Then
             Me.Text &= " - " & studentList(0).StudentTeam
         End If
+
+        sw = Stopwatch.StartNew()
 
     End Sub
     Public Sub LoadStudent(stud As Student, asmt As ClassAssignment, attempt As Semester.MarkingTry)
@@ -33,5 +36,9 @@
             MessageBox.Show("There was an error saving: " & ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lblTimer.Text = sw.Elapsed.ToString("m\:ss")
     End Sub
 End Class
