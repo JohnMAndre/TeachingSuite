@@ -3503,7 +3503,7 @@ Public Class Student
             End If
         End Set
     End Property
-    Public ReadOnly Property Photo As Image
+    Public Property Photo As Image
         Get
             If EmailAddress IsNot Nothing Then
                 Dim strImagePath As String = System.IO.Path.Combine(GetImageFolder, EmailAddress.ToLower().ToLower) & ".jpg"
@@ -3520,8 +3520,16 @@ Public Class Student
             Else
                 Return Nothing
             End If
-
         End Get
+        Set(value As Image)
+            Dim strImagePath As String = System.IO.Path.Combine(GetImageFolder, EmailAddress.ToLower().ToLower) & ".jpg"
+            If value Is Nothing Then
+                '-- delete image if it exists
+
+            Else
+                value.Save(strImagePath, System.Drawing.Imaging.ImageFormat.Jpeg)
+            End If
+        End Set
     End Property
     Public ReadOnly Property TotalAbsences As Decimal
         Get

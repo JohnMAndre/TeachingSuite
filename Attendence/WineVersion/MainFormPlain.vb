@@ -1766,7 +1766,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub StudentphotoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles StudentphotoToolStripMenuItem.Click
-        'picStudent.Visible = Not picStudent.Visible
+        picStudent.Visible = Not picStudent.Visible
     End Sub
 
     Private Sub olvStudents_SelectedIndexChanged(sender As System.Object, e As System.EventArgs)
@@ -3092,4 +3092,43 @@ Public Class MainFormPlain
         End Set
     End Property
 
+    Private Sub CaptureStudentImageFromClipboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CaptureStudentImageFromClipboardToolStripMenuItem.Click
+        Dim stud As Student
+        Dim img As Image
+        Try
+
+            stud = GetSelectedStudentGridCanOnlyBeOne()
+            If stud Is Nothing Then
+                MessageBox.Show("Please select one student first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            img = Clipboard.GetImage()
+            If img Is Nothing Then
+                MessageBox.Show("There is no image on the clipboard.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            stud.Photo = img '-- save it back
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error capturing the image: " & ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub dgvStudents_SelectionChanged(sender As Object, e As EventArgs) Handles dgvStudents.SelectionChanged
+        Try
+            If picStudent.Visible Then
+                Dim stud As Student
+                stud = GetSelectedStudentGridCanOnlyBeOne()
+                If stud IsNot Nothing Then
+                    picStudent.Image = stud.Photo
+                End If
+            End If
+        Catch ex As Exception
+            Log(ex) '-- ignore and continue
+        End Try
+
+    End Sub
 End Class
