@@ -42,9 +42,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblLanguageWeight = New System.Windows.Forms.Label()
         Me.lblPresentationWeight = New System.Windows.Forms.Label()
         Me.lblContentWeight = New System.Windows.Forms.Label()
-        Me.picLanguageMark = New System.Windows.Forms.PictureBox()
-        Me.picPresentationMark = New System.Windows.Forms.PictureBox()
-        Me.picContentMark = New System.Windows.Forms.PictureBox()
         Me.dgvImprovementItems = New System.Windows.Forms.DataGridView()
         Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -72,14 +69,18 @@ Partial Class IndividualMarkInGroupPresentation
         Me.nudPresentationQuality = New System.Windows.Forms.NumericUpDown()
         Me.llblGenerateImprovements = New System.Windows.Forms.LinkLabel()
         Me.llblAbsent = New System.Windows.Forms.LinkLabel()
-        CType(Me.picLanguageMark, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picPresentationMark, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picContentMark, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lblImprovementCharCount = New System.Windows.Forms.Label()
+        Me.picLanguageMark = New System.Windows.Forms.PictureBox()
+        Me.picPresentationMark = New System.Windows.Forms.PictureBox()
+        Me.picContentMark = New System.Windows.Forms.PictureBox()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudResearchQuality, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudPresentationQuality, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picLanguageMark, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picPresentationMark, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picContentMark, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -111,6 +112,8 @@ Partial Class IndividualMarkInGroupPresentation
         '
         'txtOverall
         '
+        Me.txtOverall.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtOverall.Location = New System.Drawing.Point(96, 182)
         Me.txtOverall.Multiline = True
         Me.txtOverall.Name = "txtOverall"
@@ -120,6 +123,9 @@ Partial Class IndividualMarkInGroupPresentation
         '
         'txtImprovement
         '
+        Me.txtImprovement.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtImprovement.Location = New System.Drawing.Point(96, 235)
         Me.txtImprovement.Multiline = True
         Me.txtImprovement.Name = "txtImprovement"
@@ -224,6 +230,7 @@ Partial Class IndividualMarkInGroupPresentation
         '
         'lblAverageGrade
         '
+        Me.lblAverageGrade.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblAverageGrade.AutoSize = True
         Me.lblAverageGrade.Location = New System.Drawing.Point(312, 185)
         Me.lblAverageGrade.Name = "lblAverageGrade"
@@ -258,47 +265,9 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblContentWeight.TabIndex = 25
         Me.lblContentWeight.Text = "--"
         '
-        'picLanguageMark
-        '
-        Me.picLanguageMark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picLanguageMark.Image = CType(resources.GetObject("picLanguageMark.Image"), System.Drawing.Image)
-        Me.picLanguageMark.Location = New System.Drawing.Point(68, 158)
-        Me.picLanguageMark.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.picLanguageMark.Name = "picLanguageMark"
-        Me.picLanguageMark.Size = New System.Drawing.Size(239, 24)
-        Me.picLanguageMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picLanguageMark.TabIndex = 4
-        Me.picLanguageMark.TabStop = False
-        '
-        'picPresentationMark
-        '
-        Me.picPresentationMark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picPresentationMark.Image = CType(resources.GetObject("picPresentationMark.Image"), System.Drawing.Image)
-        Me.picPresentationMark.Location = New System.Drawing.Point(68, 134)
-        Me.picPresentationMark.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.picPresentationMark.Name = "picPresentationMark"
-        Me.picPresentationMark.Size = New System.Drawing.Size(239, 24)
-        Me.picPresentationMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picPresentationMark.TabIndex = 2
-        Me.picPresentationMark.TabStop = False
-        '
-        'picContentMark
-        '
-        Me.picContentMark.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.picContentMark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picContentMark.Image = Global.Teaching.My.Resources.Resources.MarkingGridForPresentations
-        Me.picContentMark.Location = New System.Drawing.Point(68, 110)
-        Me.picContentMark.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.picContentMark.Name = "picContentMark"
-        Me.picContentMark.Size = New System.Drawing.Size(239, 24)
-        Me.picContentMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picContentMark.TabIndex = 0
-        Me.picContentMark.TabStop = False
-        '
         'dgvImprovementItems
         '
-        Me.dgvImprovementItems.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.dgvImprovementItems.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvImprovementItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvImprovementItems.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IncludedColumn, Me.NameColumn, Me.PerformanceLevelColumn, Me.PreviousPerformanceColumn, Me.LastTimeIncludedColumn})
@@ -512,6 +481,7 @@ Partial Class IndividualMarkInGroupPresentation
         '
         'llblGenerateImprovements
         '
+        Me.llblGenerateImprovements.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblGenerateImprovements.AutoSize = True
         Me.llblGenerateImprovements.Location = New System.Drawing.Point(313, 247)
         Me.llblGenerateImprovements.Name = "llblGenerateImprovements"
@@ -530,10 +500,58 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblAbsent.TabStop = True
         Me.llblAbsent.Text = "Absent"
         '
+        'lblImprovementCharCount
+        '
+        Me.lblImprovementCharCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblImprovementCharCount.AutoSize = True
+        Me.lblImprovementCharCount.Location = New System.Drawing.Point(310, 268)
+        Me.lblImprovementCharCount.Name = "lblImprovementCharCount"
+        Me.lblImprovementCharCount.Size = New System.Drawing.Size(15, 16)
+        Me.lblImprovementCharCount.TabIndex = 55
+        Me.lblImprovementCharCount.Text = "0"
+        '
+        'picLanguageMark
+        '
+        Me.picLanguageMark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picLanguageMark.Image = CType(resources.GetObject("picLanguageMark.Image"), System.Drawing.Image)
+        Me.picLanguageMark.Location = New System.Drawing.Point(68, 158)
+        Me.picLanguageMark.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.picLanguageMark.Name = "picLanguageMark"
+        Me.picLanguageMark.Size = New System.Drawing.Size(239, 24)
+        Me.picLanguageMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picLanguageMark.TabIndex = 4
+        Me.picLanguageMark.TabStop = False
+        '
+        'picPresentationMark
+        '
+        Me.picPresentationMark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picPresentationMark.Image = CType(resources.GetObject("picPresentationMark.Image"), System.Drawing.Image)
+        Me.picPresentationMark.Location = New System.Drawing.Point(68, 134)
+        Me.picPresentationMark.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.picPresentationMark.Name = "picPresentationMark"
+        Me.picPresentationMark.Size = New System.Drawing.Size(239, 24)
+        Me.picPresentationMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picPresentationMark.TabIndex = 2
+        Me.picPresentationMark.TabStop = False
+        '
+        'picContentMark
+        '
+        Me.picContentMark.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picContentMark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picContentMark.Image = Global.Teaching.My.Resources.Resources.MarkingGridForPresentationsInverse
+        Me.picContentMark.Location = New System.Drawing.Point(68, 110)
+        Me.picContentMark.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.picContentMark.Name = "picContentMark"
+        Me.picContentMark.Size = New System.Drawing.Size(239, 24)
+        Me.picContentMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picContentMark.TabIndex = 0
+        Me.picContentMark.TabStop = False
+        '
         'IndividualMarkInGroupPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.lblImprovementCharCount)
         Me.Controls.Add(Me.llblAbsent)
         Me.Controls.Add(Me.llblGenerateImprovements)
         Me.Controls.Add(Me.nudPresentationQuality)
@@ -582,14 +600,14 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "IndividualMarkInGroupPresentation"
         Me.Size = New System.Drawing.Size(644, 306)
-        CType(Me.picLanguageMark, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picPresentationMark, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picContentMark, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudResearchQuality, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudPresentationQuality, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picLanguageMark, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picPresentationMark, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picContentMark, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -643,5 +661,6 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents PreviousPerformanceColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LastTimeIncludedColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents llblAbsent As System.Windows.Forms.LinkLabel
+    Friend WithEvents lblImprovementCharCount As System.Windows.Forms.Label
 
 End Class

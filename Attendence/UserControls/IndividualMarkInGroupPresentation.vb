@@ -221,7 +221,7 @@
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In m_improvementItems
                 If item.Included Then
-                    strReturn &= " " & item.BaseImprovementItem.Description
+                    strReturn &= "* " & item.BaseImprovementItem.Description
                     If includePerformanceLevel Then
                         strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                         Select Case item.PerformanceLevel
@@ -236,7 +236,7 @@
                             Case 5
                                 strReturn &= "Already great"
                         End Select
-                        strReturn &= ")" & Environment.NewLine
+                        strReturn &= ")" & Environment.NewLine & Environment.NewLine
                     End If
                 End If
             Next
@@ -289,6 +289,9 @@
                 Case Keys.Enter
                     item.Included = True
                     e.SuppressKeyPress = True
+                Case Keys.Delete
+                    item.Included = False
+                    e.SuppressKeyPress = True
             End Select
         End If
         dgvImprovementItems.Refresh()
@@ -296,5 +299,25 @@
 
     Private Sub llblAbsent_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblAbsent.LinkClicked
         txtOverall.Text = "Student was absent."
+    End Sub
+
+    Private Sub txtImprovement_TextChanged(sender As Object, e As EventArgs) Handles txtImprovement.TextChanged
+        lblImprovementCharCount.Text = txtImprovement.Text.Length
+    End Sub
+
+    Private Sub dgvImprovementItems_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvImprovementItems.CellValueChanged
+        Try
+            If e.RowIndex >= 0 Then
+                Dim item As StudentImprovementItem = CType(dgvImprovementItems.Rows(e.RowIndex).DataBoundItem, StudentImprovementItem)
+                item.Included = True
+                dgvImprovementItems.Refresh()
+            End If
+        Catch ex As Exception
+            Log(ex)
+        End Try
+    End Sub
+
+    Private Sub picLanguageMark_Click(sender As Object, e As EventArgs) Handles picLanguageMark.Click
+
     End Sub
 End Class

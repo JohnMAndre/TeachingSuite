@@ -818,6 +818,7 @@
     <None Include="Resources\MarkingGridForPresentations4.0.png" />
     <None Include="Resources\MarkingGridForPresentations4.5.png" />
     <None Include="Resources\MarkingGridForPresentations5.0.png" />
+    <None Include="Resources\MarkingGridForPresentationsInverse.png" />
     <Content Include="WineVersion\Notes.txt" />
     <Content Include="XMLFile1.xml" />
     <None Include="Resources\download.png" />

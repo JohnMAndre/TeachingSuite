@@ -3525,8 +3525,12 @@ Public Class Student
             Dim strImagePath As String = System.IO.Path.Combine(GetImageFolder, EmailAddress.ToLower().ToLower) & ".jpg"
             If value Is Nothing Then
                 '-- delete image if it exists
-
+                If System.IO.File.Exists(strImagePath) Then
+                    AddToActivityLog("Deleted image.")
+                    System.IO.File.Delete(strImagePath)
+                End If
             Else
+                AddToActivityLog("Saved new image.")
                 value.Save(strImagePath, System.Drawing.Imaging.ImageFormat.Jpeg)
             End If
         End Set
