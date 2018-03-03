@@ -2448,6 +2448,7 @@ Partial Class MainFormPlain
         Me.UpgradeToolStripMenuItem.Name = "UpgradeToolStripMenuItem"
         Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.UpgradeToolStripMenuItem.Text = "&Upgrade..."
+        Me.UpgradeToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator16
         '

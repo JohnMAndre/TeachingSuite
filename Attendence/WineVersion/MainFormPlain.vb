@@ -2602,8 +2602,10 @@ Public Class MainFormPlain
     End Sub
     Private Sub CheckForupdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForupdatesToolStripMenuItem.Click
         Try
-            Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
-            System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- this app is not supporting betas yet, but the updater does
+            'Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
+            'System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- this app is not supporting betas yet, but the updater does
+            System.Diagnostics.Process.Start("https://sites.google.com/a/johnmandre.com/educators/teaching-app-news") '-- this app is not supporting betas yet, but the updater does
+
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error launching the updater (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
