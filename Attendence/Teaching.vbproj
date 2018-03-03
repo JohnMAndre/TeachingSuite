@@ -786,7 +786,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Classes\ClassDiagram1.cd" />
     <None Include="eula.rtf" />
     <None Include="getting-started.rtf" />
     <None Include="My Project\app.manifest" />

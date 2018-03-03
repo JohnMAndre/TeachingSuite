@@ -463,6 +463,13 @@
                     PresentationLanguageWeight = 33
                 End If
 
+                xElement = xDoc.SelectSingleNode("//GroupPresentationUpdatesPresentationAndResearchPerformanceLevel")
+                If xElement IsNot Nothing Then
+                    GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = ConvertToBool(xElement.InnerText, False)
+                Else
+                    GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = True
+                End If
+
 
 
                 LoadAutoTexts(xDoc)
@@ -522,6 +529,7 @@
                 PresentationContentWeight = 34
                 PresentationPresentationWeight = 33
                 PresentationLanguageWeight = 33
+                GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = True
 
                 LoadAutoTextDefaults()
             End If
@@ -614,6 +622,7 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationContentWeight", PresentationContentWeight))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationPresentationWeight", PresentationPresentationWeight))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationLanguageWeight", PresentationLanguageWeight))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "GroupPresentationUpdatesPresentationAndResearchPerformanceLevel", GroupPresentationUpdatesPresentationAndResearchPerformanceLevel))
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
@@ -702,6 +711,7 @@
         End Try
     End Sub
 #Region " Public Properties "
+    Public Property GroupPresentationUpdatesPresentationAndResearchPerformanceLevel As Boolean
     Public Property PresentationContentWeight As Integer
     Public Property PresentationPresentationWeight As Integer
     Public Property PresentationLanguageWeight As Integer

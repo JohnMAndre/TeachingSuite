@@ -400,7 +400,7 @@ Public Class ActualSessionItem
     End Property
     Public ReadOnly Property TimeOfDay As String
         Get
-            Return StartDateTime.ToString("H:mm")
+            Return StartDateTime.ToString("d MMM - H:mm")
         End Get
     End Property
 

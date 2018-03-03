@@ -64,7 +64,7 @@ Public Class OptionsForm
             AppSettings.HighlightAttendanceNoPresentationQuality = False
         End If
 
-
+        '-- Marking
         AppSettings.DataBackupsToRetain = nudDataBackupsToRetain.Value
         AppSettings.OutcomeExportMarkPass = txtOutcomeMarkPass.Text
         AppSettings.OutcomeExportMarkFail = txtOutcomeMarkFail.Text
@@ -88,6 +88,7 @@ Public Class OptionsForm
         AppSettings.ImprovementFeedbackForFailAll = txtImprovementWithFailAll.Text
 
         AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements = chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked
+        AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Checked
 
         Me.DialogResult = DialogResult.OK
 
@@ -153,7 +154,7 @@ Public Class OptionsForm
                 rdoAttendanceHighlightNothing.Checked = True
             End If
 
-
+            '-- Marking
             txtPassResultsText.Text = AppSettings.PassResultsText
             txtFailResultsText.Text = AppSettings.FailResultsText
             txtUnknownResultsText.Text = AppSettings.UnknownResultsText
@@ -184,6 +185,7 @@ Public Class OptionsForm
             txtImprovementWithFailAll.Text = AppSettings.ImprovementFeedbackForFailAll
 
             chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked = AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements
+            chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Checked = AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel
 
             btnOK.Enabled = False
 
@@ -224,6 +226,10 @@ Public Class OptionsForm
     End Sub
 
     Private Sub chkLoadSemesterCacheOnStartup_CheckedChanged(sender As Object, e As EventArgs) Handles chkLoadSemesterCacheOnStartup.CheckedChanged
+        btnOK.Enabled = True
+    End Sub
+
+    Private Sub chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel_CheckedChanged(sender As Object, e As EventArgs) Handles chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.CheckedChanged
         btnOK.Enabled = True
     End Sub
 End Class

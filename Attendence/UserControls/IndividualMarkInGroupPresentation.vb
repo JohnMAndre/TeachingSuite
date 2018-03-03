@@ -125,38 +125,50 @@
 
         Dim dblPosition As Double = (e.X / pic.Width)
         Dim intGrade As Integer
+        Dim intPerformanceLevel As Integer '-- for tracking research and presentation skills
         Select Case dblPosition
             Case 0 To 0.05
+                intPerformanceLevel = 0
                 intGrade = 0
                 pic.Image = My.Resources.MarkingGridForPresentations0_0
             Case 0.05 To 0.15
+                intPerformanceLevel = 20
                 intGrade = 0.1 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations0_5
             Case 0.15 To 0.25
+                intPerformanceLevel = 30
                 intGrade = 0.2 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations1_0
             Case 0.25 To 0.35
+                intPerformanceLevel = 35
                 intGrade = 0.3 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations1_5
             Case 0.35 To 0.45
+                intPerformanceLevel = 40 '-- just pass
                 intGrade = 0.4 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations2_0
             Case 0.45 To 0.55
+                intPerformanceLevel = 50
                 intGrade = 0.5 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations2_5
             Case 0.55 To 0.65
+                intPerformanceLevel = 60
                 intGrade = 0.6 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations3_0
             Case 0.65 To 0.75
+                intPerformanceLevel = 65
                 intGrade = 0.7 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations3_5
             Case 0.75 To 0.85
+                intPerformanceLevel = 70 '-- first class
                 intGrade = 0.8 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations4_0
             Case 0.85 To 0.95
+                intPerformanceLevel = 80
                 intGrade = 0.9 * m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations4_5
             Case 0.95 To 1
+                intPerformanceLevel = 90 '-- nobody gets above 90% in UK
                 intGrade = m_studentAssignment.BaseAssignment.MaxPoints
                 pic.Image = My.Resources.MarkingGridForPresentations5_0
             Case Else
@@ -166,8 +178,14 @@
         Select Case pic.Name
             Case "picContentMark"
                 m_intContentGrade = intGrade
+                If AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel Then
+                    nudResearchQuality.Value = intPerformanceLevel
+                End If
             Case "picPresentationMark"
                 m_intPresentationGrade = intGrade
+                If AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel Then
+                    nudPresentationQuality.Value = intPerformanceLevel
+                End If
             Case "picLanguageMark"
                 m_intLanguageGrade = intGrade
         End Select
@@ -299,6 +317,7 @@
 
     Private Sub llblAbsent_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblAbsent.LinkClicked
         txtOverall.Text = "Student was absent."
+        txtImprovement.Text &= "Please attend presentations in the future."
     End Sub
 
     Private Sub txtImprovement_TextChanged(sender As Object, e As EventArgs) Handles txtImprovement.TextChanged
@@ -318,6 +337,14 @@
     End Sub
 
     Private Sub picLanguageMark_Click(sender As Object, e As EventArgs) Handles picLanguageMark.Click
+
+    End Sub
+
+    Private Sub picContentMark_Click(sender As Object, e As EventArgs) Handles picContentMark.Click
+
+    End Sub
+
+    Private Sub picPresentationMark_Click(sender As Object, e As EventArgs) Handles picPresentationMark.Click
 
     End Sub
 End Class
