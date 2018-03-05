@@ -240,6 +240,7 @@
             For Each item As StudentImprovementItem In m_improvementItems
                 If item.Included Then
                     strReturn &= "* " & item.BaseImprovementItem.Description
+                    item.DateLastIncluded = Date.Now() '-- track this
                     If includePerformanceLevel Then
                         strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                         Select Case item.PerformanceLevel

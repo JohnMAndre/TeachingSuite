@@ -413,6 +413,10 @@ Public Class EmailQuizResults
                 Dim propStudentAnswers As System.Reflection.PropertyInfo = typStudentAnswers.GetProperty("Question" & intCounter.ToString())
                 Dim strStudentAnswer As String = propQuestions.GetValue(studentAnswers)
 
+                If strStudentAnswer.Trim.Length = 0 Then
+                    strStudentAnswer = "<no answer given>"
+                End If
+
 
                 If strCorrectAnswer.ToUpper() = "STORE" Then
                     strInfoToStore &= "Q" & intCounter.ToString() & ": " & strStudentAnswer & "; "
@@ -465,8 +469,6 @@ Public Class EmailQuizResults
 
         Dim dblScore As Double = intCorrectAnswers / intQuestions
 
-        strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%")
-
         If AppSettings.EmailAsHTML Then
             strMessage &= "There were " & intQuestions & " questions and you got " & intCorrectAnswers & " of them correct. Your score is " & dblScore.ToString("##0%")
         Else
@@ -491,6 +493,7 @@ Public Class EmailQuizResults
         If AppSettings.EmailAsHTML Then
             strMessage &= "<br /><br />" & Environment.NewLine
         Else
+            strMessage &= Environment.NewLine
             strMessage &= Environment.NewLine
         End If
 
@@ -568,6 +571,7 @@ Public Class EmailQuizResults
 
     Private Sub EmailQuizResults_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         AppSettings.EmailSendingAccount = nudEmailSendingAccount.Value
+        m_schoolClass.ClassGroup.LastQuizName = txtQuizName.Text
     End Sub
 
     Private Sub EmailQuizResults_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load

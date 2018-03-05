@@ -2604,7 +2604,7 @@ Public Class MainFormPlain
         Try
             'Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
             'System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- this app is not supporting betas yet, but the updater does
-            System.Diagnostics.Process.Start("https://sites.google.com/a/johnmandre.com/educators/teaching-app-news") '-- this app is not supporting betas yet, but the updater does
+            System.Diagnostics.Process.Start("http://educators.johnmandre.com/teaching-app-news") '-- Simpler, since I play to take TrulyMail.com offline
 
         Catch ex As Exception
             Log(ex)
