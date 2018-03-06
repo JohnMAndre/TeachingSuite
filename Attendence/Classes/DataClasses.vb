@@ -3676,14 +3676,16 @@ Public Class Student
             Next
 
             Dim xItems As Xml.XmlElement = xDoc.CreateElement("StudentImprovementItems")
-            Dim xItem As Xml.XmlElement
+            '-- Moving logic to "item.GetXMLElementToPersist"
+            'Dim xItem As Xml.XmlElement
             For Each item As StudentImprovementItem In Me.ImprovementItems
-                xItem = xDoc.CreateElement("StudentImprovementItem")
-                xItem.SetAttribute("ID", item.BaseImprovementItem.ID)
-                xItem.SetAttribute("DateAdded", item.DateAdded.ToString(DATE_FORMAT_XML))
-                xItem.SetAttribute("DateLastIncluded", item.DateLastIncluded.ToString(DATE_FORMAT_XML))
-                xItem.SetAttribute("PerformanceLevel", item.PerformanceLevel.ToString())
-                xItems.AppendChild(xItem)
+                'xItem = xDoc.CreateElement("StudentImprovementItem")
+                'xItem.SetAttribute("ID", item.BaseImprovementItem.ID)
+                'xItem.SetAttribute("DateAdded", item.DateAdded.ToString(DATE_FORMAT_XML))
+                'xItem.SetAttribute("DateLastIncluded", item.DateLastIncluded.ToString(DATE_FORMAT_XML))
+                'xItem.SetAttribute("PerformanceLevel", item.PerformanceLevel.ToString())
+                'xItems.AppendChild(xItem)
+                xItems.AppendChild(item.GetXMLElementToPersist(xDoc))
             Next
             xStudentElement.AppendChild(xItems)
 
@@ -3825,25 +3827,22 @@ Public Class Student
         Dim item As StudentImprovementItem
         '-- Add improvementitems for this student
         For Each xItem In xItems
-            item = New StudentImprovementItem(Me)
-            item.DateAdded = ConvertToDateFromXML(xItem.GetAttribute("DateAdded"), DATE_NO_DATE)
-            '-- 24 Jan 2017 I am adding PerfLevel for improvementitems
-            '   Note: This has to be done before assigning the baseimprovementitem or history logging will take place
-            strTemp = xItem.GetAttribute("PerformanceLevel")
-            item.DateLastIncluded = ConvertToDateFromXML(xItem.GetAttribute("DateLastIncluded"), DATE_NO_DATE)
+            item = New StudentImprovementItem(xItem, Me)
+            'item.DateAdded = ConvertToDateFromXML(xItem.GetAttribute("DateAdded"), DATE_NO_DATE)
+            ''-- 24 Jan 2017 I am adding PerfLevel for improvementitems
+            ''   Note: This has to be done before assigning the baseimprovementitem or history logging will take place
+            'strTemp = xItem.GetAttribute("PerformanceLevel")
+            'item.DateLastIncluded = ConvertToDateFromXML(xItem.GetAttribute("DateLastIncluded"), DATE_NO_DATE)
 
-            item.PerformanceLevel = ConvertToByte(strTemp, 3) '-- If the data has no perfLevel then we just start at 3 (wrong but not horrible)
-            item.PreviousPerformanceLevel = item.PerformanceLevel '-- Show value when data was last loaded
+            'item.PerformanceLevel = ConvertToByte(strTemp, 3) '-- If the data has no perfLevel then we just start at 3 (wrong but not horrible)
+            'item.PreviousPerformanceLevel = item.PerformanceLevel '-- Show value when data was last loaded
 
-
-
-            For Each baseItem As ImprovementItem In Me.SchoolClass.ClassGroup.Semester.ImprovementItems
-                If baseItem.ID.ToUpper() = xItem.GetAttribute("ID").ToUpper() Then
-                    item.BaseImprovementItem = baseItem
-                    Exit For
-                End If
-            Next
-
+            'For Each baseItem As ImprovementItem In Me.SchoolClass.ClassGroup.Semester.ImprovementItems
+            '    If baseItem.ID.ToUpper() = xItem.GetAttribute("ID").ToUpper() Then
+            '        item.BaseImprovementItem = baseItem
+            '        Exit For
+            '    End If
+            'Next
 
             If item.BaseImprovementItem Is Nothing Then
                 '-- the base item no longer exists, so remove from student
@@ -3851,7 +3850,6 @@ Public Class Student
             Else
                 Me.ImprovementItems.Add(item)
             End If
-
         Next
 
         Dim xAssignmentList As Xml.XmlNodeList = xElement.SelectNodes("StudentAssignment")
@@ -4291,15 +4289,61 @@ Public Class ImprovementItem '-- This is the master list of what counts as an im
     End Function
 End Class
 Public Class StudentImprovementItem '-- This is for the student and references the base item
+    Private m_boolLoading As Boolean
     Public Sub New(student As Student)
+        m_boolLoading = True
         Me.Student = student
         DateAdded = DATE_NO_DATE
         DateLastIncluded = DATE_NO_DATE
+        m_boolLoading = False
     End Sub
+    Public Sub New(xElement As Xml.XmlElement, student As Student)
+        m_boolLoading = True
+        DateAdded = ConvertToDateFromXML(xElement.GetAttribute("DateAdded"), DATE_NO_DATE)
+        '   Note: This has to be done before assigning the baseimprovementitem or history logging will take place
+        Me.Student = student
+        Dim strTemp As String
+        strTemp = xElement.GetAttribute("PerformanceLevel")
+        DateLastIncluded = ConvertToDateFromXML(xElement.GetAttribute("DateLastIncluded"), DATE_NO_DATE)
+        m_intQuantityGiven = ConvertToInt32(xElement.GetAttribute("QuantityGiven"), 0)
+        PerformanceLevel = ConvertToByte(strTemp, 3) '-- If the data has no perfLevel then we just start at 3 (wrong but not horrible)
+        PreviousPerformanceLevel = PerformanceLevel '-- Show value when data was last loaded
+
+        For Each baseItem As ImprovementItem In student.SchoolClass.ClassGroup.Semester.ImprovementItems
+            If baseItem.ID.ToUpper() = xElement.GetAttribute("ID").ToUpper() Then
+                BaseImprovementItem = baseItem
+                Exit For
+            End If
+        Next
+        m_boolLoading = False
+    End Sub
+    Public Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
+        Dim xItem As Xml.XmlElement = xDoc.CreateElement("StudentImprovementItem")
+        xItem.SetAttribute("ID", BaseImprovementItem.ID)
+        xItem.SetAttribute("DateAdded", DateAdded.ToString(DATE_FORMAT_XML))
+        xItem.SetAttribute("DateLastIncluded", DateLastIncluded.ToString(DATE_FORMAT_XML))
+        xItem.SetAttribute("PerformanceLevel", PerformanceLevel.ToString())
+        xItem.SetAttribute("QuantityGiven", m_intQuantityGiven.ToString())
+        Return xItem
+    End Function
+
     Public Property Student As Student
     Public Property BaseImprovementItem As ImprovementItem
-    Public Property DateAdded As Date
+    Public Property DateAdded As Date '-- TODO: Should this be readonly and generated in the CTOR? Seems like all StudentImprovementItems have been added (or they would not be connected to the student)
+    Private m_dtDateLastIncluded As Date
     Public Property DateLastIncluded As Date
+        Get
+            Return m_dtDateLastIncluded
+        End Get
+        Set(value As Date)
+            If (Not m_boolLoading) AndAlso (m_dtDateLastIncluded <> value) Then
+                '-- this item was given on a different date than previously
+                '   so we increment the number of times given
+                m_intQuantityGiven += 1
+            End If
+            m_dtDateLastIncluded = value
+        End Set
+    End Property
     Public Property PreviousPerformanceLevel As Integer '-- not persisted, just for working with while marking (to show user pre-marking value)
     Public Property Included As Boolean '-- also not persisted, just for working while marking
     Public ReadOnly Property Name As String
@@ -4317,7 +4361,12 @@ Public Class StudentImprovementItem '-- This is for the student and references t
             End If
         End Get
     End Property
-
+    Private m_intQuantityGiven As Integer
+    Public ReadOnly Property QuantityGiven As Integer '-- Number of times this item was given to this student during this semester
+        Get
+            Return m_intQuantityGiven
+        End Get
+    End Property
     Public Overrides Function ToString() As String
         If BaseImprovementItem IsNot Nothing Then
             Return BaseImprovementItem.Name & " (" & BaseImprovementItem.ID & ")"

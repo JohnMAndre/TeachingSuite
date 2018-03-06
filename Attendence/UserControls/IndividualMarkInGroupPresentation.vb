@@ -240,7 +240,7 @@
             For Each item As StudentImprovementItem In m_improvementItems
                 If item.Included Then
                     strReturn &= "* " & item.BaseImprovementItem.Description
-                    item.DateLastIncluded = Date.Now() '-- track this
+                    item.IncludeToday() '-- for tracking
                     If includePerformanceLevel Then
                         strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                         Select Case item.PerformanceLevel
@@ -279,6 +279,7 @@
                     If item.PerformanceLevel = 0 Then
                         item.PerformanceLevel = 3 '-- default to 3
                     End If
+                    item.IncludeToday()
                 End If
             End If
         Next
@@ -337,15 +338,10 @@
         End Try
     End Sub
 
-    Private Sub picLanguageMark_Click(sender As Object, e As EventArgs) Handles picLanguageMark.Click
-
-    End Sub
-
-    Private Sub picContentMark_Click(sender As Object, e As EventArgs) Handles picContentMark.Click
-
-    End Sub
-
-    Private Sub picPresentationMark_Click(sender As Object, e As EventArgs) Handles picPresentationMark.Click
-
+    Private Sub llblClearChecks_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblClearChecks.LinkClicked
+        For Each item In m_improvementItems
+            item.Included = False
+        Next
+        dgvImprovementItems.Refresh()
     End Sub
 End Class

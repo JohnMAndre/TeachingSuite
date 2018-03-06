@@ -43,11 +43,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblPresentationWeight = New System.Windows.Forms.Label()
         Me.lblContentWeight = New System.Windows.Forms.Label()
         Me.dgvImprovementItems = New System.Windows.Forms.DataGridView()
-        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chkNominate = New System.Windows.Forms.CheckBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtLocalName = New System.Windows.Forms.TextBox()
@@ -73,6 +68,13 @@ Partial Class IndividualMarkInGroupPresentation
         Me.picLanguageMark = New System.Windows.Forms.PictureBox()
         Me.picPresentationMark = New System.Windows.Forms.PictureBox()
         Me.picContentMark = New System.Windows.Forms.PictureBox()
+        Me.llblClearChecks = New System.Windows.Forms.LinkLabel()
+        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantityGivenColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -270,51 +272,12 @@ Partial Class IndividualMarkInGroupPresentation
         Me.dgvImprovementItems.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvImprovementItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvImprovementItems.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IncludedColumn, Me.NameColumn, Me.PerformanceLevelColumn, Me.PreviousPerformanceColumn, Me.LastTimeIncludedColumn})
+        Me.dgvImprovementItems.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IncludedColumn, Me.NameColumn, Me.PerformanceLevelColumn, Me.PreviousPerformanceColumn, Me.LastTimeIncludedColumn, Me.QuantityGivenColumn})
         Me.dgvImprovementItems.Location = New System.Drawing.Point(372, 0)
         Me.dgvImprovementItems.Name = "dgvImprovementItems"
         Me.dgvImprovementItems.RowHeadersVisible = False
-        Me.dgvImprovementItems.Size = New System.Drawing.Size(272, 306)
+        Me.dgvImprovementItems.Size = New System.Drawing.Size(283, 306)
         Me.dgvImprovementItems.TabIndex = 28
-        '
-        'IncludedColumn
-        '
-        Me.IncludedColumn.DataPropertyName = "Included"
-        Me.IncludedColumn.FillWeight = 10.0!
-        Me.IncludedColumn.HeaderText = "O"
-        Me.IncludedColumn.Name = "IncludedColumn"
-        Me.IncludedColumn.Width = 20
-        '
-        'NameColumn
-        '
-        Me.NameColumn.DataPropertyName = "Name"
-        Me.NameColumn.HeaderText = "Name"
-        Me.NameColumn.Name = "NameColumn"
-        Me.NameColumn.ReadOnly = True
-        Me.NameColumn.Width = 140
-        '
-        'PerformanceLevelColumn
-        '
-        Me.PerformanceLevelColumn.DataPropertyName = "PerformanceLevel"
-        Me.PerformanceLevelColumn.HeaderText = "Pe"
-        Me.PerformanceLevelColumn.Name = "PerformanceLevelColumn"
-        Me.PerformanceLevelColumn.Width = 25
-        '
-        'PreviousPerformanceColumn
-        '
-        Me.PreviousPerformanceColumn.DataPropertyName = "PreviousPerformanceLevel"
-        Me.PreviousPerformanceColumn.HeaderText = "Pr"
-        Me.PreviousPerformanceColumn.Name = "PreviousPerformanceColumn"
-        Me.PreviousPerformanceColumn.ReadOnly = True
-        Me.PreviousPerformanceColumn.Width = 25
-        '
-        'LastTimeIncludedColumn
-        '
-        Me.LastTimeIncludedColumn.DataPropertyName = "DaysSinceLastIncluded"
-        Me.LastTimeIncludedColumn.HeaderText = "D"
-        Me.LastTimeIncludedColumn.Name = "LastTimeIncludedColumn"
-        Me.LastTimeIncludedColumn.ReadOnly = True
-        Me.LastTimeIncludedColumn.Width = 34
         '
         'chkNominate
         '
@@ -547,10 +510,74 @@ Partial Class IndividualMarkInGroupPresentation
         Me.picContentMark.TabIndex = 0
         Me.picContentMark.TabStop = False
         '
+        'llblClearChecks
+        '
+        Me.llblClearChecks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblClearChecks.AutoSize = True
+        Me.llblClearChecks.Location = New System.Drawing.Point(317, 284)
+        Me.llblClearChecks.Name = "llblClearChecks"
+        Me.llblClearChecks.Size = New System.Drawing.Size(49, 16)
+        Me.llblClearChecks.TabIndex = 56
+        Me.llblClearChecks.TabStop = True
+        Me.llblClearChecks.Text = "Clear X"
+        '
+        'IncludedColumn
+        '
+        Me.IncludedColumn.DataPropertyName = "Included"
+        Me.IncludedColumn.FillWeight = 10.0!
+        Me.IncludedColumn.HeaderText = "O"
+        Me.IncludedColumn.Name = "IncludedColumn"
+        Me.IncludedColumn.Width = 20
+        '
+        'NameColumn
+        '
+        Me.NameColumn.DataPropertyName = "Name"
+        Me.NameColumn.HeaderText = "Name"
+        Me.NameColumn.MaxInputLength = 100
+        Me.NameColumn.Name = "NameColumn"
+        Me.NameColumn.ReadOnly = True
+        Me.NameColumn.Width = 140
+        '
+        'PerformanceLevelColumn
+        '
+        Me.PerformanceLevelColumn.DataPropertyName = "PerformanceLevel"
+        Me.PerformanceLevelColumn.HeaderText = "Pe"
+        Me.PerformanceLevelColumn.MaxInputLength = 1
+        Me.PerformanceLevelColumn.Name = "PerformanceLevelColumn"
+        Me.PerformanceLevelColumn.Width = 25
+        '
+        'PreviousPerformanceColumn
+        '
+        Me.PreviousPerformanceColumn.DataPropertyName = "PreviousPerformanceLevel"
+        Me.PreviousPerformanceColumn.HeaderText = "Pr"
+        Me.PreviousPerformanceColumn.MaxInputLength = 1
+        Me.PreviousPerformanceColumn.Name = "PreviousPerformanceColumn"
+        Me.PreviousPerformanceColumn.ReadOnly = True
+        Me.PreviousPerformanceColumn.Width = 25
+        '
+        'LastTimeIncludedColumn
+        '
+        Me.LastTimeIncludedColumn.DataPropertyName = "DaysSinceLastIncluded"
+        Me.LastTimeIncludedColumn.HeaderText = "D"
+        Me.LastTimeIncludedColumn.MaxInputLength = 5
+        Me.LastTimeIncludedColumn.Name = "LastTimeIncludedColumn"
+        Me.LastTimeIncludedColumn.ReadOnly = True
+        Me.LastTimeIncludedColumn.Width = 24
+        '
+        'QuantityGivenColumn
+        '
+        Me.QuantityGivenColumn.DataPropertyName = "QuantityGiven"
+        Me.QuantityGivenColumn.HeaderText = "Q"
+        Me.QuantityGivenColumn.MaxInputLength = 4
+        Me.QuantityGivenColumn.Name = "QuantityGivenColumn"
+        Me.QuantityGivenColumn.ReadOnly = True
+        Me.QuantityGivenColumn.Width = 24
+        '
         'IndividualMarkInGroupPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.llblClearChecks)
         Me.Controls.Add(Me.lblImprovementCharCount)
         Me.Controls.Add(Me.llblAbsent)
         Me.Controls.Add(Me.llblGenerateImprovements)
@@ -599,7 +626,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "IndividualMarkInGroupPresentation"
-        Me.Size = New System.Drawing.Size(644, 306)
+        Me.Size = New System.Drawing.Size(655, 306)
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).EndInit()
@@ -655,12 +682,14 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents nudPresentationQuality As System.Windows.Forms.NumericUpDown
     Friend WithEvents llblGenerateImprovements As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblAbsent As System.Windows.Forms.LinkLabel
+    Friend WithEvents lblImprovementCharCount As System.Windows.Forms.Label
+    Friend WithEvents llblClearChecks As System.Windows.Forms.LinkLabel
     Friend WithEvents IncludedColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents NameColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PerformanceLevelColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PreviousPerformanceColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LastTimeIncludedColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents llblAbsent As System.Windows.Forms.LinkLabel
-    Friend WithEvents lblImprovementCharCount As System.Windows.Forms.Label
+    Friend WithEvents QuantityGivenColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class
