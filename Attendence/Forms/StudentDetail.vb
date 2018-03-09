@@ -422,14 +422,16 @@ Public Class StudentDetail
         pnlAttendance.Hide()
         pnlAssignments.Hide()
         rtbNotes.Show()
-        rtbNotes.BringToFront()
+        pnlNotes.Show()
+        pnlNotes.BringToFront()
         pbButtonHighlight.Location = New Point(btnShowStudentNotes.Left - 7, btnShowStudentNotes.Top - 8)
     End Sub
     Private Sub ShowLog()
         pnlAttendance.Hide()
         pnlAssignments.Hide()
+        pnlLog.Show()
         rtbLog.Show()
-        rtbLog.BringToFront()
+        pnlLog.BringToFront()
         pbButtonHighlight.Location = New Point(btnShowStudentLog.Left - 7, btnShowStudentLog.Top - 8)
     End Sub
     Private Sub ShowOutcomes()
@@ -601,4 +603,53 @@ Public Class StudentDetail
         Return strReturn
     End Function
 
+    Private Sub llblFindInNotes_LinkClicked(sender As Object, e As EventArgs) Handles llblFindInNotes.LinkClicked
+        rtbNotes.Find(txtFindInNotes.Text, RichTextBoxFinds.None)
+    End Sub
+    Private Sub FindInNotes()
+        Static intPosition As Integer
+        If txtFindInNotes.Text.Length = 0 Then
+            Exit Sub
+        End If
+
+        intPosition = rtbNotes.Find(txtFindInNotes.Text, intPosition, RichTextBoxFinds.None)
+        If intPosition > -1 Then
+            rtbNotes.SelectionStart = intPosition
+            rtbNotes.SelectionLength = txtFindInNotes.Text.Length
+            intPosition += 1
+        Else
+            intPosition = 0 '-- reset for next time around
+        End If
+    End Sub
+
+    Private Sub llblFindInHistory_LinkClicked(sender As Object, e As EventArgs) Handles llblFindInHistory.LinkClicked
+        FindInLog()
+    End Sub
+    Private Sub FindInLog()
+        Static intPosition As Integer
+        If txtFindInHistory.Text.Length = 0 Then
+            Exit Sub
+        End If
+
+        intPosition = rtbLog.Find(txtFindInHistory.Text, intPosition, RichTextBoxFinds.None)
+        If intPosition > -1 Then
+            rtbLog.SelectionStart = intPosition
+            rtbLog.SelectionLength = txtFindInHistory.Text.Length
+            intPosition += 1
+        Else
+            intPosition = 0 '-- reset for next time around
+        End If
+    End Sub
+
+    Private Sub txtFindInHistory_KeyDown(sender As Object, e As KeyEventArgs) Handles txtFindInHistory.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            FindInLog()
+        End If
+    End Sub
+
+    Private Sub txtFindInNotes_KeyDown(sender As Object, e As KeyEventArgs) Handles txtFindInNotes.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            FindInNotes()
+        End If
+    End Sub
 End Class

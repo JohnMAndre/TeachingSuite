@@ -240,7 +240,7 @@ Public Class BulkEmailer
     Private Sub olvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles olvStudents.KeyDown
         '-- pressing space will toggle send/don't send
         If e.KeyCode = Keys.Space Then
-            For Each obj As EmailResultData In olvStudents.SelectedObjects
+            For Each obj As BulkEmailData In olvStudents.SelectedObjects
                 obj.Selected = Not obj.Selected
             Next
 
