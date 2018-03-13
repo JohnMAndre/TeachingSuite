@@ -4282,7 +4282,16 @@ Public Class ImprovementItem '-- This is the master list of what counts as an im
             Return strReturn
         End Get
     End Property
-
+    Public Shared Function GetByID(itemID As String) As ImprovementItem
+        For Each item As ImprovementItem In ThisSemester.ImprovementItems
+            If item.ID = itemID Then
+                Return item '-- return first match (user must keep them unique)
+            End If
+        Next
+    End Function
+    Public Overrides Function ToString() As String
+        Return ID & " - " & Name
+    End Function
     Public Function CompareTo(other As ImprovementItem) As Integer Implements IComparable(Of ImprovementItem).CompareTo
         '-- Sort on OrderingID
         Return OrderingID.CompareTo(other.OrderingID)

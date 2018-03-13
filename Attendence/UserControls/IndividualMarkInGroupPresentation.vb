@@ -344,4 +344,12 @@
         Next
         dgvImprovementItems.Refresh()
     End Sub
+
+    Private Sub IndividualMarkInGroupPresentation_Enter(sender As Object, e As EventArgs) Handles MyBase.Enter
+        Me.BackColor = Color.LightSalmon
+    End Sub
+
+    Private Sub IndividualMarkInGroupPresentation_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
+        Me.BackColor = Color.LightGray
+    End Sub
 End Class

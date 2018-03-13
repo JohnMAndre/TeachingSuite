@@ -43,6 +43,12 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblPresentationWeight = New System.Windows.Forms.Label()
         Me.lblContentWeight = New System.Windows.Forms.Label()
         Me.dgvImprovementItems = New System.Windows.Forms.DataGridView()
+        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QuantityGivenColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chkNominate = New System.Windows.Forms.CheckBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtLocalName = New System.Windows.Forms.TextBox()
@@ -69,12 +75,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.picPresentationMark = New System.Windows.Forms.PictureBox()
         Me.picContentMark = New System.Windows.Forms.PictureBox()
         Me.llblClearChecks = New System.Windows.Forms.LinkLabel()
-        Me.IncludedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PerformanceLevelColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PreviousPerformanceColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantityGivenColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,6 +278,58 @@ Partial Class IndividualMarkInGroupPresentation
         Me.dgvImprovementItems.RowHeadersVisible = False
         Me.dgvImprovementItems.Size = New System.Drawing.Size(283, 306)
         Me.dgvImprovementItems.TabIndex = 28
+        '
+        'IncludedColumn
+        '
+        Me.IncludedColumn.DataPropertyName = "Included"
+        Me.IncludedColumn.FillWeight = 10.0!
+        Me.IncludedColumn.HeaderText = "O"
+        Me.IncludedColumn.Name = "IncludedColumn"
+        Me.IncludedColumn.Width = 20
+        '
+        'NameColumn
+        '
+        Me.NameColumn.DataPropertyName = "Name"
+        Me.NameColumn.HeaderText = "Name"
+        Me.NameColumn.MaxInputLength = 100
+        Me.NameColumn.Name = "NameColumn"
+        Me.NameColumn.ReadOnly = True
+        Me.NameColumn.Width = 140
+        '
+        'PerformanceLevelColumn
+        '
+        Me.PerformanceLevelColumn.DataPropertyName = "PerformanceLevel"
+        Me.PerformanceLevelColumn.HeaderText = "Pe"
+        Me.PerformanceLevelColumn.MaxInputLength = 1
+        Me.PerformanceLevelColumn.Name = "PerformanceLevelColumn"
+        Me.PerformanceLevelColumn.Width = 25
+        '
+        'PreviousPerformanceColumn
+        '
+        Me.PreviousPerformanceColumn.DataPropertyName = "PreviousPerformanceLevel"
+        Me.PreviousPerformanceColumn.HeaderText = "Pr"
+        Me.PreviousPerformanceColumn.MaxInputLength = 1
+        Me.PreviousPerformanceColumn.Name = "PreviousPerformanceColumn"
+        Me.PreviousPerformanceColumn.ReadOnly = True
+        Me.PreviousPerformanceColumn.Width = 25
+        '
+        'LastTimeIncludedColumn
+        '
+        Me.LastTimeIncludedColumn.DataPropertyName = "DaysSinceLastIncluded"
+        Me.LastTimeIncludedColumn.HeaderText = "D"
+        Me.LastTimeIncludedColumn.MaxInputLength = 5
+        Me.LastTimeIncludedColumn.Name = "LastTimeIncludedColumn"
+        Me.LastTimeIncludedColumn.ReadOnly = True
+        Me.LastTimeIncludedColumn.Width = 24
+        '
+        'QuantityGivenColumn
+        '
+        Me.QuantityGivenColumn.DataPropertyName = "QuantityGiven"
+        Me.QuantityGivenColumn.HeaderText = "Q"
+        Me.QuantityGivenColumn.MaxInputLength = 4
+        Me.QuantityGivenColumn.Name = "QuantityGivenColumn"
+        Me.QuantityGivenColumn.ReadOnly = True
+        Me.QuantityGivenColumn.Width = 24
         '
         'chkNominate
         '
@@ -520,58 +572,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblClearChecks.TabIndex = 56
         Me.llblClearChecks.TabStop = True
         Me.llblClearChecks.Text = "Clear X"
-        '
-        'IncludedColumn
-        '
-        Me.IncludedColumn.DataPropertyName = "Included"
-        Me.IncludedColumn.FillWeight = 10.0!
-        Me.IncludedColumn.HeaderText = "O"
-        Me.IncludedColumn.Name = "IncludedColumn"
-        Me.IncludedColumn.Width = 20
-        '
-        'NameColumn
-        '
-        Me.NameColumn.DataPropertyName = "Name"
-        Me.NameColumn.HeaderText = "Name"
-        Me.NameColumn.MaxInputLength = 100
-        Me.NameColumn.Name = "NameColumn"
-        Me.NameColumn.ReadOnly = True
-        Me.NameColumn.Width = 140
-        '
-        'PerformanceLevelColumn
-        '
-        Me.PerformanceLevelColumn.DataPropertyName = "PerformanceLevel"
-        Me.PerformanceLevelColumn.HeaderText = "Pe"
-        Me.PerformanceLevelColumn.MaxInputLength = 1
-        Me.PerformanceLevelColumn.Name = "PerformanceLevelColumn"
-        Me.PerformanceLevelColumn.Width = 25
-        '
-        'PreviousPerformanceColumn
-        '
-        Me.PreviousPerformanceColumn.DataPropertyName = "PreviousPerformanceLevel"
-        Me.PreviousPerformanceColumn.HeaderText = "Pr"
-        Me.PreviousPerformanceColumn.MaxInputLength = 1
-        Me.PreviousPerformanceColumn.Name = "PreviousPerformanceColumn"
-        Me.PreviousPerformanceColumn.ReadOnly = True
-        Me.PreviousPerformanceColumn.Width = 25
-        '
-        'LastTimeIncludedColumn
-        '
-        Me.LastTimeIncludedColumn.DataPropertyName = "DaysSinceLastIncluded"
-        Me.LastTimeIncludedColumn.HeaderText = "D"
-        Me.LastTimeIncludedColumn.MaxInputLength = 5
-        Me.LastTimeIncludedColumn.Name = "LastTimeIncludedColumn"
-        Me.LastTimeIncludedColumn.ReadOnly = True
-        Me.LastTimeIncludedColumn.Width = 24
-        '
-        'QuantityGivenColumn
-        '
-        Me.QuantityGivenColumn.DataPropertyName = "QuantityGiven"
-        Me.QuantityGivenColumn.HeaderText = "Q"
-        Me.QuantityGivenColumn.MaxInputLength = 4
-        Me.QuantityGivenColumn.Name = "QuantityGivenColumn"
-        Me.QuantityGivenColumn.ReadOnly = True
-        Me.QuantityGivenColumn.Width = 24
         '
         'IndividualMarkInGroupPresentation
         '

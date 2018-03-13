@@ -274,7 +274,7 @@ Partial Class MainFormPlain
         Me.ImprovementItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAssessmentcompletionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportSpecialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportMarkingFromOtherDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportStudentsFromTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -2140,17 +2140,16 @@ Partial Class MainFormPlain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportSpecialToolStripMenuItem, Me.ImportClassToolStripMenuItem, Me.ImportSToolStripMenuItem, Me.ImportAttendanceToolStripMenuItem, Me.ImportEmailAddressesToolStripMenuItem, Me.ImportStudentAssignmentScoresToolStripMenuItem, Me.ImportImprovementItemsToolStripMenuItem, Me.ToolStripSeparator6, Me.ExportAttendanceToolStripMenuItem, Me.ExportModuleResultsToolStripMenuItem, Me.ExportMarkingResultsToolStripMenuItem, Me.ExportMarkingResultsIsolatedToolStripMenuItem, Me.ExportStudentsToolStripMenuItem, Me.ExportStudentGradesToolStripMenuItem, Me.ExportModuleToolStripMenuItem, Me.ExportScheduleAsICalToolStripMenuItem, Me.ExportEntireSemesterAsXMLToolStripMenuItem, Me.ToolStripSeparator7, Me.UpdateEmailAddressToolStripMenuItem, Me.FindDuplicateStudentsToolStripMenuItem, Me.FindhistoricalStudentToolStripMenuItem, Me.ProcessAddDropStudentsToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportMarkingFromOtherDatabaseToolStripMenuItem, Me.ImportClassToolStripMenuItem, Me.ImportSToolStripMenuItem, Me.ImportAttendanceToolStripMenuItem, Me.ImportEmailAddressesToolStripMenuItem, Me.ImportStudentAssignmentScoresToolStripMenuItem, Me.ImportImprovementItemsToolStripMenuItem, Me.ToolStripSeparator6, Me.ExportAttendanceToolStripMenuItem, Me.ExportModuleResultsToolStripMenuItem, Me.ExportMarkingResultsToolStripMenuItem, Me.ExportMarkingResultsIsolatedToolStripMenuItem, Me.ExportStudentsToolStripMenuItem, Me.ExportStudentGradesToolStripMenuItem, Me.ExportModuleToolStripMenuItem, Me.ExportScheduleAsICalToolStripMenuItem, Me.ExportEntireSemesterAsXMLToolStripMenuItem, Me.ToolStripSeparator7, Me.UpdateEmailAddressToolStripMenuItem, Me.FindDuplicateStudentsToolStripMenuItem, Me.FindhistoricalStudentToolStripMenuItem, Me.ProcessAddDropStudentsToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
         '
-        'ImportSpecialToolStripMenuItem
+        'ImportMarkingFromOtherDatabaseToolStripMenuItem
         '
-        Me.ImportSpecialToolStripMenuItem.Name = "ImportSpecialToolStripMenuItem"
-        Me.ImportSpecialToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ImportSpecialToolStripMenuItem.Text = "Import special..."
-        Me.ImportSpecialToolStripMenuItem.ToolTipText = "Import data exported by another user of this app"
+        Me.ImportMarkingFromOtherDatabaseToolStripMenuItem.Name = "ImportMarkingFromOtherDatabaseToolStripMenuItem"
+        Me.ImportMarkingFromOtherDatabaseToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ImportMarkingFromOtherDatabaseToolStripMenuItem.Text = "Import marking from other database..."
         '
         'ImportClassToolStripMenuItem
         '
@@ -2707,7 +2706,6 @@ Partial Class MainFormPlain
     Friend WithEvents MissingGradeDataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImprovementItemsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImportSpecialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportStudentsFromTextToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2865,4 +2863,5 @@ Partial Class MainFormPlain
     Friend WithEvents SecondTryMarkGroupPresentationToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CaptureStudentImageFromClipboardToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents picStudent As System.Windows.Forms.PictureBox
+    Friend WithEvents ImportMarkingFromOtherDatabaseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

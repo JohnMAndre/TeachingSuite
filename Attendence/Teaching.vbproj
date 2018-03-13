@@ -219,6 +219,12 @@
     <Compile Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Importing\ImportMarkingFromOtherSemesterFile.Designer.vb">
+      <DependentUpon>ImportMarkingFromOtherSemesterFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportMarkingFromOtherSemesterFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Importing\ImportTeachingAppExportFile.Designer.vb">
       <DependentUpon>ImportTeachingAppExportFile.vb</DependentUpon>
     </Compile>
@@ -641,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportImprovementItemsFromOtherSemester.resx">
       <DependentUpon>ImportImprovementItemsFromOtherSemester.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportMarkingFromOtherSemesterFile.resx">
+      <DependentUpon>ImportMarkingFromOtherSemesterFile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportTeachingAppExportFile.resx">
       <DependentUpon>ImportTeachingAppExportFile.vb</DependentUpon>

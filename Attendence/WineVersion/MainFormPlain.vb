@@ -2720,12 +2720,6 @@ Public Class MainFormPlain
         frm.ShowDialog()
     End Sub
 
-    Private Sub ImportSpecialToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportSpecialToolStripMenuItem.Click
-        Dim frm As New ImportTeachingAppExportFile
-        frm.ShowDialog()
-
-    End Sub
-
     Private Sub Attendance2FromSchedule()
         If dgvSchedule.CurrentRow IsNot Nothing Then
             Dim item As ActualSessionItem = CType(dgvSchedule.CurrentRow.DataBoundItem, ActualSessionItem)
@@ -3132,5 +3126,10 @@ Public Class MainFormPlain
             Log(ex) '-- ignore and continue
         End Try
 
+    End Sub
+
+    Private Sub ImportMarkingFromOtherDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportMarkingFromOtherDatabaseToolStripMenuItem.Click
+        Dim frm As New ImportMarkingFromOtherSemesterFile()
+        frm.Show()
     End Sub
 End Class
