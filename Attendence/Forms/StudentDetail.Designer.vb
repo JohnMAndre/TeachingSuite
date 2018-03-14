@@ -94,11 +94,6 @@ Partial Class StudentDetail
         Me.OlvColumn36 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn37 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn38 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.pnlNotes = New System.Windows.Forms.Panel()
-        Me.llblFindInNotes = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtFindInNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.rtbNotes = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.pnlNormalAssignments = New System.Windows.Forms.Panel()
         Me.olvNormalAssignments = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -129,6 +124,11 @@ Partial Class StudentDetail
         Me.OlvColumn10 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn12 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.pnlNotes = New System.Windows.Forms.Panel()
+        Me.llblFindInNotes = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtFindInNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.rtbNotes = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
         Me.OlvColumn14 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn16 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -146,7 +146,6 @@ Partial Class StudentDetail
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlNotes.SuspendLayout()
         Me.pnlNormalAssignments.SuspendLayout()
         CType(Me.olvNormalAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -156,6 +155,7 @@ Partial Class StudentDetail
         CType(Me.pnlOutcomes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlOutcomes.SuspendLayout()
         CType(Me.olvOutcomes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlNotes.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -684,7 +684,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(84, 19)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(75, 20)
         Me.KryptonLabel3.TabIndex = 0
         Me.KryptonLabel3.Values.Text = "Local name:"
         '
@@ -978,59 +978,6 @@ Partial Class StudentDetail
         Me.OlvColumn38.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn38.Width = 86
         '
-        'pnlNotes
-        '
-        Me.pnlNotes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnlNotes.BackColor = System.Drawing.Color.Transparent
-        Me.pnlNotes.Controls.Add(Me.llblFindInNotes)
-        Me.pnlNotes.Controls.Add(Me.KryptonLabel15)
-        Me.pnlNotes.Controls.Add(Me.txtFindInNotes)
-        Me.pnlNotes.Controls.Add(Me.rtbNotes)
-        Me.pnlNotes.Location = New System.Drawing.Point(1, 173)
-        Me.pnlNotes.Name = "pnlNotes"
-        Me.pnlNotes.Size = New System.Drawing.Size(810, 282)
-        Me.pnlNotes.TabIndex = 96
-        '
-        'llblFindInNotes
-        '
-        Me.llblFindInNotes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblFindInNotes.Location = New System.Drawing.Point(302, 260)
-        Me.llblFindInNotes.Name = "llblFindInNotes"
-        Me.llblFindInNotes.Size = New System.Drawing.Size(22, 18)
-        Me.llblFindInNotes.TabIndex = 38
-        Me.llblFindInNotes.Values.Image = Global.Teaching.My.Resources.Resources.detective_16
-        Me.llblFindInNotes.Values.Text = ""
-        '
-        'KryptonLabel15
-        '
-        Me.KryptonLabel15.Location = New System.Drawing.Point(12, 260)
-        Me.KryptonLabel15.Name = "KryptonLabel15"
-        Me.KryptonLabel15.Size = New System.Drawing.Size(41, 19)
-        Me.KryptonLabel15.TabIndex = 36
-        Me.KryptonLabel15.Values.Text = "Find:"
-        '
-        'txtFindInNotes
-        '
-        Me.txtFindInNotes.Location = New System.Drawing.Point(55, 261)
-        Me.txtFindInNotes.Name = "txtFindInNotes"
-        Me.txtFindInNotes.Size = New System.Drawing.Size(245, 19)
-        Me.txtFindInNotes.TabIndex = 37
-        '
-        'rtbNotes
-        '
-        Me.rtbNotes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbNotes.HideSelection = False
-        Me.rtbNotes.Location = New System.Drawing.Point(-1, 1)
-        Me.rtbNotes.Name = "rtbNotes"
-        Me.rtbNotes.Size = New System.Drawing.Size(809, 259)
-        Me.rtbNotes.TabIndex = 35
-        Me.rtbNotes.Text = ""
-        Me.rtbNotes.Visible = False
-        '
         'pnlNormalAssignments
         '
         Me.pnlNormalAssignments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1141,7 +1088,7 @@ Partial Class StudentDetail
         '
         Me.lblGradeAsOfTodayPoints.Location = New System.Drawing.Point(248, 4)
         Me.lblGradeAsOfTodayPoints.Name = "lblGradeAsOfTodayPoints"
-        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(18, 19)
+        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(17, 20)
         Me.lblGradeAsOfTodayPoints.TabIndex = 140
         Me.lblGradeAsOfTodayPoints.Values.Text = "0"
         '
@@ -1149,7 +1096,7 @@ Partial Class StudentDetail
         '
         Me.llblRefreshGradeAsOfToday.Location = New System.Drawing.Point(9, 4)
         Me.llblRefreshGradeAsOfToday.Name = "llblRefreshGradeAsOfToday"
-        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(97, 19)
+        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(88, 20)
         Me.llblRefreshGradeAsOfToday.TabIndex = 139
         Me.ToolTip1.SetToolTip(Me.llblRefreshGradeAsOfToday, "Click to refresh")
         Me.llblRefreshGradeAsOfToday.Values.Text = "Grade (today):"
@@ -1158,7 +1105,7 @@ Partial Class StudentDetail
         '
         Me.lblGradeAsOfTodayPercent.Location = New System.Drawing.Point(112, 3)
         Me.lblGradeAsOfTodayPercent.Name = "lblGradeAsOfTodayPercent"
-        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(18, 19)
+        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(17, 20)
         Me.lblGradeAsOfTodayPercent.TabIndex = 49
         Me.lblGradeAsOfTodayPercent.Values.Text = "0"
         '
@@ -1339,6 +1286,59 @@ Partial Class StudentDetail
         Me.OlvColumn12.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
         Me.OlvColumn12.Text = "Feedback"
         '
+        'pnlNotes
+        '
+        Me.pnlNotes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlNotes.BackColor = System.Drawing.Color.Transparent
+        Me.pnlNotes.Controls.Add(Me.llblFindInNotes)
+        Me.pnlNotes.Controls.Add(Me.KryptonLabel15)
+        Me.pnlNotes.Controls.Add(Me.txtFindInNotes)
+        Me.pnlNotes.Controls.Add(Me.rtbNotes)
+        Me.pnlNotes.Location = New System.Drawing.Point(1, 173)
+        Me.pnlNotes.Name = "pnlNotes"
+        Me.pnlNotes.Size = New System.Drawing.Size(810, 282)
+        Me.pnlNotes.TabIndex = 96
+        '
+        'llblFindInNotes
+        '
+        Me.llblFindInNotes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblFindInNotes.Location = New System.Drawing.Point(302, 260)
+        Me.llblFindInNotes.Name = "llblFindInNotes"
+        Me.llblFindInNotes.Size = New System.Drawing.Size(22, 18)
+        Me.llblFindInNotes.TabIndex = 38
+        Me.llblFindInNotes.Values.Image = Global.Teaching.My.Resources.Resources.detective_16
+        Me.llblFindInNotes.Values.Text = ""
+        '
+        'KryptonLabel15
+        '
+        Me.KryptonLabel15.Location = New System.Drawing.Point(12, 260)
+        Me.KryptonLabel15.Name = "KryptonLabel15"
+        Me.KryptonLabel15.Size = New System.Drawing.Size(41, 19)
+        Me.KryptonLabel15.TabIndex = 36
+        Me.KryptonLabel15.Values.Text = "Find:"
+        '
+        'txtFindInNotes
+        '
+        Me.txtFindInNotes.Location = New System.Drawing.Point(55, 261)
+        Me.txtFindInNotes.Name = "txtFindInNotes"
+        Me.txtFindInNotes.Size = New System.Drawing.Size(245, 19)
+        Me.txtFindInNotes.TabIndex = 37
+        '
+        'rtbNotes
+        '
+        Me.rtbNotes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rtbNotes.HideSelection = False
+        Me.rtbNotes.Location = New System.Drawing.Point(-1, 1)
+        Me.rtbNotes.Name = "rtbNotes"
+        Me.rtbNotes.Size = New System.Drawing.Size(809, 259)
+        Me.rtbNotes.TabIndex = 35
+        Me.rtbNotes.Text = ""
+        Me.rtbNotes.Visible = False
+        '
         'OlvColumn14
         '
         Me.OlvColumn14.AspectName = "AvailableOutcomes"
@@ -1429,8 +1429,6 @@ Partial Class StudentDetail
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvAssignments, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlNotes.ResumeLayout(False)
-        Me.pnlNotes.PerformLayout()
         Me.pnlNormalAssignments.ResumeLayout(False)
         CType(Me.olvNormalAssignments, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
@@ -1441,6 +1439,8 @@ Partial Class StudentDetail
         CType(Me.pnlOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlOutcomes.ResumeLayout(False)
         CType(Me.olvOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlNotes.ResumeLayout(False)
+        Me.pnlNotes.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

@@ -51,7 +51,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.llblBrowseForSemesterFile = New System.Windows.Forms.LinkLabel()
         Me.txtSemesterFile = New System.Windows.Forms.TextBox()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
-        Me.lblStudentCount = New System.Windows.Forms.Label()
         Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,19 +65,20 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolPlagiarismSeverity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolResearchQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnImportStudents = New System.Windows.Forms.PictureBox()
+        Me.lblStudentCount = New System.Windows.Forms.Label()
+        Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportStudentAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnImportStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -101,7 +101,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.btnImportStudents)
         Me.Panel1.Controls.Add(Me.lstAssignments)
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.lstClasses)
@@ -232,14 +231,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudents.Size = New System.Drawing.Size(817, 441)
         Me.dgvStudents.TabIndex = 6
         '
-        'lblStudentCount
-        '
-        Me.lblStudentCount.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblStudentCount.Location = New System.Drawing.Point(200, 58)
-        Me.lblStudentCount.Name = "lblStudentCount"
-        Me.lblStudentCount.Size = New System.Drawing.Size(817, 25)
-        Me.lblStudentCount.TabIndex = 9
-        '
         'dcolAdmin
         '
         Me.dcolAdmin.DataPropertyName = "AdminNumber"
@@ -366,15 +357,27 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolResearchQuality.Name = "dcolResearchQuality"
         Me.dcolResearchQuality.ReadOnly = True
         '
-        'btnImportStudents
+        'lblStudentCount
         '
-        Me.btnImportStudents.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnImportStudents.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnImportStudents.Location = New System.Drawing.Point(165, 222)
-        Me.btnImportStudents.Name = "btnImportStudents"
-        Me.btnImportStudents.Size = New System.Drawing.Size(23, 21)
-        Me.btnImportStudents.TabIndex = 10
-        Me.btnImportStudents.TabStop = False
+        Me.lblStudentCount.Dock = System.Windows.Forms.DockStyle.Top
+        Me.lblStudentCount.Location = New System.Drawing.Point(200, 58)
+        Me.lblStudentCount.Name = "lblStudentCount"
+        Me.lblStudentCount.Size = New System.Drawing.Size(817, 25)
+        Me.lblStudentCount.TabIndex = 9
+        '
+        'ActionToolStripMenuItem
+        '
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem})
+        Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
+        Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.ActionToolStripMenuItem.Text = "&Action"
+        '
+        'ImportStudentAssignmentsToolStripMenuItem
+        '
+        Me.ImportStudentAssignmentsToolStripMenuItem.Name = "ImportStudentAssignmentsToolStripMenuItem"
+        Me.ImportStudentAssignmentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
+        Me.ImportStudentAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
+        Me.ImportStudentAssignmentsToolStripMenuItem.Text = "&Import student assignments"
         '
         'ImportMarkingFromOtherSemesterFile
         '
@@ -398,7 +401,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel2.PerformLayout()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnImportStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -433,5 +435,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents dcolClass As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolPlagiarismSeverity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolResearchQuality As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btnImportStudents As System.Windows.Forms.PictureBox
+    Friend WithEvents ActionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImportStudentAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

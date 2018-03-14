@@ -191,7 +191,7 @@
         End If
     End Function
 
-    Private Sub btnImportStudents_Click(sender As Object, e As EventArgs) Handles btnImportStudents.Click
+    Private Sub ImportStudentAssignments()
         Try
             If MessageBox.Show("Are you sure you want to important assignments, improvement items, and changes in data for these students?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
                 '-- No or cancel will stop this process
@@ -291,5 +291,9 @@
             Log(ex)
             MessageBox.Show("There was an error importing the data: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub ImportStudentAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentAssignmentsToolStripMenuItem.Click
+        ImportStudentAssignments()
     End Sub
 End Class
