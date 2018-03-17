@@ -1855,4 +1855,19 @@ Friend Class StudentAssignmentDetails
         End If
     End Sub
 
+    Private Sub FocusOntagsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FocusOntagsToolStripMenuItem.Click
+        txtTags.Focus()
+    End Sub
+
+    Private Sub FocusOnoverallToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FocusOnoverallToolStripMenuItem.Click
+        rtbOverallComments.Focus()
+    End Sub
+
+    Private Sub FocusOnoutcomesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FocusOnoutcomesToolStripMenuItem.Click
+        olvOutcomes.Focus()
+    End Sub
+
+    Private Sub FocusOnfeedbackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FocusOnfeedbackToolStripMenuItem.Click
+        olvAutoFeedback.Focus()
+    End Sub
 End Class

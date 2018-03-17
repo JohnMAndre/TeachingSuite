@@ -73,6 +73,7 @@ Partial Class StudentAssignmentDetails
         Me.olvcolDateRemoved = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolPerformanceLevel = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.llblOpenSavedMarkingPage = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblWarningNotice = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.chkProcessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
@@ -136,7 +137,11 @@ Partial Class StudentAssignmentDetails
         Me.MoveFeedbackFrom1stTo2ndToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveFeedbackFrom2ndTo3rdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkStudentDidNotSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.FocusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FocusOntagsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FocusOnoverallToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FocusOnfeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FocusOnoutcomesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -482,9 +487,9 @@ Partial Class StudentAssignmentDetails
         'llblModuleResults
         '
         Me.llblModuleResults.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblModuleResults.Location = New System.Drawing.Point(638, 4)
+        Me.llblModuleResults.Location = New System.Drawing.Point(631, 4)
         Me.llblModuleResults.Name = "llblModuleResults"
-        Me.llblModuleResults.Size = New System.Drawing.Size(91, 20)
+        Me.llblModuleResults.Size = New System.Drawing.Size(98, 19)
         Me.llblModuleResults.TabIndex = 124
         Me.ToolTip1.SetToolTip(Me.llblModuleResults, "Click to refresh module results")
         Me.llblModuleResults.Values.Text = "Module results"
@@ -554,9 +559,9 @@ Partial Class StudentAssignmentDetails
         'KryptonLabel13
         '
         Me.KryptonLabel13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel13.Location = New System.Drawing.Point(6, 133)
+        Me.KryptonLabel13.Location = New System.Drawing.Point(6, 134)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.Size = New System.Drawing.Size(79, 20)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(87, 19)
         Me.KryptonLabel13.TabIndex = 104
         Me.KryptonLabel13.Values.Text = "Observation:"
         '
@@ -595,7 +600,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(6, 3)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(57, 19)
         Me.KryptonLabel3.TabIndex = 60
         Me.KryptonLabel3.Values.Text = "Overall:"
         '
@@ -603,7 +608,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(6, 60)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(87, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(93, 19)
         Me.KryptonLabel4.TabIndex = 61
         Me.KryptonLabel4.Values.Text = "Improvement:"
         '
@@ -644,7 +649,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.lblImprovementCharCount.Location = New System.Drawing.Point(6, 77)
         Me.lblImprovementCharCount.Name = "lblImprovementCharCount"
-        Me.lblImprovementCharCount.Size = New System.Drawing.Size(68, 20)
+        Me.lblImprovementCharCount.Size = New System.Drawing.Size(76, 19)
         Me.lblImprovementCharCount.TabIndex = 101
         Me.ToolTip1.SetToolTip(Me.lblImprovementCharCount, "Characters")
         Me.lblImprovementCharCount.Values.Text = "Characters"
@@ -742,7 +747,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(12, 1)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(40, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel5.TabIndex = 68
         Me.KryptonLabel5.Values.Text = "Filter:"
         '
@@ -829,6 +834,13 @@ Partial Class StudentAssignmentDetails
         Me.olvcolPerformanceLevel.Text = "Perf"
         Me.olvcolPerformanceLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolPerformanceLevel.Width = 50
+        '
+        'OlvColumn3
+        '
+        Me.OlvColumn3.AspectName = "PreviousPerformanceLevel "
+        Me.OlvColumn3.DisplayIndex = 2
+        Me.OlvColumn3.Text = "Prev"
+        Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'llblOpenSavedMarkingPage
         '
@@ -1204,7 +1216,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 3)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel1.TabIndex = 56
         Me.KryptonLabel1.Values.Text = "NickName:"
         '
@@ -1216,7 +1228,7 @@ Partial Class StudentAssignmentDetails
         Me.chkShowFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkShowFeedback.Location = New System.Drawing.Point(404, 66)
         Me.chkShowFeedback.Name = "chkShowFeedback"
-        Me.chkShowFeedback.Size = New System.Drawing.Size(78, 20)
+        Me.chkShowFeedback.Size = New System.Drawing.Size(86, 19)
         Me.chkShowFeedback.TabIndex = 53
         Me.chkShowFeedback.Text = "&Feedback:"
         Me.chkShowFeedback.Values.Text = "&Feedback:"
@@ -1229,7 +1241,7 @@ Partial Class StudentAssignmentDetails
         Me.chkShowImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkShowImprovement.Location = New System.Drawing.Point(503, 66)
         Me.chkShowImprovement.Name = "chkShowImprovement"
-        Me.chkShowImprovement.Size = New System.Drawing.Size(100, 20)
+        Me.chkShowImprovement.Size = New System.Drawing.Size(106, 19)
         Me.chkShowImprovement.TabIndex = 52
         Me.chkShowImprovement.Text = "&Improvement:"
         Me.chkShowImprovement.Values.Text = "&Improvement:"
@@ -1238,7 +1250,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.llblOpenStudent.Location = New System.Drawing.Point(273, 3)
         Me.llblOpenStudent.Name = "llblOpenStudent"
-        Me.llblOpenStudent.Size = New System.Drawing.Size(71, 20)
+        Me.llblOpenStudent.Size = New System.Drawing.Size(78, 19)
         Me.llblOpenStudent.TabIndex = 120
         Me.ToolTip1.SetToolTip(Me.llblOpenStudent, "Open student")
         Me.llblOpenStudent.Values.Text = "Student ID:"
@@ -1247,7 +1259,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel15.Location = New System.Drawing.Point(732, 27)
         Me.KryptonLabel15.Name = "KryptonLabel15"
-        Me.KryptonLabel15.Size = New System.Drawing.Size(43, 20)
+        Me.KryptonLabel15.Size = New System.Drawing.Size(49, 19)
         Me.KryptonLabel15.TabIndex = 110
         Me.KryptonLabel15.Values.Text = "Team:"
         '
@@ -1255,7 +1267,7 @@ Partial Class StudentAssignmentDetails
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(878, 26)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(38, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel2.TabIndex = 71
         Me.KryptonLabel2.Values.Text = "Tags:"
         '
@@ -1301,7 +1313,7 @@ Partial Class StudentAssignmentDetails
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ActionsToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.FocusToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1169, 24)
@@ -1376,12 +1388,40 @@ Partial Class StudentAssignmentDetails
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.MarkStudentDidNotSubmitToolStripMenuItem.Text = "Mark student ""Did not submit"""
         '
-        'OlvColumn3
+        'FocusToolStripMenuItem
         '
-        Me.OlvColumn3.AspectName = "PreviousPerformanceLevel "
-        Me.OlvColumn3.DisplayIndex = 2
-        Me.OlvColumn3.Text = "Prev"
-        Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.FocusToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FocusOntagsToolStripMenuItem, Me.FocusOnoverallToolStripMenuItem, Me.FocusOnfeedbackToolStripMenuItem, Me.FocusOnoutcomesToolStripMenuItem})
+        Me.FocusToolStripMenuItem.Name = "FocusToolStripMenuItem"
+        Me.FocusToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
+        Me.FocusToolStripMenuItem.Text = "&Focus"
+        '
+        'FocusOntagsToolStripMenuItem
+        '
+        Me.FocusOntagsToolStripMenuItem.Name = "FocusOntagsToolStripMenuItem"
+        Me.FocusOntagsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
+        Me.FocusOntagsToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.FocusOntagsToolStripMenuItem.Text = "Focus on &tags"
+        '
+        'FocusOnoverallToolStripMenuItem
+        '
+        Me.FocusOnoverallToolStripMenuItem.Name = "FocusOnoverallToolStripMenuItem"
+        Me.FocusOnoverallToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.FocusOnoverallToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.FocusOnoverallToolStripMenuItem.Text = "Focus on &overall"
+        '
+        'FocusOnfeedbackToolStripMenuItem
+        '
+        Me.FocusOnfeedbackToolStripMenuItem.Name = "FocusOnfeedbackToolStripMenuItem"
+        Me.FocusOnfeedbackToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
+        Me.FocusOnfeedbackToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.FocusOnfeedbackToolStripMenuItem.Text = "Focus on &feedback"
+        '
+        'FocusOnoutcomesToolStripMenuItem
+        '
+        Me.FocusOnoutcomesToolStripMenuItem.Name = "FocusOnoutcomesToolStripMenuItem"
+        Me.FocusOnoutcomesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.U), System.Windows.Forms.Keys)
+        Me.FocusOnoutcomesToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.FocusOnoutcomesToolStripMenuItem.Text = "Focus on o&utcomes"
         '
         'StudentAssignmentDetails
         '
@@ -1566,4 +1606,9 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents txtGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel17 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents FocusToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FocusOntagsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FocusOnoverallToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FocusOnfeedbackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FocusOnoutcomesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

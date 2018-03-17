@@ -100,7 +100,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel.Size = New System.Drawing.Size(921, 563)
         Me.KryptonPanel.TabIndex = 1
         '
@@ -164,11 +163,10 @@ Partial Class ClassAssignmentDetails
         Me.chkIncludesAttachment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkIncludesAttachment.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludesAttachment.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludesAttachment.Location = New System.Drawing.Point(742, 15)
+        Me.chkIncludesAttachment.Location = New System.Drawing.Point(731, 15)
         Me.chkIncludesAttachment.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.chkIncludesAttachment.Name = "chkIncludesAttachment"
-        Me.chkIncludesAttachment.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.chkIncludesAttachment.Size = New System.Drawing.Size(136, 20)
+        Me.chkIncludesAttachment.Size = New System.Drawing.Size(147, 19)
         Me.chkIncludesAttachment.TabIndex = 67
         Me.chkIncludesAttachment.Text = "Includes attachment:"
         Me.ToolTip1.SetToolTip(Me.chkIncludesAttachment, "If checked, when emailing module results, user will be prompted for attachment")
@@ -234,7 +232,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel10.Location = New System.Drawing.Point(3, 4)
         Me.KryptonLabel10.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel10.Size = New System.Drawing.Size(110, 20)
         Me.KryptonLabel10.TabIndex = 63
         Me.KryptonLabel10.Values.Text = "Module outcomes"
@@ -275,7 +272,6 @@ Partial Class ClassAssignmentDetails
         Me.llblAddOutcome.Location = New System.Drawing.Point(3, 62)
         Me.llblAddOutcome.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.llblAddOutcome.Name = "llblAddOutcome"
-        Me.llblAddOutcome.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblAddOutcome.Size = New System.Drawing.Size(22, 18)
         Me.llblAddOutcome.TabIndex = 19
         Me.ToolTip1.SetToolTip(Me.llblAddOutcome, "Add selected module outcome to assignment")
@@ -287,7 +283,6 @@ Partial Class ClassAssignmentDetails
         Me.llblRemoveOutcome.Location = New System.Drawing.Point(3, 102)
         Me.llblRemoveOutcome.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.llblRemoveOutcome.Name = "llblRemoveOutcome"
-        Me.llblRemoveOutcome.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.llblRemoveOutcome.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveOutcome.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.llblRemoveOutcome, "Remove selected outcome from assignment")
@@ -300,7 +295,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel11.Location = New System.Drawing.Point(163, 4)
         Me.KryptonLabel11.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel11.Size = New System.Drawing.Size(132, 20)
         Me.KryptonLabel11.TabIndex = 64
         Me.KryptonLabel11.Values.Text = "Assignment outcomes"
@@ -308,11 +302,10 @@ Partial Class ClassAssignmentDetails
         'llblBrowseForAssignmentsPath
         '
         Me.llblBrowseForAssignmentsPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblBrowseForAssignmentsPath.Location = New System.Drawing.Point(888, 79)
+        Me.llblBrowseForAssignmentsPath.Location = New System.Drawing.Point(885, 79)
         Me.llblBrowseForAssignmentsPath.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.llblBrowseForAssignmentsPath.Name = "llblBrowseForAssignmentsPath"
-        Me.llblBrowseForAssignmentsPath.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblBrowseForAssignmentsPath.Size = New System.Drawing.Size(19, 20)
+        Me.llblBrowseForAssignmentsPath.Size = New System.Drawing.Size(22, 19)
         Me.llblBrowseForAssignmentsPath.TabIndex = 49
         Me.llblBrowseForAssignmentsPath.Values.Text = "..."
         '
@@ -323,8 +316,7 @@ Partial Class ClassAssignmentDetails
         Me.txtSavedAssignmentsPath.Location = New System.Drawing.Point(149, 79)
         Me.txtSavedAssignmentsPath.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtSavedAssignmentsPath.Name = "txtSavedAssignmentsPath"
-        Me.txtSavedAssignmentsPath.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtSavedAssignmentsPath.Size = New System.Drawing.Size(729, 20)
+        Me.txtSavedAssignmentsPath.Size = New System.Drawing.Size(729, 19)
         Me.txtSavedAssignmentsPath.TabIndex = 48
         '
         'KryptonLabel2
@@ -332,19 +324,17 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel2.Location = New System.Drawing.Point(14, 79)
         Me.KryptonLabel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel2.Size = New System.Drawing.Size(117, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(131, 19)
         Me.KryptonLabel2.TabIndex = 47
         Me.KryptonLabel2.Values.Text = "Saved assignments:"
         '
         'llblBrowseForAssignmentBrief
         '
         Me.llblBrowseForAssignmentBrief.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblBrowseForAssignmentBrief.Location = New System.Drawing.Point(888, 47)
+        Me.llblBrowseForAssignmentBrief.Location = New System.Drawing.Point(885, 47)
         Me.llblBrowseForAssignmentBrief.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.llblBrowseForAssignmentBrief.Name = "llblBrowseForAssignmentBrief"
-        Me.llblBrowseForAssignmentBrief.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.llblBrowseForAssignmentBrief.Size = New System.Drawing.Size(19, 20)
+        Me.llblBrowseForAssignmentBrief.Size = New System.Drawing.Size(22, 19)
         Me.llblBrowseForAssignmentBrief.TabIndex = 46
         Me.llblBrowseForAssignmentBrief.Values.Text = "..."
         '
@@ -355,8 +345,7 @@ Partial Class ClassAssignmentDetails
         Me.txtAssignmentBriefFilename.Location = New System.Drawing.Point(108, 47)
         Me.txtAssignmentBriefFilename.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtAssignmentBriefFilename.Name = "txtAssignmentBriefFilename"
-        Me.txtAssignmentBriefFilename.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtAssignmentBriefFilename.Size = New System.Drawing.Size(770, 20)
+        Me.txtAssignmentBriefFilename.Size = New System.Drawing.Size(770, 19)
         Me.txtAssignmentBriefFilename.TabIndex = 45
         '
         'KryptonLabel1
@@ -364,8 +353,7 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel1.Location = New System.Drawing.Point(14, 47)
         Me.KryptonLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel1.Size = New System.Drawing.Size(58, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(62, 19)
         Me.KryptonLabel1.TabIndex = 43
         Me.KryptonLabel1.Values.Text = "Marking:"
         '
@@ -375,7 +363,6 @@ Partial Class ClassAssignmentDetails
         Me.btnOK.Location = New System.Drawing.Point(490, 528)
         Me.btnOK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnOK.Size = New System.Drawing.Size(105, 31)
         Me.btnOK.TabIndex = 26
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
@@ -388,7 +375,6 @@ Partial Class ClassAssignmentDetails
         Me.btnCancel.Location = New System.Drawing.Point(342, 528)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnCancel.Size = New System.Drawing.Size(105, 31)
         Me.btnCancel.TabIndex = 25
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
@@ -401,8 +387,7 @@ Partial Class ClassAssignmentDetails
         Me.txtName.Location = New System.Drawing.Point(108, 15)
         Me.txtName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtName.Name = "txtName"
-        Me.txtName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.txtName.Size = New System.Drawing.Size(487, 20)
+        Me.txtName.Size = New System.Drawing.Size(487, 19)
         Me.txtName.TabIndex = 24
         '
         'KryptonLabel3
@@ -410,7 +395,6 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel3.Location = New System.Drawing.Point(14, 15)
         Me.KryptonLabel3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel3.Size = New System.Drawing.Size(46, 20)
         Me.KryptonLabel3.TabIndex = 23
         Me.KryptonLabel3.Values.Text = "Name:"
@@ -426,7 +410,6 @@ Partial Class ClassAssignmentDetails
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ClassAssignmentDetails"
-        Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Class Assignment Details"
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()

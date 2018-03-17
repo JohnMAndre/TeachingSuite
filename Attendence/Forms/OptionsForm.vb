@@ -187,7 +187,6 @@ Public Class OptionsForm
             chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked = AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements
             chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Checked = AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel
 
-            btnOK.Enabled = False
 
         Catch ex As Exception
             Log(ex)
@@ -221,15 +220,4 @@ Public Class OptionsForm
         MessageBox.Show("If you would like more dictionaries, just email John@JohnMAndre.com.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub chkEnableStudentDataHistory_CheckedChanged(sender As Object, e As EventArgs) Handles chkEnableStudentDataHistory.CheckedChanged
-        btnOK.Enabled = True
-    End Sub
-
-    Private Sub chkLoadSemesterCacheOnStartup_CheckedChanged(sender As Object, e As EventArgs) Handles chkLoadSemesterCacheOnStartup.CheckedChanged
-        btnOK.Enabled = True
-    End Sub
-
-    Private Sub chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel_CheckedChanged(sender As Object, e As EventArgs) Handles chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.CheckedChanged
-        btnOK.Enabled = True
-    End Sub
 End Class
