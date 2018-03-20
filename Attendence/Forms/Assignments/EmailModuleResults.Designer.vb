@@ -22,12 +22,8 @@ Partial Class EmailModuleResults
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EmailModuleResults))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonContextMenuItems3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.nudSendInXHours = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.llblRemoveEmailedData = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -41,7 +37,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeUnprocessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkIncludeOverall = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkIncludeImprovement = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.KryptonManager1 = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.chkIncludeOverallGrade = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
@@ -113,7 +109,7 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkIncludeOverallGrade = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -147,15 +143,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel.TabIndex = 0
         '
-        'KryptonManager
-        '
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
         'tmrFilterStudents
         '
         Me.tmrFilterStudents.Interval = 200
@@ -165,11 +152,9 @@ Partial Class EmailModuleResults
         Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnOK.Location = New System.Drawing.Point(46, 291)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Palette = Me.KryptonPalette1
         Me.btnOK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnOK.Size = New System.Drawing.Size(148, 25)
         Me.btnOK.TabIndex = 27
-        Me.ToolTip1.SetToolTip(Me.btnOK, "Click to send to selected students")
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.btnOK.Values.Text = "S&end"
         '
@@ -182,7 +167,6 @@ Partial Class EmailModuleResults
         Me.nudSendInXHours.TabIndex = 43
         Me.nudSendInXHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudSendInXHours.ThousandsSeparator = True
-        Me.ToolTip1.SetToolTip(Me.nudSendInXHours, "Number of hours delay for sending emails (0=send immediately)")
         Me.nudSendInXHours.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'llblRemoveEmailedData
@@ -192,7 +176,6 @@ Partial Class EmailModuleResults
         Me.llblRemoveEmailedData.Name = "llblRemoveEmailedData"
         Me.llblRemoveEmailedData.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveEmailedData.TabIndex = 26
-        Me.ToolTip1.SetToolTip(Me.llblRemoveEmailedData, "Remove emailed data")
         Me.llblRemoveEmailedData.Values.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.llblRemoveEmailedData.Values.Text = ""
         '
@@ -207,7 +190,6 @@ Partial Class EmailModuleResults
         Me.chkIncludeGrade.Size = New System.Drawing.Size(109, 19)
         Me.chkIncludeGrade.TabIndex = 57
         Me.chkIncludeGrade.Text = "Include grade:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeGrade, "Check to include outcome by outcome result for BTEC assignments")
         Me.chkIncludeGrade.Values.Text = "Include grade:"
         '
         'btnCancel
@@ -215,31 +197,27 @@ Partial Class EmailModuleResults
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.Location = New System.Drawing.Point(142, 616)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Palette = Me.KryptonPalette1
         Me.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnCancel.Size = New System.Drawing.Size(93, 25)
         Me.btnCancel.TabIndex = 59
-        Me.ToolTip1.SetToolTip(Me.btnCancel, "Click to send to cancel sending")
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
         Me.btnCancel.Values.Text = "&Cancel"
         Me.btnCancel.Visible = False
         '
         'lblLoadedStudents
         '
-        Me.lblLoadedStudents.Location = New System.Drawing.Point(98, 29)
+        Me.lblLoadedStudents.Location = New System.Drawing.Point(98, 20)
         Me.lblLoadedStudents.Name = "lblLoadedStudents"
         Me.lblLoadedStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblLoadedStudents.TabIndex = 38
-        Me.ToolTip1.SetToolTip(Me.lblLoadedStudents, "Number of students loaded")
         Me.lblLoadedStudents.Values.Text = "0"
         '
         'lblSelectedStudents
         '
-        Me.lblSelectedStudents.Location = New System.Drawing.Point(171, 29)
+        Me.lblSelectedStudents.Location = New System.Drawing.Point(99, 37)
         Me.lblSelectedStudents.Name = "lblSelectedStudents"
         Me.lblSelectedStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblSelectedStudents.TabIndex = 61
-        Me.ToolTip1.SetToolTip(Me.lblSelectedStudents, "Number of students to be sent")
         Me.lblSelectedStudents.Values.Text = "0"
         '
         'chkIncludeFeedback
@@ -253,7 +231,6 @@ Partial Class EmailModuleResults
         Me.chkIncludeFeedback.Size = New System.Drawing.Size(86, 19)
         Me.chkIncludeFeedback.TabIndex = 62
         Me.chkIncludeFeedback.Text = "Feedback:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeFeedback, "Check to include outcome by outcome feedback for BTEC assignments")
         Me.chkIncludeFeedback.Values.Text = "Feedback:"
         '
         'chkFinalFeedback
@@ -267,8 +244,6 @@ Partial Class EmailModuleResults
         Me.chkFinalFeedback.Size = New System.Drawing.Size(57, 19)
         Me.chkFinalFeedback.TabIndex = 63
         Me.chkFinalFeedback.Text = "Final:"
-        Me.ToolTip1.SetToolTip(Me.chkFinalFeedback, "Check to include final comments ""Congratulations"" or ""I'm sure you will do better" & _
-        " next time""")
         Me.chkFinalFeedback.Values.Text = "Final:"
         '
         'chkIncludeMeritDistinctionResults
@@ -282,7 +257,6 @@ Partial Class EmailModuleResults
         Me.chkIncludeMeritDistinctionResults.Size = New System.Drawing.Size(117, 19)
         Me.chkIncludeMeritDistinctionResults.TabIndex = 64
         Me.chkIncludeMeritDistinctionResults.Text = "Include M's/D's:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeMeritDistinctionResults, "Check to include merit and distinction results for BTEC assignments")
         Me.chkIncludeMeritDistinctionResults.Values.Text = "Include M's/D's:"
         '
         'chkIncludeUnprocessed
@@ -296,7 +270,6 @@ Partial Class EmailModuleResults
         Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(147, 19)
         Me.chkIncludeUnprocessed.TabIndex = 65
         Me.chkIncludeUnprocessed.Text = "Include unprocessed"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeUnprocessed, "Check to include assignments not processed (for weekly workshops)")
         Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
         '
         'chkIncludeOverall
@@ -310,7 +283,6 @@ Partial Class EmailModuleResults
         Me.chkIncludeOverall.Size = New System.Drawing.Size(110, 19)
         Me.chkIncludeOverall.TabIndex = 66
         Me.chkIncludeOverall.Text = "Include overall"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeOverall, "Check to include overall text for each assignment")
         Me.chkIncludeOverall.Values.Text = "Include overall"
         '
         'chkIncludeImprovement
@@ -324,13 +296,20 @@ Partial Class EmailModuleResults
         Me.chkIncludeImprovement.Size = New System.Drawing.Size(148, 19)
         Me.chkIncludeImprovement.TabIndex = 67
         Me.chkIncludeImprovement.Text = "Include improvement"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeImprovement, "Check to include improvement text for each assignment")
         Me.chkIncludeImprovement.Values.Text = "Include improvement"
         '
-        'KryptonManager1
+        'chkIncludeOverallGrade
         '
-        Me.KryptonManager1.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
+        Me.chkIncludeOverallGrade.Checked = True
+        Me.chkIncludeOverallGrade.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeOverallGrade.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeOverallGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeOverallGrade.Location = New System.Drawing.Point(69, 396)
+        Me.chkIncludeOverallGrade.Name = "chkIncludeOverallGrade"
+        Me.chkIncludeOverallGrade.Size = New System.Drawing.Size(152, 19)
+        Me.chkIncludeOverallGrade.TabIndex = 68
+        Me.chkIncludeOverallGrade.Text = "Include overall grade:"
+        Me.chkIncludeOverallGrade.Values.Text = "Include overall grade:"
         '
         'KryptonPanel1
         '
@@ -360,7 +339,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel2.Name = "KryptonPanel2"
-        Me.KryptonPanel2.Palette = Me.KryptonPalette1
         Me.KryptonPanel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel2.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel2.TabIndex = 4
@@ -524,7 +502,6 @@ Partial Class EmailModuleResults
         Me.splitOverall.Panel1.Controls.Add(Me.chkFinalFeedback)
         Me.splitOverall.Panel1.Controls.Add(Me.txtEmailTrailingText)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeFeedback)
-        Me.splitOverall.Panel1.Controls.Add(Me.lblSelectedStudents)
         Me.splitOverall.Panel1.Controls.Add(Me.olvAssignments)
         Me.splitOverall.Panel1.Controls.Add(Me.btnCancel)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeGrade)
@@ -542,6 +519,8 @@ Partial Class EmailModuleResults
         Me.splitOverall.Panel1.Controls.Add(Me.txtSubject)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel3)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel1)
+        Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel9)
+        Me.splitOverall.Panel1.Controls.Add(Me.lblSelectedStudents)
         '
         'splitOverall.Panel2
         '
@@ -689,7 +668,7 @@ Partial Class EmailModuleResults
         '
         'KryptonLabel6
         '
-        Me.KryptonLabel6.Location = New System.Drawing.Point(3, 29)
+        Me.KryptonLabel6.Location = New System.Drawing.Point(3, 20)
         Me.KryptonLabel6.Name = "KryptonLabel6"
         Me.KryptonLabel6.Size = New System.Drawing.Size(67, 19)
         Me.KryptonLabel6.TabIndex = 36
@@ -989,19 +968,13 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
-        'chkIncludeOverallGrade
+        'KryptonLabel9
         '
-        Me.chkIncludeOverallGrade.Checked = True
-        Me.chkIncludeOverallGrade.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeOverallGrade.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeOverallGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeOverallGrade.Location = New System.Drawing.Point(69, 396)
-        Me.chkIncludeOverallGrade.Name = "chkIncludeOverallGrade"
-        Me.chkIncludeOverallGrade.Size = New System.Drawing.Size(152, 19)
-        Me.chkIncludeOverallGrade.TabIndex = 68
-        Me.chkIncludeOverallGrade.Text = "Include overall grade:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludeOverallGrade, "Check to include overall grade for module text")
-        Me.chkIncludeOverallGrade.Values.Text = "Include overall grade:"
+        Me.KryptonLabel9.Location = New System.Drawing.Point(3, 38)
+        Me.KryptonLabel9.Name = "KryptonLabel9"
+        Me.KryptonLabel9.Size = New System.Drawing.Size(67, 19)
+        Me.KryptonLabel9.TabIndex = 69
+        Me.KryptonLabel9.Values.Text = "Selected:"
         '
         'EmailModuleResults
         '
@@ -1048,7 +1021,6 @@ Partial Class EmailModuleResults
 
     End Sub
     Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents KryptonManager As ComponentFactory.Krypton.Toolkit.KryptonManager
 
     Public Sub New()
 
@@ -1062,11 +1034,8 @@ Partial Class EmailModuleResults
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
     End Sub
-    Friend WithEvents KryptonPalette1 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents KryptonContextMenuItems3 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
     Friend WithEvents tmrFilterStudents As System.Windows.Forms.Timer
-    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents KryptonManager1 As ComponentFactory.Krypton.Toolkit.KryptonManager
     Friend WithEvents KryptonContextMenuItems2 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
     Friend WithEvents KryptonPanel1 As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents ToolStripContainer1 As System.Windows.Forms.ToolStripContainer
@@ -1147,10 +1116,10 @@ Partial Class EmailModuleResults
     Friend WithEvents OlvColumn20 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents chkFinalFeedback As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeMeritDistinctionResults As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents chkIncludeUnprocessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeImprovement As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeOverall As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkIncludeOverallGrade As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents KryptonLabel9 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

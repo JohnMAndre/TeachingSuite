@@ -2512,19 +2512,27 @@ Public Class MainFormPlain
     Private Sub BatchSaveMarkingSheets(markTry As Semester.MarkingTry)
         Try
             If GetSelectedClass() Is Nothing Then
-                MessageBox.Show("Please select a class to email.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 If GetSelectedAssignment() Is Nothing Then
                     MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
                     If GetSelectedAssignment().AssignmentType = AssignmentType.Normal Then
-                        MessageBox.Show("Please select a BTEC assignment first. This process will not work with normal assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Else
-
-                        Dim asmt As ClassAssignmentBTEC = CType(GetSelectedAssignment(), ClassAssignmentBTEC)
-
-                        Dim frm As New BulkGenerateMarkingSheets(GetSelectedClassGroup(), GetSelectedClass(), asmt, markTry)
+                        '-- If the selected assignment is normal, then we use the NormalToBTEC generator
+                        'MessageBox.Show("Please select a BTEC assignment first. This process will not work with normal assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Dim frm As New BulkGenerateMarkingSheetsNormalToBTEC(GetSelectedClassGroup(), GetSelectedClass(), markTry)
                         frm.Show()
+                    Else
+                        Dim asmt As IClassAssignment = GetSelectedAssignment()
+                        Dim asmtBTEC As ClassAssignmentBTEC
+
+                        If TypeOf asmt Is ClassAssignmentBTEC Then
+                            asmtBTEC = CType(GetSelectedAssignment(), ClassAssignmentBTEC)
+                            Dim frm As New BulkGenerateMarkingSheets(GetSelectedClassGroup(), GetSelectedClass(), asmtBTEC, markTry)
+                            frm.Show()
+                        End If
+
+
 
                     End If
                 End If

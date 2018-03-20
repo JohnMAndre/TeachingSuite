@@ -123,6 +123,12 @@
     <Compile Include="Forms\Assignments\BulkGenerateMarkingSheets.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Assignments\BulkGenerateMarkingSheetsNormalToBTEC.Designer.vb">
+      <DependentUpon>BulkGenerateMarkingSheetsNormalToBTEC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assignments\BulkGenerateMarkingSheetsNormalToBTEC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Assignments\ClassAssignmentNormalDetails.Designer.vb">
       <DependentUpon>ClassAssignmentNormalDetails.vb</DependentUpon>
     </Compile>
@@ -552,6 +558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\BulkGenerateMarkingSheets.resx">
       <DependentUpon>BulkGenerateMarkingSheets.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assignments\BulkGenerateMarkingSheetsNormalToBTEC.resx">
+      <DependentUpon>BulkGenerateMarkingSheetsNormalToBTEC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\ClassAssignmentNormalDetails.resx">
       <DependentUpon>ClassAssignmentNormalDetails.vb</DependentUpon>

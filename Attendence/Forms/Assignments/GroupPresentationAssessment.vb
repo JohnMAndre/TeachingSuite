@@ -29,6 +29,8 @@
                 ctl.Save()
             Next
 
+            MainFormReference.AutoSave()
+
             Close()
         Catch ex As Exception
             MessageBox.Show("There was an error saving: " & ex.Message)
