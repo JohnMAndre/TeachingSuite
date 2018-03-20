@@ -52,11 +52,19 @@
             btnCancel.Enabled = True
             Application.DoEvents()
 
-
+            Dim boolManualProcessing As Boolean = rbtnManualProcessOutcomes.Checked
             Dim boolOKToProcessStudent As Boolean
             Dim intCounterMax As Integer = m_ClassToProcess.Students.Count - 1
 
             Dim asmtBTEC As StudentAssignmentBTEC
+
+            Dim dblMinPercentPass, dblMinPercentMerit, dblMinPercentDistinction As Double
+
+            '-- set minimums
+            dblMinPercentPass = ConvertToDouble(txtMinScorePass.Text, 40) / 100
+            dblMinPercentMerit = ConvertToDouble(txtMinScoreMerit.Text, 50) / 100
+            dblMinPercentDistinction = ConvertToDouble(txtMinScoreDistinction.Text, 60) / 100
+
 
             For intCounter As Integer = 0 To intCounterMax '-- See if this stops MoveNextRare error
                 Dim stud As Student = m_ClassToProcess.Students(intCounter)
@@ -90,32 +98,104 @@
                     Next
                 End If
 
-
-
                 '-- Now we walk through all the normal asmts
                 '   collect up improvement feedback to be used as formative
                 '-- Tack the improvement data into BTEC improvement
                 '   So the BTEC assessment will be the overall assessment
                 '   The Normal assessments will only be used as the details 
                 '   which get aggregated into BTEC for final reporting
+                Dim strScores As String
+                Dim dblIndividualPercent As Double
+                Dim intTotalScore, intTotalMax As Integer
+
 
                 If asmtBTEC IsNot Nothing Then '-- It's possible there was no ClassAssignmentBTEC so test to be sure
+                    '-- Reset
+                    strScores = String.Empty
+                    intTotalMax = 0
+                    intTotalScore = 0
+
                     For Each studasmt As StudentAssignment In stud.Assignments
                         '-- In this situation, there should be only one
                         '   to map overall outcome status
                         '   In case there are multiple, we just take the first one we find
                         asmtBTEC.ImprovementComments &= "Improvement for " & studasmt.BaseAssignment.Name & Environment.NewLine
                         asmtBTEC.ImprovementComments &= studasmt.ImprovementComments & Environment.NewLine
-                        asmtBTEC.ImprovementComments &= Environment.NewLine & Environment.NewLine & Environment.NewLine
+                        asmtBTEC.ImprovementComments &= Environment.NewLine & Environment.NewLine
+
+                        intTotalMax += studasmt.BaseAssignment.MaxPoints
+                        intTotalScore += studasmt.FirstTryPoints
+
+                        If boolManualProcessing Then
+                            '-- in case of manual processing, put all the individual scores in the 
+                            '  observation field so user can make an informed decisions
+                            dblIndividualPercent = studasmt.FirstTryPoints / studasmt.BaseAssignment.MaxPoints
+                            strScores &= studasmt.BaseAssignment.Name & ": " & studasmt.FirstTryPoints & "/" & studasmt.BaseAssignment.MaxPoints & " (" & dblIndividualPercent.ToString("0%") & ")" & Environment.NewLine
+                        End If
                     Next
 
+                    dblIndividualPercent = intTotalScore / intTotalMax
+
+                    If boolManualProcessing Then
+                        '-- Prepend average score
+                        strScores = "Total: " & intTotalScore & " / " & intTotalMax & " = " & dblIndividualPercent.ToString("0%") & Environment.NewLine & "----------" & Environment.NewLine & strScores
+
+                        asmtBTEC.ObservationComments = strScores
+                    End If
 
 
                     '-- Next, open assessment form for BTEC and print it out
                     Using frm As New StudentAssignmentDetails(stud, asmtBTEC, m_try)
-                        frm.Show()
-                        Application.DoEvents()
-                        frm.PrepareMarkingPage(True)
+                        
+
+                        If boolManualProcessing Then
+                            '-- Manual means user will set the outcomes and save/print
+                            '   Clicking OK closes the form and then control passes back here
+                            If frm.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
+                                m_cancel = True
+                            End If
+                        Else
+                            '-- This is set for auto-processing
+                            '   so we must set the outcomes and overall
+                            If dblIndividualPercent >= dblMinPercentDistinction Then
+                                '-- Distinction
+                                For Each rslt As OutcomeResult In asmtBTEC.Outcomes
+                                    rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                                Next
+                                asmtBTEC.OverallComments = "Achieve requirements for DISTINCTION. Great work!"
+                            ElseIf dblIndividualPercent >= dblMinPercentMerit Then
+                                '-- Merit
+                                For Each rslt As OutcomeResult In asmtBTEC.Outcomes
+                                    If rslt.BaseOutcome.GradeGroup = BTECGradeGroup.Distinction Then
+                                        rslt.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                                    Else
+                                        rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                                    End If
+                                Next
+                                asmtBTEC.OverallComments = "Achieve requirements for MERIT"
+                            ElseIf dblIndividualPercent >= dblMinPercentPass Then
+                                '-- Pass
+                                For Each rslt As OutcomeResult In asmtBTEC.Outcomes
+                                    If rslt.BaseOutcome.GradeGroup = BTECGradeGroup.Pass Then
+                                        rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                                    Else
+                                        rslt.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                                    End If
+                                Next
+                                asmtBTEC.OverallComments = "Achieve minimum requirements to pass"
+                            Else
+                                '-- Fail
+                                For Each rslt As OutcomeResult In asmtBTEC.Outcomes
+                                    rslt.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                                Next
+                                asmtBTEC.OverallComments = "Failed to achieve minimum requirements"
+                            End If
+
+
+                            frm.Show()
+                            Application.DoEvents()
+                            frm.PrepareMarkingPage(True)
+                        End If
                         frm.Close()
                     End Using
 
@@ -145,4 +225,12 @@
     End Sub
 
 
+    Private Sub rbtnManualProcessOutcomes_CheckedChanged(sender As Object, e As EventArgs) Handles rbtnManualProcessOutcomes.CheckedChanged
+        lblMinPass.Enabled = rbtnAutoProcessOutcomes.Checked
+        lblMinMerit.Enabled = rbtnAutoProcessOutcomes.Checked
+        lblMinDistinction.Enabled = rbtnAutoProcessOutcomes.Checked
+        txtMinScorePass.Enabled = rbtnAutoProcessOutcomes.Checked
+        txtMinScoreMerit.Enabled = rbtnAutoProcessOutcomes.Checked
+        txtMinScoreDistinction.Enabled = rbtnAutoProcessOutcomes.Checked
+    End Sub
 End Class

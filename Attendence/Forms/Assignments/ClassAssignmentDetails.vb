@@ -160,7 +160,7 @@ Public Class ClassAssignmentDetails
         Try
             If m_boolCopyAssignmentBrief Then
                 '-- copy over to data folder
-                If Not txtAssignmentBriefFilename.Text.Contains(GetMarkingFolder()) Then
+                If Not txtAssignmentBriefFilename.Text.ToLower().Contains(GetMarkingFolder().ToLower()) Then
                     Dim strDestination As String = System.IO.Path.Combine(GetMarkingFolder(), System.IO.Path.GetFileName(txtAssignmentBriefFilename.Text))
                     If System.IO.File.Exists(strDestination) Then
                         If MessageBox.Show(strDestination & " already exists. Overwrite?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then

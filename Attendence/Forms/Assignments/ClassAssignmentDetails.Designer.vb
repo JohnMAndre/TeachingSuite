@@ -19,7 +19,6 @@ Partial Class ClassAssignmentDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim OlvColumn2 As BrightIdeasSoftware.OLVColumn
         Dim OlvColumn4 As BrightIdeasSoftware.OLVColumn
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ClassAssignmentDetails))
@@ -49,7 +48,6 @@ Partial Class ClassAssignmentDetails
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.txtName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,13 +161,12 @@ Partial Class ClassAssignmentDetails
         Me.chkIncludesAttachment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkIncludesAttachment.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludesAttachment.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludesAttachment.Location = New System.Drawing.Point(731, 15)
+        Me.chkIncludesAttachment.Location = New System.Drawing.Point(742, 15)
         Me.chkIncludesAttachment.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.chkIncludesAttachment.Name = "chkIncludesAttachment"
-        Me.chkIncludesAttachment.Size = New System.Drawing.Size(147, 19)
+        Me.chkIncludesAttachment.Size = New System.Drawing.Size(136, 20)
         Me.chkIncludesAttachment.TabIndex = 67
         Me.chkIncludesAttachment.Text = "Includes attachment:"
-        Me.ToolTip1.SetToolTip(Me.chkIncludesAttachment, "If checked, when emailing module results, user will be prompted for attachment")
         Me.chkIncludesAttachment.Values.Text = "Includes attachment:"
         '
         'KryptonSplitContainer1
@@ -274,7 +271,6 @@ Partial Class ClassAssignmentDetails
         Me.llblAddOutcome.Name = "llblAddOutcome"
         Me.llblAddOutcome.Size = New System.Drawing.Size(22, 18)
         Me.llblAddOutcome.TabIndex = 19
-        Me.ToolTip1.SetToolTip(Me.llblAddOutcome, "Add selected module outcome to assignment")
         Me.llblAddOutcome.Values.Image = Global.Teaching.My.Resources.Resources.add_icon_16
         Me.llblAddOutcome.Values.Text = ""
         '
@@ -285,7 +281,6 @@ Partial Class ClassAssignmentDetails
         Me.llblRemoveOutcome.Name = "llblRemoveOutcome"
         Me.llblRemoveOutcome.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveOutcome.TabIndex = 18
-        Me.ToolTip1.SetToolTip(Me.llblRemoveOutcome, "Remove selected outcome from assignment")
         Me.llblRemoveOutcome.Values.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.llblRemoveOutcome.Values.Text = ""
         '
@@ -302,10 +297,10 @@ Partial Class ClassAssignmentDetails
         'llblBrowseForAssignmentsPath
         '
         Me.llblBrowseForAssignmentsPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblBrowseForAssignmentsPath.Location = New System.Drawing.Point(885, 79)
+        Me.llblBrowseForAssignmentsPath.Location = New System.Drawing.Point(888, 79)
         Me.llblBrowseForAssignmentsPath.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.llblBrowseForAssignmentsPath.Name = "llblBrowseForAssignmentsPath"
-        Me.llblBrowseForAssignmentsPath.Size = New System.Drawing.Size(22, 19)
+        Me.llblBrowseForAssignmentsPath.Size = New System.Drawing.Size(19, 20)
         Me.llblBrowseForAssignmentsPath.TabIndex = 49
         Me.llblBrowseForAssignmentsPath.Values.Text = "..."
         '
@@ -316,7 +311,7 @@ Partial Class ClassAssignmentDetails
         Me.txtSavedAssignmentsPath.Location = New System.Drawing.Point(149, 79)
         Me.txtSavedAssignmentsPath.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtSavedAssignmentsPath.Name = "txtSavedAssignmentsPath"
-        Me.txtSavedAssignmentsPath.Size = New System.Drawing.Size(729, 19)
+        Me.txtSavedAssignmentsPath.Size = New System.Drawing.Size(729, 20)
         Me.txtSavedAssignmentsPath.TabIndex = 48
         '
         'KryptonLabel2
@@ -324,17 +319,17 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel2.Location = New System.Drawing.Point(14, 79)
         Me.KryptonLabel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(131, 19)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(117, 20)
         Me.KryptonLabel2.TabIndex = 47
         Me.KryptonLabel2.Values.Text = "Saved assignments:"
         '
         'llblBrowseForAssignmentBrief
         '
         Me.llblBrowseForAssignmentBrief.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblBrowseForAssignmentBrief.Location = New System.Drawing.Point(885, 47)
+        Me.llblBrowseForAssignmentBrief.Location = New System.Drawing.Point(888, 47)
         Me.llblBrowseForAssignmentBrief.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.llblBrowseForAssignmentBrief.Name = "llblBrowseForAssignmentBrief"
-        Me.llblBrowseForAssignmentBrief.Size = New System.Drawing.Size(22, 19)
+        Me.llblBrowseForAssignmentBrief.Size = New System.Drawing.Size(19, 20)
         Me.llblBrowseForAssignmentBrief.TabIndex = 46
         Me.llblBrowseForAssignmentBrief.Values.Text = "..."
         '
@@ -345,7 +340,7 @@ Partial Class ClassAssignmentDetails
         Me.txtAssignmentBriefFilename.Location = New System.Drawing.Point(108, 47)
         Me.txtAssignmentBriefFilename.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtAssignmentBriefFilename.Name = "txtAssignmentBriefFilename"
-        Me.txtAssignmentBriefFilename.Size = New System.Drawing.Size(770, 19)
+        Me.txtAssignmentBriefFilename.Size = New System.Drawing.Size(770, 20)
         Me.txtAssignmentBriefFilename.TabIndex = 45
         '
         'KryptonLabel1
@@ -353,7 +348,7 @@ Partial Class ClassAssignmentDetails
         Me.KryptonLabel1.Location = New System.Drawing.Point(14, 47)
         Me.KryptonLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(62, 19)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(58, 20)
         Me.KryptonLabel1.TabIndex = 43
         Me.KryptonLabel1.Values.Text = "Marking:"
         '
@@ -387,7 +382,7 @@ Partial Class ClassAssignmentDetails
         Me.txtName.Location = New System.Drawing.Point(108, 15)
         Me.txtName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(487, 19)
+        Me.txtName.Size = New System.Drawing.Size(487, 20)
         Me.txtName.TabIndex = 24
         '
         'KryptonLabel3
@@ -460,7 +455,6 @@ Partial Class ClassAssignmentDetails
     Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents olvClassGroupOutcomes As BrightIdeasSoftware.ObjectListView
     Friend WithEvents OlvColumn3 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents KryptonSplitContainer1 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
     Friend WithEvents chkIncludesAttachment As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents lstAssessmentCategories As System.Windows.Forms.ListBox

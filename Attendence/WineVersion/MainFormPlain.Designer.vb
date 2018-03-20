@@ -229,7 +229,6 @@ Partial Class MainFormPlain
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExamToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExamRedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Exam2ndRedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.MarkSelectedAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailAssignmentResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1822,7 +1821,7 @@ Partial Class MainFormPlain
         '
         'ActionsToolStripMenuItem
         '
-        Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TakeAttendenceToolStripMenuItem, Me.LoadCurrentClassToolStripMenuItem, Me.ToolStripSeparator3, Me.ExamToolStripMenuItem, Me.ExamRedoToolStripMenuItem, Me.Exam2ndRedoToolStripMenuItem, Me.ToolStripSeparator4, Me.MarkSelectedAssignmentToolStripMenuItem, Me.EmailAssignmentResultsToolStripMenuItem, Me.SendBulkEmailToolStripMenuItem, Me.EmailOnlineQuizResultsToolStripMenuItem, Me.FormGroupsToolStripMenuItem, Me.ToolStripSeparator15, Me.BatchSaveMarkingSheetsToolStripMenuItem, Me.MarkGroupPresentationToolStripMenuItem})
+        Me.ActionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TakeAttendenceToolStripMenuItem, Me.LoadCurrentClassToolStripMenuItem, Me.ToolStripSeparator3, Me.ExamToolStripMenuItem, Me.ExamRedoToolStripMenuItem, Me.ToolStripSeparator4, Me.MarkSelectedAssignmentToolStripMenuItem, Me.EmailAssignmentResultsToolStripMenuItem, Me.SendBulkEmailToolStripMenuItem, Me.EmailOnlineQuizResultsToolStripMenuItem, Me.FormGroupsToolStripMenuItem, Me.ToolStripSeparator15, Me.BatchSaveMarkingSheetsToolStripMenuItem, Me.MarkGroupPresentationToolStripMenuItem})
         Me.ActionsToolStripMenuItem.Name = "ActionsToolStripMenuItem"
         Me.ActionsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ActionsToolStripMenuItem.Text = "&Actions"
@@ -1860,12 +1859,6 @@ Partial Class MainFormPlain
         Me.ExamRedoToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.ExamRedoToolStripMenuItem.Text = "Oral Exam &Redo..."
         '
-        'Exam2ndRedoToolStripMenuItem
-        '
-        Me.Exam2ndRedoToolStripMenuItem.Name = "Exam2ndRedoToolStripMenuItem"
-        Me.Exam2ndRedoToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.Exam2ndRedoToolStripMenuItem.Text = "Oral Exam 2nd Redo..."
-        '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
@@ -1882,7 +1875,7 @@ Partial Class MainFormPlain
         '
         Me.EmailAssignmentResultsToolStripMenuItem.Name = "EmailAssignmentResultsToolStripMenuItem"
         Me.EmailAssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.EmailAssignmentResultsToolStripMenuItem.Text = "Email module &results..."
+        Me.EmailAssignmentResultsToolStripMenuItem.Text = "Email &module results..."
         '
         'SendBulkEmailToolStripMenuItem
         '
@@ -1901,7 +1894,7 @@ Partial Class MainFormPlain
         '
         Me.FormGroupsToolStripMenuItem.Name = "FormGroupsToolStripMenuItem"
         Me.FormGroupsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.FormGroupsToolStripMenuItem.Text = "Form groups..."
+        Me.FormGroupsToolStripMenuItem.Text = "&Form groups..."
         '
         'ToolStripSeparator15
         '
@@ -1913,24 +1906,24 @@ Partial Class MainFormPlain
         Me.BatchSaveMarkingSheetsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FirstTryToolStripMenuItem, Me.SecondTryToolStripMenuItem, Me.ThirdTryToolStripMenuItem})
         Me.BatchSaveMarkingSheetsToolStripMenuItem.Name = "BatchSaveMarkingSheetsToolStripMenuItem"
         Me.BatchSaveMarkingSheetsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.BatchSaveMarkingSheetsToolStripMenuItem.Text = "Batch save marking sheets"
+        Me.BatchSaveMarkingSheetsToolStripMenuItem.Text = "Batch &save marking sheets"
         '
         'FirstTryToolStripMenuItem
         '
         Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
-        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.FirstTryToolStripMenuItem.Text = "First try"
         '
         'SecondTryToolStripMenuItem
         '
         Me.SecondTryToolStripMenuItem.Name = "SecondTryToolStripMenuItem"
-        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SecondTryToolStripMenuItem.Text = "Second try"
         '
         'ThirdTryToolStripMenuItem
         '
         Me.ThirdTryToolStripMenuItem.Name = "ThirdTryToolStripMenuItem"
-        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ThirdTryToolStripMenuItem.Text = "Third try"
         '
         'MarkGroupPresentationToolStripMenuItem
@@ -1938,7 +1931,7 @@ Partial Class MainFormPlain
         Me.MarkGroupPresentationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FirstTryMarkGroupPresentationToolStripMenuItem1, Me.SecondTryMarkGroupPresentationToolStripMenuItem1})
         Me.MarkGroupPresentationToolStripMenuItem.Name = "MarkGroupPresentationToolStripMenuItem"
         Me.MarkGroupPresentationToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.MarkGroupPresentationToolStripMenuItem.Text = "Mark group presentation"
+        Me.MarkGroupPresentationToolStripMenuItem.Text = "Mark &group presentation"
         '
         'FirstTryMarkGroupPresentationToolStripMenuItem1
         '
@@ -2654,7 +2647,6 @@ Partial Class MainFormPlain
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ExamToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExamRedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Exam2ndRedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents MarkSelectedAssignmentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EmailAssignmentResultsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

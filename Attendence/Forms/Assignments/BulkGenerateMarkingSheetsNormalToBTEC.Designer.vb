@@ -40,6 +40,16 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.lblModuleName = New System.Windows.Forms.Label()
         Me.lblOutputPath = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtMinScorePass = New System.Windows.Forms.TextBox()
+        Me.lblMinPass = New System.Windows.Forms.Label()
+        Me.txtMinScoreMerit = New System.Windows.Forms.TextBox()
+        Me.lblMinMerit = New System.Windows.Forms.Label()
+        Me.txtMinScoreDistinction = New System.Windows.Forms.TextBox()
+        Me.lblMinDistinction = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.rbtnAutoProcessOutcomes = New System.Windows.Forms.RadioButton()
+        Me.rbtnManualProcessOutcomes = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label6
@@ -205,11 +215,111 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Output path:"
         '
+        'txtMinScorePass
+        '
+        Me.txtMinScorePass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtMinScorePass.Location = New System.Drawing.Point(151, 82)
+        Me.txtMinScorePass.Name = "txtMinScorePass"
+        Me.txtMinScorePass.Size = New System.Drawing.Size(71, 22)
+        Me.txtMinScorePass.TabIndex = 29
+        Me.txtMinScorePass.Text = "45"
+        Me.txtMinScorePass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'lblMinPass
+        '
+        Me.lblMinPass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblMinPass.AutoSize = True
+        Me.lblMinPass.Location = New System.Drawing.Point(46, 85)
+        Me.lblMinPass.Name = "lblMinPass"
+        Me.lblMinPass.Size = New System.Drawing.Size(67, 16)
+        Me.lblMinPass.TabIndex = 30
+        Me.lblMinPass.Text = "Min Pass:"
+        '
+        'txtMinScoreMerit
+        '
+        Me.txtMinScoreMerit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtMinScoreMerit.Location = New System.Drawing.Point(151, 110)
+        Me.txtMinScoreMerit.Name = "txtMinScoreMerit"
+        Me.txtMinScoreMerit.Size = New System.Drawing.Size(71, 22)
+        Me.txtMinScoreMerit.TabIndex = 31
+        Me.txtMinScoreMerit.Text = "55"
+        Me.txtMinScoreMerit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'lblMinMerit
+        '
+        Me.lblMinMerit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblMinMerit.AutoSize = True
+        Me.lblMinMerit.Location = New System.Drawing.Point(46, 113)
+        Me.lblMinMerit.Name = "lblMinMerit"
+        Me.lblMinMerit.Size = New System.Drawing.Size(66, 16)
+        Me.lblMinMerit.TabIndex = 32
+        Me.lblMinMerit.Text = "Min Merit:"
+        '
+        'txtMinScoreDistinction
+        '
+        Me.txtMinScoreDistinction.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtMinScoreDistinction.Location = New System.Drawing.Point(151, 138)
+        Me.txtMinScoreDistinction.Name = "txtMinScoreDistinction"
+        Me.txtMinScoreDistinction.Size = New System.Drawing.Size(71, 22)
+        Me.txtMinScoreDistinction.TabIndex = 33
+        Me.txtMinScoreDistinction.Text = "64"
+        Me.txtMinScoreDistinction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'lblMinDistinction
+        '
+        Me.lblMinDistinction.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblMinDistinction.AutoSize = True
+        Me.lblMinDistinction.Location = New System.Drawing.Point(46, 141)
+        Me.lblMinDistinction.Name = "lblMinDistinction"
+        Me.lblMinDistinction.Size = New System.Drawing.Size(98, 16)
+        Me.lblMinDistinction.TabIndex = 34
+        Me.lblMinDistinction.Text = "Min Distinction:"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.rbtnAutoProcessOutcomes)
+        Me.GroupBox1.Controls.Add(Me.rbtnManualProcessOutcomes)
+        Me.GroupBox1.Controls.Add(Me.txtMinScorePass)
+        Me.GroupBox1.Controls.Add(Me.txtMinScoreDistinction)
+        Me.GroupBox1.Controls.Add(Me.lblMinPass)
+        Me.GroupBox1.Controls.Add(Me.lblMinDistinction)
+        Me.GroupBox1.Controls.Add(Me.lblMinMerit)
+        Me.GroupBox1.Controls.Add(Me.txtMinScoreMerit)
+        Me.GroupBox1.Location = New System.Drawing.Point(392, 5)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(227, 179)
+        Me.GroupBox1.TabIndex = 35
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Outcome processing"
+        '
+        'rbtnAutoProcessOutcomes
+        '
+        Me.rbtnAutoProcessOutcomes.AutoSize = True
+        Me.rbtnAutoProcessOutcomes.Checked = True
+        Me.rbtnAutoProcessOutcomes.Location = New System.Drawing.Point(6, 55)
+        Me.rbtnAutoProcessOutcomes.Name = "rbtnAutoProcessOutcomes"
+        Me.rbtnAutoProcessOutcomes.Size = New System.Drawing.Size(164, 20)
+        Me.rbtnAutoProcessOutcomes.TabIndex = 36
+        Me.rbtnAutoProcessOutcomes.TabStop = True
+        Me.rbtnAutoProcessOutcomes.Text = "Auto-process based on:"
+        Me.rbtnAutoProcessOutcomes.UseVisualStyleBackColor = True
+        '
+        'rbtnManualProcessOutcomes
+        '
+        Me.rbtnManualProcessOutcomes.AutoSize = True
+        Me.rbtnManualProcessOutcomes.Location = New System.Drawing.Point(7, 22)
+        Me.rbtnManualProcessOutcomes.Name = "rbtnManualProcessOutcomes"
+        Me.rbtnManualProcessOutcomes.Size = New System.Drawing.Size(185, 20)
+        Me.rbtnManualProcessOutcomes.TabIndex = 35
+        Me.rbtnManualProcessOutcomes.Text = "Manually process each one"
+        Me.rbtnManualProcessOutcomes.UseVisualStyleBackColor = True
+        '
         'BulkGenerateMarkingSheetsNormalToBTEC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(511, 337)
+        Me.ClientSize = New System.Drawing.Size(621, 337)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblMarkingTry)
         Me.Controls.Add(Me.Label9)
@@ -232,6 +342,8 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "BulkGenerateMarkingSheetsNormalToBTEC"
         Me.Text = "Bulk Generate Marking Sheets  (normal to BTEC)"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -254,4 +366,13 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
     Friend WithEvents lblModuleName As System.Windows.Forms.Label
     Friend WithEvents lblOutputPath As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents txtMinScorePass As System.Windows.Forms.TextBox
+    Friend WithEvents lblMinPass As System.Windows.Forms.Label
+    Friend WithEvents txtMinScoreMerit As System.Windows.Forms.TextBox
+    Friend WithEvents lblMinMerit As System.Windows.Forms.Label
+    Friend WithEvents txtMinScoreDistinction As System.Windows.Forms.TextBox
+    Friend WithEvents lblMinDistinction As System.Windows.Forms.Label
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents rbtnAutoProcessOutcomes As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtnManualProcessOutcomes As System.Windows.Forms.RadioButton
 End Class

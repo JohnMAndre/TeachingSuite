@@ -177,6 +177,7 @@ Friend Class StudentAssignmentDetails
             m_student.AssignmentsBTEC.Remove(m_studentAssignment)
         End If
 
+        Me.DialogResult = Windows.Forms.DialogResult.Cancel
         Close()
     End Sub
     Private Function SaveChanges() As Boolean
@@ -250,6 +251,7 @@ Friend Class StudentAssignmentDetails
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
         If SaveChanges() Then
             MainFormReference.AutoSave()
+            Me.DialogResult = Windows.Forms.DialogResult.OK
             Close()
         End If
     End Sub

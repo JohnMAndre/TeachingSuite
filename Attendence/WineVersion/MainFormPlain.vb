@@ -591,13 +591,21 @@ Public Class MainFormPlain
     ''' <remarks></remarks>
     Private Sub ShowStudentCount(Optional lstFiltered As List(Of Student) = Nothing)
         If lstFiltered Is Nothing Then
-            lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count().ToString("#,##0")
+            If m_lstCurrentListOfStudents IsNot Nothing Then
+                lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count().ToString("#,##0")
+            Else
+                lblStudentCount.Text = String.Empty
+            End If
         Else
             'Dim intFilteredCount As Integer
             'For Each o As Object In olvStudents.FilteredObjects
             '    intFilteredCount += 1
             'Next
-            lblStudentCount.Text = "Filtered: " & lstFiltered.Count.ToString("#,##0")
+            If lstFiltered IsNot Nothing Then
+                lblStudentCount.Text = "Filtered: " & lstFiltered.Count.ToString("#,##0")
+            Else
+                lblStudentCount.Text = String.Empty
+            End If
         End If
 
     End Sub
@@ -915,7 +923,7 @@ Public Class MainFormPlain
         StartOralExam(Semester.MarkingTry.SecondTry)
     End Sub
 
-    Private Sub Exam2ndRedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Exam2ndRedoToolStripMenuItem.Click
+    Private Sub Exam2ndRedoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         StartOralExam(Semester.MarkingTry.ThirdTry)
     End Sub
 
