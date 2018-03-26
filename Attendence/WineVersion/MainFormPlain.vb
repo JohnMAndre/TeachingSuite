@@ -91,13 +91,13 @@ Public Class MainFormPlain
         'C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
 
         '-- Check for update
-        Dim ts As TimeSpan = Date.Now - AppSettings.LastUpdateCheck
-        If ts.TotalDays > 30 Then
-            CheckForupdatesToolStripMenuItem.PerformClick()
-        End If
-        If ts.TotalDays > 0.5 Then
-            CheckForupdatesToolStripMenuItem.ToolTipText = "Last checked " & ts.TotalDays.ToString("#,##0.0") & " days ago."
-        End If
+        'Dim ts As TimeSpan = Date.Now - AppSettings.LastUpdateCheck
+        'If ts.TotalDays > 30 Then
+        '    CheckForupdatesToolStripMenuItem.PerformClick()
+        'End If
+        'If ts.TotalDays > 0.5 Then
+        '    CheckForupdatesToolStripMenuItem.ToolTipText = "Last checked " & ts.TotalDays.ToString("#,##0.0") & " days ago."
+        'End If
 
         '-- Setup dgvStudents stuff
         Dim typEnum As System.Type
@@ -2620,7 +2620,7 @@ Public Class MainFormPlain
         Try
             'Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
             'System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- this app is not supporting betas yet, but the updater does
-            System.Diagnostics.Process.Start("http://educators.johnmandre.com/teaching-app-news") '-- Simpler, since I play to take TrulyMail.com offline
+            System.Diagnostics.Process.Start("http://educators.johnmandre.com/teaching-app-news") '-- Simpler, since I plan to take TrulyMail.com offline
 
         Catch ex As Exception
             Log(ex)

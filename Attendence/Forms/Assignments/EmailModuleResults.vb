@@ -597,7 +597,7 @@ Public Class EmailModuleResults
                         str.Append("<br>")
                     Else
                         str.Append(Environment.NewLine)
-                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & asmt.OverallComments)
+                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.OverallComments)
                         str.Append(Environment.NewLine)
                     End If
                 End If
@@ -610,7 +610,7 @@ Public Class EmailModuleResults
                         str.Append("<br>")
                     Else
                         str.Append(Environment.NewLine)
-                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & asmt.ImprovementComments)
+                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.ImprovementComments)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
@@ -660,7 +660,7 @@ Public Class EmailModuleResults
                         str.Append("<br>")
                         str.Append("<br>")
                     Else
-                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & asmt.OverallComments)
+                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.OverallComments)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
@@ -673,7 +673,7 @@ Public Class EmailModuleResults
                         str.Append("<br>")
                         str.Append("<br>")
                     Else
-                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & asmt.ImprovementComments)
+                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.ImprovementComments)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
