@@ -652,4 +652,45 @@ Public Class StudentDetail
             FindInNotes()
         End If
     End Sub
+
+    Private Sub llblChangeBaseAssignment_LinkClicked(sender As Object, e As EventArgs) Handles llblChangeBaseAssignment.LinkClicked
+        Try
+
+            'If olvAssignments.SelectedObject Is Nothing Then
+            If olvNormalAssignments.SelectedObject Is Nothing Then
+                MessageBox.Show("Please select an assignment to reassign.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                '-- Change normal assignment
+                Using frm As New BaseAssignmentSelector(m_student.SchoolClass.ClassGroup)
+                    If frm.ShowDialog = DialogResult.OK Then
+                        Application.DoEvents()
+                        Dim asmt As StudentAssignment = CType(olvNormalAssignments.SelectedObject, StudentAssignment)
+                        asmt.BaseAssignment = frm.SelectedAssignment
+                    End If
+                End Using
+                LoadAssignments()
+            End If
+            'Else
+            ''-- Move BTEC Assignment
+            ''-- select new student to transfer to
+            'Using frm As New StudentSelector()
+            '    If frm.ShowDialog = DialogResult.OK Then
+            '        Application.DoEvents()
+            '        Dim newStudent As Student = frm.SelectedStudent
+            '        If newStudent IsNot Nothing Then
+            '            Dim asmt As StudentAssignmentBTEC = CType(olvAssignments.SelectedObject, StudentAssignmentBTEC)
+            '            asmt.Student = newStudent
+            '            newStudent.AssignmentsBTEC.Add(asmt)
+            '            m_student.AssignmentsBTEC.Remove(asmt)
+            '            olvAssignments.RemoveObject(asmt)
+            '        End If
+            '    End If
+            'End Using
+            LoadAssignments()
+            'End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 End Class

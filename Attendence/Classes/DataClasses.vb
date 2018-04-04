@@ -1955,6 +1955,9 @@ Public Class StudentAssignment
     Public Function CompareTo(other As StudentAssignment) As Integer Implements IComparable(Of StudentAssignment).CompareTo
         Return Me.BaseAssignment.Name.CompareTo(other.BaseAssignment.Name)
     End Function
+    Public Overrides Function ToString() As String
+        Return Me.BaseAssignment.Name
+    End Function
 End Class
 Public Class StudentAssignmentBTEC
     Implements IComparable(Of StudentAssignmentBTEC), IStudentAssignment

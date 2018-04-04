@@ -82,6 +82,7 @@ Partial Class EmailModuleResults
         Me.txtSubject = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -109,7 +110,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -152,7 +152,6 @@ Partial Class EmailModuleResults
         Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnOK.Location = New System.Drawing.Point(46, 291)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnOK.Size = New System.Drawing.Size(148, 25)
         Me.btnOK.TabIndex = 27
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
@@ -197,7 +196,6 @@ Partial Class EmailModuleResults
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.Location = New System.Drawing.Point(142, 616)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.btnCancel.Size = New System.Drawing.Size(93, 25)
         Me.btnCancel.TabIndex = 59
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
@@ -339,7 +337,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel2.Name = "KryptonPanel2"
-        Me.KryptonPanel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel2.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel2.TabIndex = 4
         '
@@ -724,6 +721,14 @@ Partial Class EmailModuleResults
         Me.KryptonLabel1.TabIndex = 31
         Me.KryptonLabel1.Values.Text = "Sending account:"
         '
+        'KryptonLabel9
+        '
+        Me.KryptonLabel9.Location = New System.Drawing.Point(3, 38)
+        Me.KryptonLabel9.Name = "KryptonLabel9"
+        Me.KryptonLabel9.Size = New System.Drawing.Size(67, 19)
+        Me.KryptonLabel9.TabIndex = 69
+        Me.KryptonLabel9.Values.Text = "Selected:"
+        '
         'olvStudents
         '
         Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
@@ -967,14 +972,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Name = "KryptonPanel4"
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
-        '
-        'KryptonLabel9
-        '
-        Me.KryptonLabel9.Location = New System.Drawing.Point(3, 38)
-        Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(67, 19)
-        Me.KryptonLabel9.TabIndex = 69
-        Me.KryptonLabel9.Values.Text = "Selected:"
         '
         'EmailModuleResults
         '

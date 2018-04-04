@@ -137,6 +137,7 @@ Partial Class StudentDetail
         Me.OlvColumn23 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn24 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.llblChangeBaseAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.pnlLog.SuspendLayout()
@@ -160,7 +161,6 @@ Partial Class StudentDetail
         '
         'KryptonPanel
         '
-        Me.KryptonPanel.Controls.Add(Me.pnlLog)
         Me.KryptonPanel.Controls.Add(Me.txtExtStudentID)
         Me.KryptonPanel.Controls.Add(Me.btnShowHistoricalData)
         Me.KryptonPanel.Controls.Add(Me.btnShowImprovementItems)
@@ -169,7 +169,6 @@ Partial Class StudentDetail
         Me.KryptonPanel.Controls.Add(Me.llblAdjustAbsences)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel13)
         Me.KryptonPanel.Controls.Add(Me.txtClassGroup)
-        Me.KryptonPanel.Controls.Add(Me.pnlAttendance)
         Me.KryptonPanel.Controls.Add(Me.btnShowAssignments)
         Me.KryptonPanel.Controls.Add(Me.btnShowStudentLog)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel12)
@@ -204,13 +203,15 @@ Partial Class StudentDetail
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel.Controls.Add(Me.pbButtonHighlight)
         Me.KryptonPanel.Controls.Add(Me.pnlAssignments)
-        Me.KryptonPanel.Controls.Add(Me.olvImprovementItems)
-        Me.KryptonPanel.Controls.Add(Me.olvTeachingSessions)
-        Me.KryptonPanel.Controls.Add(Me.olvAssignments)
         Me.KryptonPanel.Controls.Add(Me.pnlNormalAssignments)
         Me.KryptonPanel.Controls.Add(Me.pnlHistoricalData)
         Me.KryptonPanel.Controls.Add(Me.pnlOutcomes)
         Me.KryptonPanel.Controls.Add(Me.pnlNotes)
+        Me.KryptonPanel.Controls.Add(Me.pnlLog)
+        Me.KryptonPanel.Controls.Add(Me.olvImprovementItems)
+        Me.KryptonPanel.Controls.Add(Me.olvTeachingSessions)
+        Me.KryptonPanel.Controls.Add(Me.olvAssignments)
+        Me.KryptonPanel.Controls.Add(Me.pnlAttendance)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
@@ -684,7 +685,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(75, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel3.TabIndex = 0
         Me.KryptonLabel3.Values.Text = "Local name:"
         '
@@ -701,6 +702,7 @@ Partial Class StudentDetail
         '
         Me.pnlAssignments.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlAssignments.BackColor = System.Drawing.Color.Transparent
+        Me.pnlAssignments.Controls.Add(Me.llblChangeBaseAssignment)
         Me.pnlAssignments.Controls.Add(Me.llblMoveAssignment)
         Me.pnlAssignments.Location = New System.Drawing.Point(731, 150)
         Me.pnlAssignments.Name = "pnlAssignments"
@@ -710,7 +712,7 @@ Partial Class StudentDetail
         'llblMoveAssignment
         '
         Me.llblMoveAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblMoveAssignment.Location = New System.Drawing.Point(27, 3)
+        Me.llblMoveAssignment.Location = New System.Drawing.Point(5, 3)
         Me.llblMoveAssignment.Name = "llblMoveAssignment"
         Me.llblMoveAssignment.Size = New System.Drawing.Size(22, 18)
         Me.llblMoveAssignment.TabIndex = 21
@@ -1088,7 +1090,7 @@ Partial Class StudentDetail
         '
         Me.lblGradeAsOfTodayPoints.Location = New System.Drawing.Point(248, 4)
         Me.lblGradeAsOfTodayPoints.Name = "lblGradeAsOfTodayPoints"
-        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(17, 20)
+        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(18, 19)
         Me.lblGradeAsOfTodayPoints.TabIndex = 140
         Me.lblGradeAsOfTodayPoints.Values.Text = "0"
         '
@@ -1096,7 +1098,7 @@ Partial Class StudentDetail
         '
         Me.llblRefreshGradeAsOfToday.Location = New System.Drawing.Point(9, 4)
         Me.llblRefreshGradeAsOfToday.Name = "llblRefreshGradeAsOfToday"
-        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(88, 20)
+        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(97, 19)
         Me.llblRefreshGradeAsOfToday.TabIndex = 139
         Me.ToolTip1.SetToolTip(Me.llblRefreshGradeAsOfToday, "Click to refresh")
         Me.llblRefreshGradeAsOfToday.Values.Text = "Grade (today):"
@@ -1105,7 +1107,7 @@ Partial Class StudentDetail
         '
         Me.lblGradeAsOfTodayPercent.Location = New System.Drawing.Point(112, 3)
         Me.lblGradeAsOfTodayPercent.Name = "lblGradeAsOfTodayPercent"
-        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(17, 20)
+        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(18, 19)
         Me.lblGradeAsOfTodayPercent.TabIndex = 49
         Me.lblGradeAsOfTodayPercent.Values.Text = "0"
         '
@@ -1406,6 +1408,17 @@ Partial Class StudentDetail
         Me.OlvColumn24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn24.Width = 80
         '
+        'llblChangeBaseAssignment
+        '
+        Me.llblChangeBaseAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblChangeBaseAssignment.Location = New System.Drawing.Point(47, 3)
+        Me.llblChangeBaseAssignment.Name = "llblChangeBaseAssignment"
+        Me.llblChangeBaseAssignment.Size = New System.Drawing.Size(22, 18)
+        Me.llblChangeBaseAssignment.TabIndex = 22
+        Me.ToolTip1.SetToolTip(Me.llblChangeBaseAssignment, "Change base assignment")
+        Me.llblChangeBaseAssignment.Values.Image = Global.Teaching.My.Resources.Resources.Import_16
+        Me.llblChangeBaseAssignment.Values.Text = ""
+        '
         'StudentDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1575,4 +1588,5 @@ Partial Class StudentDetail
     Friend WithEvents llblFindInHistory As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents KryptonLabel16 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtFindInHistory As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents llblChangeBaseAssignment As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class

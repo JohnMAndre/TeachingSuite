@@ -259,7 +259,7 @@
             Dim strReturn As String = String.Empty
             For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
 
-                strReturn &= " " & item.BaseImprovementItem.Description
+                strReturn &= "* " & item.BaseImprovementItem.Description
                 If includePerformanceLevel Then
                     strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                     Select Case item.PerformanceLevel
@@ -274,13 +274,13 @@
                         Case 5
                             strReturn &= "Already great"
                     End Select
-                    strReturn &= ")" & Environment.NewLine
+                    strReturn &= ")" & Environment.NewLine & Environment.NewLine
                 End If
             Next
 
             Return strReturn.Trim()
         Catch ex As Exception
-            MessageBox.Show("There was an error with the improvement note list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("There was an error with the improvement item list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
 
