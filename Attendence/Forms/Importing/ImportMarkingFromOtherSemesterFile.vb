@@ -193,7 +193,7 @@
 
     Private Sub ImportStudentAssignments()
         Try
-            If MessageBox.Show("Are you sure you want to important assignments, improvement items, and changes in data for these students?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+            If MessageBox.Show("Are you sure you want to import assignments, improvement items, and changes in data for these students?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
                 '-- No or cancel will stop this process
 
                 '-- If we get here, for each student, import:
