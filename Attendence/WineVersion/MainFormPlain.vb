@@ -3180,4 +3180,51 @@ Public Class MainFormPlain
     Private Sub EditStudentToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditStudentToolStripMenuItem1.Click
         EditSelectedStudent()
     End Sub
+
+    Private Sub ExportAllStudentAssignmentDetailsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAllStudentAssignmentDetailsToolStripMenuItem.Click
+        Try
+            '-- export to Print folder
+
+            Dim objClass As SchoolClass = GetSelectedClass()
+            Dim lst As List(Of Student)
+            Dim strFolderName As String
+
+            If objClass Is Nothing Then
+                MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            Else
+                If ClassIsCombinedView(objClass) Then
+                    lst = New List(Of Student)
+                    Dim boolSetAlready As Boolean
+                    For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                        If Not boolSetAlready Then
+                            lst.AddRange(objCls.Students)
+                            boolSetAlready = True
+                        Else
+                            '-- Need to ensure all students in all classes in this module are loaded
+                            lst.AddRange(objCls.Students)
+                        End If
+                    Next
+                    strFolderName = GetSelectedClassGroup.Name & " (all classes)"
+                Else
+                    lst = objClass.Students
+                    strFolderName = objClass.Name
+                End If
+            End If
+
+            Dim strFilename As String
+            Dim intCounter As Integer
+            For Each stud As Student In lst
+                strFilename = AppSettings.MarkingPageSaveFolder & System.IO.Path.DirectorySeparatorChar & strFolderName & System.IO.Path.DirectorySeparatorChar & stud.StudentID & ".txt"
+                stud.ExportStudentAssignmentDetails(strFilename)
+                intCounter += 1
+            Next
+
+            MessageBox.Show(intCounter.ToString("#,##0") & " students exported to: " & AppSettings.MarkingPageSaveFolder, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error exporting your data: " * ex.Message)
+        End Try
+    End Sub
 End Class

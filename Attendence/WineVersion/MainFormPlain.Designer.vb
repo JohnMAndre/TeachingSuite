@@ -253,6 +253,7 @@ Partial Class MainFormPlain
         Me.ClearTagsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearTeamForTheseStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CaptureStudentImageFromClipboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditStudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAttendanceErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator()
@@ -332,7 +333,7 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.EditStudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2018,6 +2019,13 @@ Partial Class MainFormPlain
         Me.CaptureStudentImageFromClipboardToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
         Me.CaptureStudentImageFromClipboardToolStripMenuItem.Text = "Capture student image from clipboard"
         '
+        'EditStudentToolStripMenuItem1
+        '
+        Me.EditStudentToolStripMenuItem1.Name = "EditStudentToolStripMenuItem1"
+        Me.EditStudentToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.EditStudentToolStripMenuItem1.Size = New System.Drawing.Size(314, 22)
+        Me.EditStudentToolStripMenuItem1.Text = "&Edit student"
+        '
         'ReportsToolStripMenuItem
         '
         Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem})
@@ -2134,7 +2142,7 @@ Partial Class MainFormPlain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportMarkingFromOtherDatabaseToolStripMenuItem, Me.ImportClassToolStripMenuItem, Me.ImportSToolStripMenuItem, Me.ImportAttendanceToolStripMenuItem, Me.ImportEmailAddressesToolStripMenuItem, Me.ImportStudentAssignmentScoresToolStripMenuItem, Me.ImportImprovementItemsToolStripMenuItem, Me.ToolStripSeparator6, Me.ExportAttendanceToolStripMenuItem, Me.ExportModuleResultsToolStripMenuItem, Me.ExportMarkingResultsToolStripMenuItem, Me.ExportMarkingResultsIsolatedToolStripMenuItem, Me.ExportStudentsToolStripMenuItem, Me.ExportStudentGradesToolStripMenuItem, Me.ExportModuleToolStripMenuItem, Me.ExportScheduleAsICalToolStripMenuItem, Me.ExportEntireSemesterAsXMLToolStripMenuItem, Me.ToolStripSeparator7, Me.UpdateEmailAddressToolStripMenuItem, Me.FindDuplicateStudentsToolStripMenuItem, Me.FindhistoricalStudentToolStripMenuItem, Me.ProcessAddDropStudentsToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportMarkingFromOtherDatabaseToolStripMenuItem, Me.ImportClassToolStripMenuItem, Me.ImportSToolStripMenuItem, Me.ImportAttendanceToolStripMenuItem, Me.ImportEmailAddressesToolStripMenuItem, Me.ImportStudentAssignmentScoresToolStripMenuItem, Me.ImportImprovementItemsToolStripMenuItem, Me.ToolStripSeparator6, Me.ExportAttendanceToolStripMenuItem, Me.ExportModuleResultsToolStripMenuItem, Me.ExportMarkingResultsToolStripMenuItem, Me.ExportMarkingResultsIsolatedToolStripMenuItem, Me.ExportStudentsToolStripMenuItem, Me.ExportAllStudentAssignmentDetailsToolStripMenuItem, Me.ExportStudentGradesToolStripMenuItem, Me.ExportModuleToolStripMenuItem, Me.ExportScheduleAsICalToolStripMenuItem, Me.ExportEntireSemesterAsXMLToolStripMenuItem, Me.ToolStripSeparator7, Me.UpdateEmailAddressToolStripMenuItem, Me.FindDuplicateStudentsToolStripMenuItem, Me.FindhistoricalStudentToolStripMenuItem, Me.ProcessAddDropStudentsToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
@@ -2515,12 +2523,11 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'EditStudentToolStripMenuItem1
+        'ExportAllStudentAssignmentDetailsToolStripMenuItem
         '
-        Me.EditStudentToolStripMenuItem1.Name = "EditStudentToolStripMenuItem1"
-        Me.EditStudentToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.EditStudentToolStripMenuItem1.Size = New System.Drawing.Size(314, 22)
-        Me.EditStudentToolStripMenuItem1.Text = "&Edit student"
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Name = "ExportAllStudentAssignmentDetailsToolStripMenuItem"
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Text = "Export all student assignment details"
         '
         'MainFormPlain
         '
@@ -2865,4 +2872,5 @@ Partial Class MainFormPlain
     Friend WithEvents picStudent As System.Windows.Forms.PictureBox
     Friend WithEvents ImportMarkingFromOtherDatabaseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EditStudentToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportAllStudentAssignmentDetailsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

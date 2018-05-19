@@ -3605,6 +3605,41 @@ Public Class Student
             Return decReturn
         End Get
     End Property
+    Public Sub ExportStudentAssignmentDetails(filename As String)
+        If Not System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filename)) Then
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(filename))
+        End If
+
+        Dim tw As System.IO.TextWriter = System.IO.File.CreateText(filename)
+        tw.WriteLine("Student ID: " & Me.StudentID)
+        tw.WriteLine("Student name: " & Me.LocalName)
+        '-- The loop
+        For Each asmt As StudentAssignment In Me.Assignments
+            tw.WriteLine("===============================================")
+            tw.WriteLine("Assessment: " & asmt.BaseAssignment.Name)
+            'tw.WriteLine("Assessor: " & asmt.FirstUserFullName)
+            tw.WriteLine("Maximum points available: " & asmt.BaseAssignment.MaxPoints)
+            tw.WriteLine("First try points: " & asmt.FirstTryPoints)
+
+            '-- Only show second try points if there was a second try
+            If asmt.SecondTryPoints > 0 Then
+                tw.WriteLine("Second try points: " & asmt.SecondTryPoints)
+            End If
+            'tw.WriteLine("Third try points: " & asmt.ThirdTryPoints)
+            tw.Write("Overall: " & AdjustCrLFForAllPlatforms(asmt.OverallComments))
+            tw.WriteLine(String.Empty)
+            tw.Write("Improvement: " & AdjustCrLFForAllPlatforms(asmt.ImprovementComments))
+            tw.WriteLine(String.Empty)
+
+            tw.WriteLine(String.Empty)
+        Next
+
+        '-- one final one to make it look nice
+        tw.WriteLine("===============================================")
+        tw.Close()
+        tw.Dispose()
+
+    End Sub
     Public Sub AddToActivityLog(text As String)
         Me.ActivityLog &= Date.Now.ToString(DATE_TIME_FORMAT_DETAIL) & " " & text & Environment.NewLine()
     End Sub

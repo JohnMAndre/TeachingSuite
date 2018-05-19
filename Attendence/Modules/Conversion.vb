@@ -131,5 +131,19 @@
             Log(ex)
         End Try
     End Function
-
+    Public Function AdjustCrLFForAllPlatforms(text As String) As String
+        Dim intPos As Integer
+        intPos = text.IndexOf(Chr(10))
+        If intPos = -1 Then
+            '-- nothing there
+            Return text
+        Else
+            If Asc(text.Substring(intPos, 1)) = 13 Then
+                '-- already CrLF (10 + 13), the Windows standard, works on all platforms
+                Return text
+            Else
+                Return text.Replace(Chr(10), Environment.NewLine)
+            End If
+        End If
+    End Function
 End Module
