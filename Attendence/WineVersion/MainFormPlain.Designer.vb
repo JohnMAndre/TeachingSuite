@@ -332,6 +332,7 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
+        Me.EditStudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1911,19 +1912,19 @@ Partial Class MainFormPlain
         'FirstTryToolStripMenuItem
         '
         Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
-        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.FirstTryToolStripMenuItem.Text = "First try"
         '
         'SecondTryToolStripMenuItem
         '
         Me.SecondTryToolStripMenuItem.Name = "SecondTryToolStripMenuItem"
-        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.SecondTryToolStripMenuItem.Text = "Second try"
         '
         'ThirdTryToolStripMenuItem
         '
         Me.ThirdTryToolStripMenuItem.Name = "ThirdTryToolStripMenuItem"
-        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.ThirdTryToolStripMenuItem.Text = "Third try"
         '
         'MarkGroupPresentationToolStripMenuItem
@@ -1948,7 +1949,7 @@ Partial Class MainFormPlain
         '
         'StudentToolStripMenuItem
         '
-        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.ClearTeamForTheseStudentsToolStripMenuItem, Me.CaptureStudentImageFromClipboardToolStripMenuItem})
+        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.ClearTeamForTheseStudentsToolStripMenuItem, Me.CaptureStudentImageFromClipboardToolStripMenuItem, Me.EditStudentToolStripMenuItem1})
         Me.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem"
         Me.StudentToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.StudentToolStripMenuItem.Text = "&Student"
@@ -2514,6 +2515,13 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'EditStudentToolStripMenuItem1
+        '
+        Me.EditStudentToolStripMenuItem1.Name = "EditStudentToolStripMenuItem1"
+        Me.EditStudentToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.EditStudentToolStripMenuItem1.Size = New System.Drawing.Size(314, 22)
+        Me.EditStudentToolStripMenuItem1.Text = "&Edit student"
+        '
         'MainFormPlain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -2856,4 +2864,5 @@ Partial Class MainFormPlain
     Friend WithEvents CaptureStudentImageFromClipboardToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents picStudent As System.Windows.Forms.PictureBox
     Friend WithEvents ImportMarkingFromOtherDatabaseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditStudentToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 End Class

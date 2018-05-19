@@ -2975,6 +2975,34 @@ Public Class MainFormPlain
                         cmp = New StudentComparerByAltNumber
                     Case "AdminNumber"
                         cmp = New StudentComparerByAdminNumber
+                    Case "TotalAbsences"
+                        cmp = New StudentComparerByTotalAbsences
+                    Case "CurrentAbsences"
+                        cmp = New StudentComparerByCurrentAbsences
+                    Case "PresentationQuality"
+                        cmp = New StudentComparerByPresentationQuality
+                    Case "WritingQuality"
+                        cmp = New StudentComparerByWritingQuality
+                    Case "AssignmentCount"
+                        cmp = New StudentComparerByAssignmentCount
+                    Case "ProcessedAssignments"
+                        cmp = New StudentComparerByProcessedAssignments
+                    Case "Hidden"
+                        cmp = New StudentComparerByHidden
+                    Case "MeritPoints"
+                        cmp = New StudentComparerByMeritPoints
+                    Case "PlagiarismSeverity"
+                        cmp = New StudentComparerByPlagiarismSeverity
+                    Case "DraftsChecked"
+                        cmp = New StudentComparerByDraftsChecked
+                    Case "OfficeHoursVisited"
+                        cmp = New StudentComparerByOfficeHoursVisited
+                    Case "ResearchQuality"
+                        cmp = New StudentComparerByResearchQuality
+                    Case "PerformanceLastOnlineQuiz"
+                        cmp = New StudentComparerByPerformanceLastOnlineQuiz
+                    Case "LocalNameLatinLetters"
+                        cmp = New StudentComparerByLocalNameLatinLetters
                     Case Else
                         boolSort = False
                 End Select
@@ -3147,5 +3175,9 @@ Public Class MainFormPlain
     Private Sub ImportMarkingFromOtherDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportMarkingFromOtherDatabaseToolStripMenuItem.Click
         Dim frm As New ImportMarkingFromOtherSemesterFile()
         frm.Show()
+    End Sub
+
+    Private Sub EditStudentToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditStudentToolStripMenuItem1.Click
+        EditSelectedStudent()
     End Sub
 End Class

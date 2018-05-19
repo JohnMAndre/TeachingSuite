@@ -88,6 +88,7 @@ Partial Class OptionsForm
         Me.txtPathToTrulyMail = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.tabMarking = New System.Windows.Forms.TabPage()
         Me.pnlMarking = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.txtImprovementWithPassAll = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtImprovementWithMerit = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
@@ -132,7 +133,8 @@ Partial Class OptionsForm
         Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.txtUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel41 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -875,7 +877,9 @@ Partial Class OptionsForm
         Me.pnlMarking.Controls.Add(Me.KryptonLabel8)
         Me.pnlMarking.Controls.Add(Me.txtExamPassDefaultFeedback)
         Me.pnlMarking.Controls.Add(Me.KryptonLabel20)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel41)
         Me.pnlMarking.Controls.Add(Me.KryptonLabel7)
+        Me.pnlMarking.Controls.Add(Me.txtUserFullName)
         Me.pnlMarking.Controls.Add(Me.txtExamFailDefaultFeedback)
         Me.pnlMarking.Controls.Add(Me.nudExamClockDuration)
         Me.pnlMarking.Controls.Add(Me.KryptonLabel6)
@@ -884,6 +888,19 @@ Partial Class OptionsForm
         Me.pnlMarking.Name = "pnlMarking"
         Me.pnlMarking.Size = New System.Drawing.Size(815, 460)
         Me.pnlMarking.TabIndex = 0
+        '
+        'chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel
+        '
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Location = New System.Drawing.Point(9, 239)
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Name = "chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel"
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Size = New System.Drawing.Size(509, 20)
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.TabIndex = 145
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Text = "Group presentation marking should update Presentation and Research performance le" & _
+    "vel"
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Values.Text = "Group presentation marking should update Presentation and Research performance le" & _
+    "vel"
         '
         'chkPromptWhenMarkingAssignmentProcessedWithoutFullText
         '
@@ -1278,18 +1295,22 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
         '
-        'chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel
+        'txtUserFullName
         '
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Location = New System.Drawing.Point(9, 239)
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Name = "chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel"
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Size = New System.Drawing.Size(509, 20)
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.TabIndex = 145
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Text = "Group presentation marking should update Presentation and Research performance le" & _
-    "vel"
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Values.Text = "Group presentation marking should update Presentation and Research performance le" & _
-    "vel"
+        Me.txtUserFullName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtUserFullName.Location = New System.Drawing.Point(206, 11)
+        Me.txtUserFullName.Name = "txtUserFullName"
+        Me.txtUserFullName.Size = New System.Drawing.Size(191, 20)
+        Me.txtUserFullName.TabIndex = 40
+        '
+        'KryptonLabel41
+        '
+        Me.KryptonLabel41.Location = New System.Drawing.Point(9, 11)
+        Me.KryptonLabel41.Name = "KryptonLabel41"
+        Me.KryptonLabel41.Size = New System.Drawing.Size(92, 20)
+        Me.KryptonLabel41.TabIndex = 41
+        Me.KryptonLabel41.Values.Text = "User full name:"
         '
         'OptionsForm
         '
@@ -1464,4 +1485,6 @@ Partial Class OptionsForm
     Friend WithEvents chkEmailAsHTML As System.Windows.Forms.CheckBox
     Friend WithEvents chkLoadSemesterCacheOnStartup As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
+    Friend WithEvents KryptonLabel41 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents txtUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
 End Class

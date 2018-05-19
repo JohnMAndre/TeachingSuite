@@ -1887,6 +1887,8 @@ Public Class StudentAssignment
     Public Student As Student '-- parent
 
     Public Property BaseAssignment As ClassAssignment
+    Public Property FirstUserFullName As String '-- UserFullName the first time this assignment was created
+    Public Property LastUserFullName As String '-- UserFullName the most recent time this assignment was saved
     Public Property FirstTryPoints As Integer
     Public Property SecondTryPoints As Integer
     Public Property ThirdTryPoints As Integer
@@ -1905,6 +1907,8 @@ Public Class StudentAssignment
     Public Sub New(assignment As ClassAssignment)
         '-- copy over outcomes
         BaseAssignment = assignment
+        FirstUserFullName = String.Empty
+        LastUserFullName = String.Empty
 
     End Sub
     Public Sub New(xElement As Xml.XmlElement, Student As Student)
@@ -1916,6 +1920,9 @@ Public Class StudentAssignment
                 Exit For
             End If
         Next
+
+        FirstUserFullName = xElement.GetAttribute("FirstUserFullName")
+        LastUserFullName = xElement.GetAttribute("LastUserFullName")
 
         FirstTryPoints = ConvertToInt32(xElement.GetAttribute("FirstTryPoints"), 0)
         SecondTryPoints = ConvertToInt32(xElement.GetAttribute("SecondTryPoints"), 0)
@@ -1937,6 +1944,9 @@ Public Class StudentAssignment
     Public Function GetXMLElementToPersist(xDoc As Xml.XmlDocument) As Xml.XmlElement
         Dim xAssignmentElement As Xml.XmlElement = xDoc.CreateElement("StudentAssignmentNormal")
         xAssignmentElement.SetAttribute("BaseAssignmentID", BaseAssignment.ID)
+
+        xAssignmentElement.SetAttribute("FirstUserFullName", FirstUserFullName)
+        xAssignmentElement.SetAttribute("LastUserFullName", LastUserFullName)
 
         xAssignmentElement.SetAttribute("OverallComments", OverallComments)
         xAssignmentElement.SetAttribute("ImprovementComments", ImprovementComments)
@@ -1964,6 +1974,9 @@ Public Class StudentAssignmentBTEC
 
     Public Property Student As Student '-- parent
     Public Property BaseAssignment As ClassAssignmentBTEC
+    Public Property FirstUserFullName As String '-- UserFullName the first time this assignment was created
+    Public Property LastUserFullName As String '-- UserFullName the most recent time this assignment was saved
+
     Public Property Outcomes As New List(Of OutcomeResult) '-- studentAssignment has own outcomes to provide for feedback
     'Public Property M1Achieved As Boolean
     'Public Property M2Achieved As Boolean
@@ -2100,6 +2113,10 @@ Public Class StudentAssignmentBTEC
             End If
         Next
 
+        FirstUserFullName = xElement.GetAttribute("FirstUserFullName")
+        LastUserFullName = xElement.GetAttribute("LastUserFullName")
+
+
         OverallComments = xElement.GetAttribute("OverallComments")
         ImprovementComments = xElement.GetAttribute("ImprovementComments")
         ObservationComments = xElement.GetAttribute("ObservationComments")
@@ -2164,6 +2181,9 @@ Public Class StudentAssignmentBTEC
             Dim newOut As New OutcomeResult(outcome, Me)
             Outcomes.Add(newOut)
         Next
+
+        FirstUserFullName = String.Empty
+        LastUserFullName = String.Empty
     End Sub
     Public Overrides Function ToString() As String
         Return Me.BaseAssignment.Name
@@ -2177,6 +2197,10 @@ Public Class StudentAssignmentBTEC
         'xAssignmentElement.SetAttribute("D1Achieved", D1Achieved.ToString())
         'xAssignmentElement.SetAttribute("D2Achieved", D2Achieved.ToString())
         'xAssignmentElement.SetAttribute("D3Achieved", D3Achieved.ToString)
+
+        xAssignmentElement.SetAttribute("FirstUserFullName", FirstUserFullName)
+        xAssignmentElement.SetAttribute("LastUserFullName", LastUserFullName)
+
 
         xAssignmentElement.SetAttribute("OverallComments", OverallComments)
         xAssignmentElement.SetAttribute("ImprovementComments", ImprovementComments)

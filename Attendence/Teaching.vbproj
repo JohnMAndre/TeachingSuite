@@ -195,10 +195,10 @@
     <Compile Include="Forms\Dialogs\InputBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Exporting\ExportToTeachingAppExportFile.Designer.vb">
+    <Compile Include="Forms\Dialogs\Exporting\ExportToTeachingAppExportFile.Designer.vb">
       <DependentUpon>ExportToTeachingAppExportFile.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Exporting\ExportToTeachingAppExportFile.vb">
+    <Compile Include="Forms\Dialogs\Exporting\ExportToTeachingAppExportFile.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Importing\HistoricalStudentFinder.Designer.vb">
@@ -651,7 +651,7 @@
     <EmbeddedResource Include="Forms\Dialogs\InputBox.resx">
       <DependentUpon>InputBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Exporting\ExportToTeachingAppExportFile.resx">
+    <EmbeddedResource Include="Forms\Dialogs\Exporting\ExportToTeachingAppExportFile.resx">
       <DependentUpon>ExportToTeachingAppExportFile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportAddDropStudents.resx">
@@ -828,7 +828,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
-    <None Include="Forms\Exporting\TeachingAppFullDataFile.xml">
+    <None Include="Forms\Dialogs\Exporting\TeachingAppFullDataFile.xml">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Notes.txt" />

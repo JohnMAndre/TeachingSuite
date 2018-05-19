@@ -65,6 +65,7 @@ Public Class OptionsForm
         End If
 
         '-- Marking
+        AppSettings.UserFullName = txtUserFullName.Text
         AppSettings.DataBackupsToRetain = nudDataBackupsToRetain.Value
         AppSettings.OutcomeExportMarkPass = txtOutcomeMarkPass.Text
         AppSettings.OutcomeExportMarkFail = txtOutcomeMarkFail.Text
@@ -155,6 +156,7 @@ Public Class OptionsForm
             End If
 
             '-- Marking
+            txtUserFullName.Text = AppSettings.UserFullName
             txtPassResultsText.Text = AppSettings.PassResultsText
             txtFailResultsText.Text = AppSettings.FailResultsText
             txtUnknownResultsText.Text = AppSettings.UnknownResultsText

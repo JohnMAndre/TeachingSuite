@@ -98,8 +98,6 @@ Friend Class StudentAssignmentDetails
         txtTags.Text = m_student.Tags
         m_strStudentTagsOriginal = m_student.Tags
 
-        RefreshOutcomeResults()
-
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
         C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments.RichTextBox, True)
         C1SpellChecker1.SetActiveSpellChecking(rtbObservationComments.RichTextBox, True)
@@ -116,22 +114,43 @@ Friend Class StudentAssignmentDetails
 
         LoadModuleResults()
 
+        '-- Load improvement items
         '-- Load all the improvement items and include date added/removed for those that apply to this student
-        Dim boolItemAdded As Boolean
+        '   But we need to filter only for assignment categories on this assessment
+        Dim boolItemAdded, boolHasMatchingCategory As Boolean
+
         For Each item As ImprovementItem In ThisSemester.ImprovementItems
-            boolItemAdded = False
-            For Each studItem As StudentImprovementItem In m_student.ImprovementItems
-                If studItem.BaseImprovementItem Is item Then
-                    m_improvementItems.Add(studItem)
-                    boolItemAdded = True
+            boolHasMatchingCategory = False '-- default to false
+
+            For Each catItem As Semester.AssessmentCategory In item.AssessmentCategories
+                For Each catAssess As Semester.AssessmentCategory In m_studentAssignment.BaseAssignment.AssessmentCategories
+                    If catItem = catAssess Then
+                        boolHasMatchingCategory = True
+                        Exit For
+                    End If
+                Next
+                If boolHasMatchingCategory Then
                     Exit For
                 End If
             Next
-            If Not boolItemAdded Then
-                Dim studItem As New StudentImprovementItem(m_student)
-                studItem.BaseImprovementItem = item
-                studItem.DateAdded = DATE_NO_DATE
-                m_improvementItems.Add(studItem)
+
+            '-- We only include matching improvement items. If no matching category, we completely ignore it on this assessment
+            If boolHasMatchingCategory Then
+
+                boolItemAdded = False
+                For Each studItem As StudentImprovementItem In m_student.ImprovementItems
+                    If studItem.BaseImprovementItem Is item Then
+                        m_improvementItems.Add(studItem)
+                        boolItemAdded = True
+                        Exit For
+                    End If
+                Next
+                If Not boolItemAdded Then
+                    Dim studItem As New StudentImprovementItem(m_student)
+                    studItem.BaseImprovementItem = item
+                    studItem.DateAdded = DATE_NO_DATE
+                    m_improvementItems.Add(studItem)
+                End If
             End If
         Next
         olvImprovementItems.SetObjects(m_improvementItems)
@@ -163,6 +182,9 @@ Friend Class StudentAssignmentDetails
             End If
         Next
 
+        '-- Load UserFullNames
+        txtFirstUserFullName.Text = Me.m_studentAssignment.FirstUserFullName
+        txtLastUserFullName.Text = Me.m_studentAssignment.LastUserFullName
 
         If AppSettings.OpenAssignmentDetailMaximized Then
             Me.WindowState = FormWindowState.Maximized
@@ -188,6 +210,11 @@ Friend Class StudentAssignmentDetails
         End If
 
         Dim intPassedOutcomes As Integer = PassedOutcomes()
+
+        If m_studentAssignment.FirstUserFullName.Trim.Length = 0 Then
+            m_studentAssignment.FirstUserFullName = AppSettings.UserFullName
+        End If
+        m_studentAssignment.LastUserFullName = AppSettings.UserFullName
 
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
@@ -1477,13 +1504,6 @@ Friend Class StudentAssignmentDetails
 
     Private Sub rtbImprovementComments_TextChanged(sender As System.Object, e As System.EventArgs) Handles rtbImprovementComments.TextChanged
         lblImprovementCharCount.Text = rtbImprovementComments.TextLength.ToString("#,##0")
-    End Sub
-    Private Sub RefreshOutcomeResults()
-        Dim rslt As Student.QuickAssignmentResults = m_student.GetQuickAssignmentResults(Semester.MarkingTry.ThirdTry)
-        lblOutcomesPassed.Text = rslt.OutcomesPassed.ToString() & " of " & rslt.OutcomesIncluded.ToString()
-    End Sub
-    Private Sub llblRefreshOutcomeCount_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRefreshOutcomeCount.LinkClicked
-        RefreshOutcomeResults()
     End Sub
 
     Private Sub llblExistingAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblExistingAssignment.LinkClicked

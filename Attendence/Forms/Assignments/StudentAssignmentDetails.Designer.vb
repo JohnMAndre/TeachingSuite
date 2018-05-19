@@ -96,10 +96,8 @@ Partial Class StudentAssignmentDetails
         Me.txtTeam = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtSchoolClass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblRefreshOutcomeCount = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.nudAltNumber = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.nudPresentationQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.lblOutcomesPassed = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblEditStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblAchieveAllMerit = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblAchieveAllPass = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -142,6 +140,10 @@ Partial Class StudentAssignmentDetails
         Me.FocusOnoverallToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FocusOnfeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FocusOnoutcomesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KryptonLabel16 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtFirstUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtLastUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel18 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +181,10 @@ Partial Class StudentAssignmentDetails
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel18)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel16)
+        Me.KryptonPanel.Controls.Add(Me.txtLastUserFullName)
+        Me.KryptonPanel.Controls.Add(Me.txtFirstUserFullName)
         Me.KryptonPanel.Controls.Add(Me.txtGroup)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel17)
         Me.KryptonPanel.Controls.Add(Me.nudResearchQuality)
@@ -195,10 +201,8 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Controls.Add(Me.txtTeam)
         Me.KryptonPanel.Controls.Add(Me.txtSchoolClass)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel11)
-        Me.KryptonPanel.Controls.Add(Me.llblRefreshOutcomeCount)
         Me.KryptonPanel.Controls.Add(Me.nudAltNumber)
         Me.KryptonPanel.Controls.Add(Me.nudPresentationQuality)
-        Me.KryptonPanel.Controls.Add(Me.lblOutcomesPassed)
         Me.KryptonPanel.Controls.Add(Me.llblEditStudent)
         Me.KryptonPanel.Controls.Add(Me.llblAchieveAllMerit)
         Me.KryptonPanel.Controls.Add(Me.llblAchieveAllPass)
@@ -1071,16 +1075,6 @@ Partial Class StudentAssignmentDetails
         Me.KryptonLabel11.TabIndex = 110
         Me.KryptonLabel11.Values.Text = "Class:"
         '
-        'llblRefreshOutcomeCount
-        '
-        Me.llblRefreshOutcomeCount.Location = New System.Drawing.Point(259, 54)
-        Me.llblRefreshOutcomeCount.Name = "llblRefreshOutcomeCount"
-        Me.llblRefreshOutcomeCount.Size = New System.Drawing.Size(22, 18)
-        Me.llblRefreshOutcomeCount.TabIndex = 102
-        Me.ToolTip1.SetToolTip(Me.llblRefreshOutcomeCount, "Pass all")
-        Me.llblRefreshOutcomeCount.Values.Image = Global.Teaching.My.Resources.Resources.refresh_16
-        Me.llblRefreshOutcomeCount.Values.Text = ""
-        '
         'nudAltNumber
         '
         Me.nudAltNumber.Location = New System.Drawing.Point(536, 24)
@@ -1104,15 +1098,6 @@ Partial Class StudentAssignmentDetails
         Me.nudPresentationQuality.ThousandsSeparator = True
         Me.ToolTip1.SetToolTip(Me.nudPresentationQuality, "Presentation quality of student")
         Me.nudPresentationQuality.Value = New Decimal(New Integer() {2, 0, 0, 0})
-        '
-        'lblOutcomesPassed
-        '
-        Me.lblOutcomesPassed.Location = New System.Drawing.Point(188, 52)
-        Me.lblOutcomesPassed.Name = "lblOutcomesPassed"
-        Me.lblOutcomesPassed.Size = New System.Drawing.Size(17, 20)
-        Me.lblOutcomesPassed.TabIndex = 94
-        Me.ToolTip1.SetToolTip(Me.lblOutcomesPassed, "Total outcomes passed")
-        Me.lblOutcomesPassed.Values.Text = "0"
         '
         'llblEditStudent
         '
@@ -1423,6 +1408,38 @@ Partial Class StudentAssignmentDetails
         Me.FocusOnoutcomesToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.FocusOnoutcomesToolStripMenuItem.Text = "Focus on o&utcomes"
         '
+        'KryptonLabel16
+        '
+        Me.KryptonLabel16.Location = New System.Drawing.Point(3, 49)
+        Me.KryptonLabel16.Name = "KryptonLabel16"
+        Me.KryptonLabel16.Size = New System.Drawing.Size(72, 20)
+        Me.KryptonLabel16.TabIndex = 133
+        Me.KryptonLabel16.Values.Text = "First editor:"
+        '
+        'txtFirstUserFullName
+        '
+        Me.txtFirstUserFullName.Location = New System.Drawing.Point(90, 49)
+        Me.txtFirstUserFullName.Name = "txtFirstUserFullName"
+        Me.txtFirstUserFullName.ReadOnly = True
+        Me.txtFirstUserFullName.Size = New System.Drawing.Size(147, 20)
+        Me.txtFirstUserFullName.TabIndex = 132
+        '
+        'txtLastUserFullName
+        '
+        Me.txtLastUserFullName.Location = New System.Drawing.Point(435, 49)
+        Me.txtLastUserFullName.Name = "txtLastUserFullName"
+        Me.txtLastUserFullName.ReadOnly = True
+        Me.txtLastUserFullName.Size = New System.Drawing.Size(147, 20)
+        Me.txtLastUserFullName.TabIndex = 132
+        '
+        'KryptonLabel18
+        '
+        Me.KryptonLabel18.Location = New System.Drawing.Point(348, 49)
+        Me.KryptonLabel18.Name = "KryptonLabel18"
+        Me.KryptonLabel18.Size = New System.Drawing.Size(71, 20)
+        Me.KryptonLabel18.TabIndex = 133
+        Me.KryptonLabel18.Values.Text = "Last editor:"
+        '
         'StudentAssignmentDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1535,10 +1552,8 @@ Partial Class StudentAssignmentDetails
     Private WithEvents llblAchieveAllMerit As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents llblAchieveAllPass As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents llblEditStudent As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Private WithEvents lblOutcomesPassed As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents nudAltNumber As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Private WithEvents nudPresentationQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Private WithEvents llblRefreshOutcomeCount As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents txtSchoolClass As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Private WithEvents KryptonLabel11 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents nudPlagiarismSeverity As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
@@ -1611,4 +1626,8 @@ Partial Class StudentAssignmentDetails
     Friend WithEvents FocusOnoverallToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FocusOnfeedbackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FocusOnoutcomesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents KryptonLabel18 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Private WithEvents KryptonLabel16 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Private WithEvents txtLastUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Private WithEvents txtFirstUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
 End Class

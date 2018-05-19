@@ -470,7 +470,12 @@
                     GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = True
                 End If
 
-
+                xElement = xDoc.SelectSingleNode("//UserFullName")
+                If xElement IsNot Nothing Then
+                    UserFullName = xElement.InnerText
+                Else
+                    UserFullName = String.Empty '-- not set
+                End If
 
                 LoadAutoTexts(xDoc)
             Else
@@ -623,6 +628,7 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationPresentationWeight", PresentationPresentationWeight))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationLanguageWeight", PresentationLanguageWeight))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "GroupPresentationUpdatesPresentationAndResearchPerformanceLevel", GroupPresentationUpdatesPresentationAndResearchPerformanceLevel))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UserFullName", UserFullName))
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
@@ -711,6 +717,7 @@
         End Try
     End Sub
 #Region " Public Properties "
+    Public Property UserFullName As String '-- name of person doing marking, to keep track at the assignment-level
     Public Property GroupPresentationUpdatesPresentationAndResearchPerformanceLevel As Boolean
     Public Property PresentationContentWeight As Integer
     Public Property PresentationPresentationWeight As Integer

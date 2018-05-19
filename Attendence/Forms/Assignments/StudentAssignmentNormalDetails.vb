@@ -118,26 +118,52 @@
 
         nudPlagiarismSeverity.Value = m_student.PlagiarismSeverity
 
+        '-- Load improvement items
         '-- Load all the improvement items and include date added/removed for those that apply to this student
-        Dim boolItemAdded As Boolean
+        '   But we need to filter only for assignment categories on this assessment
+        Dim boolItemAdded, boolHasMatchingCategory As Boolean
+
         For Each item As ImprovementItem In ThisSemester.ImprovementItems
-            boolItemAdded = False
-            For Each studItem As StudentImprovementItem In m_student.ImprovementItems
-                If studItem.BaseImprovementItem Is item Then
-                    m_improvementItems.Add(studItem)
-                    boolItemAdded = True
+            boolHasMatchingCategory = False '-- default to false
+
+            For Each catItem As Semester.AssessmentCategory In item.AssessmentCategories
+                For Each catAssess As Semester.AssessmentCategory In m_studentAssignment.BaseAssignment.AssessmentCategories
+                    If catItem = catAssess Then
+                        boolHasMatchingCategory = True
+                        Exit For
+                    End If
+                Next
+                If boolHasMatchingCategory Then
                     Exit For
                 End If
             Next
-            If Not boolItemAdded Then
-                Dim studItem As New StudentImprovementItem(m_student)
-                studItem.BaseImprovementItem = item
-                studItem.DateAdded = DATE_NO_DATE
-                m_improvementItems.Add(studItem)
+
+            '-- We only include matching improvement items. If no matching category, we completely ignore it on this assessment
+            If boolHasMatchingCategory Then
+
+                boolItemAdded = False
+                For Each studItem As StudentImprovementItem In m_student.ImprovementItems
+                    If studItem.BaseImprovementItem Is item Then
+                        m_improvementItems.Add(studItem)
+                        boolItemAdded = True
+                        Exit For
+                    End If
+                Next
+                If Not boolItemAdded Then
+                    Dim studItem As New StudentImprovementItem(m_student)
+                    studItem.BaseImprovementItem = item
+                    studItem.DateAdded = DATE_NO_DATE
+                    m_improvementItems.Add(studItem)
+                End If
             End If
         Next
         olvImprovementItems.SetObjects(m_improvementItems)
         AutoSizeColumns(olvImprovementItems)
+
+        '-- Load UserFullNames
+        txtFirstUserFullName.Text = Me.m_studentAssignment.FirstUserFullName
+        txtLastUserFullName.Text = Me.m_studentAssignment.LastUserFullName
+
 
 
         Me.Location = New Point(AppSettings.StudentAssignmentNormalWindowX, AppSettings.StudentAssignmentNormalWindowY)
@@ -242,6 +268,12 @@
         For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
             item.IncludeToday()
         Next
+
+        If m_studentAssignment.FirstUserFullName.Trim.Length = 0 Then
+            m_studentAssignment.FirstUserFullName = AppSettings.UserFullName
+        End If
+        m_studentAssignment.LastUserFullName = AppSettings.UserFullName
+
 
         AddApplicationHistory("Finished marking student (" & m_student.ToString() & ") on assignment (" & m_studentAssignment.BaseAssignment.Name & ").")
 
@@ -384,7 +416,12 @@
 
     Private Sub nudFirstTryPoints_ValueChanged(sender As Object, e As EventArgs) Handles nudFirstTryPoints.ValueChanged
         If m_studentAssignment IsNot Nothing Then
-            Dim dbl As Double = nudFirstTryPoints.Value / m_studentAssignment.BaseAssignment.MaxPoints
+            Dim dbl As Double
+            If m_studentAssignment.BaseAssignment.MaxPoints > 0 Then
+                dbl = nudFirstTryPoints.Value / m_studentAssignment.BaseAssignment.MaxPoints
+            Else
+                dbl = 0
+            End If
             lblFirstTryPercent.Text = dbl.ToString("##0%")
         End If
     End Sub

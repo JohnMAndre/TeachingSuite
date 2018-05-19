@@ -85,5 +85,108 @@ Public Class StudentComparerByAdminNumber
         Return x.AdminNumber.CompareTo(y.AdminNumber)
     End Function
 End Class
+Public Class StudentComparerByTotalAbsences
+    Implements IComparer(Of Student)
 
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.TotalAbsences.CompareTo(y.TotalAbsences)
+    End Function
+End Class
+Public Class StudentComparerByCurrentAbsences
+    Implements IComparer(Of Student)
 
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.CurrentAbsences.CompareTo(y.CurrentAbsences)
+    End Function
+End Class
+Public Class StudentComparerByPresentationQuality
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.PresentationQuality.CompareTo(y.PresentationQuality)
+    End Function
+End Class
+Public Class StudentComparerByWritingQuality
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.WritingQuality.CompareTo(y.WritingQuality)
+    End Function
+End Class
+Public Class StudentComparerByAssignmentCount
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.AssignmentCount.CompareTo(y.AssignmentCount)
+    End Function
+End Class
+Public Class StudentComparerByProcessedAssignments
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.ProcessedAssignments.CompareTo(y.ProcessedAssignments)
+    End Function
+End Class
+Public Class StudentComparerBy
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.AdminNumber.CompareTo(y.AdminNumber)
+    End Function
+End Class
+Public Class StudentComparerByHidden
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.Hidden.CompareTo(y.Hidden)
+    End Function
+End Class
+Public Class StudentComparerByMeritPoints
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.MeritPoints.CompareTo(y.MeritPoints)
+    End Function
+End Class
+Public Class StudentComparerByPlagiarismSeverity
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.PlagiarismSeverity.CompareTo(y.PlagiarismSeverity)
+    End Function
+End Class
+Public Class StudentComparerByDraftsChecked
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.DraftsChecked.CompareTo(y.DraftsChecked)
+    End Function
+End Class
+Public Class StudentComparerByOfficeHoursVisited
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.OfficeHoursVisited.CompareTo(y.OfficeHoursVisited)
+    End Function
+End Class
+Public Class StudentComparerByResearchQuality
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.ResearchQuality.CompareTo(y.ResearchQuality)
+    End Function
+End Class
+Public Class StudentComparerByPerformanceLastOnlineQuiz
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.PerformanceLastOnlineQuiz.CompareTo(y.PerformanceLastOnlineQuiz)
+    End Function
+End Class
+Public Class StudentComparerByLocalNameLatinLetters
+    Implements IComparer(Of Student)
+
+    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
+        Return x.LocalNameLatinLetters.CompareTo(y.LocalNameLatinLetters)
+    End Function
+End Class
