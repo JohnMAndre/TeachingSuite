@@ -584,13 +584,21 @@ Public Class EmailModuleResults
         '-- overall and improvement
         For Each asmt As StudentAssignmentBTEC In item.AssignmentsBTEC
             If ShouldIncludeAssignment(asmt.BaseAssignment) Then
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<hr />")
+                Else
+                    str.Append(Environment.NewLine)
+                    str.Append("===============================================")
+                    str.Append(Environment.NewLine)
+                End If
+
                 '-- If not sending grades, then don't send summary of grades either
                 If chkIncludeGrade.Checked Then
                     '-- Grade is normally in overall, so for BTEC there is nothing to do here
 
                 End If
-
-                If chkIncludeOverall.Checked Then
+               
+                If chkIncludeOverall.Checked AndAlso asmt.OverallComments.Length > 0 Then
                     If AppSettings.EmailAsHTML Then
                         str.Append("<br>")
                         str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
@@ -602,7 +610,7 @@ Public Class EmailModuleResults
                     End If
                 End If
 
-                If chkIncludeImprovement.Checked Then
+                If chkIncludeImprovement.Checked AndAlso asmt.ImprovementComments.Length > 0 Then
                     If AppSettings.EmailAsHTML Then
                         str.Append("<br>")
                         str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
@@ -623,8 +631,24 @@ Public Class EmailModuleResults
         Dim intGrade As Integer
         Dim dblPercent As Double
         Dim intAssignmentSent As Integer
-        For Each asmt As StudentAssignment In item.Assignments
-            If ShouldIncludeAssignment(asmt.BaseAssignment) Then
+        Dim thisAsmt As StudentAssignment
+
+        '-- We want the order to be based on the order in the UI's list (which can be re-ordered in the UI)
+        For Each baseAsmt As ClassAssignment In item.Student.SchoolClass.ClassGroup.Assignments
+            thisAsmt = Nothing
+            For Each sAsmt As StudentAssignment In item.Assignments
+                If sAsmt.BaseAssignment Is baseAsmt Then
+                    thisAsmt = sAsmt
+                    Exit For
+                End If
+            Next
+
+            If thisAsmt Is Nothing Then
+                '-- We did not match, so skip this classassignment
+                Continue For
+            End If
+
+            If ShouldIncludeAssignment(thisAsmt.BaseAssignment) Then
                 intAssignmentSent += 1
                 If AppSettings.EmailAsHTML Then
                     str.Append("<br>")
@@ -632,54 +656,71 @@ Public Class EmailModuleResults
                     str.Append(Environment.NewLine)
                 End If
 
-                intGrade = asmt.FirstTryPoints
-                If asmt.SecondTryPoints > intGrade Then
-                    intGrade = asmt.SecondTryPoints
+                intGrade = thisAsmt.FirstTryPoints
+                If thisAsmt.SecondTryPoints > intGrade Then
+                    intGrade = thisAsmt.SecondTryPoints
                 End If
-                If asmt.ThirdTryPoints > intGrade Then
-                    intGrade = asmt.ThirdTryPoints
+                If thisAsmt.ThirdTryPoints > intGrade Then
+                    intGrade = thisAsmt.ThirdTryPoints
                 End If
-                dblPercent = intGrade / asmt.BaseAssignment.MaxPoints
+                dblPercent = intGrade / thisAsmt.BaseAssignment.MaxPoints
 
-                If chkIncludeGrade.Checked Then
+                If AppSettings.EmailAsHTML Then
+                    str.Append("<hr />")
+                Else
+                    str.Append(Environment.NewLine)
+                    str.Append("===============================================")
+                    str.Append(Environment.NewLine)
+                End If
+
+
+                If chkIncludeGrade.Checked AndAlso thisAsmt.BaseAssignment.MaxPoints > 0 Then
                     If AppSettings.EmailAsHTML Then
-                        str.Append("<b>Grade for " & asmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
+                        str.Append("<b>Grade for " & thisAsmt.BaseAssignment.Name & ": </b>" & intGrade.ToString("#,##0") & " out of " & thisAsmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & ")")
                         str.Append("<br>")
                         str.Append("<br>")
                     Else
-                        str.Append("Grade for " & asmt.BaseAssignment.Name & ": " & intGrade.ToString("#,##0") & " out of " & asmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & "%)") '-- % sign does not show but needs to be there for .Net calc (so need both)
+                        str.Append("Grade for " & thisAsmt.BaseAssignment.Name & ": " & intGrade.ToString("#,##0") & " out of " & thisAsmt.BaseAssignment.MaxPoints.ToString("#,##0") & "  (" & dblPercent.ToString("##0%") & "%)") '-- % sign does not show but needs to be there for .Net calc (so need both)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
-                    
+
                 End If
 
-                If chkIncludeOverall.Checked Then
+                If chkIncludeOverall.Checked AndAlso thisAsmt.OverallComments.Length > 0 Then
                     If AppSettings.EmailAsHTML Then
-                        str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
+                        str.Append("<b>Overall comments for " & thisAsmt.BaseAssignment.Name & ": </b>" & thisAsmt.OverallComments.Replace(vbLf, "<br>"))
                         str.Append("<br>")
                         str.Append("<br>")
                     Else
-                        str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.OverallComments)
+                        str.Append("Overall comments for " & thisAsmt.BaseAssignment.Name & ": " & Environment.NewLine & thisAsmt.OverallComments)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
-                    
                 End If
 
-                If chkIncludeImprovement.Checked Then
+                If chkIncludeImprovement.Checked AndAlso thisAsmt.ImprovementComments.Length > 0 Then
                     If AppSettings.EmailAsHTML Then
-                        str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>"))
+                        str.Append("<b>Improvement comments for " & thisAsmt.BaseAssignment.Name & ": </b>" & thisAsmt.ImprovementComments.Replace(vbLf, "<br>"))
                         str.Append("<br>")
                         str.Append("<br>")
                     Else
-                        str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.ImprovementComments)
+                        str.Append("Improvement comments for " & thisAsmt.BaseAssignment.Name & ": " & Environment.NewLine & thisAsmt.ImprovementComments)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
                     End If
                 End If
             End If
         Next
+
+        If AppSettings.EmailAsHTML Then
+            str.Append("<hr />")
+        Else
+            str.Append(Environment.NewLine)
+            str.Append("===============================================")
+            str.Append(Environment.NewLine)
+        End If
+
 
         'If intAssignmentSent < olvAssignments.CheckedItems.Count Then
         '    '-- This students seems to be missing at least one of the checked assignments
@@ -1077,6 +1118,24 @@ Public Class EmailModuleResults
             olvStudents.RefreshSelectedObjects()
             CalculateSelectedStudents()
         End If
+    End Sub
+
+    Private Sub chkSelectAllAssessments_CheckedChanged(sender As Object, e As EventArgs) Handles chkSelectAllAssessments.CheckedChanged
+        If chkSelectAllAssessments.Checked Then
+            olvAssignments.CheckAll()
+        Else
+            olvAssignments.UncheckAll()
+        End If
+    End Sub
+
+    Private Sub llblWorkshopFeedback_LinkClicked(sender As Object, e As EventArgs) Handles llblWorkshopFeedback.LinkClicked
+        chkIncludeGrade.Checked = False '-- grade for normal
+        chkIncludeMeritDistinctionResults.Checked = False '-- has grade for btec
+        chkIncludeFeedback.Checked = True '-- btec feedback
+        chkFinalFeedback.Checked = False
+        chkIncludeImprovement.Checked = True '-- for btec
+        chkIncludeOverall.Checked = False '-- has grade for presentations
+        chkIncludeOverallGrade.Checked = False '-- has grade
     End Sub
 End Class
 

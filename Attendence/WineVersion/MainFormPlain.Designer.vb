@@ -93,7 +93,6 @@ Partial Class MainFormPlain
         Me.llblEditAssignment = New System.Windows.Forms.PictureBox()
         Me.llblAddAssignment = New System.Windows.Forms.PictureBox()
         Me.llblRemoveAssignment = New System.Windows.Forms.PictureBox()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.lstClasses = New System.Windows.Forms.ListBox()
         Me.ctxmnuClasses = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -109,12 +108,10 @@ Partial Class MainFormPlain
         Me.btnEditClass = New System.Windows.Forms.PictureBox()
         Me.btnAddClass = New System.Windows.Forms.PictureBox()
         Me.llblRemoveClass = New System.Windows.Forms.PictureBox()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.lstClassGroups = New System.Windows.Forms.ListBox()
         Me.llblEditClassGroup = New System.Windows.Forms.PictureBox()
         Me.llblAddClassGroup = New System.Windows.Forms.PictureBox()
         Me.llblRemoveClassGroup = New System.Windows.Forms.PictureBox()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.picSearch = New System.Windows.Forms.PictureBox()
         Me.llblAddTag = New System.Windows.Forms.PictureBox()
         Me.txtTag = New System.Windows.Forms.TextBox()
@@ -295,6 +292,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportStudentGradesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportModuleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportScheduleAsICalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -333,7 +331,9 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -376,6 +376,9 @@ Partial Class MainFormPlain
         Me.MenuStrip1.SuspendLayout()
         Me.ctxmnuTray.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlSelectSemester
@@ -597,21 +600,12 @@ Partial Class MainFormPlain
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.GroupBox3)
         Me.splitOverall.Panel1.Controls.Add(Me.lstAssignments)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblEditAssignment)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblAddAssignment)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblRemoveAssignment)
-        Me.splitOverall.Panel1.Controls.Add(Me.Label11)
         Me.splitOverall.Panel1.Controls.Add(Me.lstClasses)
-        Me.splitOverall.Panel1.Controls.Add(Me.btnEditClass)
-        Me.splitOverall.Panel1.Controls.Add(Me.btnAddClass)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblRemoveClass)
-        Me.splitOverall.Panel1.Controls.Add(Me.Label9)
+        Me.splitOverall.Panel1.Controls.Add(Me.GroupBox2)
         Me.splitOverall.Panel1.Controls.Add(Me.lstClassGroups)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblEditClassGroup)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblAddClassGroup)
-        Me.splitOverall.Panel1.Controls.Add(Me.llblRemoveClassGroup)
-        Me.splitOverall.Panel1.Controls.Add(Me.Label10)
+        Me.splitOverall.Panel1.Controls.Add(Me.GroupBox1)
         '
         'splitOverall.Panel2
         '
@@ -641,9 +635,9 @@ Partial Class MainFormPlain
         Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstAssignments.FormattingEnabled = True
         Me.lstAssignments.ItemHeight = 16
-        Me.lstAssignments.Location = New System.Drawing.Point(0, 295)
+        Me.lstAssignments.Location = New System.Drawing.Point(0, 288)
         Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.Size = New System.Drawing.Size(207, 130)
+        Me.lstAssignments.Size = New System.Drawing.Size(207, 137)
         Me.lstAssignments.TabIndex = 5
         '
         'ctxmnuAssignment
@@ -739,7 +733,7 @@ Partial Class MainFormPlain
         '
         Me.llblEditAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblEditAssignment.Image = CType(resources.GetObject("llblEditAssignment.Image"), System.Drawing.Image)
-        Me.llblEditAssignment.Location = New System.Drawing.Point(133, 276)
+        Me.llblEditAssignment.Location = New System.Drawing.Point(133, 9)
         Me.llblEditAssignment.Name = "llblEditAssignment"
         Me.llblEditAssignment.Size = New System.Drawing.Size(20, 16)
         Me.llblEditAssignment.TabIndex = 27
@@ -749,7 +743,7 @@ Partial Class MainFormPlain
         '
         Me.llblAddAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblAddAssignment.Image = CType(resources.GetObject("llblAddAssignment.Image"), System.Drawing.Image)
-        Me.llblAddAssignment.Location = New System.Drawing.Point(159, 276)
+        Me.llblAddAssignment.Location = New System.Drawing.Point(159, 9)
         Me.llblAddAssignment.Name = "llblAddAssignment"
         Me.llblAddAssignment.Size = New System.Drawing.Size(20, 16)
         Me.llblAddAssignment.TabIndex = 26
@@ -759,20 +753,11 @@ Partial Class MainFormPlain
         '
         Me.llblRemoveAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblRemoveAssignment.Image = CType(resources.GetObject("llblRemoveAssignment.Image"), System.Drawing.Image)
-        Me.llblRemoveAssignment.Location = New System.Drawing.Point(185, 276)
+        Me.llblRemoveAssignment.Location = New System.Drawing.Point(185, 9)
         Me.llblRemoveAssignment.Name = "llblRemoveAssignment"
         Me.llblRemoveAssignment.Size = New System.Drawing.Size(20, 16)
         Me.llblRemoveAssignment.TabIndex = 25
         Me.llblRemoveAssignment.TabStop = False
-        '
-        'Label11
-        '
-        Me.Label11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label11.Location = New System.Drawing.Point(0, 275)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(207, 20)
-        Me.Label11.TabIndex = 4
-        Me.Label11.Text = "Assignments"
         '
         'lstClasses
         '
@@ -780,7 +765,7 @@ Partial Class MainFormPlain
         Me.lstClasses.Dock = System.Windows.Forms.DockStyle.Top
         Me.lstClasses.FormattingEnabled = True
         Me.lstClasses.ItemHeight = 16
-        Me.lstClasses.Location = New System.Drawing.Point(0, 159)
+        Me.lstClasses.Location = New System.Drawing.Point(0, 172)
         Me.lstClasses.Name = "lstClasses"
         Me.lstClasses.Size = New System.Drawing.Size(207, 116)
         Me.lstClasses.TabIndex = 1
@@ -857,7 +842,7 @@ Partial Class MainFormPlain
         '
         Me.btnEditClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEditClass.Image = CType(resources.GetObject("btnEditClass.Image"), System.Drawing.Image)
-        Me.btnEditClass.Location = New System.Drawing.Point(132, 139)
+        Me.btnEditClass.Location = New System.Drawing.Point(131, 8)
         Me.btnEditClass.Name = "btnEditClass"
         Me.btnEditClass.Size = New System.Drawing.Size(20, 16)
         Me.btnEditClass.TabIndex = 24
@@ -867,7 +852,7 @@ Partial Class MainFormPlain
         '
         Me.btnAddClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddClass.Image = CType(resources.GetObject("btnAddClass.Image"), System.Drawing.Image)
-        Me.btnAddClass.Location = New System.Drawing.Point(158, 139)
+        Me.btnAddClass.Location = New System.Drawing.Point(157, 8)
         Me.btnAddClass.Name = "btnAddClass"
         Me.btnAddClass.Size = New System.Drawing.Size(20, 16)
         Me.btnAddClass.TabIndex = 23
@@ -877,27 +862,18 @@ Partial Class MainFormPlain
         '
         Me.llblRemoveClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblRemoveClass.Image = CType(resources.GetObject("llblRemoveClass.Image"), System.Drawing.Image)
-        Me.llblRemoveClass.Location = New System.Drawing.Point(184, 139)
+        Me.llblRemoveClass.Location = New System.Drawing.Point(183, 8)
         Me.llblRemoveClass.Name = "llblRemoveClass"
         Me.llblRemoveClass.Size = New System.Drawing.Size(20, 16)
         Me.llblRemoveClass.TabIndex = 22
         Me.llblRemoveClass.TabStop = False
-        '
-        'Label9
-        '
-        Me.Label9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label9.Location = New System.Drawing.Point(0, 136)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(207, 23)
-        Me.Label9.TabIndex = 0
-        Me.Label9.Text = "Classes"
         '
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Top
         Me.lstClassGroups.FormattingEnabled = True
         Me.lstClassGroups.ItemHeight = 16
-        Me.lstClassGroups.Location = New System.Drawing.Point(0, 20)
+        Me.lstClassGroups.Location = New System.Drawing.Point(0, 28)
         Me.lstClassGroups.Name = "lstClassGroups"
         Me.lstClassGroups.Size = New System.Drawing.Size(207, 116)
         Me.lstClassGroups.TabIndex = 3
@@ -906,7 +882,7 @@ Partial Class MainFormPlain
         '
         Me.llblEditClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblEditClassGroup.Image = CType(resources.GetObject("llblEditClassGroup.Image"), System.Drawing.Image)
-        Me.llblEditClassGroup.Location = New System.Drawing.Point(133, 2)
+        Me.llblEditClassGroup.Location = New System.Drawing.Point(128, 9)
         Me.llblEditClassGroup.Name = "llblEditClassGroup"
         Me.llblEditClassGroup.Size = New System.Drawing.Size(20, 16)
         Me.llblEditClassGroup.TabIndex = 21
@@ -916,7 +892,7 @@ Partial Class MainFormPlain
         '
         Me.llblAddClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblAddClassGroup.Image = CType(resources.GetObject("llblAddClassGroup.Image"), System.Drawing.Image)
-        Me.llblAddClassGroup.Location = New System.Drawing.Point(159, 2)
+        Me.llblAddClassGroup.Location = New System.Drawing.Point(154, 9)
         Me.llblAddClassGroup.Name = "llblAddClassGroup"
         Me.llblAddClassGroup.Size = New System.Drawing.Size(20, 16)
         Me.llblAddClassGroup.TabIndex = 20
@@ -926,20 +902,11 @@ Partial Class MainFormPlain
         '
         Me.llblRemoveClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblRemoveClassGroup.Image = CType(resources.GetObject("llblRemoveClassGroup.Image"), System.Drawing.Image)
-        Me.llblRemoveClassGroup.Location = New System.Drawing.Point(185, 2)
+        Me.llblRemoveClassGroup.Location = New System.Drawing.Point(180, 9)
         Me.llblRemoveClassGroup.Name = "llblRemoveClassGroup"
         Me.llblRemoveClassGroup.Size = New System.Drawing.Size(20, 16)
         Me.llblRemoveClassGroup.TabIndex = 19
         Me.llblRemoveClassGroup.TabStop = False
-        '
-        'Label10
-        '
-        Me.Label10.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label10.Location = New System.Drawing.Point(0, 0)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(207, 20)
-        Me.Label10.TabIndex = 2
-        Me.Label10.Text = "Modules"
         '
         'picSearch
         '
@@ -2290,6 +2257,12 @@ Partial Class MainFormPlain
         Me.ExportStudentsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportStudentsToolStripMenuItem.Text = "Export st&udents..."
         '
+        'ExportAllStudentAssignmentDetailsToolStripMenuItem
+        '
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Name = "ExportAllStudentAssignmentDetailsToolStripMenuItem"
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Text = "Export all student assignment details"
+        '
         'ExportStudentGradesToolStripMenuItem
         '
         Me.ExportStudentGradesToolStripMenuItem.Name = "ExportStudentGradesToolStripMenuItem"
@@ -2523,11 +2496,44 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'ExportAllStudentAssignmentDetailsToolStripMenuItem
+        'GroupBox1
         '
-        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Name = "ExportAllStudentAssignmentDetailsToolStripMenuItem"
-        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Text = "Export all student assignment details"
+        Me.GroupBox1.Controls.Add(Me.llblRemoveClassGroup)
+        Me.GroupBox1.Controls.Add(Me.llblAddClassGroup)
+        Me.GroupBox1.Controls.Add(Me.llblEditClassGroup)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(207, 28)
+        Me.GroupBox1.TabIndex = 6
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Modules"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.llblRemoveClass)
+        Me.GroupBox2.Controls.Add(Me.btnAddClass)
+        Me.GroupBox2.Controls.Add(Me.btnEditClass)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 144)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(207, 28)
+        Me.GroupBox2.TabIndex = 28
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Classes"
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.llblEditAssignment)
+        Me.GroupBox3.Controls.Add(Me.llblRemoveAssignment)
+        Me.GroupBox3.Controls.Add(Me.llblAddAssignment)
+        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox3.Location = New System.Drawing.Point(0, 288)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(207, 28)
+        Me.GroupBox3.TabIndex = 30
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Assessments"
         '
         'MainFormPlain
         '
@@ -2588,6 +2594,9 @@ Partial Class MainFormPlain
         Me.MenuStrip1.PerformLayout()
         Me.ctxmnuTray.ResumeLayout(False)
         Me.ctxmnuNewAssignment.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2614,10 +2623,7 @@ Partial Class MainFormPlain
     Friend WithEvents llblCloseSemesterPanel As System.Windows.Forms.PictureBox
     Friend WithEvents splitOverall As System.Windows.Forms.SplitContainer
     Friend WithEvents lstClassGroups As System.Windows.Forms.ListBox
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents lstClasses As System.Windows.Forms.ListBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lstAssignments As System.Windows.Forms.ListBox
     Friend WithEvents llblEditAssignment As System.Windows.Forms.PictureBox
     Friend WithEvents llblAddAssignment As System.Windows.Forms.PictureBox
@@ -2873,4 +2879,7 @@ Partial Class MainFormPlain
     Friend WithEvents ImportMarkingFromOtherDatabaseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EditStudentToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportAllStudentAssignmentDetailsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
 End Class
