@@ -38,7 +38,7 @@
         nudWeighting.Value = ConvertToDecimal(m_assignment.Weighting, 1)
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+    Private Sub btnOK_Click(sender As Object, e As EventArgs)
         m_assignment.Name = txtName.Text
         m_assignment.OverallDefaultText = txtOverallDefaultText.Text
         m_assignment.MaxPoints = nudMaxPoints.Value
@@ -81,5 +81,9 @@
         For Each cat As Semester.AssessmentCategory In m_assignment.AssessmentCategories
             lstAssessmentCategories.Items.Add(cat)
         Next
+    End Sub
+
+    Private Sub KryptonPanel_Paint(sender As Object, e As PaintEventArgs)
+
     End Sub
 End Class

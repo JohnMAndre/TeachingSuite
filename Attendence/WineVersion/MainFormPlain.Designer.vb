@@ -90,9 +90,10 @@ Partial Class MainFormPlain
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator()
         Me.AssignmentMoveUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignmentMoveDownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.llblEditAssignment = New System.Windows.Forms.PictureBox()
-        Me.llblAddAssignment = New System.Windows.Forms.PictureBox()
         Me.llblRemoveAssignment = New System.Windows.Forms.PictureBox()
+        Me.llblAddAssignment = New System.Windows.Forms.PictureBox()
         Me.lstClasses = New System.Windows.Forms.ListBox()
         Me.ctxmnuClasses = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -105,13 +106,15 @@ Partial Class MainFormPlain
         Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator()
         Me.RemoveAllStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailclassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btnEditClass = New System.Windows.Forms.PictureBox()
-        Me.btnAddClass = New System.Windows.Forms.PictureBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.llblRemoveClass = New System.Windows.Forms.PictureBox()
+        Me.btnAddClass = New System.Windows.Forms.PictureBox()
+        Me.btnEditClass = New System.Windows.Forms.PictureBox()
         Me.lstClassGroups = New System.Windows.Forms.ListBox()
-        Me.llblEditClassGroup = New System.Windows.Forms.PictureBox()
-        Me.llblAddClassGroup = New System.Windows.Forms.PictureBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.llblRemoveClassGroup = New System.Windows.Forms.PictureBox()
+        Me.llblAddClassGroup = New System.Windows.Forms.PictureBox()
+        Me.llblEditClassGroup = New System.Windows.Forms.PictureBox()
         Me.picSearch = New System.Windows.Forms.PictureBox()
         Me.llblAddTag = New System.Windows.Forms.PictureBox()
         Me.txtTag = New System.Windows.Forms.TextBox()
@@ -331,9 +334,6 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -342,16 +342,19 @@ Partial Class MainFormPlain
         Me.splitOverall.Panel2.SuspendLayout()
         Me.splitOverall.SuspendLayout()
         Me.ctxmnuAssignment.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         CType(Me.llblEditAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.llblAddAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblRemoveAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.llblAddAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ctxmnuClasses.SuspendLayout()
-        CType(Me.btnEditClass, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnAddClass, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.llblRemoveClass, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.llblEditClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.llblAddClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnAddClass, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnEditClass, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.llblRemoveClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.llblAddClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.llblEditClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblAddTag, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnEditStudent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -376,9 +379,6 @@ Partial Class MainFormPlain
         Me.MenuStrip1.SuspendLayout()
         Me.ctxmnuTray.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlSelectSemester
@@ -600,8 +600,8 @@ Partial Class MainFormPlain
         '
         'splitOverall.Panel1
         '
-        Me.splitOverall.Panel1.Controls.Add(Me.GroupBox3)
         Me.splitOverall.Panel1.Controls.Add(Me.lstAssignments)
+        Me.splitOverall.Panel1.Controls.Add(Me.GroupBox3)
         Me.splitOverall.Panel1.Controls.Add(Me.lstClasses)
         Me.splitOverall.Panel1.Controls.Add(Me.GroupBox2)
         Me.splitOverall.Panel1.Controls.Add(Me.lstClassGroups)
@@ -609,9 +609,10 @@ Partial Class MainFormPlain
         '
         'splitOverall.Panel2
         '
+        Me.splitOverall.Panel2.Controls.Add(Me.txtTag)
+        Me.splitOverall.Panel2.Controls.Add(Me.txtStudentFilter)
         Me.splitOverall.Panel2.Controls.Add(Me.picSearch)
         Me.splitOverall.Panel2.Controls.Add(Me.llblAddTag)
-        Me.splitOverall.Panel2.Controls.Add(Me.txtTag)
         Me.splitOverall.Panel2.Controls.Add(Me.lblStudentCount)
         Me.splitOverall.Panel2.Controls.Add(Me.Label13)
         Me.splitOverall.Panel2.Controls.Add(Me.btnEditStudent)
@@ -621,7 +622,6 @@ Partial Class MainFormPlain
         Me.splitOverall.Panel2.Controls.Add(Me.llblAddStudent)
         Me.splitOverall.Panel2.Controls.Add(Me.llblMoveStudent)
         Me.splitOverall.Panel2.Controls.Add(Me.llblClearFilter)
-        Me.splitOverall.Panel2.Controls.Add(Me.txtStudentFilter)
         Me.splitOverall.Panel2.Controls.Add(Me.Panel3)
         Me.splitOverall.Panel2.Controls.Add(Me.pnlStudentSchedulePanel)
         Me.splitOverall.Panel2.Controls.Add(Me.Label12)
@@ -635,9 +635,9 @@ Partial Class MainFormPlain
         Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstAssignments.FormattingEnabled = True
         Me.lstAssignments.ItemHeight = 16
-        Me.lstAssignments.Location = New System.Drawing.Point(0, 288)
+        Me.lstAssignments.Location = New System.Drawing.Point(0, 316)
         Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.Size = New System.Drawing.Size(207, 137)
+        Me.lstAssignments.Size = New System.Drawing.Size(207, 109)
         Me.lstAssignments.TabIndex = 5
         '
         'ctxmnuAssignment
@@ -729,6 +729,19 @@ Partial Class MainFormPlain
         Me.AssignmentMoveDownToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.AssignmentMoveDownToolStripMenuItem.Text = "Move &down"
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.llblEditAssignment)
+        Me.GroupBox3.Controls.Add(Me.llblRemoveAssignment)
+        Me.GroupBox3.Controls.Add(Me.llblAddAssignment)
+        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox3.Location = New System.Drawing.Point(0, 288)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(207, 28)
+        Me.GroupBox3.TabIndex = 30
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Assessments"
+        '
         'llblEditAssignment
         '
         Me.llblEditAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -739,16 +752,6 @@ Partial Class MainFormPlain
         Me.llblEditAssignment.TabIndex = 27
         Me.llblEditAssignment.TabStop = False
         '
-        'llblAddAssignment
-        '
-        Me.llblAddAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblAddAssignment.Image = CType(resources.GetObject("llblAddAssignment.Image"), System.Drawing.Image)
-        Me.llblAddAssignment.Location = New System.Drawing.Point(159, 9)
-        Me.llblAddAssignment.Name = "llblAddAssignment"
-        Me.llblAddAssignment.Size = New System.Drawing.Size(20, 16)
-        Me.llblAddAssignment.TabIndex = 26
-        Me.llblAddAssignment.TabStop = False
-        '
         'llblRemoveAssignment
         '
         Me.llblRemoveAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -758,6 +761,16 @@ Partial Class MainFormPlain
         Me.llblRemoveAssignment.Size = New System.Drawing.Size(20, 16)
         Me.llblRemoveAssignment.TabIndex = 25
         Me.llblRemoveAssignment.TabStop = False
+        '
+        'llblAddAssignment
+        '
+        Me.llblAddAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblAddAssignment.Image = CType(resources.GetObject("llblAddAssignment.Image"), System.Drawing.Image)
+        Me.llblAddAssignment.Location = New System.Drawing.Point(159, 9)
+        Me.llblAddAssignment.Name = "llblAddAssignment"
+        Me.llblAddAssignment.Size = New System.Drawing.Size(20, 16)
+        Me.llblAddAssignment.TabIndex = 26
+        Me.llblAddAssignment.TabStop = False
         '
         'lstClasses
         '
@@ -838,25 +851,18 @@ Partial Class MainFormPlain
         Me.EmailclassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.EmailclassToolStripMenuItem.Text = "Email &class..."
         '
-        'btnEditClass
+        'GroupBox2
         '
-        Me.btnEditClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEditClass.Image = CType(resources.GetObject("btnEditClass.Image"), System.Drawing.Image)
-        Me.btnEditClass.Location = New System.Drawing.Point(131, 8)
-        Me.btnEditClass.Name = "btnEditClass"
-        Me.btnEditClass.Size = New System.Drawing.Size(20, 16)
-        Me.btnEditClass.TabIndex = 24
-        Me.btnEditClass.TabStop = False
-        '
-        'btnAddClass
-        '
-        Me.btnAddClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddClass.Image = CType(resources.GetObject("btnAddClass.Image"), System.Drawing.Image)
-        Me.btnAddClass.Location = New System.Drawing.Point(157, 8)
-        Me.btnAddClass.Name = "btnAddClass"
-        Me.btnAddClass.Size = New System.Drawing.Size(20, 16)
-        Me.btnAddClass.TabIndex = 23
-        Me.btnAddClass.TabStop = False
+        Me.GroupBox2.Controls.Add(Me.llblRemoveClass)
+        Me.GroupBox2.Controls.Add(Me.btnAddClass)
+        Me.GroupBox2.Controls.Add(Me.btnEditClass)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 144)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(207, 28)
+        Me.GroupBox2.TabIndex = 28
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Classes"
         '
         'llblRemoveClass
         '
@@ -868,6 +874,26 @@ Partial Class MainFormPlain
         Me.llblRemoveClass.TabIndex = 22
         Me.llblRemoveClass.TabStop = False
         '
+        'btnAddClass
+        '
+        Me.btnAddClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddClass.Image = CType(resources.GetObject("btnAddClass.Image"), System.Drawing.Image)
+        Me.btnAddClass.Location = New System.Drawing.Point(157, 8)
+        Me.btnAddClass.Name = "btnAddClass"
+        Me.btnAddClass.Size = New System.Drawing.Size(20, 16)
+        Me.btnAddClass.TabIndex = 23
+        Me.btnAddClass.TabStop = False
+        '
+        'btnEditClass
+        '
+        Me.btnEditClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEditClass.Image = CType(resources.GetObject("btnEditClass.Image"), System.Drawing.Image)
+        Me.btnEditClass.Location = New System.Drawing.Point(131, 8)
+        Me.btnEditClass.Name = "btnEditClass"
+        Me.btnEditClass.Size = New System.Drawing.Size(20, 16)
+        Me.btnEditClass.TabIndex = 24
+        Me.btnEditClass.TabStop = False
+        '
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Top
@@ -878,15 +904,28 @@ Partial Class MainFormPlain
         Me.lstClassGroups.Size = New System.Drawing.Size(207, 116)
         Me.lstClassGroups.TabIndex = 3
         '
-        'llblEditClassGroup
+        'GroupBox1
         '
-        Me.llblEditClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblEditClassGroup.Image = CType(resources.GetObject("llblEditClassGroup.Image"), System.Drawing.Image)
-        Me.llblEditClassGroup.Location = New System.Drawing.Point(128, 9)
-        Me.llblEditClassGroup.Name = "llblEditClassGroup"
-        Me.llblEditClassGroup.Size = New System.Drawing.Size(20, 16)
-        Me.llblEditClassGroup.TabIndex = 21
-        Me.llblEditClassGroup.TabStop = False
+        Me.GroupBox1.Controls.Add(Me.llblRemoveClassGroup)
+        Me.GroupBox1.Controls.Add(Me.llblAddClassGroup)
+        Me.GroupBox1.Controls.Add(Me.llblEditClassGroup)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(207, 28)
+        Me.GroupBox1.TabIndex = 6
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Modules"
+        '
+        'llblRemoveClassGroup
+        '
+        Me.llblRemoveClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblRemoveClassGroup.Image = CType(resources.GetObject("llblRemoveClassGroup.Image"), System.Drawing.Image)
+        Me.llblRemoveClassGroup.Location = New System.Drawing.Point(180, 9)
+        Me.llblRemoveClassGroup.Name = "llblRemoveClassGroup"
+        Me.llblRemoveClassGroup.Size = New System.Drawing.Size(20, 16)
+        Me.llblRemoveClassGroup.TabIndex = 19
+        Me.llblRemoveClassGroup.TabStop = False
         '
         'llblAddClassGroup
         '
@@ -898,15 +937,15 @@ Partial Class MainFormPlain
         Me.llblAddClassGroup.TabIndex = 20
         Me.llblAddClassGroup.TabStop = False
         '
-        'llblRemoveClassGroup
+        'llblEditClassGroup
         '
-        Me.llblRemoveClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveClassGroup.Image = CType(resources.GetObject("llblRemoveClassGroup.Image"), System.Drawing.Image)
-        Me.llblRemoveClassGroup.Location = New System.Drawing.Point(180, 9)
-        Me.llblRemoveClassGroup.Name = "llblRemoveClassGroup"
-        Me.llblRemoveClassGroup.Size = New System.Drawing.Size(20, 16)
-        Me.llblRemoveClassGroup.TabIndex = 19
-        Me.llblRemoveClassGroup.TabStop = False
+        Me.llblEditClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblEditClassGroup.Image = CType(resources.GetObject("llblEditClassGroup.Image"), System.Drawing.Image)
+        Me.llblEditClassGroup.Location = New System.Drawing.Point(128, 9)
+        Me.llblEditClassGroup.Name = "llblEditClassGroup"
+        Me.llblEditClassGroup.Size = New System.Drawing.Size(20, 16)
+        Me.llblEditClassGroup.TabIndex = 21
+        Me.llblEditClassGroup.TabStop = False
         '
         'picSearch
         '
@@ -2496,45 +2535,6 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.llblRemoveClassGroup)
-        Me.GroupBox1.Controls.Add(Me.llblAddClassGroup)
-        Me.GroupBox1.Controls.Add(Me.llblEditClassGroup)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(207, 28)
-        Me.GroupBox1.TabIndex = 6
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Modules"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.llblRemoveClass)
-        Me.GroupBox2.Controls.Add(Me.btnAddClass)
-        Me.GroupBox2.Controls.Add(Me.btnEditClass)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 144)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(207, 28)
-        Me.GroupBox2.TabIndex = 28
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Classes"
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.llblEditAssignment)
-        Me.GroupBox3.Controls.Add(Me.llblRemoveAssignment)
-        Me.GroupBox3.Controls.Add(Me.llblAddAssignment)
-        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox3.Location = New System.Drawing.Point(0, 288)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(207, 28)
-        Me.GroupBox3.TabIndex = 30
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Assessments"
-        '
         'MainFormPlain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -2557,16 +2557,19 @@ Partial Class MainFormPlain
         CType(Me.splitOverall, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splitOverall.ResumeLayout(False)
         Me.ctxmnuAssignment.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
         CType(Me.llblEditAssignment, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.llblAddAssignment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblRemoveAssignment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.llblAddAssignment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ctxmnuClasses.ResumeLayout(False)
-        CType(Me.btnEditClass, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnAddClass, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
         CType(Me.llblRemoveClass, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.llblEditClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.llblAddClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnAddClass, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnEditClass, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         CType(Me.llblRemoveClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.llblAddClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.llblEditClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picSearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblAddTag, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnEditStudent, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2594,9 +2597,6 @@ Partial Class MainFormPlain
         Me.MenuStrip1.PerformLayout()
         Me.ctxmnuTray.ResumeLayout(False)
         Me.ctxmnuNewAssignment.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

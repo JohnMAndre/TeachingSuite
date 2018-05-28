@@ -405,10 +405,10 @@ Partial Class MainForm
         '
         'splitOverall.Panel2
         '
-        Me.splitOverall.Panel2.Controls.Add(Me.llblAddTag)
         Me.splitOverall.Panel2.Controls.Add(Me.txtStudentFilter)
-        Me.splitOverall.Panel2.Controls.Add(Me.lblStudentCount)
         Me.splitOverall.Panel2.Controls.Add(Me.txtTag)
+        Me.splitOverall.Panel2.Controls.Add(Me.llblAddTag)
+        Me.splitOverall.Panel2.Controls.Add(Me.lblStudentCount)
         Me.splitOverall.Panel2.Controls.Add(Me.lblRenumberAdminResetNumber)
         Me.splitOverall.Panel2.Controls.Add(Me.KryptonLabel13)
         Me.splitOverall.Panel2.Controls.Add(Me.lblRenumberAdminCurrent)

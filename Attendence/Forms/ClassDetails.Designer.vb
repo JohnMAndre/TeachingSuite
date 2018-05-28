@@ -107,20 +107,20 @@ Partial Class ClassDetails
         'KryptonPanel
         '
         Me.KryptonPanel.Controls.Add(Me.btnShowAttendanceSessions)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel.Controls.Add(Me.txtNotes)
         Me.KryptonPanel.Controls.Add(Me.llblCalculateTotalTime)
         Me.KryptonPanel.Controls.Add(Me.nudEmailAccountToUse)
-        Me.KryptonPanel.Controls.Add(Me.lblEmailAccountCaption)
         Me.KryptonPanel.Controls.Add(Me.txtEmailAddress)
-        Me.KryptonPanel.Controls.Add(Me.lblEmailCaption)
         Me.KryptonPanel.Controls.Add(Me.llblCopyTopics)
         Me.KryptonPanel.Controls.Add(Me.llblPasteTopics)
         Me.KryptonPanel.Controls.Add(Me.btnCopySessionsFromOtherClass)
         Me.KryptonPanel.Controls.Add(Me.btnRegenerateActualSchedule)
         Me.KryptonPanel.Controls.Add(Me.txtClassName)
-        Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel.Controls.Add(Me.MenuStrip1)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel3)
+        Me.KryptonPanel.Controls.Add(Me.lblEmailAccountCaption)
+        Me.KryptonPanel.Controls.Add(Me.lblEmailCaption)
+        Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
