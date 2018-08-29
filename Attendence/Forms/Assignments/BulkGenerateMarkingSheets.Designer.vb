@@ -197,11 +197,11 @@ Partial Class BulkGenerateMarkingSheets
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "Try:"
         '
-        'lblSemester.MarkingTry
+        'lblMarkingTry
         '
         Me.lblMarkingTry.AutoSize = True
         Me.lblMarkingTry.Location = New System.Drawing.Point(101, 196)
-        Me.lblMarkingTry.Name = "lblSemester.MarkingTry"
+        Me.lblMarkingTry.Name = "lblMarkingTry"
         Me.lblMarkingTry.Size = New System.Drawing.Size(12, 16)
         Me.lblMarkingTry.TabIndex = 9
         Me.lblMarkingTry.Text = " "
@@ -233,7 +233,7 @@ Partial Class BulkGenerateMarkingSheets
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "BulkGenerateMarkingSheets"
-        Me.Text = "Bulk Generate Marking Sheets"
+        Me.Text = "Bulk Generate Marking Sheets (BTEC)"
         Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()

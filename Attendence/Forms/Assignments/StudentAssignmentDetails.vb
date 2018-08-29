@@ -1030,7 +1030,12 @@ Friend Class StudentAssignmentDetails
 
             With oWord.Selection.Find
                 .Text = "[[[OVERALL]]]"
-                .Replacement.Text = rtbOverallComments.Text
+
+                '-- Change this in 2018 because Overall CAN get quite long (in some tests)
+                '.Replacement.Text = rtbOverallComments.Text
+                Clipboard.SetText(rtbOverallComments.Text)
+                .Replacement.Text = "^c"
+
                 .Forward = True
                 .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
                 .Format = False

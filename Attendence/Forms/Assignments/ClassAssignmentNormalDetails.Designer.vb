@@ -67,16 +67,16 @@ Partial Class ClassAssignmentNormalDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstAssessmentCategories.FormattingEnabled = True
         Me.lstAssessmentCategories.ItemHeight = 16
-        Me.lstAssessmentCategories.Location = New System.Drawing.Point(92, 358)
+        Me.lstAssessmentCategories.Location = New System.Drawing.Point(92, 246)
         Me.lstAssessmentCategories.Name = "lstAssessmentCategories"
-        Me.lstAssessmentCategories.Size = New System.Drawing.Size(356, 132)
+        Me.lstAssessmentCategories.Size = New System.Drawing.Size(230, 132)
         Me.lstAssessmentCategories.TabIndex = 68
         '
         'llblDeleteCategory
         '
         Me.llblDeleteCategory.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblDeleteCategory.AutoSize = True
-        Me.llblDeleteCategory.Location = New System.Drawing.Point(454, 429)
+        Me.llblDeleteCategory.Location = New System.Drawing.Point(325, 317)
         Me.llblDeleteCategory.Name = "llblDeleteCategory"
         Me.llblDeleteCategory.Size = New System.Drawing.Size(98, 16)
         Me.llblDeleteCategory.TabIndex = 67
@@ -87,7 +87,7 @@ Partial Class ClassAssignmentNormalDetails
         '
         Me.llblAddCategory.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llblAddCategory.AutoSize = True
-        Me.llblAddCategory.Location = New System.Drawing.Point(454, 399)
+        Me.llblAddCategory.Location = New System.Drawing.Point(325, 287)
         Me.llblAddCategory.Name = "llblAddCategory"
         Me.llblAddCategory.Size = New System.Drawing.Size(85, 16)
         Me.llblAddCategory.TabIndex = 66
@@ -99,7 +99,7 @@ Partial Class ClassAssignmentNormalDetails
         Me.cboAssessmentCategory.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboAssessmentCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboAssessmentCategory.FormattingEnabled = True
-        Me.cboAssessmentCategory.Location = New System.Drawing.Point(457, 358)
+        Me.cboAssessmentCategory.Location = New System.Drawing.Point(329, 246)
         Me.cboAssessmentCategory.Name = "cboAssessmentCategory"
         Me.cboAssessmentCategory.Size = New System.Drawing.Size(146, 24)
         Me.cboAssessmentCategory.TabIndex = 65
@@ -107,7 +107,7 @@ Partial Class ClassAssignmentNormalDetails
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 358)
+        Me.Label3.Location = New System.Drawing.Point(12, 249)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(74, 16)
         Me.Label3.TabIndex = 64
@@ -174,7 +174,7 @@ Partial Class ClassAssignmentNormalDetails
         Me.txtOverallDefaultText.Location = New System.Drawing.Point(92, 103)
         Me.txtOverallDefaultText.Multiline = True
         Me.txtOverallDefaultText.Name = "txtOverallDefaultText"
-        Me.txtOverallDefaultText.Size = New System.Drawing.Size(511, 249)
+        Me.txtOverallDefaultText.Size = New System.Drawing.Size(385, 131)
         Me.txtOverallDefaultText.TabIndex = 71
         '
         'txtName
@@ -183,7 +183,7 @@ Partial Class ClassAssignmentNormalDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtName.Location = New System.Drawing.Point(92, 8)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(326, 22)
+        Me.txtName.Size = New System.Drawing.Size(200, 22)
         Me.txtName.TabIndex = 72
         '
         'nudMaxPoints
@@ -231,7 +231,7 @@ Partial Class ClassAssignmentNormalDetails
         Me.chkIncludesAttachment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkIncludesAttachment.AutoSize = True
         Me.chkIncludesAttachment.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkIncludesAttachment.Location = New System.Drawing.Point(450, 10)
+        Me.chkIncludesAttachment.Location = New System.Drawing.Point(324, 10)
         Me.chkIncludesAttachment.Name = "chkIncludesAttachment"
         Me.chkIncludesAttachment.Size = New System.Drawing.Size(148, 20)
         Me.chkIncludesAttachment.TabIndex = 75
@@ -241,8 +241,9 @@ Partial Class ClassAssignmentNormalDetails
         'btnCancel
         '
         Me.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancel.Location = New System.Drawing.Point(173, 507)
+        Me.btnCancel.Location = New System.Drawing.Point(110, 396)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(105, 35)
         Me.btnCancel.TabIndex = 76
@@ -252,7 +253,7 @@ Partial Class ClassAssignmentNormalDetails
         'btnOK
         '
         Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnOK.Location = New System.Drawing.Point(325, 507)
+        Me.btnOK.Location = New System.Drawing.Point(262, 396)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(105, 35)
         Me.btnOK.TabIndex = 77
@@ -263,7 +264,9 @@ Partial Class ClassAssignmentNormalDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(610, 553)
+        Me.ClientSize = New System.Drawing.Size(484, 442)
+        Me.Controls.Add(Me.lstAssessmentCategories)
+        Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.chkIncludesAttachment)
@@ -271,9 +274,7 @@ Partial Class ClassAssignmentNormalDetails
         Me.Controls.Add(Me.dtpSubmitDate)
         Me.Controls.Add(Me.nudWeighting)
         Me.Controls.Add(Me.nudMaxPoints)
-        Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.txtOverallDefaultText)
-        Me.Controls.Add(Me.lstAssessmentCategories)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.llblDeleteCategory)
         Me.Controls.Add(Me.Label5)

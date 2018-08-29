@@ -466,10 +466,9 @@ Partial Class Attendance2Form
         'pbTimer
         '
         Me.pbTimer.BackColor = System.Drawing.Color.Black
-        Me.pbTimer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbTimer.Location = New System.Drawing.Point(0, 27)
+        Me.pbTimer.Location = New System.Drawing.Point(0, 150)
         Me.pbTimer.Name = "pbTimer"
-        Me.pbTimer.Size = New System.Drawing.Size(719, 429)
+        Me.pbTimer.Size = New System.Drawing.Size(665, 306)
         Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbTimer.TabIndex = 4
         Me.pbTimer.TabStop = False

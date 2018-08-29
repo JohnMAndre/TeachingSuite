@@ -277,6 +277,7 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.rbtnAutoProcessOutcomes)
         Me.GroupBox1.Controls.Add(Me.rbtnManualProcessOutcomes)
         Me.GroupBox1.Controls.Add(Me.txtMinScorePass)
@@ -285,7 +286,7 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.GroupBox1.Controls.Add(Me.lblMinDistinction)
         Me.GroupBox1.Controls.Add(Me.lblMinMerit)
         Me.GroupBox1.Controls.Add(Me.txtMinScoreMerit)
-        Me.GroupBox1.Location = New System.Drawing.Point(392, 5)
+        Me.GroupBox1.Location = New System.Drawing.Point(499, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(227, 179)
         Me.GroupBox1.TabIndex = 35
@@ -318,7 +319,7 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(621, 337)
+        Me.ClientSize = New System.Drawing.Size(728, 337)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblMarkingTry)

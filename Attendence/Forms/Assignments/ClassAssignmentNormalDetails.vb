@@ -38,7 +38,7 @@
         nudWeighting.Value = ConvertToDecimal(m_assignment.Weighting, 1)
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs)
+    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         m_assignment.Name = txtName.Text
         m_assignment.OverallDefaultText = txtOverallDefaultText.Text
         m_assignment.MaxPoints = nudMaxPoints.Value

@@ -68,7 +68,11 @@
 
             For intCounter As Integer = 0 To intCounterMax '-- See if this stops MoveNextRare error
                 Dim stud As Student = m_ClassToProcess.Students(intCounter)
-                boolOKToProcessStudent = False '-- reset for each student
+
+                '-- reset for each student
+                boolOKToProcessStudent = False
+                asmtBTEC = Nothing
+
                 For Each studasmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
                     '-- In this situation, there should be only one
                     '   to map overall outcome status
@@ -114,6 +118,7 @@
                     strScores = String.Empty
                     intTotalMax = 0
                     intTotalScore = 0
+                    asmtBTEC.ImprovementComments = String.Empty
 
                     For Each studasmt As StudentAssignment In stud.Assignments
                         '-- In this situation, there should be only one
@@ -122,6 +127,12 @@
                         asmtBTEC.ImprovementComments &= "Improvement for " & studasmt.BaseAssignment.Name & Environment.NewLine
                         asmtBTEC.ImprovementComments &= studasmt.ImprovementComments & Environment.NewLine
                         asmtBTEC.ImprovementComments &= Environment.NewLine & Environment.NewLine
+
+
+                        asmtBTEC.OverallComments &= "Overall for " & studasmt.BaseAssignment.Name & Environment.NewLine
+                        asmtBTEC.OverallComments &= studasmt.OverallComments & Environment.NewLine
+                        asmtBTEC.OverallComments &= Environment.NewLine & Environment.NewLine
+
 
                         intTotalMax += studasmt.BaseAssignment.MaxPoints
                         intTotalScore += studasmt.FirstTryPoints

@@ -115,9 +115,10 @@ Partial Class MainFormPlain
         Me.llblRemoveClassGroup = New System.Windows.Forms.PictureBox()
         Me.llblAddClassGroup = New System.Windows.Forms.PictureBox()
         Me.llblEditClassGroup = New System.Windows.Forms.PictureBox()
+        Me.txtTag = New System.Windows.Forms.TextBox()
+        Me.txtStudentFilter = New System.Windows.Forms.TextBox()
         Me.picSearch = New System.Windows.Forms.PictureBox()
         Me.llblAddTag = New System.Windows.Forms.PictureBox()
-        Me.txtTag = New System.Windows.Forms.TextBox()
         Me.lblStudentCount = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.btnEditStudent = New System.Windows.Forms.PictureBox()
@@ -127,7 +128,6 @@ Partial Class MainFormPlain
         Me.llblAddStudent = New System.Windows.Forms.PictureBox()
         Me.llblMoveStudent = New System.Windows.Forms.PictureBox()
         Me.llblClearFilter = New System.Windows.Forms.PictureBox()
-        Me.txtStudentFilter = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
         Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -947,6 +947,20 @@ Partial Class MainFormPlain
         Me.llblEditClassGroup.TabIndex = 21
         Me.llblEditClassGroup.TabStop = False
         '
+        'txtTag
+        '
+        Me.txtTag.Location = New System.Drawing.Point(379, -1)
+        Me.txtTag.Name = "txtTag"
+        Me.txtTag.Size = New System.Drawing.Size(126, 22)
+        Me.txtTag.TabIndex = 57
+        '
+        'txtStudentFilter
+        '
+        Me.txtStudentFilter.Location = New System.Drawing.Point(45, -1)
+        Me.txtStudentFilter.Name = "txtStudentFilter"
+        Me.txtStudentFilter.Size = New System.Drawing.Size(126, 22)
+        Me.txtStudentFilter.TabIndex = 19
+        '
         'picSearch
         '
         Me.picSearch.Image = Global.Teaching.My.Resources.Resources.detective_16
@@ -964,13 +978,6 @@ Partial Class MainFormPlain
         Me.llblAddTag.Size = New System.Drawing.Size(17, 17)
         Me.llblAddTag.TabIndex = 58
         Me.llblAddTag.TabStop = False
-        '
-        'txtTag
-        '
-        Me.txtTag.Location = New System.Drawing.Point(379, -1)
-        Me.txtTag.Name = "txtTag"
-        Me.txtTag.Size = New System.Drawing.Size(126, 22)
-        Me.txtTag.TabIndex = 57
         '
         'lblStudentCount
         '
@@ -1058,13 +1065,6 @@ Partial Class MainFormPlain
         Me.llblClearFilter.Size = New System.Drawing.Size(17, 17)
         Me.llblClearFilter.TabIndex = 49
         Me.llblClearFilter.TabStop = False
-        '
-        'txtStudentFilter
-        '
-        Me.txtStudentFilter.Location = New System.Drawing.Point(45, -1)
-        Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(126, 22)
-        Me.txtStudentFilter.TabIndex = 19
         '
         'Panel3
         '
@@ -2028,9 +2028,9 @@ Partial Class MainFormPlain
         'EditStudentToolStripMenuItem1
         '
         Me.EditStudentToolStripMenuItem1.Name = "EditStudentToolStripMenuItem1"
-        Me.EditStudentToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.EditStudentToolStripMenuItem1.ShortcutKeyDisplayString = "Enter"
         Me.EditStudentToolStripMenuItem1.Size = New System.Drawing.Size(314, 22)
-        Me.EditStudentToolStripMenuItem1.Text = "&Edit student"
+        Me.EditStudentToolStripMenuItem1.Text = "Edit &student"
         '
         'ReportsToolStripMenuItem
         '

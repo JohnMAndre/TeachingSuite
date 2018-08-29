@@ -3227,4 +3227,15 @@ Public Class MainFormPlain
             MessageBox.Show("There was an error exporting your data: " * ex.Message)
         End Try
     End Sub
+
+    Private Sub dgvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvStudents.KeyDown
+        Try
+            If e.KeyCode = Keys.Enter Then
+                EditSelectedStudent()
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("Error: " + ex.Message, Application.ProductName)
+        End Try
+    End Sub
 End Class

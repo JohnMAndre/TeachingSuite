@@ -102,11 +102,13 @@
     Private Sub IncreaseFontToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IncreaseFontToolStripMenuItem.Click
         Dim newFont As Font = New Font(dgvStudents.Font.FontFamily, dgvStudents.Font.Size + 4)
         dgvStudents.Font = newFont
+        dgvStudents.RowTemplate.Height += 8
     End Sub
 
     Private Sub DecreaseFontToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DecreaseFontToolStripMenuItem.Click
         Dim newFont As Font = New Font(dgvStudents.Font.FontFamily, dgvStudents.Font.Size - 4)
         dgvStudents.Font = newFont
+        dgvStudents.RowTemplate.Height -= 8
     End Sub
     Private Sub PresentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles PresentToolStripMenuItem.Click
         SetStudentStatus(AttendanceStatusEnum.Present)
