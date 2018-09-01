@@ -36,6 +36,11 @@ Partial Class EmailQuizResults
         Me.OlvColumn18 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn19 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtOutput = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.lblDuplicatesExist = New System.Windows.Forms.Label()
@@ -47,7 +52,6 @@ Partial Class EmailQuizResults
         Me.txtQuizName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblViewQuizResultsFolder = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.txtEmailTrailingText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudSendInXHours = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
@@ -65,11 +69,9 @@ Partial Class EmailQuizResults
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReplaceSelectedStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.DebugToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckAllRowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvQuizDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -246,6 +248,41 @@ Partial Class EmailQuizResults
         Me.OlvColumn1.Text = "Student"
         Me.OlvColumn1.Width = 97
         '
+        'OlvColumn2
+        '
+        Me.OlvColumn2.AspectName = "Question11"
+        Me.OlvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn2.Text = "11"
+        Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn3
+        '
+        Me.OlvColumn3.AspectName = "Question12"
+        Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn3.Text = "12"
+        Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn4
+        '
+        Me.OlvColumn4.AspectName = "Question13"
+        Me.OlvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn4.Text = "13"
+        Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn5
+        '
+        Me.OlvColumn5.AspectName = "Question14"
+        Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn5.Text = "14"
+        Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'OlvColumn7
+        '
+        Me.OlvColumn7.AspectName = "Question15"
+        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn7.Text = "15"
+        Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'txtOutput
         '
         Me.txtOutput.Dock = System.Windows.Forms.DockStyle.Right
@@ -318,10 +355,10 @@ Partial Class EmailQuizResults
         '
         'KryptonPanel1
         '
+        Me.KryptonPanel1.Controls.Add(Me.txtEmailTrailingText)
         Me.KryptonPanel1.Controls.Add(Me.txtQuizName)
         Me.KryptonPanel1.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel1.Controls.Add(Me.llblViewQuizResultsFolder)
-        Me.KryptonPanel1.Controls.Add(Me.txtEmailTrailingText)
         Me.KryptonPanel1.Controls.Add(Me.KryptonLabel7)
         Me.KryptonPanel1.Controls.Add(Me.KryptonLabel8)
         Me.KryptonPanel1.Controls.Add(Me.nudSendInXHours)
@@ -359,18 +396,6 @@ Partial Class EmailQuizResults
         Me.llblViewQuizResultsFolder.TabIndex = 54
         Me.llblViewQuizResultsFolder.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblViewQuizResultsFolder.Values.Text = "View quiz results folder"
-        '
-        'txtEmailTrailingText
-        '
-        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(249, 25)
-        Me.txtEmailTrailingText.Multiline = True
-        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
-        Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(730, 116)
-        Me.txtEmailTrailingText.TabIndex = 52
         '
         'KryptonLabel7
         '
@@ -455,7 +480,7 @@ Partial Class EmailQuizResults
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.DebugToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(991, 24)
@@ -503,40 +528,29 @@ Partial Class EmailQuizResults
         Me.ReplaceSelectedStudentIDToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ReplaceSelectedStudentIDToolStripMenuItem.Text = "&Replace selected StudentID"
         '
-        'OlvColumn2
+        'DebugToolStripMenuItem
         '
-        Me.OlvColumn2.AspectName = "Question11"
-        Me.OlvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn2.Text = "11"
-        Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.DebugToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckAllRowsToolStripMenuItem})
+        Me.DebugToolStripMenuItem.Name = "DebugToolStripMenuItem"
+        Me.DebugToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.DebugToolStripMenuItem.Text = "Debug"
         '
-        'OlvColumn3
+        'CheckAllRowsToolStripMenuItem
         '
-        Me.OlvColumn3.AspectName = "Question12"
-        Me.OlvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn3.Text = "12"
-        Me.OlvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.CheckAllRowsToolStripMenuItem.Name = "CheckAllRowsToolStripMenuItem"
+        Me.CheckAllRowsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckAllRowsToolStripMenuItem.Text = "Check all rows"
         '
-        'OlvColumn4
+        'txtEmailTrailingText
         '
-        Me.OlvColumn4.AspectName = "Question13"
-        Me.OlvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn4.Text = "13"
-        Me.OlvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'OlvColumn5
-        '
-        Me.OlvColumn5.AspectName = "Question14"
-        Me.OlvColumn5.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn5.Text = "14"
-        Me.OlvColumn5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'OlvColumn7
-        '
-        Me.OlvColumn7.AspectName = "Question15"
-        Me.OlvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.Text = "15"
-        Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(249, 25)
+        Me.txtEmailTrailingText.Multiline = True
+        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(730, 116)
+        Me.txtEmailTrailingText.TabIndex = 57
         '
         'EmailQuizResults
         '
@@ -591,7 +605,6 @@ Partial Class EmailQuizResults
     Friend WithEvents KryptonLabel5 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudEmailSendingAccount As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtEmailTrailingText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents llblViewQuizResultsFolder As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents olvQuizDetails As BrightIdeasSoftware.ObjectListView
@@ -626,4 +639,7 @@ Partial Class EmailQuizResults
     Friend WithEvents OlvColumn4 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn7 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents DebugToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CheckAllRowsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents txtEmailTrailingText As System.Windows.Forms.TextBox
 End Class

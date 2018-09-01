@@ -3238,4 +3238,60 @@ Public Class MainFormPlain
             MessageBox.Show("Error: " + ex.Message, Application.ProductName)
         End Try
     End Sub
+
+    Private Sub ExportAllSemestersForResearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAllSemestersForResearchToolStripMenuItem.Click
+        Dim strTitle As String = Me.Text
+        Try
+
+        
+        Dim semesters As List(Of String) = Semester.ListExistingSemesters()
+        Dim objSemester As Semester
+        Dim strOutputFilename As String
+        Dim sfd As New SaveFileDialog()
+        Dim intSessions, intTotalPresent, intTotalAbsent, intTotalExcused, intTotalRemoved As Integer
+        If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            strOutputFilename = sfd.FileName
+            Dim tw As System.IO.TextWriter = System.IO.File.CreateText(strOutputFilename)
+            '-- Headers
+            tw.WriteLine("Semester" & vbTab & "LocalName" & vbTab & "Nickname" & vbTab & "StudentID" & vbTab & "ExtStudentID" & vbTab & "Module" & vbTab & "Class" & vbTab & "PresentationQual" & vbTab & "ResearchQuality" & vbTab &
+                         "#Sessions" & vbTab & "#Present" & vbTab & "#Excused" & vbTab & "#Absent" & vbTab & "#Removed" & vbTab & "Final grade" & vbTab & "Tags" & vbTab & "Group" & vbTab & "Team" & vbTab & "Plag" & vbTab & "Gender")
+                For intCounter As Integer = 0 To semesters.Count - 1
+                    Dim semesterName As String = semesters(intCounter)
+                    objSemester = New Semester(semesterName)
+                    For Each grp As ClassGroup In objSemester.ClassGroups
+                        For Each cls As SchoolClass In grp.Classes
+                            For Each stud As Student In cls.Students
+                                Me.Text = objSemester.Name & " / " & grp.Name & " / " & cls.Name & " / " & stud.LocalNameLatinLetters
+                                Me.Refresh()
+                                intTotalPresent = 0
+                                intTotalAbsent = 0
+                                intTotalExcused = 0
+                                intTotalRemoved = 0
+                                For Each session As TeachingSession In stud.TeachingSessions
+                                    intSessions += 1
+                                    Select Case session.AttendenceStatus
+                                        Case AttendanceStatusEnum.Present
+                                            intTotalPresent += 1
+                                        Case AttendanceStatusEnum.Absent
+                                            intTotalAbsent += 1
+                                        Case AttendanceStatusEnum.Removed
+                                            intTotalRemoved += 1
+                                        Case AttendanceStatusEnum.Excused
+                                            intTotalExcused += 1
+                                    End Select
+                                Next
+                                tw.WriteLine(objSemester.Name & vbTab & stud.LocalNameLatinLetters & vbTab & stud.Nickname & vbTab & stud.StudentID & vbTab & stud.ExtStudentID & vbTab & grp.Name & vbTab & cls.Name & vbTab & stud.PresentationQuality & vbTab & stud.ResearchQuality & vbTab &
+                                             intSessions & vbTab & intTotalPresent & vbTab & intTotalExcused & vbTab & intTotalAbsent & vbTab & intTotalRemoved & vbTab & stud.AssessmentResultOverall & vbTab & stud.Tags & vbTab & stud.StudentGroup & vbTab & stud.StudentTeam & vbTab & stud.PlagiarismSeverity & vbTab & stud.Gender)
+
+                            Next
+                        Next
+                    Next
+                Next
+                tw.Close()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+        Me.Text = strTitle
+    End Sub
 End Class

@@ -38,6 +38,11 @@ Public Class Semester
         Portfolio
     End Enum
 
+    ''' <summary>
+    ''' Normally you don't need fullname, just call New with the semester name
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Shared Function ListExistingSemesters() As List(Of String)
         Dim files() As String
 

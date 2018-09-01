@@ -586,111 +586,116 @@ Public Class EmailQuizResults
 
     Private Sub PasteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasteToolStripMenuItem.Click
         Try
-            m_lstQuizResults = New List(Of QuizDetails)
-            Dim objResults As QuizDetails
 
-            Dim strClipboard As String = Clipboard.GetText()
-            If strClipboard Is Nothing Then
-                MessageBox.Show("The clipboard is empty.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ElseIf Not strClipboard.Contains(vbTab) Then
-                MessageBox.Show("The clipboard data does not contain tabs. It must be spreadsheet data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ElseIf Not strClipboard.Contains(Environment.NewLine) Then
-                MessageBox.Show("The clipboard does not contain multiple lines but it needs to.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If Me.ActiveControl Is txtEmailTrailingText Then
+                txtEmailTrailingText.SelectedText = Clipboard.GetText()
             Else
-                Dim strRows() As String
+                Dim objResults As QuizDetails
 
-                strRows = GetRowsFromSpreadsheetClipboardData(strClipboard)
+                Dim strClipboard As String = Clipboard.GetText()
+                If strClipboard Is Nothing Then
+                    MessageBox.Show("The clipboard is empty.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ElseIf Not strClipboard.Contains(vbTab) Then
+                    MessageBox.Show("The clipboard data does not contain tabs. It must be spreadsheet data.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ElseIf Not strClipboard.Contains(Environment.NewLine) Then
+                    MessageBox.Show("The clipboard does not contain multiple lines but it needs to.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    Dim strRows() As String
 
-                Dim row() As String
-                Dim boolIgnore As Boolean
-                For intCounter As Integer = 0 To strRows.Count - 1
-                    boolIgnore = False
-                    row = strRows(intCounter).Split(vbTab)
-                    If row.Length < 2 Then
-                        If m_lstQuizResults.Count > 0 Then
-                            '-- we are done
-                            Exit For
-                        Else
-                            MessageBox.Show("There should be at least 2 columns of data: ID, Question1 (the clipboard has " & row.Length & " columns).")
-                        End If
-                    End If
-                    objResults = New QuizDetails()
-                    If m_lstQuizResults.Count = 0 Then
-                        objResults.RecordType = QuizDetailRecordType.Questions
-                        objResults.Identifier = "Questions"
-                    ElseIf row(0).Trim().ToUpper().StartsWith("ANSWER") Then
-                        objResults.RecordType = QuizDetailRecordType.Answers
-                        objResults.Identifier = row(0).Trim()
-                    ElseIf row(0).Trim().ToUpper().StartsWith("IGNORE") Then
-                        boolIgnore = True
-                    Else
-                        objResults.RecordType = QuizDetailRecordType.Responses
-                        objResults.Identifier = row(0).Trim()
+                    strRows = GetRowsFromSpreadsheetClipboardData(strClipboard)
+                    m_lstQuizResults = New List(Of QuizDetails)
 
-                        For Each stud In m_students
-                            If stud.StudentID = objResults.Identifier Then
-                                objResults.Student = stud '-- use first match (user must keep them unique)
+                    Dim row() As String
+                    Dim boolIgnore As Boolean
+                    For intCounter As Integer = 0 To strRows.Count - 1
+                        boolIgnore = False
+                        row = strRows(intCounter).Split(vbTab)
+                        If row.Length < 2 Then
+                            If m_lstQuizResults.Count > 0 Then
+                                '-- we are done
                                 Exit For
+                            Else
+                                MessageBox.Show("There should be at least 2 columns of data: ID, Question1 (the clipboard has " & row.Length & " columns).")
                             End If
-                            Application.DoEvents()
-                        Next
+                        End If
+                        objResults = New QuizDetails()
+                        If m_lstQuizResults.Count = 0 Then
+                            objResults.RecordType = QuizDetailRecordType.Questions
+                            objResults.Identifier = "Questions"
+                        ElseIf row(0).Trim().ToUpper().StartsWith("ANSWER") Then
+                            objResults.RecordType = QuizDetailRecordType.Answers
+                            objResults.Identifier = row(0).Trim()
+                        ElseIf row(0).Trim().ToUpper().StartsWith("IGNORE") Then
+                            boolIgnore = True
+                        Else
+                            objResults.RecordType = QuizDetailRecordType.Responses
+                            objResults.Identifier = row(0).Trim()
 
-                    End If
+                            For Each stud In m_students
+                                If stud.StudentID = objResults.Identifier Then
+                                    objResults.Student = stud '-- use first match (user must keep them unique)
+                                    Exit For
+                                End If
+                                Application.DoEvents()
+                            Next
 
-                    If Not boolIgnore Then
-                        objResults.Question1 = row(1).Trim()
-                        If row.Length > 2 Then
-                            objResults.Question2 = row(2).Trim()
-                        End If
-                        If row.Length > 3 Then
-                            objResults.Question3 = row(3).Trim()
-                        End If
-                        If row.Length > 4 Then
-                            objResults.Question4 = row(4).Trim()
-                        End If
-                        If row.Length > 5 Then
-                            objResults.Question5 = row(5).Trim()
-                        End If
-                        If row.Length > 6 Then
-                            objResults.Question6 = row(6).Trim()
-                        End If
-                        If row.Length > 7 Then
-                            objResults.Question7 = row(7).Trim()
-                        End If
-                        If row.Length > 8 Then
-                            objResults.Question8 = row(8).Trim()
-                        End If
-                        If row.Length > 9 Then
-                            objResults.Question9 = row(9).Trim()
-                        End If
-                        If row.Length > 10 Then
-                            objResults.Question10 = row(10).Trim()
-                        End If
-                        If row.Length > 11 Then
-                            objResults.Question11 = row(11).Trim()
-                        End If
-                        If row.Length > 12 Then
-                            objResults.Question12 = row(12).Trim()
-                        End If
-                        If row.Length > 13 Then
-                            objResults.Question12 = row(13).Trim()
-                        End If
-                        If row.Length > 14 Then
-                            objResults.Question14 = row(14).Trim()
-                        End If
-                        If row.Length > 15 Then
-                            objResults.Question15 = row(15).Trim()
                         End If
 
-                        m_lstQuizResults.Add(objResults)
-                    End If
-                Next
-                olvQuizDetails.SetObjects(m_lstQuizResults)
-                AutoSizeColumns(olvQuizDetails)
-                olvQuizDetails.Sort(olvcolRecordType, SortOrder.Ascending)
+                        If Not boolIgnore Then
+                            objResults.Question1 = row(1).Trim()
+                            If row.Length > 2 Then
+                                objResults.Question2 = row(2).Trim()
+                            End If
+                            If row.Length > 3 Then
+                                objResults.Question3 = row(3).Trim()
+                            End If
+                            If row.Length > 4 Then
+                                objResults.Question4 = row(4).Trim()
+                            End If
+                            If row.Length > 5 Then
+                                objResults.Question5 = row(5).Trim()
+                            End If
+                            If row.Length > 6 Then
+                                objResults.Question6 = row(6).Trim()
+                            End If
+                            If row.Length > 7 Then
+                                objResults.Question7 = row(7).Trim()
+                            End If
+                            If row.Length > 8 Then
+                                objResults.Question8 = row(8).Trim()
+                            End If
+                            If row.Length > 9 Then
+                                objResults.Question9 = row(9).Trim()
+                            End If
+                            If row.Length > 10 Then
+                                objResults.Question10 = row(10).Trim()
+                            End If
+                            If row.Length > 11 Then
+                                objResults.Question11 = row(11).Trim()
+                            End If
+                            If row.Length > 12 Then
+                                objResults.Question12 = row(12).Trim()
+                            End If
+                            If row.Length > 13 Then
+                                objResults.Question12 = row(13).Trim()
+                            End If
+                            If row.Length > 14 Then
+                                objResults.Question14 = row(14).Trim()
+                            End If
+                            If row.Length > 15 Then
+                                objResults.Question15 = row(15).Trim()
+                            End If
+
+                            m_lstQuizResults.Add(objResults)
+                        End If
+                    Next
+                    olvQuizDetails.SetObjects(m_lstQuizResults)
+                    AutoSizeColumns(olvQuizDetails)
+                    olvQuizDetails.Sort(olvcolRecordType, SortOrder.Ascending)
+                End If
+
+                CheckForDuplicates()
             End If
-
-            CheckForDuplicates()
 
         Catch ex As Exception
             MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -769,5 +774,19 @@ Public Class EmailQuizResults
         End If
 
         txtNewStudentID.Text = qd.Identifier
+    End Sub
+
+    Private Sub CheckAllRowsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckAllRowsToolStripMenuItem.Click
+        Dim intCounter As Integer = 1
+
+        MessageBox.Show("There are " & m_lstQuizResults.Count().ToString("#,##0") & " records.")
+
+        For Each row As QuizDetails In m_lstQuizResults
+            If MessageBox.Show("Row " + intCounter.ToString("#,##0") & " is type " & row.RecordType.ToString(), Application.ProductName, MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.Cancel Then
+                Exit For
+            End If
+            intCounter += 1
+        Next
+        MessageBox.Show("Done.")
     End Sub
 End Class
