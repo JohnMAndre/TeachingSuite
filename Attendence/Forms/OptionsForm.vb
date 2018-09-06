@@ -107,7 +107,12 @@ Public Class OptionsForm
             txtAttendenceMarkUnknown.Text = AppSettings.AttendenceReportMarkUnknown
             txtAttendenceMarkExcused.Text = AppSettings.AttendenceReportMarkExcused
 
-            nudExamClockDuration.Value = AppSettings.ExamClockDuration
+            If AppSettings.ExamClockDuration > nudExamClockDuration.Maximum OrElse AppSettings.ExamClockDuration < nudExamClockDuration.Minimum Then
+                nudExamClockDuration.Value = nudExamClockDuration.Maximum
+            Else
+                nudExamClockDuration.Value = AppSettings.ExamClockDuration
+            End If
+
             txtExamFailDefaultFeedback.Text = AppSettings.ExamFailDefaultFeedback
             txtExamPassWeakDefaultFeedback.Text = AppSettings.ExamPassWeakDefaultFeedback
             txtExamPassDefaultFeedback.Text = AppSettings.ExamPassDefaultFeedback
@@ -116,7 +121,13 @@ Public Class OptionsForm
 
             '-- Data
             txtCDDrive.Text = AppSettings.CDDrive
-            nudDataBackupsToRetain.Value = AppSettings.DataBackupsToRetain
+
+            If AppSettings.DataBackupsToRetain > nudDataBackupsToRetain.Maximum OrElse AppSettings.DataBackupsToRetain < nudDataBackupsToRetain.Minimum Then
+                nudDataBackupsToRetain.Value = nudDataBackupsToRetain.Maximum
+            Else
+                nudDataBackupsToRetain.Value = AppSettings.DataBackupsToRetain
+            End If
+
             Dim dictionaries() As String = Directory.GetFiles(Path.GetDirectoryName(Application.ExecutablePath), "*.dct")
             Dim intCounter As Integer = -1
             Dim intDictionaryIndex As Integer
@@ -130,7 +141,13 @@ Public Class OptionsForm
             If cboDictionary.Items.Count > 0 AndAlso intDictionaryIndex >= 0 Then
                 cboDictionary.SelectedIndex = intDictionaryIndex
             End If
-            nudMaxAppHistoryFileSize.Value = AppSettings.ApplicationHistoryMaxFileSize
+
+            If AppSettings.ApplicationHistoryMaxFileSize > nudMaxAppHistoryFileSize.Maximum OrElse AppSettings.ApplicationHistoryMaxFileSize < nudMaxAppHistoryFileSize.Minimum Then
+                nudMaxAppHistoryFileSize.Value = nudMaxAppHistoryFileSize.Maximum
+            Else
+                nudMaxAppHistoryFileSize.Value = AppSettings.ApplicationHistoryMaxFileSize
+            End If
+
             chkEnableStudentDataHistory.Checked = AppSettings.EnableStudentDataHistory
             chkLoadSemesterCacheOnStartup.Checked = AppSettings.LoadSemesterCacheOnStartup
 
@@ -172,13 +189,32 @@ Public Class OptionsForm
             txtLateSubmitDefaultComment.Text = AppSettings.LateSubmitDefaultComment
             txtPathToFeedbackSaveFolder.Text = AppSettings.MarkingPageSaveFolder
 
-            nudLoggingThreshold.Value = AppSettings.LoggingThreshold
-            nudAutoSave.Value = AppSettings.AutoSaveSeconds \ 60
+            If AppSettings.LoggingThreshold > nudLoggingThreshold.Maximum OrElse AppSettings.LoggingThreshold < nudLoggingThreshold.Minimum Then
+                nudLoggingThreshold.Value = nudLoggingThreshold.Maximum
+            Else
+                nudLoggingThreshold.Value = AppSettings.LoggingThreshold
+            End If
+
+            If (AppSettings.AutoSaveSeconds \ 60) > nudAutoSave.Maximum OrElse (AppSettings.AutoSaveSeconds \ 60) < nudAutoSave.Minimum Then
+                nudAutoSave.Value = nudAutoSave.Maximum
+            Else
+                nudAutoSave.Value = AppSettings.AutoSaveSeconds \ 60
+            End If
             chkAutoSaveEnabled.Checked = AppSettings.AutoSaveEnabled
             chkDisableColorsAssignmentDetail.Checked = AppSettings.DisableColorsInAssignmentDetail
 
-            nudMarkingWarning1.Value = AppSettings.AssignmentMarkingWarning1
-            nudMarkingWarning2.Value = AppSettings.AssignmentMarkingWarning2
+            If AppSettings.AssignmentMarkingWarning1 > nudMarkingWarning1.Maximum OrElse AppSettings.AssignmentMarkingWarning1 < nudMarkingWarning1.Minimum Then
+                nudMarkingWarning1.Value = nudMarkingWarning1.Maximum
+            Else
+                nudMarkingWarning1.Value = AppSettings.AssignmentMarkingWarning1
+            End If
+
+            If AppSettings.AssignmentMarkingWarning2 > nudMarkingWarning2.Maximum OrElse AppSettings.AssignmentMarkingWarning2 < nudMarkingWarning2.Minimum Then
+                nudMarkingWarning2.Value = nudMarkingWarning2.Maximum
+            Else
+                nudMarkingWarning2.Value = AppSettings.AssignmentMarkingWarning2
+            End If
+
 
             txtImprovementWithDistinction.Text = AppSettings.ImprovementFeedbackForDistinction
             txtImprovementWithMerit.Text = AppSettings.ImprovementFeedbackForMerit

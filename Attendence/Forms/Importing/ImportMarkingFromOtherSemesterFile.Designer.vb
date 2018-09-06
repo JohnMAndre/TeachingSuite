@@ -22,23 +22,25 @@ Partial Class ImportMarkingFromOtherSemesterFile
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportStudentAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -47,7 +49,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.lstClassGroups = New System.Windows.Forms.ListBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
         Me.llblBrowseForSemesterFile = New System.Windows.Forms.LinkLabel()
         Me.txtSemesterFile = New System.Windows.Forms.TextBox()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
@@ -66,13 +67,16 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolPlagiarismSeverity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolResearchQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblStudentCount = New System.Windows.Forms.Label()
-        Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportStudentAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
+        Me.txtOverrideMarkerName = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -98,6 +102,20 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
+        '
+        'ActionToolStripMenuItem
+        '
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem})
+        Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
+        Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.ActionToolStripMenuItem.Text = "&Action"
+        '
+        'ImportStudentAssignmentsToolStripMenuItem
+        '
+        Me.ImportStudentAssignmentsToolStripMenuItem.Name = "ImportStudentAssignmentsToolStripMenuItem"
+        Me.ImportStudentAssignmentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
+        Me.ImportStudentAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
+        Me.ImportStudentAssignmentsToolStripMenuItem.Text = "&Import student assignments"
         '
         'Panel1
         '
@@ -186,16 +204,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel2.Size = New System.Drawing.Size(1017, 34)
         Me.Panel2.TabIndex = 2
         '
-        'btnLoadSemester
-        '
-        Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnLoadSemester.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnLoadSemester.Location = New System.Drawing.Point(988, 4)
-        Me.btnLoadSemester.Name = "btnLoadSemester"
-        Me.btnLoadSemester.Size = New System.Drawing.Size(23, 21)
-        Me.btnLoadSemester.TabIndex = 9
-        Me.btnLoadSemester.TabStop = False
-        '
         'llblBrowseForSemesterFile
         '
         Me.llblBrowseForSemesterFile.AutoSize = True
@@ -210,10 +218,10 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         Me.txtSemesterFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSemesterFile.Location = New System.Drawing.Point(103, 4)
+        Me.txtSemesterFile.Location = New System.Drawing.Point(119, 4)
         Me.txtSemesterFile.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtSemesterFile.Name = "txtSemesterFile"
-        Me.txtSemesterFile.Size = New System.Drawing.Size(880, 22)
+        Me.txtSemesterFile.Size = New System.Drawing.Size(864, 22)
         Me.txtSemesterFile.TabIndex = 5
         '
         'dgvStudents
@@ -228,14 +236,14 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudents.Name = "dgvStudents"
         Me.dgvStudents.ReadOnly = True
         Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvStudents.Size = New System.Drawing.Size(817, 441)
+        Me.dgvStudents.Size = New System.Drawing.Size(817, 404)
         Me.dgvStudents.TabIndex = 6
         '
         'dcolAdmin
         '
         Me.dcolAdmin.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle15
         Me.dcolAdmin.HeaderText = "Admin"
         Me.dcolAdmin.Name = "dcolAdmin"
         Me.dcolAdmin.ReadOnly = True
@@ -243,8 +251,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolLocalName
         '
         Me.dcolLocalName.DataPropertyName = "LocalName"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle16
         Me.dcolLocalName.HeaderText = "Name"
         Me.dcolLocalName.Name = "dcolLocalName"
         Me.dcolLocalName.ReadOnly = True
@@ -252,8 +260,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolNickname
         '
         Me.dcolNickname.DataPropertyName = "Nickname"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle17
         Me.dcolNickname.HeaderText = "Nickname"
         Me.dcolNickname.Name = "dcolNickname"
         Me.dcolNickname.ReadOnly = True
@@ -261,8 +269,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolExtStudentID
         '
         Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle18
         Me.dcolExtStudentID.HeaderText = "ExtID"
         Me.dcolExtStudentID.Name = "dcolExtStudentID"
         Me.dcolExtStudentID.ReadOnly = True
@@ -270,8 +278,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolStudentID
         '
         Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle19
         Me.dcolStudentID.HeaderText = "StudentID"
         Me.dcolStudentID.Name = "dcolStudentID"
         Me.dcolStudentID.ReadOnly = True
@@ -279,8 +287,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolTags
         '
         Me.dcolTags.DataPropertyName = "Tags"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle20
         Me.dcolTags.HeaderText = "Tags"
         Me.dcolTags.Name = "dcolTags"
         Me.dcolTags.ReadOnly = True
@@ -288,8 +296,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolPresentationQuality
         '
         Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle21
         Me.dcolPresentationQuality.HeaderText = "Pres"
         Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
         Me.dcolPresentationQuality.ReadOnly = True
@@ -297,8 +305,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolStudentGroup
         '
         Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle22
         Me.dcolStudentGroup.HeaderText = "Group"
         Me.dcolStudentGroup.Name = "dcolStudentGroup"
         Me.dcolStudentGroup.ReadOnly = True
@@ -306,8 +314,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolStudentTeam
         '
         Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle23
         Me.dcolStudentTeam.HeaderText = "Team"
         Me.dcolStudentTeam.Name = "dcolStudentTeam"
         Me.dcolStudentTeam.ReadOnly = True
@@ -315,8 +323,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolEmail
         '
         Me.dcolEmail.DataPropertyName = "EmailAddress"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle24
         Me.dcolEmail.HeaderText = "Email"
         Me.dcolEmail.Name = "dcolEmail"
         Me.dcolEmail.ReadOnly = True
@@ -324,8 +332,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolNameLatinLetters
         '
         Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle25
         Me.dcolNameLatinLetters.HeaderText = "Standard"
         Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
         Me.dcolNameLatinLetters.ReadOnly = True
@@ -333,8 +341,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolClass
         '
         Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle26
         Me.dcolClass.HeaderText = "Class"
         Me.dcolClass.Name = "dcolClass"
         Me.dcolClass.ReadOnly = True
@@ -342,8 +350,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolPlagiarismSeverity
         '
         Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle27
         Me.dcolPlagiarismSeverity.HeaderText = "Plag"
         Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
         Me.dcolPlagiarismSeverity.ReadOnly = True
@@ -351,8 +359,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'dcolResearchQuality
         '
         Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle28
         Me.dcolResearchQuality.HeaderText = "Research"
         Me.dcolResearchQuality.Name = "dcolResearchQuality"
         Me.dcolResearchQuality.ReadOnly = True
@@ -365,19 +373,44 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.lblStudentCount.Size = New System.Drawing.Size(817, 25)
         Me.lblStudentCount.TabIndex = 9
         '
-        'ActionToolStripMenuItem
+        'btnLoadSemester
         '
-        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem})
-        Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
-        Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
-        Me.ActionToolStripMenuItem.Text = "&Action"
+        Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnLoadSemester.Image = Global.Teaching.My.Resources.Resources.checkmark_16
+        Me.btnLoadSemester.Location = New System.Drawing.Point(988, 4)
+        Me.btnLoadSemester.Name = "btnLoadSemester"
+        Me.btnLoadSemester.Size = New System.Drawing.Size(23, 21)
+        Me.btnLoadSemester.TabIndex = 9
+        Me.btnLoadSemester.TabStop = False
         '
-        'ImportStudentAssignmentsToolStripMenuItem
+        'txtOverrideMarkerName
         '
-        Me.ImportStudentAssignmentsToolStripMenuItem.Name = "ImportStudentAssignmentsToolStripMenuItem"
-        Me.ImportStudentAssignmentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.ImportStudentAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
-        Me.ImportStudentAssignmentsToolStripMenuItem.Text = "&Import student assignments"
+        Me.txtOverrideMarkerName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtOverrideMarkerName.Location = New System.Drawing.Point(115, 7)
+        Me.txtOverrideMarkerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtOverrideMarkerName.Name = "txtOverrideMarkerName"
+        Me.txtOverrideMarkerName.Size = New System.Drawing.Size(252, 22)
+        Me.txtOverrideMarkerName.TabIndex = 10
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Controls.Add(Me.txtOverrideMarkerName)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(200, 487)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(817, 37)
+        Me.Panel3.TabIndex = 11
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 10)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(103, 16)
+        Me.Label1.TabIndex = 11
+        Me.Label1.Text = "Override Marker:"
         '
         'ImportMarkingFromOtherSemesterFile
         '
@@ -385,6 +418,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1017, 524)
         Me.Controls.Add(Me.dgvStudents)
+        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.lblStudentCount)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
@@ -399,8 +433,10 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -437,4 +473,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents dcolResearchQuality As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ActionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportStudentAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents txtOverrideMarkerName As System.Windows.Forms.TextBox
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

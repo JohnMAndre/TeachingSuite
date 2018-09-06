@@ -3294,4 +3294,70 @@ Public Class MainFormPlain
         End Try
         Me.Text = strTitle
     End Sub
+
+    Private Sub BulkReassignStudentAssignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BulkReassignStudentAssignmentToolStripMenuItem.Click
+        'If GetSelectedClassGroup() Is Nothing Then
+        '    MessageBox.Show("Please select a module to process.", Application.ProductName, MessageBoxButtons.OK)
+        'ElseIf GetSelectedAssignment() Is Nothing Then
+        '    MessageBox.Show("Please select an assignment to process.", Application.ProductName, MessageBoxButtons.OK)
+        'Else
+        '    '-- Should be ready
+        '    Dim newBaseAssignment As ClassAssignment
+        '    For Each clsasmt In GetSelectedClassGroup.Assignments
+        '        If clsasmt.Name = "WS01-image" Then
+        '            newBaseAssignment = clsasmt
+        '            Exit For
+        '        End If
+        '    Next
+
+        '    For Each cls As SchoolClass In GetSelectedClassGroup().Classes
+        '        For Each Student In cls.Students
+        '            For Each asmt As StudentAssignment In Student.Assignments
+        '                If asmt.BaseAssignment.Name = "News report" Then
+        '                    asmt.BaseAssignment = newBaseAssignment
+        '                End If
+        '            Next
+        '        Next
+        '    Next
+        'End If
+    End Sub
+
+    Private Sub StudentsWithSelectedAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentsWithSelectedAssignmentsToolStripMenuItem.Click
+        Dim objClass As SchoolClass = GetSelectedClass()
+
+        If objClass Is Nothing Then
+            MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        If GetSelectedAssignment() Is Nothing Then
+            MessageBox.Show("Please select a module to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        Dim objClassToUse As SchoolClass
+        If ClassIsCombinedView(objClass) Then
+            Dim boolSetAlready As Boolean
+            For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                If Not boolSetAlready Then
+                    Dim grp As New ClassGroup(Nothing)
+                    For Each asmt As ClassAssignment In GetSelectedClassGroup.Assignments
+                        grp.Assignments.Add(asmt)
+                    Next
+                    grp.UseNickname = GetSelectedClassGroup.UseNickname
+                    objClassToUse = New SchoolClass(grp)
+                    objClassToUse.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                    objClassToUse.Students.AddRange(objCls.Students)
+                    boolSetAlready = True
+                Else
+                    objClassToUse.Students.AddRange(objCls.Students)
+                End If
+            Next
+        Else
+            objClassToUse = objClass
+        End If
+
+        Dim frm As New StudentsWithAssignment(objClassToUse, GetSelectedAssignment)
+        frm.Show()
+    End Sub
 End Class

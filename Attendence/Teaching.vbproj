@@ -309,6 +309,12 @@
     <Compile Include="Forms\Reports\PreperationStatus.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Reports\StudentsWithAssignment.Designer.vb">
+      <DependentUpon>StudentsWithAssignment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\StudentsWithAssignment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Schedule\ScheduleExport.Designer.vb">
       <DependentUpon>ScheduleExport.vb</DependentUpon>
     </Compile>
@@ -699,6 +705,9 @@
     <EmbeddedResource Include="Forms\Reports\StudentQualityReport.resx">
       <DependentUpon>StudentQualityReport.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\StudentsWithAssignment.resx">
+      <DependentUpon>StudentsWithAssignment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Schedule\EditManualScheduleItem.resx">
       <DependentUpon>EditManualScheduleItem.vb</DependentUpon>

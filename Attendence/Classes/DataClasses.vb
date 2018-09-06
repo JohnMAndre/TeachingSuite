@@ -1883,13 +1883,15 @@ Public Interface IStudentAssignment
     Property FirstTryPrintDate As Date
     Property SecondTryPrintDate As Date
     Property ThirdTryPrintDate As Date
+    Property Student As Student
     ReadOnly Property AssignmentType As AssignmentType
 End Interface
 Public Class StudentAssignment
     Implements IStudentAssignment, IComparable(Of StudentAssignment)
 
+    Public Property Student As Student Implements IStudentAssignment.Student '-- parent
 
-    Public Student As Student '-- parent
+    '    Public Student As Student
 
     Public Property BaseAssignment As ClassAssignment
     Public Property FirstUserFullName As String '-- UserFullName the first time this assignment was created
@@ -1973,11 +1975,13 @@ Public Class StudentAssignment
     Public Overrides Function ToString() As String
         Return Me.BaseAssignment.Name
     End Function
+
 End Class
 Public Class StudentAssignmentBTEC
     Implements IComparable(Of StudentAssignmentBTEC), IStudentAssignment
 
-    Public Property Student As Student '-- parent
+    Public Property Student As Student Implements IStudentAssignment.Student '-- parent
+    'Public Property Student As Student '-- parent
     Public Property BaseAssignment As ClassAssignmentBTEC
     Public Property FirstUserFullName As String '-- UserFullName the first time this assignment was created
     Public Property LastUserFullName As String '-- UserFullName the most recent time this assignment was saved

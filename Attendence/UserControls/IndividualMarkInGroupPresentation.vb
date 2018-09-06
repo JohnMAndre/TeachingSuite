@@ -108,6 +108,12 @@
 
         m_studentAssignment.OverallComments = txtOverall.Text
         m_studentAssignment.ImprovementComments = txtImprovement.Text
+        If m_studentAssignment.FirstUserFullName.Trim = String.Empty Then
+            m_studentAssignment.FirstUserFullName = AppSettings.UserFullName
+        End If
+        m_studentAssignment.LastUserFullName = AppSettings.UserFullName
+
+
         m_student.PresentationQuality = nudPresentationQuality.Value
         m_student.ResearchQuality = nudResearchQuality.Value
         m_student.Nickname = txtNickname.Text

@@ -237,6 +237,11 @@
                     '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
 
                     permAsmt = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                    If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                        '-- Need to override the marker's name
+                        permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                        permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                    End If
                     permStud.Assignments.Add(permAsmt)
 
 
@@ -295,5 +300,9 @@
 
     Private Sub ImportStudentAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentAssignmentsToolStripMenuItem.Click
         ImportStudentAssignments()
+    End Sub
+
+    Private Sub ImportMarkingFromOtherSemesterFile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

@@ -300,6 +300,7 @@ Partial Class MainFormPlain
         Me.ExportModuleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportScheduleAsICalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEntireSemesterAsXMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAllSemestersForResearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.UpdateEmailAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FindDuplicateStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -316,6 +317,7 @@ Partial Class MainFormPlain
         Me.EitherOrToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SpecialAttendanceToolToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BulkReassignStudentAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -334,7 +336,7 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.ExportAllSemestersForResearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StudentsWithSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2035,7 +2037,7 @@ Partial Class MainFormPlain
         '
         'ReportsToolStripMenuItem
         '
-        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem})
+        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem, Me.StudentsWithSelectedAssignmentsToolStripMenuItem})
         Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
         Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ReportsToolStripMenuItem.Text = "&Reports"
@@ -2043,108 +2045,108 @@ Partial Class MainFormPlain
         'StudentAttendanceErrorsToolStripMenuItem
         '
         Me.StudentAttendanceErrorsToolStripMenuItem.Name = "StudentAttendanceErrorsToolStripMenuItem"
-        Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentAttendanceErrorsToolStripMenuItem.Text = "Student &Attendance Errors..."
         '
         'ToolStripSeparator17
         '
         Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(248, 6)
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(267, 6)
         '
         'AssignmentResultsToolStripMenuItem
         '
         Me.AssignmentResultsToolStripMenuItem.Name = "AssignmentResultsToolStripMenuItem"
-        Me.AssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.AssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AssignmentResultsToolStripMenuItem.Text = "Assignment &Results (BTEC)..."
         '
         'ModuleResultsToolStripMenuItem
         '
         Me.ModuleResultsToolStripMenuItem.Name = "ModuleResultsToolStripMenuItem"
-        Me.ModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.ModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ModuleResultsToolStripMenuItem.Text = "&Module Results (BTEC)..."
         '
         'FailedoutcomesToolStripMenuItem
         '
         Me.FailedoutcomesToolStripMenuItem.Name = "FailedoutcomesToolStripMenuItem"
-        Me.FailedoutcomesToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.FailedoutcomesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.FailedoutcomesToolStripMenuItem.Text = "Failed &outcomes (BTEC)..."
         '
         'ModuleFeedbackCheckToolStripMenuItem
         '
         Me.ModuleFeedbackCheckToolStripMenuItem.Name = "ModuleFeedbackCheckToolStripMenuItem"
-        Me.ModuleFeedbackCheckToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.ModuleFeedbackCheckToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ModuleFeedbackCheckToolStripMenuItem.Text = "Module &Feedback Check (BTEC)..."
         '
         'StudentOutcomeResultsToolStripMenuItem
         '
         Me.StudentOutcomeResultsToolStripMenuItem.Name = "StudentOutcomeResultsToolStripMenuItem"
-        Me.StudentOutcomeResultsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.StudentOutcomeResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentOutcomeResultsToolStripMenuItem.Text = "Student outcome results (BTEC)..."
         '
         'ToolStripSeparator18
         '
         Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
-        Me.ToolStripSeparator18.Size = New System.Drawing.Size(248, 6)
+        Me.ToolStripSeparator18.Size = New System.Drawing.Size(267, 6)
         '
         'SessionprepStatusToolStripMenuItem
         '
         Me.SessionprepStatusToolStripMenuItem.Name = "SessionprepStatusToolStripMenuItem"
-        Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.SessionprepStatusToolStripMenuItem.Text = "Session &prep status"
         '
         'AssignmentProcessingToolStripMenuItem
         '
         Me.AssignmentProcessingToolStripMenuItem.Name = "AssignmentProcessingToolStripMenuItem"
-        Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AssignmentProcessingToolStripMenuItem.Text = "Assignment processing"
         '
         'ScheduledSessionsToolStripMenuItem
         '
         Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
         Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
-        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
         '
         'StudentQualityToolStripMenuItem
         '
         Me.StudentQualityToolStripMenuItem.Name = "StudentQualityToolStripMenuItem"
-        Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentQualityToolStripMenuItem.Text = "Student quality..."
         '
         'StudentGradesToolStripMenuItem
         '
         Me.StudentGradesToolStripMenuItem.Name = "StudentGradesToolStripMenuItem"
-        Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentGradesToolStripMenuItem.Text = "Student grades..."
         '
         'SemesterStatisticsToolStripMenuItem
         '
         Me.SemesterStatisticsToolStripMenuItem.Name = "SemesterStatisticsToolStripMenuItem"
-        Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.SemesterStatisticsToolStripMenuItem.Text = "Semester statistics..."
         '
         'ExcessiveAbsencesToolStripMenuItem
         '
         Me.ExcessiveAbsencesToolStripMenuItem.Name = "ExcessiveAbsencesToolStripMenuItem"
-        Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ExcessiveAbsencesToolStripMenuItem.Text = "Excessive absences..."
         '
         'MissingGradeDataToolStripMenuItem
         '
         Me.MissingGradeDataToolStripMenuItem.Name = "MissingGradeDataToolStripMenuItem"
-        Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.MissingGradeDataToolStripMenuItem.Text = "&Missing grade data..."
         '
         'ImprovementItemsToolStripMenuItem
         '
         Me.ImprovementItemsToolStripMenuItem.Name = "ImprovementItemsToolStripMenuItem"
-        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ImprovementItemsToolStripMenuItem.Text = "&Improvement items..."
         '
         'StudentAssessmentcompletionToolStripMenuItem
         '
         Me.StudentAssessmentcompletionToolStripMenuItem.Name = "StudentAssessmentcompletionToolStripMenuItem"
-        Me.StudentAssessmentcompletionToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
+        Me.StudentAssessmentcompletionToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentAssessmentcompletionToolStripMenuItem.Text = "Student assessment &completion..."
         '
         'DataToolStripMenuItem
@@ -2329,6 +2331,12 @@ Partial Class MainFormPlain
         Me.ExportEntireSemesterAsXMLToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportEntireSemesterAsXMLToolStripMenuItem.Text = "Export entire semester as XML..."
         '
+        'ExportAllSemestersForResearchToolStripMenuItem
+        '
+        Me.ExportAllSemestersForResearchToolStripMenuItem.Name = "ExportAllSemestersForResearchToolStripMenuItem"
+        Me.ExportAllSemestersForResearchToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportAllSemestersForResearchToolStripMenuItem.Text = "Export all semesters for research"
+        '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
@@ -2361,7 +2369,7 @@ Partial Class MainFormPlain
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem, Me.BulkReassignStudentAssignmentToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
@@ -2426,6 +2434,13 @@ Partial Class MainFormPlain
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Name = "ConvertLocalNamesToStandardnondiacriticToolStripMenuItem"
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Text = "Convert local names to standard (non-diacritic)"
+        '
+        'BulkReassignStudentAssignmentToolStripMenuItem
+        '
+        Me.BulkReassignStudentAssignmentToolStripMenuItem.Name = "BulkReassignStudentAssignmentToolStripMenuItem"
+        Me.BulkReassignStudentAssignmentToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
+        Me.BulkReassignStudentAssignmentToolStripMenuItem.Text = "&Bulk re-assign student assignment"
+        Me.BulkReassignStudentAssignmentToolStripMenuItem.Visible = False
         '
         'RemoveAllStudentsFromSelectedClassToolStripMenuItem
         '
@@ -2536,11 +2551,11 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'ExportAllSemestersForResearchToolStripMenuItem
+        'StudentsWithSelectedAssignmentsToolStripMenuItem
         '
-        Me.ExportAllSemestersForResearchToolStripMenuItem.Name = "ExportAllSemestersForResearchToolStripMenuItem"
-        Me.ExportAllSemestersForResearchToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportAllSemestersForResearchToolStripMenuItem.Text = "Export all semesters for research"
+        Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Name = "StudentsWithSelectedAssignmentsToolStripMenuItem"
+        Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Text = "Students with selected assignments..."
         '
         'MainFormPlain
         '
@@ -2890,4 +2905,6 @@ Partial Class MainFormPlain
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents ExportAllSemestersForResearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BulkReassignStudentAssignmentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents StudentsWithSelectedAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
