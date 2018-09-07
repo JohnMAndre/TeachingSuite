@@ -20,6 +20,13 @@ Public Class OptionsForm
 
 
     Private Sub btnOK_Click(sender As System.Object, e As System.EventArgs) Handles btnOK.Click
+
+        If nudContentWeight.Value + nudPresentationWeight.Value + nudLanguageWeight.Value <> 100 Then
+            MessageBox.Show("Please make Content Weight + Presentation Weight + Language Weight = 100% (marking tab).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+
         AppSettings.AttendenceReportMarkPresent = txtAttendenceMarkPresent.Text
         AppSettings.AttendenceReportMarkLate = txtAttendenceMarkLate.Text
         AppSettings.AttendenceReportMarkAbsent = txtAttendenceMarkAbsent.Text
@@ -90,6 +97,10 @@ Public Class OptionsForm
 
         AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements = chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked
         AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Checked
+
+        AppSettings.PresentationContentWeight = nudContentWeight.Value
+        AppSettings.PresentationPresentationWeight = nudPresentationWeight.Value
+        AppSettings.PresentationLanguageWeight = nudLanguageWeight.Value
 
         Me.DialogResult = DialogResult.OK
 
@@ -224,6 +235,11 @@ Public Class OptionsForm
 
             chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked = AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements
             chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Checked = AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel
+
+            nudContentWeight.Value = AppSettings.PresentationContentWeight
+            nudPresentationWeight.Value = AppSettings.PresentationPresentationWeight
+            nudLanguageWeight.Value = AppSettings.PresentationLanguageWeight
+
 
 
         Catch ex As Exception

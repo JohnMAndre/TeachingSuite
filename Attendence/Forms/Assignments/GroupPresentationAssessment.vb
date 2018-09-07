@@ -86,7 +86,7 @@
         Next
 
         If m_lstStudents.Count > 0 Then
-            Me.Text &= " - " & m_lstStudents(0).StudentTeam
+            Me.Text &= " - " & m_lstStudents(0).StudentTeam & " - " & m_asmt.Name
         End If
     End Sub
 End Class

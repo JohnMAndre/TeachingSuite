@@ -128,13 +128,19 @@ Partial Class OptionsForm
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtExamPassDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel20 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel41 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtExamFailDefaultFeedback = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.nudExamClockDuration = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.txtUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel41 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblContentWeight = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudContentWeight = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.nudPresentationWeight = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.KryptonLabel43 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudLanguageWeight = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
+        Me.lblLanguageWeight = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -837,6 +843,9 @@ Partial Class OptionsForm
         '
         'pnlMarking
         '
+        Me.pnlMarking.Controls.Add(Me.nudLanguageWeight)
+        Me.pnlMarking.Controls.Add(Me.nudPresentationWeight)
+        Me.pnlMarking.Controls.Add(Me.KryptonLabel43)
         Me.pnlMarking.Controls.Add(Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel)
         Me.pnlMarking.Controls.Add(Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText)
         Me.pnlMarking.Controls.Add(Me.txtImprovementWithPassAll)
@@ -858,6 +867,8 @@ Partial Class OptionsForm
         Me.pnlMarking.Controls.Add(Me.KryptonLabel26)
         Me.pnlMarking.Controls.Add(Me.nudMarkingWarning2)
         Me.pnlMarking.Controls.Add(Me.KryptonLabel25)
+        Me.pnlMarking.Controls.Add(Me.nudContentWeight)
+        Me.pnlMarking.Controls.Add(Me.lblContentWeight)
         Me.pnlMarking.Controls.Add(Me.nudMarkingWarning1)
         Me.pnlMarking.Controls.Add(Me.KryptonLabel21)
         Me.pnlMarking.Controls.Add(Me.chkDisableColorsAssignmentDetail)
@@ -883,6 +894,7 @@ Partial Class OptionsForm
         Me.pnlMarking.Controls.Add(Me.txtExamFailDefaultFeedback)
         Me.pnlMarking.Controls.Add(Me.nudExamClockDuration)
         Me.pnlMarking.Controls.Add(Me.KryptonLabel6)
+        Me.pnlMarking.Controls.Add(Me.lblLanguageWeight)
         Me.pnlMarking.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlMarking.Location = New System.Drawing.Point(3, 3)
         Me.pnlMarking.Name = "pnlMarking"
@@ -1249,6 +1261,14 @@ Partial Class OptionsForm
         Me.KryptonLabel20.TabIndex = 41
         Me.KryptonLabel20.Values.Text = "Improvement with distinction:"
         '
+        'KryptonLabel41
+        '
+        Me.KryptonLabel41.Location = New System.Drawing.Point(9, 11)
+        Me.KryptonLabel41.Name = "KryptonLabel41"
+        Me.KryptonLabel41.Size = New System.Drawing.Size(92, 20)
+        Me.KryptonLabel41.TabIndex = 41
+        Me.KryptonLabel41.Values.Text = "User full name:"
+        '
         'KryptonLabel7
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(9, 65)
@@ -1256,6 +1276,15 @@ Partial Class OptionsForm
         Me.KryptonLabel7.Size = New System.Drawing.Size(156, 20)
         Me.KryptonLabel7.TabIndex = 41
         Me.KryptonLabel7.Values.Text = "Exam fail default feedback:"
+        '
+        'txtUserFullName
+        '
+        Me.txtUserFullName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtUserFullName.Location = New System.Drawing.Point(206, 11)
+        Me.txtUserFullName.Name = "txtUserFullName"
+        Me.txtUserFullName.Size = New System.Drawing.Size(142, 20)
+        Me.txtUserFullName.TabIndex = 40
         '
         'txtExamFailDefaultFeedback
         '
@@ -1295,22 +1324,65 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
         '
-        'txtUserFullName
+        'lblContentWeight
         '
-        Me.txtUserFullName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtUserFullName.Location = New System.Drawing.Point(206, 11)
-        Me.txtUserFullName.Name = "txtUserFullName"
-        Me.txtUserFullName.Size = New System.Drawing.Size(191, 20)
-        Me.txtUserFullName.TabIndex = 40
+        Me.lblContentWeight.Location = New System.Drawing.Point(399, 11)
+        Me.lblContentWeight.Name = "lblContentWeight"
+        Me.lblContentWeight.Size = New System.Drawing.Size(57, 20)
+        Me.lblContentWeight.TabIndex = 131
+        Me.lblContentWeight.Values.Text = "Content:"
         '
-        'KryptonLabel41
+        'nudContentWeight
         '
-        Me.KryptonLabel41.Location = New System.Drawing.Point(9, 11)
-        Me.KryptonLabel41.Name = "KryptonLabel41"
-        Me.KryptonLabel41.Size = New System.Drawing.Size(92, 20)
-        Me.KryptonLabel41.TabIndex = 41
-        Me.KryptonLabel41.Values.Text = "User full name:"
+        Me.nudContentWeight.Location = New System.Drawing.Point(462, 11)
+        Me.nudContentWeight.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.nudContentWeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudContentWeight.Name = "nudContentWeight"
+        Me.nudContentWeight.Size = New System.Drawing.Size(66, 22)
+        Me.nudContentWeight.TabIndex = 132
+        Me.nudContentWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudContentWeight.ThousandsSeparator = True
+        Me.nudContentWeight.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        '
+        'nudPresentationWeight
+        '
+        Me.nudPresentationWeight.Location = New System.Drawing.Point(594, 11)
+        Me.nudPresentationWeight.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.nudPresentationWeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudPresentationWeight.Name = "nudPresentationWeight"
+        Me.nudPresentationWeight.Size = New System.Drawing.Size(66, 22)
+        Me.nudPresentationWeight.TabIndex = 147
+        Me.nudPresentationWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudPresentationWeight.ThousandsSeparator = True
+        Me.nudPresentationWeight.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        '
+        'KryptonLabel43
+        '
+        Me.KryptonLabel43.Location = New System.Drawing.Point(552, 11)
+        Me.KryptonLabel43.Name = "KryptonLabel43"
+        Me.KryptonLabel43.Size = New System.Drawing.Size(36, 20)
+        Me.KryptonLabel43.TabIndex = 146
+        Me.KryptonLabel43.Values.Text = "Pres:"
+        '
+        'nudLanguageWeight
+        '
+        Me.nudLanguageWeight.Location = New System.Drawing.Point(737, 11)
+        Me.nudLanguageWeight.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.nudLanguageWeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudLanguageWeight.Name = "nudLanguageWeight"
+        Me.nudLanguageWeight.Size = New System.Drawing.Size(66, 22)
+        Me.nudLanguageWeight.TabIndex = 149
+        Me.nudLanguageWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudLanguageWeight.ThousandsSeparator = True
+        Me.nudLanguageWeight.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        '
+        'lblLanguageWeight
+        '
+        Me.lblLanguageWeight.Location = New System.Drawing.Point(691, 11)
+        Me.lblLanguageWeight.Name = "lblLanguageWeight"
+        Me.lblLanguageWeight.Size = New System.Drawing.Size(40, 20)
+        Me.lblLanguageWeight.TabIndex = 148
+        Me.lblLanguageWeight.Values.Text = "Lang:"
         '
         'OptionsForm
         '
@@ -1487,4 +1559,10 @@ Partial Class OptionsForm
     Friend WithEvents chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Friend WithEvents KryptonLabel41 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents nudLanguageWeight As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents nudPresentationWeight As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents KryptonLabel43 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents nudContentWeight As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents lblContentWeight As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents lblLanguageWeight As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

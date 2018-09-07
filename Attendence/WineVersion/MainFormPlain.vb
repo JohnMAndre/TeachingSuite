@@ -2890,25 +2890,49 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub FindStudentsFromSearchText()
+        Try
 
-        Dim strSearchFor As String
-        If txtStudentFilter.Text.Length = 0 Then
-            dgvStudents.DataSource = m_lstCurrentListOfStudents
-            ShowStudentCount()
-        Else
-            strSearchFor = txtStudentFilter.Text.ToLower
-            Dim lstFiltered As List(Of Student) = m_lstCurrentListOfStudents.Where(Function(x) x.StudentID.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.Nickname.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.LocalNameLatinLetters.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.ExtStudentID.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.Tags.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.EmailAddress.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.Nickname.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.StudentTeam.ToLower.Contains(strSearchFor)).ToList()
+            Dim strSearchFor As String
+            If txtStudentFilter.Text.Length = 0 Then
+                dgvStudents.DataSource = m_lstCurrentListOfStudents
+                ShowStudentCount()
+            Else
+                strSearchFor = txtStudentFilter.Text.ToLower
+                Dim lstFiltered As List(Of Student)
+                If strSearchFor.Contains(":") Then
+                    Dim intPos As Integer = strSearchFor.IndexOf(":")
+                    Dim strField As String = strSearchFor.Substring(0, intPos).Trim().ToLower()
+                    strSearchFor = strSearchFor.Substring(intPos + 1).Trim()
+                    Select Case strField
+                        Case "group"
+                            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentGroup.Equals(CInt(strSearchFor))).ToList()
+                        Case "team"
+                            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentTeam.ToLower.Equals(strSearchFor.ToLower)).ToList()
+                        Case "tags"
+                            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.Tags.ToLower.Contains(strSearchFor.ToLower)).ToList()
+                        Case "nickname"
+                            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.Nickname.ToLower.Contains(strSearchFor.ToLower)).ToList()
+                    End Select
 
-            dgvStudents.DataSource = lstFiltered
-            ShowStudentCount(lstFiltered)
-        End If
+                Else
+                    lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentID.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.Nickname.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.LocalNameLatinLetters.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.ExtStudentID.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.Tags.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.EmailAddress.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.Nickname.ToLower.Contains(strSearchFor) OrElse _
+                                                                                     x.StudentTeam.ToLower.Contains(strSearchFor)).ToList()
+
+                End If
+
+                dgvStudents.DataSource = lstFiltered
+                ShowStudentCount(lstFiltered)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     Private Sub txtStudentFilter_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles txtStudentFilter.PreviewKeyDown
@@ -3093,20 +3117,24 @@ Public Class MainFormPlain
             Dim strTeam As String = stud.StudentTeam
 
             Dim lstFiltered As List(Of Student)
-            If ClassIsCombinedView(GetSelectedClass) Then
-                Dim lst As New List(Of Student)
-                Dim boolSetAlready As Boolean
-                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
-                    If Not boolSetAlready Then
-                        lst.AddRange(objCls.Students)
-                        boolSetAlready = True
-                    Else
-                        lst.AddRange(objCls.Students)
-                    End If
-                Next
-                lstFiltered = lst.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+            If strTeam.Trim.Length = 0 Then
+                lstFiltered = GetSelectedClass.Students.Where(Function(x) x.StudentID.ToLower.Equals(stud.StudentID.ToLower())).ToList()
             Else
-                lstFiltered = GetSelectedClass.Students.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+                If ClassIsCombinedView(GetSelectedClass) Then
+                    Dim lst As New List(Of Student)
+                    Dim boolSetAlready As Boolean
+                    For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                        If Not boolSetAlready Then
+                            lst.AddRange(objCls.Students)
+                            boolSetAlready = True
+                        Else
+                            lst.AddRange(objCls.Students)
+                        End If
+                    Next
+                    lstFiltered = lst.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+                Else
+                    lstFiltered = GetSelectedClass.Students.Where(Function(x) x.StudentTeam.ToLower.Equals(strTeam.ToLower())).ToList()
+                End If
             End If
 
             Dim asmt As ClassAssignment = CType(GetSelectedAssignment(), ClassAssignment)
