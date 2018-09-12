@@ -80,6 +80,7 @@ Partial Class Attendance2Form
         Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
         Me.pbTimer = New System.Windows.Forms.PictureBox()
         Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -98,7 +99,7 @@ Partial Class Attendance2Form
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReloadStudentsToolStripMenuItem, Me.ToolStripSeparator2, Me.SaveAndCloseToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadStudentsInTraditionalOrderToolStripMenuItem, Me.ReloadStudentsToolStripMenuItem, Me.ToolStripSeparator2, Me.SaveAndCloseToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 23)
         Me.FileToolStripMenuItem.Text = "&File"
@@ -107,25 +108,25 @@ Partial Class Attendance2Form
         '
         Me.ReloadStudentsToolStripMenuItem.Name = "ReloadStudentsToolStripMenuItem"
         Me.ReloadStudentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ReloadStudentsToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ReloadStudentsToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.ReloadStudentsToolStripMenuItem.Text = "&Reload students"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(196, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(246, 6)
         '
         'SaveAndCloseToolStripMenuItem
         '
         Me.SaveAndCloseToolStripMenuItem.Name = "SaveAndCloseToolStripMenuItem"
         Me.SaveAndCloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveAndCloseToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.SaveAndCloseToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.SaveAndCloseToolStripMenuItem.Text = "&Save and close"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ViewToolStripMenuItem
@@ -465,10 +466,13 @@ Partial Class Attendance2Form
         '
         'pbTimer
         '
+        Me.pbTimer.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbTimer.BackColor = System.Drawing.Color.Black
-        Me.pbTimer.Location = New System.Drawing.Point(0, 150)
+        Me.pbTimer.Location = New System.Drawing.Point(0, 49)
         Me.pbTimer.Name = "pbTimer"
-        Me.pbTimer.Size = New System.Drawing.Size(665, 306)
+        Me.pbTimer.Size = New System.Drawing.Size(719, 407)
         Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbTimer.TabIndex = 4
         Me.pbTimer.TabStop = False
@@ -477,6 +481,12 @@ Partial Class Attendance2Form
         'tmrClock
         '
         Me.tmrClock.Interval = 1000
+        '
+        'LoadStudentsInTraditionalOrderToolStripMenuItem
+        '
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Name = "LoadStudentsInTraditionalOrderToolStripMenuItem"
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Text = "&Load students in traditional order"
         '
         'Attendance2Form
         '
@@ -556,4 +566,5 @@ Partial Class Attendance2Form
     Friend WithEvents OverlayClockToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents pbTimer As System.Windows.Forms.PictureBox
     Friend WithEvents tmrClock As System.Windows.Forms.Timer
+    Friend WithEvents LoadStudentsInTraditionalOrderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -75,19 +75,7 @@
         End Try
     End Sub
     Private Sub ReloadStudentsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ReloadStudentsToolStripMenuItem.Click
-        m_lstStudents = New List(Of Student)
-        For Each stud As Student In m_class.Students
-            If m_intStudentGroup = 0 OrElse stud.StudentGroup = m_intStudentGroup Then
-                m_lstStudents.Add(stud)
-            End If
-        Next
-
-        dgvStudents.AutoGenerateColumns = False
-        dgvStudents.DataSource = m_lstStudents
-        PublicToolStripMenuItem.Enabled = True
-        SetStudentCountLabel()
-        Application.DoEvents()
-        dgvStudents.AutoResizeColumns()
+        LoadStudents(True)
     End Sub
     Private Sub SetStudentCountLabel()
         Dim intStudents As Integer
@@ -387,5 +375,37 @@
             intFontSize -= INCREMENT
             m_font = New Font("Arial", intFontSize)
         End Using
+    End Sub
+
+    Private Sub LoadStudentsInTraditionalOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadStudentsInTraditionalOrderToolStripMenuItem.Click
+        LoadStudents(False)
+    End Sub
+    Private Sub LoadStudents(random As Boolean)
+        Try
+
+            m_lstStudents = New List(Of Student)
+            Dim rnd As New Random()
+
+            For Each stud As Student In m_class.Students
+                If m_intStudentGroup = 0 OrElse stud.StudentGroup = m_intStudentGroup Then
+                    m_lstStudents.Add(stud)
+                End If
+                stud.TempTag = rnd.Next
+            Next
+
+            If random Then
+                m_lstStudents.Sort(New StudentComparerByTempTag())
+            End If
+
+            dgvStudents.AutoGenerateColumns = False
+            dgvStudents.DataSource = m_lstStudents
+            PublicToolStripMenuItem.Enabled = True
+            SetStudentCountLabel()
+            Application.DoEvents()
+            dgvStudents.AutoResizeColumns()
+        Catch ex As Exception
+            '-- ignore (likely just reloading too many times too quickly)
+        End Try
+
     End Sub
 End Class
