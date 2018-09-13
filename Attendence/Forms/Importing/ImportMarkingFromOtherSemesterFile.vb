@@ -215,8 +215,10 @@
                     intStudentsImported += 1
                     permStud = Student.GetByStudentID(stud.StudentID)
                     If permStud Is Nothing Then
-                        If MessageBox.Show("Could not match student (ID:" & stud.StudentID & "). Cancel?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
+                        If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalNameLatinLetters & "). Cancel?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
                             Exit Sub
+                        Else
+                            Continue For
                         End If
                     End If
 
@@ -302,7 +304,44 @@
         ImportStudentAssignments()
     End Sub
 
-    Private Sub ImportMarkingFromOtherSemesterFile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub DeleteSelectedAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssignmentsToolStripMenuItem.Click
+        Dim lst As List(Of Student) = GetSelectedStudentsFromGrid()
+        For Each stud As Student In lst
+            m_lstCurrentListOfStudents.Remove(stud)
+        Next
+
+
+        dgvStudents.DataSource = Nothing
+        dgvStudents.DataSource = m_lstCurrentListOfStudents
 
     End Sub
+
+    Private Sub btnLoadSemester_Click(sender As Object, e As EventArgs) Handles btnLoadSemester.Click
+        LoadSemesterFile()
+    End Sub
+    Private Function GetSelectedStudentsFromGrid() As List(Of Student)
+        Dim lstReturn As New List(Of Student)
+
+        Dim cells As DataGridViewSelectedCellCollection
+
+        cells = dgvStudents.SelectedCells
+
+        Dim row As DataGridViewRow
+        Dim stud As Student
+
+        Dim dict As New Dictionary(Of Integer, Object)
+        For Each cell As DataGridViewCell In cells
+            If Not dict.ContainsKey(cell.RowIndex) Then
+                dict.Add(cell.RowIndex, Nothing)
+
+                row = dgvStudents.Rows(cell.RowIndex)
+                stud = row.DataBoundItem
+                If stud IsNot Nothing Then
+                    lstReturn.Add(stud)
+                End If
+            End If
+        Next
+        Return lstReturn
+    End Function
+
 End Class

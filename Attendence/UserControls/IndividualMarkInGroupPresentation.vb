@@ -95,14 +95,14 @@
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub Save()
-        Select Case m_markTry
-            Case Semester.MarkingTry.FirstTry
-                m_studentAssignment.FirstTryPoints = m_intTotalGrade
-            Case Semester.MarkingTry.SecondTry
-                m_studentAssignment.SecondTryPoints = m_intTotalGrade
-            Case Semester.MarkingTry.ThirdTry
-                m_studentAssignment.ThirdTryPoints = m_intTotalGrade
-        End Select
+        m_studentAssignment.FirstTryPoints = nudFirstGrade.Value
+        m_studentAssignment.SecondTryPoints = nudSecondGrade.Value
+        'Select Case m_markTry
+        '    Case Semester.MarkingTry.FirstTry
+        '    Case Semester.MarkingTry.SecondTry
+        '    Case Semester.MarkingTry.ThirdTry
+        '        m_studentAssignment.ThirdTryPoints = m_intTotalGrade
+        'End Select
 
         m_studentAssignment.Processed = True
 
@@ -357,5 +357,9 @@
 
     Private Sub IndividualMarkInGroupPresentation_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
         Me.BackColor = Color.LightGray
+    End Sub
+
+    Private Sub picContentMark_Click(sender As Object, e As EventArgs) Handles picContentMark.Click
+
     End Sub
 End Class
