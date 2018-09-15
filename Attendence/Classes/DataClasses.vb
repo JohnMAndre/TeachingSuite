@@ -976,6 +976,17 @@ Public Class ClassGroup '-- teaching module
         End Using
 
     End Sub
+    Friend Function GetStudentByID(studentID As String) As Student
+        For Each clas As SchoolClass In Me.Classes
+            For Each stud In clas.Students
+                If stud.StudentID = studentID Then
+                    Return stud '-- return first match (user must keep them unique)
+                End If
+                Application.DoEvents()
+            Next
+        Next
+        Return Nothing '-- no match
+    End Function
     Friend Sub GenerateModuleReultsExport(filename As String, markingTry As Semester.MarkingTry, studentList As List(Of Student))
         Const DELIMITER As String = vbTab
         Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode) ' System.IO.File.Create(filename, 128, IO.FileOptions.None)
@@ -4186,6 +4197,7 @@ Public Class Student
                 Next
             Next
         Next
+        Return Nothing '-- no match
     End Function
     ''' <summary>
     ''' Will return the current value for this student

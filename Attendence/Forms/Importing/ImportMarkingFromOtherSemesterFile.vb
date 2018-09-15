@@ -3,6 +3,16 @@
     Private m_tempSemester As Semester
     Private m_lstCurrentListOfStudents As List(Of Student)
 
+    Private m_objLocalClassGroup As ClassGroup
+
+    Public Sub New(classGroup As ClassGroup)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        m_objLocalClassGroup = classGroup
+    End Sub
+
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Close()
     End Sub
@@ -213,7 +223,8 @@
                 Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
                 For Each stud As Student In m_lstCurrentListOfStudents
                     intStudentsImported += 1
-                    permStud = Student.GetByStudentID(stud.StudentID)
+                    'permStud = Student.GetByStudentID(stud.StudentID)
+                    permStud = m_objLocalClassGroup.GetStudentByID(stud.StudentID)
                     If permStud Is Nothing Then
                         If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalNameLatinLetters & "). Cancel?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
                             Exit Sub
@@ -314,6 +325,7 @@
         dgvStudents.DataSource = Nothing
         dgvStudents.DataSource = m_lstCurrentListOfStudents
 
+        lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
     End Sub
 
     Private Sub btnLoadSemester_Click(sender As Object, e As EventArgs) Handles btnLoadSemester.Click

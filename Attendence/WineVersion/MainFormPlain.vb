@@ -3201,8 +3201,12 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub ImportMarkingFromOtherDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportMarkingFromOtherDatabaseToolStripMenuItem.Click
-        Dim frm As New ImportMarkingFromOtherSemesterFile()
-        frm.Show()
+        If GetSelectedClassGroup() Is Nothing Then
+            MessageBox.Show("Please select a module first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim frm As New ImportMarkingFromOtherSemesterFile(GetSelectedClassGroup())
+            frm.Show()
+        End If
     End Sub
 
     Private Sub EditStudentToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditStudentToolStripMenuItem1.Click
