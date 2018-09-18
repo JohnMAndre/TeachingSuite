@@ -3392,4 +3392,37 @@ Public Class MainFormPlain
         Dim frm As New StudentsWithAssignment(objClassToUse, GetSelectedAssignment)
         frm.Show()
     End Sub
+
+    Private Sub AttendanceAssessmentStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AttendanceAssessmentStatusToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Dim objClassToUse As SchoolClass
+            Dim objClass As SchoolClass = CType(lstClasses.Items(lstClasses.SelectedIndex), SchoolClass)
+            If ClassIsCombinedView(objClass) Then
+                Dim boolSetAlready As Boolean
+                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                    If Not boolSetAlready Then
+                        Dim grp As New ClassGroup(Nothing)
+                        For Each asmt As ClassAssignment In GetSelectedClassGroup.Assignments
+                            grp.Assignments.Add(asmt)
+                        Next
+                        grp.UseNickname = GetSelectedClassGroup.UseNickname
+                        objClassToUse = New SchoolClass(grp)
+                        objClassToUse.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                        objClassToUse.Students.AddRange(objCls.Students)
+                        boolSetAlready = True
+                    Else
+                        objClassToUse.Students.AddRange(objCls.Students)
+                    End If
+                Next
+            Else
+                objClassToUse = objClass
+            End If
+
+            Dim frm As New AttendanceFromAssessmentCheck(objClassToUse)
+            frm.Show()
+        End If
+
+    End Sub
 End Class

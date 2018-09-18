@@ -249,6 +249,12 @@
     <Compile Include="Forms\Assignments\ImprovementItemManager.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Reports\AttendanceFromAssessmentCheck.Designer.vb">
+      <DependentUpon>AttendanceFromAssessmentCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\AttendanceFromAssessmentCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Reports\ExcessiveAbsencesReport.Designer.vb">
       <DependentUpon>ExcessiveAbsencesReport.vb</DependentUpon>
     </Compile>
@@ -680,6 +686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\ImprovementItemManager.resx">
       <DependentUpon>ImprovementItemManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\AttendanceFromAssessmentCheck.resx">
+      <DependentUpon>AttendanceFromAssessmentCheck.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\ExcessiveAbsencesReport.resx">
       <DependentUpon>ExcessiveAbsencesReport.vb</DependentUpon>

@@ -38,6 +38,7 @@ Partial Class AttendenceErrors
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveDateFromSelectedStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cboStatus = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.statusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.llblRemoveDateFromStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -57,7 +58,6 @@ Partial Class AttendenceErrors
         Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.cboStatus = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,10 +68,10 @@ Partial Class AttendenceErrors
         Me.KryptonSplitContainer1.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.olvClassSessions, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvStudentSessions, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -129,9 +129,11 @@ Partial Class AttendenceErrors
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn25, Me.OlvColumn9, Me.OlvColumn7, Me.OlvColumn11})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "No students to show"
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -141,7 +143,6 @@ Partial Class AttendenceErrors
         Me.olvStudents.Location = New System.Drawing.Point(0, 24)
         Me.olvStudents.MultiSelect = False
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
@@ -261,6 +262,16 @@ Partial Class AttendenceErrors
         Me.RemoveDateFromSelectedStudentToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
         Me.RemoveDateFromSelectedStudentToolStripMenuItem.Text = "Remove &date from selected student"
         '
+        'cboStatus
+        '
+        Me.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboStatus.DropDownWidth = 121
+        Me.cboStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Removed", "Late", "Excused"})
+        Me.cboStatus.Location = New System.Drawing.Point(229, 104)
+        Me.cboStatus.Name = "cboStatus"
+        Me.cboStatus.Size = New System.Drawing.Size(176, 20)
+        Me.cboStatus.TabIndex = 59
+        '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusLabel})
@@ -364,9 +375,11 @@ Partial Class AttendenceErrors
         Me.olvClassSessions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.olvClassSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvClassSessions.CellEditUseWholeCell = False
         Me.olvClassSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn10})
         Me.olvClassSessions.CopySelectionOnControlC = False
         Me.olvClassSessions.CopySelectionOnControlCUsesDragSource = False
+        Me.olvClassSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvClassSessions.EmptyListMsg = "Empty"
         Me.olvClassSessions.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvClassSessions.FullRowSelect = True
@@ -410,9 +423,11 @@ Partial Class AttendenceErrors
         Me.olvStudentSessions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.olvStudentSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudentSessions.CellEditUseWholeCell = False
         Me.olvStudentSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn6, Me.OlvColumn8})
         Me.olvStudentSessions.CopySelectionOnControlC = False
         Me.olvStudentSessions.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudentSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudentSessions.EmptyListMsg = "Empty"
         Me.olvStudentSessions.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.olvStudentSessions.FullRowSelect = True
@@ -456,16 +471,6 @@ Partial Class AttendenceErrors
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
-        'cboStatus
-        '
-        Me.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboStatus.DropDownWidth = 121
-        Me.cboStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Removed", "Late", "Excused"})
-        Me.cboStatus.Location = New System.Drawing.Point(229, 104)
-        Me.cboStatus.Name = "cboStatus"
-        Me.cboStatus.Size = New System.Drawing.Size(176, 20)
-        Me.cboStatus.TabIndex = 59
-        '
         'AttendenceErrors
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -492,11 +497,11 @@ Partial Class AttendenceErrors
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.olvClassSessions, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvStudentSessions, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
