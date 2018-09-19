@@ -59,8 +59,8 @@
                 '-- nobody in this group? This should never happen
                 Me.Text = "Group is empty"
             Case 1
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2))  '-- full verticle
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 2)) '-- full horizontal
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 5))  '-- full verticle
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
             Case 2
                 '-- special case for just two. Here take up full vertical and 1/2 horizontal
                 intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - intBoarderSpace)  '-- full verticle

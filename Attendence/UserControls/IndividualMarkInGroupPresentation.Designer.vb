@@ -149,9 +149,9 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(5, 238)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(85, 16)
+        Me.Label5.Size = New System.Drawing.Size(56, 16)
         Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Improvement:"
+        Me.Label5.Text = "Improve:"
         '
         'Label6
         '
@@ -334,7 +334,7 @@ Partial Class IndividualMarkInGroupPresentation
         'chkNominate
         '
         Me.chkNominate.AutoSize = True
-        Me.chkNominate.Location = New System.Drawing.Point(8, 209)
+        Me.chkNominate.Location = New System.Drawing.Point(4, 209)
         Me.chkNominate.Name = "chkNominate"
         Me.chkNominate.Size = New System.Drawing.Size(82, 20)
         Me.chkNominate.TabIndex = 29
@@ -599,7 +599,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.txtLocalName)
         Me.Controls.Add(Me.Label17)
-        Me.Controls.Add(Me.chkNominate)
         Me.Controls.Add(Me.dgvImprovementItems)
         Me.Controls.Add(Me.lblLanguageWeight)
         Me.Controls.Add(Me.lblPresentationWeight)
@@ -613,8 +612,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtImprovement)
         Me.Controls.Add(Me.txtOverall)
         Me.Controls.Add(Me.Label3)
@@ -623,6 +620,9 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.picPresentationMark)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.picContentMark)
+        Me.Controls.Add(Me.chkNominate)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "IndividualMarkInGroupPresentation"

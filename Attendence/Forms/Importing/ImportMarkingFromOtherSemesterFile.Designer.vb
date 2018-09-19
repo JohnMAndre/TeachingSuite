@@ -401,7 +401,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         Me.txtOverrideMarkerName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtOverrideMarkerName.Location = New System.Drawing.Point(115, 7)
+        Me.txtOverrideMarkerName.Location = New System.Drawing.Point(140, 7)
         Me.txtOverrideMarkerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtOverrideMarkerName.Name = "txtOverrideMarkerName"
         Me.txtOverrideMarkerName.Size = New System.Drawing.Size(252, 22)
@@ -409,8 +409,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         'Panel3
         '
-        Me.Panel3.Controls.Add(Me.Label1)
         Me.Panel3.Controls.Add(Me.txtOverrideMarkerName)
+        Me.Panel3.Controls.Add(Me.Label1)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel3.Location = New System.Drawing.Point(200, 487)
         Me.Panel3.Name = "Panel3"

@@ -25,6 +25,10 @@ Partial Class AttendanceFromAssessmentCheck
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AttendanceFromAssessmentCheck))
         Me.pbClearFilter = New System.Windows.Forms.PictureBox()
         Me.dgvReport = New System.Windows.Forms.DataGridView()
+        Me.LocalNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NicknameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AttendanceStatusColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AssessmentScoreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtFilter = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ClearFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -40,10 +44,6 @@ Partial Class AttendanceFromAssessmentCheck
         Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpAttendance = New System.Windows.Forms.DateTimePicker()
-        Me.LocalNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NicknameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AttendanceStatusColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AssessmentScoreColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.pbClearFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -60,6 +60,7 @@ Partial Class AttendanceFromAssessmentCheck
         Me.pbClearFilter.Size = New System.Drawing.Size(22, 19)
         Me.pbClearFilter.TabIndex = 9
         Me.pbClearFilter.TabStop = False
+        Me.pbClearFilter.Visible = False
         '
         'dgvReport
         '
@@ -73,6 +74,33 @@ Partial Class AttendanceFromAssessmentCheck
         Me.dgvReport.Size = New System.Drawing.Size(692, 422)
         Me.dgvReport.TabIndex = 8
         '
+        'LocalNameColumn
+        '
+        Me.LocalNameColumn.DataPropertyName = "StudentLocalName"
+        Me.LocalNameColumn.HeaderText = "Name"
+        Me.LocalNameColumn.Name = "LocalNameColumn"
+        Me.LocalNameColumn.ReadOnly = True
+        '
+        'NicknameColumn
+        '
+        Me.NicknameColumn.DataPropertyName = "StudentNickname"
+        Me.NicknameColumn.HeaderText = "Nickname"
+        Me.NicknameColumn.Name = "NicknameColumn"
+        Me.NicknameColumn.ReadOnly = True
+        '
+        'AttendanceStatusColumn
+        '
+        Me.AttendanceStatusColumn.DataPropertyName = "AttendanceStatus"
+        Me.AttendanceStatusColumn.HeaderText = "Attendance"
+        Me.AttendanceStatusColumn.Name = "AttendanceStatusColumn"
+        '
+        'AssessmentScoreColumn
+        '
+        Me.AssessmentScoreColumn.DataPropertyName = "AssessmentStatus"
+        Me.AssessmentScoreColumn.HeaderText = "Assessment"
+        Me.AssessmentScoreColumn.Name = "AssessmentScoreColumn"
+        Me.AssessmentScoreColumn.ReadOnly = True
+        '
         'txtFilter
         '
         Me.txtFilter.Location = New System.Drawing.Point(338, 4)
@@ -80,6 +108,7 @@ Partial Class AttendanceFromAssessmentCheck
         Me.txtFilter.Name = "txtFilter"
         Me.txtFilter.Size = New System.Drawing.Size(206, 26)
         Me.txtFilter.TabIndex = 7
+        Me.txtFilter.Visible = False
         '
         'Label1
         '
@@ -91,6 +120,7 @@ Partial Class AttendanceFromAssessmentCheck
         Me.Label1.Size = New System.Drawing.Size(47, 18)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Filter:"
+        Me.Label1.Visible = False
         '
         'ClearFilterToolStripMenuItem
         '
@@ -207,33 +237,6 @@ Partial Class AttendanceFromAssessmentCheck
         Me.dtpAttendance.Name = "dtpAttendance"
         Me.dtpAttendance.Size = New System.Drawing.Size(152, 26)
         Me.dtpAttendance.TabIndex = 0
-        '
-        'LocalNameColumn
-        '
-        Me.LocalNameColumn.DataPropertyName = "StudentLocalName"
-        Me.LocalNameColumn.HeaderText = "Name"
-        Me.LocalNameColumn.Name = "LocalNameColumn"
-        Me.LocalNameColumn.ReadOnly = True
-        '
-        'NicknameColumn
-        '
-        Me.NicknameColumn.DataPropertyName = "StudentNickname"
-        Me.NicknameColumn.HeaderText = "Nickname"
-        Me.NicknameColumn.Name = "NicknameColumn"
-        Me.NicknameColumn.ReadOnly = True
-        '
-        'AttendanceStatusColumn
-        '
-        Me.AttendanceStatusColumn.DataPropertyName = "AttendanceStatus"
-        Me.AttendanceStatusColumn.HeaderText = "Attendance"
-        Me.AttendanceStatusColumn.Name = "AttendanceStatusColumn"
-        '
-        'AssessmentScoreColumn
-        '
-        Me.AssessmentScoreColumn.DataPropertyName = "AssessmentStatus"
-        Me.AssessmentScoreColumn.HeaderText = "Assessment"
-        Me.AssessmentScoreColumn.Name = "AssessmentScoreColumn"
-        Me.AssessmentScoreColumn.ReadOnly = True
         '
         'AttendanceFromAssessmentCheck
         '

@@ -62,7 +62,7 @@ Partial Class AttendanceFromAssignment
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(25, 112)
+        Me.Label2.Location = New System.Drawing.Point(9, 112)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(210, 18)
         Me.Label2.TabIndex = 1
@@ -82,11 +82,11 @@ Partial Class AttendanceFromAssignment
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(25, 235)
+        Me.Label3.Location = New System.Drawing.Point(94, 235)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(262, 18)
+        Me.Label3.Size = New System.Drawing.Size(133, 18)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "All other students, should be marked:"
+        Me.Label3.Text = "All others marked:"
         '
         'cboNegativeStatus
         '
@@ -134,7 +134,7 @@ Partial Class AttendanceFromAssignment
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(151, 190)
+        Me.Label5.Location = New System.Drawing.Point(86, 190)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(136, 18)
         Me.Label5.TabIndex = 8
@@ -165,9 +165,9 @@ Partial Class AttendanceFromAssignment
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(25, 271)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(238, 18)
+        Me.Label6.Size = New System.Drawing.Size(202, 18)
         Me.Label6.TabIndex = 10
-        Me.Label6.Text = "Date for new attendance records:"
+        Me.Label6.Text = "New attendance records on:"
         '
         'lblNormalAssignmentScoreCaption
         '
@@ -180,7 +180,7 @@ Partial Class AttendanceFromAssignment
         '
         'nudNormalAssignmentScore
         '
-        Me.nudNormalAssignmentScore.Location = New System.Drawing.Point(198, 6)
+        Me.nudNormalAssignmentScore.Location = New System.Drawing.Point(270, 6)
         Me.nudNormalAssignmentScore.Name = "nudNormalAssignmentScore"
         Me.nudNormalAssignmentScore.Size = New System.Drawing.Size(104, 26)
         Me.nudNormalAssignmentScore.TabIndex = 12
@@ -189,7 +189,7 @@ Partial Class AttendanceFromAssignment
         'lblNormalAssignmentMaxScore
         '
         Me.lblNormalAssignmentMaxScore.AutoSize = True
-        Me.lblNormalAssignmentMaxScore.Location = New System.Drawing.Point(308, 8)
+        Me.lblNormalAssignmentMaxScore.Location = New System.Drawing.Point(380, 8)
         Me.lblNormalAssignmentMaxScore.Name = "lblNormalAssignmentMaxScore"
         Me.lblNormalAssignmentMaxScore.Size = New System.Drawing.Size(107, 18)
         Me.lblNormalAssignmentMaxScore.TabIndex = 13
@@ -202,9 +202,9 @@ Partial Class AttendanceFromAssignment
         Me.pnlNormalAssignment.Controls.Add(Me.lblNormalAssignmentScoreCaption)
         Me.pnlNormalAssignment.Controls.Add(Me.lblNormalAssignmentMaxScore)
         Me.pnlNormalAssignment.Controls.Add(Me.nudNormalAssignmentScore)
-        Me.pnlNormalAssignment.Location = New System.Drawing.Point(117, 141)
+        Me.pnlNormalAssignment.Location = New System.Drawing.Point(25, 141)
         Me.pnlNormalAssignment.Name = "pnlNormalAssignment"
-        Me.pnlNormalAssignment.Size = New System.Drawing.Size(641, 39)
+        Me.pnlNormalAssignment.Size = New System.Drawing.Size(733, 39)
         Me.pnlNormalAssignment.TabIndex = 14
         Me.pnlNormalAssignment.Visible = False
         '
@@ -214,9 +214,9 @@ Partial Class AttendanceFromAssignment
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlBTECAssignment.Controls.Add(Me.cboLearningOutcome)
         Me.pnlBTECAssignment.Controls.Add(Me.Label7)
-        Me.pnlBTECAssignment.Location = New System.Drawing.Point(117, 141)
+        Me.pnlBTECAssignment.Location = New System.Drawing.Point(25, 141)
         Me.pnlBTECAssignment.Name = "pnlBTECAssignment"
-        Me.pnlBTECAssignment.Size = New System.Drawing.Size(640, 39)
+        Me.pnlBTECAssignment.Size = New System.Drawing.Size(732, 39)
         Me.pnlBTECAssignment.TabIndex = 15
         Me.pnlBTECAssignment.Visible = False
         '
@@ -226,9 +226,9 @@ Partial Class AttendanceFromAssignment
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboLearningOutcome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboLearningOutcome.FormattingEnabled = True
-        Me.cboLearningOutcome.Location = New System.Drawing.Point(212, 4)
+        Me.cboLearningOutcome.Location = New System.Drawing.Point(268, 4)
         Me.cboLearningOutcome.Name = "cboLearningOutcome"
-        Me.cboLearningOutcome.Size = New System.Drawing.Size(412, 26)
+        Me.cboLearningOutcome.Size = New System.Drawing.Size(458, 26)
         Me.cboLearningOutcome.TabIndex = 16
         '
         'Label7
@@ -258,7 +258,6 @@ Partial Class AttendanceFromAssignment
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(770, 414)
         Me.Controls.Add(Me.llblToday)
-        Me.Controls.Add(Me.pnlNormalAssignment)
         Me.Controls.Add(Me.pnlBTECAssignment)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.dtpSessionDate)
@@ -272,6 +271,7 @@ Partial Class AttendanceFromAssignment
         Me.Controls.Add(Me.cboAssignments)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.pnlNormalAssignment)
         Me.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
