@@ -1,7 +1,100 @@
 ﻿Public Class ImportMarkingFromOtherSemesterFile
+    Public Class ReportData
+        Public Property Student As Student
+        Public Property Assignment As StudentAssignment
+        Public Sub New(stud As Student, asmt As StudentAssignment)
+            Student = stud
+            Assignment = asmt
+        End Sub
+        Public ReadOnly Property AdminNumber As Integer
+            Get
+                Return Student.AdminNumber
+            End Get
+        End Property
 
+        Public ReadOnly Property LocalName As String
+            Get
+                Return Student.LocalNameLatinLetters
+            End Get
+        End Property
+        Public ReadOnly Property Nickname As String
+            Get
+                Return Student.Nickname
+            End Get
+        End Property
+        Public ReadOnly Property ExtStudentID As String
+            Get
+                Return Student.ExtStudentID
+            End Get
+        End Property
+        Public ReadOnly Property StudentID As String
+            Get
+                Return Student.StudentID
+            End Get
+        End Property
+        Public ReadOnly Property Tags As String
+            Get
+                Return Student.Tags
+            End Get
+        End Property
+        Public ReadOnly Property StudentGroup As Integer
+            Get
+                Return Student.StudentGroup
+            End Get
+        End Property
+        Public ReadOnly Property StudentTeam As String
+            Get
+                Return Student.StudentTeam
+            End Get
+        End Property
+        Public ReadOnly Property SchoolClass As String
+            Get
+                Return Student.SchoolClass.Name
+            End Get
+        End Property
+        Public ReadOnly Property PresentationQuality As Integer
+            Get
+                Return Student.PresentationQuality
+            End Get
+        End Property
+        Public ReadOnly Property ResearchQuality As Integer
+            Get
+                Return Student.ResearchQuality
+            End Get
+        End Property
+        Public ReadOnly Property PlagiarismSeverity As Integer
+            Get
+                Return Student.PlagiarismSeverity
+            End Get
+        End Property
+        Public ReadOnly Property AssignmentScoreFirst
+            Get
+                Return Assignment.FirstTryPoints
+            End Get
+        End Property
+        Public ReadOnly Property Creator As String
+            Get
+                Return Assignment.FirstUserFullName
+            End Get
+        End Property
+        Public ReadOnly Property Editor As String
+            Get
+                Return Assignment.LastUserFullName
+            End Get
+        End Property
+        Public ReadOnly Property Overall As String
+            Get
+                Return Assignment.OverallComments
+            End Get
+        End Property
+        Public ReadOnly Property Improvement As String
+            Get
+                Return Assignment.ImprovementComments
+            End Get
+        End Property
+    End Class
     Private m_tempSemester As Semester
-    Private m_lstCurrentListOfStudents As List(Of Student)
+    Private m_lstCurrentListOfStudents As List(Of ReportData)
 
     Private m_objLocalClassGroup As ClassGroup
 
@@ -150,13 +243,15 @@
         End If
 
 
-        m_lstCurrentListOfStudents = New List(Of Student)
+        m_lstCurrentListOfStudents = New List(Of ReportData)
+        Dim objData As ReportData
 
         '-- Now, walk the list and only get students who have the selected assignment
         For Each stud As Student In lstAllStudentsInClass
             For Each objAssignment As StudentAssignment In stud.Assignments
                 If objAssignment.BaseAssignment Is asmt Then
-                    m_lstCurrentListOfStudents.Add(stud)
+                    objData = New ReportData(stud, objAssignment)
+                    m_lstCurrentListOfStudents.Add(objData)
                     Exit For '-- go to next student
                 End If
             Next
@@ -221,12 +316,12 @@
                 Dim intStudentsImported As Integer
 
                 Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
-                For Each stud As Student In m_lstCurrentListOfStudents
+                For Each stud As ReportData In m_lstCurrentListOfStudents
                     intStudentsImported += 1
                     'permStud = Student.GetByStudentID(stud.StudentID)
                     permStud = m_objLocalClassGroup.GetStudentByID(stud.StudentID)
                     If permStud Is Nothing Then
-                        If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalNameLatinLetters & "). Cancel?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
+                        If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalName & "). Cancel?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
                             Exit Sub
                         Else
                             Continue For
@@ -241,7 +336,7 @@
                     'TODO: we should look for notes and activitylog differences and add them
 
                     '-- Assignment
-                    For Each tempAsmt In stud.Assignments
+                    For Each tempAsmt In stud.Student.Assignments
                         If tempAsmt.BaseAssignment Is baseAsmt Then
                             Exit For
                         End If
@@ -259,7 +354,7 @@
 
 
                     '-- Now, improvement items (add/update)
-                    For Each tempItem As StudentImprovementItem In stud.ImprovementItems
+                    For Each tempItem As StudentImprovementItem In stud.Student.ImprovementItems
                         boolMatchedItem = False '-- reset
 
                         For Each permItem In permStud.ImprovementItems
@@ -316,9 +411,9 @@
     End Sub
 
     Private Sub DeleteSelectedAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssignmentsToolStripMenuItem.Click
-        Dim lst As List(Of Student) = GetSelectedStudentsFromGrid()
-        For Each stud As Student In lst
-            m_lstCurrentListOfStudents.Remove(stud)
+        Dim lst As List(Of ReportData) = GetSelectedStudentsFromGrid()
+        For Each objData As ReportData In lst
+            m_lstCurrentListOfStudents.Remove(objData)
         Next
 
 
@@ -331,15 +426,15 @@
     Private Sub btnLoadSemester_Click(sender As Object, e As EventArgs) Handles btnLoadSemester.Click
         LoadSemesterFile()
     End Sub
-    Private Function GetSelectedStudentsFromGrid() As List(Of Student)
-        Dim lstReturn As New List(Of Student)
+    Private Function GetSelectedStudentsFromGrid() As List(Of ReportData)
+        Dim lstReturn As New List(Of ReportData)
 
         Dim cells As DataGridViewSelectedCellCollection
 
         cells = dgvStudents.SelectedCells
 
         Dim row As DataGridViewRow
-        Dim stud As Student
+        Dim stud As ReportData
 
         Dim dict As New Dictionary(Of Integer, Object)
         For Each cell As DataGridViewCell In cells
