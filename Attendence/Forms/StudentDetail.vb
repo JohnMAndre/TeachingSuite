@@ -693,4 +693,29 @@ Public Class StudentDetail
         End Try
 
     End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        Dim asmt As StudentAssignment
+        asmt = olvNormalAssignments.SelectedObject
+
+        If asmt IsNot Nothing Then
+            If MessageBox.Show("Are you sure you want to delete this student assignment?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+                Me.m_student.Assignments.Remove(asmt)
+                olvNormalAssignments.RemoveObject(asmt)
+            End If
+        End If
+    End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        Dim asmt As StudentAssignment
+        asmt = olvNormalAssignments.SelectedObject
+
+        If asmt IsNot Nothing Then
+            AddApplicationHistory("Editing Assignment: " & asmt.BaseAssignment.Name & "; Student: " & m_student.ToString())
+            Dim frm As New StudentAssignmentNormalDetails(m_student, asmt, Semester.MarkingTry.FirstTry)
+            frm.Show()
+        End If
+
+    End Sub
+
 End Class

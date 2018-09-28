@@ -22,20 +22,21 @@ Partial Class StudentsWithAssignment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.dgvStudents = New System.Windows.Forms.DataGridView()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lblAssignmentCount = New System.Windows.Forms.Label()
+        Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.lblStudentCount = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblAssignmentCount = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dgvStudents = New System.Windows.Forms.DataGridView()
         Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -50,7 +51,6 @@ Partial Class StudentsWithAssignment
         Me.dcolStudentGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolStudentTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,6 +58,8 @@ Partial Class StudentsWithAssignment
         Me.ChangeBaseAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReloadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -72,45 +74,20 @@ Partial Class StudentsWithAssignment
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 24)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(217, 526)
         Me.Panel1.TabIndex = 0
         '
-        'dgvStudents
+        'lstAssignments
         '
-        Me.dgvStudents.AllowUserToAddRows = False
-        Me.dgvStudents.AllowUserToDeleteRows = False
-        Me.dgvStudents.AllowUserToOrderColumns = True
-        Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolLocalName, Me.dcolNickname, Me.dcolStudentID, Me.dcolExtStudentID, Me.dcolTags, Me.FirstTry, Me.SecondTry, Me.Overall, Me.Improvement, Me.Creator, Me.Editor, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.dcolClass})
-        Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvStudents.Location = New System.Drawing.Point(217, 24)
-        Me.dgvStudents.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.dgvStudents.Name = "dgvStudents"
-        Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvStudents.Size = New System.Drawing.Size(986, 526)
-        Me.dgvStudents.TabIndex = 6
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 10)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(102, 18)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Assignments:"
-        '
-        'lblAssignmentCount
-        '
-        Me.lblAssignmentCount.AutoSize = True
-        Me.lblAssignmentCount.Location = New System.Drawing.Point(124, 10)
-        Me.lblAssignmentCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblAssignmentCount.Name = "lblAssignmentCount"
-        Me.lblAssignmentCount.Size = New System.Drawing.Size(17, 18)
-        Me.lblAssignmentCount.TabIndex = 1
-        Me.lblAssignmentCount.Text = "0"
+        Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lstAssignments.FormattingEnabled = True
+        Me.lstAssignments.ItemHeight = 18
+        Me.lstAssignments.Location = New System.Drawing.Point(0, 180)
+        Me.lstAssignments.Name = "lstAssignments"
+        Me.lstAssignments.Size = New System.Drawing.Size(217, 346)
+        Me.lstAssignments.TabIndex = 6
         '
         'lblStudentCount
         '
@@ -132,11 +109,46 @@ Partial Class StudentsWithAssignment
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Students:"
         '
+        'lblAssignmentCount
+        '
+        Me.lblAssignmentCount.AutoSize = True
+        Me.lblAssignmentCount.Location = New System.Drawing.Point(124, 10)
+        Me.lblAssignmentCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAssignmentCount.Name = "lblAssignmentCount"
+        Me.lblAssignmentCount.Size = New System.Drawing.Size(17, 18)
+        Me.lblAssignmentCount.TabIndex = 1
+        Me.lblAssignmentCount.Text = "0"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 10)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(102, 18)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Assignments:"
+        '
+        'dgvStudents
+        '
+        Me.dgvStudents.AllowUserToAddRows = False
+        Me.dgvStudents.AllowUserToDeleteRows = False
+        Me.dgvStudents.AllowUserToOrderColumns = True
+        Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolLocalName, Me.dcolNickname, Me.dcolStudentID, Me.dcolExtStudentID, Me.dcolTags, Me.FirstTry, Me.SecondTry, Me.Overall, Me.Improvement, Me.Creator, Me.Editor, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.dcolClass})
+        Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvStudents.Location = New System.Drawing.Point(217, 24)
+        Me.dgvStudents.Margin = New System.Windows.Forms.Padding(4)
+        Me.dgvStudents.Name = "dgvStudents"
+        Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudents.Size = New System.Drawing.Size(986, 526)
+        Me.dgvStudents.TabIndex = 6
+        '
         'dcolLocalName
         '
         Me.dcolLocalName.DataPropertyName = "StudentName"
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle1
         Me.dcolLocalName.HeaderText = "Name"
         Me.dcolLocalName.Name = "dcolLocalName"
         Me.dcolLocalName.ReadOnly = True
@@ -144,8 +156,8 @@ Partial Class StudentsWithAssignment
         'dcolNickname
         '
         Me.dcolNickname.DataPropertyName = "StudentNickname"
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle2
         Me.dcolNickname.HeaderText = "Nickname"
         Me.dcolNickname.Name = "dcolNickname"
         Me.dcolNickname.ReadOnly = True
@@ -153,8 +165,8 @@ Partial Class StudentsWithAssignment
         'dcolStudentID
         '
         Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle3
         Me.dcolStudentID.HeaderText = "StudentID"
         Me.dcolStudentID.Name = "dcolStudentID"
         Me.dcolStudentID.ReadOnly = True
@@ -162,8 +174,8 @@ Partial Class StudentsWithAssignment
         'dcolExtStudentID
         '
         Me.dcolExtStudentID.DataPropertyName = "StudentExtStudentID"
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle4
         Me.dcolExtStudentID.HeaderText = "ExtID"
         Me.dcolExtStudentID.Name = "dcolExtStudentID"
         Me.dcolExtStudentID.ReadOnly = True
@@ -171,8 +183,8 @@ Partial Class StudentsWithAssignment
         'dcolTags
         '
         Me.dcolTags.DataPropertyName = "StudentTags"
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle5
         Me.dcolTags.HeaderText = "Tags"
         Me.dcolTags.Name = "dcolTags"
         Me.dcolTags.ReadOnly = True
@@ -224,8 +236,8 @@ Partial Class StudentsWithAssignment
         'dcolStudentGroup
         '
         Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle6
         Me.dcolStudentGroup.HeaderText = "Group"
         Me.dcolStudentGroup.Name = "dcolStudentGroup"
         Me.dcolStudentGroup.ReadOnly = True
@@ -233,8 +245,8 @@ Partial Class StudentsWithAssignment
         'dcolStudentTeam
         '
         Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle7
         Me.dcolStudentTeam.HeaderText = "Team"
         Me.dcolStudentTeam.Name = "dcolStudentTeam"
         Me.dcolStudentTeam.ReadOnly = True
@@ -242,24 +254,15 @@ Partial Class StudentsWithAssignment
         'dcolClass
         '
         Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle8
         Me.dcolClass.HeaderText = "Class"
         Me.dcolClass.Name = "dcolClass"
         Me.dcolClass.ReadOnly = True
         '
-        'lstAssignments
-        '
-        Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.lstAssignments.FormattingEnabled = True
-        Me.lstAssignments.ItemHeight = 18
-        Me.lstAssignments.Location = New System.Drawing.Point(0, 180)
-        Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.Size = New System.Drawing.Size(217, 346)
-        Me.lstAssignments.TabIndex = 6
-        '
         'MenuStrip1
         '
+        Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -269,7 +272,7 @@ Partial Class StudentsWithAssignment
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReloadDataToolStripMenuItem, Me.ToolStripSeparator2, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
@@ -277,7 +280,7 @@ Partial Class StudentsWithAssignment
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ActionToolStripMenuItem
@@ -290,7 +293,7 @@ Partial Class StudentsWithAssignment
         'ChangeBaseAssignmentToolStripMenuItem
         '
         Me.ChangeBaseAssignmentToolStripMenuItem.Name = "ChangeBaseAssignmentToolStripMenuItem"
-        Me.ChangeBaseAssignmentToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.ChangeBaseAssignmentToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
         Me.ChangeBaseAssignmentToolStripMenuItem.Text = "&Change base assignment"
         '
         'ToolStripSeparator1
@@ -304,6 +307,18 @@ Partial Class StudentsWithAssignment
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Text = "&Delete selected assignment(s)"
         '
+        'ReloadDataToolStripMenuItem
+        '
+        Me.ReloadDataToolStripMenuItem.Name = "ReloadDataToolStripMenuItem"
+        Me.ReloadDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.ReloadDataToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ReloadDataToolStripMenuItem.Text = "&Reload data"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(174, 6)
+        '
         'StudentsWithAssignment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
@@ -314,9 +329,9 @@ Partial Class StudentsWithAssignment
         Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "StudentsWithAssignment"
-        Me.Text = "StudentsWithAssignment"
+        Me.Text = "Students with Assignment"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
@@ -354,4 +369,6 @@ Partial Class StudentsWithAssignment
     Friend WithEvents ChangeBaseAssignmentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents DeleteSelectedAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReloadDataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
 End Class

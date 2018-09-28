@@ -141,6 +141,9 @@
             Dim intStudentCount As Integer
             Dim boolStudentAdded As Boolean
 
+            dgvStudents.DataSource = Nothing
+            m_lst.Clear()
+
             For Each stud As Student In m_class.Students
                 boolStudentAdded = False '-- reset
                 If m_asmt.AssignmentType = AssignmentType.Normal Then
@@ -276,5 +279,56 @@
             '-- do nothing
             MessageBox.Show("Nothing was changed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+    End Sub
+
+    Private Sub dgvStudents_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvStudents.CellDoubleClick
+        Dim lst As List(Of StudentAssignmentData) = GetSelectedStudentAssignmentsFromGrid()
+        Select Case lst.Count
+            Case 0
+                MessageBox.Show("Please select at least one student to edit.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            Case 1
+                Application.DoEvents() '-- do nothing
+            Case Else
+                MessageBox.Show("Please select only one stduent to edit", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+        End Select
+
+        Dim obj As StudentAssignmentData = lst(0) '-- Only considering one
+
+        EditSelectedStudent()
+        '-- Delete it
+        obj.Student.Assignments.Remove(obj.StudentAssignment)
+
+
+        '-- Rebind grid
+        dgvStudents.DataSource = Nothing
+        dgvStudents.DataSource = m_lst
+
+    End Sub
+
+    Private Sub dgvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvStudents.KeyDown
+        Try
+            If e.KeyCode = Keys.Enter Then
+                EditSelectedStudent()
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("Error: " + ex.Message, Application.ProductName)
+        End Try
+    End Sub
+    Private Sub EditSelectedStudent()
+        Dim obj As StudentAssignmentData = GetSelectedStudentAssignmentsFromGrid(0)
+        If obj Is Nothing Then
+            Exit Sub
+        Else
+            Using frm As New StudentDetail(obj.Student)
+                frm.ShowDialog()
+            End Using
+        End If
+    End Sub
+
+    Private Sub ReloadDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReloadDataToolStripMenuItem.Click
+        LoadData()
     End Sub
 End Class
