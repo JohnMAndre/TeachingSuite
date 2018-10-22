@@ -112,7 +112,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel4 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.chkIncludeNoAssignment = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -227,7 +226,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeFeedback.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludeFeedback.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkIncludeFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeFeedback.Location = New System.Drawing.Point(150, 322)
+        Me.chkIncludeFeedback.Location = New System.Drawing.Point(135, 322)
         Me.chkIncludeFeedback.Name = "chkIncludeFeedback"
         Me.chkIncludeFeedback.Size = New System.Drawing.Size(78, 20)
         Me.chkIncludeFeedback.TabIndex = 62
@@ -240,7 +239,7 @@ Partial Class EmailModuleResults
         Me.chkFinalFeedback.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkFinalFeedback.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkFinalFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkFinalFeedback.Location = New System.Drawing.Point(177, 341)
+        Me.chkFinalFeedback.Location = New System.Drawing.Point(162, 341)
         Me.chkFinalFeedback.Name = "chkFinalFeedback"
         Me.chkFinalFeedback.Size = New System.Drawing.Size(51, 20)
         Me.chkFinalFeedback.TabIndex = 63
@@ -279,7 +278,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeOverall.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludeOverall.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkIncludeOverall.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeOverall.Location = New System.Drawing.Point(125, 379)
+        Me.chkIncludeOverall.Location = New System.Drawing.Point(110, 379)
         Me.chkIncludeOverall.Name = "chkIncludeOverall"
         Me.chkIncludeOverall.Size = New System.Drawing.Size(103, 20)
         Me.chkIncludeOverall.TabIndex = 66
@@ -292,7 +291,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeImprovement.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludeImprovement.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkIncludeImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeImprovement.Location = New System.Drawing.Point(88, 360)
+        Me.chkIncludeImprovement.Location = New System.Drawing.Point(73, 360)
         Me.chkIncludeImprovement.Name = "chkIncludeImprovement"
         Me.chkIncludeImprovement.Size = New System.Drawing.Size(140, 20)
         Me.chkIncludeImprovement.TabIndex = 67
@@ -305,7 +304,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeOverallGrade.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkIncludeOverallGrade.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkIncludeOverallGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeOverallGrade.Location = New System.Drawing.Point(88, 396)
+        Me.chkIncludeOverallGrade.Location = New System.Drawing.Point(73, 396)
         Me.chkIncludeOverallGrade.Name = "chkIncludeOverallGrade"
         Me.chkIncludeOverallGrade.Size = New System.Drawing.Size(140, 20)
         Me.chkIncludeOverallGrade.TabIndex = 68
@@ -493,7 +492,6 @@ Partial Class EmailModuleResults
         '
         'splitOverall.Panel1
         '
-        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeNoAssignment)
         Me.splitOverall.Panel1.Controls.Add(Me.chkSelectAllAssessments)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeOverallGrade)
         Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeImprovement)
@@ -1000,19 +998,6 @@ Partial Class EmailModuleResults
         Me.KryptonPanel4.Size = New System.Drawing.Size(1241, 668)
         Me.KryptonPanel4.TabIndex = 8
         '
-        'chkIncludeNoAssignment
-        '
-        Me.chkIncludeNoAssignment.Checked = True
-        Me.chkIncludeNoAssignment.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeNoAssignment.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeNoAssignment.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeNoAssignment.Location = New System.Drawing.Point(79, 416)
-        Me.chkIncludeNoAssignment.Name = "chkIncludeNoAssignment"
-        Me.chkIncludeNoAssignment.Size = New System.Drawing.Size(149, 20)
-        Me.chkIncludeNoAssignment.TabIndex = 126
-        Me.chkIncludeNoAssignment.Text = "Include no assignment:"
-        Me.chkIncludeNoAssignment.Values.Text = "Include no assignment:"
-        '
         'EmailModuleResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1161,5 +1146,4 @@ Partial Class EmailModuleResults
     Friend WithEvents KryptonLabel9 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents chkSelectAllAssessments As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
     Private WithEvents llblWorkshopFeedback As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents chkIncludeNoAssignment As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
 End Class

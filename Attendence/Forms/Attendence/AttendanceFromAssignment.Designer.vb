@@ -74,9 +74,9 @@ Partial Class AttendanceFromAssignment
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboAssignments.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboAssignments.FormattingEnabled = True
-        Me.cboAssignments.Location = New System.Drawing.Point(241, 109)
+        Me.cboAssignments.Location = New System.Drawing.Point(293, 109)
         Me.cboAssignments.Name = "cboAssignments"
-        Me.cboAssignments.Size = New System.Drawing.Size(516, 26)
+        Me.cboAssignments.Size = New System.Drawing.Size(464, 26)
         Me.cboAssignments.TabIndex = 2
         '
         'Label3

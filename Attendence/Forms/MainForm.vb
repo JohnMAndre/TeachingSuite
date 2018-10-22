@@ -1502,9 +1502,6 @@ Public Class MainForm
             End Select
         End If
     End Sub
-    Private Sub SelectRandomStudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectRandomStudentToolStripMenuItem.Click
-        SelectRandomStudentAndDisplayMessage()
-    End Sub
 
     Private Sub EmailstudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EmailstudentToolStripMenuItem.Click
         Try

@@ -22,6 +22,10 @@ Partial Class StudentAssignmentDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentAssignmentDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonLabel18 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel16 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.txtLastUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtFirstUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtGroup = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel17 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudResearchQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
@@ -140,10 +144,7 @@ Partial Class StudentAssignmentDetails
         Me.FocusOnoverallToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FocusOnfeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FocusOnoutcomesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.KryptonLabel16 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtFirstUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtLastUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel18 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,6 +226,38 @@ Partial Class StudentAssignmentDetails
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Size = New System.Drawing.Size(1169, 596)
         Me.KryptonPanel.TabIndex = 0
+        '
+        'KryptonLabel18
+        '
+        Me.KryptonLabel18.Location = New System.Drawing.Point(348, 49)
+        Me.KryptonLabel18.Name = "KryptonLabel18"
+        Me.KryptonLabel18.Size = New System.Drawing.Size(71, 20)
+        Me.KryptonLabel18.TabIndex = 133
+        Me.KryptonLabel18.Values.Text = "Last editor:"
+        '
+        'KryptonLabel16
+        '
+        Me.KryptonLabel16.Location = New System.Drawing.Point(3, 49)
+        Me.KryptonLabel16.Name = "KryptonLabel16"
+        Me.KryptonLabel16.Size = New System.Drawing.Size(72, 20)
+        Me.KryptonLabel16.TabIndex = 133
+        Me.KryptonLabel16.Values.Text = "First editor:"
+        '
+        'txtLastUserFullName
+        '
+        Me.txtLastUserFullName.Location = New System.Drawing.Point(435, 49)
+        Me.txtLastUserFullName.Name = "txtLastUserFullName"
+        Me.txtLastUserFullName.ReadOnly = True
+        Me.txtLastUserFullName.Size = New System.Drawing.Size(147, 20)
+        Me.txtLastUserFullName.TabIndex = 132
+        '
+        'txtFirstUserFullName
+        '
+        Me.txtFirstUserFullName.Location = New System.Drawing.Point(90, 49)
+        Me.txtFirstUserFullName.Name = "txtFirstUserFullName"
+        Me.txtFirstUserFullName.ReadOnly = True
+        Me.txtFirstUserFullName.Size = New System.Drawing.Size(147, 20)
+        Me.txtFirstUserFullName.TabIndex = 132
         '
         'txtGroup
         '
@@ -1215,8 +1248,8 @@ Partial Class StudentAssignmentDetails
         Me.chkShowFeedback.Name = "chkShowFeedback"
         Me.chkShowFeedback.Size = New System.Drawing.Size(78, 20)
         Me.chkShowFeedback.TabIndex = 53
-        Me.chkShowFeedback.Text = "&Feedback:"
-        Me.chkShowFeedback.Values.Text = "&Feedback:"
+        Me.chkShowFeedback.Text = "Fee&dback:"
+        Me.chkShowFeedback.Values.Text = "Fee&dback:"
         '
         'chkShowImprovement
         '
@@ -1375,10 +1408,10 @@ Partial Class StudentAssignmentDetails
         '
         'FocusToolStripMenuItem
         '
-        Me.FocusToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FocusOntagsToolStripMenuItem, Me.FocusOnoverallToolStripMenuItem, Me.FocusOnfeedbackToolStripMenuItem, Me.FocusOnoutcomesToolStripMenuItem})
+        Me.FocusToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FocusOntagsToolStripMenuItem, Me.FocusOnoverallToolStripMenuItem, Me.FocusOnfeedbackToolStripMenuItem, Me.FocusOnoutcomesToolStripMenuItem, Me.ToolStripMenuItem2})
         Me.FocusToolStripMenuItem.Name = "FocusToolStripMenuItem"
         Me.FocusToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
-        Me.FocusToolStripMenuItem.Text = "&Focus"
+        Me.FocusToolStripMenuItem.Text = "Fo&cus"
         '
         'FocusOntagsToolStripMenuItem
         '
@@ -1408,37 +1441,11 @@ Partial Class StudentAssignmentDetails
         Me.FocusOnoutcomesToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.FocusOnoutcomesToolStripMenuItem.Text = "Focus on o&utcomes"
         '
-        'KryptonLabel16
+        'ToolStripMenuItem2
         '
-        Me.KryptonLabel16.Location = New System.Drawing.Point(3, 49)
-        Me.KryptonLabel16.Name = "KryptonLabel16"
-        Me.KryptonLabel16.Size = New System.Drawing.Size(72, 20)
-        Me.KryptonLabel16.TabIndex = 133
-        Me.KryptonLabel16.Values.Text = "First editor:"
-        '
-        'txtFirstUserFullName
-        '
-        Me.txtFirstUserFullName.Location = New System.Drawing.Point(90, 49)
-        Me.txtFirstUserFullName.Name = "txtFirstUserFullName"
-        Me.txtFirstUserFullName.ReadOnly = True
-        Me.txtFirstUserFullName.Size = New System.Drawing.Size(147, 20)
-        Me.txtFirstUserFullName.TabIndex = 132
-        '
-        'txtLastUserFullName
-        '
-        Me.txtLastUserFullName.Location = New System.Drawing.Point(435, 49)
-        Me.txtLastUserFullName.Name = "txtLastUserFullName"
-        Me.txtLastUserFullName.ReadOnly = True
-        Me.txtLastUserFullName.Size = New System.Drawing.Size(147, 20)
-        Me.txtLastUserFullName.TabIndex = 132
-        '
-        'KryptonLabel18
-        '
-        Me.KryptonLabel18.Location = New System.Drawing.Point(348, 49)
-        Me.KryptonLabel18.Name = "KryptonLabel18"
-        Me.KryptonLabel18.Size = New System.Drawing.Size(71, 20)
-        Me.KryptonLabel18.TabIndex = 133
-        Me.KryptonLabel18.Values.Text = "Last editor:"
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(220, 22)
+        Me.ToolStripMenuItem2.Text = "`"
         '
         'StudentAssignmentDetails
         '
@@ -1630,4 +1637,5 @@ Partial Class StudentAssignmentDetails
     Private WithEvents KryptonLabel16 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents txtLastUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Private WithEvents txtFirstUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 End Class

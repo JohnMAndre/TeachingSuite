@@ -330,9 +330,6 @@ Partial Class MainFormPlain
         Me.ViewLogFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.ctxmnuTray = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SelectRandomStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrAutoSave = New System.Windows.Forms.Timer(Me.components)
         Me.ctxmnuNewAssignment = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -381,7 +378,6 @@ Partial Class MainFormPlain
         Me.pnlScheduleControls.SuspendLayout()
         Me.ctxmnuStudents.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        Me.ctxmnuTray.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -2518,27 +2514,6 @@ Partial Class MainFormPlain
         Me.ToolStripMenuItem2.Text = "Test...do not use"
         Me.ToolStripMenuItem2.Visible = False
         '
-        'NotifyIcon1
-        '
-        Me.NotifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.NotifyIcon1.ContextMenuStrip = Me.ctxmnuTray
-        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
-        Me.NotifyIcon1.Text = "Teaching"
-        Me.NotifyIcon1.Visible = True
-        '
-        'ctxmnuTray
-        '
-        Me.ctxmnuTray.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ctxmnuTray.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectRandomStudentToolStripMenuItem})
-        Me.ctxmnuTray.Name = "ctxmnuTray"
-        Me.ctxmnuTray.Size = New System.Drawing.Size(194, 26)
-        '
-        'SelectRandomStudentToolStripMenuItem
-        '
-        Me.SelectRandomStudentToolStripMenuItem.Name = "SelectRandomStudentToolStripMenuItem"
-        Me.SelectRandomStudentToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.SelectRandomStudentToolStripMenuItem.Text = "&Select random student"
-        '
         'tmrAutoSave
         '
         Me.tmrAutoSave.Interval = 10000
@@ -2626,7 +2601,6 @@ Partial Class MainFormPlain
         Me.ctxmnuStudents.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.ctxmnuTray.ResumeLayout(False)
         Me.ctxmnuNewAssignment.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -2819,9 +2793,6 @@ Partial Class MainFormPlain
     Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents AssignmentMoveUpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AssignmentMoveDownToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
-    Friend WithEvents ctxmnuTray As System.Windows.Forms.ContextMenuStrip
-    Friend WithEvents SelectRandomStudentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tmrAutoSave As System.Windows.Forms.Timer
     Friend WithEvents ctxmnuClasses As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents EditClassToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

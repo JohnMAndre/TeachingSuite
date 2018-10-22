@@ -494,8 +494,8 @@ Public Class EmailModuleResults
         Dim boolAtLeastOneNormalAssignment As Boolean
         Dim strText As String
         For Each asmt As ClassAssignmentBTEC In m_clas.ClassGroup.AssignmentsBTEC
-            boolAtLeastOneBTECAssignment = True
             If ShouldIncludeAssignment(asmt) Then
+                boolAtLeastOneBTECAssignment = True
                 strText = asmt.Name & " "
                 If AppSettings.EmailAsHTML Then
                     str.Append("<li>" & strText & "</li>")
@@ -506,8 +506,8 @@ Public Class EmailModuleResults
         Next
 
         For Each asmt As ClassAssignment In m_clas.ClassGroup.Assignments
-            boolAtLeastOneNormalAssignment = True
             If ShouldIncludeAssignment(asmt) Then
+                boolAtLeastOneNormalAssignment = True
                 strText = asmt.Name & " "
                 If AppSettings.EmailAsHTML Then
                     str.Append("<li>" & strText & "</li>")
