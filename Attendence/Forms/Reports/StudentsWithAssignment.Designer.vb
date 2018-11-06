@@ -53,13 +53,13 @@ Partial Class StudentsWithAssignment
         Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReloadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeBaseAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReloadDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -277,6 +277,18 @@ Partial Class StudentsWithAssignment
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
         '
+        'ReloadDataToolStripMenuItem
+        '
+        Me.ReloadDataToolStripMenuItem.Name = "ReloadDataToolStripMenuItem"
+        Me.ReloadDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.ReloadDataToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ReloadDataToolStripMenuItem.Text = "&Reload data"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(174, 6)
+        '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
@@ -306,18 +318,6 @@ Partial Class StudentsWithAssignment
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Name = "DeleteSelectedAssignmentsToolStripMenuItem"
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Text = "&Delete selected assignment(s)"
-        '
-        'ReloadDataToolStripMenuItem
-        '
-        Me.ReloadDataToolStripMenuItem.Name = "ReloadDataToolStripMenuItem"
-        Me.ReloadDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ReloadDataToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.ReloadDataToolStripMenuItem.Text = "&Reload data"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(174, 6)
         '
         'StudentsWithAssignment
         '

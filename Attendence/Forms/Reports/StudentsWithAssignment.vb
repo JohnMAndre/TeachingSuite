@@ -331,4 +331,11 @@
     Private Sub ReloadDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReloadDataToolStripMenuItem.Click
         LoadData()
     End Sub
+
+    Private Sub dgvStudents_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvStudents.DataError
+        If MessageBox.Show("There was an error with the underlying data (Row:" & e.RowIndex.ToString() & "; Column:" & e.ColumnIndex.ToString() & "). Would you like to close this form?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.Yes Then
+            e.Cancel = True
+            Close()
+        End If
+    End Sub
 End Class
