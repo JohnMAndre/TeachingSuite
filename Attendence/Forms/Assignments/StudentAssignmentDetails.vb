@@ -1,5 +1,10 @@
 Imports Microsoft.Office.Interop
 
+Imports System.IO
+Imports System.Text.RegularExpressions
+Imports DocumentFormat.OpenXml.Packaging
+Imports DocumentFormat.OpenXml.Wordprocessing
+
 Friend Class StudentAssignmentDetails
 
     Private m_student As Student
@@ -500,6 +505,184 @@ Friend Class StudentAssignmentDetails
         '-- never found the outcome, so return unknown
         Return OutcomeResultStatusEnum.Unknown
     End Function
+    Public Sub PrepareMarkingPageSimple()
+        Try
+            If Not SaveChanges() Then
+                Exit Sub
+            End If
+
+
+            If m_studentAssignment.BaseAssignment.AssignmentBriefFilename.Trim.Length = 0 Then
+                MessageBox.Show("There is no document related to this assignment. Please fix this problem and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            If rtbImprovementComments.Text.Trim.Length = 0 Then
+                MessageBox.Show("You must fill out overall and improvement comments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+
+            '-- copy template over to new file, in case user accidentally saves it
+            Dim strTemplateFilename As String = System.IO.Path.Combine(GetMarkingFolder(), m_studentAssignment.BaseAssignment.AssignmentBriefFilename)
+            Dim strWorkingFilename As String = System.IO.Path.Combine(GetMarkingFolder(), "~temp1.docx")
+            If System.IO.File.Exists(strWorkingFilename) Then
+                System.IO.File.Delete(strWorkingFilename)
+            End If
+
+            System.IO.File.Copy(strTemplateFilename, strWorkingFilename, True)
+
+            Const CHECKMARK As String = "V"
+            Const XMARK As String = "X"
+            Const BLANK As String = " "
+
+            '-- refresh module results (may use many times)
+            m_studentModuleResults = m_student.ModuleResults(True)
+
+            Dim firstColumnMark As OutcomeResultStatusEnum '-- Pass=check; fail=X; unknown=blank
+            Dim secondColumnMark As OutcomeResultStatusEnum
+
+            Dim strDestination As String
+            Dim replacementText As String
+            Dim originalText As String
+            Using docMarking As Xceed.Words.NET.DocX = Xceed.Words.NET.DocX.Load(strWorkingFilename)
+                docMarking.ReplaceText("OOStudentIDOO", m_student.StudentID)
+                docMarking.ReplaceText("OONickNameOO", m_student.Nickname)
+                docMarking.ReplaceText("OOStudentNameOO", m_student.LocalName)
+                docMarking.ReplaceText("OOExtStudentIDOO", m_student.ExtStudentID)
+                docMarking.ReplaceText("OOAltNumberOO", m_student.AltNumber.ToString())
+                docMarking.ReplaceText("OOOVERALLOO", rtbOverallComments.Text)
+                docMarking.ReplaceText("OOIMPROVEMENTSOO", rtbImprovementComments.Text)
+                docMarking.ReplaceText("OODATEOO", Date.Today.ToString("dd / MMM / yyyy"))
+
+                strDestination = GetMarkingPageFilename()
+                If System.IO.File.Exists(strDestination) Then
+                    System.IO.File.Delete(strDestination)
+                End If
+
+                For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
+                    '-- reset varliables
+                    firstColumnMark = OutcomeResultStatusEnum.Unknown
+                    secondColumnMark = OutcomeResultStatusEnum.Unknown
+
+                    originalText = "OOOUTCOME" & outcome.BaseOutcome.Name & "COMMENTSOO"
+
+                    '-- Feedback comments for each outcome
+                    Select Case m_try
+                        Case Semester.MarkingTry.FirstTry
+                            Select Case outcome.FirstTryStatus
+                                Case OutcomeResultStatusEnum.Achieved
+                                    firstColumnMark = OutcomeResultStatusEnum.Achieved
+                                    secondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    replacementText = outcome.FirstTryComments
+                                Case OutcomeResultStatusEnum.NotAchieved
+                                    firstColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                    secondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    replacementText = outcome.FirstTryComments
+                                Case Else
+                                    '-- Unknown
+                                    firstColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                    secondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    replacementText = AppSettings.NoSubmitFeedback
+                            End Select
+                        Case Semester.MarkingTry.SecondTry
+                            Select Case outcome.SecondTryStatus
+                                Case OutcomeResultStatusEnum.Achieved
+                                    '-- passing on rework does not mean fail before
+                                    '   could mean passed before and now improving for higher mark
+                                    '   Although in 2017 Peason forbids that behavior, we don't know the future
+                                    replacementText = outcome.SecondTryComments
+                                    secondColumnMark = OutcomeResultStatusEnum.Achieved
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        firstColumnMark = OutcomeResultStatusEnum.Achieved
+                                    Else
+                                        '-- Changing this for 2015 BTEC forms so first column will be blank if passed in second submission (so there are not 2 symbols in same box)
+                                        'firstColumnMark = OutcomeResultStatusEnum.Fail
+                                        firstColumnMark = OutcomeResultStatusEnum.Unknown
+                                    End If
+                                Case OutcomeResultStatusEnum.NotAchieved
+                                    secondColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        firstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        replacementText = AppSettings.FeedbackTextPreviouslyPassed
+                                    Else
+                                        firstColumnMark = OutcomeResultStatusEnum.Unknown
+                                        replacementText = outcome.SecondTryComments
+                                    End If
+                                Case Else
+                                    '-- unknown = non-submit
+                                    secondColumnMark = OutcomeResultStatusEnum.Unknown
+                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+                                        firstColumnMark = OutcomeResultStatusEnum.Achieved
+                                        replacementText = AppSettings.FeedbackTextPreviouslyPassed
+                                    ElseIf outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+                                        firstColumnMark = OutcomeResultStatusEnum.NotAchieved
+                                        replacementText = outcome.FirstTryComments
+                                    Else
+                                        firstColumnMark = OutcomeResultStatusEnum.Unknown
+                                        replacementText = AppSettings.NoSubmitFeedback
+                                    End If
+                            End Select
+                    End Select
+
+                    '--Now do the replacements
+                    docMarking.ReplaceText(originalText, replacementText)
+
+                    '-- Now the checkmark
+                    originalText = "OO" & outcome.BaseOutcome.Name & "OO"
+
+                    Select Case firstColumnMark
+                        Case OutcomeResultStatusEnum.Achieved
+                            '-- check mark
+                            replacementText = CHECKMARK
+                        Case OutcomeResultStatusEnum.NotAchieved
+                            '-- X mark
+                            replacementText = XMARK
+                        Case OutcomeResultStatusEnum.Unknown
+                            replacementText = BLANK
+                    End Select
+                    docMarking.ReplaceText(originalText, replacementText)
+
+
+
+                    '-- Redo submit in second column
+                    originalText = "OO" & outcome.BaseOutcome.Name & "ROO"
+                    Select Case secondColumnMark
+                        Case OutcomeResultStatusEnum.Achieved
+                            '-- check mark
+                            replacementText = CHECKMARK
+                        Case OutcomeResultStatusEnum.NotAchieved
+                            '-- X mark
+                            replacementText = XMARK
+                        Case OutcomeResultStatusEnum.Unknown
+                            replacementText = BLANK
+                    End Select
+                    docMarking.ReplaceText(originalText, replacementText)
+
+                Next
+
+                docMarking.SaveAs(strDestination)
+
+            End Using
+
+
+
+
+            chkProcessed.Checked = True
+            Select Case m_try
+                Case Semester.MarkingTry.FirstTry
+                    m_studentAssignment.FirstTryPrintDate = Date.Now
+                Case (Semester.MarkingTry.SecondTry)
+                    m_studentAssignment.SecondTryPrintDate = Date.Now
+                Case Semester.MarkingTry.ThirdTry
+                    m_studentAssignment.ThirdTryPrintDate = Date.Now
+            End Select
+        Catch ex As Exception
+            Application.DoEvents()
+        End Try
+
+    End Sub
+
     Public Sub PrepareMarkingPage(save As Boolean)
         Try
             If Not SaveChanges() Then
@@ -1592,10 +1775,10 @@ Friend Class StudentAssignmentDetails
     Private Function ImprovementItemRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim item As StudentImprovementItem = CType(olvi.RowObject, StudentImprovementItem)
 
-        Dim RESOLVED_ISSUE_COLOR As Color = Color.LightGreen
-        Dim CURRENT_ISSUE_COLOR As Color = Color.Yellow
-        Dim NON_ISSUE_COLOR As Color = Color.White
-        Dim newColor As Color
+        Dim RESOLVED_ISSUE_COLOR As System.Drawing.Color = System.Drawing.Color.LightGreen
+        Dim CURRENT_ISSUE_COLOR As System.Drawing.Color = System.Drawing.Color.Yellow
+        Dim NON_ISSUE_COLOR As System.Drawing.Color = System.Drawing.Color.White
+        Dim newColor As System.Drawing.Color
 
         If item.DateAdded = DATE_NO_DATE Then
             newColor = NON_ISSUE_COLOR
@@ -1620,10 +1803,10 @@ Friend Class StudentAssignmentDetails
     Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
         Dim ocrslt As OutcomeResult = CType(olvi.RowObject, OutcomeResult)
 
-        Dim PASS_COLOR As Color = Color.LightGreen
-        Dim FAIL_COLOR As Color = Color.LightSalmon
-        Dim UNKNOWN_COLOR As Color = Color.White
-        Dim newColor As Color
+        Dim PASS_COLOR As System.Drawing.Color = System.Drawing.Color.LightGreen
+        Dim FAIL_COLOR As System.Drawing.Color = System.Drawing.Color.LightSalmon
+        Dim UNKNOWN_COLOR As System.Drawing.Color = System.Drawing.Color.White
+        Dim newColor As System.Drawing.Color
 
         If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
             ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
@@ -1644,11 +1827,15 @@ Friend Class StudentAssignmentDetails
     End Function
 
     Private Sub llblSaveFeedbackSheet_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblSaveFeedbackSheet.LinkClicked
-        chkProcessed.Checked = False
-        llblSaveFeedbackSheet.Hide()
-        Application.DoEvents()
-        PrepareMarkingPage(True)
-        llblSaveFeedbackSheet.Show()
+        PrepareMarkingPageSimple()
+        '======PrepareMarkingPageIndependent()
+
+
+        'chkProcessed.Checked = False
+        'llblSaveFeedbackSheet.Hide()
+        'Application.DoEvents()
+        'PrepareMarkingPage(True)
+        'llblSaveFeedbackSheet.Show()
     End Sub
 
     Private Sub CloseToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CloseToolStripMenuItem.Click

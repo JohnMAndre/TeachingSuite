@@ -1651,6 +1651,8 @@ Public Class SchoolClass
         Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode)
             tw.Write("AdminNumber")
             tw.Write(DELIMITER)
+            tw.Write("AltNumber")
+            tw.Write(DELIMITER)
             tw.Write("LocalName")
             tw.Write(DELIMITER)
             tw.Write("Nickname")
@@ -1687,6 +1689,8 @@ Public Class SchoolClass
             For Each student As Student In Students
                 intStudentCounter += 1
                 tw.Write(student.AdminNumber)
+                tw.Write(DELIMITER)
+                tw.Write(student.AltNumber)
                 tw.Write(DELIMITER)
                 tw.Write(student.LocalName)
                 tw.Write(DELIMITER)
@@ -3741,6 +3745,7 @@ Public Class Student
                 Dim xSessionElement As Xml.XmlElement = xDoc.CreateElement("Session")
                 xSessionElement.SetAttribute("Date", objSession.StartDate.ToString(DATE_FORMAT_XML))
                 xSessionElement.SetAttribute("Status", objSession.AttendenceStatus.ToString())
+                xSessionElement.SetAttribute("SeatedInRow", objSession.SeatedInRow.ToString())
                 xSessionElement.SetAttribute("Notes", objSession.Notes)
                 xStudentElement.AppendChild(xSessionElement)
             Next
@@ -4274,6 +4279,7 @@ Public Class TeachingSession
     Public Property AttendenceStatus As AttendanceStatusEnum
     Public Property Notes As String
     Public Property Student As Student
+    Public Property SeatedInRow As Integer
 
     Public Sub New(student As Student)
         Me.Student = student
@@ -4284,7 +4290,7 @@ Public Class TeachingSession
 
         Dim strValue As String = xElement.GetAttribute("Status")
         AttendenceStatus = [Enum].Parse(GetType(AttendanceStatusEnum), strValue, True)
-
+        SeatedInRow = ConvertToInt32(xElement.GetAttribute("SeatedInRow"), 0)
         Notes = xElement.GetAttribute("Notes")
         Me.Student = student
 

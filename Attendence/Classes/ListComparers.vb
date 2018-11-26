@@ -50,13 +50,6 @@ Public Class StudentComparerByTags
         Return x.Tags.CompareTo(y.Tags)
     End Function
 End Class
-Public Class StudentComparerByTempTag
-    Implements IComparer(Of Student)
-
-    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.TempTag.CompareTo(y.TempTag)
-    End Function
-End Class
 Public Class StudentComparerByLatestAttendenceStatus
     Implements IComparer(Of Student)
 

@@ -78,6 +78,12 @@ Partial Class StudentDetail
         Me.OlvColumn31 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn32 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn41 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn42 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn43 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.ctxmnuNormalAssignments = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lblGradeAsOfTodayPoints = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblRefreshGradeAsOfToday = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -140,12 +146,7 @@ Partial Class StudentDetail
         Me.OlvColumn23 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn24 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.OlvColumn42 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn43 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.ctxmnuNormalAssignments = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OlvColumn44 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.pbButtonHighlight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +154,7 @@ Partial Class StudentDetail
         Me.pnlAttendance.SuspendLayout()
         Me.pnlNormalAssignments.SuspendLayout()
         CType(Me.olvNormalAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuNormalAssignments.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.pnlHistoricalData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlHistoricalData.SuspendLayout()
@@ -165,7 +167,6 @@ Partial Class StudentDetail
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ctxmnuNormalAssignments.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -213,14 +214,14 @@ Partial Class StudentDetail
         Me.KryptonPanel.Controls.Add(Me.pbButtonHighlight)
         Me.KryptonPanel.Controls.Add(Me.pnlAssignments)
         Me.KryptonPanel.Controls.Add(Me.pnlAttendance)
+        Me.KryptonPanel.Controls.Add(Me.olvTeachingSessions)
+        Me.KryptonPanel.Controls.Add(Me.olvAssignments)
         Me.KryptonPanel.Controls.Add(Me.pnlNormalAssignments)
         Me.KryptonPanel.Controls.Add(Me.pnlHistoricalData)
         Me.KryptonPanel.Controls.Add(Me.pnlOutcomes)
         Me.KryptonPanel.Controls.Add(Me.pnlNotes)
         Me.KryptonPanel.Controls.Add(Me.pnlLog)
         Me.KryptonPanel.Controls.Add(Me.olvImprovementItems)
-        Me.KryptonPanel.Controls.Add(Me.olvTeachingSessions)
-        Me.KryptonPanel.Controls.Add(Me.olvAssignments)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
@@ -793,6 +794,42 @@ Partial Class StudentDetail
         Me.OlvColumn41.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn41.Width = 90
         '
+        'OlvColumn42
+        '
+        Me.OlvColumn42.AspectName = "FirstUserFullName"
+        Me.OlvColumn42.Text = "Creator"
+        Me.OlvColumn42.Width = 104
+        '
+        'OlvColumn43
+        '
+        Me.OlvColumn43.AspectName = "LastUserFullName"
+        Me.OlvColumn43.Text = "Editor"
+        Me.OlvColumn43.Width = 99
+        '
+        'ctxmnuNormalAssignments
+        '
+        Me.ctxmnuNormalAssignments.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ctxmnuNormalAssignments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteToolStripMenuItem})
+        Me.ctxmnuNormalAssignments.Name = "ctxmnuNormalAssignments"
+        Me.ctxmnuNormalAssignments.Size = New System.Drawing.Size(108, 54)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.EditToolStripMenuItem.Text = "&Edit..."
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(104, 6)
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Text = "&Delete"
+        '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.Transparent
@@ -1211,6 +1248,7 @@ Partial Class StudentDetail
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn26)
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn1)
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn2)
+        Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn44)
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn25)
         Me.olvTeachingSessions.AllColumns.Add(Me.OlvColumn27)
         Me.olvTeachingSessions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1218,7 +1256,7 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvTeachingSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvTeachingSessions.CellEditUseWholeCell = False
-        Me.olvTeachingSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn26, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn25, Me.OlvColumn27})
+        Me.olvTeachingSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn26, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn44, Me.OlvColumn25, Me.OlvColumn27})
         Me.olvTeachingSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvTeachingSessions.FullRowSelect = True
         Me.olvTeachingSessions.Location = New System.Drawing.Point(2, 175)
@@ -1456,41 +1494,11 @@ Partial Class StudentDetail
         Me.OlvColumn24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn24.Width = 80
         '
-        'OlvColumn42
+        'OlvColumn44
         '
-        Me.OlvColumn42.AspectName = "FirstUserFullName"
-        Me.OlvColumn42.Text = "Creator"
-        Me.OlvColumn42.Width = 104
-        '
-        'OlvColumn43
-        '
-        Me.OlvColumn43.AspectName = "LastUserFullName"
-        Me.OlvColumn43.Text = "Editor"
-        Me.OlvColumn43.Width = 99
-        '
-        'ctxmnuNormalAssignments
-        '
-        Me.ctxmnuNormalAssignments.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ctxmnuNormalAssignments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteToolStripMenuItem})
-        Me.ctxmnuNormalAssignments.Name = "ctxmnuNormalAssignments"
-        Me.ctxmnuNormalAssignments.Size = New System.Drawing.Size(108, 54)
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.EditToolStripMenuItem.Text = "&Edit..."
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(104, 6)
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.DeleteToolStripMenuItem.Text = "&Delete"
+        Me.OlvColumn44.AspectName = "TeachingSession.SeatedInRow"
+        Me.OlvColumn44.Text = "R"
+        Me.OlvColumn44.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'StudentDetail
         '
@@ -1512,6 +1520,7 @@ Partial Class StudentDetail
         Me.pnlAttendance.PerformLayout()
         Me.pnlNormalAssignments.ResumeLayout(False)
         CType(Me.olvNormalAssignments, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuNormalAssignments.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.pnlHistoricalData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1527,7 +1536,6 @@ Partial Class StudentDetail
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvAssignments, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ctxmnuNormalAssignments.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1671,4 +1679,5 @@ Partial Class StudentDetail
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents DeleteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OlvColumn44 As BrightIdeasSoftware.OLVColumn
 End Class

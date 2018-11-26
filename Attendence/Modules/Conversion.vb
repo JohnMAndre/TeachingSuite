@@ -1,6 +1,9 @@
 ﻿Module Conversion
     Public Function ConvertToBool(ByVal value As String, ByVal valueIfCannotConvert As Boolean) As Boolean
         Try
+            If value.Length = 0 Then
+                Return valueIfCannotConvert
+            End If
             Return Convert.ToBoolean(value)
         Catch ex As Exception
             Return valueIfCannotConvert
@@ -8,6 +11,9 @@
     End Function
     Public Function ConvertToDouble(ByVal value As String, ByVal valueIfCannotConvert As Double) As Double
         Try
+            If value.Length = 0 Then
+                Return valueIfCannotConvert
+            End If
             Return Convert.ToDouble(value)
         Catch ex As Exception
             Return valueIfCannotConvert
@@ -15,6 +21,10 @@
     End Function
     Public Function ConvertToDecimal(ByVal value As String, ByVal valueIfCannotConvert As Decimal) As Decimal
         Try
+            If value.Length = 0 Then
+                Return valueIfCannotConvert
+            End If
+
             Return Convert.ToDecimal(value)
         Catch ex As Exception
             Return valueIfCannotConvert
@@ -22,7 +32,9 @@
     End Function
     Public Function ConvertToInt32(ByVal value As String, ByVal valueIfCannotConvert As Integer) As Integer
         Try
-            If value.Contains(".") Then
+            If value.Length = 0 Then
+                Return valueIfCannotConvert
+            ElseIf value.Contains(".") Then
                 value = value.Substring(0, value.IndexOf("."))
             End If
             Return Convert.ToInt32(value)
@@ -32,7 +44,11 @@
     End Function
     Public Function ConvertToByte(ByVal value As String, ByVal valueIfCannotConvert As Byte) As Byte
         Try
-            If value.Contains(".") Then '-- strip any decimal places
+            If value.Length = 0 Then
+                Return valueIfCannotConvert
+            ElseIf value.Length = 0 Then
+                Return valueIfCannotConvert
+            ElseIf value.Contains(".") Then '-- strip any decimal places
                 value = value.Substring(0, value.IndexOf("."))
             End If
             Return Convert.ToByte(value)
@@ -69,7 +85,9 @@
     End Function
     Public Function ConvertToDate(ByVal value As String, ByVal valueIfCannotConvert As Date) As Date
         Try
-            If value Is Nothing OrElse value.Length = 0 Then
+            If value.Length = 0 Then
+                Return valueIfCannotConvert
+            ElseIf value Is Nothing OrElse value.Length = 0 Then
                 Return valueIfCannotConvert
             Else
                 Try

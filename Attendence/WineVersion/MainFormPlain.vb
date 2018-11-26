@@ -636,7 +636,7 @@ Public Class MainFormPlain
         RemoveSelectedClass()
     End Sub
 
-    Private Sub MeritToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MeritToolStripMenuItem.Click
+    Private Sub MeritToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         '-- Give a merit point to each student
         Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
         For Each stud As Student In lstStudents
@@ -646,7 +646,7 @@ Public Class MainFormPlain
         dgvStudents.Refresh()
     End Sub
 
-    Private Sub DemeritToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DemeritToolStripMenuItem.Click
+    Private Sub DemeritToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         '-- Deduct a merit point from each student
         Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() ' GetSelectedStudents()
         For Each stud As Student In lstStudents
@@ -927,7 +927,7 @@ Public Class MainFormPlain
         StartOralExam(Semester.MarkingTry.ThirdTry)
     End Sub
 
-    Private Sub ProcessExamForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExamForStudent.Click
+    Private Sub ProcessExamForStudent_Click(sender As System.Object, e As System.EventArgs)
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.FirstTry)
@@ -1035,14 +1035,14 @@ Public Class MainFormPlain
                 frm.Show()
         End Select
     End Sub
-    Private Sub ProcessExamRedoForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExamRedoForStudent.Click
+    Private Sub ProcessExamRedoForStudent_Click(sender As System.Object, e As System.EventArgs)
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() ' GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.SecondTry)
         End If
     End Sub
 
-    Private Sub ProcessExam2ndReDoForStudent_Click(sender As System.Object, e As System.EventArgs) Handles ProcessExam2ndReDoForStudent.Click
+    Private Sub ProcessExam2ndReDoForStudent_Click(sender As System.Object, e As System.EventArgs)
         Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne()
         If stud IsNot Nothing Then
             MarkExamForStudent(stud, GetSelectedAssignment(), Semester.MarkingTry.ThirdTry)
@@ -1175,7 +1175,7 @@ Public Class MainFormPlain
         End If
     End Sub
 
-    Private Sub EditStudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EditStudentToolStripMenuItem.Click
+    Private Sub EditStudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         EditSelectedStudent()
     End Sub
 
@@ -1508,7 +1508,7 @@ Public Class MainFormPlain
         SelectRandomStudentAndDisplayMessage()
     End Sub
 
-    Private Sub EmailstudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EmailstudentToolStripMenuItem.Click
+    Private Sub EmailstudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         EmailStudent(GetSelectedStudentsFromGrid())
     End Sub
     Private Sub EmailStudent(listOfStudents As List(Of Student))
@@ -2644,23 +2644,6 @@ Public Class MainFormPlain
         EmailclassToolStripMenuItem.Visible = AppSettings.PremiumFeaturesEnabled
     End Sub
 
-    Private Sub ctxmnuStudents_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ctxmnuStudents.Opening
-        ToolStripSeparator2.Visible = AppSettings.PremiumFeaturesEnabled
-        ToolStripSeparator8.Visible = AppSettings.PremiumFeaturesEnabled
-        EmailstudentToolStripMenuItem.Visible = AppSettings.PremiumFeaturesEnabled
-        ProcessExam2ndReDoForStudent.Visible = AppSettings.PremiumFeaturesEnabled
-        ProcessExamRedoForStudent.Visible = AppSettings.PremiumFeaturesEnabled
-        ProcessExamForStudent.Visible = AppSettings.PremiumFeaturesEnabled
-    End Sub
-    'Private Function MainRowFormatter(ByVal olvi As BrightIdeasSoftware.OLVListItem) As Object
-    '    Dim stud As Student = CType(olvi.RowObject, Student)
-
-    '    olvi.UseItemStyleForSubItems = False
-
-    '    Dim intPositionCurrentAbsences As Integer = Me.olvStudents.Columns.IndexOf(Me.olvcolCurrentAbsences)
-
-    '    olvi.SubItems(intPositionCurrentAbsences).BackColor = Color.LightGray
-    'End Function
 
     Private Sub ExportEntireSemesterAsXMLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEntireSemesterAsXMLToolStripMenuItem.Click
         Try
@@ -3424,5 +3407,9 @@ Public Class MainFormPlain
             frm.Show()
         End If
 
+    End Sub
+
+    Private Sub CopyCellContentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyCellContentsToolStripMenuItem.Click
+        Clipboard.SetDataObject(dgvStudents.CurrentCell.Value, False)
     End Sub
 End Class

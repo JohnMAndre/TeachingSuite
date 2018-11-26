@@ -70,6 +70,7 @@
       <HintPath>..\SupportFiles\C1.Win.C1SpellChecker.2.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Ionic.Zip">
       <HintPath>..\SupportFiles\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -88,6 +89,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Xceed.Words.NET">
+      <HintPath>..\SupportFiles\Xceed.Words.NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />

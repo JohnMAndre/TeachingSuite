@@ -1,9 +1,62 @@
 ﻿Public Class Attendance2Form
 
+    Private Class StudentAttendanceData
+        Public Sub New(student As Student)
+            Me.Student = student
+        End Sub
+        Public Property Student As Student
+        Public Property AttendanceStatus As AttendanceStatusEnum
+        Public Property SeatedInRow As Integer
+        Public ReadOnly Property AdminNumber As Integer
+            Get
+                Return Student.AdminNumber
+            End Get
+        End Property
+        Public ReadOnly Property LocalName As String
+            Get
+                Return Student.LocalName
+            End Get
+        End Property
+        Public Property Nickname As String
+            Get
+                Return Student.Nickname
+            End Get
+            Set(value As String)
+                Student.Nickname = value
+            End Set
+        End Property
+        Public ReadOnly Property StudentID As String
+            Get
+                Return Student.StudentID
+            End Get
+        End Property
+        Public ReadOnly Property CurrentAbsences As Integer
+            Get
+                Return Student.CurrentAbsences
+            End Get
+        End Property
+        Public Property Hidden As Boolean
+            Get
+                Return Student.Hidden
+            End Get
+            Set(value As Boolean)
+                Student.Hidden = value
+            End Set
+        End Property
+    End Class
+    Private Class StudentComparerByTempTag
+        Implements IComparer(Of StudentAttendanceData)
+
+        Public Function Compare(x As StudentAttendanceData, y As StudentAttendanceData) As Integer Implements IComparer(Of StudentAttendanceData).Compare
+            Return x.Student.TempTag.CompareTo(y.Student.TempTag)
+        End Function
+    End Class
+
+
     Private m_class As SchoolClass
     Private m_boolDirty As Boolean
     Private m_intStudentGroup As Integer
-    Private m_lstStudents As List(Of Student)
+    Private m_lstStudents As List(Of StudentAttendanceData)
 
     Private m_dtStartTime As Date
     Private m_font As Font
@@ -50,12 +103,13 @@
 
             '-- Create new class session for each student
             'Dim lstStudents As List(Of Student) = olvStudents.Objects
-            For Each stu In m_lstStudents
-                If stu.CurrentAttendenceStatus <> AttendanceStatusEnum.Unknown Then
-                    Dim session As New TeachingSession(stu)
+            For Each stu As StudentAttendanceData In m_lstStudents
+                If stu.AttendanceStatus <> AttendanceStatusEnum.Unknown Then
+                    Dim session As New TeachingSession(stu.Student)
                     session.StartDate = dtSessionDate
-                    session.AttendenceStatus = stu.CurrentAttendenceStatus
-                    stu.TeachingSessions.Add(session)
+                    session.AttendenceStatus = stu.AttendanceStatus
+                    session.SeatedInRow = stu.SeatedInRow
+                    stu.Student.TeachingSessions.Add(session)
                 End If
             Next
 
@@ -116,18 +170,19 @@
     Private Sub ExcusedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExcusedToolStripMenuItem.Click
         SetStudentStatus(AttendanceStatusEnum.Excused)
     End Sub
-    Private Function GetCurrentlySelectedStudent() As Student
-        Return CType(dgvStudents.CurrentRow.DataBoundItem, Student)
+    Private Function GetCurrentlySelectedStudent() As StudentAttendanceData
+        Return CType(dgvStudents.CurrentRow.DataBoundItem, StudentAttendanceData)
     End Function
 
-    Private Sub SetStudentStatus(status As AttendanceStatusEnum)
+    Private Sub SetStudentStatus(status As AttendanceStatusEnum, Optional SeatedInRow As Integer = 0)
         If dgvStudents.SelectedRows.Count = 0 Then
             'dgvStudents.SelectedIndex = 0
             Exit Sub
         End If
 
-        Dim obj As Student = GetCurrentlySelectedStudent() 'CType(dgvStudents.CurrentRow.DataBoundItem, Student)
-        obj.CurrentAttendenceStatus = status
+        Dim obj As StudentAttendanceData = GetCurrentlySelectedStudent() 'CType(dgvStudents.CurrentRow.DataBoundItem, Student)
+        obj.AttendanceStatus = status
+        obj.SeatedInRow = SeatedInRow '-- Added 2018-11-16
         dgvStudents.UpdateCellValue(4, dgvStudents.CurrentRow.Index)
 
         Dim row As DataGridViewRow
@@ -186,8 +241,8 @@
     End Sub
     Private Sub MarkAllStudents(status As AttendanceStatusEnum)
         Try
-            For Each stud As Student In m_lstStudents
-                stud.CurrentAttendenceStatus = status
+            For Each stud As StudentAttendanceData In m_lstStudents
+                stud.AttendanceStatus = status
 
                 'If m_frmPublic IsNot Nothing Then
                 '    m_frmPublic.UpdateStudent(stud)
@@ -234,11 +289,13 @@
             Me.WindowState = FormWindowState.Maximized
         End If
     End Sub
+    Private Sub SetCurrentStudentGender(gender As Student.GenderEnum)
+        Dim stud As StudentAttendanceData = GetCurrentlySelectedStudent() '
+        stud.Student.Gender = gender
+    End Sub
     Private Sub SetGendermaleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGendermaleToolStripMenuItem.Click
         Try
-            Dim stud As Student = GetCurrentlySelectedStudent() '
-            stud.Gender = Student.GenderEnum.Male
-            'olvStudents.RefreshSelectedObjects()
+            SetCurrentStudentGender(Student.GenderEnum.Male)
         Catch ex As Exception
             Log(ex)
         End Try
@@ -246,9 +303,7 @@
 
     Private Sub SetGenderfemaleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGenderfemaleToolStripMenuItem.Click
         Try
-            Dim stud As Student = GetCurrentlySelectedStudent() '
-            stud.Gender = Student.GenderEnum.Female
-            'olvStudents.RefreshSelectedObjects()
+            SetCurrentStudentGender(Student.GenderEnum.Female)
         Catch ex As Exception
             Log(ex)
         End Try
@@ -256,9 +311,7 @@
 
     Private Sub SetGenderUnknownToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGenderUnknownToolStripMenuItem.Click
         Try
-            Dim stud As Student = GetCurrentlySelectedStudent()
-            stud.Gender = Student.GenderEnum.Unknown
-            'olvStudents.RefreshSelectedObjects()
+            SetCurrentStudentGender(Student.GenderEnum.Unknown)
         Catch ex As Exception
             Log(ex)
         End Try
@@ -383,12 +436,12 @@
     Private Sub LoadStudents(random As Boolean)
         Try
 
-            m_lstStudents = New List(Of Student)
+            m_lstStudents = New List(Of StudentAttendanceData)
             Dim rnd As New Random()
 
             For Each stud As Student In m_class.Students
                 If m_intStudentGroup = 0 OrElse stud.StudentGroup = m_intStudentGroup Then
-                    m_lstStudents.Add(stud)
+                    m_lstStudents.Add(New StudentAttendanceData(stud))
                 End If
                 stud.TempTag = rnd.Next
             Next
@@ -407,5 +460,41 @@
             '-- ignore (likely just reloading too many times too quickly)
         End Try
 
+    End Sub
+
+    Private Sub PresentFrontRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentFrontRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 1)
+    End Sub
+
+    Private Sub PresentSecondRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentSecondRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 2)
+    End Sub
+
+    Private Sub PresentThirdRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentThirdRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 3)
+    End Sub
+
+    Private Sub PresentFourthRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentFourthRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 4)
+    End Sub
+
+    Private Sub PresentFifthRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentFifthRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 5)
+    End Sub
+
+    Private Sub PresentSixthRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentSixthRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 6)
+    End Sub
+
+    Private Sub PresentSeventhRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentSeventhRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 7)
+    End Sub
+
+    Private Sub PresentEighthRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentEighthRowToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 8)
+    End Sub
+
+    Private Sub PresentWayBackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentWayBackToolStripMenuItem.Click
+        SetStudentStatus(AttendanceStatusEnum.Present, 9)
     End Sub
 End Class

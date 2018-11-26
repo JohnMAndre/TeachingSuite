@@ -53,7 +53,7 @@
                     Using frm As New StudentAssignmentDetails(stud, m_asmt, m_try)
                         frm.Show()
                         Application.DoEvents()
-                        frm.PrepareMarkingPage(True)
+                        frm.PrepareMarkingPageSimple()
                         frm.Close()
                     End Using
                     intGenerated += 1

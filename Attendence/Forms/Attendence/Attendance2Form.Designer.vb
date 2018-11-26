@@ -26,6 +26,7 @@ Partial Class Attendance2Form
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Attendance2Form))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReloadStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.SaveAndCloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -46,6 +47,16 @@ Partial Class Attendance2Form
         Me.AllStudentsPresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllStuentsAbsentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllStudentsExcusedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PresentFrontRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentSecondRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentThirdRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentFourthRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentFifthRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentSixthRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentSeventhRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentEighthRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresentWayBackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetQualityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Presentation1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Presentation2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -68,6 +79,11 @@ Partial Class Attendance2Form
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PublicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
+        Me.pbTimer = New System.Windows.Forms.PictureBox()
+        Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -75,12 +91,6 @@ Partial Class Attendance2Form
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
-        Me.pbTimer = New System.Windows.Forms.PictureBox()
-        Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
-        Me.LoadStudentsInTraditionalOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -103,6 +113,12 @@ Partial Class Attendance2Form
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 23)
         Me.FileToolStripMenuItem.Text = "&File"
+        '
+        'LoadStudentsInTraditionalOrderToolStripMenuItem
+        '
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Name = "LoadStudentsInTraditionalOrderToolStripMenuItem"
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Text = "&Load students in traditional order"
         '
         'ReloadStudentsToolStripMenuItem
         '
@@ -171,7 +187,7 @@ Partial Class Attendance2Form
         '
         'MarkToolStripMenuItem
         '
-        Me.MarkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresentToolStripMenuItem, Me.LateToolStripMenuItem, Me.RemovedToolStripMenuItem, Me.AbsentToolStripMenuItem, Me.ExcusedToolStripMenuItem, Me.ToolStripSeparator3, Me.AllStudentsPresentToolStripMenuItem, Me.AllStuentsAbsentToolStripMenuItem, Me.AllStudentsExcusedToolStripMenuItem})
+        Me.MarkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresentToolStripMenuItem, Me.LateToolStripMenuItem, Me.RemovedToolStripMenuItem, Me.AbsentToolStripMenuItem, Me.ExcusedToolStripMenuItem, Me.ToolStripSeparator3, Me.AllStudentsPresentToolStripMenuItem, Me.AllStuentsAbsentToolStripMenuItem, Me.AllStudentsExcusedToolStripMenuItem, Me.ToolStripSeparator5, Me.PresentFrontRowToolStripMenuItem, Me.PresentSecondRowToolStripMenuItem, Me.PresentThirdRowToolStripMenuItem, Me.PresentFourthRowToolStripMenuItem, Me.PresentFifthRowToolStripMenuItem, Me.PresentSixthRowToolStripMenuItem, Me.PresentSeventhRowToolStripMenuItem, Me.PresentEighthRowToolStripMenuItem, Me.PresentWayBackToolStripMenuItem})
         Me.MarkToolStripMenuItem.Name = "MarkToolStripMenuItem"
         Me.MarkToolStripMenuItem.Size = New System.Drawing.Size(46, 23)
         Me.MarkToolStripMenuItem.Text = "&Mark"
@@ -180,59 +196,136 @@ Partial Class Attendance2Form
         '
         Me.PresentToolStripMenuItem.Name = "PresentToolStripMenuItem"
         Me.PresentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.PresentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.PresentToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.PresentToolStripMenuItem.Text = "&Present"
         '
         'LateToolStripMenuItem
         '
         Me.LateToolStripMenuItem.Name = "LateToolStripMenuItem"
         Me.LateToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.LateToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.LateToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.LateToolStripMenuItem.Text = "&Late"
         '
         'RemovedToolStripMenuItem
         '
         Me.RemovedToolStripMenuItem.Name = "RemovedToolStripMenuItem"
         Me.RemovedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.RemovedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.RemovedToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.RemovedToolStripMenuItem.Text = "&Removed"
         '
         'AbsentToolStripMenuItem
         '
         Me.AbsentToolStripMenuItem.Name = "AbsentToolStripMenuItem"
         Me.AbsentToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.AbsentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AbsentToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.AbsentToolStripMenuItem.Text = "&Absent"
         '
         'ExcusedToolStripMenuItem
         '
         Me.ExcusedToolStripMenuItem.Name = "ExcusedToolStripMenuItem"
         Me.ExcusedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.ExcusedToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.ExcusedToolStripMenuItem.Text = "&Excused"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(178, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(255, 6)
         '
         'AllStudentsPresentToolStripMenuItem
         '
         Me.AllStudentsPresentToolStripMenuItem.Name = "AllStudentsPresentToolStripMenuItem"
-        Me.AllStudentsPresentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStudentsPresentToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.AllStudentsPresentToolStripMenuItem.Text = "All students present"
         '
         'AllStuentsAbsentToolStripMenuItem
         '
         Me.AllStuentsAbsentToolStripMenuItem.Name = "AllStuentsAbsentToolStripMenuItem"
-        Me.AllStuentsAbsentToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStuentsAbsentToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.AllStuentsAbsentToolStripMenuItem.Text = "All stuents absent"
         '
         'AllStudentsExcusedToolStripMenuItem
         '
         Me.AllStudentsExcusedToolStripMenuItem.Name = "AllStudentsExcusedToolStripMenuItem"
-        Me.AllStudentsExcusedToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.AllStudentsExcusedToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.AllStudentsExcusedToolStripMenuItem.Text = "All students excused"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(255, 6)
+        '
+        'PresentFrontRowToolStripMenuItem
+        '
+        Me.PresentFrontRowToolStripMenuItem.Name = "PresentFrontRowToolStripMenuItem"
+        Me.PresentFrontRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
+        Me.PresentFrontRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentFrontRowToolStripMenuItem.Text = "Present-Front Row"
+        '
+        'PresentSecondRowToolStripMenuItem
+        '
+        Me.PresentSecondRowToolStripMenuItem.Name = "PresentSecondRowToolStripMenuItem"
+        Me.PresentSecondRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
+        Me.PresentSecondRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentSecondRowToolStripMenuItem.Text = "Present-Second Row"
+        '
+        'PresentThirdRowToolStripMenuItem
+        '
+        Me.PresentThirdRowToolStripMenuItem.Name = "PresentThirdRowToolStripMenuItem"
+        Me.PresentThirdRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D3), System.Windows.Forms.Keys)
+        Me.PresentThirdRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentThirdRowToolStripMenuItem.Text = "Present-Third Row"
+        '
+        'PresentFourthRowToolStripMenuItem
+        '
+        Me.PresentFourthRowToolStripMenuItem.Name = "PresentFourthRowToolStripMenuItem"
+        Me.PresentFourthRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D4), System.Windows.Forms.Keys)
+        Me.PresentFourthRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentFourthRowToolStripMenuItem.Text = "Present-Fourth Row"
+        '
+        'PresentFifthRowToolStripMenuItem
+        '
+        Me.PresentFifthRowToolStripMenuItem.Name = "PresentFifthRowToolStripMenuItem"
+        Me.PresentFifthRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D5), System.Windows.Forms.Keys)
+        Me.PresentFifthRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentFifthRowToolStripMenuItem.Text = "Present-Fifth Row"
+        '
+        'PresentSixthRowToolStripMenuItem
+        '
+        Me.PresentSixthRowToolStripMenuItem.Name = "PresentSixthRowToolStripMenuItem"
+        Me.PresentSixthRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D6), System.Windows.Forms.Keys)
+        Me.PresentSixthRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentSixthRowToolStripMenuItem.Text = "Present-Sixth Row"
+        '
+        'PresentSeventhRowToolStripMenuItem
+        '
+        Me.PresentSeventhRowToolStripMenuItem.Name = "PresentSeventhRowToolStripMenuItem"
+        Me.PresentSeventhRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D7), System.Windows.Forms.Keys)
+        Me.PresentSeventhRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentSeventhRowToolStripMenuItem.Text = "Present-Seventh Row"
+        '
+        'PresentEighthRowToolStripMenuItem
+        '
+        Me.PresentEighthRowToolStripMenuItem.Name = "PresentEighthRowToolStripMenuItem"
+        Me.PresentEighthRowToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D8), System.Windows.Forms.Keys)
+        Me.PresentEighthRowToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentEighthRowToolStripMenuItem.Text = "Present-Eighth Row"
+        '
+        'PresentWayBackToolStripMenuItem
+        '
+        Me.PresentWayBackToolStripMenuItem.Name = "PresentWayBackToolStripMenuItem"
+        Me.PresentWayBackToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.D9), System.Windows.Forms.Keys)
+        Me.PresentWayBackToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
+        Me.PresentWayBackToolStripMenuItem.Text = "Present-Way Back"
         '
         'SetQualityToolStripMenuItem
         '
@@ -396,56 +489,6 @@ Partial Class Attendance2Form
         Me.dgvStudents.Size = New System.Drawing.Size(719, 429)
         Me.dgvStudents.TabIndex = 2
         '
-        'Column1
-        '
-        Me.Column1.DataPropertyName = "AdminNumber"
-        Me.Column1.HeaderText = "#"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        Me.Column2.DataPropertyName = "LocalName"
-        Me.Column2.HeaderText = "Name"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        '
-        'Column3
-        '
-        Me.Column3.DataPropertyName = "Nickname"
-        Me.Column3.HeaderText = "Nickname"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.DataPropertyName = "StudentID"
-        Me.Column4.HeaderText = "ID"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        '
-        'Column5
-        '
-        Me.Column5.DataPropertyName = "CurrentAttendenceStatus"
-        Me.Column5.HeaderText = "Status"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.DataPropertyName = "CurrentAbsences"
-        Me.Column7.HeaderText = "Absent"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column6
-        '
-        Me.Column6.DataPropertyName = "Hidden"
-        Me.Column6.HeaderText = "Hidden"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
@@ -482,11 +525,55 @@ Partial Class Attendance2Form
         '
         Me.tmrClock.Interval = 1000
         '
-        'LoadStudentsInTraditionalOrderToolStripMenuItem
+        'Column1
         '
-        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Name = "LoadStudentsInTraditionalOrderToolStripMenuItem"
-        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
-        Me.LoadStudentsInTraditionalOrderToolStripMenuItem.Text = "&Load students in traditional order"
+        Me.Column1.DataPropertyName = "AdminNumber"
+        Me.Column1.HeaderText = "#"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.DataPropertyName = "LocalName"
+        Me.Column2.HeaderText = "Name"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.DataPropertyName = "Nickname"
+        Me.Column3.HeaderText = "Nickname"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.DataPropertyName = "StudentID"
+        Me.Column4.HeaderText = "ID"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        '
+        'Column5
+        '
+        Me.Column5.DataPropertyName = "AttendenceStatus"
+        Me.Column5.HeaderText = "Status"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.DataPropertyName = "CurrentAbsences"
+        Me.Column7.HeaderText = "Absent"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.DataPropertyName = "Hidden"
+        Me.Column6.HeaderText = "Hidden"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'Attendance2Form
         '
@@ -556,6 +643,20 @@ Partial Class Attendance2Form
     Friend WithEvents tmrStudentCount As System.Windows.Forms.Timer
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents EditCurrentStudentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OverlayClockToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents pbTimer As System.Windows.Forms.PictureBox
+    Friend WithEvents tmrClock As System.Windows.Forms.Timer
+    Friend WithEvents LoadStudentsInTraditionalOrderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents PresentFrontRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentSecondRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentThirdRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentFourthRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentFifthRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentSixthRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentSeventhRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentEighthRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PresentWayBackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -563,8 +664,4 @@ Partial Class Attendance2Form
     Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column6 As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents OverlayClockToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents pbTimer As System.Windows.Forms.PictureBox
-    Friend WithEvents tmrClock As System.Windows.Forms.Timer
-    Friend WithEvents LoadStudentsInTraditionalOrderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
