@@ -117,17 +117,17 @@ Partial Class BulkGenerateMarkingSheets
         '
         'btnGenerate
         '
-        Me.btnGenerate.Location = New System.Drawing.Point(154, 232)
+        Me.btnGenerate.Location = New System.Drawing.Point(104, 232)
         Me.btnGenerate.Name = "btnGenerate"
-        Me.btnGenerate.Size = New System.Drawing.Size(75, 23)
+        Me.btnGenerate.Size = New System.Drawing.Size(163, 23)
         Me.btnGenerate.TabIndex = 5
-        Me.btnGenerate.Text = "&Generate"
+        Me.btnGenerate.Text = "Generate &BTEC"
         Me.btnGenerate.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
         Me.btnCancel.Enabled = False
-        Me.btnCancel.Location = New System.Drawing.Point(296, 232)
+        Me.btnCancel.Location = New System.Drawing.Point(363, 232)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 6

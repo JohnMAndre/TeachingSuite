@@ -49,6 +49,7 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.rbtnAutoProcessOutcomes = New System.Windows.Forms.RadioButton()
         Me.rbtnManualProcessOutcomes = New System.Windows.Forms.RadioButton()
+        Me.chkAddAutoCalcOverall = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -278,6 +279,7 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.chkAddAutoCalcOverall)
         Me.GroupBox1.Controls.Add(Me.rbtnAutoProcessOutcomes)
         Me.GroupBox1.Controls.Add(Me.rbtnManualProcessOutcomes)
         Me.GroupBox1.Controls.Add(Me.txtMinScorePass)
@@ -288,7 +290,7 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.GroupBox1.Controls.Add(Me.txtMinScoreMerit)
         Me.GroupBox1.Location = New System.Drawing.Point(499, 5)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(227, 179)
+        Me.GroupBox1.Size = New System.Drawing.Size(227, 204)
         Me.GroupBox1.TabIndex = 35
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Outcome processing"
@@ -314,6 +316,18 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.rbtnManualProcessOutcomes.TabIndex = 35
         Me.rbtnManualProcessOutcomes.Text = "Manually process each one"
         Me.rbtnManualProcessOutcomes.UseVisualStyleBackColor = True
+        '
+        'chkAddAutoCalcOverall
+        '
+        Me.chkAddAutoCalcOverall.AutoSize = True
+        Me.chkAddAutoCalcOverall.Checked = True
+        Me.chkAddAutoCalcOverall.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkAddAutoCalcOverall.Location = New System.Drawing.Point(50, 169)
+        Me.chkAddAutoCalcOverall.Name = "chkAddAutoCalcOverall"
+        Me.chkAddAutoCalcOverall.Size = New System.Drawing.Size(147, 20)
+        Me.chkAddAutoCalcOverall.TabIndex = 37
+        Me.chkAddAutoCalcOverall.Text = "Add auto-calc &overall"
+        Me.chkAddAutoCalcOverall.UseVisualStyleBackColor = True
         '
         'BulkGenerateMarkingSheetsNormalToBTEC
         '
@@ -376,4 +390,5 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents rbtnAutoProcessOutcomes As System.Windows.Forms.RadioButton
     Friend WithEvents rbtnManualProcessOutcomes As System.Windows.Forms.RadioButton
+    Friend WithEvents chkAddAutoCalcOverall As System.Windows.Forms.CheckBox
 End Class

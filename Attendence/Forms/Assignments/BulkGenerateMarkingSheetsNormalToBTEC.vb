@@ -66,7 +66,7 @@
             dblMinPercentDistinction = ConvertToDouble(txtMinScoreDistinction.Text, 60) / 100
 
 
-            For intCounter As Integer = 0 To intCounterMax '-- See if this stops MoveNextRare error
+            For intCounter As Integer = 0 To intCounterMax '-- this stops MoveNextRare error
                 Dim stud As Student = m_ClassToProcess.Students(intCounter)
 
                 '-- reset for each student
@@ -119,6 +119,7 @@
                     intTotalMax = 0
                     intTotalScore = 0
                     asmtBTEC.ImprovementComments = String.Empty
+                    asmtBTEC.OverallComments = String.Empty
 
                     For Each studasmt As StudentAssignment In stud.Assignments
                         '-- In this situation, there should be only one
@@ -157,7 +158,7 @@
 
                     '-- Next, open assessment form for BTEC and print it out
                     Using frm As New StudentAssignmentDetails(stud, asmtBTEC, m_try)
-                        
+
 
                         If boolManualProcessing Then
                             '-- Manual means user will set the outcomes and save/print
@@ -173,7 +174,10 @@
                                 For Each rslt As OutcomeResult In asmtBTEC.Outcomes
                                     rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                                 Next
-                                asmtBTEC.OverallComments = "Achieve requirements for DISTINCTION. Great work!"
+
+                                If chkAddAutoCalcOverall.Checked Then
+                                    asmtBTEC.OverallComments = "Achieved requirements for DISTINCTION. Great work!" & Environment.NewLine & Environment.NewLine & asmtBTEC.OverallComments
+                                End If
                             ElseIf dblIndividualPercent >= dblMinPercentMerit Then
                                 '-- Merit
                                 For Each rslt As OutcomeResult In asmtBTEC.Outcomes
@@ -183,7 +187,9 @@
                                         rslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved
                                     End If
                                 Next
-                                asmtBTEC.OverallComments = "Achieve requirements for MERIT"
+                                If chkAddAutoCalcOverall.Checked Then
+                                    asmtBTEC.OverallComments = "Achieved requirements for MERIT" & Environment.NewLine & Environment.NewLine & asmtBTEC.OverallComments
+                                End If
                             ElseIf dblIndividualPercent >= dblMinPercentPass Then
                                 '-- Pass
                                 For Each rslt As OutcomeResult In asmtBTEC.Outcomes
@@ -193,19 +199,24 @@
                                         rslt.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                                     End If
                                 Next
-                                asmtBTEC.OverallComments = "Achieve minimum requirements to pass"
+                                If chkAddAutoCalcOverall.Checked Then
+                                    asmtBTEC.OverallComments = "Achieved minimum requirements to pass" & Environment.NewLine & Environment.NewLine & asmtBTEC.OverallComments
+                                End If
                             Else
                                 '-- Fail
                                 For Each rslt As OutcomeResult In asmtBTEC.Outcomes
                                     rslt.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
                                 Next
-                                asmtBTEC.OverallComments = "Failed to achieve minimum requirements"
+                                If chkAddAutoCalcOverall.Checked Then
+                                    asmtBTEC.OverallComments = "Failed to achieve minimum requirements" & Environment.NewLine & Environment.NewLine & asmtBTEC.OverallComments
+                                End If
+
                             End If
 
 
                             frm.Show()
                             Application.DoEvents()
-                            frm.PrepareMarkingPage(True)
+                            frm.PrepareMarkingPageSimple()
                         End If
                         frm.Close()
                     End Using

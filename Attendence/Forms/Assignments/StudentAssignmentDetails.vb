@@ -1297,7 +1297,7 @@ Friend Class StudentAssignmentDetails
         Return strDestination
     End Function
     Private Sub btnPrintMarkingSheet_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnPrintMarkingSheet.LinkClicked
-        PrepareMarkingPage(False)
+        PrepareMarkingPageSimple()
     End Sub
 
     Private Sub btnGenerateImprovementComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementComments.LinkClicked
