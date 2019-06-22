@@ -191,7 +191,7 @@
             dgvStudents.FirstDisplayedScrollingRowIndex = intIndex - 2 '-- last three processed are on top
         End If
 
-        If dgvStudents.CurrentRow.Index < m_lstStudents.Count - 1 Then
+        If dgvStudents.CurrentRow.Index <= m_lstStudents.Count - 1 Then
             row = dgvStudents.Rows(intIndex)
             Dim style As New DataGridViewCellStyle(row.Cells(4).Style)
             Select Case status
@@ -210,9 +210,18 @@
                 row.Cells(intCounter).Style = style
             Next
             row.Selected = False
-            row = dgvStudents.Rows(intIndex + 1)
+
+            Dim intCurrentIndex As Integer
+            If dgvStudents.CurrentRow.Index = m_lstStudents.Count - 1 Then
+                '-- Last row
+                intCurrentIndex = intIndex - 1
+            Else
+                intCurrentIndex = intIndex + 1
+            End If
+            row = dgvStudents.Rows(intCurrentIndex)
+
             row.Selected = True
-            dgvStudents.CurrentCell = dgvStudents.Rows(intIndex + 1).Cells(0)
+            dgvStudents.CurrentCell = dgvStudents.Rows(intCurrentIndex).Cells(0)
         End If
         m_boolDirty = True
 
@@ -321,6 +330,17 @@
     Private Sub EditCurrentStudentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditCurrentStudentToolStripMenuItem.Click
         dgvStudents.CurrentCell = dgvStudents.Rows(dgvStudents.CurrentRow.Index).Cells(2)
         dgvStudents.BeginEdit(True)
+    End Sub
+
+    Private Sub dgvStudents_CellPainting(sender As Object, e As DataGridViewCellPaintingEventArgs) Handles dgvStudents.CellPainting
+        If e.ColumnIndex = 4 Then
+            If e.Value IsNot Nothing Then
+                If e.Value.ToString() = AttendanceStatusEnum.Unknown.ToString() Then
+                    e.CellStyle.ForeColor = e.CellStyle.BackColor
+                    e.CellStyle.SelectionForeColor = e.CellStyle.SelectionBackColor
+                End If
+            End If
+        End If
     End Sub
 
     Private Sub dgvStudents_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvStudents.KeyDown
@@ -496,5 +516,9 @@
 
     Private Sub PresentWayBackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresentWayBackToolStripMenuItem.Click
         SetStudentStatus(AttendanceStatusEnum.Present, 9)
+    End Sub
+
+    Private Sub dgvStudents_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles dgvStudents.RowPrePaint
+
     End Sub
 End Class

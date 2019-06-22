@@ -3074,7 +3074,7 @@ Public Class Student
             Return m_strExtStudentID
         End Get
         Set(value As String)
-            If value <> m_strStudentID Then
+            If value <> m_strExtStudentID Then
                 AddToActivityLog("ExtStudentID changed from " & m_strExtStudentID & " to " & value)
                 HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "ExtStudentID", m_strExtStudentID)
             End If

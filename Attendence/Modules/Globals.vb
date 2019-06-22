@@ -30,6 +30,8 @@
 
     Public Const DUMMY_SEMESTER_NAME As String = "dummy"
 
+    Friend Delegate Sub NoParameterCallback()
+
 
     ''' <summary>
     ''' Takes in an email address, spits back a hash

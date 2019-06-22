@@ -24,35 +24,35 @@ Partial Class MainFormPlain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainFormPlain))
-        Dim DataGridViewCellStyle59 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle60 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle61 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle62 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle63 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle64 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle65 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle66 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle67 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle68 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle69 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle70 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle71 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle72 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle73 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle74 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle75 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle76 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle77 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle78 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle79 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle80 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle81 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle82 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle83 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle84 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle85 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle86 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle87 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlSelectSemester = New System.Windows.Forms.Panel()
         Me.llblCloseSemesterPanel = New System.Windows.Forms.PictureBox()
         Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
@@ -160,6 +160,7 @@ Partial Class MainFormPlain
         Me.dcolResearchQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLastQuizScore = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ctxmnuStudentGrid = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyCellContentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditStudentGridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IncreaseMeritGridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DecreaseMeritGridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -325,7 +326,6 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.CopyCellContentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1076,7 +1076,7 @@ Partial Class MainFormPlain
         Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudents.Location = New System.Drawing.Point(0, 0)
         Me.dgvStudents.Name = "dgvStudents"
-        Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgvStudents.ShowCellToolTips = False
         Me.dgvStudents.Size = New System.Drawing.Size(829, 211)
         Me.dgvStudents.TabIndex = 5
@@ -1084,16 +1084,16 @@ Partial Class MainFormPlain
         'dcolAdmin
         '
         Me.dcolAdmin.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle59
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
         Me.dcolAdmin.HeaderText = "Admin"
         Me.dcolAdmin.Name = "dcolAdmin"
         '
         'dcolAlt
         '
         Me.dcolAlt.DataPropertyName = "AltNumber"
-        DataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle60
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle2
         Me.dcolAlt.HeaderText = "Alt"
         Me.dcolAlt.Name = "dcolAlt"
         Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1102,40 +1102,40 @@ Partial Class MainFormPlain
         'dcolLocalName
         '
         Me.dcolLocalName.DataPropertyName = "LocalName"
-        DataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle61
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle3
         Me.dcolLocalName.HeaderText = "Name"
         Me.dcolLocalName.Name = "dcolLocalName"
         '
         'dcolNickname
         '
         Me.dcolNickname.DataPropertyName = "Nickname"
-        DataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle62
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle4
         Me.dcolNickname.HeaderText = "Nickname"
         Me.dcolNickname.Name = "dcolNickname"
         '
         'dcolExtStudentID
         '
         Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle63
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle5
         Me.dcolExtStudentID.HeaderText = "ExtID"
         Me.dcolExtStudentID.Name = "dcolExtStudentID"
         '
         'dcolStudentID
         '
         Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle64
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle6
         Me.dcolStudentID.HeaderText = "StudentID"
         Me.dcolStudentID.Name = "dcolStudentID"
         '
         'dcolAttendanceStatus
         '
         Me.dcolAttendanceStatus.DataPropertyName = "LatestAttendenceStatus"
-        DataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle65
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle7
         Me.dcolAttendanceStatus.HeaderText = "Status"
         Me.dcolAttendanceStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Excused", "Late"})
         Me.dcolAttendanceStatus.Name = "dcolAttendanceStatus"
@@ -1145,80 +1145,80 @@ Partial Class MainFormPlain
         'dcolTags
         '
         Me.dcolTags.DataPropertyName = "Tags"
-        DataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle66
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle8
         Me.dcolTags.HeaderText = "Tags"
         Me.dcolTags.Name = "dcolTags"
         '
         'dcolTotalAbsences
         '
         Me.dcolTotalAbsences.DataPropertyName = "TotalAbsences"
-        DataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle67
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle9
         Me.dcolTotalAbsences.HeaderText = "Total"
         Me.dcolTotalAbsences.Name = "dcolTotalAbsences"
         '
         'dcolPresentationQuality
         '
         Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle68
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle10
         Me.dcolPresentationQuality.HeaderText = "Pres"
         Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
         '
         'dcolStudentGroup
         '
         Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle69
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle11
         Me.dcolStudentGroup.HeaderText = "Group"
         Me.dcolStudentGroup.Name = "dcolStudentGroup"
         '
         'dcolStudentTeam
         '
         Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle70
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle12
         Me.dcolStudentTeam.HeaderText = "Team"
         Me.dcolStudentTeam.Name = "dcolStudentTeam"
         '
         'dcolWritingQuality
         '
         Me.dcolWritingQuality.DataPropertyName = "WritingQuality"
-        DataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle71
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle13
         Me.dcolWritingQuality.HeaderText = "Write"
         Me.dcolWritingQuality.Name = "dcolWritingQuality"
         '
         'dcolDateOfBirth
         '
         Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
-        DataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle72
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle14
         Me.dcolDateOfBirth.HeaderText = "DoB"
         Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
         '
         'dcolAssignmentCount
         '
         Me.dcolAssignmentCount.DataPropertyName = "AssignmentCount"
-        DataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle73
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle15
         Me.dcolAssignmentCount.HeaderText = "Asmt"
         Me.dcolAssignmentCount.Name = "dcolAssignmentCount"
         '
         'dcolProcessedAssignmentCount
         '
         Me.dcolProcessedAssignmentCount.DataPropertyName = "ProcessedAssignments"
-        DataGridViewCellStyle74.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle74
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle16
         Me.dcolProcessedAssignmentCount.HeaderText = "P.Asmt"
         Me.dcolProcessedAssignmentCount.Name = "dcolProcessedAssignmentCount"
         '
         'dcolCurrentAbsences
         '
         Me.dcolCurrentAbsences.DataPropertyName = "CurrentAbsences"
-        DataGridViewCellStyle75.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle75
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle17
         Me.dcolCurrentAbsences.HeaderText = "Abs"
         Me.dcolCurrentAbsences.Name = "dcolCurrentAbsences"
         '
@@ -1231,16 +1231,16 @@ Partial Class MainFormPlain
         'dcolMerit
         '
         Me.dcolMerit.DataPropertyName = "MeritPoints"
-        DataGridViewCellStyle76.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle76
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle18
         Me.dcolMerit.HeaderText = "Merit"
         Me.dcolMerit.Name = "dcolMerit"
         '
         'dcolEmail
         '
         Me.dcolEmail.DataPropertyName = "EmailAddress"
-        DataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle77
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle19
         Me.dcolEmail.HeaderText = "Email"
         Me.dcolEmail.Name = "dcolEmail"
         Me.dcolEmail.ReadOnly = True
@@ -1248,16 +1248,16 @@ Partial Class MainFormPlain
         'dcolNameLatinLetters
         '
         Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
-        DataGridViewCellStyle78.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle78
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle20
         Me.dcolNameLatinLetters.HeaderText = "Standard"
         Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
         '
         'dcolClass
         '
         Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle79.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle79
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle21
         Me.dcolClass.HeaderText = "Class"
         Me.dcolClass.Name = "dcolClass"
         Me.dcolClass.ReadOnly = True
@@ -1265,24 +1265,24 @@ Partial Class MainFormPlain
         'dcolPlagiarismSeverity
         '
         Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
-        DataGridViewCellStyle80.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle80
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle22
         Me.dcolPlagiarismSeverity.HeaderText = "Plag"
         Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
         '
         'dcolExcusedAbsences
         '
         Me.dcolExcusedAbsences.DataPropertyName = "TotalExcused"
-        DataGridViewCellStyle81.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle81
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle23
         Me.dcolExcusedAbsences.HeaderText = "Excu"
         Me.dcolExcusedAbsences.Name = "dcolExcusedAbsences"
         '
         'dcolGender
         '
         Me.dcolGender.DataPropertyName = "Gender"
-        DataGridViewCellStyle82.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle82
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle24
         Me.dcolGender.HeaderText = "Gender"
         Me.dcolGender.Name = "dcolGender"
         Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1291,32 +1291,32 @@ Partial Class MainFormPlain
         'dcolDrafts
         '
         Me.dcolDrafts.DataPropertyName = "DraftsChecked"
-        DataGridViewCellStyle83.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle83
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle25
         Me.dcolDrafts.HeaderText = "Drafts"
         Me.dcolDrafts.Name = "dcolDrafts"
         '
         'dcolOfficeHours
         '
         Me.dcolOfficeHours.DataPropertyName = "OfficeHoursVisited"
-        DataGridViewCellStyle84.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle84
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle26
         Me.dcolOfficeHours.HeaderText = "Office hrs"
         Me.dcolOfficeHours.Name = "dcolOfficeHours"
         '
         'dcolResearchQuality
         '
         Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
-        DataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle85
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle27
         Me.dcolResearchQuality.HeaderText = "Research"
         Me.dcolResearchQuality.Name = "dcolResearchQuality"
         '
         'dcolLastQuizScore
         '
         Me.dcolLastQuizScore.DataPropertyName = "PerformanceLastOnlineQuiz"
-        DataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle86
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle28
         Me.dcolLastQuizScore.HeaderText = "Quiz"
         Me.dcolLastQuizScore.Name = "dcolLastQuizScore"
         '
@@ -1326,6 +1326,12 @@ Partial Class MainFormPlain
         Me.ctxmnuStudentGrid.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyCellContentsToolStripMenuItem, Me.EditStudentGridToolStripMenuItem, Me.IncreaseMeritGridToolStripMenuItem, Me.DecreaseMeritGridToolStripMenuItem, Me.ToolStripSeparator19, Me.MarkAssessment1GridToolStripMenuItem, Me.MarkAssessment2GridToolStripMenuItem, Me.MarkAssessment3GridToolStripMenuItem, Me.ToolStripSeparator20, Me.EmailStudentGridToolStripMenuItem})
         Me.ctxmnuStudentGrid.Name = "ctxmnuStudents"
         Me.ctxmnuStudentGrid.Size = New System.Drawing.Size(194, 192)
+        '
+        'CopyCellContentsToolStripMenuItem
+        '
+        Me.CopyCellContentsToolStripMenuItem.Name = "CopyCellContentsToolStripMenuItem"
+        Me.CopyCellContentsToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.CopyCellContentsToolStripMenuItem.Text = "&Copy cell contents"
         '
         'EditStudentGridToolStripMenuItem
         '
@@ -1429,8 +1435,8 @@ Partial Class MainFormPlain
         'dgcStarts
         '
         Me.dgcStarts.DataPropertyName = "StartDateTime"
-        DataGridViewCellStyle87.Format = "dd-MMM-yy HH:mm"
-        Me.dgcStarts.DefaultCellStyle = DataGridViewCellStyle87
+        DataGridViewCellStyle29.Format = "dd-MMM-yy HH:mm"
+        Me.dgcStarts.DefaultCellStyle = DataGridViewCellStyle29
         Me.dgcStarts.HeaderText = "Starts"
         Me.dgcStarts.Name = "dgcStarts"
         Me.dgcStarts.ReadOnly = True
@@ -2470,12 +2476,6 @@ Partial Class MainFormPlain
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'CopyCellContentsToolStripMenuItem
-        '
-        Me.CopyCellContentsToolStripMenuItem.Name = "CopyCellContentsToolStripMenuItem"
-        Me.CopyCellContentsToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.CopyCellContentsToolStripMenuItem.Text = "&Copy cell contents"
         '
         'MainFormPlain
         '

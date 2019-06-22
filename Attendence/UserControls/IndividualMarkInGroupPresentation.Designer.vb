@@ -22,6 +22,7 @@ Partial Class IndividualMarkInGroupPresentation
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IndividualMarkInGroupPresentation))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -75,6 +76,8 @@ Partial Class IndividualMarkInGroupPresentation
         Me.picPresentationMark = New System.Windows.Forms.PictureBox()
         Me.picContentMark = New System.Windows.Forms.PictureBox()
         Me.llblClearChecks = New System.Windows.Forms.LinkLabel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.lblActiveTime = New System.Windows.Forms.Label()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,6 +279,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.dgvImprovementItems.Location = New System.Drawing.Point(372, 0)
         Me.dgvImprovementItems.Name = "dgvImprovementItems"
         Me.dgvImprovementItems.RowHeadersVisible = False
+        Me.dgvImprovementItems.ShowCellToolTips = False
         Me.dgvImprovementItems.Size = New System.Drawing.Size(283, 306)
         Me.dgvImprovementItems.TabIndex = 28
         '
@@ -573,10 +577,23 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblClearChecks.TabStop = True
         Me.llblClearChecks.Text = "Clear X"
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1000
+        '
+        'lblActiveTime
+        '
+        Me.lblActiveTime.AutoSize = True
+        Me.lblActiveTime.Location = New System.Drawing.Point(12, 284)
+        Me.lblActiveTime.Name = "lblActiveTime"
+        Me.lblActiveTime.Size = New System.Drawing.Size(0, 16)
+        Me.lblActiveTime.TabIndex = 57
+        '
         'IndividualMarkInGroupPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.lblActiveTime)
         Me.Controls.Add(Me.llblClearChecks)
         Me.Controls.Add(Me.lblImprovementCharCount)
         Me.Controls.Add(Me.llblAbsent)
@@ -691,5 +708,7 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents PreviousPerformanceColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LastTimeIncludedColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents QuantityGivenColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents lblActiveTime As System.Windows.Forms.Label
 
 End Class

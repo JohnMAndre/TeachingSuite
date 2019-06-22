@@ -1,5 +1,7 @@
 ﻿Public Class IndividualMarkInGroupPresentation
 
+    Public Event RequestRemoval(sender As IndividualMarkInGroupPresentation)
+
     Private m_intContentGrade As Integer
     Private m_intPresentationGrade As Integer
     Private m_intLanguageGrade As Integer
@@ -8,6 +10,7 @@
     Private m_studentAssignment As StudentAssignment
     Private m_markTry As Semester.MarkingTry
     Private m_intTotalGrade As Integer
+    Private m_intSecondsActive As Integer
 
     Public Sub LoadStudent(stud As Student, assignment As ClassAssignment, attempt As Semester.MarkingTry)
         m_student = stud
@@ -326,6 +329,11 @@
     Private Sub llblAbsent_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblAbsent.LinkClicked
         txtOverall.Text = "Student was absent."
         txtImprovement.Text &= "Please attend presentations in the future."
+
+        If MessageBox.Show("Close student and re-arrange?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+            Me.Save()
+            RaiseEvent RequestRemoval(Me)
+        End If
     End Sub
 
     Private Sub txtImprovement_TextChanged(sender As Object, e As EventArgs) Handles txtImprovement.TextChanged
@@ -353,13 +361,30 @@
 
     Private Sub IndividualMarkInGroupPresentation_Enter(sender As Object, e As EventArgs) Handles MyBase.Enter
         Me.BackColor = Color.LightSalmon
+
+        Timer1.Start()
     End Sub
 
     Private Sub IndividualMarkInGroupPresentation_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
         Me.BackColor = Color.LightGray
+
+        Timer1.Stop()
     End Sub
 
-    Private Sub picContentMark_Click(sender As Object, e As EventArgs) Handles picContentMark.Click
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        m_intSecondsActive += 1
 
+        UpdateActiveTime()
     End Sub
+
+    Private Sub UpdateActiveTime()
+        If InvokeRequired Then
+            Dim cb As New NoParameterCallback(AddressOf UpdateActiveTime)
+            Invoke(cb)
+        Else
+            Dim ts As New TimeSpan(0, 0, m_intSecondsActive)
+            Me.lblActiveTime.Text = ts.ToString("h'h 'm'm 's's'")
+        End If
+    End Sub
+
 End Class

@@ -28,6 +28,7 @@ Partial Class GroupPresentationAssessment
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblTimer = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.btnSaveAllKeepOpen = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'FlowLayoutPanel1
@@ -45,7 +46,7 @@ Partial Class GroupPresentationAssessment
         'btnSave
         '
         Me.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSave.Location = New System.Drawing.Point(320, 373)
+        Me.btnSave.Location = New System.Drawing.Point(246, 373)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 43
@@ -67,11 +68,22 @@ Partial Class GroupPresentationAssessment
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'btnSaveAllKeepOpen
+        '
+        Me.btnSaveAllKeepOpen.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(436, 373)
+        Me.btnSaveAllKeepOpen.Name = "btnSaveAllKeepOpen"
+        Me.btnSaveAllKeepOpen.Size = New System.Drawing.Size(167, 23)
+        Me.btnSaveAllKeepOpen.TabIndex = 45
+        Me.btnSaveAllKeepOpen.Text = "&Save (keep marking)"
+        Me.btnSaveAllKeepOpen.UseVisualStyleBackColor = True
+        '
         'GroupPresentationAssessment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(719, 396)
+        Me.Controls.Add(Me.btnSaveAllKeepOpen)
         Me.Controls.Add(Me.lblTimer)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.FlowLayoutPanel1)
@@ -89,4 +101,5 @@ Partial Class GroupPresentationAssessment
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents lblTimer As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents btnSaveAllKeepOpen As System.Windows.Forms.Button
 End Class

@@ -554,7 +554,7 @@ Partial Class Attendance2Form
         '
         'Column5
         '
-        Me.Column5.DataPropertyName = "AttendenceStatus"
+        Me.Column5.DataPropertyName = "AttendanceStatus"
         Me.Column5.HeaderText = "Status"
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
