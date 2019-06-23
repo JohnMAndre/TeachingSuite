@@ -323,6 +323,7 @@ Public Class MainFormPlain
                 Dim objNewClass As New SchoolClass(GetSelectedClassGroup())
                 objNewClass.Name = strNewClass
                 GetSelectedClassGroup.Classes.Add(objNewClass)
+                AddApplicationHistory("Added SchoolClass: " & strNewClass)
                 LoadClasses()
             End If
         End If
@@ -797,6 +798,7 @@ Public Class MainFormPlain
         Else
             Using frm As New ClassAssignmentDetails(GetSelectedClassGroup())
                 If frm.ShowDialog(Me) = DialogResult.OK Then
+                    AddApplicationHistory("Added BTEC Assignment: " & frm.txtName.Text)
                     LoadClassAssignments()
                 End If
             End Using
@@ -836,8 +838,10 @@ Public Class MainFormPlain
             If MessageBox.Show("Are you sure you want to delete " & GetSelectedAssignment.Name & " for the class " & GetSelectedClass.Name & "?" &
                                Environment.NewLine & Environment.NewLine, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
+                    AddApplicationHistory("Deleted BTEC Assignment: " & GetSelectedAssignment.Name)
                     GetSelectedClassGroup().AssignmentsBTEC.Remove(GetSelectedAssignment())
                 Else
+                    AddApplicationHistory("Deleted Regular Assignment: " & GetSelectedAssignment.Name)
                     GetSelectedClassGroup().Assignments.Remove(GetSelectedAssignment())
                 End If
                 LoadClassAssignments()
@@ -970,6 +974,7 @@ Public Class MainFormPlain
                 Dim objNewClassGroup As New ClassGroup(ThisSemester)
                 objNewClassGroup.Name = strNewClass
                 ThisSemester.ClassGroups.Add(objNewClassGroup)
+                AddApplicationHistory("Added ClassGroup: " & strNewClass)
                 LoadClassGroups()
             End If
         End If
@@ -980,6 +985,7 @@ Public Class MainFormPlain
         If MessageBox.Show("Are you sure you want to delete " & GetSelectedClassGroup.Name & "?" &
                            Environment.NewLine & Environment.NewLine &
                            "It has " & intClasses.ToString("#,##0") & " classes.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+            AddApplicationHistory("Deleted ClassGroup: " & GetSelectedClassGroup.Name)
             ThisSemester.ClassGroups.Remove(GetSelectedClassGroup())
             LoadClassGroups()
         End If
@@ -2254,6 +2260,8 @@ Public Class MainFormPlain
         If MessageBox.Show("Are you sure you want to delete " & GetSelectedClass.Name & "?" &
                            Environment.NewLine & Environment.NewLine &
                            "It has " & intStudents.ToString("#,##0") & " students.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+
+            AddApplicationHistory("Deleted SchoolClass: " & GetSelectedClass.Name)
             GetSelectedClassGroup.Classes.Remove(GetSelectedClass())
             LoadClasses()
             dgvStudents.DataSource = Nothing
@@ -2302,6 +2310,7 @@ Public Class MainFormPlain
         Else
             Using frm As New ClassAssignmentNormalDetails(GetSelectedClassGroup())
                 If frm.ShowDialog(Me) = DialogResult.OK Then
+                    AddApplicationHistory("Added Normal Assignment: " & frm.txtName.Text)
                     LoadClassAssignments()
                 End If
             End Using
