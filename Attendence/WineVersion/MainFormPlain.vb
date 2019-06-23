@@ -3412,4 +3412,34 @@ Public Class MainFormPlain
     Private Sub CopyCellContentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyCellContentsToolStripMenuItem.Click
         Clipboard.SetDataObject(dgvStudents.CurrentCell.Value, False)
     End Sub
+
+    Private Sub AssignChoicesToStudentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignChoicesToStudentsToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Dim objClassToSend As SchoolClass
+            Dim objClass As SchoolClass = CType(lstClasses.Items(lstClasses.SelectedIndex), SchoolClass)
+            If ClassIsCombinedView(objClass) Then
+                Dim boolSetAlready As Boolean
+                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                    If Not boolSetAlready Then
+                        Dim grp As New ClassGroup(Nothing)
+                        grp.UseNickname = GetSelectedClassGroup.UseNickname
+                        objClassToSend = New SchoolClass(grp)
+                        objClassToSend.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                        objClassToSend.Students.AddRange(objCls.Students)
+                        boolSetAlready = True
+                    Else
+                        objClassToSend.Students.AddRange(objCls.Students)
+                    End If
+                Next
+            Else
+                objClassToSend = objClass
+            End If
+
+            objClassToSend.ClassGroup = GetSelectedClassGroup()
+            Dim frm As New AssignChoicesToStudents(objClassToSend.Students)
+            frm.Show(Me)
+        End If
+    End Sub
 End Class

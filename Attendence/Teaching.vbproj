@@ -349,6 +349,12 @@
     <Compile Include="Forms\Upgrade.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Utilities\AssignChoicesToStudents.Designer.vb">
+      <DependentUpon>AssignChoicesToStudents.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Utilities\AssignChoicesToStudents.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaces\IMainForm.vb" />
     <Compile Include="Modules\DuplexSettings.vb" />
     <Compile Include="Forms\Assignments\AssignmentDocumentSelector.Designer.vb">
@@ -814,6 +820,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Upgrade.resx">
       <DependentUpon>Upgrade.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Utilities\AssignChoicesToStudents.resx">
+      <DependentUpon>AssignChoicesToStudents.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
