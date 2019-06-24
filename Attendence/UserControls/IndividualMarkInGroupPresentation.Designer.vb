@@ -51,7 +51,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.LastTimeIncludedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantityGivenColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chkNominate = New System.Windows.Forms.CheckBox()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.txtLocalName = New System.Windows.Forms.TextBox()
         Me.txtNickname = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -78,6 +77,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblClearChecks = New System.Windows.Forms.LinkLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.lblActiveTime = New System.Windows.Forms.Label()
+        Me.llblStudentName = New System.Windows.Forms.LinkLabel()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,15 +345,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.chkNominate.Text = "Nominate"
         Me.chkNominate.UseVisualStyleBackColor = True
         '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(3, 3)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(46, 16)
-        Me.Label17.TabIndex = 31
-        Me.Label17.Text = "Name:"
-        '
         'txtLocalName
         '
         Me.txtLocalName.Location = New System.Drawing.Point(54, 0)
@@ -589,10 +580,21 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblActiveTime.Size = New System.Drawing.Size(0, 16)
         Me.lblActiveTime.TabIndex = 57
         '
+        'llblStudentName
+        '
+        Me.llblStudentName.AutoSize = True
+        Me.llblStudentName.Location = New System.Drawing.Point(0, 3)
+        Me.llblStudentName.Name = "llblStudentName"
+        Me.llblStudentName.Size = New System.Drawing.Size(42, 16)
+        Me.llblStudentName.TabIndex = 58
+        Me.llblStudentName.TabStop = True
+        Me.llblStudentName.Text = "Name"
+        '
         'IndividualMarkInGroupPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.llblStudentName)
         Me.Controls.Add(Me.lblActiveTime)
         Me.Controls.Add(Me.llblClearChecks)
         Me.Controls.Add(Me.lblImprovementCharCount)
@@ -639,7 +641,6 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Label18)
-        Me.Controls.Add(Me.Label17)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "IndividualMarkInGroupPresentation"
@@ -680,7 +681,6 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents lblContentWeight As System.Windows.Forms.Label
     Friend WithEvents dgvImprovementItems As System.Windows.Forms.DataGridView
     Friend WithEvents chkNominate As System.Windows.Forms.CheckBox
-    Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents txtLocalName As System.Windows.Forms.TextBox
     Friend WithEvents txtNickname As System.Windows.Forms.TextBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
@@ -710,5 +710,6 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents QuantityGivenColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents lblActiveTime As System.Windows.Forms.Label
+    Friend WithEvents llblStudentName As System.Windows.Forms.LinkLabel
 
 End Class

@@ -32,12 +32,12 @@ Partial Class AssignChoicesToStudents
         Me.colShortName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colLongName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvPreferences = New System.Windows.Forms.DataGridView()
-        Me.llblLoadPreferences = New System.Windows.Forms.LinkLabel()
-        Me.llblLoadChoices = New System.Windows.Forms.LinkLabel()
         Me.colStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colGrade = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPrefOrder = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colChoiceID2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.llblLoadPreferences = New System.Windows.Forms.LinkLabel()
+        Me.llblLoadChoices = New System.Windows.Forms.LinkLabel()
         CType(Me.nudChoicesPerStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvChoices, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvPreferences, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,15 +57,15 @@ Partial Class AssignChoicesToStudents
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(21, 87)
+        Me.Label2.Location = New System.Drawing.Point(123, 87)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(223, 18)
+        Me.Label2.Size = New System.Drawing.Size(143, 18)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Number of choices per student:"
+        Me.Label2.Text = "choices per student"
         '
         'nudChoicesPerStudent
         '
-        Me.nudChoicesPerStudent.Location = New System.Drawing.Point(250, 85)
+        Me.nudChoicesPerStudent.Location = New System.Drawing.Point(28, 85)
         Me.nudChoicesPerStudent.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nudChoicesPerStudent.Name = "nudChoicesPerStudent"
         Me.nudChoicesPerStudent.Size = New System.Drawing.Size(87, 26)
@@ -125,28 +125,6 @@ Partial Class AssignChoicesToStudents
         Me.dgvPreferences.Size = New System.Drawing.Size(407, 285)
         Me.dgvPreferences.TabIndex = 6
         '
-        'llblLoadPreferences
-        '
-        Me.llblLoadPreferences.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblLoadPreferences.AutoSize = True
-        Me.llblLoadPreferences.Location = New System.Drawing.Point(521, 120)
-        Me.llblLoadPreferences.Name = "llblLoadPreferences"
-        Me.llblLoadPreferences.Size = New System.Drawing.Size(190, 18)
-        Me.llblLoadPreferences.TabIndex = 7
-        Me.llblLoadPreferences.TabStop = True
-        Me.llblLoadPreferences.Text = "Paste student preferences"
-        Me.llblLoadPreferences.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'llblLoadChoices
-        '
-        Me.llblLoadChoices.AutoSize = True
-        Me.llblLoadChoices.Location = New System.Drawing.Point(12, 120)
-        Me.llblLoadChoices.Name = "llblLoadChoices"
-        Me.llblLoadChoices.Size = New System.Drawing.Size(173, 18)
-        Me.llblLoadChoices.TabIndex = 8
-        Me.llblLoadChoices.TabStop = True
-        Me.llblLoadChoices.Text = "Paste available choices"
-        '
         'colStudentID
         '
         Me.colStudentID.DataPropertyName = "StudentID"
@@ -173,6 +151,28 @@ Partial Class AssignChoicesToStudents
         Me.colChoiceID2.DataPropertyName = "ChoiceID"
         Me.colChoiceID2.HeaderText = "ID"
         Me.colChoiceID2.Name = "colChoiceID2"
+        '
+        'llblLoadPreferences
+        '
+        Me.llblLoadPreferences.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblLoadPreferences.AutoSize = True
+        Me.llblLoadPreferences.Location = New System.Drawing.Point(521, 120)
+        Me.llblLoadPreferences.Name = "llblLoadPreferences"
+        Me.llblLoadPreferences.Size = New System.Drawing.Size(190, 18)
+        Me.llblLoadPreferences.TabIndex = 7
+        Me.llblLoadPreferences.TabStop = True
+        Me.llblLoadPreferences.Text = "Paste student preferences"
+        Me.llblLoadPreferences.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'llblLoadChoices
+        '
+        Me.llblLoadChoices.AutoSize = True
+        Me.llblLoadChoices.Location = New System.Drawing.Point(12, 120)
+        Me.llblLoadChoices.Name = "llblLoadChoices"
+        Me.llblLoadChoices.Size = New System.Drawing.Size(173, 18)
+        Me.llblLoadChoices.TabIndex = 8
+        Me.llblLoadChoices.TabStop = True
+        Me.llblLoadChoices.Text = "Paste available choices"
         '
         'AssignChoicesToStudents
         '

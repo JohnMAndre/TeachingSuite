@@ -55,6 +55,8 @@
         Dim intWidth As Integer
 
         '-- 
+        Me.HorizontalScroll.Visible = False
+        Me.VerticalScroll.Value = False
         Select Case m_lstStudents.Count
             Case 0
                 '-- nobody in this group? This should never happen
@@ -64,7 +66,7 @@
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
             Case 2
                 '-- special case for just two. Here take up full vertical and 1/2 horizontal
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - intBoarderSpace)  '-- full verticle
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - intBoarderSpace)   '-- full verticle
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - intBoarderSpace '-- not more than 2 wide
             Case 3, 4
                 '-- this should be the norm - either 3 or 4 team members
@@ -74,6 +76,7 @@
             Case Else
                 '-- Need to shrink the height of each control a bit
                 '   so user can easily see that there are more than 4 controls
+                Me.VerticalScroll.Value = True
                 intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2)) / 2 '-- slightly less high so user can see they need to scroll
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - intBoarderSpace) / 2 '-- not more than 2 wide
 

@@ -2,12 +2,13 @@
 
     Public Event RequestRemoval(sender As IndividualMarkInGroupPresentation)
 
+    Private m_student As Student
+    Private m_studentAssignment As StudentAssignment
+    Private m_improvementItems As New List(Of StudentImprovementItem) '-- include those assigned to the student and those not
+
     Private m_intContentGrade As Integer
     Private m_intPresentationGrade As Integer
     Private m_intLanguageGrade As Integer
-    Private m_student As Student
-    Private m_improvementItems As New List(Of StudentImprovementItem) '-- include those assigned to the student and those not
-    Private m_studentAssignment As StudentAssignment
     Private m_markTry As Semester.MarkingTry
     Private m_intTotalGrade As Integer
     Private m_intSecondsActive As Integer
@@ -383,8 +384,13 @@
             Invoke(cb)
         Else
             Dim ts As New TimeSpan(0, 0, m_intSecondsActive)
-            Me.lblActiveTime.Text = ts.ToString("h'h 'm'm 's's'")
+            Me.lblActiveTime.Text = ts.ToString("m'm 's's'")
         End If
     End Sub
 
+    Private Sub llblStudentName_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblStudentName.LinkClicked
+        Using frm As New StudentDetail(m_student)
+            frm.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

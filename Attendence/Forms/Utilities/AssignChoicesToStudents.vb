@@ -322,6 +322,9 @@
     End Function
 
     Private Sub llblLoadPreferences_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblLoadPreferences.LinkClicked
+
+        Dim strErrorZone As String = String.Empty
+
         Try
             m_lstPreferences = New List(Of StudentPreference)
             Dim objPref As StudentPreference
@@ -352,19 +355,35 @@
                 objPref = New StudentPreference()
                 objPref.StudentID = row(0).Trim()
                 If IsNumeric(row(1)) Then
-                    objPref.PreferenceOrder = row(1).Trim()
+                    If row.Length >= 2 Then
+                        objPref.PreferenceOrder = row(1).Trim()
+                    Else
+                        objPref.PreferenceOrder = 1
+                    End If
                 Else
                     objPref.PreferenceOrder = 1
                 End If
+                strErrorZone = "a"
                 If IsNumeric(row(2)) Then
-                    objPref.ChoiceID = row(2).Trim()
+                    strErrorZone = "b"
+                    If row.Length >= 3 AndAlso row(2).Length > 0 Then '-- Under wine, zero length string shows as numeric, but on assignment: crash
+                        strErrorZone = "c"
+                        objPref.ChoiceID = row(2).Trim()
+                        strErrorZone = "d"
+                    Else
+                        strErrorZone = "e"
+                        Continue For
+                    End If
                 Else
                     '-- no choice, so skip this record
                     Continue For
                 End If
 
+                strErrorZone = "f"
                 m_lstPreferences.Add(objPref)
             Next
+            strErrorZone = "g"
+
 
             '-- add in grade data
             Dim stud As Student
@@ -375,8 +394,11 @@
                 End If
             Next
 
+
             '-- Sort students by grade
             m_lstPreferences.Sort(AddressOf CompareStudentsByGrade)
+
+            strErrorZone = "h"
 
             '-- Add to DGV
             dgvPreferences.AutoGenerateColumns = False
@@ -389,7 +411,7 @@
             End Try
 
         Catch ex As Exception
-            MessageBox.Show("There was a problem pasting (" & ex.Message & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("There was a problem pasting (" & ex.Message & "; Zone: " & strErrorZone & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class
