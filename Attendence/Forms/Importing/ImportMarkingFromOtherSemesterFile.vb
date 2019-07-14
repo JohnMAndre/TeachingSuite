@@ -397,6 +397,7 @@
                     Next
                 Next
                 MessageBox.Show("Imported " & intStudentsImported.ToString("#,##0") & " student assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                AddApplicationHistory("Imported " & intStudentsImported.ToString("#,##0") & " student assignments (" & baseAsmt.Name & ") from other database.")
             Else
                 MessageBox.Show("Nothing was imported.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If

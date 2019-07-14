@@ -3129,6 +3129,9 @@ Public Class MainFormPlain
                 End If
             End If
 
+            AddApplicationHistory("Group presentation marking (" & strTeam & ").")
+
+
             Dim asmt As ClassAssignment = CType(GetSelectedAssignment(), ClassAssignment)
             Dim frm As New GroupPresentationAssessment(lstFiltered, asmt, attempt)
             frm.Show()
