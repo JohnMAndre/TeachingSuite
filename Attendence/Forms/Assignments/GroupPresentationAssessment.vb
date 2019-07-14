@@ -49,6 +49,10 @@
         sw = Stopwatch.StartNew()
     End Sub
 
+    Private Sub GroupPresentationAssessment_ResizeEnd(sender As Object, e As System.EventArgs) Handles Me.ResizeEnd
+        ReArrangeControls()
+    End Sub
+
     Private Sub GroupPresentationAssessment_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Dim intBoarderSpace As Integer = 8
         Dim intHeight As Integer
@@ -66,8 +70,8 @@
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
             Case 2
                 '-- special case for just two. Here take up full vertical and 1/2 horizontal
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - intBoarderSpace)   '-- full verticle
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - intBoarderSpace '-- not more than 2 wide
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2))   '-- full verticle
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
             Case 3, 4
                 '-- this should be the norm - either 3 or 4 team members
                 '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
@@ -130,8 +134,8 @@
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
             Case 2
                 '-- special case for just two. Here take up full vertical and 1/2 horizontal
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - intBoarderSpace)  '-- full verticle
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - intBoarderSpace '-- not more than 2 wide
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2))   '-- full verticle
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
             Case 3, 4
                 '-- this should be the norm - either 3 or 4 team members
                 '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
