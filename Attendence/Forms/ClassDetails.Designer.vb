@@ -23,26 +23,27 @@ Partial Class ClassDetails
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ClassDetails))
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.btnShowAttendanceSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtNotes = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblCalculateTotalTime = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.nudEmailAccountToUse = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.lblEmailAccountCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.txtEmailAddress = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.lblEmailCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblCopyTopics = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblPasteTopics = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnCopySessionsFromOtherClass = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnRegenerateActualSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.txtClassName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ScheduleItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveDownToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveupToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblEmailAccountCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lblEmailCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.btnShowNormalSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowSkips = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -138,14 +139,6 @@ Partial Class ClassDetails
         Me.btnShowAttendanceSessions.Values.Image = Global.Teaching.My.Resources.Resources.calendar_32
         Me.btnShowAttendanceSessions.Values.Text = ""
         '
-        'KryptonLabel3
-        '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(411, 28)
-        Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(50, 19)
-        Me.KryptonLabel3.TabIndex = 140
-        Me.KryptonLabel3.Values.Text = "Notes:"
-        '
         'txtNotes
         '
         Me.txtNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -177,28 +170,12 @@ Partial Class ClassDetails
         Me.nudEmailAccountToUse.ThousandsSeparator = True
         Me.nudEmailAccountToUse.Value = New Decimal(New Integer() {15, 0, 0, 0})
         '
-        'lblEmailAccountCaption
-        '
-        Me.lblEmailAccountCaption.Location = New System.Drawing.Point(12, 80)
-        Me.lblEmailAccountCaption.Name = "lblEmailAccountCaption"
-        Me.lblEmailAccountCaption.Size = New System.Drawing.Size(99, 19)
-        Me.lblEmailAccountCaption.TabIndex = 135
-        Me.lblEmailAccountCaption.Values.Text = "Email account:"
-        '
         'txtEmailAddress
         '
         Me.txtEmailAddress.Location = New System.Drawing.Point(130, 54)
         Me.txtEmailAddress.Name = "txtEmailAddress"
         Me.txtEmailAddress.Size = New System.Drawing.Size(275, 19)
         Me.txtEmailAddress.TabIndex = 85
-        '
-        'lblEmailCaption
-        '
-        Me.lblEmailCaption.Location = New System.Drawing.Point(12, 54)
-        Me.lblEmailCaption.Name = "lblEmailCaption"
-        Me.lblEmailCaption.Size = New System.Drawing.Size(48, 19)
-        Me.lblEmailCaption.TabIndex = 84
-        Me.lblEmailCaption.Values.Text = "Email:"
         '
         'llblCopyTopics
         '
@@ -250,14 +227,6 @@ Partial Class ClassDetails
         Me.txtClassName.Size = New System.Drawing.Size(275, 19)
         Me.txtClassName.TabIndex = 64
         '
-        'KryptonLabel1
-        '
-        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 28)
-        Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(85, 19)
-        Me.KryptonLabel1.TabIndex = 42
-        Me.KryptonLabel1.Values.Text = "Class name:"
-        '
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -302,8 +271,44 @@ Partial Class ClassDetails
         Me.MoveupToolStripMenuItem1.Size = New System.Drawing.Size(202, 22)
         Me.MoveupToolStripMenuItem1.Text = "Move &up"
         '
+        'KryptonLabel3
+        '
+        Me.KryptonLabel3.Location = New System.Drawing.Point(411, 28)
+        Me.KryptonLabel3.Name = "KryptonLabel3"
+        Me.KryptonLabel3.Size = New System.Drawing.Size(50, 19)
+        Me.KryptonLabel3.TabIndex = 140
+        Me.KryptonLabel3.Values.Text = "Notes:"
+        '
+        'lblEmailAccountCaption
+        '
+        Me.lblEmailAccountCaption.Location = New System.Drawing.Point(12, 80)
+        Me.lblEmailAccountCaption.Name = "lblEmailAccountCaption"
+        Me.lblEmailAccountCaption.Size = New System.Drawing.Size(99, 19)
+        Me.lblEmailAccountCaption.TabIndex = 135
+        Me.lblEmailAccountCaption.Values.Text = "Email account:"
+        '
+        'lblEmailCaption
+        '
+        Me.lblEmailCaption.Location = New System.Drawing.Point(12, 54)
+        Me.lblEmailCaption.Name = "lblEmailCaption"
+        Me.lblEmailCaption.Size = New System.Drawing.Size(48, 19)
+        Me.lblEmailCaption.TabIndex = 84
+        Me.lblEmailCaption.Values.Text = "Email:"
+        '
+        'KryptonLabel1
+        '
+        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 28)
+        Me.KryptonLabel1.Name = "KryptonLabel1"
+        Me.KryptonLabel1.Size = New System.Drawing.Size(85, 19)
+        Me.KryptonLabel1.TabIndex = 42
+        Me.KryptonLabel1.Values.Text = "Class name:"
+        '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -356,7 +361,6 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvPlannedSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvPlannedSchedule.CellEditUseWholeCell = False
         Me.olvPlannedSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn2, Me.OlvColumn7, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvPlannedSchedule.ContextMenuStrip = Me.ctxmnuPlannedSchedule
         Me.olvPlannedSchedule.Cursor = System.Windows.Forms.Cursors.Default
@@ -452,7 +456,6 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvSessionsToSkip.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvSessionsToSkip.CellEditUseWholeCell = False
         Me.olvSessionsToSkip.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn16})
         Me.olvSessionsToSkip.ContextMenuStrip = Me.ctxmnuSkipSessions
         Me.olvSessionsToSkip.Cursor = System.Windows.Forms.Cursors.Default
@@ -537,7 +540,6 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvActualSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvActualSessions.CellEditUseWholeCell = False
         Me.olvActualSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn18})
         Me.olvActualSessions.ContextMenuStrip = Me.ctxmnuActualSessions
         Me.olvActualSessions.Cursor = System.Windows.Forms.Cursors.Default
@@ -713,7 +715,6 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAttendanceSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvAttendanceSessions.CellEditUseWholeCell = False
         Me.olvAttendanceSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn21, Me.OlvColumn28})
         Me.olvAttendanceSessions.ContextMenuStrip = Me.ctxmnuAttendanceSession
         Me.olvAttendanceSessions.Cursor = System.Windows.Forms.Cursors.Default

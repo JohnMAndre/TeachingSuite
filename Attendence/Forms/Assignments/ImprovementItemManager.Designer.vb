@@ -123,7 +123,6 @@ Partial Class ImprovementItemManager
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn2)
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn3)
         Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvImprovementItems.CellEditUseWholeCell = False
         Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn2, Me.OlvColumn3})
         Me.olvImprovementItems.CopySelectionOnControlC = False
         Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False

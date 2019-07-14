@@ -124,7 +124,6 @@ Partial Class AttendenceForm
         Me.olvStudents.AllColumns.Add(Me.OlvColumn15)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn8, Me.OlvColumn1, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn12, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False

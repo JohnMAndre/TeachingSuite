@@ -49,6 +49,7 @@ Partial Class EmailQuizResults
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
         Me.txtQuizName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblViewQuizResultsFolder = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -71,7 +72,6 @@ Partial Class EmailQuizResults
         Me.ReplaceSelectedStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DebugToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckAllRowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.olvQuizDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,7 +117,6 @@ Partial Class EmailQuizResults
         Me.olvQuizDetails.AllowColumnReorder = True
         Me.olvQuizDetails.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvQuizDetails.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick
-        Me.olvQuizDetails.CellEditUseWholeCell = False
         Me.olvQuizDetails.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn6, Me.olvcolRecordType, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn12, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn16, Me.OlvColumn17, Me.OlvColumn18, Me.OlvColumn19, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn5, Me.OlvColumn7})
         Me.olvQuizDetails.CopySelectionOnControlC = False
         Me.olvQuizDetails.CopySelectionOnControlCUsesDragSource = False
@@ -373,6 +372,17 @@ Partial Class EmailQuizResults
         Me.KryptonPanel1.Size = New System.Drawing.Size(991, 153)
         Me.KryptonPanel1.TabIndex = 5
         '
+        'txtEmailTrailingText
+        '
+        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(249, 25)
+        Me.txtEmailTrailingText.Multiline = True
+        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(730, 116)
+        Me.txtEmailTrailingText.TabIndex = 57
+        '
         'txtQuizName
         '
         Me.txtQuizName.Location = New System.Drawing.Point(476, 3)
@@ -538,19 +548,8 @@ Partial Class EmailQuizResults
         'CheckAllRowsToolStripMenuItem
         '
         Me.CheckAllRowsToolStripMenuItem.Name = "CheckAllRowsToolStripMenuItem"
-        Me.CheckAllRowsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckAllRowsToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
         Me.CheckAllRowsToolStripMenuItem.Text = "Check all rows"
-        '
-        'txtEmailTrailingText
-        '
-        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(249, 25)
-        Me.txtEmailTrailingText.Multiline = True
-        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(730, 116)
-        Me.txtEmailTrailingText.TabIndex = 57
         '
         'EmailQuizResults
         '

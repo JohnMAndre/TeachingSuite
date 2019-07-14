@@ -164,7 +164,7 @@ Partial Class EmailModuleResults
         Me.nudSendInXHours.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nudSendInXHours.Location = New System.Drawing.Point(135, 250)
         Me.nudSendInXHours.Name = "nudSendInXHours"
-        Me.nudSendInXHours.Size = New System.Drawing.Size(96, 22)
+        Me.nudSendInXHours.Size = New System.Drawing.Size(96, 21)
         Me.nudSendInXHours.TabIndex = 43
         Me.nudSendInXHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudSendInXHours.ThousandsSeparator = True
@@ -188,7 +188,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeGrade.Location = New System.Drawing.Point(4, 322)
         Me.chkIncludeGrade.Name = "chkIncludeGrade"
-        Me.chkIncludeGrade.Size = New System.Drawing.Size(101, 20)
+        Me.chkIncludeGrade.Size = New System.Drawing.Size(109, 19)
         Me.chkIncludeGrade.TabIndex = 57
         Me.chkIncludeGrade.Text = "Include grade:"
         Me.chkIncludeGrade.Values.Text = "Include grade:"
@@ -208,7 +208,7 @@ Partial Class EmailModuleResults
         '
         Me.lblLoadedStudents.Location = New System.Drawing.Point(98, 20)
         Me.lblLoadedStudents.Name = "lblLoadedStudents"
-        Me.lblLoadedStudents.Size = New System.Drawing.Size(17, 20)
+        Me.lblLoadedStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblLoadedStudents.TabIndex = 38
         Me.lblLoadedStudents.Values.Text = "0"
         '
@@ -216,7 +216,7 @@ Partial Class EmailModuleResults
         '
         Me.lblSelectedStudents.Location = New System.Drawing.Point(99, 37)
         Me.lblSelectedStudents.Name = "lblSelectedStudents"
-        Me.lblSelectedStudents.Size = New System.Drawing.Size(17, 20)
+        Me.lblSelectedStudents.Size = New System.Drawing.Size(18, 19)
         Me.lblSelectedStudents.TabIndex = 61
         Me.lblSelectedStudents.Values.Text = "0"
         '
@@ -228,7 +228,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeFeedback.Location = New System.Drawing.Point(135, 322)
         Me.chkIncludeFeedback.Name = "chkIncludeFeedback"
-        Me.chkIncludeFeedback.Size = New System.Drawing.Size(78, 20)
+        Me.chkIncludeFeedback.Size = New System.Drawing.Size(86, 19)
         Me.chkIncludeFeedback.TabIndex = 62
         Me.chkIncludeFeedback.Text = "Feedback:"
         Me.chkIncludeFeedback.Values.Text = "Feedback:"
@@ -241,7 +241,7 @@ Partial Class EmailModuleResults
         Me.chkFinalFeedback.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkFinalFeedback.Location = New System.Drawing.Point(162, 341)
         Me.chkFinalFeedback.Name = "chkFinalFeedback"
-        Me.chkFinalFeedback.Size = New System.Drawing.Size(51, 20)
+        Me.chkFinalFeedback.Size = New System.Drawing.Size(57, 19)
         Me.chkFinalFeedback.TabIndex = 63
         Me.chkFinalFeedback.Text = "Final:"
         Me.chkFinalFeedback.Values.Text = "Final:"
@@ -254,7 +254,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeMeritDistinctionResults.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeMeritDistinctionResults.Location = New System.Drawing.Point(4, 339)
         Me.chkIncludeMeritDistinctionResults.Name = "chkIncludeMeritDistinctionResults"
-        Me.chkIncludeMeritDistinctionResults.Size = New System.Drawing.Size(110, 20)
+        Me.chkIncludeMeritDistinctionResults.Size = New System.Drawing.Size(117, 19)
         Me.chkIncludeMeritDistinctionResults.TabIndex = 64
         Me.chkIncludeMeritDistinctionResults.Text = "Include M's/D's:"
         Me.chkIncludeMeritDistinctionResults.Values.Text = "Include M's/D's:"
@@ -267,7 +267,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeUnprocessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeUnprocessed.Location = New System.Drawing.Point(84, 204)
         Me.chkIncludeUnprocessed.Name = "chkIncludeUnprocessed"
-        Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(136, 20)
+        Me.chkIncludeUnprocessed.Size = New System.Drawing.Size(147, 19)
         Me.chkIncludeUnprocessed.TabIndex = 65
         Me.chkIncludeUnprocessed.Text = "Include unprocessed"
         Me.chkIncludeUnprocessed.Values.Text = "Include unprocessed"
@@ -280,7 +280,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeOverall.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeOverall.Location = New System.Drawing.Point(110, 379)
         Me.chkIncludeOverall.Name = "chkIncludeOverall"
-        Me.chkIncludeOverall.Size = New System.Drawing.Size(103, 20)
+        Me.chkIncludeOverall.Size = New System.Drawing.Size(110, 19)
         Me.chkIncludeOverall.TabIndex = 66
         Me.chkIncludeOverall.Text = "Include overall"
         Me.chkIncludeOverall.Values.Text = "Include overall"
@@ -293,7 +293,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeImprovement.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeImprovement.Location = New System.Drawing.Point(73, 360)
         Me.chkIncludeImprovement.Name = "chkIncludeImprovement"
-        Me.chkIncludeImprovement.Size = New System.Drawing.Size(140, 20)
+        Me.chkIncludeImprovement.Size = New System.Drawing.Size(148, 19)
         Me.chkIncludeImprovement.TabIndex = 67
         Me.chkIncludeImprovement.Text = "Include improvement"
         Me.chkIncludeImprovement.Values.Text = "Include improvement"
@@ -306,7 +306,7 @@ Partial Class EmailModuleResults
         Me.chkIncludeOverallGrade.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkIncludeOverallGrade.Location = New System.Drawing.Point(73, 396)
         Me.chkIncludeOverallGrade.Name = "chkIncludeOverallGrade"
-        Me.chkIncludeOverallGrade.Size = New System.Drawing.Size(140, 20)
+        Me.chkIncludeOverallGrade.Size = New System.Drawing.Size(152, 19)
         Me.chkIncludeOverallGrade.TabIndex = 68
         Me.chkIncludeOverallGrade.Text = "Include overall grade:"
         Me.chkIncludeOverallGrade.Values.Text = "Include overall grade:"
@@ -436,7 +436,7 @@ Partial Class EmailModuleResults
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(76, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 19)
         Me.txtStudentFilter.TabIndex = 25
         '
         'KryptonLabel2
@@ -444,7 +444,7 @@ Partial Class EmailModuleResults
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
@@ -541,9 +541,9 @@ Partial Class EmailModuleResults
         Me.chkSelectAllAssessments.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkSelectAllAssessments.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkSelectAllAssessments.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkSelectAllAssessments.Location = New System.Drawing.Point(194, 30)
+        Me.chkSelectAllAssessments.Location = New System.Drawing.Point(192, 30)
         Me.chkSelectAllAssessments.Name = "chkSelectAllAssessments"
-        Me.chkSelectAllAssessments.Size = New System.Drawing.Size(40, 20)
+        Me.chkSelectAllAssessments.Size = New System.Drawing.Size(42, 19)
         Me.chkSelectAllAssessments.TabIndex = 70
         Me.chkSelectAllAssessments.Text = "All:"
         Me.chkSelectAllAssessments.Values.Text = "All:"
@@ -571,7 +571,6 @@ Partial Class EmailModuleResults
         Me.olvAssignments.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvAssignments.CellEditUseWholeCell = False
         Me.olvAssignments.CheckBoxes = True
         Me.olvAssignments.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn25, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvAssignments.CopySelectionOnControlC = False
@@ -640,7 +639,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(3, 269)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(100, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(107, 19)
         Me.KryptonLabel8.TabIndex = 44
         Me.KryptonLabel8.Values.Text = "hours from now."
         '
@@ -648,7 +647,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel7.Location = New System.Drawing.Point(4, 415)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(77, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(84, 19)
         Me.KryptonLabel7.TabIndex = 42
         Me.KryptonLabel7.Values.Text = "Trailing text:"
         '
@@ -675,7 +674,7 @@ Partial Class EmailModuleResults
         '
         Me.lblTotalOutcomes.Location = New System.Drawing.Point(98, 3)
         Me.lblTotalOutcomes.Name = "lblTotalOutcomes"
-        Me.lblTotalOutcomes.Size = New System.Drawing.Size(17, 20)
+        Me.lblTotalOutcomes.Size = New System.Drawing.Size(18, 19)
         Me.lblTotalOutcomes.TabIndex = 37
         Me.lblTotalOutcomes.Values.Text = "0"
         '
@@ -683,7 +682,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel6.Location = New System.Drawing.Point(3, 20)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(61, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(67, 19)
         Me.KryptonLabel6.TabIndex = 36
         Me.KryptonLabel6.Values.Text = "Students:"
         '
@@ -691,7 +690,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(3, 3)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(69, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(76, 19)
         Me.KryptonLabel4.TabIndex = 35
         Me.KryptonLabel4.Values.Text = "Outcomes:"
         '
@@ -699,7 +698,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(3, 249)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(56, 19)
         Me.KryptonLabel5.TabIndex = 34
         Me.KryptonLabel5.Values.Text = "Send in"
         '
@@ -708,7 +707,7 @@ Partial Class EmailModuleResults
         Me.nudEmailSendingAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nudEmailSendingAccount.Location = New System.Drawing.Point(188, 174)
         Me.nudEmailSendingAccount.Name = "nudEmailSendingAccount"
-        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 22)
+        Me.nudEmailSendingAccount.Size = New System.Drawing.Size(43, 21)
         Me.nudEmailSendingAccount.TabIndex = 28
         Me.nudEmailSendingAccount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -718,14 +717,14 @@ Partial Class EmailModuleResults
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubject.Location = New System.Drawing.Point(3, 225)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(228, 20)
+        Me.txtSubject.Size = New System.Drawing.Size(228, 19)
         Me.txtSubject.TabIndex = 29
         '
         'KryptonLabel3
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 204)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(53, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel3.TabIndex = 32
         Me.KryptonLabel3.Values.Text = "Subject:"
         '
@@ -733,7 +732,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 174)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(104, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel1.TabIndex = 31
         Me.KryptonLabel1.Values.Text = "Sending account:"
         '
@@ -741,16 +740,16 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel9.Location = New System.Drawing.Point(3, 38)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(59, 20)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(67, 19)
         Me.KryptonLabel9.TabIndex = 69
         Me.KryptonLabel9.Values.Text = "Selected:"
         '
         'llblWorkshopFeedback
         '
         Me.llblWorkshopFeedback.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblWorkshopFeedback.Location = New System.Drawing.Point(145, 272)
+        Me.llblWorkshopFeedback.Location = New System.Drawing.Point(136, 272)
         Me.llblWorkshopFeedback.Name = "llblWorkshopFeedback"
-        Me.llblWorkshopFeedback.Size = New System.Drawing.Size(89, 20)
+        Me.llblWorkshopFeedback.Size = New System.Drawing.Size(98, 19)
         Me.llblWorkshopFeedback.TabIndex = 125
         Me.llblWorkshopFeedback.Values.Text = "Feedback only"
         '
@@ -776,7 +775,6 @@ Partial Class EmailModuleResults
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
-        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn7, Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn12, Me.OlvColumn16, Me.OlvColumn18, Me.OlvColumn19, Me.OlvColumn20})
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
@@ -788,12 +786,12 @@ Partial Class EmailModuleResults
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
         Me.olvStudents.IncludeColumnHeadersInCopy = True
-        Me.olvStudents.Location = New System.Drawing.Point(0, 20)
+        Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(998, 624)
+        Me.olvStudents.Size = New System.Drawing.Size(998, 625)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False

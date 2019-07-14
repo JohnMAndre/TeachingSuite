@@ -539,7 +539,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.olvImprovementItems.AllColumns.Add(Me.olvcolPerformanceLevel)
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn2)
         Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvImprovementItems.CellEditUseWholeCell = False
         Me.olvImprovementItems.CheckBoxes = True
         Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.olvcolDataAdded, Me.olvcolDateRemoved, Me.OlvColumn5, Me.olvcolPerformanceLevel, Me.OlvColumn2})
         Me.olvImprovementItems.CopySelectionOnControlC = False
