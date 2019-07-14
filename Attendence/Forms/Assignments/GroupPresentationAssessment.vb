@@ -54,48 +54,55 @@
     End Sub
 
     Private Sub GroupPresentationAssessment_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        Dim intBoarderSpace As Integer = 8
-        Dim intHeight As Integer
-        Dim intWidth As Integer
+        Try
+            'Dim intBoarderSpace As Integer = 8
+            'Dim intHeight As Integer
+            'Dim intWidth As Integer
 
-        '-- 
-        Me.HorizontalScroll.Visible = False
-        Me.VerticalScroll.Value = False
-        Select Case m_lstStudents.Count
-            Case 0
-                '-- nobody in this group? This should never happen
-                Me.Text = "Group is empty"
-            Case 1
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 5))  '-- full verticle
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
-            Case 2
-                '-- special case for just two. Here take up full vertical and 1/2 horizontal
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2))   '-- full verticle
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
-            Case 3, 4
-                '-- this should be the norm - either 3 or 4 team members
-                '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 2) - intBoarderSpace '-- do not worry about more than 2 high
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - intBoarderSpace '-- not more than 2 wide
-            Case Else
-                '-- Need to shrink the height of each control a bit
-                '   so user can easily see that there are more than 4 controls
-                Me.VerticalScroll.Value = True
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2)) / 2 '-- slightly less high so user can see they need to scroll
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - intBoarderSpace) / 2 '-- not more than 2 wide
+            '-- 
+            'Me.HorizontalScroll.Visible = False
+            'Me.VerticalScroll.Value = False
+            'Select Case m_lstStudents.Count
+            '    Case 0
+            '        '-- nobody in this group? This should never happen
+            '        Me.Text = "Group is empty"
+            '    Case 1
+            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 5))  '-- full verticle
+            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
+            '    Case 2
+            '        '-- special case for just two. Here take up full vertical and 1/2 horizontal
+            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 3))   '-- full verticle
+            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 3) '-- not more than 2 wide
+            '    Case 3, 4
+            '        '-- this should be the norm - either 3 or 4 team members
+            '        '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
+            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 2) - (intBoarderSpace * 3) '-- do not worry about more than 2 high
+            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 3) '-- not more than 2 wide
+            '    Case Else
+            '        '-- Need to shrink the height of each control a bit
+            '        '   so user can easily see that there are more than 4 controls
+            '        Me.VerticalScroll.Value = True
+            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2)) / 2 '-- slightly less high so user can see they need to scroll
+            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - intBoarderSpace) / 2 '-- not more than 2 wide
 
-        End Select
+            'End Select
 
-        Dim sz As New Size(intWidth, intHeight)
+            'Dim sz As New Size(intWidth, intHeight)
+            Dim sz As New Size(100, 100)
 
 
-        For Each stud In m_lstStudents
-            LoadStudent(stud, m_asmt, m_try, sz)
-        Next
+            For Each stud In m_lstStudents
+                LoadStudent(stud, m_asmt, m_try, sz)
+            Next
 
-        If m_lstStudents.Count > 0 Then
-            Me.Text &= " - " & m_lstStudents(0).StudentTeam & " - " & m_asmt.Name
-        End If
+            ReArrangeControls()
+
+            If m_lstStudents.Count > 0 Then
+                Me.Text &= " - " & m_lstStudents(0).StudentTeam & " - " & m_asmt.Name
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error resizing: " & ex.Message)
+        End Try
     End Sub
     
     Private Sub btnSaveAllKeepOpen_Click(sender As Object, e As EventArgs) Handles btnSaveAllKeepOpen.Click
@@ -134,13 +141,13 @@
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
             Case 2
                 '-- special case for just two. Here take up full vertical and 1/2 horizontal
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2))   '-- full verticle
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 3))   '-- full verticle
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 3) '-- not more than 2 wide
             Case 3, 4
                 '-- this should be the norm - either 3 or 4 team members
                 '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 2) - intBoarderSpace '-- do not worry about more than 2 high
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - intBoarderSpace '-- not more than 2 wide
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 2) - (intBoarderSpace * 2) '-- do not worry about more than 2 high
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
             Case Else
                 '-- Need to shrink the height of each control a bit
                 '   so user can easily see that there are more than 4 controls
@@ -155,5 +162,9 @@
         Next
 
 
+    End Sub
+
+    Private Sub lblTimer_Click(sender As Object, e As EventArgs) Handles lblTimer.Click
+        ReArrangeControls()
     End Sub
 End Class
