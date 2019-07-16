@@ -55,6 +55,12 @@ Public Class ClassDetails
 
             SetupForLiteVersion()
 
+            '-- Trying to get around these attributes not persisting
+            olvAttendanceSessions.CellEditUseWholeCell = True
+            olvActualSessions.CellEditUseWholeCell = True
+            olvPlannedSchedule.CellEditUseWholeCell = True
+            olvSessionsToSkip.CellEditUseWholeCell = True
+
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error loading the class form: " & ex.Message)

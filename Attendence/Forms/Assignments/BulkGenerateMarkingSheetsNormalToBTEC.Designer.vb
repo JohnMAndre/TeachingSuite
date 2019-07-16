@@ -47,9 +47,10 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.txtMinScoreDistinction = New System.Windows.Forms.TextBox()
         Me.lblMinDistinction = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chkAddAutoCalcOverall = New System.Windows.Forms.CheckBox()
         Me.rbtnAutoProcessOutcomes = New System.Windows.Forms.RadioButton()
         Me.rbtnManualProcessOutcomes = New System.Windows.Forms.RadioButton()
-        Me.chkAddAutoCalcOverall = New System.Windows.Forms.CheckBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -288,12 +289,24 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.GroupBox1.Controls.Add(Me.lblMinDistinction)
         Me.GroupBox1.Controls.Add(Me.lblMinMerit)
         Me.GroupBox1.Controls.Add(Me.txtMinScoreMerit)
-        Me.GroupBox1.Location = New System.Drawing.Point(499, 5)
+        Me.GroupBox1.Location = New System.Drawing.Point(458, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(227, 204)
         Me.GroupBox1.TabIndex = 35
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Outcome processing"
+        '
+        'chkAddAutoCalcOverall
+        '
+        Me.chkAddAutoCalcOverall.AutoSize = True
+        Me.chkAddAutoCalcOverall.Checked = True
+        Me.chkAddAutoCalcOverall.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkAddAutoCalcOverall.Location = New System.Drawing.Point(50, 169)
+        Me.chkAddAutoCalcOverall.Name = "chkAddAutoCalcOverall"
+        Me.chkAddAutoCalcOverall.Size = New System.Drawing.Size(147, 20)
+        Me.chkAddAutoCalcOverall.TabIndex = 37
+        Me.chkAddAutoCalcOverall.Text = "Add auto-calc &overall"
+        Me.chkAddAutoCalcOverall.UseVisualStyleBackColor = True
         '
         'rbtnAutoProcessOutcomes
         '
@@ -317,23 +330,22 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
         Me.rbtnManualProcessOutcomes.Text = "Manually process each one"
         Me.rbtnManualProcessOutcomes.UseVisualStyleBackColor = True
         '
-        'chkAddAutoCalcOverall
+        'Label8
         '
-        Me.chkAddAutoCalcOverall.AutoSize = True
-        Me.chkAddAutoCalcOverall.Checked = True
-        Me.chkAddAutoCalcOverall.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkAddAutoCalcOverall.Location = New System.Drawing.Point(50, 169)
-        Me.chkAddAutoCalcOverall.Name = "chkAddAutoCalcOverall"
-        Me.chkAddAutoCalcOverall.Size = New System.Drawing.Size(147, 20)
-        Me.chkAddAutoCalcOverall.TabIndex = 37
-        Me.chkAddAutoCalcOverall.Text = "Add auto-calc &overall"
-        Me.chkAddAutoCalcOverall.UseVisualStyleBackColor = True
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(459, 229)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(223, 16)
+        Me.Label8.TabIndex = 36
+        Me.Label8.Text = "Note: Hidden students will be ignored"
         '
         'BulkGenerateMarkingSheetsNormalToBTEC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(728, 337)
+        Me.ClientSize = New System.Drawing.Size(687, 337)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblMarkingTry)
@@ -391,4 +403,5 @@ Partial Class BulkGenerateMarkingSheetsNormalToBTEC
     Friend WithEvents rbtnAutoProcessOutcomes As System.Windows.Forms.RadioButton
     Friend WithEvents rbtnManualProcessOutcomes As System.Windows.Forms.RadioButton
     Friend WithEvents chkAddAutoCalcOverall As System.Windows.Forms.CheckBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
 End Class

@@ -409,6 +409,8 @@ Public Class MainFormPlain
         EditSelectedClass()
     End Sub
     Private Sub LoadStudents()
+        dgvStudents.DataSource = Nothing
+
         Dim objClass As SchoolClass = GetSelectedClass()
         dgvStudents.AutoGenerateColumns = False
         If objClass Is Nothing Then
@@ -566,14 +568,26 @@ Public Class MainFormPlain
 
     Private Sub llblRemoveStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblRemoveStudent.Click
         Dim lstStudents As List(Of Student) = GetSelectedStudentsFromGrid() 'GetSelectedStudents()
+        Dim lstStudentsToReallyRemove As New List(Of Student)
 
+        '-- Because of some strange problems running under Wine, if we want to offer confirmations while data is still visible in the grid
+        '   then we need to use two collections and separate the confirmation and the delete process
+        '   need to do this under wine or you get endless error dialogs
         If lstStudents.Count > 0 Then
             For Each stud As Student In lstStudents
                 If MessageBox.Show("Are you sure you want to remove " & stud.LocalName & " (" & stud.Nickname & ")" & " from " & stud.SchoolClass.Name & "?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
-                    stud.SchoolClass.Students.Remove(stud)
-                    'olvStudents.RemoveObject(stud)
+                    lstStudentsToReallyRemove.Add(stud)
                 End If
             Next
+
+            If lstStudentsToReallyRemove.Count > 0 Then
+                dgvStudents.DataSource = Nothing
+                For Each stud As Student In lstStudentsToReallyRemove
+                    stud.SchoolClass.Students.Remove(stud)
+                Next
+            End If
+
+            LoadStudents()
         Else
             MessageBox.Show("Please select one or more students to remove.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If

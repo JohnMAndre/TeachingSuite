@@ -44,7 +44,6 @@ Partial Class ClassDetails
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.btnShowNormalSchedule = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowSkips = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnShowActualSessions = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -305,10 +304,6 @@ Partial Class ClassDetails
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '

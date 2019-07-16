@@ -69,6 +69,12 @@
             For intCounter As Integer = 0 To intCounterMax '-- this stops MoveNextRare error
                 Dim stud As Student = m_ClassToProcess.Students(intCounter)
 
+                '-- If student is flagged as hidden, then assume this student does not need to be processed
+                '   perhaps it was processed in an earlier run and we don't want to reprocess it
+                If stud.Hidden Then
+                    Continue For
+
+                End If
                 '-- reset for each student
                 boolOKToProcessStudent = False
                 asmtBTEC = Nothing
