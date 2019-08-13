@@ -3468,4 +3468,13 @@ Public Class MainFormPlain
             frm.Show(Me)
         End If
     End Sub
+
+    Private Sub AssignworkshopGroupsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignworkshopGroupsToolStripMenuItem.Click
+        If GetSelectedClassGroup() Is Nothing Then
+            MessageBox.Show("Please select a module to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Dim frm As New AssignWorkshopGroups(GetSelectedClassGroup())
+            frm.Show()
+        End If
+    End Sub
 End Class

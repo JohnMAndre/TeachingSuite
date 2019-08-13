@@ -127,6 +127,12 @@
     <Compile Include="Forms\AboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Utilities\AssignWorkshopGroups.Designer.vb">
+      <DependentUpon>AssignWorkshopGroups.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Utilities\AssignWorkshopGroups.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Assignments\BulkGenerateMarkingSheets.Designer.vb">
       <DependentUpon>BulkGenerateMarkingSheets.vb</DependentUpon>
     </Compile>
@@ -157,10 +163,10 @@
     <Compile Include="Forms\Assignments\GroupPresentationAssessment.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Assignments\ImprovementItemDetails.Designer.vb">
+    <Compile Include="Forms\Utilities\ImprovementItemDetails.Designer.vb">
       <DependentUpon>ImprovementItemDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Assignments\ImprovementItemDetails.vb">
+    <Compile Include="Forms\Utilities\ImprovementItemDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Assignments\StudentAssignmentNormalDetails.Designer.vb">
@@ -247,10 +253,10 @@
     <Compile Include="Forms\Importing\ImportTeachingAppExportFile.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Assignments\ImprovementItemManager.Designer.vb">
+    <Compile Include="Forms\Utilities\ImprovementItemManager.Designer.vb">
       <DependentUpon>ImprovementItemManager.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Assignments\ImprovementItemManager.vb">
+    <Compile Include="Forms\Utilities\ImprovementItemManager.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Reports\AttendanceFromAssessmentCheck.Designer.vb">
@@ -587,6 +593,9 @@
       <DependentUpon>AssignmentDocumentSelector.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Utilities\AssignWorkshopGroups.resx">
+      <DependentUpon>AssignWorkshopGroups.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\BulkGenerateMarkingSheets.resx">
       <DependentUpon>BulkGenerateMarkingSheets.vb</DependentUpon>
     </EmbeddedResource>
@@ -603,7 +612,7 @@
     <EmbeddedResource Include="Forms\Assignments\GroupPresentationAssessment.resx">
       <DependentUpon>GroupPresentationAssessment.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Assignments\ImprovementItemDetails.resx">
+    <EmbeddedResource Include="Forms\Utilities\ImprovementItemDetails.resx">
       <DependentUpon>ImprovementItemDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\OralExamDetails.resx">
@@ -694,7 +703,7 @@
     <EmbeddedResource Include="Forms\Importing\ImportTeachingAppExportFile.resx">
       <DependentUpon>ImportTeachingAppExportFile.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Assignments\ImprovementItemManager.resx">
+    <EmbeddedResource Include="Forms\Utilities\ImprovementItemManager.resx">
       <DependentUpon>ImprovementItemManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\AttendanceFromAssessmentCheck.resx">

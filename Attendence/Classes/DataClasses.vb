@@ -36,6 +36,7 @@ Public Class Semester
         Presentation
         Exam
         Portfolio
+        PresentationContentOnly
     End Enum
 
     ''' <summary>
@@ -3598,7 +3599,7 @@ Public Class Student
                         Case AttendanceStatusEnum.Late
                             decReturn += 0.5
                         Case AttendanceStatusEnum.Present
-                            Application.DoEvents()
+                            'Application.DoEvents()
                         Case AttendanceStatusEnum.Removed
                             decReturn += 1
                         Case AttendanceStatusEnum.Unknown
