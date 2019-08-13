@@ -79,6 +79,20 @@ Public Class AssignWorkshopGroups
                 lstAllStudents.AddRange(cls.Students)
             Next
 
+            '-- Remove hidden students from this process
+            '   They are presumed dropped but not removed from the data
+            Dim intListCount As Integer = lstAllStudents.Count - 1
+            For intCounter As Integer = 0 To intListCount
+                If lstAllStudents(intCounter).Hidden Then
+                    lstAllStudents.RemoveAt(intCounter)
+                    intCounter -= 1
+                    intListCount -= 1
+                End If
+                If intCounter >= intListCount Then
+                    Exit For
+                End If
+            Next
+
             If chkReassignStudentGroup.Checked Then
                 intNumberOfStudentGroups = nudNumberOfStudentGroups.Value
                 If lstAllStudents.Count > intNumberOfStudentGroups Then
