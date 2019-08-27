@@ -47,7 +47,7 @@ Public Class Semester
     Public Shared Function ListExistingSemesters() As List(Of String)
         Dim files() As String
 
-        files = System.IO.Directory.GetFiles(GetDataFolder(), "*" & DATA_FILE_EXTENSION)
+        files = System.IO.Directory.GetFiles(GetDataFolder(), "*" & DATA_FILE_EXTENSION, IO.SearchOption.TopDirectoryOnly)
         Array.Sort(files) '-- oldest file first
 
         Dim lstReturn As New List(Of String)

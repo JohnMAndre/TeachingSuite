@@ -100,8 +100,26 @@
                 '-- use existing
                 '   do nothing
             End If
-
         Next
+
+
+        ' This next logic does not work
+        '   because copy-and-pasting sem.datx will result in sem (copy).datx but the name of the semester will still be "sem"
+        '   and the other logic in the app does not account for this, assuming that the filename is always the name of the semeter
+        '   So, to clean things up, just manually delete the cache file periodically
+        'For intCounter As Integer = 0 To m_semesters.Count - 1
+        '    semCurrent = m_semesters(intCounter)
+        '    If (semCurrent.DataFilename Is Nothing) OrElse (Not System.IO.File.Exists(semCurrent.DataFilename)) Then
+        '        '-- file was removed, so remove from list of semesters
+        '        m_semesters.Remove(semCurrent)
+        '        intCounter -= 1
+        '        If intCounter = m_semesters.Count - 1 Then
+        '            Exit For
+        '        End If
+        '    End If
+        'Next
+
+
     End Sub
 
     Private Function GetCacheFilename() As String
