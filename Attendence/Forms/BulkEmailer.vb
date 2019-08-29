@@ -4,6 +4,10 @@ Public Class BulkEmailer
     Private m_lst As New List(Of BulkEmailData)
     Private m_boolCancel As Boolean
 
+    Private Const PEER_REVIEWEE_NAME As String = "[[PEER_REVIEWEE_NAME]]"
+    Private Const PEER_REVIEWEE_STUDENTID As String = "[[PEER_REVIEWEE_STUDENTID]]"
+
+
     Public Sub New(clas As SchoolClass)
 
         ' This call is required by the designer.
@@ -161,7 +165,17 @@ Public Class BulkEmailer
         Else
             str.Append(Environment.NewLine)
             str.Append(Environment.NewLine)
-            str.Append(txtEmailTrailingText.Text)
+
+
+            If txtEmailTrailingText.Text.IndexOf(PEER_REVIEWEE_NAME) >= 0 OrElse txtEmailTrailingText.Text.IndexOf(PEER_REVIEWEE_STUDENTID) >= 0 Then
+                Dim strTrailingMessage As String
+                Dim student As Student = m_clas.GetStudentByStudentID(item.Student.StudentIDToPeerReview)
+                If student IsNot Nothing Then
+                    strTrailingMessage = txtEmailTrailingText.Text.Replace(PEER_REVIEWEE_NAME, student.LocalName)
+                    strTrailingMessage = strTrailingMessage.Replace(PEER_REVIEWEE_STUDENTID, student.StudentID)
+                    str.Append(txtEmailTrailingText.Text)
+                End If
+            End If
         End If
 
         Return str.ToString()
@@ -210,7 +224,7 @@ Public Class BulkEmailer
         m_boolCancel = True
     End Sub
 
-   
+
     Private Sub llblCreateLink_LinkClicked(sender As Object, e As EventArgs) Handles llblCreateLink.LinkClicked
         If txtLinkAddress.Text.Trim.Length = 0 Then
             MessageBox.Show("Please enter the link address in the textbox.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -246,6 +260,14 @@ Public Class BulkEmailer
 
             olvStudents.RefreshSelectedObjects()
         End If
+    End Sub
+
+    Private Sub PeerRevieweeStudentIDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeerRevieweeStudentIDToolStripMenuItem.Click
+        txtEmailTrailingText.SelectedText = PEER_REVIEWEE_STUDENTID
+    End Sub
+
+    Private Sub PeerRevieweeNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeerRevieweeNameToolStripMenuItem.Click
+        txtEmailTrailingText.SelectedText = PEER_REVIEWEE_NAME
     End Sub
 End Class
 

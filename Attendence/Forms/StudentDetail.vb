@@ -62,6 +62,7 @@ Public Class StudentDetail
         txtClassGroup.Text = student.SchoolClass.ClassGroup.Name
         rtbLog.Text = student.ActivityLog
         txtTags.Text = student.Tags
+        txtStudentIDOfPeerToReview.Text = student.StudentIDToPeerReview
 
         m_student = student
 
@@ -70,6 +71,7 @@ Public Class StudentDetail
             txtNickName.ReadOnly = True
             txtStudentID.ReadOnly = True
             txtExtStudentID.ReadOnly = True
+            txtStudentIDOfPeerToReview.ReadOnly = True
 
             nudAdminNumber.ReadOnly = True
             nudAdminNumber.Increment = 0
@@ -325,8 +327,8 @@ Public Class StudentDetail
             AddNewStudent()
         End If
 
-        m_student.LocalName = txtLocalName.Text
-        m_student.Nickname = txtNickName.Text
+        m_student.LocalName = txtLocalName.Text.Trim()
+        m_student.Nickname = txtNickName.Text.Trim()
         m_student.StudentID = txtStudentID.Text.Trim()
         m_student.ExtStudentID = txtExtStudentID.Text
         m_student.AdminNumber = nudAdminNumber.Value
@@ -338,6 +340,7 @@ Public Class StudentDetail
         m_student.PlagiarismSeverity = nudPlagiarismSeverity.Value
         m_student.WritingQuality = nudWritingQuality.Value
         m_student.Tags = txtTags.Text
+        m_student.StudentIDToPeerReview = txtStudentIDOfPeerToReview.Text.Trim()
 
         'm_student.ActivityLog = rtbLog.Text
 

@@ -3136,6 +3136,19 @@ Public Class Student
             m_strStudentTeam = value
         End Set
     End Property
+    Private m_strStudentIDToPeerReview As String = String.Empty
+    Public Property StudentIDToPeerReview As String
+        Get
+            Return m_strStudentIDToPeerReview
+        End Get
+        Set(value As String)
+            If value <> m_strStudentIDToPeerReview Then
+                AddToActivityLog("StudentIDToPeerReview changed from " & m_strStudentIDToPeerReview & " to " & value)
+                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "StudentIDToPeerReview", m_strStudentIDToPeerReview)
+            End If
+            m_strStudentIDToPeerReview = value
+        End Set
+    End Property
 
     Private m_intMeritPoints As Integer
     Public Property MeritPoints As Integer
@@ -3739,6 +3752,7 @@ Public Class Student
             xStudentElement.SetAttribute("ResearchQuality", ResearchQuality.ToString())
             xStudentElement.SetAttribute("DateOfBirth", DateOfBirth.ToString(DATE_FORMAT_XML))
             xStudentElement.SetAttribute("PerformanceLastOnlineQuiz", PerformanceLastOnlineQuiz.ToString())
+            xStudentElement.SetAttribute("StudentIDToPeerReview", m_strStudentIDToPeerReview)
 
 
             TeachingSessions.Sort()
@@ -3868,7 +3882,7 @@ Public Class Student
         m_intPlagiarismSeverity = ConvertToInt32(xElement.GetAttribute("PlagiarismSeverity"), 0)
         m_intPerformanceLastOnlineQuiz = ConvertToInt32(xElement.GetAttribute("PerformanceLastOnlineQuiz"), 0)
         DateOfBirth = ConvertToDateFromXML(xElement.GetAttribute("DateOfBirth"), DATE_NO_DATE)
-
+        m_strStudentIDToPeerReview = xElement.GetAttribute("StudentIDToPeerReview")
 
 
         Dim xSessionList As Xml.XmlNodeList = xElement.SelectNodes("Session")

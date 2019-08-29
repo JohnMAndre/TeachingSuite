@@ -32,7 +32,6 @@ Partial Class BulkEmailer
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudSendInXHours = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.txtEmailTrailingText = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.lblSendingStatus = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -66,6 +65,10 @@ Partial Class BulkEmailer
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
+        Me.ctxmnuSendingReplacementCodes = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PeerRevieweeStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PeerRevieweeNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +86,7 @@ Partial Class BulkEmailer
         Me.splitOverall.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip2.SuspendLayout()
+        Me.ctxmnuSendingReplacementCodes.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -139,13 +143,13 @@ Partial Class BulkEmailer
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.txtEmailTrailingText)
         Me.splitOverall.Panel1.Controls.Add(Me.txtLinkAddress)
         Me.splitOverall.Panel1.Controls.Add(Me.llblCreateLink)
         Me.splitOverall.Panel1.Controls.Add(Me.btnCancel)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel8)
         Me.splitOverall.Panel1.Controls.Add(Me.nudSendInXHours)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel7)
-        Me.splitOverall.Panel1.Controls.Add(Me.txtEmailTrailingText)
         Me.splitOverall.Panel1.Controls.Add(Me.lblSendingStatus)
         Me.splitOverall.Panel1.Controls.Add(Me.ProgressBar1)
         Me.splitOverall.Panel1.Controls.Add(Me.KryptonLabel5)
@@ -219,23 +223,12 @@ Partial Class BulkEmailer
         '
         'KryptonLabel7
         '
+        Me.KryptonLabel7.ContextMenuStrip = Me.ctxmnuSendingReplacementCodes
         Me.KryptonLabel7.Location = New System.Drawing.Point(4, 196)
         Me.KryptonLabel7.Name = "KryptonLabel7"
         Me.KryptonLabel7.Size = New System.Drawing.Size(94, 19)
         Me.KryptonLabel7.TabIndex = 42
         Me.KryptonLabel7.Values.Text = "Message text:"
-        '
-        'txtEmailTrailingText
-        '
-        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 222)
-        Me.txtEmailTrailingText.Multiline = True
-        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
-        Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(208, 238)
-        Me.txtEmailTrailingText.TabIndex = 41
         '
         'lblSendingStatus
         '
@@ -523,6 +516,37 @@ Partial Class BulkEmailer
         '
         Me.tmrFilterStudents.Interval = 200
         '
+        'ctxmnuSendingReplacementCodes
+        '
+        Me.ctxmnuSendingReplacementCodes.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ctxmnuSendingReplacementCodes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PeerRevieweeStudentIDToolStripMenuItem, Me.PeerRevieweeNameToolStripMenuItem})
+        Me.ctxmnuSendingReplacementCodes.Name = "ctxmnuSendingReplacementCodes"
+        Me.ctxmnuSendingReplacementCodes.Size = New System.Drawing.Size(202, 70)
+        '
+        'PeerRevieweeStudentIDToolStripMenuItem
+        '
+        Me.PeerRevieweeStudentIDToolStripMenuItem.Name = "PeerRevieweeStudentIDToolStripMenuItem"
+        Me.PeerRevieweeStudentIDToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.PeerRevieweeStudentIDToolStripMenuItem.Text = "Peer reviewee StudentID"
+        '
+        'PeerRevieweeNameToolStripMenuItem
+        '
+        Me.PeerRevieweeNameToolStripMenuItem.Name = "PeerRevieweeNameToolStripMenuItem"
+        Me.PeerRevieweeNameToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.PeerRevieweeNameToolStripMenuItem.Text = "Peer reviewee name"
+        '
+        'txtEmailTrailingText
+        '
+        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 221)
+        Me.txtEmailTrailingText.Multiline = True
+        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
+        Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(210, 236)
+        Me.txtEmailTrailingText.TabIndex = 64
+        '
         'BulkEmailer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -555,6 +579,7 @@ Partial Class BulkEmailer
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip2.ResumeLayout(False)
         Me.MenuStrip2.PerformLayout()
+        Me.ctxmnuSendingReplacementCodes.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -580,7 +605,6 @@ Partial Class BulkEmailer
     Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents nudSendInXHours As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents txtEmailTrailingText As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents lblSendingStatus As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents KryptonLabel5 As ComponentFactory.Krypton.Toolkit.KryptonLabel
@@ -616,4 +640,8 @@ Partial Class BulkEmailer
     Friend WithEvents llblMakeQuiz As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents lblRecipientCount As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents ctxmnuSendingReplacementCodes As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents PeerRevieweeStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PeerRevieweeNameToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents txtEmailTrailingText As System.Windows.Forms.TextBox
 End Class
