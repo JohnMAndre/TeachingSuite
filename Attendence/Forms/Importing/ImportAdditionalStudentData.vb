@@ -6,6 +6,7 @@ Public Class ImportAdditionalStudentData
         Public Property ExtStudentID As String
         Public Property Tags As String
         Public Property PeerRevieweeStudentID As String
+        Public Property StudentGroup As Integer
     End Class
     Private m_lstImportData As List(Of ImportData)
     Private m_lstStudents As List(Of Student)
@@ -63,7 +64,13 @@ Public Class ImportAdditionalStudentData
                             stud.StudentIDToPeerReview = item.PeerRevieweeStudentID
                         End If
                     End If
+
+                    If ImportStudentGroupToolStripMenuItem.Checked Then
+                        stud.StudentGroup = item.StudentGroup
+                    End If
                 End If
+
+
             Next
 
             AddApplicationHistory("Imported additional student data for " & m_lstImportData.Count.ToString("#,##0") & " students. ")
@@ -101,6 +108,7 @@ Public Class ImportAdditionalStudentData
                 Dim intIndexExtID As Integer
                 Dim intIndexTags As Integer
                 Dim intIndexPeerReviewStudentID As Integer
+                Dim intIndexStudentGroup As Integer
                 Dim intIndexes As Integer
                 Dim intCurrentIndex As Integer
 
@@ -134,6 +142,12 @@ Public Class ImportAdditionalStudentData
                     intIndexes += 1
                 End If
 
+                If ImportStudentGroupToolStripMenuItem.Checked Then
+                    intCurrentIndex += 1
+                    intIndexStudentGroup = intCurrentIndex
+                    intIndexes += 1
+                End If
+
                 For intCounter As Integer = 0 To strRows.Count - 1
                     row = strRows(intCounter).Trim.Split(vbTab)
                     If row.Length < intIndexes + 1 Then
@@ -162,6 +176,9 @@ Public Class ImportAdditionalStudentData
                     End If
                     If intIndexPeerReviewStudentID > 0 Then
                         objData.PeerRevieweeStudentID = row(intIndexPeerReviewStudentID)
+                    End If
+                    If intIndexStudentGroup > 0 Then
+                        objData.StudentGroup = ConvertToInt32(row(intIndexStudentGroup), 0)
                     End If
 
                     m_lstImportData.Add(objData)
@@ -220,6 +237,12 @@ Public Class ImportAdditionalStudentData
         Else
             colPeerRevieweeID.Width = 0
         End If
+
+        If ImportStudentGroupToolStripMenuItem.Checked Then
+            colStudentGroup.Width = 100
+        Else
+            colStudentGroup.Width = 0
+        End If
     End Sub
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Timer1.Stop()
@@ -260,6 +283,10 @@ Public Class ImportAdditionalStudentData
     End Function
 
     Private Sub ImportpeerRevieweeStudentIDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportpeerRevieweeStudentIDToolStripMenuItem.Click
+        SetColumnVisibility()
+    End Sub
+
+    Private Sub ImportStudentGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentGroupToolStripMenuItem.Click
         SetColumnVisibility()
     End Sub
 End Class

@@ -30,6 +30,7 @@ Partial Class ImportAdditionalStudentData
         Me.colNickname = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colExtID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colTags = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colPeerRevieweeID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtErrors = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.lblStudentsLoaded = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -51,10 +52,11 @@ Partial Class ImportAdditionalStudentData
         Me.ImportemailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportExtIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImporttagsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportpeerRevieweeStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.colPeerRevieweeID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportStudentGroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.colStudentGroup = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
         Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainer1.SuspendLayout()
@@ -68,12 +70,12 @@ Partial Class ImportAdditionalStudentData
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'ToolStripContainer1
         '
@@ -104,11 +106,12 @@ Partial Class ImportAdditionalStudentData
         Me.olvStudents.AllColumns.Add(Me.colExtID)
         Me.olvStudents.AllColumns.Add(Me.colTags)
         Me.olvStudents.AllColumns.Add(Me.colPeerRevieweeID)
+        Me.olvStudents.AllColumns.Add(Me.colStudentGroup)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
         Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colStudentID, Me.colEmail, Me.colNickname, Me.colExtID, Me.colTags, Me.colPeerRevieweeID})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colStudentID, Me.colEmail, Me.colNickname, Me.colExtID, Me.colTags, Me.colPeerRevieweeID, Me.colStudentGroup})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
@@ -171,6 +174,13 @@ Partial Class ImportAdditionalStudentData
         Me.colTags.Text = "Tags"
         Me.colTags.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.colTags.Width = 81
+        '
+        'colPeerRevieweeID
+        '
+        Me.colPeerRevieweeID.AspectName = "PeerRevieweeStudentID"
+        Me.colPeerRevieweeID.Text = "Peer Reviewee ID"
+        Me.colPeerRevieweeID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.colPeerRevieweeID.Width = 124
         '
         'txtErrors
         '
@@ -307,7 +317,7 @@ Partial Class ImportAdditionalStudentData
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
@@ -326,7 +336,7 @@ Partial Class ImportAdditionalStudentData
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportnicknameToolStripMenuItem, Me.ImportemailToolStripMenuItem, Me.ImportExtIDToolStripMenuItem, Me.ImporttagsToolStripMenuItem, Me.ImportpeerRevieweeStudentIDToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportnicknameToolStripMenuItem, Me.ImportemailToolStripMenuItem, Me.ImportExtIDToolStripMenuItem, Me.ImporttagsToolStripMenuItem, Me.ImportpeerRevieweeStudentIDToolStripMenuItem, Me.ImportStudentGroupToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
@@ -367,18 +377,6 @@ Partial Class ImportAdditionalStudentData
         Me.ImporttagsToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
         Me.ImporttagsToolStripMenuItem.Text = "Import &tags"
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
-        'colPeerRevieweeID
-        '
-        Me.colPeerRevieweeID.AspectName = "PeerRevieweeStudentID"
-        Me.colPeerRevieweeID.Text = "Peer Reviewee ID"
-        Me.colPeerRevieweeID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.colPeerRevieweeID.Width = 124
-        '
         'ImportpeerRevieweeStudentIDToolStripMenuItem
         '
         Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Checked = True
@@ -387,6 +385,26 @@ Partial Class ImportAdditionalStudentData
         Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Name = "ImportpeerRevieweeStudentIDToolStripMenuItem"
         Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
         Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Text = "Import &peer reviewee StudentID"
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
+        '
+        'ImportStudentGroupToolStripMenuItem
+        '
+        Me.ImportStudentGroupToolStripMenuItem.Checked = True
+        Me.ImportStudentGroupToolStripMenuItem.CheckOnClick = True
+        Me.ImportStudentGroupToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ImportStudentGroupToolStripMenuItem.Name = "ImportStudentGroupToolStripMenuItem"
+        Me.ImportStudentGroupToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
+        Me.ImportStudentGroupToolStripMenuItem.Text = "Import student &group"
+        '
+        'colStudentGroup
+        '
+        Me.colStudentGroup.AspectName = "StudentGroup"
+        Me.colStudentGroup.Text = "Group"
+        Me.colStudentGroup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ImportAdditionalStudentData
         '
@@ -463,4 +481,6 @@ Partial Class ImportAdditionalStudentData
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents colPeerRevieweeID As BrightIdeasSoftware.OLVColumn
     Friend WithEvents ImportpeerRevieweeStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImportStudentGroupToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents colStudentGroup As BrightIdeasSoftware.OLVColumn
 End Class
