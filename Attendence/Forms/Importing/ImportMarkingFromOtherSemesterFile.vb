@@ -2,13 +2,20 @@
     Public Class ReportData
         Public Property Student As Student
         Public Property Assignment As StudentAssignment
-        Public Sub New(stud As Student, asmt As StudentAssignment)
+        Public Property AssignmentBTEC As StudentAssignmentBTEC
+        Public Sub New(stud As Student, asmt As StudentAssignment, asmtBTEC As StudentAssignmentBTEC)
             Student = stud
             Assignment = asmt
+            AssignmentBTEC = asmtBTEC
         End Sub
         Public ReadOnly Property AdminNumber As Integer
             Get
                 Return Student.AdminNumber
+            End Get
+        End Property
+        Public ReadOnly Property AltID As Integer
+            Get
+                Return Student.AltNumber
             End Get
         End Property
 
@@ -69,27 +76,74 @@
         End Property
         Public ReadOnly Property AssignmentScoreFirst
             Get
-                Return Assignment.FirstTryPoints
+                If Assignment IsNot Nothing Then
+                    Return Assignment.FirstTryPoints
+                Else
+                    Return -1
+                End If
             End Get
         End Property
         Public ReadOnly Property Creator As String
             Get
-                Return Assignment.FirstUserFullName
+                If Assignment IsNot Nothing Then
+                    Return Assignment.FirstUserFullName
+                Else
+                    Return AssignmentBTEC.FirstUserFullName
+                End If
             End Get
         End Property
         Public ReadOnly Property Editor As String
             Get
-                Return Assignment.LastUserFullName
+                If Assignment IsNot Nothing Then
+                    Return Assignment.LastUserFullName
+                Else
+                    Return AssignmentBTEC.LastUserFullName
+                End If
             End Get
         End Property
         Public ReadOnly Property Overall As String
             Get
-                Return Assignment.OverallComments
+                If Assignment IsNot Nothing Then
+                    Return Assignment.OverallComments
+                Else
+                    Return AssignmentBTEC.OverallComments
+                End If
             End Get
         End Property
         Public ReadOnly Property Improvement As String
             Get
-                Return Assignment.ImprovementComments
+                If Assignment IsNot Nothing Then
+                    Return Assignment.ImprovementComments
+                Else
+                    Return AssignmentBTEC.ImprovementComments
+                End If
+            End Get
+        End Property
+        Public ReadOnly Property AchievedPass As Boolean
+            Get
+                If Assignment IsNot Nothing Then
+                    Return False
+                Else
+                    Return AssignmentBTEC.AchievedPass
+                End If
+            End Get
+        End Property
+        Public ReadOnly Property AchievedMerit As Boolean
+            Get
+                If Assignment IsNot Nothing Then
+                    Return False
+                Else
+                    Return AssignmentBTEC.AchievedMerit
+                End If
+            End Get
+        End Property
+        Public ReadOnly Property AchievedDistinction As Boolean
+            Get
+                If Assignment IsNot Nothing Then
+                    Return False
+                Else
+                    Return AssignmentBTEC.AchievedDistinction
+                End If
             End Get
         End Property
     End Class
@@ -218,14 +272,16 @@
 
         If asmt Is Nothing OrElse cls Is Nothing Then
             '-- Nothing to do, we need both
-            dgvStudents.DataSource = Nothing
+            dgvStudentsNormal.DataSource = Nothing
             Exit Sub
 
         End If
 
         Dim lstAllStudentsInClass As List(Of Student)
 
-        dgvStudents.AutoGenerateColumns = False
+        dgvStudentsNormal.AutoGenerateColumns = False
+        dgvStudentsBTEC.AutoGenerateColumns = False
+
         If ClassIsCombinedView(cls) Then
             lstAllStudentsInClass = New List(Of Student)
             Dim boolSetAlready As Boolean
@@ -246,25 +302,47 @@
         m_lstCurrentListOfStudents = New List(Of ReportData)
         Dim objData As ReportData
 
-        '-- Now, walk the list and only get students who have the selected assignment
-        For Each stud As Student In lstAllStudentsInClass
-            For Each objAssignment As StudentAssignment In stud.Assignments
-                If objAssignment.BaseAssignment Is asmt Then
-                    objData = New ReportData(stud, objAssignment)
-                    m_lstCurrentListOfStudents.Add(objData)
-                    Exit For '-- go to next student
-                End If
+        If asmt.AssignmentType = AssignmentType.Normal Then
+            dgvStudentsNormal.Visible = True
+            dgvStudentsBTEC.Visible = False
+
+            '-- Now, walk the list and only get students who have the selected assignment
+            For Each stud As Student In lstAllStudentsInClass
+                For Each objAssignment As StudentAssignment In stud.Assignments
+                    If objAssignment.BaseAssignment Is asmt Then
+                        objData = New ReportData(stud, objAssignment, Nothing)
+                        m_lstCurrentListOfStudents.Add(objData)
+                        Exit For '-- go to next student
+                    End If
+                Next
             Next
-        Next
 
+            dgvStudentsNormal.DataSource = m_lstCurrentListOfStudents
+        Else
+            dgvStudentsNormal.Visible = False
+            dgvStudentsBTEC.Visible = True
 
-        dgvStudents.DataSource = m_lstCurrentListOfStudents
+            '-- Now, walk the list and only get students who have the selected assignment
+            For Each stud As Student In lstAllStudentsInClass
+                For Each objAssignment As StudentAssignmentBTEC In stud.AssignmentsBTEC
+                    If objAssignment.BaseAssignment Is asmt Then
+                        objData = New ReportData(stud, Nothing, objAssignment)
+                        m_lstCurrentListOfStudents.Add(objData)
+                        Exit For '-- go to next student
+                    End If
+                Next
+            Next
+
+            dgvStudentsBTEC.DataSource = m_lstCurrentListOfStudents
+        End If
 
 
         Try
-            dgvStudents.AutoResizeColumns()
+            dgvStudentsNormal.AutoResizeColumns()
+            dgvStudentsBTEC.AutoResizeColumns()
         Catch ex As Exception
             Log(ex) '-- Log and continue
+            MessageBox.Show("There was an error loading the data: " & ex.Message)
         End Try
 
         ShowStudentCount()
@@ -418,8 +496,8 @@
         Next
 
 
-        dgvStudents.DataSource = Nothing
-        dgvStudents.DataSource = m_lstCurrentListOfStudents
+        dgvStudentsNormal.DataSource = Nothing
+        dgvStudentsNormal.DataSource = m_lstCurrentListOfStudents
 
         lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
     End Sub
@@ -432,7 +510,7 @@
 
         Dim cells As DataGridViewSelectedCellCollection
 
-        cells = dgvStudents.SelectedCells
+        cells = dgvStudentsNormal.SelectedCells
 
         Dim row As DataGridViewRow
         Dim stud As ReportData
@@ -442,7 +520,7 @@
             If Not dict.ContainsKey(cell.RowIndex) Then
                 dict.Add(cell.RowIndex, Nothing)
 
-                row = dgvStudents.Rows(cell.RowIndex)
+                row = dgvStudentsNormal.Rows(cell.RowIndex)
                 stud = row.DataBoundItem
                 If stud IsNot Nothing Then
                     lstReturn.Add(stud)

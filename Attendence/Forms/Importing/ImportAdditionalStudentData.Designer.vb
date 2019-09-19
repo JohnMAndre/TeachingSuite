@@ -23,6 +23,7 @@ Partial Class ImportAdditionalStudentData
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportAdditionalStudentData))
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
         Me.olvStudents = New BrightIdeasSoftware.ObjectListView()
         Me.colStudentID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -31,7 +32,15 @@ Partial Class ImportAdditionalStudentData
         Me.colExtID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colTags = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colPeerRevieweeID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colStudentGroup = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtErrors = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.grpFields = New System.Windows.Forms.GroupBox()
+        Me.chkGroup = New System.Windows.Forms.CheckBox()
+        Me.chkPeerStudentID = New System.Windows.Forms.CheckBox()
+        Me.chkTags = New System.Windows.Forms.CheckBox()
+        Me.chkExtStudentID = New System.Windows.Forms.CheckBox()
+        Me.chkEmail = New System.Windows.Forms.CheckBox()
+        Me.chkNickname = New System.Windows.Forms.CheckBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.lblStudentsLoaded = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -48,19 +57,15 @@ Partial Class ImportAdditionalStudentData
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportnicknameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportemailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportExtIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImporttagsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UncheckallToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ImportStudentGroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.colStudentGroup = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.CheckAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
         Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainer1.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpFields.SuspendLayout()
         CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel2.SuspendLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +75,10 @@ Partial Class ImportAdditionalStudentData
         '
         'KryptonManager
         '
+        '
+        'kryptonPalette2
+        '
+        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
@@ -84,13 +93,16 @@ Partial Class ImportAdditionalStudentData
         '
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.olvStudents)
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.txtErrors)
+        Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.grpFields)
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.KryptonPanel2)
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.KryptonPanel1)
-        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(911, 413)
+        Me.ToolStripContainer1.ContentPanel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(1063, 514)
         Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripContainer1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ToolStripContainer1.Name = "ToolStripContainer1"
-        Me.ToolStripContainer1.Size = New System.Drawing.Size(911, 437)
+        Me.ToolStripContainer1.Size = New System.Drawing.Size(1063, 538)
         Me.ToolStripContainer1.TabIndex = 0
         Me.ToolStripContainer1.Text = "ToolStripContainer1"
         '
@@ -122,12 +134,13 @@ Partial Class ImportAdditionalStudentData
         Me.olvStudents.GridLines = True
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
-        Me.olvStudents.Location = New System.Drawing.Point(0, 30)
+        Me.olvStudents.Location = New System.Drawing.Point(159, 37)
+        Me.olvStudents.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.olvStudents.Name = "olvStudents"
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(614, 333)
+        Me.olvStudents.Size = New System.Drawing.Size(619, 415)
         Me.olvStudents.TabIndex = 5
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False
@@ -182,17 +195,109 @@ Partial Class ImportAdditionalStudentData
         Me.colPeerRevieweeID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.colPeerRevieweeID.Width = 124
         '
+        'colStudentGroup
+        '
+        Me.colStudentGroup.AspectName = "StudentGroup"
+        Me.colStudentGroup.Text = "Group"
+        Me.colStudentGroup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'txtErrors
         '
         Me.txtErrors.Dock = System.Windows.Forms.DockStyle.Right
-        Me.txtErrors.Location = New System.Drawing.Point(614, 30)
+        Me.txtErrors.Location = New System.Drawing.Point(778, 37)
+        Me.txtErrors.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtErrors.Multiline = True
         Me.txtErrors.Name = "txtErrors"
         Me.txtErrors.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtErrors.Size = New System.Drawing.Size(297, 333)
+        Me.txtErrors.Size = New System.Drawing.Size(285, 415)
         Me.txtErrors.TabIndex = 4
         Me.ToolTip1.SetToolTip(Me.txtErrors, "These are the lines which did not match any students in the class.")
         Me.txtErrors.Visible = False
+        '
+        'grpFields
+        '
+        Me.grpFields.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.grpFields.Controls.Add(Me.chkGroup)
+        Me.grpFields.Controls.Add(Me.chkPeerStudentID)
+        Me.grpFields.Controls.Add(Me.chkTags)
+        Me.grpFields.Controls.Add(Me.chkExtStudentID)
+        Me.grpFields.Controls.Add(Me.chkEmail)
+        Me.grpFields.Controls.Add(Me.chkNickname)
+        Me.grpFields.Dock = System.Windows.Forms.DockStyle.Left
+        Me.grpFields.Location = New System.Drawing.Point(0, 37)
+        Me.grpFields.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.grpFields.Name = "grpFields"
+        Me.grpFields.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.grpFields.Size = New System.Drawing.Size(159, 415)
+        Me.grpFields.TabIndex = 7
+        Me.grpFields.TabStop = False
+        Me.grpFields.Text = "Fields to import"
+        '
+        'chkGroup
+        '
+        Me.chkGroup.AutoSize = True
+        Me.chkGroup.Location = New System.Drawing.Point(12, 163)
+        Me.chkGroup.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkGroup.Name = "chkGroup"
+        Me.chkGroup.Size = New System.Drawing.Size(62, 20)
+        Me.chkGroup.TabIndex = 5
+        Me.chkGroup.Text = "&Group"
+        Me.chkGroup.UseVisualStyleBackColor = True
+        '
+        'chkPeerStudentID
+        '
+        Me.chkPeerStudentID.AutoSize = True
+        Me.chkPeerStudentID.Location = New System.Drawing.Point(12, 135)
+        Me.chkPeerStudentID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkPeerStudentID.Name = "chkPeerStudentID"
+        Me.chkPeerStudentID.Size = New System.Drawing.Size(115, 20)
+        Me.chkPeerStudentID.TabIndex = 4
+        Me.chkPeerStudentID.Text = "&Peer StudentID"
+        Me.chkPeerStudentID.UseVisualStyleBackColor = True
+        '
+        'chkTags
+        '
+        Me.chkTags.AutoSize = True
+        Me.chkTags.Location = New System.Drawing.Point(12, 107)
+        Me.chkTags.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkTags.Name = "chkTags"
+        Me.chkTags.Size = New System.Drawing.Size(54, 20)
+        Me.chkTags.TabIndex = 3
+        Me.chkTags.Text = "&Tags"
+        Me.chkTags.UseVisualStyleBackColor = True
+        '
+        'chkExtStudentID
+        '
+        Me.chkExtStudentID.AutoSize = True
+        Me.chkExtStudentID.Location = New System.Drawing.Point(12, 79)
+        Me.chkExtStudentID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkExtStudentID.Name = "chkExtStudentID"
+        Me.chkExtStudentID.Size = New System.Drawing.Size(104, 20)
+        Me.chkExtStudentID.TabIndex = 2
+        Me.chkExtStudentID.Text = "E&xtStudentID"
+        Me.chkExtStudentID.UseVisualStyleBackColor = True
+        '
+        'chkEmail
+        '
+        Me.chkEmail.AutoSize = True
+        Me.chkEmail.Location = New System.Drawing.Point(12, 51)
+        Me.chkEmail.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkEmail.Name = "chkEmail"
+        Me.chkEmail.Size = New System.Drawing.Size(60, 20)
+        Me.chkEmail.TabIndex = 1
+        Me.chkEmail.Text = "E&mail"
+        Me.chkEmail.UseVisualStyleBackColor = True
+        '
+        'chkNickname
+        '
+        Me.chkNickname.AutoSize = True
+        Me.chkNickname.Location = New System.Drawing.Point(12, 23)
+        Me.chkNickname.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkNickname.Name = "chkNickname"
+        Me.chkNickname.Size = New System.Drawing.Size(85, 20)
+        Me.chkNickname.TabIndex = 0
+        Me.chkNickname.Text = "&Nickname"
+        Me.chkNickname.UseVisualStyleBackColor = True
         '
         'KryptonPanel2
         '
@@ -203,15 +308,17 @@ Partial Class ImportAdditionalStudentData
         Me.KryptonPanel2.Controls.Add(Me.btnOK)
         Me.KryptonPanel2.Controls.Add(Me.btnCancel)
         Me.KryptonPanel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonPanel2.Location = New System.Drawing.Point(0, 363)
+        Me.KryptonPanel2.Location = New System.Drawing.Point(0, 452)
+        Me.KryptonPanel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonPanel2.Name = "KryptonPanel2"
-        Me.KryptonPanel2.Size = New System.Drawing.Size(911, 50)
+        Me.KryptonPanel2.Size = New System.Drawing.Size(1063, 62)
         Me.KryptonPanel2.TabIndex = 3
         '
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(854, 26)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(999, 32)
+        Me.lblStudentsLoaded.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
         Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsLoaded.TabIndex = 81
@@ -220,7 +327,8 @@ Partial Class ImportAdditionalStudentData
         'KryptonLabel4
         '
         Me.KryptonLabel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel4.Location = New System.Drawing.Point(706, 26)
+        Me.KryptonLabel4.Location = New System.Drawing.Point(842, 32)
+        Me.KryptonLabel4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel4.Name = "KryptonLabel4"
         Me.KryptonLabel4.Size = New System.Drawing.Size(111, 19)
         Me.KryptonLabel4.TabIndex = 80
@@ -229,7 +337,8 @@ Partial Class ImportAdditionalStudentData
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(854, 6)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(999, 7)
+        Me.lblStudentsSearched.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
         Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
         Me.lblStudentsSearched.TabIndex = 79
@@ -238,7 +347,8 @@ Partial Class ImportAdditionalStudentData
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(691, 6)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(827, 7)
+        Me.lblStudentsSearchedCaption.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
         Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
         Me.lblStudentsSearchedCaption.TabIndex = 78
@@ -247,9 +357,10 @@ Partial Class ImportAdditionalStudentData
         'btnOK
         '
         Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnOK.Location = New System.Drawing.Point(474, 15)
+        Me.btnOK.Location = New System.Drawing.Point(553, 18)
+        Me.btnOK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(90, 25)
+        Me.btnOK.Size = New System.Drawing.Size(105, 31)
         Me.btnOK.TabIndex = 28
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.btnOK.Values.Text = "&Import"
@@ -258,9 +369,10 @@ Partial Class ImportAdditionalStudentData
         '
         Me.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(347, 15)
+        Me.btnCancel.Location = New System.Drawing.Point(405, 18)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(90, 25)
+        Me.btnCancel.Size = New System.Drawing.Size(105, 31)
         Me.btnCancel.TabIndex = 27
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
         Me.btnCancel.Values.Text = "&Close"
@@ -271,15 +383,17 @@ Partial Class ImportAdditionalStudentData
         Me.KryptonPanel1.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.KryptonPanel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(911, 30)
+        Me.KryptonPanel1.Size = New System.Drawing.Size(1063, 37)
         Me.KryptonPanel1.TabIndex = 0
         '
         'lblErrorCaption
         '
         Me.lblErrorCaption.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblErrorCaption.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
-        Me.lblErrorCaption.Location = New System.Drawing.Point(615, 6)
+        Me.lblErrorCaption.Location = New System.Drawing.Point(717, 7)
+        Me.lblErrorCaption.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lblErrorCaption.Name = "lblErrorCaption"
         Me.lblErrorCaption.Size = New System.Drawing.Size(210, 19)
         Me.lblErrorCaption.TabIndex = 33
@@ -290,7 +404,8 @@ Partial Class ImportAdditionalStudentData
         '
         Me.KryptonLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.KryptonLabel3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
-        Me.KryptonLabel3.Location = New System.Drawing.Point(208, 6)
+        Me.KryptonLabel3.Location = New System.Drawing.Point(243, 7)
+        Me.KryptonLabel3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.KryptonLabel3.Name = "KryptonLabel3"
         Me.KryptonLabel3.Size = New System.Drawing.Size(140, 19)
         Me.KryptonLabel3.TabIndex = 30
@@ -303,7 +418,7 @@ Partial Class ImportAdditionalStudentData
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.DataToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(911, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1063, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -336,83 +451,37 @@ Partial Class ImportAdditionalStudentData
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportnicknameToolStripMenuItem, Me.ImportemailToolStripMenuItem, Me.ImportExtIDToolStripMenuItem, Me.ImporttagsToolStripMenuItem, Me.ImportpeerRevieweeStudentIDToolStripMenuItem, Me.ImportStudentGroupToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UncheckallToolStripMenuItem, Me.CheckAllToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
         '
-        'ImportnicknameToolStripMenuItem
+        'UncheckallToolStripMenuItem
         '
-        Me.ImportnicknameToolStripMenuItem.Checked = True
-        Me.ImportnicknameToolStripMenuItem.CheckOnClick = True
-        Me.ImportnicknameToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ImportnicknameToolStripMenuItem.Name = "ImportnicknameToolStripMenuItem"
-        Me.ImportnicknameToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
-        Me.ImportnicknameToolStripMenuItem.Text = "Import &nickname"
-        '
-        'ImportemailToolStripMenuItem
-        '
-        Me.ImportemailToolStripMenuItem.Checked = True
-        Me.ImportemailToolStripMenuItem.CheckOnClick = True
-        Me.ImportemailToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ImportemailToolStripMenuItem.Name = "ImportemailToolStripMenuItem"
-        Me.ImportemailToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
-        Me.ImportemailToolStripMenuItem.Text = "Import &email"
-        '
-        'ImportExtIDToolStripMenuItem
-        '
-        Me.ImportExtIDToolStripMenuItem.Checked = True
-        Me.ImportExtIDToolStripMenuItem.CheckOnClick = True
-        Me.ImportExtIDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ImportExtIDToolStripMenuItem.Name = "ImportExtIDToolStripMenuItem"
-        Me.ImportExtIDToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
-        Me.ImportExtIDToolStripMenuItem.Text = "Import E&xtID"
-        '
-        'ImporttagsToolStripMenuItem
-        '
-        Me.ImporttagsToolStripMenuItem.Checked = True
-        Me.ImporttagsToolStripMenuItem.CheckOnClick = True
-        Me.ImporttagsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ImporttagsToolStripMenuItem.Name = "ImporttagsToolStripMenuItem"
-        Me.ImporttagsToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
-        Me.ImporttagsToolStripMenuItem.Text = "Import &tags"
-        '
-        'ImportpeerRevieweeStudentIDToolStripMenuItem
-        '
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Checked = True
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem.CheckOnClick = True
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Name = "ImportpeerRevieweeStudentIDToolStripMenuItem"
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
-        Me.ImportpeerRevieweeStudentIDToolStripMenuItem.Text = "Import &peer reviewee StudentID"
+        Me.UncheckallToolStripMenuItem.Name = "UncheckallToolStripMenuItem"
+        Me.UncheckallToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UncheckallToolStripMenuItem.Text = "&Uncheck all"
         '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'ImportStudentGroupToolStripMenuItem
+        'CheckAllToolStripMenuItem
         '
-        Me.ImportStudentGroupToolStripMenuItem.Checked = True
-        Me.ImportStudentGroupToolStripMenuItem.CheckOnClick = True
-        Me.ImportStudentGroupToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ImportStudentGroupToolStripMenuItem.Name = "ImportStudentGroupToolStripMenuItem"
-        Me.ImportStudentGroupToolStripMenuItem.Size = New System.Drawing.Size(240, 22)
-        Me.ImportStudentGroupToolStripMenuItem.Text = "Import student &group"
-        '
-        'colStudentGroup
-        '
-        Me.colStudentGroup.AspectName = "StudentGroup"
-        Me.colStudentGroup.Text = "Group"
-        Me.colStudentGroup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.CheckAllToolStripMenuItem.Name = "CheckAllToolStripMenuItem"
+        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckAllToolStripMenuItem.Text = "&Check all"
         '
         'ImportAdditionalStudentData
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(911, 437)
+        Me.ClientSize = New System.Drawing.Size(1063, 538)
         Me.Controls.Add(Me.ToolStripContainer1)
+        Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ImportAdditionalStudentData"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Import Email"
@@ -423,6 +492,8 @@ Partial Class ImportAdditionalStudentData
         Me.ToolStripContainer1.ResumeLayout(False)
         Me.ToolStripContainer1.PerformLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpFields.ResumeLayout(False)
+        Me.grpFields.PerformLayout()
         CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel2.ResumeLayout(False)
         Me.KryptonPanel2.PerformLayout()
@@ -465,10 +536,6 @@ Partial Class ImportAdditionalStudentData
     Friend WithEvents lblStudentsSearched As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblStudentsSearchedCaption As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents DataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImportemailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImportExtIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImporttagsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImportnicknameToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents olvStudents As BrightIdeasSoftware.ObjectListView
     Friend WithEvents colStudentID As BrightIdeasSoftware.OLVColumn
     Friend WithEvents colEmail As BrightIdeasSoftware.OLVColumn
@@ -480,7 +547,14 @@ Partial Class ImportAdditionalStudentData
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents colPeerRevieweeID As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents ImportpeerRevieweeStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImportStudentGroupToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents colStudentGroup As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents UncheckallToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents grpFields As System.Windows.Forms.GroupBox
+    Friend WithEvents chkGroup As System.Windows.Forms.CheckBox
+    Friend WithEvents chkPeerStudentID As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTags As System.Windows.Forms.CheckBox
+    Friend WithEvents chkExtStudentID As System.Windows.Forms.CheckBox
+    Friend WithEvents chkEmail As System.Windows.Forms.CheckBox
+    Friend WithEvents chkNickname As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -158,9 +158,10 @@
                         intStudentCount += 1
                     End If
                 Else
-                    For Each asmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
-                        MessageBox.Show("BTEC not implemented, yet.", Application.ProductName)
-                    Next
+                    MessageBox.Show("BTEC not implemented, yet.", Application.ProductName)
+                    Exit For
+                    'For Each asmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
+                    'Next
                 End If
             Next
 

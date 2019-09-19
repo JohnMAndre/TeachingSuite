@@ -312,6 +312,7 @@ Partial Class MainFormPlain
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BulkReassignStudentAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignworkshopGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignChoicesToStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -327,7 +328,6 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.AssignworkshopGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2146,6 +2146,7 @@ Partial Class MainFormPlain
         '
         'ImportEmailAddressesToolStripMenuItem
         '
+        Me.ImportEmailAddressesToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.add_icon_16
         Me.ImportEmailAddressesToolStripMenuItem.Name = "ImportEmailAddressesToolStripMenuItem"
         Me.ImportEmailAddressesToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportEmailAddressesToolStripMenuItem.Text = "Import additional student &data..."
@@ -2397,6 +2398,12 @@ Partial Class MainFormPlain
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Text = "Remove all students &from selected class"
         '
+        'AssignworkshopGroupsToolStripMenuItem
+        '
+        Me.AssignworkshopGroupsToolStripMenuItem.Name = "AssignworkshopGroupsToolStripMenuItem"
+        Me.AssignworkshopGroupsToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
+        Me.AssignworkshopGroupsToolStripMenuItem.Text = "Assign &workshop groups..."
+        '
         'AssignChoicesToStudentsToolStripMenuItem
         '
         Me.AssignChoicesToStudentsToolStripMenuItem.Name = "AssignChoicesToStudentsToolStripMenuItem"
@@ -2484,12 +2491,6 @@ Partial Class MainFormPlain
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'AssignworkshopGroupsToolStripMenuItem
-        '
-        Me.AssignworkshopGroupsToolStripMenuItem.Name = "AssignworkshopGroupsToolStripMenuItem"
-        Me.AssignworkshopGroupsToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
-        Me.AssignworkshopGroupsToolStripMenuItem.Text = "Assign &workshop groups..."
         '
         'MainFormPlain
         '

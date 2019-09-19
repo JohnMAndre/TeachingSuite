@@ -23,14 +23,16 @@ Public Class AssignWorkshopGroups
     Private m_lstPresenters As New List(Of StudentWorkshopItem)
 
 
-    Private Property m_objClassGroup As ClassGroup
+    Private Property m_objClass As SchoolClass
 
-    Public Sub New(classGroup As ClassGroup)
+    Public Sub New(cls As SchoolClass)
 
         ' This call is required by the designer.
         InitializeComponent()
 
-        m_objClassGroup = classGroup
+        m_objClass = cls
+
+        Me.Text &= " " & cls.Name
 
     End Sub
 
@@ -75,13 +77,12 @@ Public Class AssignWorkshopGroups
 
             Dim lstAllStudents As New List(Of Student) '-- This is across all SchoolClasses within a ClassGroup
 
-            For Each cls As SchoolClass In m_objClassGroup.Classes
-                lstAllStudents.AddRange(cls.Students)
-            Next
+            '-- Put students in a new list that we can manipulate (don't want to remove students from the actual class)
+            lstAllStudents.AddRange(m_objClass.Students)
 
             '-- Remove hidden students from this process
             '   They are presumed dropped but not removed from the data
-            Dim intListCount As Integer = lstAllStudents.Count - 1
+            Dim intListCount As Integer = m_objClass.Students.Count - 1
             For intCounter As Integer = 0 To intListCount
                 If lstAllStudents(intCounter).Hidden Then
                     lstAllStudents.RemoveAt(intCounter)

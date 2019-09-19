@@ -3372,7 +3372,7 @@ Public Class MainFormPlain
         End If
 
         If GetSelectedAssignment() Is Nothing Then
-            MessageBox.Show("Please select a module to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Please select an assignment to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
         End If
 
@@ -3470,11 +3470,42 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub AssignworkshopGroupsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignworkshopGroupsToolStripMenuItem.Click
-        If GetSelectedClassGroup() Is Nothing Then
-            MessageBox.Show("Please select a module to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'If GetSelectedClassGroup() Is Nothing Then
+        '    MessageBox.Show("Please select a module to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'Else
+        '    Dim frm As New AssignWorkshopGroups(GetSelectedClassGroup())
+        '    frm.Show()
+        'End If
+
+
+
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            Dim frm As New AssignWorkshopGroups(GetSelectedClassGroup())
-            frm.Show()
+            Dim objClassToSend As SchoolClass
+            Dim objClass As SchoolClass = CType(lstClasses.Items(lstClasses.SelectedIndex), SchoolClass)
+            If ClassIsCombinedView(objClass) Then
+                Dim boolSetAlready As Boolean
+                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                    If Not boolSetAlready Then
+                        Dim grp As New ClassGroup(Nothing)
+                        grp.UseNickname = GetSelectedClassGroup.UseNickname
+                        objClassToSend = New SchoolClass(grp)
+                        objClassToSend.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                        objClassToSend.Students.AddRange(objCls.Students)
+                        boolSetAlready = True
+                    Else
+                        objClassToSend.Students.AddRange(objCls.Students)
+                    End If
+                Next
+            Else
+                objClassToSend = objClass
+            End If
+
+            objClassToSend.ClassGroup = GetSelectedClassGroup()
+            Dim frm As New AssignWorkshopGroups(objClassToSend)
+            frm.Show(Me)
         End If
+
     End Sub
 End Class

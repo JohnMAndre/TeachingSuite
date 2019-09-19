@@ -32,6 +32,16 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -50,11 +60,12 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
         Me.llblBrowseForSemesterFile = New System.Windows.Forms.LinkLabel()
         Me.txtSemesterFile = New System.Windows.Forms.TextBox()
-        Me.dgvStudents = New System.Windows.Forms.DataGridView()
+        Me.dgvStudentsNormal = New System.Windows.Forms.DataGridView()
         Me.lblStudentCount = New System.Windows.Forms.Label()
         Me.txtOverrideMarkerName = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.dgvStudentsBTEC = New System.Windows.Forms.DataGridView()
         Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -64,18 +75,38 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolPresentationQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolStudentGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolStudentTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NormalAltID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AssignmentFirstColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OverallColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ImprovementColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreatorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EditorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AltID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AchievedPass = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.AchievedMerit = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.AchievedDistinction = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvStudentsNormal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.dgvStudentsBTEC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -85,7 +116,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1017, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1493, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -140,7 +171,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel1.Location = New System.Drawing.Point(0, 58)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(200, 466)
+        Me.Panel1.Size = New System.Drawing.Size(183, 533)
         Me.Panel1.TabIndex = 1
         '
         'lstAssignments
@@ -151,7 +182,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.lstAssignments.Location = New System.Drawing.Point(0, 246)
         Me.lstAssignments.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.Size = New System.Drawing.Size(200, 220)
+        Me.lstAssignments.Size = New System.Drawing.Size(183, 287)
         Me.lstAssignments.TabIndex = 11
         '
         'Label11
@@ -159,7 +190,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label11.Location = New System.Drawing.Point(0, 221)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(200, 25)
+        Me.Label11.Size = New System.Drawing.Size(183, 25)
         Me.Label11.TabIndex = 10
         Me.Label11.Text = "Assignments"
         '
@@ -171,7 +202,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.lstClasses.Location = New System.Drawing.Point(0, 137)
         Me.lstClasses.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstClasses.Name = "lstClasses"
-        Me.lstClasses.Size = New System.Drawing.Size(200, 84)
+        Me.lstClasses.Size = New System.Drawing.Size(183, 84)
         Me.lstClasses.TabIndex = 7
         '
         'Label9
@@ -179,7 +210,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Label9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label9.Location = New System.Drawing.Point(0, 109)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(200, 28)
+        Me.Label9.Size = New System.Drawing.Size(183, 28)
         Me.Label9.TabIndex = 6
         Me.Label9.Text = "Classes"
         '
@@ -191,7 +222,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.lstClassGroups.Location = New System.Drawing.Point(0, 25)
         Me.lstClassGroups.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstClassGroups.Name = "lstClassGroups"
-        Me.lstClassGroups.Size = New System.Drawing.Size(200, 84)
+        Me.lstClassGroups.Size = New System.Drawing.Size(183, 84)
         Me.lstClassGroups.TabIndex = 9
         '
         'Label10
@@ -199,7 +230,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label10.Location = New System.Drawing.Point(0, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(200, 25)
+        Me.Label10.Size = New System.Drawing.Size(183, 25)
         Me.Label10.TabIndex = 8
         Me.Label10.Text = "Modules"
         '
@@ -212,14 +243,14 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel2.Location = New System.Drawing.Point(0, 24)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1017, 34)
+        Me.Panel2.Size = New System.Drawing.Size(1493, 34)
         Me.Panel2.TabIndex = 2
         '
         'btnLoadSemester
         '
         Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnLoadSemester.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnLoadSemester.Location = New System.Drawing.Point(988, 4)
+        Me.btnLoadSemester.Location = New System.Drawing.Point(1464, 4)
         Me.btnLoadSemester.Name = "btnLoadSemester"
         Me.btnLoadSemester.Size = New System.Drawing.Size(23, 21)
         Me.btnLoadSemester.TabIndex = 9
@@ -242,30 +273,30 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.txtSemesterFile.Location = New System.Drawing.Point(119, 4)
         Me.txtSemesterFile.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtSemesterFile.Name = "txtSemesterFile"
-        Me.txtSemesterFile.Size = New System.Drawing.Size(864, 22)
+        Me.txtSemesterFile.Size = New System.Drawing.Size(1340, 22)
         Me.txtSemesterFile.TabIndex = 5
         '
-        'dgvStudents
+        'dgvStudentsNormal
         '
-        Me.dgvStudents.AllowUserToAddRows = False
-        Me.dgvStudents.AllowUserToDeleteRows = False
-        Me.dgvStudents.AllowUserToOrderColumns = True
-        Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolLocalName, Me.dcolNickname, Me.dcolExtStudentID, Me.dcolStudentID, Me.dcolTags, Me.dcolPresentationQuality, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.dcolClass, Me.AssignmentFirstColumn, Me.OverallColumn, Me.ImprovementColumn, Me.CreatorColumn, Me.EditorColumn})
-        Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvStudents.Location = New System.Drawing.Point(200, 83)
-        Me.dgvStudents.Name = "dgvStudents"
-        Me.dgvStudents.ReadOnly = True
-        Me.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvStudents.Size = New System.Drawing.Size(817, 404)
-        Me.dgvStudents.TabIndex = 6
+        Me.dgvStudentsNormal.AllowUserToAddRows = False
+        Me.dgvStudentsNormal.AllowUserToDeleteRows = False
+        Me.dgvStudentsNormal.AllowUserToOrderColumns = True
+        Me.dgvStudentsNormal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStudentsNormal.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolLocalName, Me.dcolNickname, Me.dcolExtStudentID, Me.dcolStudentID, Me.dcolTags, Me.dcolPresentationQuality, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.NormalAltID, Me.dcolClass, Me.AssignmentFirstColumn, Me.OverallColumn, Me.ImprovementColumn, Me.CreatorColumn, Me.EditorColumn})
+        Me.dgvStudentsNormal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvStudentsNormal.Location = New System.Drawing.Point(183, 83)
+        Me.dgvStudentsNormal.Name = "dgvStudentsNormal"
+        Me.dgvStudentsNormal.ReadOnly = True
+        Me.dgvStudentsNormal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudentsNormal.Size = New System.Drawing.Size(1310, 471)
+        Me.dgvStudentsNormal.TabIndex = 6
         '
         'lblStudentCount
         '
         Me.lblStudentCount.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblStudentCount.Location = New System.Drawing.Point(200, 58)
+        Me.lblStudentCount.Location = New System.Drawing.Point(183, 58)
         Me.lblStudentCount.Name = "lblStudentCount"
-        Me.lblStudentCount.Size = New System.Drawing.Size(817, 25)
+        Me.lblStudentCount.Size = New System.Drawing.Size(1310, 25)
         Me.lblStudentCount.TabIndex = 9
         '
         'txtOverrideMarkerName
@@ -275,7 +306,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.txtOverrideMarkerName.Location = New System.Drawing.Point(140, 7)
         Me.txtOverrideMarkerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtOverrideMarkerName.Name = "txtOverrideMarkerName"
-        Me.txtOverrideMarkerName.Size = New System.Drawing.Size(252, 22)
+        Me.txtOverrideMarkerName.Size = New System.Drawing.Size(745, 22)
         Me.txtOverrideMarkerName.TabIndex = 10
         '
         'Panel3
@@ -283,9 +314,9 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel3.Controls.Add(Me.txtOverrideMarkerName)
         Me.Panel3.Controls.Add(Me.Label1)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(200, 487)
+        Me.Panel3.Location = New System.Drawing.Point(183, 554)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(817, 37)
+        Me.Panel3.Size = New System.Drawing.Size(1310, 37)
         Me.Panel3.TabIndex = 11
         '
         'Label1
@@ -296,6 +327,22 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Label1.Size = New System.Drawing.Size(103, 16)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Override Marker:"
+        '
+        'dgvStudentsBTEC
+        '
+        Me.dgvStudentsBTEC.AllowUserToAddRows = False
+        Me.dgvStudentsBTEC.AllowUserToDeleteRows = False
+        Me.dgvStudentsBTEC.AllowUserToOrderColumns = True
+        Me.dgvStudentsBTEC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStudentsBTEC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.AltID, Me.DataGridViewTextBoxColumn10, Me.AchievedPass, Me.AchievedMerit, Me.AchievedDistinction, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
+        Me.dgvStudentsBTEC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvStudentsBTEC.Location = New System.Drawing.Point(183, 83)
+        Me.dgvStudentsBTEC.Name = "dgvStudentsBTEC"
+        Me.dgvStudentsBTEC.ReadOnly = True
+        Me.dgvStudentsBTEC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudentsBTEC.Size = New System.Drawing.Size(1310, 471)
+        Me.dgvStudentsBTEC.TabIndex = 12
+        Me.dgvStudentsBTEC.Visible = False
         '
         'dcolAdmin
         '
@@ -378,6 +425,13 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolStudentTeam.Name = "dcolStudentTeam"
         Me.dcolStudentTeam.ReadOnly = True
         '
+        'NormalAltID
+        '
+        Me.NormalAltID.DataPropertyName = "AltID"
+        Me.NormalAltID.HeaderText = "Alt"
+        Me.NormalAltID.Name = "NormalAltID"
+        Me.NormalAltID.ReadOnly = True
+        '
         'dcolClass
         '
         Me.dcolClass.DataPropertyName = "SchoolClassName"
@@ -422,12 +476,165 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.EditorColumn.Name = "EditorColumn"
         Me.EditorColumn.ReadOnly = True
         '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "AdminNumber"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle11
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Admin"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "LocalName"
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Nickname"
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Nickname"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "ExtStudentID"
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewTextBoxColumn4.HeaderText = "ExtID"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "StudentID"
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewTextBoxColumn5.HeaderText = "StudentID"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Tags"
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle16
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Tags"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "PresentationQuality"
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle17
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Pres"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "StudentGroup"
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle18
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Group"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.DataPropertyName = "StudentTeam"
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle19
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Team"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.ReadOnly = True
+        '
+        'AltID
+        '
+        Me.AltID.DataPropertyName = "AltID"
+        Me.AltID.HeaderText = "Alt"
+        Me.AltID.Name = "AltID"
+        Me.AltID.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.DataPropertyName = "SchoolClassName"
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle20
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Class"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.ReadOnly = True
+        '
+        'AchievedPass
+        '
+        Me.AchievedPass.DataPropertyName = "AchievedPass"
+        Me.AchievedPass.HeaderText = "Pass"
+        Me.AchievedPass.Name = "AchievedPass"
+        Me.AchievedPass.ReadOnly = True
+        Me.AchievedPass.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.AchievedPass.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'AchievedMerit
+        '
+        Me.AchievedMerit.DataPropertyName = "AchievedMerit"
+        Me.AchievedMerit.HeaderText = "Merit"
+        Me.AchievedMerit.Name = "AchievedMerit"
+        Me.AchievedMerit.ReadOnly = True
+        Me.AchievedMerit.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.AchievedMerit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'AchievedDistinction
+        '
+        Me.AchievedDistinction.DataPropertyName = "AchievedDistinction"
+        Me.AchievedDistinction.HeaderText = "Distinction"
+        Me.AchievedDistinction.Name = "AchievedDistinction"
+        Me.AchievedDistinction.ReadOnly = True
+        Me.AchievedDistinction.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.AchievedDistinction.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Overall"
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Overall"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Improvement"
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Improve"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.DataPropertyName = "Creator"
+        Me.DataGridViewTextBoxColumn14.HeaderText = "Creator"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        Me.DataGridViewTextBoxColumn14.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Editor"
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Editor"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.ReadOnly = True
+        '
         'ImportMarkingFromOtherSemesterFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1017, 524)
-        Me.Controls.Add(Me.dgvStudents)
+        Me.ClientSize = New System.Drawing.Size(1493, 591)
+        Me.Controls.Add(Me.dgvStudentsBTEC)
+        Me.Controls.Add(Me.dgvStudentsNormal)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.lblStudentCount)
         Me.Controls.Add(Me.Panel1)
@@ -444,9 +651,10 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvStudentsNormal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.dgvStudentsBTEC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -465,7 +673,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents txtSemesterFile As System.Windows.Forms.TextBox
     Friend WithEvents llblBrowseForSemesterFile As System.Windows.Forms.LinkLabel
     Friend WithEvents btnLoadSemester As System.Windows.Forms.PictureBox
-    Friend WithEvents dgvStudents As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvStudentsNormal As System.Windows.Forms.DataGridView
     Friend WithEvents lblStudentCount As System.Windows.Forms.Label
     Friend WithEvents ActionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportStudentAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -474,6 +682,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents DeleteSelectedAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents dgvStudentsBTEC As System.Windows.Forms.DataGridView
     Friend WithEvents dcolAdmin As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolLocalName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolNickname As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -483,10 +692,29 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents dcolPresentationQuality As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolStudentGroup As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolStudentTeam As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NormalAltID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolClass As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AssignmentFirstColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents OverallColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ImprovementColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CreatorColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EditorColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AltID As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AchievedPass As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents AchievedMerit As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents AchievedDistinction As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn13 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

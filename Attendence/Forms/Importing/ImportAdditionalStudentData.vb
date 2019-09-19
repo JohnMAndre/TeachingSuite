@@ -30,25 +30,25 @@ Public Class ImportAdditionalStudentData
 
                 Else
                     '-- update this student
-                    If ImportnicknameToolStripMenuItem.Checked Then
+                    If chkNickname.Checked Then
                         If item.Nickname.Trim.Length > 0 Then
                             stud.Nickname = item.Nickname
                         End If
                     End If
 
-                    If ImportemailToolStripMenuItem.Checked Then
+                    If chkNickname.Checked Then
                         If item.EmailAddress.Trim.Length > 0 Then
                             stud.EmailAddress = item.EmailAddress
                         End If
                     End If
 
-                    If ImportExtIDToolStripMenuItem.Checked Then
+                    If chkExtStudentID.Checked Then
                         If item.ExtStudentID.Trim.Length > 0 Then
                             stud.ExtStudentID = item.ExtStudentID
                         End If
                     End If
 
-                    If ImporttagsToolStripMenuItem.Checked Then
+                    If chkTags.Checked Then
                         If item.Tags.Trim.Length > 0 Then
                             If stud.Tags.Trim.Length > 0 Then
                                 '-- append new tags
@@ -59,13 +59,13 @@ Public Class ImportAdditionalStudentData
                         End If
                     End If
 
-                    If ImportpeerRevieweeStudentIDToolStripMenuItem.Checked Then
+                    If chkPeerStudentID.Checked Then
                         If item.PeerRevieweeStudentID.Trim.Length > 0 Then
                             stud.StudentIDToPeerReview = item.PeerRevieweeStudentID
                         End If
                     End If
 
-                    If ImportStudentGroupToolStripMenuItem.Checked Then
+                    If chkGroup.Checked Then
                         stud.StudentGroup = item.StudentGroup
                     End If
                 End If
@@ -112,37 +112,37 @@ Public Class ImportAdditionalStudentData
                 Dim intIndexes As Integer
                 Dim intCurrentIndex As Integer
 
-                If ImportnicknameToolStripMenuItem.Checked Then
+                If chkNickname.Checked Then
                     intCurrentIndex += 1
                     intIndexNickname = intCurrentIndex
                     intIndexes += 1
                 End If
 
-                If ImportemailToolStripMenuItem.Checked Then
+                If chkEmail.Checked Then
                     intCurrentIndex += 1
                     intIndexEmail = intCurrentIndex
                     intIndexes += 1
                 End If
 
-                If ImportExtIDToolStripMenuItem.Checked Then
+                If chkExtStudentID.Checked Then
                     intCurrentIndex += 1
                     intIndexExtID = intCurrentIndex
                     intIndexes += 1
                 End If
 
-                If ImporttagsToolStripMenuItem.Checked Then
+                If chkTags.Checked Then
                     intCurrentIndex += 1
                     intIndexTags = intCurrentIndex
                     intIndexes += 1
                 End If
 
-                If ImportpeerRevieweeStudentIDToolStripMenuItem.Checked Then
+                If chkPeerStudentID.Checked Then
                     intCurrentIndex += 1
                     intIndexPeerReviewStudentID = intCurrentIndex
                     intIndexes += 1
                 End If
 
-                If ImportStudentGroupToolStripMenuItem.Checked Then
+                If chkGroup.Checked Then
                     intCurrentIndex += 1
                     intIndexStudentGroup = intCurrentIndex
                     intIndexes += 1
@@ -192,53 +192,53 @@ Public Class ImportAdditionalStudentData
         End Try
     End Sub
 
-    Private Sub ImportnicknameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportnicknameToolStripMenuItem.Click
+    Private Sub ImportnicknameToolStripMenuItem_Click(sender As Object, e As EventArgs)
         SetColumnVisibility()
     End Sub
 
-    Private Sub ImportemailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportemailToolStripMenuItem.Click
+    Private Sub ImportemailToolStripMenuItem_Click(sender As Object, e As EventArgs)
         SetColumnVisibility()
     End Sub
 
-    Private Sub ImportExtIDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportExtIDToolStripMenuItem.Click
+    Private Sub ImportExtIDToolStripMenuItem_Click(sender As Object, e As EventArgs)
         SetColumnVisibility()
     End Sub
 
-    Private Sub ImporttagsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImporttagsToolStripMenuItem.Click
+    Private Sub ImporttagsToolStripMenuItem_Click(sender As Object, e As EventArgs)
         SetColumnVisibility()
     End Sub
     Private Sub SetColumnVisibility()
-        If ImporttagsToolStripMenuItem.Checked Then
+        If chkTags.Checked Then
             colTags.Width = 100
         Else
             colTags.Width = 0
         End If
 
-        If ImportExtIDToolStripMenuItem.Checked Then
+        If chkExtStudentID.Checked Then
             colExtID.Width = 100
         Else
             colExtID.Width = 0
         End If
 
-        If ImportemailToolStripMenuItem.Checked Then
+        If chkEmail.Checked Then
             colEmail.Width = 100
         Else
             colEmail.Width = 0
         End If
 
-        If ImportnicknameToolStripMenuItem.Checked Then
+        If chkNickname.Checked Then
             colNickname.Width = 100
         Else
             colNickname.Width = 0
         End If
 
-        If ImportpeerRevieweeStudentIDToolStripMenuItem.Checked Then
+        If chkPeerStudentID.Checked Then
             colPeerRevieweeID.Width = 100
         Else
             colPeerRevieweeID.Width = 0
         End If
 
-        If ImportStudentGroupToolStripMenuItem.Checked Then
+        If chkGroup.Checked Then
             colStudentGroup.Width = 100
         Else
             colStudentGroup.Width = 0
@@ -282,11 +282,33 @@ Public Class ImportAdditionalStudentData
         End If
     End Function
 
-    Private Sub ImportpeerRevieweeStudentIDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportpeerRevieweeStudentIDToolStripMenuItem.Click
+    Private Sub ImportpeerRevieweeStudentIDToolStripMenuItem_Click(sender As Object, e As EventArgs)
         SetColumnVisibility()
     End Sub
 
-    Private Sub ImportStudentGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentGroupToolStripMenuItem.Click
+    Private Sub ImportStudentGroupToolStripMenuItem_Click(sender As Object, e As EventArgs)
         SetColumnVisibility()
+    End Sub
+
+    Private Sub chkGroup_CheckStateChanged(sender As Object, e As EventArgs) Handles chkTags.CheckStateChanged, chkPeerStudentID.CheckStateChanged, chkNickname.CheckStateChanged, chkGroup.CheckStateChanged, chkExtStudentID.CheckStateChanged, chkEmail.CheckStateChanged
+        SetColumnVisibility()
+    End Sub
+
+    Private Sub UncheckallToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UncheckallToolStripMenuItem.Click
+        chkNickname.Checked = False
+        chkEmail.Checked = False
+        chkExtStudentID.Checked = False
+        chkTags.Checked = False
+        chkPeerStudentID.Checked = False
+        chkGroup.Checked = False
+    End Sub
+
+    Private Sub CheckAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckAllToolStripMenuItem.Click
+        chkNickname.Checked = True
+        chkEmail.Checked = True
+        chkExtStudentID.Checked = True
+        chkTags.Checked = True
+        chkPeerStudentID.Checked = True
+        chkGroup.Checked = True
     End Sub
 End Class

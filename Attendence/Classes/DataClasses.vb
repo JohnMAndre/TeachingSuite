@@ -2003,12 +2003,12 @@ Public Class StudentAssignmentBTEC
     Public Property LastUserFullName As String '-- UserFullName the most recent time this assignment was saved
 
     Public Property Outcomes As New List(Of OutcomeResult) '-- studentAssignment has own outcomes to provide for feedback
-    'Public Property M1Achieved As Boolean
-    'Public Property M2Achieved As Boolean
-    'Public Property M3Achieved As Boolean
-    'Public Property D1Achieved As Boolean
-    'Public Property D2Achieved As Boolean
-    'Public Property D3Achieved As Boolean
+
+    Public ReadOnly Property AchievedPass As Boolean
+        Get
+            Return AchievedAllAtGrade(BTECGradeGroup.Pass)
+        End Get
+    End Property
     Public ReadOnly Property AchievedMerit As Boolean
         Get
             If AchievedAllAtGrade(BTECGradeGroup.Pass) AndAlso AchievedAllAtGrade(BTECGradeGroup.Merit) Then
@@ -2031,11 +2031,6 @@ Public Class StudentAssignmentBTEC
     Public ReadOnly Property PassedOutcomesAtPass As Integer
         Get
             Return AchievedOutcomesAtGradeAndTry(BTECGradeGroup.Pass, Semester.MarkingTry.ThirdTry)
-        End Get
-    End Property
-    Public ReadOnly Property PassedAllOutcomes As Boolean
-        Get
-            Return AchievedAllAtGrade(BTECGradeGroup.Pass)
         End Get
     End Property
     Public ReadOnly Property AvailableOutcomes As Integer

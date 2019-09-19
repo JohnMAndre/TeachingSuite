@@ -99,6 +99,13 @@ Public Class BulkEmailer
             End If
 
             If dataItem.Selected Then
+
+                'GenerateEmailBodyForStudent(dataItem)
+
+
+
+
+
                 lblSendingStatus.Text = "Sending " & intCounter.ToString() & " of " & m_lst.Count.ToString()
                 If dataItem.Student.EmailedData Is Nothing OrElse dataItem.Student.EmailedData.Trim.Length = 0 Then
                     dataItem.Student.EmailedData = Date.Now.ToString("yyyy MMM dd")
@@ -159,24 +166,29 @@ Public Class BulkEmailer
             str.Append("Dear " & item.Student.LocalNameLatinLetters & ":")
         End If
 
+
         If AppSettings.EmailAsHTML Then
             str.Append("<br /><br />")
-            str.Append(txtEmailTrailingText.Text.Replace(Environment.NewLine, "<br />"))
         Else
             str.Append(Environment.NewLine)
             str.Append(Environment.NewLine)
+        End If
 
-
-            If txtEmailTrailingText.Text.IndexOf(PEER_REVIEWEE_NAME) >= 0 OrElse txtEmailTrailingText.Text.IndexOf(PEER_REVIEWEE_STUDENTID) >= 0 Then
-                Dim strTrailingMessage As String
-                Dim student As Student = m_clas.GetStudentByStudentID(item.Student.StudentIDToPeerReview)
-                If student IsNot Nothing Then
-                    strTrailingMessage = txtEmailTrailingText.Text.Replace(PEER_REVIEWEE_NAME, student.LocalName)
-                    strTrailingMessage = strTrailingMessage.Replace(PEER_REVIEWEE_STUDENTID, student.StudentID)
-                    str.Append(txtEmailTrailingText.Text)
-                End If
+        Dim strTrailingMessage As String = txtEmailTrailingText.Text
+        If strTrailingMessage.IndexOf(PEER_REVIEWEE_NAME) >= 0 OrElse strTrailingMessage.IndexOf(PEER_REVIEWEE_STUDENTID) >= 0 Then
+            Dim student As Student = m_clas.GetStudentByStudentID(item.Student.StudentIDToPeerReview)
+            If student IsNot Nothing Then
+                strTrailingMessage = strTrailingMessage.Replace(PEER_REVIEWEE_NAME, student.LocalName)
+                strTrailingMessage = strTrailingMessage.Replace(PEER_REVIEWEE_STUDENTID, student.StudentID)
             End If
         End If
+
+        If AppSettings.EmailAsHTML Then
+            str.Append(strTrailingMessage.Replace(Environment.NewLine, "<br />"))
+        Else
+            str.Append(strTrailingMessage)
+        End If
+
 
         Return str.ToString()
     End Function
