@@ -1,4 +1,6 @@
 ﻿
+Imports Teaching
+
 Public Class Semester
     Private m_strFilename As String
 
@@ -2075,13 +2077,13 @@ Public Class StudentAssignmentBTEC
                             intReturn += 1
                         End If
                     Case Semester.MarkingTry.SecondTry '-- means passed first or second try
-                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse
                             ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
                             intReturn += 1
                         End If
                     Case Semester.MarkingTry.ThirdTry '-- means passed on any try
-                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
-                            ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                        If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse
+                            ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse
                             ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
                             intReturn += 1
                         End If
@@ -2097,8 +2099,8 @@ Public Class StudentAssignmentBTEC
         '-- First, second, or third try all count
         For Each ocResult As OutcomeResult In Me.Outcomes
             If ocResult.BaseOutcome.GradeGroup = grade Then
-                If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
-                    ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+                If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse
+                    ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse
                     ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
                     intReturn += 1
                 End If
@@ -2401,7 +2403,7 @@ Public Class ClassAssignment
 
 End Class
 Public Class ClassAssignmentBTEC
-    Implements IClassAssignment
+    Implements IComparable(Of ClassAssignmentBTEC), IClassAssignment
     Public Property ClassGroup As ClassGroup Implements IClassAssignment.ClassGroup
     Public Property ID As String Implements IClassAssignment.ID
     Public Property Name As String Implements IClassAssignment.Name
@@ -2678,7 +2680,9 @@ Public Class ClassAssignmentBTEC
         Me.Outcomes.Remove(outcome)
     End Sub
 
-
+    Public Function CompareTo(other As ClassAssignmentBTEC) As Integer Implements IComparable(Of ClassAssignmentBTEC).CompareTo
+        Return Name.CompareTo(other.Name)
+    End Function
 End Class
 Public Class OutcomeResult
     Implements IComparable(Of OutcomeResult)

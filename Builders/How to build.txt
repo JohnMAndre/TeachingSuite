@@ -1,0 +1,11 @@
+1. Open TeachingAppPortableInstaller.nsi
+2. Edit version (also edit version in VStudio)
+3. Make any other changes (new files, etc.)
+4. Build (Ctrl+F9)
+5. Zip (TeachingAppSetup.exe and read-me.rtf)
+6. Rename zip to TeachingAppInstaller.zip
+7. Post to Educators.JohnMAndre.com
+8. Put changed files into TrulyMail.com TeachingApp stuff (add .bin to suffix)
+9. Update TeachingAppVersionList.xml
+10. Publish .bin files and .xml file
+11. Update Educators website with new features and a download link

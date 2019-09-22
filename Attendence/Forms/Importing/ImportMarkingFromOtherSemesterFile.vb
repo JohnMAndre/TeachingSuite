@@ -385,9 +385,7 @@
                 '   Any changes in improvement item performance levels
                 '   Any changes in student's presentation, research, plagiarism
                 Dim baseAsmt As IClassAssignment = GetSelectedAssignment()
-                Dim tempAsmt As StudentAssignment
                 Dim permStud As Student '-- in the perm database (ThisSemester)
-                Dim permAsmt As StudentAssignment
                 Dim permItem As StudentImprovementItem
                 Dim baseItem As ImprovementItem
                 Dim boolMatchedItem As Boolean
@@ -414,21 +412,44 @@
                     'TODO: we should look for notes and activitylog differences and add them
 
                     '-- Assignment
-                    For Each tempAsmt In stud.Student.Assignments
-                        If tempAsmt.BaseAssignment Is baseAsmt Then
-                            Exit For
+                    If baseAsmt.AssignmentType = AssignmentType.Normal Then
+                        Dim tempAsmt As StudentAssignment
+                        Dim permAsmt As StudentAssignment
+
+                        For Each tempAsmt In stud.Student.Assignments
+                            If tempAsmt.BaseAssignment Is baseAsmt Then
+                                Exit For
+                            End If
+                        Next
+
+                        '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                        permAsmt = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                            '-- Need to override the marker's name
+                            permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                            permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
                         End If
-                    Next
+                        permStud.Assignments.Add(permAsmt)
+                    Else
+                        '-- BTEC
+                        Dim tempAsmt As StudentAssignmentBTEC
+                        Dim permAsmt As StudentAssignmentBTEC
 
-                    '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                        For Each tempAsmt In stud.Student.AssignmentsBTEC
+                            If tempAsmt.BaseAssignment Is baseAsmt Then
+                                Exit For
+                            End If
+                        Next
 
-                    permAsmt = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
-                    If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
-                        '-- Need to override the marker's name
-                        permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
-                        permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                        '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                        permAsmt = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                            '-- Need to override the marker's name
+                            permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                            permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                        End If
+                        permStud.AssignmentsBTEC.Add(permAsmt)
                     End If
-                    permStud.Assignments.Add(permAsmt)
 
 
                     '-- Now, improvement items (add/update)
@@ -490,16 +511,31 @@
     End Sub
 
     Private Sub DeleteSelectedAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssignmentsToolStripMenuItem.Click
-        Dim lst As List(Of ReportData) = GetSelectedStudentsFromGrid()
-        For Each objData As ReportData In lst
-            m_lstCurrentListOfStudents.Remove(objData)
-        Next
+        Dim asmt As IClassAssignment = GetSelectedAssignment()
+
+        If asmt.AssignmentType = AssignmentType.Normal Then
+            Dim lst As List(Of ReportData) = GetSelectedStudentsFromGrid()
+            For Each objData As ReportData In lst
+                m_lstCurrentListOfStudents.Remove(objData)
+            Next
 
 
-        dgvStudentsNormal.DataSource = Nothing
-        dgvStudentsNormal.DataSource = m_lstCurrentListOfStudents
+            dgvStudentsNormal.DataSource = Nothing
+            dgvStudentsNormal.DataSource = m_lstCurrentListOfStudents
 
-        lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
+            lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
+        Else
+            Dim lst As List(Of ReportData) = GetSelectedStudentsFromBTECGrid()
+            For Each objData As ReportData In lst
+                m_lstCurrentListOfStudents.Remove(objData)
+            Next
+
+
+            dgvStudentsBTEC.DataSource = Nothing
+            dgvStudentsBTEC.DataSource = m_lstCurrentListOfStudents
+
+            lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
+        End If
     End Sub
 
     Private Sub btnLoadSemester_Click(sender As Object, e As EventArgs) Handles btnLoadSemester.Click
@@ -521,6 +557,30 @@
                 dict.Add(cell.RowIndex, Nothing)
 
                 row = dgvStudentsNormal.Rows(cell.RowIndex)
+                stud = row.DataBoundItem
+                If stud IsNot Nothing Then
+                    lstReturn.Add(stud)
+                End If
+            End If
+        Next
+        Return lstReturn
+    End Function
+    Private Function GetSelectedStudentsFromBTECGrid() As List(Of ReportData)
+        Dim lstReturn As New List(Of ReportData)
+
+        Dim cells As DataGridViewSelectedCellCollection
+
+        cells = dgvStudentsBTEC.SelectedCells
+
+        Dim row As DataGridViewRow
+        Dim stud As ReportData
+
+        Dim dict As New Dictionary(Of Integer, Object)
+        For Each cell As DataGridViewCell In cells
+            If Not dict.ContainsKey(cell.RowIndex) Then
+                dict.Add(cell.RowIndex, Nothing)
+
+                row = dgvStudentsBTEC.Rows(cell.RowIndex)
                 stud = row.DataBoundItem
                 If stud IsNot Nothing Then
                     lstReturn.Add(stud)

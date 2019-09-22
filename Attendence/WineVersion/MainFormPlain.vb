@@ -3508,4 +3508,13 @@ Public Class MainFormPlain
         End If
 
     End Sub
+
+    Private Sub ExportBTECGradesForMoodleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportBTECGradesForMoodleToolStripMenuItem.Click
+        If GetSelectedClassGroup() Is Nothing Then
+            MessageBox.Show("Please select a module to work with first.")
+            Exit Sub
+        End If
+        Dim frm As New ExportBTECGradesForMoodle(GetSelectedClassGroup())
+        frm.Show()
+    End Sub
 End Class

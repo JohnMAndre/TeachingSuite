@@ -467,6 +467,16 @@ Public Class StudentDetail
 
         End If
 
+        If m_student.AssignmentsBTEC.Count > 0 AndAlso m_student.Assignments.Count > 0 Then
+            '-- This student has both, BTEC and Normal assignments, need to show all
+            pnlNormalAssignments.Width = (Me.Width / 2) - 200
+
+            olvAssignments.Width = Me.Width - (pnlNormalAssignments.Width + pnlNormalAssignments.Left)
+            olvAssignments.Location = New Point(pnlNormalAssignments.Width + pnlNormalAssignments.Left, olvAssignments.Top)
+            olvAssignments.Anchor = AnchorStyles.Right + AnchorStyles.Top + AnchorStyles.Bottom
+        End If
+
+
 
         pbButtonHighlight.Location = New Point(btnShowAssignments.Left - 7, btnShowAssignments.Top - 8)
     End Sub
@@ -718,7 +728,28 @@ Public Class StudentDetail
             Dim frm As New StudentAssignmentNormalDetails(m_student, asmt, Semester.MarkingTry.FirstTry)
             frm.Show()
         End If
-
     End Sub
 
+    Private Sub EditBTECMenuItem_Click(sender As Object, e As EventArgs) Handles EditBTECMenuItem.Click
+        Dim asmt As StudentAssignmentBTEC
+        asmt = olvAssignments.SelectedObject
+
+        If asmt IsNot Nothing Then
+            AddApplicationHistory("Editing Assignment: " & asmt.BaseAssignment.Name & "; Student: " & m_student.ToString())
+            Dim frm As New StudentAssignmentDetails(m_student, asmt, Semester.MarkingTry.FirstTry)
+            frm.Show()
+        End If
+    End Sub
+
+    Private Sub DeleteBTECMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteBTECMenuItem.Click
+        Dim asmt As StudentAssignmentBTEC
+        asmt = olvAssignments.SelectedObject
+
+        If asmt IsNot Nothing Then
+            If MessageBox.Show("Are you sure you want to delete this student assignment?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
+                Me.m_student.AssignmentsBTEC.Remove(asmt)
+                olvAssignments.RemoveObject(asmt)
+            End If
+        End If
+    End Sub
 End Class
