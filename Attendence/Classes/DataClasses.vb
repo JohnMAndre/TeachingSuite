@@ -2299,7 +2299,7 @@ Public Interface IClassAssignment
 
 End Interface
 Public Class ClassAssignment
-    Implements IClassAssignment
+    Implements IComparable(Of ClassAssignment), IClassAssignment
     Public Property MaxPoints As Integer = 100 '-- default to 100 to make percents easy
 
     Public Property Weighting As Double '-- should sum to 100% across all assignments
@@ -2400,7 +2400,9 @@ Public Class ClassAssignment
         Next
 
     End Sub
-
+    Public Function CompareTo(other As ClassAssignment) As Integer Implements IComparable(Of ClassAssignment).CompareTo
+        Return Name.CompareTo(other.Name)
+    End Function
 End Class
 Public Class ClassAssignmentBTEC
     Implements IComparable(Of ClassAssignmentBTEC), IClassAssignment
@@ -3034,7 +3036,14 @@ Public Class Student
         End Get
         Set(value As String)
             If value <> m_strLocalName Then
-                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "LocalName", m_strLocalName)
+                If m_strLocalName IsNot Nothing Then
+                    If m_strLocalName.ToLower() <> value.ToLower() Then
+                        '-- record change
+                        AddToActivityLog("Changed localname from: " & m_strLocalName & " to: " & value)
+                        HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "LocalName", m_strLocalName)
+                    End If
+                End If
+
                 m_strLocalName = value
 
                 '-- keep plain version in sync

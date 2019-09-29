@@ -3514,7 +3514,18 @@ Public Class MainFormPlain
             MessageBox.Show("Please select a module to work with first.")
             Exit Sub
         End If
-        Dim frm As New ExportBTECGradesForMoodle(GetSelectedClassGroup())
-        frm.Show()
+
+        If GetSelectedAssignment() Is Nothing Then
+            Dim frm As New ExportBTECGradesForMoodle(GetSelectedClassGroup())
+            frm.Show()
+        Else
+            If GetSelectedAssignment().AssignmentType = AssignmentType.BTEC Then
+                Dim frm As New ExportBTECGradesForMoodle(GetSelectedClassGroup())
+                frm.Show()
+            Else
+                Dim frm As New ExportNormalGradesForMoodle(GetSelectedClassGroup())
+                frm.Show()
+            End If
+        End If
     End Sub
 End Class

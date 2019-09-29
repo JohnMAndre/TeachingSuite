@@ -133,6 +133,12 @@
     <Compile Include="Forms\Exporting\ExportBTECGradesForMoodle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Exporting\ExportNormalGradesForMoodle.Designer.vb">
+      <DependentUpon>ExportNormalGradesForMoodle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Exporting\ExportNormalGradesForMoodle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Utilities\AssignWorkshopGroups.Designer.vb">
       <DependentUpon>AssignWorkshopGroups.vb</DependentUpon>
     </Compile>
@@ -602,6 +608,9 @@
     <EmbeddedResource Include="Forms\Exporting\ExportBTECGradesForMoodle.resx">
       <DependentUpon>ExportBTECGradesForMoodle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Exporting\ExportNormalGradesForMoodle.resx">
+      <DependentUpon>ExportNormalGradesForMoodle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Utilities\AssignWorkshopGroups.resx">
       <DependentUpon>AssignWorkshopGroups.vb</DependentUpon>
     </EmbeddedResource>
@@ -995,16 +1004,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TeachingUpdater\TeachingUpdater.csproj">
-      <Project>{f660b14f-c160-4de2-8694-15a311f4e3a4}</Project>
-      <Name>TeachingUpdater</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UpdaterReplacer\UpdaterReplacer.csproj">
-      <Project>{9660f637-e093-48d5-959b-7a680f645b8e}</Project>
-      <Name>UpdaterReplacer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

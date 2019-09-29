@@ -278,6 +278,7 @@ Partial Class MainFormPlain
         Me.ImportImprovementItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportBTECGradesForMoodleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportModuleResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -328,7 +329,6 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.ExportBTECGradesForMoodleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2117,7 +2117,7 @@ Partial Class MainFormPlain
         Me.ImportClassToolStripMenuItem.Name = "ImportClassToolStripMenuItem"
         Me.ImportClassToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportClassToolStripMenuItem.Text = "Import &class..."
-        Me.ImportClassToolStripMenuItem.ToolTipText = "Import class, students, assignments (but not student assignment results or attend" & _
+        Me.ImportClassToolStripMenuItem.ToolTipText = "Import class, students, assignments (but not student assignment results or attend" &
     "ance records) from previous semester"
         '
         'ImportSToolStripMenuItem
@@ -2176,6 +2176,12 @@ Partial Class MainFormPlain
         Me.ExportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportAttendanceToolStripMenuItem.Text = "Export a&ttendance..."
         '
+        'ExportBTECGradesForMoodleToolStripMenuItem
+        '
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Name = "ExportBTECGradesForMoodleToolStripMenuItem"
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Text = "Export &BTEC / normal grades for Moodle"
+        '
         'ExportModuleResultsToolStripMenuItem
         '
         Me.ExportModuleResultsToolStripMenuItem.Name = "ExportModuleResultsToolStripMenuItem"
@@ -2194,7 +2200,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.Name = "ExportMarkingResultsFirstSubmitToolStripMenuItem"
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.Text = "&First submit"
-        Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" & _
+        Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" &
     " try)"
         '
         'ExportMarkingResultsSecondSubmitToolStripMenuItem
@@ -2202,7 +2208,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.Name = "ExportMarkingResultsSecondSubmitToolStripMenuItem"
         Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.Text = "&Second submit"
-        Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" & _
+        Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" &
     " try)"
         '
         'ExportMarkingResultsThirdSubmitToolStripMenuItem
@@ -2210,7 +2216,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.Name = "ExportMarkingResultsThirdSubmitToolStripMenuItem"
         Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.Text = "&Third submit"
-        Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" & _
+        Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" &
     " try)"
         '
         'ExportMarkingResultsIsolatedToolStripMenuItem
@@ -2225,7 +2231,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Name = "ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem"
         Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Text = "&First submit"
-        Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" & _
+        Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" &
     "cted try)"
         '
         'ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem
@@ -2233,7 +2239,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Name = "ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem"
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Text = "&Second submit"
-        Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" & _
+        Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" &
     "cted try)"
         '
         'ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem
@@ -2241,7 +2247,7 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Name = "ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem"
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Text = "&Third submit"
-        Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" & _
+        Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" &
     "cted try)"
         '
         'ExportStudentsToolStripMenuItem
@@ -2492,12 +2498,6 @@ Partial Class MainFormPlain
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'ExportBTECGradesForMoodleToolStripMenuItem
-        '
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Name = "ExportBTECGradesForMoodleToolStripMenuItem"
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Text = "Export &BTEC grades for Moodle"
         '
         'MainFormPlain
         '

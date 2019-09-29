@@ -1,4 +1,4 @@
-﻿Public Class ExportBTECGradesForMoodle
+﻿Public Class ExportNormalGradesForMoodle
 
     Private m_group As ClassGroup
 
@@ -12,8 +12,8 @@
     End Sub
     Private Sub LoadAssignments()
         lstAssignments.Items.Clear()
-        m_group.AssignmentsBTEC.Sort()
-        For Each asmt As ClassAssignmentBTEC In m_group.AssignmentsBTEC
+        m_group.Assignments.Sort()
+        For Each asmt As ClassAssignment In m_group.Assignments
             lstAssignments.Items.Add(asmt)
         Next
     End Sub
@@ -35,7 +35,7 @@
 
             '-- First, write out the headers
             tw.Write("StudentID" & vbTab & "Email")
-            For Each item As ClassAssignmentBTEC In lstAssignments.SelectedItems
+            For Each item As ClassAssignment In lstAssignments.SelectedItems
                 tw.Write(vbTab & "Assignment: " & item.Name & " (Real)" & vbTab & "Assignment: " & item.Name & " (Feedback)")
             Next
             tw.WriteLine(String.Empty) '-- just to get the end of line char (I think this will work)
@@ -50,9 +50,9 @@
 
                     strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress
                     '--  WARNING: It is possible that A2 is created before A1 so need to sort first, otherwise columns will not sync up
-                    stud.AssignmentsBTEC.Sort()
+                    stud.Assignments.Sort()
 
-                    For Each stAsmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
+                    For Each stAsmt As StudentAssignment In stud.Assignments
                         '-- If the student has the assignment and that assignment is selected, then we write it out.
                         If lstAssignments.SelectedItems.Contains(stAsmt.BaseAssignment) Then
                             '-- It's selected, but we need to see if this student missed any assignments
@@ -66,15 +66,7 @@
                             Loop
 
                             '-- This is the one it should be
-                            If stAsmt.AchievedDistinction Then
-                                strLineToWrite &= vbTab & "Distinction"
-                            ElseIf stAsmt.AchievedMerit Then
-                                strLineToWrite &= vbTab & "Merit"
-                            ElseIf stAsmt.AchievedPass Then
-                                strLineToWrite &= vbTab & "Pass"
-                            Else
-                                strLineToWrite &= vbTab & "Fail"
-                            End If
+                            strLineToWrite &= vbTab & stAsmt.FirstTryPoints
 
                             '-- Need to remove end of line chars
                             strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
