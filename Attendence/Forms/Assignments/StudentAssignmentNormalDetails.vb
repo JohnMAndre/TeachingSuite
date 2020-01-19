@@ -44,8 +44,6 @@
         Catch ex As Exception
             Log(ex)
         End Try
-
-
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -106,6 +104,7 @@
         Me.Text &= " - " & m_student.LocalName
         txtGroup.Text = m_student.StudentGroup.ToString()
         txtTeam.Text = m_student.StudentTeam
+        txtPeerStudentID.Text = m_student.StudentIDToPeerReview
 
         nudFirstTryPoints.Value = m_studentAssignment.FirstTryPoints
         nudSecondTryPoints.Value = m_studentAssignment.SecondTryPoints
@@ -113,8 +112,8 @@
 
 
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
-        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments.RichTextBox, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments.RichTextBox, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments, True)
 
         nudPlagiarismSeverity.Value = m_student.PlagiarismSeverity
 
@@ -171,6 +170,69 @@
 
     End Sub
 
+    Public Sub PrepareMarkingPageSimple()
+        Try
+            If Not SaveChanges() Then
+                Exit Sub
+            End If
+
+
+            If m_studentAssignment.BaseAssignment.AssignmentBriefFilename.Trim.Length = 0 Then
+                MessageBox.Show("There is no document related to this assignment. Please fix this problem and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            If rtbImprovementComments.Text.Trim.Length = 0 Then
+                MessageBox.Show("You must fill out overall and improvement comments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+
+            '-- copy template over to new file, in case user accidentally saves it
+            Dim strTemplateFilename As String = System.IO.Path.Combine(GetMarkingFolder(), m_studentAssignment.BaseAssignment.AssignmentBriefFilename)
+            Dim strWorkingFilename As String = System.IO.Path.Combine(GetMarkingFolder(), "~temp1.docx")
+            If System.IO.File.Exists(strWorkingFilename) Then
+                System.IO.File.Delete(strWorkingFilename)
+            End If
+
+            System.IO.File.Copy(strTemplateFilename, strWorkingFilename, True)
+
+            Dim strDestination As String
+
+            Using docMarking As Xceed.Words.NET.DocX = Xceed.Words.NET.DocX.Load(strWorkingFilename)
+                docMarking.ReplaceText("OOStudentIDOO", m_student.StudentID)
+                docMarking.ReplaceText("OONickNameOO", m_student.Nickname)
+                docMarking.ReplaceText("OOStudentNameOO", m_student.LocalName)
+                docMarking.ReplaceText("OOExtStudentIDOO", m_student.ExtStudentID)
+                docMarking.ReplaceText("OOAltNumberOO", m_student.AltNumber.ToString())
+                docMarking.ReplaceText("OOOVERALLOO", rtbOverallComments.Text)
+                docMarking.ReplaceText("OOIMPROVEMENTSOO", rtbImprovementComments.Text)
+                docMarking.ReplaceText("OODATEOO", Date.Today.ToString("dd / MMM / yyyy"))
+
+                strDestination = GetMarkingPageFilename()
+                If System.IO.File.Exists(strDestination) Then
+                    System.IO.File.Delete(strDestination)
+                End If
+
+                docMarking.SaveAs(strDestination)
+
+            End Using
+
+
+            chkProcessed.Checked = True
+            Select Case m_try
+                Case Semester.MarkingTry.FirstTry
+                    m_studentAssignment.FirstTryPrintDate = Date.Now
+                Case (Semester.MarkingTry.SecondTry)
+                    m_studentAssignment.SecondTryPrintDate = Date.Now
+                Case Semester.MarkingTry.ThirdTry
+                    m_studentAssignment.ThirdTryPrintDate = Date.Now
+            End Select
+        Catch ex As Exception
+            Application.DoEvents()
+        End Try
+
+    End Sub
     Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As EventArgs) Handles llblDeleteAssignment.LinkClicked
         If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
             m_student.Assignments.Remove(m_studentAssignment)
@@ -466,4 +528,13 @@
         End If
         olvImprovementItems.RefreshObject(selItem)
     End Sub
+    Private Function GetMarkingPageFilename() As String
+        Dim strDestination As String = System.IO.Path.Combine(AppSettings.MarkingPageSaveFolder, Me.m_student.SchoolClass.ClassGroup.Name)
+        If Not System.IO.Directory.Exists(strDestination) Then
+            System.IO.Directory.CreateDirectory(strDestination)
+        End If
+        'strDestination = System.IO.Path.Combine(strDestination, nudAltNumber.Value.ToString("#,000")) & " - " & txtStudentID.Text & " - " & m_studentAssignment.BaseAssignment.Name & ".docx"
+        strDestination = System.IO.Path.Combine(strDestination, txtStudentID.Text & " - " & m_studentAssignment.BaseAssignment.Name & ".docx")
+        Return strDestination
+    End Function
 End Class

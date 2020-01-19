@@ -81,6 +81,12 @@ Partial Class StudentDetail
         Me.OlvColumn37 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn38 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn39 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn45 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn46 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.ctxmnuBTECAssignments = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditBTECMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DeleteBTECMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlNormalAssignments = New System.Windows.Forms.Panel()
         Me.olvNormalAssignments = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn28 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -149,18 +155,14 @@ Partial Class StudentDetail
         Me.OlvColumn23 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn24 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ctxmnuBTECAssignments = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditBTECMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.DeleteBTECMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OlvColumn45 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn46 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn50 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.pbButtonHighlight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlAssignments.SuspendLayout()
         Me.pnlAttendance.SuspendLayout()
         CType(Me.olvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuBTECAssignments.SuspendLayout()
         Me.pnlNormalAssignments.SuspendLayout()
         CType(Me.olvNormalAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ctxmnuNormalAssignments.SuspendLayout()
@@ -175,7 +177,6 @@ Partial Class StudentDetail
         Me.pnlLog.SuspendLayout()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ctxmnuBTECAssignments.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -245,7 +246,7 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtExtStudentID.Location = New System.Drawing.Point(399, 58)
         Me.txtExtStudentID.Name = "txtExtStudentID"
-        Me.txtExtStudentID.Size = New System.Drawing.Size(235, 19)
+        Me.txtExtStudentID.Size = New System.Drawing.Size(235, 23)
         Me.txtExtStudentID.TabIndex = 11
         '
         'txtClassGroup
@@ -255,7 +256,7 @@ Partial Class StudentDetail
         Me.txtClassGroup.Location = New System.Drawing.Point(400, 12)
         Me.txtClassGroup.Name = "txtClassGroup"
         Me.txtClassGroup.ReadOnly = True
-        Me.txtClassGroup.Size = New System.Drawing.Size(184, 19)
+        Me.txtClassGroup.Size = New System.Drawing.Size(184, 23)
         Me.txtClassGroup.TabIndex = 66
         Me.ToolTip1.SetToolTip(Me.txtClassGroup, "Email address (User@Domain.com)")
         '
@@ -265,7 +266,7 @@ Partial Class StudentDetail
         Me.txtClass.Location = New System.Drawing.Point(637, 12)
         Me.txtClass.Name = "txtClass"
         Me.txtClass.ReadOnly = True
-        Me.txtClass.Size = New System.Drawing.Size(200, 19)
+        Me.txtClass.Size = New System.Drawing.Size(200, 23)
         Me.txtClass.TabIndex = 57
         Me.ToolTip1.SetToolTip(Me.txtClass, "Email address (User@Domain.com)")
         '
@@ -275,21 +276,21 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTags.Location = New System.Drawing.Point(399, 35)
         Me.txtTags.Name = "txtTags"
-        Me.txtTags.Size = New System.Drawing.Size(343, 19)
+        Me.txtTags.Size = New System.Drawing.Size(343, 23)
         Me.txtTags.TabIndex = 8
         '
         'txtStudentIDOfPeerToReview
         '
         Me.txtStudentIDOfPeerToReview.Location = New System.Drawing.Point(99, 104)
         Me.txtStudentIDOfPeerToReview.Name = "txtStudentIDOfPeerToReview"
-        Me.txtStudentIDOfPeerToReview.Size = New System.Drawing.Size(239, 19)
+        Me.txtStudentIDOfPeerToReview.Size = New System.Drawing.Size(239, 23)
         Me.txtStudentIDOfPeerToReview.TabIndex = 7
         '
         'txtEmail
         '
         Me.txtEmail.Location = New System.Drawing.Point(99, 81)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(239, 19)
+        Me.txtEmail.Size = New System.Drawing.Size(239, 23)
         Me.txtEmail.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.txtEmail, "Email address (User@Domain.com)")
         '
@@ -297,21 +298,21 @@ Partial Class StudentDetail
         '
         Me.txtStudentID.Location = New System.Drawing.Point(99, 58)
         Me.txtStudentID.Name = "txtStudentID"
-        Me.txtStudentID.Size = New System.Drawing.Size(178, 19)
+        Me.txtStudentID.Size = New System.Drawing.Size(178, 23)
         Me.txtStudentID.TabIndex = 5
         '
         'txtNickName
         '
         Me.txtNickName.Location = New System.Drawing.Point(99, 35)
         Me.txtNickName.Name = "txtNickName"
-        Me.txtNickName.Size = New System.Drawing.Size(239, 19)
+        Me.txtNickName.Size = New System.Drawing.Size(239, 23)
         Me.txtNickName.TabIndex = 3
         '
         'txtLocalName
         '
         Me.txtLocalName.Location = New System.Drawing.Point(99, 12)
         Me.txtLocalName.Name = "txtLocalName"
-        Me.txtLocalName.Size = New System.Drawing.Size(239, 19)
+        Me.txtLocalName.Size = New System.Drawing.Size(239, 23)
         Me.txtLocalName.TabIndex = 1
         '
         'btnShowHistoricalData
@@ -338,16 +339,16 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel14.Location = New System.Drawing.Point(356, 34)
         Me.KryptonLabel14.Name = "KryptonLabel14"
-        Me.KryptonLabel14.Size = New System.Drawing.Size(44, 19)
+        Me.KryptonLabel14.Size = New System.Drawing.Size(38, 20)
         Me.KryptonLabel14.TabIndex = 69
         Me.KryptonLabel14.Values.Text = "Tags:"
         '
         'lblAbsentPercent
         '
         Me.lblAbsentPercent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblAbsentPercent.Location = New System.Drawing.Point(561, 91)
+        Me.lblAbsentPercent.Location = New System.Drawing.Point(563, 91)
         Me.lblAbsentPercent.Name = "lblAbsentPercent"
-        Me.lblAbsentPercent.Size = New System.Drawing.Size(23, 19)
+        Me.lblAbsentPercent.Size = New System.Drawing.Size(21, 20)
         Me.lblAbsentPercent.TabIndex = 68
         Me.lblAbsentPercent.Values.Text = "%"
         '
@@ -366,7 +367,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel13.Location = New System.Drawing.Point(339, 12)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.Size = New System.Drawing.Size(58, 19)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(55, 20)
         Me.KryptonLabel13.TabIndex = 67
         Me.KryptonLabel13.Values.Text = "Module:"
         '
@@ -393,9 +394,9 @@ Partial Class StudentDetail
         'KryptonLabel12
         '
         Me.KryptonLabel12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel12.Location = New System.Drawing.Point(583, 12)
+        Me.KryptonLabel12.Location = New System.Drawing.Point(590, 12)
         Me.KryptonLabel12.Name = "KryptonLabel12"
-        Me.KryptonLabel12.Size = New System.Drawing.Size(48, 19)
+        Me.KryptonLabel12.Size = New System.Drawing.Size(41, 20)
         Me.KryptonLabel12.TabIndex = 58
         Me.KryptonLabel12.Values.Text = "Class:"
         '
@@ -403,7 +404,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel11.Location = New System.Drawing.Point(299, 58)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(101, 19)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(91, 20)
         Me.KryptonLabel11.TabIndex = 10
         Me.KryptonLabel11.Values.Text = "Ext Student ID:"
         '
@@ -413,7 +414,7 @@ Partial Class StudentDetail
         Me.nudWritingQuality.Location = New System.Drawing.Point(590, 118)
         Me.nudWritingQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudWritingQuality.Name = "nudWritingQuality"
-        Me.nudWritingQuality.Size = New System.Drawing.Size(44, 21)
+        Me.nudWritingQuality.Size = New System.Drawing.Size(44, 22)
         Me.nudWritingQuality.TabIndex = 54
         Me.nudWritingQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudWritingQuality.ThousandsSeparator = True
@@ -422,9 +423,9 @@ Partial Class StudentDetail
         'KryptonLabel10
         '
         Me.KryptonLabel10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel10.Location = New System.Drawing.Point(528, 118)
+        Me.KryptonLabel10.Location = New System.Drawing.Point(531, 118)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Size = New System.Drawing.Size(56, 19)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(53, 20)
         Me.KryptonLabel10.TabIndex = 53
         Me.KryptonLabel10.Values.Text = "Writing:"
         '
@@ -434,7 +435,7 @@ Partial Class StudentDetail
         Me.nudPlagiarismSeverity.Location = New System.Drawing.Point(463, 116)
         Me.nudPlagiarismSeverity.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.nudPlagiarismSeverity.Name = "nudPlagiarismSeverity"
-        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(44, 21)
+        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(44, 22)
         Me.nudPlagiarismSeverity.TabIndex = 51
         Me.nudPlagiarismSeverity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPlagiarismSeverity.ThousandsSeparator = True
@@ -443,9 +444,9 @@ Partial Class StudentDetail
         'KryptonLabel9
         '
         Me.KryptonLabel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel9.Location = New System.Drawing.Point(416, 116)
+        Me.KryptonLabel9.Location = New System.Drawing.Point(420, 116)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(41, 19)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(37, 20)
         Me.KryptonLabel9.TabIndex = 52
         Me.ToolTip1.SetToolTip(Me.KryptonLabel9, "Plagiarism severity")
         Me.KryptonLabel9.Values.Text = "Plag:"
@@ -455,7 +456,7 @@ Partial Class StudentDetail
         Me.nudMaxAbsences.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nudMaxAbsences.Location = New System.Drawing.Point(590, 90)
         Me.nudMaxAbsences.Name = "nudMaxAbsences"
-        Me.nudMaxAbsences.Size = New System.Drawing.Size(44, 21)
+        Me.nudMaxAbsences.Size = New System.Drawing.Size(44, 22)
         Me.nudMaxAbsences.TabIndex = 38
         Me.nudMaxAbsences.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudMaxAbsences.ThousandsSeparator = True
@@ -465,7 +466,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel17.Location = New System.Drawing.Point(12, 104)
         Me.KryptonLabel17.Name = "KryptonLabel17"
-        Me.KryptonLabel17.Size = New System.Drawing.Size(100, 19)
+        Me.KryptonLabel17.Size = New System.Drawing.Size(91, 20)
         Me.KryptonLabel17.TabIndex = 6
         Me.KryptonLabel17.Values.Text = "Peer to review:"
         '
@@ -473,7 +474,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel8.Location = New System.Drawing.Point(12, 81)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(48, 19)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(42, 20)
         Me.KryptonLabel8.TabIndex = 6
         Me.KryptonLabel8.Values.Text = "Email:"
         '
@@ -484,7 +485,7 @@ Partial Class StudentDetail
         Me.nudAltNumber.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.nudAltNumber.Minimum = New Decimal(New Integer() {10000, 0, 0, -2147483648})
         Me.nudAltNumber.Name = "nudAltNumber"
-        Me.nudAltNumber.Size = New System.Drawing.Size(89, 21)
+        Me.nudAltNumber.Size = New System.Drawing.Size(89, 22)
         Me.nudAltNumber.TabIndex = 48
         Me.nudAltNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAltNumber.ThousandsSeparator = True
@@ -492,9 +493,9 @@ Partial Class StudentDetail
         'KryptonLabel7
         '
         Me.KryptonLabel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel7.Location = New System.Drawing.Point(701, 90)
+        Me.KryptonLabel7.Location = New System.Drawing.Point(703, 90)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(41, 19)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(39, 20)
         Me.KryptonLabel7.TabIndex = 47
         Me.KryptonLabel7.Values.Text = "Alt #:"
         '
@@ -504,7 +505,7 @@ Partial Class StudentDetail
         Me.nudPresentationQuality.Location = New System.Drawing.Point(748, 118)
         Me.nudPresentationQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPresentationQuality.Name = "nudPresentationQuality"
-        Me.nudPresentationQuality.Size = New System.Drawing.Size(89, 21)
+        Me.nudPresentationQuality.Size = New System.Drawing.Size(89, 22)
         Me.nudPresentationQuality.TabIndex = 46
         Me.nudPresentationQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPresentationQuality.ThousandsSeparator = True
@@ -513,9 +514,9 @@ Partial Class StudentDetail
         'KryptonLabel6
         '
         Me.KryptonLabel6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel6.Location = New System.Drawing.Point(646, 118)
+        Me.KryptonLabel6.Location = New System.Drawing.Point(655, 118)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(96, 19)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(87, 20)
         Me.KryptonLabel6.TabIndex = 45
         Me.KryptonLabel6.Values.Text = "Presentations:"
         '
@@ -542,9 +543,9 @@ Partial Class StudentDetail
         'KryptonLabel5
         '
         Me.KryptonLabel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel5.Location = New System.Drawing.Point(406, 90)
+        Me.KryptonLabel5.Location = New System.Drawing.Point(420, 90)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(122, 19)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(108, 20)
         Me.KryptonLabel5.TabIndex = 40
         Me.KryptonLabel5.Values.Text = "Current Absenses:"
         '
@@ -579,7 +580,7 @@ Partial Class StudentDetail
         Me.nudAdminNumber.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.nudAdminNumber.Minimum = New Decimal(New Integer() {10000, 0, 0, -2147483648})
         Me.nudAdminNumber.Name = "nudAdminNumber"
-        Me.nudAdminNumber.Size = New System.Drawing.Size(89, 21)
+        Me.nudAdminNumber.Size = New System.Drawing.Size(89, 22)
         Me.nudAdminNumber.TabIndex = 33
         Me.nudAdminNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAdminNumber.ThousandsSeparator = True
@@ -587,9 +588,9 @@ Partial Class StudentDetail
         'KryptonLabel4
         '
         Me.KryptonLabel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel4.Location = New System.Drawing.Point(678, 64)
+        Me.KryptonLabel4.Location = New System.Drawing.Point(682, 64)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(64, 19)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(60, 20)
         Me.KryptonLabel4.TabIndex = 32
         Me.KryptonLabel4.Values.Text = "Admin #:"
         '
@@ -597,7 +598,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(12, 58)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(78, 19)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(71, 20)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Student ID:"
         '
@@ -605,7 +606,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(12, 35)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(76, 19)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
         Me.KryptonLabel1.TabIndex = 2
         Me.KryptonLabel1.Values.Text = "NickName:"
         '
@@ -634,7 +635,7 @@ Partial Class StudentDetail
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(84, 19)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(75, 20)
         Me.KryptonLabel3.TabIndex = 0
         Me.KryptonLabel3.Values.Text = "Local name:"
         '
@@ -719,6 +720,7 @@ Partial Class StudentDetail
         Me.olvAssignments.AllColumns.Add(Me.OlvColumn13)
         Me.olvAssignments.AllColumns.Add(Me.OlvColumn20)
         Me.olvAssignments.AllColumns.Add(Me.OlvColumn21)
+        Me.olvAssignments.AllColumns.Add(Me.OlvColumn50)
         Me.olvAssignments.AllColumns.Add(Me.OlvColumn34)
         Me.olvAssignments.AllColumns.Add(Me.OlvColumn35)
         Me.olvAssignments.AllColumns.Add(Me.OlvColumn36)
@@ -732,10 +734,11 @@ Partial Class StudentDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvAssignments.CellEditUseWholeCell = False
-        Me.olvAssignments.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn13, Me.OlvColumn20, Me.OlvColumn21, Me.OlvColumn34, Me.OlvColumn35, Me.OlvColumn36, Me.OlvColumn37, Me.OlvColumn38, Me.OlvColumn39, Me.OlvColumn45, Me.OlvColumn46})
+        Me.olvAssignments.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn13, Me.OlvColumn20, Me.OlvColumn21, Me.OlvColumn50, Me.OlvColumn34, Me.OlvColumn35, Me.OlvColumn36, Me.OlvColumn37, Me.OlvColumn38, Me.OlvColumn39, Me.OlvColumn45, Me.OlvColumn46})
         Me.olvAssignments.ContextMenuStrip = Me.ctxmnuBTECAssignments
         Me.olvAssignments.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvAssignments.FullRowSelect = True
+        Me.olvAssignments.HideSelection = False
         Me.olvAssignments.Location = New System.Drawing.Point(0, 175)
         Me.olvAssignments.Name = "olvAssignments"
         Me.olvAssignments.ShowGroups = False
@@ -766,10 +769,10 @@ Partial Class StudentDetail
         '
         'OlvColumn21
         '
-        Me.OlvColumn21.AspectName = "PassedOutcomesAtPass"
+        Me.OlvColumn21.AspectName = "AchievedOutcomes"
         Me.OlvColumn21.AutoCompleteEditor = False
         Me.OlvColumn21.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.OlvColumn21.Text = "Passed"
+        Me.OlvColumn21.Text = "Achieved"
         Me.OlvColumn21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'OlvColumn34
@@ -828,6 +831,44 @@ Partial Class StudentDetail
         Me.OlvColumn39.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn39.Width = 68
         '
+        'OlvColumn45
+        '
+        Me.OlvColumn45.AspectName = "FirstUserFullName"
+        Me.OlvColumn45.Text = "First Marker"
+        Me.OlvColumn45.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn45.Width = 100
+        '
+        'OlvColumn46
+        '
+        Me.OlvColumn46.AspectName = "LastUserFullName"
+        Me.OlvColumn46.Text = "Last Marker"
+        Me.OlvColumn46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn46.Width = 100
+        '
+        'ctxmnuBTECAssignments
+        '
+        Me.ctxmnuBTECAssignments.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ctxmnuBTECAssignments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditBTECMenuItem, Me.ToolStripSeparator2, Me.DeleteBTECMenuItem})
+        Me.ctxmnuBTECAssignments.Name = "ctxmnuNormalAssignments"
+        Me.ctxmnuBTECAssignments.Size = New System.Drawing.Size(108, 54)
+        '
+        'EditBTECMenuItem
+        '
+        Me.EditBTECMenuItem.Name = "EditBTECMenuItem"
+        Me.EditBTECMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.EditBTECMenuItem.Text = "&Edit..."
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(104, 6)
+        '
+        'DeleteBTECMenuItem
+        '
+        Me.DeleteBTECMenuItem.Name = "DeleteBTECMenuItem"
+        Me.DeleteBTECMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteBTECMenuItem.Text = "&Delete"
+        '
         'pnlNormalAssignments
         '
         Me.pnlNormalAssignments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -860,6 +901,7 @@ Partial Class StudentDetail
         Me.olvNormalAssignments.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvNormalAssignments.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvNormalAssignments.FullRowSelect = True
+        Me.olvNormalAssignments.HideSelection = False
         Me.olvNormalAssignments.Location = New System.Drawing.Point(0, 0)
         Me.olvNormalAssignments.MultiSelect = False
         Me.olvNormalAssignments.Name = "olvNormalAssignments"
@@ -987,7 +1029,7 @@ Partial Class StudentDetail
         '
         Me.lblGradeAsOfTodayPoints.Location = New System.Drawing.Point(248, 4)
         Me.lblGradeAsOfTodayPoints.Name = "lblGradeAsOfTodayPoints"
-        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(18, 19)
+        Me.lblGradeAsOfTodayPoints.Size = New System.Drawing.Size(17, 20)
         Me.lblGradeAsOfTodayPoints.TabIndex = 140
         Me.lblGradeAsOfTodayPoints.Values.Text = "0"
         '
@@ -995,7 +1037,7 @@ Partial Class StudentDetail
         '
         Me.llblRefreshGradeAsOfToday.Location = New System.Drawing.Point(9, 4)
         Me.llblRefreshGradeAsOfToday.Name = "llblRefreshGradeAsOfToday"
-        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(97, 19)
+        Me.llblRefreshGradeAsOfToday.Size = New System.Drawing.Size(88, 20)
         Me.llblRefreshGradeAsOfToday.TabIndex = 139
         Me.ToolTip1.SetToolTip(Me.llblRefreshGradeAsOfToday, "Click to refresh")
         Me.llblRefreshGradeAsOfToday.Values.Text = "Grade (today):"
@@ -1004,7 +1046,7 @@ Partial Class StudentDetail
         '
         Me.lblGradeAsOfTodayPercent.Location = New System.Drawing.Point(112, 3)
         Me.lblGradeAsOfTodayPercent.Name = "lblGradeAsOfTodayPercent"
-        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(18, 19)
+        Me.lblGradeAsOfTodayPercent.Size = New System.Drawing.Size(17, 20)
         Me.lblGradeAsOfTodayPercent.TabIndex = 49
         Me.lblGradeAsOfTodayPercent.Values.Text = "0"
         '
@@ -1042,6 +1084,7 @@ Partial Class StudentDetail
         Me.olvHistoricalData.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn47, Me.OlvColumn48, Me.OlvColumn49, Me.olvcolTimeInForce, Me.OlvColumn40})
         Me.olvHistoricalData.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvHistoricalData.FullRowSelect = True
+        Me.olvHistoricalData.HideSelection = False
         Me.olvHistoricalData.Location = New System.Drawing.Point(177, 0)
         Me.olvHistoricalData.Name = "olvHistoricalData"
         Me.olvHistoricalData.ShowGroups = False
@@ -1115,6 +1158,7 @@ Partial Class StudentDetail
         Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12})
         Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvOutcomes.FullRowSelect = True
+        Me.olvOutcomes.HideSelection = False
         Me.olvOutcomes.Location = New System.Drawing.Point(0, 0)
         Me.olvOutcomes.Name = "olvOutcomes"
         Me.olvOutcomes.ShowGroups = False
@@ -1213,9 +1257,9 @@ Partial Class StudentDetail
         'KryptonLabel15
         '
         Me.KryptonLabel15.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel15.Location = New System.Drawing.Point(8, 287)
+        Me.KryptonLabel15.Location = New System.Drawing.Point(8, 286)
         Me.KryptonLabel15.Name = "KryptonLabel15"
-        Me.KryptonLabel15.Size = New System.Drawing.Size(41, 19)
+        Me.KryptonLabel15.Size = New System.Drawing.Size(36, 20)
         Me.KryptonLabel15.TabIndex = 36
         Me.KryptonLabel15.Values.Text = "Find:"
         '
@@ -1224,7 +1268,7 @@ Partial Class StudentDetail
         Me.txtFindInNotes.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFindInNotes.Location = New System.Drawing.Point(51, 288)
         Me.txtFindInNotes.Name = "txtFindInNotes"
-        Me.txtFindInNotes.Size = New System.Drawing.Size(245, 19)
+        Me.txtFindInNotes.Size = New System.Drawing.Size(245, 23)
         Me.txtFindInNotes.TabIndex = 37
         '
         'rtbNotes
@@ -1268,9 +1312,9 @@ Partial Class StudentDetail
         'KryptonLabel16
         '
         Me.KryptonLabel16.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel16.Location = New System.Drawing.Point(12, 283)
+        Me.KryptonLabel16.Location = New System.Drawing.Point(12, 282)
         Me.KryptonLabel16.Name = "KryptonLabel16"
-        Me.KryptonLabel16.Size = New System.Drawing.Size(41, 19)
+        Me.KryptonLabel16.Size = New System.Drawing.Size(36, 20)
         Me.KryptonLabel16.TabIndex = 36
         Me.KryptonLabel16.Values.Text = "Find:"
         '
@@ -1279,7 +1323,7 @@ Partial Class StudentDetail
         Me.txtFindInHistory.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFindInHistory.Location = New System.Drawing.Point(55, 282)
         Me.txtFindInHistory.Name = "txtFindInHistory"
-        Me.txtFindInHistory.Size = New System.Drawing.Size(245, 19)
+        Me.txtFindInHistory.Size = New System.Drawing.Size(245, 23)
         Me.txtFindInHistory.TabIndex = 37
         '
         'rtbLog
@@ -1315,6 +1359,7 @@ Partial Class StudentDetail
         Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvImprovementItems.EmptyListMsg = "No improvement items"
         Me.olvImprovementItems.FullRowSelect = True
+        Me.olvImprovementItems.HideSelection = False
         Me.olvImprovementItems.Location = New System.Drawing.Point(0, 174)
         Me.olvImprovementItems.MultiSelect = False
         Me.olvImprovementItems.Name = "olvImprovementItems"
@@ -1400,6 +1445,7 @@ Partial Class StudentDetail
         Me.olvTeachingSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn26, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn44, Me.OlvColumn25, Me.OlvColumn27})
         Me.olvTeachingSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvTeachingSessions.FullRowSelect = True
+        Me.olvTeachingSessions.HideSelection = False
         Me.olvTeachingSessions.Location = New System.Drawing.Point(2, 175)
         Me.olvTeachingSessions.Name = "olvTeachingSessions"
         Me.olvTeachingSessions.ShowGroups = False
@@ -1529,43 +1575,14 @@ Partial Class StudentDetail
         Me.OlvColumn24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.OlvColumn24.Width = 80
         '
-        'ctxmnuBTECAssignments
+        'OlvColumn50
         '
-        Me.ctxmnuBTECAssignments.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ctxmnuBTECAssignments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditBTECMenuItem, Me.ToolStripSeparator2, Me.DeleteBTECMenuItem})
-        Me.ctxmnuBTECAssignments.Name = "ctxmnuNormalAssignments"
-        Me.ctxmnuBTECAssignments.Size = New System.Drawing.Size(108, 54)
-        '
-        'EditBTECMenuItem
-        '
-        Me.EditBTECMenuItem.Name = "EditBTECMenuItem"
-        Me.EditBTECMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.EditBTECMenuItem.Text = "&Edit..."
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(104, 6)
-        '
-        'DeleteBTECMenuItem
-        '
-        Me.DeleteBTECMenuItem.Name = "DeleteBTECMenuItem"
-        Me.DeleteBTECMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.DeleteBTECMenuItem.Text = "&Delete"
-        '
-        'OlvColumn45
-        '
-        Me.OlvColumn45.AspectName = "FirstUserFullName"
-        Me.OlvColumn45.Text = "First Marker"
-        Me.OlvColumn45.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn45.Width = 100
-        '
-        'OlvColumn46
-        '
-        Me.OlvColumn46.AspectName = "LastUserFullName"
-        Me.OlvColumn46.Text = "Last Marker"
-        Me.OlvColumn46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn46.Width = 100
+        Me.OlvColumn50.AspectName = "AchievedPass"
+        Me.OlvColumn50.AutoCompleteEditor = False
+        Me.OlvColumn50.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None
+        Me.OlvColumn50.CheckBoxes = True
+        Me.OlvColumn50.Text = "Pass"
+        Me.OlvColumn50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'StudentDetail
         '
@@ -1586,6 +1603,7 @@ Partial Class StudentDetail
         Me.pnlAttendance.ResumeLayout(False)
         Me.pnlAttendance.PerformLayout()
         CType(Me.olvAssignments, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuBTECAssignments.ResumeLayout(False)
         Me.pnlNormalAssignments.ResumeLayout(False)
         CType(Me.olvNormalAssignments, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ctxmnuNormalAssignments.ResumeLayout(False)
@@ -1603,7 +1621,6 @@ Partial Class StudentDetail
         Me.pnlLog.PerformLayout()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvTeachingSessions, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ctxmnuBTECAssignments.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1756,4 +1773,5 @@ Partial Class StudentDetail
     Friend WithEvents DeleteBTECMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn45 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn46 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn50 As BrightIdeasSoftware.OLVColumn
 End Class

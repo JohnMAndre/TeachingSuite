@@ -58,7 +58,7 @@
                             '-- It's selected, but we need to see if this student missed any assignments
                             '   If they did not submit A1 but did A2 and A1 and A2 are selected, we don't want A2 data under the A1 columns
 
-                            Do Until lstAssignments.SelectedItems(intAsmtCounter) Is stAsmt.BaseAssignment OrElse intAsmtCounter >= lstAssignments.SelectedItems.Count
+                            Do Until intAsmtCounter >= lstAssignments.SelectedItems.Count OrElse (lstAssignments.SelectedItems(intAsmtCounter) Is stAsmt.BaseAssignment)
                                 '-- We assume this student is missing at least one assignment, so we skip it, 
                                 '   but still need to write something to align the columns
                                 strLineToWrite &= vbTab & "-" & vbTab & String.Empty

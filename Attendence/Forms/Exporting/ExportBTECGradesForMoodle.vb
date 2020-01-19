@@ -34,11 +34,11 @@
             Dim tw As System.IO.TextWriter = System.IO.File.CreateText(sfd.FileName)
 
             '-- First, write out the headers
-            tw.Write("StudentID" & vbTab & "Email")
+            tw.Write("StudentID" & vbTab & "Email" & vbTab & "Group")
             For Each item As ClassAssignmentBTEC In lstAssignments.SelectedItems
                 tw.Write(vbTab & "Assignment: " & item.Name & " (Real)" & vbTab & "Assignment: " & item.Name & " (Feedback)")
             Next
-            tw.WriteLine(String.Empty) '-- just to get the end of line char (I think this will work)
+            'tw.WriteLine(String.Empty) '-- just to get the end of line char (I think this will work)
 
             Dim intAsmtCounter As Integer
 
@@ -48,7 +48,8 @@
                     intAsmtCounter = 0 '-- reset
                     tw.WriteLine(String.Empty) '-- just to get the end of line char for the previous line (I think this will work) 
 
-                    strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress
+                    strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress & vbTab & stud.StudentGroup
+
                     '--  WARNING: It is possible that A2 is created before A1 so need to sort first, otherwise columns will not sync up
                     stud.AssignmentsBTEC.Sort()
 

@@ -37,7 +37,7 @@
 
     Private m_strOutputFilename As String
     Private m_lstChoices As List(Of Choice)
-    Private m_lstPreferences As List(Of StudentPreference)
+    Private m_lstPreferences As New List(Of StudentPreference)
     Private m_lstAllStudents As List(Of Student)
 #End Region
 
@@ -326,7 +326,7 @@
         Dim strErrorZone As String = String.Empty
 
         Try
-            m_lstPreferences = New List(Of StudentPreference)
+            m_lstPreferences.Clear()
             Dim objPref As StudentPreference
             Dim strRows() As String
 

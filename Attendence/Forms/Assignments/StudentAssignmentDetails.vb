@@ -104,9 +104,9 @@ Friend Class StudentAssignmentDetails
         m_strStudentTagsOriginal = m_student.Tags
 
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
-        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments.RichTextBox, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbObservationComments.RichTextBox, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments.RichTextBox, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbObservationComments, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments, True)
 
         Me.olvPassFailFeedback.ImageGetter = New BrightIdeasSoftware.ImageGetterDelegate(AddressOf PassFailImageGetter)
         Me.olvModuleResultsPassFail.ImageGetter = New BrightIdeasSoftware.ImageGetterDelegate(AddressOf PassFailTextImageGetter)

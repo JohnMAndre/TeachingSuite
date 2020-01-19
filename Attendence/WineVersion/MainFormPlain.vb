@@ -2548,24 +2548,27 @@ Public Class MainFormPlain
                 If GetSelectedAssignment() Is Nothing Then
                     MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    If GetSelectedAssignment().AssignmentType = AssignmentType.Normal Then
-                        '-- If the selected assignment is normal, then we use the NormalToBTEC generator
-                        'MessageBox.Show("Please select a BTEC assignment first. This process will not work with normal assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Dim frm As New BulkGenerateMarkingSheetsNormalToBTEC(GetSelectedClassGroup(), GetSelectedClass(), markTry)
-                        frm.Show()
-                    Else
-                        Dim asmt As IClassAssignment = GetSelectedAssignment()
-                        Dim asmtBTEC As ClassAssignmentBTEC
+                    'If GetSelectedAssignment().AssignmentType = AssignmentType.Normal Then
+                    '    '-- If the selected assignment is normal, then we use the NormalToBTEC generator
+                    '    'MessageBox.Show("Please select a BTEC assignment first. This process will not work with normal assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    '    Dim frm As New BulkGenerateMarkingSheetsNormalToBTEC(GetSelectedClassGroup(), GetSelectedClass(), markTry)
+                    '    frm.Show()
+                    'Else
+                    '    Dim asmt As IClassAssignment = GetSelectedAssignment()
+                    '    Dim asmtBTEC As ClassAssignmentBTEC
 
-                        If TypeOf asmt Is ClassAssignmentBTEC Then
-                            asmtBTEC = CType(GetSelectedAssignment(), ClassAssignmentBTEC)
-                            Dim frm As New BulkGenerateMarkingSheets(GetSelectedClassGroup(), GetSelectedClass(), asmtBTEC, markTry)
-                            frm.Show()
-                        End If
-
-
-
-                    End If
+                    '    If TypeOf asmt Is ClassAssignmentBTEC Then
+                    '        asmtBTEC = CType(GetSelectedAssignment(), ClassAssignmentBTEC)
+                    '        Dim frm As New BulkGenerateMarkingSheets(GetSelectedClassGroup(), GetSelectedClass(), asmtBTEC, markTry)
+                    '        frm.Show()
+                    '    End If
+                    'End If
+                    '== Changed 18 Jan 2020
+                    '   Now, we will combine all Overall and Improvement feedback for all assignments
+                    '   We will not deal with any individual learning outcome stuff and we will not 
+                    '   Print the final grade (do that manually)
+                    Dim frm As New BulkGenerateMarkingSheetsAllCombined(GetSelectedClassGroup(), GetSelectedClass(), markTry)
+                    frm.Show()
                 End If
             End If
 

@@ -2037,7 +2037,9 @@ Public Class StudentAssignmentBTEC
     End Property
     Public ReadOnly Property AvailableOutcomes As Integer
         Get
-            Return OutcomesAtGrade(BTECGradeGroup.Pass)
+            'Return OutcomesAtGrade(BTECGradeGroup.Pass)
+
+            Return Me.BaseAssignment.Outcomes.Count
         End Get
     End Property
     Private Function AchievedAllAtGrade(grade As BTECGradeGroup) As Boolean
@@ -2104,6 +2106,20 @@ Public Class StudentAssignmentBTEC
                     ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
                     intReturn += 1
                 End If
+            End If
+        Next
+
+        Return intReturn
+    End Function
+
+    Public Function AchievedOutcomes() As Integer
+        Dim intReturn As Integer
+        '-- First, second, or third try all count
+        For Each ocResult As OutcomeResult In Me.Outcomes
+            If ocResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse
+                ocResult.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse
+                ocResult.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
+                intReturn += 1
             End If
         Next
 
@@ -2317,7 +2333,7 @@ Public Class ClassAssignment
     Public Property IncludesAttachment As Boolean Implements IClassAssignment.IncludesAttachment
     Public Property ReleaseDate As Date Implements IClassAssignment.ReleaseDate
     Public Property SubmitDate As Date Implements IClassAssignment.SubmitDate
-
+    Public Property AssignmentBriefFilename As String
     Public Property OverallDefaultText As String
     Public Property AssessmentCategories As New List(Of Semester.AssessmentCategory) Implements IClassAssignment.AssessmentCategories
 
