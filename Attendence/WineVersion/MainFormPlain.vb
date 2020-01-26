@@ -2057,7 +2057,7 @@ Public Class MainFormPlain
     End Function
 
     Private Sub FindhistoricalStudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles FindhistoricalStudentToolStripMenuItem.Click
-        Dim frm As New HistoricalStudentFinder()
+        Dim frm As New HistoricalStudentFinderPlain
         frm.Show()
     End Sub
 
@@ -3531,4 +3531,6 @@ Public Class MainFormPlain
             End If
         End If
     End Sub
+
+
 End Class

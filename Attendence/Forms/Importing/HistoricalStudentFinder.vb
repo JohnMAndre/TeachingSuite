@@ -187,7 +187,7 @@ Public Class HistoricalStudentFinder
 
                                     boolAtLeastOneNonMatch = False '-- reset for this iteration
                                     For Each name As String In names
-                                        If Not strLocalNameLatinLetters.Contains(name) AndAlso _
+                                        If Not strLocalNameLatinLetters.Contains(name) AndAlso
                                             Not strLocalName.Contains(name) Then
                                             '-- at least one of the multiple names did not match
                                             boolAtLeastOneNonMatch = True
@@ -203,7 +203,7 @@ Public Class HistoricalStudentFinder
                                     End If
                                 Else
                                     '-- just one name, simple
-                                    If stud.LocalNameLatinLetters.ToUpper().Contains(txtLocalName.Text.ToUpper()) OrElse _
+                                    If stud.LocalNameLatinLetters.ToUpper().Contains(txtLocalName.Text.ToUpper()) OrElse
                                         stud.LocalName.ToUpper().Contains(txtLocalName.Text.ToUpper()) Then
                                         '-- match on name version with and without diacritics
                                         olvStudents.AddObject(stud)
@@ -220,6 +220,71 @@ Public Class HistoricalStudentFinder
                     Next
                 Next
             Next
+
+
+            '-- New cache but only full-match style
+            'For Each sem As CachedSemester In m_objSemesterCache.Semesters
+            '    For Each clsGrp As ClassGroup In sem.ClassGroups
+            '        For Each cls As SchoolClass In clsGrp.Classes
+            '            For Each stud As Student In cls.Students
+            '                intStudentsSearched += 1
+
+            '                '-- Now compare, if match, add to list
+            '                If txtStudentID.Text.Length > 0 AndAlso stud.StudentID.ToUpper() = txtStudentID.Text.ToUpper() Then
+            '                    '-- match
+            '                    olvStudents.AddObject(stud)
+            '                ElseIf txtNickName.Text.Length > 0 AndAlso stud.Nickname.ToUpper() = txtNickName.Text.ToUpper() Then
+            '                    olvStudents.AddObject(stud)
+            '                ElseIf txtExtStudentID.Text.Length > 0 AndAlso stud.ExtStudentID.ToUpper() = txtExtStudentID.Text.ToUpper() Then
+            '                    olvStudents.AddObject(stud)
+            '                ElseIf txtEmail.Text.Length > 0 AndAlso stud.EmailAddress.ToUpper() = txtEmail.Text.ToUpper() Then
+            '                    olvStudents.AddObject(stud)
+            '                ElseIf txtLocalName.Text.Length > 0 Then
+            '                    '-- Now we need to check for multiple names so we can do an AND compare
+            '                    If txtLocalName.Text.Contains(" ") Then
+            '                        Dim strNameForSearch As String
+            '                        strNameForSearch = txtLocalName.Text.Replace("  ", " ").ToUpper() '-- remove multiple sequential spaces
+            '                        strNameForSearch = strNameForSearch.Replace("  ", " ") '-- should change this to regex one day
+            '                        strNameForSearch = strNameForSearch.Replace("  ", " ")
+            '                        Dim names() As String = strNameForSearch.Split(" ")
+            '                        strLocalName = stud.LocalName.ToUpper() '-- save some processing for multiple names
+            '                        strLocalNameLatinLetters = stud.LocalNameLatinLetters.ToUpper()
+
+            '                        boolAtLeastOneNonMatch = False '-- reset for this iteration
+            '                        For Each name As String In names
+            '                            If Not strLocalNameLatinLetters.Contains(name) AndAlso
+            '                                Not strLocalName.Contains(name) Then
+            '                                '-- at least one of the multiple names did not match
+            '                                boolAtLeastOneNonMatch = True
+            '                                Exit For
+            '                            End If
+            '                        Next
+
+            '                        If boolAtLeastOneNonMatch Then
+            '                            Application.DoEvents() '-- we're done, no match on this student
+            '                        Else
+            '                            '-- this student contains all of the multiple names
+            '                            olvStudents.AddObject(stud)
+            '                        End If
+            '                    Else
+            '                        '-- just one name, simple
+            '                        If stud.LocalNameLatinLetters.ToUpper().Contains(txtLocalName.Text.ToUpper()) OrElse
+            '                            stud.LocalName.ToUpper().Contains(txtLocalName.Text.ToUpper()) Then
+            '                            '-- match on name version with and without diacritics
+            '                            olvStudents.AddObject(stud)
+            '                        End If
+            '                    End If
+            '                End If
+
+            '                lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
+            '                If m_boolCancel Then
+            '                    Exit For
+            '                End If
+            '                Application.DoEvents()
+            '            Next
+            '        Next
+            '    Next
+            'Next
 
 
             btnSearch.Enabled = True

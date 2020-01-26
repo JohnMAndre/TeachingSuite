@@ -224,32 +224,36 @@ Public Class StudentDetail
             If AppSettings.EnableStudentDataHistory AndAlso m_student IsNot Nothing Then
                 olvcolTimeInForce.AspectToStringConverter = New BrightIdeasSoftware.AspectToStringConverterDelegate(AddressOf Me.AspectToStringConverterTimeSpan)
 
-                Dim objHist As New HistoricalStudentData(m_student.StudentID)
-                olvHistoricalData.SetObjects(objHist.HistoricalData)
+                Try
+                    Dim objHist As New HistoricalStudentData(m_student.StudentID)
+                    olvHistoricalData.SetObjects(objHist.HistoricalData)
 
-                Dim ht As New Hashtable()
-                For Each item As HistoricalStudentData.HistoricalStudentDataItem In objHist.HistoricalData
-                    If item.FieldID.Length > 0 Then
-                        '-- must be an improvement item, look it up
-                        If ht.Contains(item.FieldID) Then
-                            '-- already there
-                            '   do nothing
+
+                    Dim ht As New Hashtable()
+                    For Each item As HistoricalStudentData.HistoricalStudentDataItem In objHist.HistoricalData
+                        If item.FieldID.Length > 0 Then
+                            '-- must be an improvement item, look it up
+                            If ht.Contains(item.FieldID) Then
+                                '-- already there
+                                '   do nothing
+                            Else
+                                ht.Add(item.FieldID, item.FieldName) ':::: "lookup imp item"
+                            End If
                         Else
-                            ht.Add(item.FieldID, item.FieldName) ':::: "lookup imp item"
+                            If ht.Contains(item.FieldName) Then
+                                '-- do nothing
+                            Else
+                                ht.Add(item.FieldName, item.FieldName)
+                            End If
                         End If
-                    Else
-                        If ht.Contains(item.FieldName) Then
-                            '-- do nothing
-                        Else
-                            ht.Add(item.FieldName, item.FieldName)
-                        End If
-                    End If
-                Next
+                    Next
 
-                For Each obj As Object In ht.Values
-                    lstHistoricalFieldsAvailable.Items.Add(obj)
-                Next
-
+                    For Each obj As Object In ht.Values
+                        lstHistoricalFieldsAvailable.Items.Add(obj)
+                    Next
+                Catch ex As Exception
+                    Log(ex) '-- log and continue (some historical students will not have this data
+                End Try
                 'AutoSizeColumns(olvHistoricalData)
             End If
         Catch ex As Exception

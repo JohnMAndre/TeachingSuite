@@ -1,9 +1,9 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class HistoricalStudentFinder
     Inherits ComponentFactory.Krypton.Toolkit.KryptonForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class HistoricalStudentFinder
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HistoricalStudentFinder))
@@ -99,21 +99,21 @@ Partial Class HistoricalStudentFinder
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtExtStudentID.Location = New System.Drawing.Point(485, 64)
         Me.txtExtStudentID.Name = "txtExtStudentID"
-        Me.txtExtStudentID.Size = New System.Drawing.Size(235, 19)
+        Me.txtExtStudentID.Size = New System.Drawing.Size(235, 22)
         Me.txtExtStudentID.TabIndex = 65
         '
         'txtEmail
         '
         Me.txtEmail.Location = New System.Drawing.Point(485, 38)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(235, 19)
+        Me.txtEmail.Size = New System.Drawing.Size(235, 22)
         Me.txtEmail.TabIndex = 63
         '
         'txtLocalName
         '
         Me.txtLocalName.Location = New System.Drawing.Point(93, 12)
         Me.txtLocalName.Name = "txtLocalName"
-        Me.txtLocalName.Size = New System.Drawing.Size(245, 19)
+        Me.txtLocalName.Size = New System.Drawing.Size(245, 22)
         Me.txtLocalName.TabIndex = 58
         '
         'lblStudentsLoaded
@@ -154,7 +154,7 @@ Partial Class HistoricalStudentFinder
         '
         'btnAddStudentToClass
         '
-        Me.btnAddStudentToClass.Location = New System.Drawing.Point(248, 99)
+        Me.btnAddStudentToClass.Location = New System.Drawing.Point(326, 99)
         Me.btnAddStudentToClass.Name = "btnAddStudentToClass"
         Me.btnAddStudentToClass.Size = New System.Drawing.Size(124, 25)
         Me.btnAddStudentToClass.TabIndex = 73
@@ -402,7 +402,7 @@ Partial Class HistoricalStudentFinder
         '
         Me.txtNickName.Location = New System.Drawing.Point(93, 38)
         Me.txtNickName.Name = "txtNickName"
-        Me.txtNickName.Size = New System.Drawing.Size(245, 19)
+        Me.txtNickName.Size = New System.Drawing.Size(245, 22)
         Me.txtNickName.TabIndex = 60
         '
         'KryptonLabel2
@@ -417,7 +417,7 @@ Partial Class HistoricalStudentFinder
         '
         Me.txtStudentID.Location = New System.Drawing.Point(93, 64)
         Me.txtStudentID.Name = "txtStudentID"
-        Me.txtStudentID.Size = New System.Drawing.Size(184, 19)
+        Me.txtStudentID.Size = New System.Drawing.Size(184, 22)
         Me.txtStudentID.TabIndex = 61
         '
         'KryptonManager

@@ -430,6 +430,10 @@
                             permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
                         End If
                         permStud.Assignments.Add(permAsmt)
+
+                        If chkMarkImportedAsProcessed.Checked Then
+                            permAsmt.Processed = True
+                        End If
                     Else
                         '-- BTEC
                         Dim tempAsmt As StudentAssignmentBTEC
@@ -449,6 +453,10 @@
                             permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
                         End If
                         permStud.AssignmentsBTEC.Add(permAsmt)
+
+                        If chkMarkImportedAsProcessed.Checked Then
+                            permAsmt.Processed = True
+                        End If
                     End If
 
 
