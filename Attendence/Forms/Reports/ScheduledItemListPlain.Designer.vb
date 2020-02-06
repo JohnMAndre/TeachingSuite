@@ -29,6 +29,7 @@ Partial Class ScheduledItemListPlain
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReloadUnsentItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReloadAllItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtFilter = New System.Windows.Forms.TextBox()
         Me.dgvScheduleItems = New System.Windows.Forms.DataGridView()
@@ -45,7 +46,7 @@ Partial Class ScheduledItemListPlain
         Me.PreppedColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.SentColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.pbClearFilter = New System.Windows.Forms.PictureBox()
-        Me.ClearFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReloadUnpreppedItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvScheduleItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbClearFilter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,12 +74,12 @@ Partial Class ScheduledItemListPlain
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReloadUnsentItemsToolStripMenuItem, Me.ReloadAllItemsToolStripMenuItem, Me.ClearFilterToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReloadUnsentItemsToolStripMenuItem, Me.ReloadUnpreppedItemsToolStripMenuItem, Me.ReloadAllItemsToolStripMenuItem, Me.ClearFilterToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "&Data"
@@ -87,15 +88,22 @@ Partial Class ScheduledItemListPlain
         '
         Me.ReloadUnsentItemsToolStripMenuItem.Name = "ReloadUnsentItemsToolStripMenuItem"
         Me.ReloadUnsentItemsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ReloadUnsentItemsToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.ReloadUnsentItemsToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
         Me.ReloadUnsentItemsToolStripMenuItem.Text = "Reload unsent items"
         '
         'ReloadAllItemsToolStripMenuItem
         '
         Me.ReloadAllItemsToolStripMenuItem.Name = "ReloadAllItemsToolStripMenuItem"
         Me.ReloadAllItemsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.ReloadAllItemsToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.ReloadAllItemsToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
         Me.ReloadAllItemsToolStripMenuItem.Text = "Reload all items"
+        '
+        'ClearFilterToolStripMenuItem
+        '
+        Me.ClearFilterToolStripMenuItem.Name = "ClearFilterToolStripMenuItem"
+        Me.ClearFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
+        Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.ClearFilterToolStripMenuItem.Text = "Clear filter"
         '
         'Label1
         '
@@ -215,12 +223,12 @@ Partial Class ScheduledItemListPlain
         Me.pbClearFilter.TabIndex = 4
         Me.pbClearFilter.TabStop = False
         '
-        'ClearFilterToolStripMenuItem
+        'ReloadUnpreppedItemsToolStripMenuItem
         '
-        Me.ClearFilterToolStripMenuItem.Name = "ClearFilterToolStripMenuItem"
-        Me.ClearFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
-        Me.ClearFilterToolStripMenuItem.Text = "Clear filter"
+        Me.ReloadUnpreppedItemsToolStripMenuItem.Name = "ReloadUnpreppedItemsToolStripMenuItem"
+        Me.ReloadUnpreppedItemsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.U), System.Windows.Forms.Keys)
+        Me.ReloadUnpreppedItemsToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.ReloadUnpreppedItemsToolStripMenuItem.Text = "Reload unprepped items"
         '
         'ScheduledItemListPlain
         '
@@ -269,4 +277,5 @@ Partial Class ScheduledItemListPlain
     Friend WithEvents SentColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents pbClearFilter As System.Windows.Forms.PictureBox
     Friend WithEvents ClearFilterToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReloadUnpreppedItemsToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -32,6 +32,24 @@
         dgvScheduleItems.DataSource = m_lstCurrentScheduleItems
         dgvScheduleItems.AutoResizeColumns()
     End Sub
+    Private Sub LoadUnpreppedItems()
+        dgvScheduleItems.DataSource = Nothing
+        m_lstCurrentScheduleItems.Clear()
+        For Each grp As ClassGroup In ThisSemester.ClassGroups
+            For Each cls As SchoolClass In grp.Classes
+                For Each item As ActualSessionItem In cls.ActualSessions
+                    If Not item.Prepped Then
+                        m_lstCurrentScheduleItems.Add(item)
+                    End If
+                Next
+            Next
+        Next
+        m_lstCurrentScheduleItems.Sort()
+
+        dgvScheduleItems.AutoGenerateColumns = False
+        dgvScheduleItems.DataSource = m_lstCurrentScheduleItems
+        dgvScheduleItems.AutoResizeColumns()
+    End Sub
     Private Sub FindItemsFromSearchText()
 
         Dim strSearchFor As String
@@ -40,9 +58,9 @@
             'ShowStudentCount()
         Else
             strSearchFor = txtFilter.Text.ToLower
-            Dim lstFiltered As List(Of ActualSessionItem) = m_lstCurrentScheduleItems.Where(Function(x) x.SchoolClass.Name.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.SchoolClass.ClassGroup.Name.ToLower.Contains(strSearchFor) OrElse _
-                                                                                 x.Topic.ToLower.Contains(strSearchFor) OrElse _
+            Dim lstFiltered As List(Of ActualSessionItem) = m_lstCurrentScheduleItems.Where(Function(x) x.SchoolClass.Name.ToLower.Contains(strSearchFor) OrElse
+                                                                                 x.SchoolClass.ClassGroup.Name.ToLower.Contains(strSearchFor) OrElse
+                                                                                 x.Topic.ToLower.Contains(strSearchFor) OrElse
                                                                                  x.Location.ToLower.Contains(strSearchFor)).ToList()
 
             dgvScheduleItems.DataSource = lstFiltered
@@ -65,5 +83,9 @@
         txtFilter.Text = String.Empty
         FindItemsFromSearchText()
         txtFilter.Focus()
+    End Sub
+
+    Private Sub ReloadUnpreppedItemsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReloadUnpreppedItemsToolStripMenuItem.Click
+        LoadUnpreppedItems()
     End Sub
 End Class
