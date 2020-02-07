@@ -880,13 +880,25 @@ Public Class MainFormPlain
 
     Private Sub PasteNewAssignmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles PasteNewAssignmentToolStripMenuItem.Click
         Try
-            Dim xDoc As New Xml.XmlDocument()
-            xDoc.LoadXml(Clipboard.GetText)
-            Dim objAssignment As New ClassAssignmentBTEC(xDoc.DocumentElement, GetSelectedClassGroup())
-            GetSelectedClassGroup.AssignmentsBTEC.Add(objAssignment)
-            LoadClassAssignments()
+            If GetSelectedClassGroup() Is Nothing Then
+                MessageBox.Show("Please select a module for this assignment.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                Dim xDoc As New Xml.XmlDocument()
+                xDoc.LoadXml(Clipboard.GetText)
+                Select Case xDoc.DocumentElement.Name
+                    Case "ClassAssignmentNormal"
+                        Dim objAssignment As New ClassAssignment(xDoc.DocumentElement, GetSelectedClassGroup())
+                        GetSelectedClassGroup.Assignments.Add(objAssignment)
+                    Case "ClassAssignment"
+                        Dim objAssignment As New ClassAssignmentBTEC(xDoc.DocumentElement, GetSelectedClassGroup())
+                        GetSelectedClassGroup.AssignmentsBTEC.Add(objAssignment)
+                    Case Else
+                        MessageBox.Show("There is no assignment on the clipboard.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End Select
+                LoadClassAssignments()
+            End If
         Catch ex As Exception
-            MessageBox.Show("There is no assignment on the clipboard to use. Please copy an existing assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("There was an error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -895,7 +907,27 @@ Public Class MainFormPlain
             MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Dim xDoc As New Xml.XmlDocument()
-            Dim strText As String = GetSelectedAssignment().GetXMLElementToPersist(xDoc).OuterXml
+            Dim strText As String
+            strText = GetSelectedAssignment().GetXMLElementToPersist(xDoc).OuterXml
+
+            '-- We need to reset the assignment so it is not closed, just in case
+            If GetSelectedAssignment().AssignmentType = AssignmentType.BTEC Then
+                xDoc.LoadXml(strText)
+                Dim objAssignment As New ClassAssignmentBTEC(xDoc.DocumentElement, GetSelectedClassGroup())
+                objAssignment.ClosedFirstTry = False
+                objAssignment.ClosedSecondTry = False
+                objAssignment.ClosedThirdTry = False
+                strText = objAssignment.GetXMLElementToPersist(xDoc).OuterXml
+            Else
+                '-- normal
+                xDoc.LoadXml(strText)
+                Dim objAssignment As New ClassAssignment(xDoc.DocumentElement, GetSelectedClassGroup())
+                objAssignment.ClosedFirstTry = False
+                objAssignment.ClosedSecondTry = False
+                objAssignment.ClosedThirdTry = False
+                strText = objAssignment.GetXMLElementToPersist(xDoc).OuterXml
+            End If
+
             Clipboard.SetText(strText)
         End If
     End Sub
