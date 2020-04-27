@@ -3564,5 +3564,99 @@ Public Class MainFormPlain
         End If
     End Sub
 
+    Private Sub ExportAllGradeDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAllGradeDataToolStripMenuItem.Click
+        Try
 
+            If GetSelectedClass() Is Nothing Then
+                MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                Dim objClass As SchoolClass = GetSelectedClass()
+                Dim objGroup As ClassGroup = GetSelectedClassGroup()
+
+                Dim boolAssignmentProcessed As Boolean
+                Dim sfd As New SaveFileDialog()
+                sfd.Title = "Select export location"
+                sfd.AddExtension = True
+                sfd.Filter = "Text files (*.txt)|*.txt"
+                sfd.OverwritePrompt = True
+                sfd.FileName = objGroup.Name & " All Grade Data Export"
+                If sfd.ShowDialog = DialogResult.OK Then
+                    '-- Export
+                    '   Normally we do this off thread with BGworker but we'll just do it here for now
+
+                    '-- Write header: Name, Nick, ID, each LO for BTEC and then each regular assignment first attempt points
+                    Dim tw As System.IO.TextWriter = System.IO.File.CreateText(sfd.FileName)
+                    tw.Write("Name,Nickname,StudentID")
+                    For Each basmt As ClassAssignmentBTEC In objGroup.AssignmentsBTEC
+                        tw.Write("," & basmt.Name)
+                    Next
+                    For Each asmt As ClassAssignment In objGroup.Assignments
+                        tw.Write("," & asmt.Name)
+                    Next
+                    tw.WriteLine(String.Empty)
+
+                    If ClassIsCombinedView(objClass) Then
+                        Dim boolSetAlready As Boolean
+                        For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                            If Not boolSetAlready Then
+                                Dim grp As New ClassGroup(Nothing)
+                                grp.UseNickname = GetSelectedClassGroup.UseNickname
+                                objClass = New SchoolClass(objGroup)
+                                objClass.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                                objClass.Students.AddRange(objCls.Students)
+                                boolSetAlready = True
+                            Else
+                                objClass.Students.AddRange(objCls.Students)
+                            End If
+                        Next
+                    End If
+
+                    '-- Write details
+                    For Each stud As Student In objClass.Students
+                        tw.Write(stud.LocalNameLatinLetters & "," & stud.Nickname & "," & stud.StudentID)
+
+                        For Each basmt As ClassAssignmentBTEC In objGroup.AssignmentsBTEC
+                            boolAssignmentProcessed = False
+                            For Each stbasmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
+                                If stbasmt.BaseAssignment Is basmt Then
+                                    '-- write it out
+                                    '   Rule: We look at "assignment grade" which could be Fail, referral, Pass, Merit, Distinction 
+                                    '           Since there is no way to tell difference between F and R, we will just write Fail 
+                                    '           (both are the outcome was Not achieved, could be absent Or almost good enough)
+                                    tw.Write("," & GetAssignmentBTECGrade(stbasmt).ToString())
+                                    boolAssignmentProcessed = True
+                                    Exit For
+                                End If
+                            Next
+                            If boolAssignmentProcessed = False Then
+                                '-- write out unachieved
+                                tw.Write("," & BTECGrade.Referral.ToString())
+                            End If
+                        Next
+                        For Each basmt As ClassAssignment In objGroup.Assignments
+                            boolAssignmentProcessed = False
+                            For Each stasmt As StudentAssignment In stud.Assignments
+                                If stasmt.BaseAssignment Is basmt Then
+                                    '-- write it out
+                                    tw.Write("," & GetAssignmentNormalGrade(stasmt).ToString())
+                                    boolAssignmentProcessed = True
+                                    Exit For
+                                End If
+                            Next
+                            If boolAssignmentProcessed = False Then
+                                '-- write out unachieved
+                                tw.Write(",0")
+                            End If
+                        Next
+                        tw.WriteLine(String.Empty)
+                    Next
+                    tw.Close()
+                    tw.Dispose()
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message)
+        End Try
+
+    End Sub
 End Class

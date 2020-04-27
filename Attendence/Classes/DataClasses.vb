@@ -1683,6 +1683,12 @@ Public Class SchoolClass
             tw.Write("Team")
             tw.Write(DELIMITER)
             tw.Write("Tags")
+            tw.Write(DELIMITER)
+            tw.Write("Class")
+            tw.Write(DELIMITER)
+            tw.Write("Gender")
+            tw.Write(DELIMITER)
+            tw.Write("DateOfBirth")
 
             tw.Write(Environment.NewLine)
 
@@ -1722,6 +1728,12 @@ Public Class SchoolClass
                 tw.Write(student.StudentTeam)
                 tw.Write(DELIMITER)
                 tw.Write(student.Tags)
+                tw.Write(DELIMITER)
+                tw.Write(student.SchoolClassName)
+                tw.Write(DELIMITER)
+                tw.Write(student.Gender.ToString())
+                tw.Write(DELIMITER)
+                tw.Write(student.DateOfBirth.ToString("yyyy-MM-dd"))
 
 
                 '-- Prep for new student

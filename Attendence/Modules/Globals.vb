@@ -401,4 +401,40 @@ Module Globals
         Next index
         Return list
     End Function
+
+    Public Function GetAssignmentBTECGrade(asmt As StudentAssignmentBTEC) As BTECGrade
+        '-- Logic: If asmt has any D outcomes then consider D, if asmt has any M outcomes then consider M
+        '          if any P outcome not achieved, then referral.
+        '          if all P achieved achieved then if all M achieved then if all D achieved then D else M else P
+
+        Dim boolHasD, boolHasM As Boolean
+        Dim boolFailAnyD, boolFailAnyM, boolFailAnyP As Boolean
+
+        For Each oc As OutcomeResult In asmt.Outcomes
+            Select Case oc.BaseOutcome.GradeGroup
+                Case BTECGradeGroup.Distinction
+                    boolHasD = True
+                    boolFailAnyD = oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved
+                Case BTECGradeGroup.Merit
+                    boolHasM = True
+                    boolFailAnyM = oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved
+                Case BTECGradeGroup.Pass
+                    boolFailAnyP = oc.FirstTryStatus <> OutcomeResultStatusEnum.Achieved
+            End Select
+        Next
+
+        If boolHasD AndAlso Not boolFailAnyP AndAlso Not boolFailAnyM AndAlso Not boolFailAnyD Then
+            Return BTECGrade.Distinction
+        ElseIf boolHasM AndAlso Not boolFailAnyP AndAlso Not boolFailAnyM Then
+            Return BTECGrade.Merit
+        ElseIf Not boolFailAnyP Then
+            Return BTECGrade.Pass
+        Else
+            Return BTECGrade.Referral
+        End If
+    End Function
+    Public Function GetAssignmentNormalGrade(asmt As StudentAssignment) As Integer
+        Return asmt.FirstTryPoints
+    End Function
 End Module
+
