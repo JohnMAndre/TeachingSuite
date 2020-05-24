@@ -164,4 +164,16 @@
             End If
         End If
     End Function
+    ''' <summary>
+    ''' Used to quote a field for a CSV file (should be quoted if it contains a comma)
+    ''' </summary>
+    ''' <param name="text"></param>
+    ''' <returns></returns>
+    Public Function QuoteIfComma(text As String) As String
+        If text.Contains(",") Then
+            Return """" & text & """"
+        Else
+            Return text
+        End If
+    End Function
 End Module

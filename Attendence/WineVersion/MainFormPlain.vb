@@ -3659,4 +3659,33 @@ Public Class MainFormPlain
         End Try
 
     End Sub
+
+    Private Sub AttendanceForClassToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AttendanceForClassToolStripMenuItem.Click
+        Dim objClass As SchoolClass = GetSelectedClass()
+        Dim objClassToSend As SchoolClass
+
+        If objClass Is Nothing Then
+            MessageBox.Show("Please select a class to report on.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        ElseIf ClassIsCombinedView(objClass) Then
+            Dim boolSetAlready As Boolean
+            For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                If Not boolSetAlready Then
+                    Dim grp As New ClassGroup(Nothing)
+                    grp.UseNickname = GetSelectedClassGroup.UseNickname
+                    objClassToSend = New SchoolClass(grp)
+                    objClassToSend.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                    objClassToSend.Students.AddRange(objCls.Students)
+                    boolSetAlready = True
+                Else
+                    objClassToSend.Students.AddRange(objCls.Students)
+                End If
+            Next
+        Else
+            objClassToSend = objClass
+        End If
+
+        Dim frm As New AttendanceReport(objClassToSend)
+        frm.Show()
+    End Sub
 End Class
