@@ -154,6 +154,18 @@
     <Compile Include="Forms\Importing\HistoricalStudentFinderPlain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Importing\ImportSyncResolveNormal.Designer.vb">
+      <DependentUpon>ImportSyncResolveNormal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportSyncResolveNormal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportSyncResolverBTEC.Designer.vb">
+      <DependentUpon>ImportSyncResolverBTEC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportSyncResolverBTEC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Reports\AttendanceReport.Designer.vb">
       <DependentUpon>AttendanceReport.vb</DependentUpon>
     </Compile>
@@ -637,6 +649,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\HistoricalStudentFinderPlain.resx">
       <DependentUpon>HistoricalStudentFinderPlain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportSyncResolveNormal.resx">
+      <DependentUpon>ImportSyncResolveNormal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportSyncResolverBTEC.resx">
+      <DependentUpon>ImportSyncResolverBTEC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\AttendanceReport.resx">
       <DependentUpon>AttendanceReport.vb</DependentUpon>

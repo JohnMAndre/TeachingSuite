@@ -87,6 +87,8 @@ Friend Class StudentAssignmentDetails
 
         rtbOverallComments.Text = m_studentAssignment.OverallComments
         rtbImprovementComments.Text = m_studentAssignment.ImprovementComments
+        rtbOverallCommentsRework.Text = m_studentAssignment.OverallCommentsRework
+        rtbImprovementCommentsRework.Text = m_studentAssignment.ImprovementCommentsRework
         rtbObservationComments.Text = m_studentAssignment.ObservationComments
 
         txtNickName.Text = m_student.Nickname
@@ -223,6 +225,8 @@ Friend Class StudentAssignmentDetails
 
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
+        m_studentAssignment.OverallCommentsRework = rtbOverallCommentsRework.Text
+        m_studentAssignment.ImprovementCommentsRework = rtbImprovementCommentsRework.Text
         m_studentAssignment.ObservationComments = rtbObservationComments.Text
 
         '-- Before we save the StoredResults, we must remove any existing StoredResults
@@ -346,34 +350,67 @@ Friend Class StudentAssignmentDetails
         Return False
     End Function
     Private Sub btnGenerateOverallComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateOverallComments.LinkClicked
+        ''   The new rules are:
+        ''   "Achieved Pass" requires all outcomes with gradegroup of pass to be achieved, and number of outcomes @ pass > 0
+        ''   "Achieved Merit" requires "Achieve Pass" and all outcomes with gradegroup of merit to be achieved, and number of outcomes @ merit > 0
+        ''   "Achieved Distinction" requires "Achieve Pass" and "Achieve Merit" and all outcomes with gradegroup of distinction to be achieved, and number of outcomes @ distinction > 0
+        'If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
+        '    If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
+        '        If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
+        '            '- Distinction
+        '            rtbOverallComments.Text = "Achieved all PASS and MERIT and DISTINCTION outcomes."
+        '        Else
+        '            '-- Just merit
+        '            rtbOverallComments.Text = "Achieved all PASS and MERIT outcomes."
+        '        End If
+        '    Else
+        '        '-- Just pass
+        '        rtbOverallComments.Text = "Achieved all PASS outcomes"
+        '    End If
+        'Else
+        '    '-- Not passed yet
+        '    Dim intAvailable As Integer = OutcomesAtGrade(BTECGradeGroup.Pass)
+        '    Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
+        '    Dim intReferral As Integer = intAvailable - intAchieved
+        '    rtbOverallComments.Text = "Achieved " & intAchieved.ToString() & " of " & intAvailable.ToString() & " PASS outcomes (referral outcomes: "
+        '    rtbOverallComments.Text &= ListReferralOutcomes(BTECGradeGroup.Pass)
+        '    rtbOverallComments.Text &= ")."
+        'End If
+
+        rtbOverallComments.Text = GenerateOverallComments(False)
+    End Sub
+    Private Function GenerateOverallComments(rework As Boolean) As String
         '   The new rules are:
         '   "Achieved Pass" requires all outcomes with gradegroup of pass to be achieved, and number of outcomes @ pass > 0
         '   "Achieved Merit" requires "Achieve Pass" and all outcomes with gradegroup of merit to be achieved, and number of outcomes @ merit > 0
         '   "Achieved Distinction" requires "Achieve Pass" and "Achieve Merit" and all outcomes with gradegroup of distinction to be achieved, and number of outcomes @ distinction > 0
+        Dim strReturn As String
+
         If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
             If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
                 If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
                     '- Distinction
-                    rtbOverallComments.Text = "Achieved all PASS and MERIT and DISTINCTION outcomes."
+                    strReturn = "Achieved all PASS and MERIT and DISTINCTION outcomes."
                 Else
                     '-- Just merit
-                    rtbOverallComments.Text = "Achieved all PASS and MERIT outcomes."
+                    strReturn = "Achieved all PASS and MERIT outcomes."
                 End If
             Else
                 '-- Just pass
-                rtbOverallComments.Text = "Achieved all PASS outcomes"
+                strReturn = "Achieved all PASS outcomes"
             End If
         Else
             '-- Not passed yet
             Dim intAvailable As Integer = OutcomesAtGrade(BTECGradeGroup.Pass)
             Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
             Dim intReferral As Integer = intAvailable - intAchieved
-            rtbOverallComments.Text = "Achieved " & intAchieved.ToString() & " of " & intAvailable.ToString() & " PASS outcomes (referral outcomes: "
-            rtbOverallComments.Text &= ListReferralOutcomes(BTECGradeGroup.Pass)
-            rtbOverallComments.Text &= ")."
+            strReturn = "Achieved " & intAchieved.ToString() & " of " & intAvailable.ToString() & " PASS outcomes (referral outcomes: "
+            strReturn &= ListReferralOutcomes(BTECGradeGroup.Pass)
+            strReturn &= ")."
         End If
 
-    End Sub
+        Return strReturn
+    End Function
     Private Function AchievedAllAtGrade(grade As BTECGradeGroup) As Boolean
         Dim intAvailable As Integer = OutcomesAtGrade(grade)
         Dim intAchieved As Integer = AchievedOutcomesAtGrade(grade)
@@ -1303,7 +1340,7 @@ Friend Class StudentAssignmentDetails
     Private Sub btnGenerateImprovementComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementComments.LinkClicked
         GenerateImprovementFeedback(False, True)
     End Sub
-    Private Sub GenerateImprovementFeedback(late As Boolean, includeGradeHint As Boolean)
+    Private Function GenerateImprovementFeedback(late As Boolean, includeGradeHint As Boolean) As String
         Dim strImprovement As String = String.Empty
 
         If includeGradeHint Then
@@ -1339,15 +1376,22 @@ Friend Class StudentAssignmentDetails
             End If
         End If
 
-        rtbImprovementComments.Text = strImprovement
+        Dim strReturn As String = strImprovement
+        'rtbImprovementComments.Text = strImprovement
 
         If strImprovement.Trim.Length > 0 Then
-            rtbImprovementComments.Text &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
+            strReturn &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
+            'rtbImprovementComments.Text &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
         End If
 
-        rtbImprovementComments.Text &= GetImprovementNotes()
-        rtbImprovementComments.Text = rtbImprovementComments.Text.Trim()
-    End Sub
+        strReturn &= GetImprovementNotes()
+        strReturn = strReturn.Trim()
+
+        'rtbImprovementComments.Text &= GetImprovementNotes()
+        'rtbImprovementComments.Text = rtbImprovementComments.Text.Trim()
+
+        Return strReturn
+    End Function
     Private Function GetImprovementNotes() As String
         Try
             Dim strReturn As String = String.Empty
@@ -1443,11 +1487,6 @@ Friend Class StudentAssignmentDetails
         End Try
     End Sub
 
-    Private Sub btnGenerateImprovementCommentsLate_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateImprovementCommentsLate.LinkClicked
-
-        GenerateImprovementFeedback(True, True)
-
-    End Sub
     Private Function GetSavedAssignmentFilename() As String
         Dim strLocalDirectory As String = m_studentAssignment.BaseAssignment.SavedAssignmentsFolder '"C:\Teaching\Teaching Business\Mine\Assignments\OB Assignment\2012 Fall\A1"
         Dim strLocalFilePrefix As String = m_studentAssignment.BaseAssignment.Name & " "
@@ -1994,10 +2033,6 @@ Friend Class StudentAssignmentDetails
         Clipboard.SetText(sb.ToString())
     End Sub
 
-    Private Sub btnGenerateImprovementCommentsNoGradeHint_LinkClicked(sender As Object, e As EventArgs) Handles btnGenerateImprovementCommentsNoGradeHint.LinkClicked
-        GenerateImprovementFeedback(False, False)
-    End Sub
-
     Private Sub olvImprovementItems_KeyDown(sender As Object, e As KeyEventArgs) Handles olvImprovementItems.KeyDown
         Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
         If selItem IsNot Nothing Then
@@ -2083,5 +2118,29 @@ Friend Class StudentAssignmentDetails
 
     Private Sub FocusOnfeedbackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FocusOnfeedbackToolStripMenuItem.Click
         olvAutoFeedback.Focus()
+    End Sub
+
+    Private Sub llblFirstAttemptText_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblFirstAttemptText.LinkClicked
+        spltOveralFirstReworkText.SplitterDistance = spltOveralFirstReworkText.Width - 20
+    End Sub
+
+    Private Sub llblReworkText_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblReworkText.LinkClicked
+        spltOveralFirstReworkText.SplitterDistance = 20
+    End Sub
+
+    Private Sub llblAutoGenImprovementsFirst_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsFirst.LinkClicked
+        rtbImprovementComments.Text = GenerateImprovementFeedback(False, True)
+    End Sub
+
+    Private Sub llblAutoGenOverallFirst_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenOverallFirst.LinkClicked
+        rtbOverallComments.Text = GenerateOverallComments(False)
+    End Sub
+
+    Private Sub llblAutoGenOverallRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenOverallRework.LinkClicked
+        rtbOverallCommentsRework.Text = GenerateOverallComments(True)
+    End Sub
+
+    Private Sub llblAutoGenImprovementsRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsRework.LinkClicked
+        rtbImprovementCommentsRework.Text = GenerateImprovementFeedback(False, False)
     End Sub
 End Class

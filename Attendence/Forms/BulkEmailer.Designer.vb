@@ -26,12 +26,16 @@ Partial Class BulkEmailer
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.splitOverall = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
+        Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
         Me.txtLinkAddress = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblCreateLink = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.nudSendInXHours = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.ctxmnuSendingReplacementCodes = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PeerRevieweeStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PeerRevieweeNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblSendingStatus = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -60,15 +64,17 @@ Partial Class BulkEmailer
         Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddfixedAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddstudentspecificAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusCheckToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem25 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.ctxmnuSendingReplacementCodes = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.PeerRevieweeStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PeerRevieweeNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,9 +90,9 @@ Partial Class BulkEmailer
         CType(Me.splitOverall.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.splitOverall.Panel2.SuspendLayout()
         Me.splitOverall.SuspendLayout()
+        Me.ctxmnuSendingReplacementCodes.SuspendLayout()
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip2.SuspendLayout()
-        Me.ctxmnuSendingReplacementCodes.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -173,13 +179,25 @@ Partial Class BulkEmailer
         Me.splitOverall.SplitterDistance = 211
         Me.splitOverall.TabIndex = 28
         '
+        'txtEmailTrailingText
+        '
+        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 221)
+        Me.txtEmailTrailingText.Multiline = True
+        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
+        Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(210, 236)
+        Me.txtEmailTrailingText.TabIndex = 64
+        '
         'txtLinkAddress
         '
         Me.txtLinkAddress.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtLinkAddress.Location = New System.Drawing.Point(49, 172)
         Me.txtLinkAddress.Name = "txtLinkAddress"
-        Me.txtLinkAddress.Size = New System.Drawing.Size(157, 19)
+        Me.txtLinkAddress.Size = New System.Drawing.Size(157, 22)
         Me.txtLinkAddress.TabIndex = 62
         '
         'llblCreateLink
@@ -230,6 +248,25 @@ Partial Class BulkEmailer
         Me.KryptonLabel7.TabIndex = 42
         Me.KryptonLabel7.Values.Text = "Message text:"
         '
+        'ctxmnuSendingReplacementCodes
+        '
+        Me.ctxmnuSendingReplacementCodes.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ctxmnuSendingReplacementCodes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PeerRevieweeStudentIDToolStripMenuItem, Me.PeerRevieweeNameToolStripMenuItem})
+        Me.ctxmnuSendingReplacementCodes.Name = "ctxmnuSendingReplacementCodes"
+        Me.ctxmnuSendingReplacementCodes.Size = New System.Drawing.Size(202, 48)
+        '
+        'PeerRevieweeStudentIDToolStripMenuItem
+        '
+        Me.PeerRevieweeStudentIDToolStripMenuItem.Name = "PeerRevieweeStudentIDToolStripMenuItem"
+        Me.PeerRevieweeStudentIDToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.PeerRevieweeStudentIDToolStripMenuItem.Text = "Peer reviewee StudentID"
+        '
+        'PeerRevieweeNameToolStripMenuItem
+        '
+        Me.PeerRevieweeNameToolStripMenuItem.Name = "PeerRevieweeNameToolStripMenuItem"
+        Me.PeerRevieweeNameToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.PeerRevieweeNameToolStripMenuItem.Text = "Peer reviewee name"
+        '
         'lblSendingStatus
         '
         Me.lblSendingStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -272,7 +309,7 @@ Partial Class BulkEmailer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubject.Location = New System.Drawing.Point(3, 61)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(201, 19)
+        Me.txtSubject.Size = New System.Drawing.Size(201, 22)
         Me.txtSubject.TabIndex = 29
         '
         'KryptonLabel3
@@ -436,7 +473,7 @@ Partial Class BulkEmailer
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(62, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 19)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 22)
         Me.txtStudentFilter.TabIndex = 25
         '
         'llblClearFilter
@@ -470,7 +507,7 @@ Partial Class BulkEmailer
         '
         Me.MenuStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem24})
+        Me.MenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.OptionsToolStripMenuItem, Me.ToolStripMenuItem24})
         Me.MenuStrip2.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip2.Name = "MenuStrip2"
         Me.MenuStrip2.Size = New System.Drawing.Size(1255, 24)
@@ -489,6 +526,40 @@ Partial Class BulkEmailer
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
+        '
+        'OptionsToolStripMenuItem
+        '
+        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddfixedAttachmentToolStripMenuItem, Me.AddstudentspecificAttachmentToolStripMenuItem, Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem, Me.ToolStripSeparator1, Me.StatusCheckToolStripMenuItem})
+        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
+        Me.OptionsToolStripMenuItem.Text = "&Student"
+        '
+        'AddfixedAttachmentToolStripMenuItem
+        '
+        Me.AddfixedAttachmentToolStripMenuItem.CheckOnClick = True
+        Me.AddfixedAttachmentToolStripMenuItem.Name = "AddfixedAttachmentToolStripMenuItem"
+        Me.AddfixedAttachmentToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.AddfixedAttachmentToolStripMenuItem.Text = "Add &fixed attachment(s)..."
+        '
+        'AddstudentspecificAttachmentToolStripMenuItem
+        '
+        Me.AddstudentspecificAttachmentToolStripMenuItem.CheckOnClick = True
+        Me.AddstudentspecificAttachmentToolStripMenuItem.Name = "AddstudentspecificAttachmentToolStripMenuItem"
+        Me.AddstudentspecificAttachmentToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.AddstudentspecificAttachmentToolStripMenuItem.Text = "Add &student-specific attachment(s)..."
+        '
+        'UseExtIDuncheckToUseStudentIDToolStripMenuItem
+        '
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.CheckOnClick = True
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Name = "UseExtIDuncheckToUseStudentIDToolStripMenuItem"
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
+        '
+        'StatusCheckToolStripMenuItem
+        '
+        Me.StatusCheckToolStripMenuItem.Name = "StatusCheckToolStripMenuItem"
+        Me.StatusCheckToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.StatusCheckToolStripMenuItem.Text = "Status check..."
         '
         'ToolStripMenuItem24
         '
@@ -516,36 +587,10 @@ Partial Class BulkEmailer
         '
         Me.tmrFilterStudents.Interval = 200
         '
-        'ctxmnuSendingReplacementCodes
+        'ToolStripSeparator1
         '
-        Me.ctxmnuSendingReplacementCodes.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ctxmnuSendingReplacementCodes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PeerRevieweeStudentIDToolStripMenuItem, Me.PeerRevieweeNameToolStripMenuItem})
-        Me.ctxmnuSendingReplacementCodes.Name = "ctxmnuSendingReplacementCodes"
-        Me.ctxmnuSendingReplacementCodes.Size = New System.Drawing.Size(202, 70)
-        '
-        'PeerRevieweeStudentIDToolStripMenuItem
-        '
-        Me.PeerRevieweeStudentIDToolStripMenuItem.Name = "PeerRevieweeStudentIDToolStripMenuItem"
-        Me.PeerRevieweeStudentIDToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.PeerRevieweeStudentIDToolStripMenuItem.Text = "Peer reviewee StudentID"
-        '
-        'PeerRevieweeNameToolStripMenuItem
-        '
-        Me.PeerRevieweeNameToolStripMenuItem.Name = "PeerRevieweeNameToolStripMenuItem"
-        Me.PeerRevieweeNameToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.PeerRevieweeNameToolStripMenuItem.Text = "Peer reviewee name"
-        '
-        'txtEmailTrailingText
-        '
-        Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 221)
-        Me.txtEmailTrailingText.Multiline = True
-        Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
-        Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(210, 236)
-        Me.txtEmailTrailingText.TabIndex = 64
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
         '
         'BulkEmailer
         '
@@ -576,10 +621,10 @@ Partial Class BulkEmailer
         Me.splitOverall.Panel2.PerformLayout()
         CType(Me.splitOverall, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splitOverall.ResumeLayout(False)
+        Me.ctxmnuSendingReplacementCodes.ResumeLayout(False)
         CType(Me.olvStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip2.ResumeLayout(False)
         Me.MenuStrip2.PerformLayout()
-        Me.ctxmnuSendingReplacementCodes.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -644,4 +689,10 @@ Partial Class BulkEmailer
     Friend WithEvents PeerRevieweeStudentIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PeerRevieweeNameToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents txtEmailTrailingText As System.Windows.Forms.TextBox
+    Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddfixedAttachmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddstudentspecificAttachmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UseExtIDuncheckToUseStudentIDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StatusCheckToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
 End Class

@@ -524,18 +524,18 @@ Public Class EmailModuleResults
 
         If boolAtLeastOneBTECAssignment Then
             If olvAssignments.CheckedItems.Count = 1 Then
-                str.Append("This assessment has " & m_intModuleOutcomes.ToString() & " outcome")
+                str.Append("This assessment has " & m_intModuleOutcomes.ToString() & " pass-level outcome")
             Else
-                str.Append("These assessments have " & m_intModuleOutcomes.ToString() & " outcome")
+                str.Append("These assessments have " & m_intModuleOutcomes.ToString() & " pass-level outcome")
             End If
 
-            '-- Plural?
+            '-- Plural "outcomes" as needed
             If m_intModuleOutcomes = 1 Then
                 str.Append(".")
             Else
                 str.Append("s.")
             End If
-           
+
             If AppSettings.EmailAsHTML Then
                 str.Append("<br>")
                 str.Append("<br>")
@@ -597,7 +597,7 @@ Public Class EmailModuleResults
                     '-- Grade is normally in overall, so for BTEC there is nothing to do here
 
                 End If
-               
+
                 If chkIncludeOverall.Checked AndAlso asmt.OverallComments.Length > 0 Then
                     If AppSettings.EmailAsHTML Then
                         str.Append("<br>")
@@ -966,7 +966,7 @@ Public Class EmailModuleResults
                             End If
                         End If
                     End If
-                    End If
+                End If
 
 
 
@@ -1137,6 +1137,7 @@ Public Class EmailModuleResults
         chkIncludeOverall.Checked = False '-- has grade for presentations
         chkIncludeOverallGrade.Checked = False '-- has grade
     End Sub
+
 End Class
 
 Public Class EmailResultData

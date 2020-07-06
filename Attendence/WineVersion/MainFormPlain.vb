@@ -3688,4 +3688,11 @@ Public Class MainFormPlain
         Dim frm As New AttendanceReport(objClassToSend)
         frm.Show()
     End Sub
+
+    Private Sub llblSemesterLabel_LinkClicked(sender As Object, e As EventArgs) Handles llblSemesterLabel.LinkClicked
+        If Semester.ListExistingSemesters.Count > 0 Then
+            Diagnostics.Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(ThisSemester.DataFilename))
+        End If
+    End Sub
+
 End Class

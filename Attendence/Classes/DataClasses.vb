@@ -1908,6 +1908,8 @@ End Class
 Public Interface IStudentAssignment
     Property OverallComments As String
     Property ImprovementComments As String
+    Property OverallCommentsRework As String
+    Property ImprovementCommentsRework As String
     Property Processed As Boolean '-- means completed, ready to notify student
 
     Property FirstTryPrintDate As Date
@@ -1931,6 +1933,9 @@ Public Class StudentAssignment
     Public Property ThirdTryPoints As Integer
     Public Property OverallComments As String Implements IStudentAssignment.OverallComments
     Public Property ImprovementComments As String Implements IStudentAssignment.ImprovementComments
+    Public Property OverallCommentsRework As String Implements IStudentAssignment.OverallCommentsRework
+    Public Property ImprovementCommentsRework As String Implements IStudentAssignment.ImprovementCommentsRework
+
     Public Property Processed As Boolean Implements IStudentAssignment.Processed '-- means completed, ready to notify student
     Public Property FirstTryPrintDate As Date = DATE_NO_DATE Implements IStudentAssignment.FirstTryPrintDate
     Public Property SecondTryPrintDate As Date = DATE_NO_DATE Implements IStudentAssignment.SecondTryPrintDate
@@ -1967,6 +1972,8 @@ Public Class StudentAssignment
 
         OverallComments = xElement.GetAttribute("OverallComments")
         ImprovementComments = xElement.GetAttribute("ImprovementComments")
+        OverallCommentsRework = xElement.GetAttribute("OverallCommentsRework")
+        ImprovementCommentsRework = xElement.GetAttribute("ImprovementCommentsRework")
         Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
 
 
@@ -1987,6 +1994,8 @@ Public Class StudentAssignment
 
         xAssignmentElement.SetAttribute("OverallComments", OverallComments)
         xAssignmentElement.SetAttribute("ImprovementComments", ImprovementComments)
+        xAssignmentElement.SetAttribute("OverallCommentsRework", OverallCommentsRework)
+        xAssignmentElement.SetAttribute("ImprovementCommentsRework", ImprovementCommentsRework)
         xAssignmentElement.SetAttribute("Processed", Processed)
         xAssignmentElement.SetAttribute("FirstTryPrintDate", FirstTryPrintDate.ToString(DATE_TIME_FORMAT_XML))
         xAssignmentElement.SetAttribute("FirstTryPoints", FirstTryPoints.ToString())
@@ -2140,6 +2149,8 @@ Public Class StudentAssignmentBTEC
 
     Public Property OverallComments As String Implements IStudentAssignment.OverallComments
     Public Property ImprovementComments As String Implements IStudentAssignment.ImprovementComments
+    Public Property OverallCommentsRework As String Implements IStudentAssignment.OverallCommentsRework
+    Public Property ImprovementCommentsRework As String Implements IStudentAssignment.ImprovementCommentsRework
     Public Property ObservationComments As String
     Public Property Processed As Boolean Implements IStudentAssignment.Processed '-- means completed, ready to notify student
     Public Property FirstTryPrintDate As Date = DATE_NO_DATE Implements IStudentAssignment.FirstTryPrintDate
@@ -2169,6 +2180,8 @@ Public Class StudentAssignmentBTEC
 
         OverallComments = xElement.GetAttribute("OverallComments")
         ImprovementComments = xElement.GetAttribute("ImprovementComments")
+        OverallCommentsRework = xElement.GetAttribute("OverallCommentsRework")
+        ImprovementCommentsRework = xElement.GetAttribute("ImprovementCommentsRework")
         ObservationComments = xElement.GetAttribute("ObservationComments")
         Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
 
@@ -2255,6 +2268,8 @@ Public Class StudentAssignmentBTEC
         xAssignmentElement.SetAttribute("OverallComments", OverallComments)
         xAssignmentElement.SetAttribute("ImprovementComments", ImprovementComments)
         xAssignmentElement.SetAttribute("ObservationComments", ObservationComments)
+        xAssignmentElement.SetAttribute("OverallCommentsRework", OverallCommentsRework)
+        xAssignmentElement.SetAttribute("ImprovementCommentsRework", ImprovementCommentsRework)
         xAssignmentElement.SetAttribute("Processed", Processed)
         xAssignmentElement.SetAttribute("FirstTryPrintDate", FirstTryPrintDate.ToString(DATE_TIME_FORMAT_XML))
         xAssignmentElement.SetAttribute("SecondTryPrintDate", SecondTryPrintDate.ToString(DATE_TIME_FORMAT_XML))

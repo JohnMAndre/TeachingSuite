@@ -21,6 +21,7 @@ Module Globals
     Public DATE_NO_DATE As Date = New Date(2010, 1, 1)
     Public Const COMBINED_VIEW_NAME As String = "Combined View"
 
+    Public Const PRODUCT_NAME As String = "Teaching App"
 
     '== Global vars
     Public ThisSemester As Semester '-- current data set

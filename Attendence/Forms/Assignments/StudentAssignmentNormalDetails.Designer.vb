@@ -44,6 +44,13 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel17 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonSplitContainer2 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
+        Me.spltOveralFirstReworkText = New System.Windows.Forms.SplitContainer()
+        Me.rtbImprovementComments = New System.Windows.Forms.RichTextBox()
+        Me.rtbOverallComments = New System.Windows.Forms.RichTextBox()
+        Me.llblFirstAttemptText = New System.Windows.Forms.LinkLabel()
+        Me.rtbImprovementCommentsRework = New System.Windows.Forms.RichTextBox()
+        Me.rtbOverallCommentsRework = New System.Windows.Forms.RichTextBox()
+        Me.llblReworkText = New System.Windows.Forms.LinkLabel()
         Me.lblFirstTryPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblAutoCalcScore = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.lblMaxPoints = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -58,8 +65,10 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAutoGenImprovements = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblAutoGenImprovementsRework = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblAutoGenImprovementsFirst = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolDataAdded = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -102,8 +111,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
         Me.tmrTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.rtbImprovementComments = New System.Windows.Forms.RichTextBox()
-        Me.rtbOverallComments = New System.Windows.Forms.RichTextBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -119,6 +126,10 @@ Partial Class StudentAssignmentNormalDetails
         CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel2.SuspendLayout()
         Me.KryptonSplitContainer1.SuspendLayout()
+        CType(Me.spltOveralFirstReworkText, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.spltOveralFirstReworkText.Panel1.SuspendLayout()
+        Me.spltOveralFirstReworkText.Panel2.SuspendLayout()
+        Me.spltOveralFirstReworkText.SuspendLayout()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -129,7 +140,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ToolsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1040, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1045, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -143,7 +154,7 @@ Partial Class StudentAssignmentNormalDetails
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ViewToolStripMenuItem
@@ -164,7 +175,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AutocalcScoreToolStripMenuItem, Me.AutogenImprovementsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
         '
         'AutocalcScoreToolStripMenuItem
@@ -216,7 +227,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 24)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Size = New System.Drawing.Size(1040, 543)
+        Me.KryptonPanel.Size = New System.Drawing.Size(1045, 518)
         Me.KryptonPanel.TabIndex = 1
         '
         'txtPeerStudentID
@@ -347,8 +358,8 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.chkProcessed)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.btnPrintMarkingSheet)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblSaveFeedbackSheet)
-        Me.KryptonSplitContainer2.Size = New System.Drawing.Size(1040, 490)
-        Me.KryptonSplitContainer2.SplitterDistance = 419
+        Me.KryptonSplitContainer2.Size = New System.Drawing.Size(1045, 465)
+        Me.KryptonSplitContainer2.SplitterDistance = 394
         Me.KryptonSplitContainer2.TabIndex = 123
         '
         'KryptonSplitContainer1
@@ -361,8 +372,7 @@ Partial Class StudentAssignmentNormalDetails
         '
         'KryptonSplitContainer1.Panel1
         '
-        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.rtbOverallComments)
-        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.rtbImprovementComments)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.spltOveralFirstReworkText)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lblFirstTryPercent)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoCalcScore)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lblMaxPoints)
@@ -377,15 +387,106 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonLabel2)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonLabel3)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonLabel4)
-        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsWithoutPerformanceLevel)
-        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovements)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsRework)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsFirst)
         '
         'KryptonSplitContainer1.Panel2
         '
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.olvImprovementItems)
-        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(1040, 419)
-        Me.KryptonSplitContainer1.SplitterDistance = 418
+        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(1045, 394)
+        Me.KryptonSplitContainer1.SplitterDistance = 441
         Me.KryptonSplitContainer1.TabIndex = 91
+        '
+        'spltOveralFirstReworkText
+        '
+        Me.spltOveralFirstReworkText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.spltOveralFirstReworkText.Location = New System.Drawing.Point(101, 55)
+        Me.spltOveralFirstReworkText.Name = "spltOveralFirstReworkText"
+        '
+        'spltOveralFirstReworkText.Panel1
+        '
+        Me.spltOveralFirstReworkText.Panel1.Controls.Add(Me.rtbImprovementComments)
+        Me.spltOveralFirstReworkText.Panel1.Controls.Add(Me.rtbOverallComments)
+        Me.spltOveralFirstReworkText.Panel1.Controls.Add(Me.llblFirstAttemptText)
+        '
+        'spltOveralFirstReworkText.Panel2
+        '
+        Me.spltOveralFirstReworkText.Panel2.Controls.Add(Me.rtbImprovementCommentsRework)
+        Me.spltOveralFirstReworkText.Panel2.Controls.Add(Me.rtbOverallCommentsRework)
+        Me.spltOveralFirstReworkText.Panel2.Controls.Add(Me.llblReworkText)
+        Me.spltOveralFirstReworkText.Size = New System.Drawing.Size(337, 338)
+        Me.spltOveralFirstReworkText.SplitterDistance = 158
+        Me.spltOveralFirstReworkText.TabIndex = 143
+        '
+        'rtbImprovementComments
+        '
+        Me.rtbImprovementComments.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.rtbImprovementComments.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbImprovementComments.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.rtbImprovementComments.Location = New System.Drawing.Point(0, 128)
+        Me.rtbImprovementComments.Name = "rtbImprovementComments"
+        Me.rtbImprovementComments.Size = New System.Drawing.Size(158, 210)
+        Me.rtbImprovementComments.TabIndex = 141
+        Me.rtbImprovementComments.Text = ""
+        '
+        'rtbOverallComments
+        '
+        Me.rtbOverallComments.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbOverallComments.Dock = System.Windows.Forms.DockStyle.Top
+        Me.rtbOverallComments.Location = New System.Drawing.Point(0, 16)
+        Me.rtbOverallComments.Name = "rtbOverallComments"
+        Me.rtbOverallComments.Size = New System.Drawing.Size(158, 112)
+        Me.rtbOverallComments.TabIndex = 142
+        Me.rtbOverallComments.Text = ""
+        '
+        'llblFirstAttemptText
+        '
+        Me.llblFirstAttemptText.AutoSize = True
+        Me.llblFirstAttemptText.Dock = System.Windows.Forms.DockStyle.Top
+        Me.llblFirstAttemptText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.llblFirstAttemptText.Location = New System.Drawing.Point(0, 0)
+        Me.llblFirstAttemptText.Name = "llblFirstAttemptText"
+        Me.llblFirstAttemptText.Size = New System.Drawing.Size(82, 16)
+        Me.llblFirstAttemptText.TabIndex = 143
+        Me.llblFirstAttemptText.TabStop = True
+        Me.llblFirstAttemptText.Text = "First attempt"
+        '
+        'rtbImprovementCommentsRework
+        '
+        Me.rtbImprovementCommentsRework.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.rtbImprovementCommentsRework.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbImprovementCommentsRework.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.rtbImprovementCommentsRework.Location = New System.Drawing.Point(0, 128)
+        Me.rtbImprovementCommentsRework.Name = "rtbImprovementCommentsRework"
+        Me.rtbImprovementCommentsRework.Size = New System.Drawing.Size(175, 210)
+        Me.rtbImprovementCommentsRework.TabIndex = 144
+        Me.rtbImprovementCommentsRework.Text = ""
+        '
+        'rtbOverallCommentsRework
+        '
+        Me.rtbOverallCommentsRework.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rtbOverallCommentsRework.Dock = System.Windows.Forms.DockStyle.Top
+        Me.rtbOverallCommentsRework.Location = New System.Drawing.Point(0, 16)
+        Me.rtbOverallCommentsRework.Name = "rtbOverallCommentsRework"
+        Me.rtbOverallCommentsRework.Size = New System.Drawing.Size(175, 112)
+        Me.rtbOverallCommentsRework.TabIndex = 143
+        Me.rtbOverallCommentsRework.Text = ""
+        '
+        'llblReworkText
+        '
+        Me.llblReworkText.AutoSize = True
+        Me.llblReworkText.Dock = System.Windows.Forms.DockStyle.Top
+        Me.llblReworkText.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.llblReworkText.Location = New System.Drawing.Point(0, 0)
+        Me.llblReworkText.Name = "llblReworkText"
+        Me.llblReworkText.Size = New System.Drawing.Size(51, 16)
+        Me.llblReworkText.TabIndex = 0
+        Me.llblReworkText.TabStop = True
+        Me.llblReworkText.Text = "Rework"
         '
         'lblFirstTryPercent
         '
@@ -510,25 +611,41 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel4.TabIndex = 65
         Me.KryptonLabel4.Values.Text = "Improvement:"
         '
-        'llblAutoGenImprovementsWithoutPerformanceLevel
+        'llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework
         '
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Location = New System.Drawing.Point(1, 242)
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Name = "llblAutoGenImprovementsWithoutPerformanceLevel"
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Size = New System.Drawing.Size(94, 20)
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel.TabIndex = 140
-        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsWithoutPerformanceLevel, "Automatically generate improvement comments based on checked improvement items (w" &
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Location = New System.Drawing.Point(6, 323)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Name = "llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework"
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Size = New System.Drawing.Size(87, 20)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.TabIndex = 140
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Values.Text = "Gen (RW w/o)"
+        '
+        'llblAutoGenImprovementsWithoutPerformanceLevelWithout
+        '
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Location = New System.Drawing.Point(1, 232)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Name = "llblAutoGenImprovementsWithoutPerformanceLevelWithout"
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Size = New System.Drawing.Size(84, 20)
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.TabIndex = 140
+        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout, "Automatically generate improvement comments based on checked improvement items (w" &
         "ithout performance level)")
-        Me.llblAutoGenImprovementsWithoutPerformanceLevel.Values.Text = "Auto-gen (w/o)"
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Values.Text = "Gen (1st w/o)"
         '
-        'llblAutoGenImprovements
+        'llblAutoGenImprovementsRework
         '
-        Me.llblAutoGenImprovements.Location = New System.Drawing.Point(1, 199)
-        Me.llblAutoGenImprovements.Name = "llblAutoGenImprovements"
-        Me.llblAutoGenImprovements.Size = New System.Drawing.Size(87, 20)
-        Me.llblAutoGenImprovements.TabIndex = 137
-        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovements, "Automatically generate improvement comments based on checked improvement items (w" &
+        Me.llblAutoGenImprovementsRework.Location = New System.Drawing.Point(6, 290)
+        Me.llblAutoGenImprovementsRework.Name = "llblAutoGenImprovementsRework"
+        Me.llblAutoGenImprovementsRework.Size = New System.Drawing.Size(75, 20)
+        Me.llblAutoGenImprovementsRework.TabIndex = 137
+        Me.llblAutoGenImprovementsRework.Values.Text = "Gen (RW w)"
+        '
+        'llblAutoGenImprovementsFirst
+        '
+        Me.llblAutoGenImprovementsFirst.Location = New System.Drawing.Point(1, 199)
+        Me.llblAutoGenImprovementsFirst.Name = "llblAutoGenImprovementsFirst"
+        Me.llblAutoGenImprovementsFirst.Size = New System.Drawing.Size(72, 20)
+        Me.llblAutoGenImprovementsFirst.TabIndex = 137
+        Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsFirst, "Automatically generate improvement comments based on checked improvement items (w" &
         "ith performance level)")
-        Me.llblAutoGenImprovements.Values.Text = "Auto-gen (w/)"
+        Me.llblAutoGenImprovementsFirst.Values.Text = "Gen (1st w)"
         '
         'olvImprovementItems
         '
@@ -556,7 +673,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.olvImprovementItems.ShowGroups = False
         Me.olvImprovementItems.ShowImagesOnSubItems = True
         Me.olvImprovementItems.ShowItemToolTips = True
-        Me.olvImprovementItems.Size = New System.Drawing.Size(617, 419)
+        Me.olvImprovementItems.Size = New System.Drawing.Size(599, 394)
         Me.olvImprovementItems.TabIndex = 92
         Me.olvImprovementItems.UseCompatibleStateImageBehavior = False
         Me.olvImprovementItems.UseFiltering = True
@@ -729,7 +846,7 @@ Partial Class StudentAssignmentNormalDetails
         'llblOpenSavedMarkingPage
         '
         Me.llblOpenSavedMarkingPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblOpenSavedMarkingPage.Location = New System.Drawing.Point(944, 3)
+        Me.llblOpenSavedMarkingPage.Location = New System.Drawing.Point(949, 3)
         Me.llblOpenSavedMarkingPage.Name = "llblOpenSavedMarkingPage"
         Me.llblOpenSavedMarkingPage.Size = New System.Drawing.Size(22, 18)
         Me.llblOpenSavedMarkingPage.TabIndex = 124
@@ -742,7 +859,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.chkProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkProcessed.Location = New System.Drawing.Point(834, 34)
+        Me.chkProcessed.Location = New System.Drawing.Point(839, 34)
         Me.chkProcessed.Name = "chkProcessed"
         Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
         Me.chkProcessed.TabIndex = 48
@@ -752,7 +869,7 @@ Partial Class StudentAssignmentNormalDetails
         'btnPrintMarkingSheet
         '
         Me.btnPrintMarkingSheet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnPrintMarkingSheet.Location = New System.Drawing.Point(998, 26)
+        Me.btnPrintMarkingSheet.Location = New System.Drawing.Point(1003, 26)
         Me.btnPrintMarkingSheet.Name = "btnPrintMarkingSheet"
         Me.btnPrintMarkingSheet.Size = New System.Drawing.Size(38, 34)
         Me.btnPrintMarkingSheet.TabIndex = 65
@@ -762,7 +879,7 @@ Partial Class StudentAssignmentNormalDetails
         'llblSaveFeedbackSheet
         '
         Me.llblSaveFeedbackSheet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblSaveFeedbackSheet.Location = New System.Drawing.Point(938, 26)
+        Me.llblSaveFeedbackSheet.Location = New System.Drawing.Point(943, 26)
         Me.llblSaveFeedbackSheet.Name = "llblSaveFeedbackSheet"
         Me.llblSaveFeedbackSheet.Size = New System.Drawing.Size(38, 34)
         Me.llblSaveFeedbackSheet.TabIndex = 122
@@ -877,7 +994,7 @@ Partial Class StudentAssignmentNormalDetails
         'llblClearImprovementItem
         '
         Me.llblClearImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblClearImprovementItem.Location = New System.Drawing.Point(1008, 32)
+        Me.llblClearImprovementItem.Location = New System.Drawing.Point(1013, 32)
         Me.llblClearImprovementItem.Name = "llblClearImprovementItem"
         Me.llblClearImprovementItem.Size = New System.Drawing.Size(22, 18)
         Me.llblClearImprovementItem.TabIndex = 126
@@ -887,7 +1004,7 @@ Partial Class StudentAssignmentNormalDetails
         'llblRemoveImprovementItem
         '
         Me.llblRemoveImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveImprovementItem.Location = New System.Drawing.Point(980, 32)
+        Me.llblRemoveImprovementItem.Location = New System.Drawing.Point(985, 32)
         Me.llblRemoveImprovementItem.Name = "llblRemoveImprovementItem"
         Me.llblRemoveImprovementItem.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveImprovementItem.TabIndex = 125
@@ -897,7 +1014,7 @@ Partial Class StudentAssignmentNormalDetails
         'llblAddImprovementItem
         '
         Me.llblAddImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblAddImprovementItem.Location = New System.Drawing.Point(952, 32)
+        Me.llblAddImprovementItem.Location = New System.Drawing.Point(957, 32)
         Me.llblAddImprovementItem.Name = "llblAddImprovementItem"
         Me.llblAddImprovementItem.Size = New System.Drawing.Size(22, 18)
         Me.llblAddImprovementItem.TabIndex = 124
@@ -909,34 +1026,11 @@ Partial Class StudentAssignmentNormalDetails
         Me.tmrTimer.Enabled = True
         Me.tmrTimer.Interval = 200
         '
-        'rtbImprovementComments
-        '
-        Me.rtbImprovementComments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbImprovementComments.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.rtbImprovementComments.Location = New System.Drawing.Point(94, 169)
-        Me.rtbImprovementComments.Name = "rtbImprovementComments"
-        Me.rtbImprovementComments.Size = New System.Drawing.Size(321, 247)
-        Me.rtbImprovementComments.TabIndex = 141
-        Me.rtbImprovementComments.Text = ""
-        '
-        'rtbOverallComments
-        '
-        Me.rtbOverallComments.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbOverallComments.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.rtbOverallComments.Location = New System.Drawing.Point(90, 61)
-        Me.rtbOverallComments.Name = "rtbOverallComments"
-        Me.rtbOverallComments.Size = New System.Drawing.Size(325, 102)
-        Me.rtbOverallComments.TabIndex = 142
-        Me.rtbOverallComments.Text = ""
-        '
         'StudentAssignmentNormalDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1040, 567)
+        Me.ClientSize = New System.Drawing.Size(1045, 542)
         Me.Controls.Add(Me.KryptonPanel)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -961,6 +1055,12 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.ResumeLayout(False)
+        Me.spltOveralFirstReworkText.Panel1.ResumeLayout(False)
+        Me.spltOveralFirstReworkText.Panel1.PerformLayout()
+        Me.spltOveralFirstReworkText.Panel2.ResumeLayout(False)
+        Me.spltOveralFirstReworkText.Panel2.PerformLayout()
+        CType(Me.spltOveralFirstReworkText, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.spltOveralFirstReworkText.ResumeLayout(False)
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1025,7 +1125,7 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
     Friend WithEvents tmrTimer As System.Windows.Forms.Timer
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents llblAutoGenImprovements As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAutoGenImprovementsFirst As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents llblAutoCalcScore As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents lblFirstTryPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -1034,7 +1134,7 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents AutocalcScoreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AutogenImprovementsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithout As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents txtTeam As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents txtGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel18 As ComponentFactory.Krypton.Toolkit.KryptonLabel
@@ -1048,4 +1148,11 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents KryptonLabel21 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents rtbOverallComments As RichTextBox
     Friend WithEvents rtbImprovementComments As RichTextBox
+    Friend WithEvents spltOveralFirstReworkText As SplitContainer
+    Friend WithEvents llblFirstAttemptText As LinkLabel
+    Friend WithEvents rtbImprovementCommentsRework As RichTextBox
+    Friend WithEvents rtbOverallCommentsRework As RichTextBox
+    Friend WithEvents llblReworkText As LinkLabel
+    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAutoGenImprovementsRework As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class

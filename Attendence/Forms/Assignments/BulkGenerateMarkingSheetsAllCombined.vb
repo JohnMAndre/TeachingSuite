@@ -30,6 +30,7 @@
             Dim intGenerated, intSkipped As Integer
 
             Dim ofd As New OpenFileDialog()
+            ofd.Title = "Select assignment brief to combined into"
             Dim dlrst As DialogResult = ofd.ShowDialog
 
             If dlrst = DialogResult.OK Then

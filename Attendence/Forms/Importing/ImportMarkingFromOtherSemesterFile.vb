@@ -1,4 +1,34 @@
-﻿Public Class ImportMarkingFromOtherSemesterFile
+﻿Imports DocumentFormat.OpenXml.Math
+Imports Microsoft.Office.Interop.Word
+
+Public Class ImportMarkingFromOtherSemesterFile
+
+    Private Enum ExistingAssignmentOptionEnum
+        SkipExisting
+        OverwriteExisting
+        OverwriteRework
+    End Enum
+
+    Public Class SyncResolverNormalData
+        Public Property Student As Student
+        Public Property TempAssignment As StudentAssignment
+        Public Property PermExistingAssignment As StudentAssignment
+        Public Overrides Function ToString() As String
+            Return Me.Student.StudentID
+        End Function
+    End Class
+    Public Class SyncResolverBTECData
+        Public Property Student As Student
+        Public Property TempAssignment As StudentAssignmentBTEC
+        Public Property PermExistingAssignment As StudentAssignmentBTEC
+        Public Overrides Function ToString() As String
+            Return Me.Student.StudentID
+        End Function
+    End Class
+
+    Private m_lstSyncResolverNormal As New List(Of SyncResolverNormalData)
+    Private m_lstSyncResolverBTEC As New List(Of SyncResolverBTECData)
+
     Public Class ReportData
         Public Property Student As Student
         Public Property Assignment As StudentAssignment
@@ -169,10 +199,10 @@
         ofd.Filter = "Semester databases|*.datx"
         ofd.Multiselect = False
         ofd.Title = "Select semester file to import from"
-        If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If ofd.ShowDialog = DialogResult.OK Then
             txtSemesterFile.Text = ofd.FileName
             btnLoadSemester.Hide()
-            Application.DoEvents()
+            System.Windows.Forms.Application.DoEvents()
             LoadSemesterFile()
             btnLoadSemester.Show()
         End If
@@ -188,7 +218,7 @@
             LoadClassGroups()
         Catch ex As Exception
             Log(ex)
-            MessageBox.Show("There was an error loading the selected semester file: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("There was an error loading the selected semester file: " & ex.Message, PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -244,7 +274,7 @@
     End Function
     Private Sub LoadClassAssignments()
         If GetSelectedClassGroup() Is Nothing Then
-            MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please select a class first.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             lstAssignments.Items.Clear()
 
@@ -374,148 +404,148 @@
         End If
     End Function
 
-    Private Sub ImportStudentAssignments()
-        Try
-            If MessageBox.Show("Are you sure you want to import assignments, improvement items, and changes in data for these students?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = Windows.Forms.DialogResult.Yes Then
-                '-- No or cancel will stop this process
+    'Private Sub ImportStudentAssignments()
+    '    Try
+    '        If MessageBox.Show("Are you sure you want to import assignments, improvement items, and changes in data for these students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
+    '            '-- No or cancel will stop this process
 
-                '-- If we get here, for each student, import:
-                '   This one assignment
-                '   Any new improvement items
-                '   Any changes in improvement item performance levels
-                '   Any changes in student's presentation, research, plagiarism
-                Dim baseAsmt As IClassAssignment = GetSelectedAssignment()
-                Dim permStud As Student '-- in the perm database (ThisSemester)
-                Dim permItem As StudentImprovementItem
-                Dim baseItem As ImprovementItem
-                Dim boolMatchedItem As Boolean
-                Dim intStudentsImported As Integer
+    '            '-- If we get here, for each student, import:
+    '            '   This one assignment
+    '            '   Any new improvement items
+    '            '   Any changes in improvement item performance levels
+    '            '   Any changes in student's presentation, research, plagiarism
+    '            Dim baseAsmt As IClassAssignment = GetSelectedAssignment()
+    '            Dim permStud As Student '-- in the perm database (ThisSemester)
+    '            Dim permItem As StudentImprovementItem
+    '            Dim baseItem As ImprovementItem
+    '            Dim boolMatchedItem As Boolean
+    '            Dim intStudentsImported As Integer
 
-                Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
-                For Each stud As ReportData In m_lstCurrentListOfStudents
-                    intStudentsImported += 1
-                    'permStud = Student.GetByStudentID(stud.StudentID)
-                    permStud = m_objLocalClassGroup.GetStudentByID(stud.StudentID)
-                    If permStud Is Nothing Then
-                        If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalName & "). Cancel?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
-                            Exit Sub
-                        Else
-                            Continue For
-                        End If
-                    End If
+    '            Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
+    '            For Each stud As ReportData In m_lstCurrentListOfStudents
+    '                intStudentsImported += 1
+    '                'permStud = Student.GetByStudentID(stud.StudentID)
+    '                permStud = m_objLocalClassGroup.GetStudentByID(stud.StudentID)
+    '                If permStud Is Nothing Then
+    '                    If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalName & "). Cancel?", PRODUCT_NAME, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
+    '                        Exit Sub
+    '                    Else
+    '                        Continue For
+    '                    End If
+    '                End If
 
-                    '-- Student-level data
-                    permStud.PresentationQuality = stud.PresentationQuality
-                    permStud.ResearchQuality = stud.ResearchQuality
-                    permStud.PlagiarismSeverity = stud.PlagiarismSeverity
+    '                '-- Student-level data
+    '                permStud.PresentationQuality = stud.PresentationQuality
+    '                permStud.ResearchQuality = stud.ResearchQuality
+    '                permStud.PlagiarismSeverity = stud.PlagiarismSeverity
 
-                    'TODO: we should look for notes and activitylog differences and add them
+    '                'TODO: we should look for notes and activitylog differences and add them
 
-                    '-- Assignment
-                    If baseAsmt.AssignmentType = AssignmentType.Normal Then
-                        Dim tempAsmt As StudentAssignment
-                        Dim permAsmt As StudentAssignment
+    '                '-- Assignment
+    '                If baseAsmt.AssignmentType = AssignmentType.Normal Then
+    '                    Dim tempAsmt As StudentAssignment
+    '                    Dim permAsmt As StudentAssignment
 
-                        For Each tempAsmt In stud.Student.Assignments
-                            If tempAsmt.BaseAssignment Is baseAsmt Then
-                                Exit For
-                            End If
-                        Next
+    '                    For Each tempAsmt In stud.Student.Assignments
+    '                        If tempAsmt.BaseAssignment Is baseAsmt Then
+    '                            Exit For
+    '                        End If
+    '                    Next
 
-                        '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
-                        permAsmt = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
-                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
-                            '-- Need to override the marker's name
-                            permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
-                            permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
-                        End If
-                        permStud.Assignments.Add(permAsmt)
+    '                    '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+    '                    permAsmt = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+    '                    If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+    '                        '-- Need to override the marker's name
+    '                        permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+    '                        permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+    '                    End If
+    '                    permStud.Assignments.Add(permAsmt)
 
-                        If chkMarkImportedAsProcessed.Checked Then
-                            permAsmt.Processed = True
-                        End If
-                    Else
-                        '-- BTEC
-                        Dim tempAsmt As StudentAssignmentBTEC
-                        Dim permAsmt As StudentAssignmentBTEC
+    '                    If chkMarkImportedAsProcessed.Checked Then
+    '                        permAsmt.Processed = True
+    '                    End If
+    '                Else
+    '                    '-- BTEC
+    '                    Dim tempAsmt As StudentAssignmentBTEC
+    '                    Dim permAsmt As StudentAssignmentBTEC
 
-                        For Each tempAsmt In stud.Student.AssignmentsBTEC
-                            If tempAsmt.BaseAssignment Is baseAsmt Then
-                                Exit For
-                            End If
-                        Next
+    '                    For Each tempAsmt In stud.Student.AssignmentsBTEC
+    '                        If tempAsmt.BaseAssignment Is baseAsmt Then
+    '                            Exit For
+    '                        End If
+    '                    Next
 
-                        '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
-                        permAsmt = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
-                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
-                            '-- Need to override the marker's name
-                            permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
-                            permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
-                        End If
-                        permStud.AssignmentsBTEC.Add(permAsmt)
+    '                    '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+    '                    permAsmt = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+    '                    If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+    '                        '-- Need to override the marker's name
+    '                        permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+    '                        permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+    '                    End If
+    '                    permStud.AssignmentsBTEC.Add(permAsmt)
 
-                        If chkMarkImportedAsProcessed.Checked Then
-                            permAsmt.Processed = True
-                        End If
-                    End If
+    '                    If chkMarkImportedAsProcessed.Checked Then
+    '                        permAsmt.Processed = True
+    '                    End If
+    '                End If
 
 
-                    '-- Now, improvement items (add/update)
-                    For Each tempItem As StudentImprovementItem In stud.Student.ImprovementItems
-                        boolMatchedItem = False '-- reset
+    '                '-- Now, improvement items (add/update)
+    '                For Each tempItem As StudentImprovementItem In stud.Student.ImprovementItems
+    '                    boolMatchedItem = False '-- reset
 
-                        For Each permItem In permStud.ImprovementItems
-                            If tempItem.BaseImprovementItem.ID = permItem.BaseImprovementItem.ID Then
-                                '-- this student already has this item, let's make sure the data is current
-                                boolMatchedItem = True
-                            End If
-                        Next
-                        If boolMatchedItem Then
-                            '-- just update item data
-                            permItem.PerformanceLevel = tempItem.PerformanceLevel
-                            permItem.DateLastIncluded = tempItem.DateLastIncluded '-- should update both the date and the qty given
-                        Else
-                            '-- could not match this item, need to create it
-                            '  add item to student
+    '                    For Each permItem In permStud.ImprovementItems
+    '                        If tempItem.BaseImprovementItem.ID = permItem.BaseImprovementItem.ID Then
+    '                            '-- this student already has this item, let's make sure the data is current
+    '                            boolMatchedItem = True
+    '                        End If
+    '                    Next
+    '                    If boolMatchedItem Then
+    '                        '-- just update item data
+    '                        permItem.PerformanceLevel = tempItem.PerformanceLevel
+    '                        permItem.DateLastIncluded = tempItem.DateLastIncluded '-- should update both the date and the qty given
+    '                    Else
+    '                        '-- could not match this item, need to create it
+    '                        '  add item to student
 
-                            '   First we must find the base improvement item
-                            baseItem = ImprovementItem.GetByID(tempItem.BaseImprovementItem.ID)
-                            If baseItem Is Nothing Then
-                                '-- needs to be created
-                                '   but first, see if there is a similar match we can use
-                                'TODO: Add missing base improvement item
-                            End If
-                            permItem = New StudentImprovementItem(permStud)
-                            permItem.BaseImprovementItem = baseItem
-                            permStud.ImprovementItems.Add(permItem)
-                            permItem.DateAdded = tempItem.DateAdded
-                            permItem.PerformanceLevel = tempItem.PerformanceLevel
-                            If permItem.PerformanceLevel = 0 Then
-                                permItem.PerformanceLevel = 3 '-- default to 3
-                            End If
+    '                        '   First we must find the base improvement item
+    '                        baseItem = ImprovementItem.GetByID(tempItem.BaseImprovementItem.ID)
+    '                        If baseItem Is Nothing Then
+    '                            '-- needs to be created
+    '                            '   but first, see if there is a similar match we can use
+    '                            'TODO: Add missing base improvement item
+    '                        End If
+    '                        permItem = New StudentImprovementItem(permStud)
+    '                        permItem.BaseImprovementItem = baseItem
+    '                        permStud.ImprovementItems.Add(permItem)
+    '                        permItem.DateAdded = tempItem.DateAdded
+    '                        permItem.PerformanceLevel = tempItem.PerformanceLevel
+    '                        If permItem.PerformanceLevel = 0 Then
+    '                            permItem.PerformanceLevel = 3 '-- default to 3
+    '                        End If
 
-                            '-- if date included was not added
-                            If tempItem.DateLastIncluded = DATE_NO_DATE Then
-                                permItem.DateLastIncluded = tempItem.DateAdded
-                            Else
-                                permItem.DateLastIncluded = tempItem.DateLastIncluded
-                            End If
-                        End If
-                    Next
-                Next
-                MessageBox.Show("Imported " & intStudentsImported.ToString("#,##0") & " student assignments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                AddApplicationHistory("Imported " & intStudentsImported.ToString("#,##0") & " student assignments (" & baseAsmt.Name & ") from other database.")
-            Else
-                MessageBox.Show("Nothing was imported.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-        Catch ex As Exception
-            Log(ex)
-            MessageBox.Show("There was an error importing the data: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '                        '-- if date included was not added
+    '                        If tempItem.DateLastIncluded = DATE_NO_DATE Then
+    '                            permItem.DateLastIncluded = tempItem.DateAdded
+    '                        Else
+    '                            permItem.DateLastIncluded = tempItem.DateLastIncluded
+    '                        End If
+    '                    End If
+    '                Next
+    '            Next
+    '            MessageBox.Show("Imported " & intStudentsImported.ToString("#,##0") & " student assignments.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '            AddApplicationHistory("Imported " & intStudentsImported.ToString("#,##0") & " student assignments (" & baseAsmt.Name & ") from other database.")
+    '        Else
+    '            MessageBox.Show("Nothing was imported.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        End If
+    '    Catch ex As Exception
+    '        Log(ex)
+    '        MessageBox.Show("There was an error importing the data: " & ex.Message, PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 
     Private Sub ImportStudentAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentAssignmentsToolStripMenuItem.Click
-        ImportStudentAssignments()
+        'ImportStudentAssignments()
     End Sub
 
     Private Sub DeleteSelectedAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssignmentsToolStripMenuItem.Click
@@ -597,5 +627,368 @@
         Next
         Return lstReturn
     End Function
+
+    Private Sub SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Click
+        If MessageBox.Show("Are you sure you want to import assignments (skipping any who have an existing assignment), improvement items, and changes in data for these students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
+            ImportAssignments(ExistingAssignmentOptionEnum.SkipExisting)
+        Else
+            MessageBox.Show("Nothing was imported.")
+        End If
+    End Sub
+
+    Private Sub OverwriteExistingCompletelyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OverwriteExistingCompletelyToolStripMenuItem.Click
+        If MessageBox.Show("Are you sure you want to import assignments (overwriting any existing assignment), improvement items, and changes in data for these students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
+            ImportAssignments(ExistingAssignmentOptionEnum.OverwriteExisting)
+        Else
+            MessageBox.Show("Nothing was imported.")
+        End If
+    End Sub
+
+    Private Sub OverwriteOnlyReworkElementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OverwriteOnlyReworkElementsToolStripMenuItem.Click
+        If MessageBox.Show("Are you sure you want to import assignments (overwriting rework elements of existing assignments, importing full assignments where none exist), improvement items, and changes in data for these students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
+            ImportAssignments(ExistingAssignmentOptionEnum.OverwriteRework)
+        Else
+            MessageBox.Show("Nothing was imported.")
+        End If
+    End Sub
+
+    Private Sub ImportAssignments(handleExisting As ExistingAssignmentOptionEnum)
+        Try
+            '-- If we get here, for each student, import:
+            '   This one assignment
+            '   Any new improvement items
+            '   Any changes in improvement item performance levels
+            '   Any changes in student's presentation, research, plagiarism
+            Dim baseAsmt As IClassAssignment = GetSelectedAssignment()
+            Dim permStud As Student '-- in the perm database (ThisSemester)
+            Dim permItem As StudentImprovementItem
+            Dim baseItem As ImprovementItem
+            Dim boolMatchedItem As Boolean
+            Dim intStudentsImported As Integer
+
+            m_lstSyncResolverNormal.Clear()
+
+            Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
+            For Each stud As ReportData In m_lstCurrentListOfStudents
+                intStudentsImported += 1
+                permStud = m_objLocalClassGroup.GetStudentByID(stud.StudentID)
+                If permStud Is Nothing Then
+                    If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalName & "). Cancel?", PRODUCT_NAME, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
+                        Exit Sub
+                    Else
+                        Continue For
+                    End If
+                End If
+
+                '-- Student-level data
+                permStud.PresentationQuality = stud.PresentationQuality
+                permStud.ResearchQuality = stud.ResearchQuality
+                permStud.PlagiarismSeverity = stud.PlagiarismSeverity
+
+                'TODO: we should look for notes and activitylog differences and add them
+
+                '-- Normal Assignment
+                If baseAsmt.AssignmentType = AssignmentType.Normal Then
+                    Dim tempAsmt As StudentAssignment '-- in external database
+                    Dim permAsmtExisting As StudentAssignment '-- existing in present database
+                    Dim permAsmtNew As StudentAssignment '-- Going to be added to present database
+
+                    '-- Find temp assigment in external DB
+                    For Each tempAsmt In stud.Student.Assignments
+                        If tempAsmt.BaseAssignment Is baseAsmt Then
+                            Exit For
+                        End If
+                    Next
+
+                    '-- Is there an existing student assignment?
+                    For Each permAsmtExisting In permStud.Assignments
+                        If permAsmtExisting.BaseAssignment Is baseAsmt Then
+                            Exit For
+                        End If
+                    Next
+
+
+                    Select Case handleExisting
+                        Case ExistingAssignmentOptionEnum.OverwriteExisting
+                            If permAsmtExisting IsNot Nothing Then
+                                '-- Delete existing
+                                permStud.AddToActivityLog("Deleted existing assignment (" & permAsmtExisting.BaseAssignment.Name & ")  to replace with imported data.")
+                                permStud.Assignments.Remove(permAsmtExisting)
+                            End If
+
+                            '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                            permAsmtNew = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                            If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                '-- Need to override the marker's name
+                                permAsmtNew.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                                permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                            End If
+                            permStud.Assignments.Add(permAsmtNew)
+
+                            If chkMarkImportedAsProcessed.Checked Then
+                                permAsmtNew.Processed = True
+                            End If
+                        Case ExistingAssignmentOptionEnum.OverwriteRework
+                            If permAsmtExisting Is Nothing Then
+                                '-- Just import full assignment since there is no existing
+                                '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                                permAsmtNew = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                                If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                    '-- Need to override the marker's name
+                                    permAsmtNew.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                                    permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                                End If
+                                permStud.Assignments.Add(permAsmtNew)
+                                permStud.AddToActivityLog("Imported assignment (" & permAsmtExisting.BaseAssignment.Name & ").")
+
+                                If chkMarkImportedAsProcessed.Checked Then
+                                    permAsmtNew.Processed = True
+                                End If
+                            Else
+                                '-- Since there is existing, we only want to update that existing assignment
+                                '   but only update rework elements, and only where rework exists and original assignment's rework elements are empty
+                                '   If new assignment's overall RW and improvement RW contain something and existing assignment's overall RW and improvement RW do not, overwrite RW elements
+                                '   If new assignment's overall RW and improvement RW are empty, skip this student
+                                '   if existing assignment and new assignment both have overall RW and improvement RW contents, then notify the user to process it manually (or give a sync decider dialog)
+                                If tempAsmt.OverallCommentsRework.Trim().Length + tempAsmt.ImprovementCommentsRework.Trim().Length = 0 Then
+                                    '-- skip and leave existing asmt alone
+                                    Continue For
+                                Else
+                                    '-- new assignment has rework contents, make sure existing does not
+                                    If permAsmtExisting.OverallCommentsRework.Trim().Length + permAsmtExisting.ImprovementCommentsRework.Trim().Length = 0 Then
+                                        permAsmtExisting.OverallCommentsRework = tempAsmt.OverallCommentsRework
+                                        permAsmtExisting.ImprovementCommentsRework = tempAsmt.ImprovementCommentsRework
+                                        permAsmtExisting.SecondTryPoints = tempAsmt.SecondTryPoints
+
+                                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                            '-- Need to override the marker's name
+                                            permAsmtExisting.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                                        Else
+                                            permAsmtExisting.LastUserFullName = tempAsmt.LastUserFullName
+                                        End If
+
+                                        If chkMarkImportedAsProcessed.Checked Then
+                                            permAsmtExisting.Processed = True
+                                        End If
+
+                                        '-- Update only if new data is greater than old data
+                                        If stud.PlagiarismSeverity > permStud.PlagiarismSeverity Then
+                                            permStud.PlagiarismSeverity = stud.PlagiarismSeverity
+                                        End If
+                                        If stud.PresentationQuality > permStud.PresentationQuality Then
+                                            permStud.PresentationQuality = stud.PresentationQuality
+                                        End If
+                                        permStud.AddToActivityLog("Updated existing assignment (" & permAsmtExisting.BaseAssignment.Name & ")  with imported rework data.")
+
+                                    Else
+                                        '-- Both new asmt and existing asmt have rework contents, need user to decide case by case (special dialog needed here)
+                                        Dim resolverData As New SyncResolverNormalData()
+                                        resolverData.Student = permStud
+                                        resolverData.TempAssignment = tempAsmt
+                                        resolverData.PermExistingAssignment = permAsmtExisting
+                                        m_lstSyncResolverNormal.Add(resolverData)
+                                    End If
+                                End If
+                            End If
+
+                        Case ExistingAssignmentOptionEnum.SkipExisting
+                            '-- skip this student
+                            Continue For
+                    End Select
+
+                Else
+                    '-- BTEC Assignment
+                    Dim tempAsmt As StudentAssignmentBTEC '-- in external database
+                    Dim permAsmtExisting As StudentAssignmentBTEC '-- existing in present database
+                    Dim permAsmtNew As StudentAssignmentBTEC '-- Going to be added to present database
+                    Dim baseOC As AssignmentOutcome
+
+                    '-- Find temp assigment in external DB
+                    For Each tempAsmt In stud.Student.AssignmentsBTEC
+                        If tempAsmt.BaseAssignment Is baseAsmt Then
+                            Exit For
+                        End If
+                    Next
+
+                    '-- Is there an existing student assignment?
+                    For Each permAsmtExisting In permStud.AssignmentsBTEC
+                        If permAsmtExisting.BaseAssignment Is baseAsmt Then
+                            Exit For
+                        End If
+                    Next
+
+                    Select Case handleExisting
+                        Case ExistingAssignmentOptionEnum.OverwriteExisting
+                            If permAsmtExisting IsNot Nothing Then
+                                '-- Delete existing
+                                permStud.AddToActivityLog("Deleted existing assignment (" & permAsmtExisting.BaseAssignment.Name & ")  to replace with imported data.")
+                                permStud.AssignmentsBTEC.Remove(permAsmtExisting)
+                            End If
+
+                            '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                            permAsmtNew = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                            If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                '-- Need to override the marker's name
+                                permAsmtNew.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                                permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                            End If
+                            permStud.AssignmentsBTEC.Add(permAsmtNew)
+
+                            If chkMarkImportedAsProcessed.Checked Then
+                                permAsmtNew.Processed = True
+                            End If
+                        Case ExistingAssignmentOptionEnum.OverwriteRework
+                            If permAsmtExisting Is Nothing Then
+                                '-- Just import full assignment since there is no existing
+                                '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                                permAsmtNew = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                                If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                    '-- Need to override the marker's name
+                                    permAsmtNew.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                                    permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                                End If
+                                permStud.AssignmentsBTEC.Add(permAsmtNew)
+                                permStud.AddToActivityLog("Imported assignment (" & permAsmtExisting.BaseAssignment.Name & ").")
+
+                                If chkMarkImportedAsProcessed.Checked Then
+                                    permAsmtNew.Processed = True
+                                End If
+                            Else
+                                '-- Since there is existing, we only want to update that existing assignment
+                                '   but only update rework elements, and only where rework exists and original assignment's rework elements are empty
+                                '   If new assignment's overall RW and improvement RW contain something and existing assignment's overall RW and improvement RW do not, overwrite RW elements
+                                '   If new assignment's overall RW and improvement RW are empty, skip this student
+                                '   if existing assignment and new assignment both have overall RW and improvement RW contents, then notify the user to process it manually (or give a sync decider dialog)
+                                If tempAsmt.OverallCommentsRework.Trim().Length + tempAsmt.ImprovementCommentsRework.Trim().Length = 0 Then
+                                    '-- skip and leave existing asmt alone
+                                    Continue For
+                                Else
+                                    '-- new assignment has rework contents, make sure existing does not
+                                    If permAsmtExisting.OverallCommentsRework.Trim().Length + permAsmtExisting.ImprovementCommentsRework.Trim().Length = 0 Then
+                                        permAsmtExisting.OverallCommentsRework = tempAsmt.OverallCommentsRework
+                                        permAsmtExisting.ImprovementCommentsRework = tempAsmt.ImprovementCommentsRework
+
+                                        Dim intOutcomesUpdated As Integer
+                                        '-- Handle all the learning outcomes on this assignment
+                                        For Each tempOC As OutcomeResult In tempAsmt.Outcomes
+                                            If tempOC.SecondTryStatus <> OutcomeResultStatusEnum.Unknown Then
+                                                '-- Now finding the matching outcome on the permExisting assignment and update it
+                                                For Each permOC As OutcomeResult In permAsmtExisting.Outcomes
+                                                    If permOC.BaseOutcome Is tempOC.BaseOutcome Then
+                                                        '-- We found the matching learning outcome on the permAssignment
+                                                        permOC.SecondTryStatus = tempOC.SecondTryStatus
+                                                        permOC.SecondTryComments = tempOC.SecondTryComments
+                                                        intOutcomesUpdated += 1
+                                                        Exit For
+                                                    End If
+                                                Next
+                                            End If
+                                        Next
+
+
+                                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                            '-- Need to override the marker's name
+                                            permAsmtExisting.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                                        Else
+                                            permAsmtExisting.LastUserFullName = tempAsmt.LastUserFullName
+                                        End If
+
+                                        If chkMarkImportedAsProcessed.Checked Then
+                                            permAsmtExisting.Processed = True
+                                        End If
+
+                                        '-- Update only if new data is greater than old data
+                                        If stud.PlagiarismSeverity > permStud.PlagiarismSeverity Then
+                                            permStud.PlagiarismSeverity = stud.PlagiarismSeverity
+                                        End If
+                                        If stud.PresentationQuality > permStud.PresentationQuality Then
+                                            permStud.PresentationQuality = stud.PresentationQuality
+                                        End If
+                                        permStud.AddToActivityLog("Updated existing assignment (" & permAsmtExisting.BaseAssignment.Name & ")  with imported rework data (including " & intOutcomesUpdated.ToString() & " outcomes).")
+
+                                    Else
+                                        '-- Both new asmt and existing asmt have rework contents, need user to decide case by case (special dialog needed here)
+                                        Dim resolverData As New SyncResolverBTECData()
+                                        resolverData.Student = permStud
+                                        resolverData.TempAssignment = tempAsmt
+                                        resolverData.PermExistingAssignment = permAsmtExisting
+                                        m_lstSyncResolverBTEC.Add(resolverData)
+                                    End If
+                                End If
+                            End If
+
+                        Case ExistingAssignmentOptionEnum.SkipExisting
+                            '-- skip this student
+                            Continue For
+                    End Select
+                End If
+
+
+                '-- Now, improvement items (add/update)
+                For Each tempItem As StudentImprovementItem In stud.Student.ImprovementItems
+                    boolMatchedItem = False '-- reset
+
+                    For Each permItem In permStud.ImprovementItems
+                        If tempItem.BaseImprovementItem.ID = permItem.BaseImprovementItem.ID Then
+                            '-- this student already has this item, let's make sure the data is current
+                            boolMatchedItem = True
+                        End If
+                    Next
+                    If boolMatchedItem Then
+                        '-- just update item data
+                        permItem.PerformanceLevel = tempItem.PerformanceLevel
+                        permItem.DateLastIncluded = tempItem.DateLastIncluded '-- should update both the date and the qty given
+                    Else
+                        '-- could not match this item, need to create it
+                        '  add item to student
+
+                        '   First we must find the base improvement item
+                        baseItem = ImprovementItem.GetByID(tempItem.BaseImprovementItem.ID)
+                        If baseItem Is Nothing Then
+                            '-- needs to be created
+                            '   but first, see if there is a similar match we can use
+                            'TODO: Add missing base improvement item
+                        End If
+                        permItem = New StudentImprovementItem(permStud)
+                        permItem.BaseImprovementItem = baseItem
+                        permStud.ImprovementItems.Add(permItem)
+                        permItem.DateAdded = tempItem.DateAdded
+                        permItem.PerformanceLevel = tempItem.PerformanceLevel
+                        If permItem.PerformanceLevel = 0 Then
+                            permItem.PerformanceLevel = 3 '-- default to 3
+                        End If
+
+                        '-- if date included was not added
+                        If tempItem.DateLastIncluded = DATE_NO_DATE Then
+                            permItem.DateLastIncluded = tempItem.DateAdded
+                        Else
+                            permItem.DateLastIncluded = tempItem.DateLastIncluded
+                        End If
+                    End If
+                Next
+            Next
+
+            '-- Show resolvers, as needed
+            '   first, normal ones
+            If m_lstSyncResolverNormal.Count > 0 Then
+                Dim frm As New ImportSyncResolveNormal(m_lstSyncResolverNormal)
+                frm.ShowDialog()
+            End If
+
+            '   next, BTEC
+            If m_lstSyncResolverBTEC.Count > 0 Then
+                Dim frm As New ImportSyncResolverBTEC(m_lstSyncResolverBTEC)
+                frm.ShowDialog()
+            End If
+
+
+            MessageBox.Show("Imported " & intStudentsImported.ToString("#,##0") & " student assignments.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            AddApplicationHistory("Imported " & intStudentsImported.ToString("#,##0") & " student assignments (" & baseAsmt.Name & ") from other database.")
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error: " & ex.Message)
+        End Try
+
+    End Sub
 
 End Class

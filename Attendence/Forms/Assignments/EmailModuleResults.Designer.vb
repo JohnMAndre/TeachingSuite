@@ -377,40 +377,40 @@ Partial Class EmailModuleResults
         '
         Me.LoadToolStripMenuItem1.Name = "LoadToolStripMenuItem1"
         Me.LoadToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.LoadToolStripMenuItem1.Size = New System.Drawing.Size(271, 22)
+        Me.LoadToolStripMenuItem1.Size = New System.Drawing.Size(272, 22)
         Me.LoadToolStripMenuItem1.Text = "&Reload students"
         '
         'SethiddenForSelectedToolStripMenuItem
         '
         Me.SethiddenForSelectedToolStripMenuItem.Name = "SethiddenForSelectedToolStripMenuItem"
-        Me.SethiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.SethiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.SethiddenForSelectedToolStripMenuItem.Text = "Set &hidden for selected"
         '
         'ClearHiddenForSelectedToolStripMenuItem
         '
         Me.ClearHiddenForSelectedToolStripMenuItem.Name = "ClearHiddenForSelectedToolStripMenuItem"
-        Me.ClearHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.ClearHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.ClearHiddenForSelectedToolStripMenuItem.Text = "Clear h&idden for selected"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(268, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
         '
         'IncludeattachmentToolStripMenuItem
         '
         Me.IncludeattachmentToolStripMenuItem.CheckOnClick = True
         Me.IncludeattachmentToolStripMenuItem.Name = "IncludeattachmentToolStripMenuItem"
-        Me.IncludeattachmentToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.IncludeattachmentToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.IncludeattachmentToolStripMenuItem.Text = "Include &attachment"
-        Me.IncludeattachmentToolStripMenuItem.ToolTipText = "If checked, the all documents in the selected folder which end with the Student I" & _
+        Me.IncludeattachmentToolStripMenuItem.ToolTipText = "If checked, the all documents in the selected folder which end with the Student I" &
     "D will be attached"
         '
         'UseExtIDuncheckToUseStudentIDToolStripMenuItem
         '
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.CheckOnClick = True
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Name = "UseExtIDuncheckToUseStudentIDToolStripMenuItem"
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
         '
         'ToolStripMenuItem24
@@ -436,7 +436,7 @@ Partial Class EmailModuleResults
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(76, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 19)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 22)
         Me.txtStudentFilter.TabIndex = 25
         '
         'KryptonLabel2
@@ -571,6 +571,7 @@ Partial Class EmailModuleResults
         Me.olvAssignments.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAssignments.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvAssignments.CellEditUseWholeCell = False
         Me.olvAssignments.CheckBoxes = True
         Me.olvAssignments.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn25, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvAssignments.CopySelectionOnControlC = False
@@ -717,7 +718,7 @@ Partial Class EmailModuleResults
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubject.Location = New System.Drawing.Point(3, 225)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(228, 19)
+        Me.txtSubject.Size = New System.Drawing.Size(228, 22)
         Me.txtSubject.TabIndex = 29
         '
         'KryptonLabel3
@@ -775,6 +776,7 @@ Partial Class EmailModuleResults
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn7, Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn12, Me.OlvColumn16, Me.OlvColumn18, Me.OlvColumn19, Me.OlvColumn20})
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default

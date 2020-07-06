@@ -175,7 +175,6 @@ Partial Class MainForm
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.dtpSemesterEnd = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
         Me.dtpSemesterStart = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadSemesterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -295,6 +294,7 @@ Partial Class MainForm
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
         Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        Me.llblSemesterLabel = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -449,9 +449,9 @@ Partial Class MainForm
         'lstClassGroups
         '
         Me.lstClassGroups.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClassGroups.Location = New System.Drawing.Point(0, 20)
+        Me.lstClassGroups.Location = New System.Drawing.Point(0, 19)
         Me.lstClassGroups.Name = "lstClassGroups"
-        Me.lstClassGroups.Size = New System.Drawing.Size(185, 126)
+        Me.lstClassGroups.Size = New System.Drawing.Size(185, 127)
         Me.lstClassGroups.TabIndex = 28
         '
         'llblRemoveClassGroup
@@ -492,7 +492,7 @@ Partial Class MainForm
         Me.KryptonLabel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel11.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel11.TabIndex = 3
         Me.KryptonLabel11.Values.Text = "Module"
         '
@@ -527,9 +527,9 @@ Partial Class MainForm
         '
         Me.lstClasses.ContextMenuStrip = Me.ctxmnuClasses
         Me.lstClasses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstClasses.Location = New System.Drawing.Point(0, 20)
+        Me.lstClasses.Location = New System.Drawing.Point(0, 19)
         Me.lstClasses.Name = "lstClasses"
-        Me.lstClasses.Size = New System.Drawing.Size(185, 110)
+        Me.lstClasses.Size = New System.Drawing.Size(185, 111)
         Me.lstClasses.TabIndex = 0
         '
         'ctxmnuClasses
@@ -638,7 +638,7 @@ Partial Class MainForm
         Me.KryptonLabel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel10.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel10.Name = "KryptonLabel10"
-        Me.KryptonLabel10.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel10.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel10.TabIndex = 2
         Me.KryptonLabel10.Values.Text = "Classes"
         '
@@ -646,9 +646,9 @@ Partial Class MainForm
         '
         Me.lstAssignments.ContextMenuStrip = Me.ctxmnuAssignment
         Me.lstAssignments.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstAssignments.Location = New System.Drawing.Point(0, 20)
+        Me.lstAssignments.Location = New System.Drawing.Point(0, 19)
         Me.lstAssignments.Name = "lstAssignments"
-        Me.lstAssignments.Size = New System.Drawing.Size(185, 138)
+        Me.lstAssignments.Size = New System.Drawing.Size(185, 139)
         Me.lstAssignments.TabIndex = 4
         '
         'ctxmnuAssignment
@@ -778,7 +778,7 @@ Partial Class MainForm
         Me.KryptonLabel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(185, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(185, 19)
         Me.KryptonLabel1.TabIndex = 3
         Me.KryptonLabel1.Values.Text = "Assignments"
         '
@@ -786,7 +786,7 @@ Partial Class MainForm
         '
         Me.txtStudentFilter.Location = New System.Drawing.Point(42, 0)
         Me.txtStudentFilter.Name = "txtStudentFilter"
-        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 20)
+        Me.txtStudentFilter.Size = New System.Drawing.Size(117, 22)
         Me.txtStudentFilter.TabIndex = 25
         Me.ToolTip1.SetToolTip(Me.txtStudentFilter, "Student filter")
         '
@@ -794,7 +794,7 @@ Partial Class MainForm
         '
         Me.txtTag.Location = New System.Drawing.Point(370, -1)
         Me.txtTag.Name = "txtTag"
-        Me.txtTag.Size = New System.Drawing.Size(117, 20)
+        Me.txtTag.Size = New System.Drawing.Size(117, 22)
         Me.txtTag.TabIndex = 34
         Me.ToolTip1.SetToolTip(Me.txtTag, "Student filter")
         '
@@ -819,9 +819,9 @@ Partial Class MainForm
         'lblRenumberAdminResetNumber
         '
         Me.lblRenumberAdminResetNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminResetNumber.Location = New System.Drawing.Point(653, 0)
+        Me.lblRenumberAdminResetNumber.Location = New System.Drawing.Point(643, 0)
         Me.lblRenumberAdminResetNumber.Name = "lblRenumberAdminResetNumber"
-        Me.lblRenumberAdminResetNumber.Size = New System.Drawing.Size(94, 20)
+        Me.lblRenumberAdminResetNumber.Size = New System.Drawing.Size(104, 19)
         Me.lblRenumberAdminResetNumber.TabIndex = 31
         Me.lblRenumberAdminResetNumber.Values.Text = "Reset all to 999"
         Me.lblRenumberAdminResetNumber.Visible = False
@@ -830,16 +830,16 @@ Partial Class MainForm
         '
         Me.KryptonLabel13.Location = New System.Drawing.Point(336, -1)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.Size = New System.Drawing.Size(33, 20)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel13.TabIndex = 33
         Me.KryptonLabel13.Values.Text = "Tag:"
         '
         'lblRenumberAdminCurrent
         '
         Me.lblRenumberAdminCurrent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminCurrent.Location = New System.Drawing.Point(593, 0)
+        Me.lblRenumberAdminCurrent.Location = New System.Drawing.Point(588, 0)
         Me.lblRenumberAdminCurrent.Name = "lblRenumberAdminCurrent"
-        Me.lblRenumberAdminCurrent.Size = New System.Drawing.Size(54, 20)
+        Me.lblRenumberAdminCurrent.Size = New System.Drawing.Size(59, 19)
         Me.lblRenumberAdminCurrent.TabIndex = 30
         Me.lblRenumberAdminCurrent.Values.Text = "Current:"
         Me.lblRenumberAdminCurrent.Visible = False
@@ -847,9 +847,9 @@ Partial Class MainForm
         'lblRenumberAdminCurrentLabel
         '
         Me.lblRenumberAdminCurrentLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblRenumberAdminCurrentLabel.Location = New System.Drawing.Point(541, 1)
+        Me.lblRenumberAdminCurrentLabel.Location = New System.Drawing.Point(536, 1)
         Me.lblRenumberAdminCurrentLabel.Name = "lblRenumberAdminCurrentLabel"
-        Me.lblRenumberAdminCurrentLabel.Size = New System.Drawing.Size(54, 20)
+        Me.lblRenumberAdminCurrentLabel.Size = New System.Drawing.Size(59, 19)
         Me.lblRenumberAdminCurrentLabel.TabIndex = 29
         Me.lblRenumberAdminCurrentLabel.Values.Text = "Current:"
         Me.lblRenumberAdminCurrentLabel.Visible = False
@@ -858,7 +858,7 @@ Partial Class MainForm
         '
         Me.splitStudentsSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.splitStudentsSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 20)
+        Me.splitStudentsSchedule.Location = New System.Drawing.Point(0, 19)
         Me.splitStudentsSchedule.Name = "splitStudentsSchedule"
         Me.splitStudentsSchedule.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -870,7 +870,7 @@ Partial Class MainForm
         '
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.ScheduleNotesSplitter)
         Me.splitStudentsSchedule.Panel2.Controls.Add(Me.pnlScheduleControls)
-        Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 424)
+        Me.splitStudentsSchedule.Size = New System.Drawing.Size(916, 425)
         Me.splitStudentsSchedule.SplitterDistance = 209
         Me.splitStudentsSchedule.TabIndex = 28
         '
@@ -1030,7 +1030,7 @@ Partial Class MainForm
         Me.OlvColumn7.IsEditable = False
         Me.OlvColumn7.Text = "Hid"
         Me.OlvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn7.ToolTipText = "Should the student be hidden from attendance (you think student is gone but need " & _
+        Me.OlvColumn7.ToolTipText = "Should the student be hidden from attendance (you think student is gone but need " &
     "to leave on the list for some reason)"
         Me.OlvColumn7.Width = 40
         '
@@ -1310,7 +1310,7 @@ Partial Class MainForm
         '
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.Panel1)
         Me.ScheduleNotesSplitter.Panel2.Controls.Add(Me.picStudent)
-        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 210)
+        Me.ScheduleNotesSplitter.Size = New System.Drawing.Size(806, 211)
         Me.ScheduleNotesSplitter.SplitterDistance = 586
         Me.ScheduleNotesSplitter.TabIndex = 45
         '
@@ -1349,7 +1349,7 @@ Partial Class MainForm
         Me.olvSchedule.ShowGroups = False
         Me.olvSchedule.ShowImagesOnSubItems = True
         Me.olvSchedule.ShowItemCountOnGroups = True
-        Me.olvSchedule.Size = New System.Drawing.Size(586, 210)
+        Me.olvSchedule.Size = New System.Drawing.Size(586, 211)
         Me.olvSchedule.TabIndex = 4
         Me.olvSchedule.UseAlternatingBackColors = True
         Me.olvSchedule.UseCompatibleStateImageBehavior = False
@@ -1459,31 +1459,31 @@ Partial Class MainForm
         Me.ctxmnuActualSessions.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ctxmnuActualSessions.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SkipActualSessionToolStripMenuItem, Me.TakeAttendanceToolStripMenuItem, Me.TakeAttendancealtFormToolStripMenuItem, Me.LoadClassToolStripMenuItem})
         Me.ctxmnuActualSessions.Name = "ctxmnuPlannedSchedule"
-        Me.ctxmnuActualSessions.Size = New System.Drawing.Size(214, 92)
+        Me.ctxmnuActualSessions.Size = New System.Drawing.Size(213, 92)
         '
         'SkipActualSessionToolStripMenuItem
         '
         Me.SkipActualSessionToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
         Me.SkipActualSessionToolStripMenuItem.Name = "SkipActualSessionToolStripMenuItem"
-        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.SkipActualSessionToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
         Me.SkipActualSessionToolStripMenuItem.Text = "Skip selected session"
         '
         'TakeAttendanceToolStripMenuItem
         '
         Me.TakeAttendanceToolStripMenuItem.Name = "TakeAttendanceToolStripMenuItem"
-        Me.TakeAttendanceToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.TakeAttendanceToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
         Me.TakeAttendanceToolStripMenuItem.Text = "Take &attendance"
         '
         'TakeAttendancealtFormToolStripMenuItem
         '
         Me.TakeAttendancealtFormToolStripMenuItem.Name = "TakeAttendancealtFormToolStripMenuItem"
-        Me.TakeAttendancealtFormToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.TakeAttendancealtFormToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
         Me.TakeAttendancealtFormToolStripMenuItem.Text = "&Take attendance (alt form)"
         '
         'LoadClassToolStripMenuItem
         '
         Me.LoadClassToolStripMenuItem.Name = "LoadClassToolStripMenuItem"
-        Me.LoadClassToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.LoadClassToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
         Me.LoadClassToolStripMenuItem.Text = "Load &class"
         '
         'Panel1
@@ -1495,7 +1495,7 @@ Partial Class MainForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(215, 210)
+        Me.Panel1.Size = New System.Drawing.Size(215, 211)
         Me.Panel1.TabIndex = 46
         '
         'llblClearNotes
@@ -1512,9 +1512,9 @@ Partial Class MainForm
         '
         Me.lblStopwatchDuration.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStopwatchDuration.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl
-        Me.lblStopwatchDuration.Location = New System.Drawing.Point(132, 4)
+        Me.lblStopwatchDuration.Location = New System.Drawing.Point(152, 4)
         Me.lblStopwatchDuration.Name = "lblStopwatchDuration"
-        Me.lblStopwatchDuration.Size = New System.Drawing.Size(76, 29)
+        Me.lblStopwatchDuration.Size = New System.Drawing.Size(56, 19)
         Me.lblStopwatchDuration.TabIndex = 45
         Me.lblStopwatchDuration.Values.Text = "0:00:00"
         '
@@ -1539,7 +1539,7 @@ Partial Class MainForm
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtNotes.Size = New System.Drawing.Size(215, 172)
+        Me.txtNotes.Size = New System.Drawing.Size(215, 173)
         Me.txtNotes.TabIndex = 45
         Me.ToolTip1.SetToolTip(Me.txtNotes, "Notes")
         '
@@ -1548,7 +1548,7 @@ Partial Class MainForm
         Me.picStudent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.picStudent.Location = New System.Drawing.Point(0, 0)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(215, 210)
+        Me.picStudent.Size = New System.Drawing.Size(215, 211)
         Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picStudent.TabIndex = 44
         Me.picStudent.TabStop = False
@@ -1566,15 +1566,15 @@ Partial Class MainForm
         Me.pnlScheduleControls.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlScheduleControls.Location = New System.Drawing.Point(0, 0)
         Me.pnlScheduleControls.Name = "pnlScheduleControls"
-        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 210)
+        Me.pnlScheduleControls.Size = New System.Drawing.Size(110, 211)
         Me.pnlScheduleControls.TabIndex = 5
         '
         'llblScheduleNextClassDay
         '
         Me.llblScheduleNextClassDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 97)
+        Me.llblScheduleNextClassDay.Location = New System.Drawing.Point(5, 99)
         Me.llblScheduleNextClassDay.Name = "llblScheduleNextClassDay"
-        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(88, 20)
+        Me.llblScheduleNextClassDay.Size = New System.Drawing.Size(98, 19)
         Me.llblScheduleNextClassDay.TabIndex = 34
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextClassDay, "Advance to next day with class")
         Me.llblScheduleNextClassDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1583,9 +1583,9 @@ Partial Class MainForm
         'llblScheduleNextUnprepped
         '
         Me.llblScheduleNextUnprepped.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 123)
+        Me.llblScheduleNextUnprepped.Location = New System.Drawing.Point(5, 125)
         Me.llblScheduleNextUnprepped.Name = "llblScheduleNextUnprepped"
-        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(79, 20)
+        Me.llblScheduleNextUnprepped.Size = New System.Drawing.Size(84, 19)
         Me.llblScheduleNextUnprepped.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblScheduleNextUnprepped, "Advance to next day with unprepped class")
         Me.llblScheduleNextUnprepped.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1603,9 +1603,9 @@ Partial Class MainForm
         'llblScheduleForwardOneDay
         '
         Me.llblScheduleForwardOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 146)
+        Me.llblScheduleForwardOneDay.Location = New System.Drawing.Point(64, 148)
         Me.llblScheduleForwardOneDay.Name = "llblScheduleForwardOneDay"
-        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleForwardOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleForwardOneDay.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.llblScheduleForwardOneDay, "Advance one day")
         Me.llblScheduleForwardOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1614,9 +1614,9 @@ Partial Class MainForm
         'llblScheduleBackOneDay
         '
         Me.llblScheduleBackOneDay.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 146)
+        Me.llblScheduleBackOneDay.Location = New System.Drawing.Point(5, 148)
         Me.llblScheduleBackOneDay.Name = "llblScheduleBackOneDay"
-        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(27, 20)
+        Me.llblScheduleBackOneDay.Size = New System.Drawing.Size(26, 19)
         Me.llblScheduleBackOneDay.TabIndex = 30
         Me.ToolTip1.SetToolTip(Me.llblScheduleBackOneDay, "Go back one day")
         Me.llblScheduleBackOneDay.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1636,9 +1636,9 @@ Partial Class MainForm
         'llblRefreshSchedule
         '
         Me.llblRefreshSchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 178)
+        Me.llblRefreshSchedule.Location = New System.Drawing.Point(25, 180)
         Me.llblRefreshSchedule.Name = "llblRefreshSchedule"
-        Me.llblRefreshSchedule.Size = New System.Drawing.Size(51, 20)
+        Me.llblRefreshSchedule.Size = New System.Drawing.Size(58, 19)
         Me.llblRefreshSchedule.TabIndex = 28
         Me.ToolTip1.SetToolTip(Me.llblRefreshSchedule, "Refresh schedule for selected date")
         Me.llblRefreshSchedule.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1727,7 +1727,7 @@ Partial Class MainForm
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(916, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(916, 19)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Filter:"
         '
@@ -1757,7 +1757,7 @@ Partial Class MainForm
         Me.KryptonGroup1.Panel.Controls.Add(Me.KryptonLabel4)
         Me.KryptonGroup1.Panel.Controls.Add(Me.dtpSemesterEnd)
         Me.KryptonGroup1.Panel.Controls.Add(Me.dtpSemesterStart)
-        Me.KryptonGroup1.Panel.Controls.Add(Me.KryptonLabel3)
+        Me.KryptonGroup1.Panel.Controls.Add(Me.llblSemesterLabel)
         Me.KryptonGroup1.Size = New System.Drawing.Size(1106, 90)
         Me.KryptonGroup1.TabIndex = 8
         '
@@ -1769,7 +1769,7 @@ Partial Class MainForm
         Me.cboSemester.DropDownWidth = 121
         Me.cboSemester.Location = New System.Drawing.Point(73, 1)
         Me.cboSemester.Name = "cboSemester"
-        Me.cboSemester.Size = New System.Drawing.Size(491, 21)
+        Me.cboSemester.Size = New System.Drawing.Size(491, 20)
         Me.cboSemester.TabIndex = 0
         '
         'txtSemesterNotes
@@ -1778,7 +1778,7 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSemesterNotes.Location = New System.Drawing.Point(73, 54)
         Me.txtSemesterNotes.Name = "txtSemesterNotes"
-        Me.txtSemesterNotes.Size = New System.Drawing.Size(1020, 20)
+        Me.txtSemesterNotes.Size = New System.Drawing.Size(1020, 22)
         Me.txtSemesterNotes.TabIndex = 35
         Me.ToolTip1.SetToolTip(Me.txtSemesterNotes, "Student filter")
         '
@@ -1786,7 +1786,7 @@ Partial Class MainForm
         '
         Me.KryptonLabel12.Location = New System.Drawing.Point(11, 54)
         Me.KryptonLabel12.Name = "KryptonLabel12"
-        Me.KryptonLabel12.Size = New System.Drawing.Size(46, 20)
+        Me.KryptonLabel12.Size = New System.Drawing.Size(50, 19)
         Me.KryptonLabel12.TabIndex = 34
         Me.KryptonLabel12.Values.Text = "Notes:"
         '
@@ -1794,7 +1794,7 @@ Partial Class MainForm
         '
         Me.llblLoadFutureOneSemester.Location = New System.Drawing.Point(242, 28)
         Me.llblLoadFutureOneSemester.Name = "llblLoadFutureOneSemester"
-        Me.llblLoadFutureOneSemester.Size = New System.Drawing.Size(27, 20)
+        Me.llblLoadFutureOneSemester.Size = New System.Drawing.Size(26, 19)
         Me.llblLoadFutureOneSemester.TabIndex = 33
         Me.ToolTip1.SetToolTip(Me.llblLoadFutureOneSemester, "Advance one semester")
         Me.llblLoadFutureOneSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1804,7 +1804,7 @@ Partial Class MainForm
         '
         Me.llblLoadPreviousOneSemester.Location = New System.Drawing.Point(73, 28)
         Me.llblLoadPreviousOneSemester.Name = "llblLoadPreviousOneSemester"
-        Me.llblLoadPreviousOneSemester.Size = New System.Drawing.Size(27, 20)
+        Me.llblLoadPreviousOneSemester.Size = New System.Drawing.Size(26, 19)
         Me.llblLoadPreviousOneSemester.TabIndex = 32
         Me.ToolTip1.SetToolTip(Me.llblLoadPreviousOneSemester, "Go back one semester")
         Me.llblLoadPreviousOneSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1814,7 +1814,7 @@ Partial Class MainForm
         '
         Me.llblLoadLatestSemester.Location = New System.Drawing.Point(133, 28)
         Me.llblLoadLatestSemester.Name = "llblLoadLatestSemester"
-        Me.llblLoadLatestSemester.Size = New System.Drawing.Size(76, 20)
+        Me.llblLoadLatestSemester.Size = New System.Drawing.Size(81, 19)
         Me.llblLoadLatestSemester.TabIndex = 29
         Me.ToolTip1.SetToolTip(Me.llblLoadLatestSemester, "Most recent semester")
         Me.llblLoadLatestSemester.Values.ImageTransparentColor = System.Drawing.Color.White
@@ -1823,27 +1823,27 @@ Partial Class MainForm
         'KryptonLabel7
         '
         Me.KryptonLabel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel7.Location = New System.Drawing.Point(598, 30)
+        Me.KryptonLabel7.Location = New System.Drawing.Point(593, 30)
         Me.KryptonLabel7.Name = "KryptonLabel7"
-        Me.KryptonLabel7.Size = New System.Drawing.Size(54, 20)
+        Me.KryptonLabel7.Size = New System.Drawing.Size(59, 19)
         Me.KryptonLabel7.TabIndex = 28
         Me.KryptonLabel7.Values.Text = "Current:"
         '
         'KryptonLabel8
         '
         Me.KryptonLabel8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel8.Location = New System.Drawing.Point(858, 30)
+        Me.KryptonLabel8.Location = New System.Drawing.Point(854, 30)
         Me.KryptonLabel8.Name = "KryptonLabel8"
-        Me.KryptonLabel8.Size = New System.Drawing.Size(34, 20)
+        Me.KryptonLabel8.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel8.TabIndex = 27
         Me.KryptonLabel8.Values.Text = "End:"
         '
         'KryptonLabel9
         '
         Me.KryptonLabel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel9.Location = New System.Drawing.Point(655, 30)
+        Me.KryptonLabel9.Location = New System.Drawing.Point(651, 30)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(39, 20)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(43, 19)
         Me.KryptonLabel9.TabIndex = 26
         Me.KryptonLabel9.Values.Text = "Start:"
         '
@@ -1872,9 +1872,9 @@ Partial Class MainForm
         'KryptonLabel6
         '
         Me.KryptonLabel6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel6.Location = New System.Drawing.Point(598, 4)
+        Me.KryptonLabel6.Location = New System.Drawing.Point(592, 4)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(57, 19)
         Me.KryptonLabel6.TabIndex = 23
         Me.KryptonLabel6.Values.Text = "Overall:"
         '
@@ -1903,18 +1903,18 @@ Partial Class MainForm
         'KryptonLabel5
         '
         Me.KryptonLabel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel5.Location = New System.Drawing.Point(858, 4)
+        Me.KryptonLabel5.Location = New System.Drawing.Point(854, 4)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(34, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(38, 19)
         Me.KryptonLabel5.TabIndex = 14
         Me.KryptonLabel5.Values.Text = "End:"
         '
         'KryptonLabel4
         '
         Me.KryptonLabel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel4.Location = New System.Drawing.Point(655, 4)
+        Me.KryptonLabel4.Location = New System.Drawing.Point(651, 4)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(39, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(43, 19)
         Me.KryptonLabel4.TabIndex = 13
         Me.KryptonLabel4.Values.Text = "Start:"
         '
@@ -1939,14 +1939,6 @@ Partial Class MainForm
         Me.dtpSemesterStart.Name = "dtpSemesterStart"
         Me.dtpSemesterStart.Size = New System.Drawing.Size(127, 21)
         Me.dtpSemesterStart.TabIndex = 11
-        '
-        'KryptonLabel3
-        '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(3, 2)
-        Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(64, 20)
-        Me.KryptonLabel3.TabIndex = 5
-        Me.KryptonLabel3.Values.Text = "Semester:"
         '
         'MenuStrip1
         '
@@ -2162,7 +2154,7 @@ Partial Class MainForm
         '
         Me.ToggleHiddenForSelectedToolStripMenuItem.Name = "ToggleHiddenForSelectedToolStripMenuItem"
         Me.ToggleHiddenForSelectedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
-        Me.ToggleHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.ToggleHiddenForSelectedToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.ToggleHiddenForSelectedToolStripMenuItem.Text = "Toggle &hidden for selected"
         '
         'SetGendermaleToolStripMenuItem
@@ -2170,7 +2162,7 @@ Partial Class MainForm
         Me.SetGendermaleToolStripMenuItem.Name = "SetGendermaleToolStripMenuItem"
         Me.SetGendermaleToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.SetGendermaleToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.SetGendermaleToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.SetGendermaleToolStripMenuItem.Text = "Set gender=male"
         '
         'SetGenderfemaleToolStripMenuItem
@@ -2178,21 +2170,21 @@ Partial Class MainForm
         Me.SetGenderfemaleToolStripMenuItem.Name = "SetGenderfemaleToolStripMenuItem"
         Me.SetGenderfemaleToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
-        Me.SetGenderfemaleToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.SetGenderfemaleToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.SetGenderfemaleToolStripMenuItem.Text = "Set gender=female"
         '
         'ClearStudentFilterToolStripMenuItem
         '
         Me.ClearStudentFilterToolStripMenuItem.Name = "ClearStudentFilterToolStripMenuItem"
         Me.ClearStudentFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.ClearStudentFilterToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.ClearStudentFilterToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.ClearStudentFilterToolStripMenuItem.Text = "&Clear student filter"
         '
         'ExcuseMostRecentAbsenceToolStripMenuItem
         '
         Me.ExcuseMostRecentAbsenceToolStripMenuItem.Name = "ExcuseMostRecentAbsenceToolStripMenuItem"
         Me.ExcuseMostRecentAbsenceToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.ExcuseMostRecentAbsenceToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.ExcuseMostRecentAbsenceToolStripMenuItem.Text = "&Excuse most recent absence"
         '
         'FilterForSelectedGroupToolStripMenuItem
@@ -2200,20 +2192,20 @@ Partial Class MainForm
         Me.FilterForSelectedGroupToolStripMenuItem.Name = "FilterForSelectedGroupToolStripMenuItem"
         Me.FilterForSelectedGroupToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
-        Me.FilterForSelectedGroupToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.FilterForSelectedGroupToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.FilterForSelectedGroupToolStripMenuItem.Text = "Filter for selected team"
         '
         'ClearTagsToolStripMenuItem
         '
         Me.ClearTagsToolStripMenuItem.Name = "ClearTagsToolStripMenuItem"
-        Me.ClearTagsToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+        Me.ClearTagsToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
         Me.ClearTagsToolStripMenuItem.Text = "Clear tags for these students"
         '
         'ToolsToolStripMenuItem
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ReorderAdminNumbersToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
         '
         'CloseAssignmentToolStripMenuItem
@@ -2428,7 +2420,7 @@ Partial Class MainForm
         Me.ImportClassToolStripMenuItem.Name = "ImportClassToolStripMenuItem"
         Me.ImportClassToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportClassToolStripMenuItem.Text = "Import &class..."
-        Me.ImportClassToolStripMenuItem.ToolTipText = "Import class, students, assignments (but not student assignment results or attend" & _
+        Me.ImportClassToolStripMenuItem.ToolTipText = "Import class, students, assignments (but not student assignment results or attend" &
     "ance records) from previous semester"
         '
         'ImportSToolStripMenuItem
@@ -2504,7 +2496,7 @@ Partial Class MainForm
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.Name = "ExportMarkingResultsFirstSubmitToolStripMenuItem"
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.Text = "&First submit"
-        Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" & _
+        Me.ExportMarkingResultsFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" &
     " try)"
         '
         'ExportMarkingResultsSecondSubmitToolStripMenuItem
@@ -2512,7 +2504,7 @@ Partial Class MainForm
         Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.Name = "ExportMarkingResultsSecondSubmitToolStripMenuItem"
         Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.Text = "&Second submit"
-        Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" & _
+        Me.ExportMarkingResultsSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" &
     " try)"
         '
         'ExportMarkingResultsThirdSubmitToolStripMenuItem
@@ -2520,7 +2512,7 @@ Partial Class MainForm
         Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.Name = "ExportMarkingResultsThirdSubmitToolStripMenuItem"
         Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.Text = "&Third submit"
-        Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" & _
+        Me.ExportMarkingResultsThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this module (all students marked on selected" &
     " try)"
         '
         'ExportMarkingResultsIsolatedToolStripMenuItem
@@ -2535,7 +2527,7 @@ Partial Class MainForm
         Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Name = "ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem"
         Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.Text = "&First submit"
-        Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" & _
+        Me.ExportMarkingResultsIsolatedFirstSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" &
     "cted try)"
         '
         'ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem
@@ -2543,7 +2535,7 @@ Partial Class MainForm
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Name = "ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem"
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.Text = "&Second submit"
-        Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" & _
+        Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" &
     "cted try)"
         '
         'ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem
@@ -2551,7 +2543,7 @@ Partial Class MainForm
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Name = "ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem"
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.Text = "&Third submit"
-        Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" & _
+        Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem.ToolTipText = "Export will contain all outcomes for this assignment (all students marked on sele" &
     "cted try)"
         '
         'ExportStudentsToolStripMenuItem
@@ -2689,6 +2681,16 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'llblSemesterLabel
+        '
+        Me.llblSemesterLabel.Location = New System.Drawing.Point(3, 3)
+        Me.llblSemesterLabel.Name = "llblSemesterLabel"
+        Me.llblSemesterLabel.Size = New System.Drawing.Size(72, 19)
+        Me.llblSemesterLabel.TabIndex = 36
+        Me.ToolTip1.SetToolTip(Me.llblSemesterLabel, "Most recent semester")
+        Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblSemesterLabel.Values.Text = "Semester:"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2823,7 +2825,6 @@ Partial Class MainForm
     Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents dtpSemesterEnd As ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker
     Friend WithEvents dtpSemesterStart As ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker
-    Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents cboSemester As ComponentFactory.Krypton.Toolkit.KryptonComboBox
     Friend WithEvents llblClearFilter As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents btnSelectRandomStudent As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
@@ -3054,4 +3055,5 @@ Partial Class MainForm
     Friend WithEvents SpecialAttendanceToolToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents txtNotes As System.Windows.Forms.TextBox
     Friend WithEvents AttendanceAssessmentStatusToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents llblSemesterLabel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
 End Class

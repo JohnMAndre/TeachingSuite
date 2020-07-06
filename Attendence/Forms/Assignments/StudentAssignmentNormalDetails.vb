@@ -93,6 +93,8 @@
 
         rtbOverallComments.Text = m_studentAssignment.OverallComments
         rtbImprovementComments.Text = m_studentAssignment.ImprovementComments
+        rtbOverallCommentsRework.Text = m_studentAssignment.OverallCommentsRework
+        rtbImprovementCommentsRework.Text = m_studentAssignment.ImprovementCommentsRework
 
         txtNickName.Text = m_student.Nickname
         txtStudentID.Text = m_student.StudentID
@@ -305,6 +307,8 @@
         End If
         m_studentAssignment.OverallComments = rtbOverallComments.Text
         m_studentAssignment.ImprovementComments = rtbImprovementComments.Text
+        m_studentAssignment.OverallCommentsRework = rtbOverallCommentsRework.Text
+        m_studentAssignment.ImprovementCommentsRework = rtbImprovementCommentsRework.Text
 
         m_student.AltNumber = nudAltNumber.Value
 
@@ -342,11 +346,15 @@
         Return True
     End Function
 
-    Private Sub AutoGenImprovementComments(includePerformanceLevel As Boolean)
-        rtbImprovementComments.AppendText(GetImprovementNotes(includePerformanceLevel))
+    Private Sub AutoGenImprovementComments(includePerformanceLevel As Boolean, rework As Boolean)
+        If Not rework Then
+            rtbImprovementComments.AppendText(GetImprovementNotes(includePerformanceLevel))
+        Else
+            rtbImprovementCommentsRework.AppendText(GetImprovementNotes(includePerformanceLevel))
+        End If
     End Sub
-    Private Sub llblAutoGenImprovements_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovements.LinkClicked
-        AutoGenImprovementComments(True)
+    Private Sub llblAutoGenImprovements_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsFirst.LinkClicked
+        AutoGenImprovementComments(True, False)
     End Sub
     Private Function GetImprovementNotes(includePerformanceLevel As Boolean) As String
         Try
@@ -505,7 +513,7 @@
     End Sub
 
     Private Sub AutogenImprovementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutogenImprovementsToolStripMenuItem.Click
-        AutoGenImprovementComments(True)
+        AutoGenImprovementComments(True, False)
     End Sub
 
     Private Sub llblEditStudent_LinkClicked(sender As Object, e As EventArgs) Handles llblEditStudent.LinkClicked
@@ -514,8 +522,8 @@
         End Using
     End Sub
 
-    Private Sub llblAutoGenImprovementsWithoutPerformanceLevel_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsWithoutPerformanceLevel.LinkClicked
-        AutoGenImprovementComments(False)
+    Private Sub llblAutoGenImprovementsWithoutPerformanceLevel_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsWithoutPerformanceLevelWithout.LinkClicked
+        AutoGenImprovementComments(False, False)
     End Sub
     Private Sub olvImprovementItems_KeyDown(sender As Object, e As KeyEventArgs) Handles olvImprovementItems.KeyDown
         Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
@@ -537,4 +545,20 @@
         strDestination = System.IO.Path.Combine(strDestination, txtStudentID.Text & " - " & m_studentAssignment.BaseAssignment.Name & ".docx")
         Return strDestination
     End Function
+
+    Private Sub llblFirstAttemptText_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblFirstAttemptText.LinkClicked
+        spltOveralFirstReworkText.SplitterDistance = spltOveralFirstReworkText.Width - 20
+    End Sub
+
+    Private Sub llblReworkText_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblReworkText.LinkClicked
+        spltOveralFirstReworkText.SplitterDistance = 20
+    End Sub
+
+    Private Sub llblAutoGenImprovementsRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsRework.LinkClicked
+        AutoGenImprovementComments(True, True)
+    End Sub
+
+    Private Sub llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.LinkClicked
+        AutoGenImprovementComments(False, True)
+    End Sub
 End Class

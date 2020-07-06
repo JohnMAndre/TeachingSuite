@@ -7,6 +7,8 @@ Public Class BulkEmailer
     Private Const PEER_REVIEWEE_NAME As String = "[[PEER_REVIEWEE_NAME]]"
     Private Const PEER_REVIEWEE_STUDENTID As String = "[[PEER_REVIEWEE_STUDENTID]]"
 
+    Private m_strStudentSpecificAttachmentPath As String
+    Private m_lstGeneralAttachments As New List(Of String)
 
     Public Sub New(clas As SchoolClass)
 
@@ -131,19 +133,40 @@ Public Class BulkEmailer
                 tm.Subject = txtSubject.Text
                 tm.Body = GenerateEmailBodyForStudent(dataItem)
                 tm.SendAsPlainText = False
+
+                '-- Same file(s) for all students
+                If AddfixedAttachmentToolStripMenuItem.Checked Then
+                    For Each strFilename As String In m_lstGeneralAttachments
+                        tm.AddAttachment(strFilename)
+                    Next
+                End If
+
+                '-- Different file(s) for each student
+                If AddstudentspecificAttachmentToolStripMenuItem.Checked Then
+                    Dim files() As String
+                    If Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Checked Then
+                        files = System.IO.Directory.GetFiles(m_strStudentSpecificAttachmentPath, "*" & dataItem.Student.ExtStudentID & "*.*")
+                    Else
+                        files = System.IO.Directory.GetFiles(m_strStudentSpecificAttachmentPath, "*" & dataItem.Student.StudentID & "*.*")
+                    End If
+                    For Each strFilename As String In files
+                        tm.AddAttachment(strFilename)
+                    Next
+                End If
+
                 Try
-                    tm.SendThisMessage(dt)
-                Catch ex As Exception
-                    Log(ex)
-                    dataItem.ProcessStatus = ex.Message
+                        tm.SendThisMessage(dt)
+                    Catch ex As Exception
+                        Log(ex)
+                        dataItem.ProcessStatus = ex.Message
+                        olvStudents.RefreshObject(dataItem)
+                        tm.CloseSaveAsDraft()
+                        tm = Nothing
+                        Continue For
+                    End Try
+                    dataItem.ProcessStatus = "Sent: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL)
                     olvStudents.RefreshObject(dataItem)
-                    tm.CloseSaveAsDraft()
-                    tm = Nothing
-                    Continue For
-                End Try
-                dataItem.ProcessStatus = "Sent: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL)
-                olvStudents.RefreshObject(dataItem)
-            End If
+                End If
         Next
 
         'If MessageBox.Show(lstErrors.ToString() & " items had errors sending. Do you want to see a list of those items?", Application.ProductName, MessageBoxButtons.YesNo) = DialogResult.Yes Then
@@ -280,6 +303,61 @@ Public Class BulkEmailer
 
     Private Sub PeerRevieweeNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeerRevieweeNameToolStripMenuItem.Click
         txtEmailTrailingText.SelectedText = PEER_REVIEWEE_NAME
+    End Sub
+
+    Private Sub AddstudentspecificAttachmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddstudentspecificAttachmentToolStripMenuItem.Click
+        If AddstudentspecificAttachmentToolStripMenuItem.Checked Then
+            Dim ofd As New OpenFileDialog()
+            ofd.Title = "Please select one file from the folder you want to use."
+            ofd.Filter = "All files|*.*"
+            If m_strStudentSpecificAttachmentPath Is Nothing Then
+                ofd.InitialDirectory = "C:\"
+            Else
+                ofd.InitialDirectory = m_strStudentSpecificAttachmentPath
+            End If
+            If ofd.ShowDialog = DialogResult.OK Then
+                m_strStudentSpecificAttachmentPath = System.IO.Path.GetDirectoryName(ofd.FileName)
+            End If
+        End If
+    End Sub
+
+    Private Sub AddfixedAttachmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddfixedAttachmentToolStripMenuItem.Click
+        If AddfixedAttachmentToolStripMenuItem.Checked Then
+            Dim ofd As New OpenFileDialog()
+            ofd.Title = "Please select one or more file(s) to attach to each email"
+            ofd.Filter = "All files|*.*"
+            ofd.Multiselect = True
+            If m_lstGeneralAttachments.Count = 0 Then
+                ofd.InitialDirectory = "C:\"
+            Else
+                ofd.InitialDirectory = System.IO.Path.GetDirectoryName(m_lstGeneralAttachments(0))
+            End If
+            If ofd.ShowDialog = DialogResult.OK Then
+                '-- Clear and re-add all selected
+                m_lstGeneralAttachments.Clear()
+                For Each strName As String In ofd.FileNames
+                    m_lstGeneralAttachments.Add(strName)
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub StatusCheckToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StatusCheckToolStripMenuItem.Click
+        Dim strMessage As String = "Send fixed: " & AddfixedAttachmentToolStripMenuItem.Checked & vbNewLine
+        If AddfixedAttachmentToolStripMenuItem.Checked Then
+            For intCounter As Integer = 0 To m_lstGeneralAttachments.Count - 1
+                strMessage &= "    Fixed file (" & intCounter & "): " & m_lstGeneralAttachments(intCounter) & vbNewLine
+            Next
+        End If
+
+        strMessage &= vbNewLine
+
+        strMessage &= "Send student-specific: " & AddstudentspecificAttachmentToolStripMenuItem.Checked & vbNewLine
+        If AddstudentspecificAttachmentToolStripMenuItem.Checked Then
+            strMessage &= "    All matching files in folder: " & m_strStudentSpecificAttachmentPath & vbNewLine
+        End If
+
+        MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class
 

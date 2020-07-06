@@ -2883,5 +2883,9 @@ Public Class MainForm
         End Set
     End Property
 
-    
+    Private Sub llblSemesterLabel_LinkClicked(sender As Object, e As EventArgs) Handles llblSemesterLabel.LinkClicked
+        If Semester.ListExistingSemesters.Count > 0 Then
+            Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(Semester.ListExistingSemesters(0)))
+        End If
+    End Sub
 End Class
