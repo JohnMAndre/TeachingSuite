@@ -29,15 +29,41 @@ Public Class ImportMarkingFromOtherSemesterFile
     Private m_lstSyncResolverNormal As New List(Of SyncResolverNormalData)
     Private m_lstSyncResolverBTEC As New List(Of SyncResolverBTECData)
 
-    Public Class ReportData
+    Private Class ReportData
         Public Property Student As Student
         Public Property Assignment As StudentAssignment
         Public Property AssignmentBTEC As StudentAssignmentBTEC
-        Public Sub New(stud As Student, asmt As StudentAssignment, asmtBTEC As StudentAssignmentBTEC)
+        Public Property CountMatchingAssignmentsNormal As Integer
+        Public Property CountMatchingAssignmentsBTEC As Integer
+        Public Sub New(stud As Student, asmt As StudentAssignment, asmtBTEC As StudentAssignmentBTEC, localClassGroup As ClassGroup)
             Student = stud
             Assignment = asmt
             AssignmentBTEC = asmtBTEC
+
+            Dim permStudent As Student = localClassGroup.GetStudentByID(stud.StudentID)
+            If permStudent Is Nothing Then
+                CountMatchingAssignmentsNormal = -99 '-- hint of missing student in local database
+                CountMatchingAssignmentsBTEC = -99
+            Else
+                If asmt IsNot Nothing Then
+                    For Each tempAsmt As StudentAssignment In permStudent.Assignments
+                        If asmt.BaseAssignment.ID = tempAsmt.BaseAssignment.ID Then
+                            CountMatchingAssignmentsNormal += 1
+                        End If
+                    Next
+                End If
+
+                If asmtBTEC IsNot Nothing Then
+                    For Each tempAsmt As StudentAssignmentBTEC In permStudent.AssignmentsBTEC
+                        If asmtBTEC.BaseAssignment.ID = tempAsmt.BaseAssignment.ID Then
+                            CountMatchingAssignmentsBTEC += 1
+                        End If
+                    Next
+                End If
+            End If
+
         End Sub
+#Region " Properties "
         Public ReadOnly Property AdminNumber As Integer
             Get
                 Return Student.AdminNumber
@@ -113,6 +139,15 @@ Public Class ImportMarkingFromOtherSemesterFile
                 End If
             End Get
         End Property
+        Public ReadOnly Property AssignmentScoreSecond
+            Get
+                If Assignment IsNot Nothing Then
+                    Return Assignment.SecondTryPoints
+                Else
+                    Return -1
+                End If
+            End Get
+        End Property
         Public ReadOnly Property Creator As String
             Get
                 If Assignment IsNot Nothing Then
@@ -140,12 +175,30 @@ Public Class ImportMarkingFromOtherSemesterFile
                 End If
             End Get
         End Property
+        Public ReadOnly Property Overall2 As String
+            Get
+                If Assignment IsNot Nothing Then
+                    Return Assignment.OverallCommentsRework
+                Else
+                    Return AssignmentBTEC.OverallCommentsRework
+                End If
+            End Get
+        End Property
         Public ReadOnly Property Improvement As String
             Get
                 If Assignment IsNot Nothing Then
                     Return Assignment.ImprovementComments
                 Else
                     Return AssignmentBTEC.ImprovementComments
+                End If
+            End Get
+        End Property
+        Public ReadOnly Property Improvement2 As String
+            Get
+                If Assignment IsNot Nothing Then
+                    Return Assignment.ImprovementCommentsRework
+                Else
+                    Return AssignmentBTEC.ImprovementCommentsRework
                 End If
             End Get
         End Property
@@ -177,6 +230,8 @@ Public Class ImportMarkingFromOtherSemesterFile
             End Get
         End Property
     End Class
+#End Region
+
     Private m_tempSemester As Semester
     Private m_lstCurrentListOfStudents As List(Of ReportData)
 
@@ -340,7 +395,7 @@ Public Class ImportMarkingFromOtherSemesterFile
             For Each stud As Student In lstAllStudentsInClass
                 For Each objAssignment As StudentAssignment In stud.Assignments
                     If objAssignment.BaseAssignment Is asmt Then
-                        objData = New ReportData(stud, objAssignment, Nothing)
+                        objData = New ReportData(stud, objAssignment, Nothing, m_objLocalClassGroup)
                         m_lstCurrentListOfStudents.Add(objData)
                         Exit For '-- go to next student
                     End If
@@ -356,7 +411,7 @@ Public Class ImportMarkingFromOtherSemesterFile
             For Each stud As Student In lstAllStudentsInClass
                 For Each objAssignment As StudentAssignmentBTEC In stud.AssignmentsBTEC
                     If objAssignment.BaseAssignment Is asmt Then
-                        objData = New ReportData(stud, Nothing, objAssignment)
+                        objData = New ReportData(stud, Nothing, objAssignment, m_objLocalClassGroup)
                         m_lstCurrentListOfStudents.Add(objData)
                         Exit For '-- go to next student
                     End If
@@ -667,6 +722,7 @@ Public Class ImportMarkingFromOtherSemesterFile
             Dim intStudentsImported As Integer
 
             m_lstSyncResolverNormal.Clear()
+            m_lstSyncResolverBTEC.Clear()
 
             Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
             For Each stud As ReportData In m_lstCurrentListOfStudents
@@ -693,6 +749,10 @@ Public Class ImportMarkingFromOtherSemesterFile
                     Dim permAsmtExisting As StudentAssignment '-- existing in present database
                     Dim permAsmtNew As StudentAssignment '-- Going to be added to present database
 
+                    tempAsmt = Nothing
+                    permAsmtExisting = Nothing
+                    permAsmtNew = Nothing
+
                     '-- Find temp assigment in external DB
                     For Each tempAsmt In stud.Student.Assignments
                         If tempAsmt.BaseAssignment Is baseAsmt Then
@@ -701,8 +761,9 @@ Public Class ImportMarkingFromOtherSemesterFile
                     Next
 
                     '-- Is there an existing student assignment?
-                    For Each permAsmtExisting In permStud.Assignments
-                        If permAsmtExisting.BaseAssignment Is baseAsmt Then
+                    For Each asmt As StudentAssignment In permStud.Assignments
+                        If asmt.BaseAssignment.ID = baseAsmt.ID Then
+                            permAsmtExisting = asmt
                             Exit For
                         End If
                     Next
@@ -739,7 +800,7 @@ Public Class ImportMarkingFromOtherSemesterFile
                                     permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
                                 End If
                                 permStud.Assignments.Add(permAsmtNew)
-                                permStud.AddToActivityLog("Imported assignment (" & permAsmtExisting.BaseAssignment.Name & ").")
+                                permStud.AddToActivityLog("Imported assignment (" & permAsmtNew.BaseAssignment.Name & ").")
 
                                 If chkMarkImportedAsProcessed.Checked Then
                                     permAsmtNew.Processed = True
@@ -803,6 +864,11 @@ Public Class ImportMarkingFromOtherSemesterFile
                     Dim permAsmtNew As StudentAssignmentBTEC '-- Going to be added to present database
                     Dim baseOC As AssignmentOutcome
 
+                    baseOC = Nothing
+                    tempAsmt = Nothing
+                    permAsmtExisting = Nothing
+                    permAsmtNew = Nothing
+
                     '-- Find temp assigment in external DB
                     For Each tempAsmt In stud.Student.AssignmentsBTEC
                         If tempAsmt.BaseAssignment Is baseAsmt Then
@@ -811,8 +877,9 @@ Public Class ImportMarkingFromOtherSemesterFile
                     Next
 
                     '-- Is there an existing student assignment?
-                    For Each permAsmtExisting In permStud.AssignmentsBTEC
-                        If permAsmtExisting.BaseAssignment Is baseAsmt Then
+                    For Each asmt As StudentAssignmentBTEC In permStud.AssignmentsBTEC
+                        If asmt.BaseAssignment.ID = baseAsmt.ID Then
+                            permAsmtExisting = asmt
                             Exit For
                         End If
                     Next
@@ -848,7 +915,7 @@ Public Class ImportMarkingFromOtherSemesterFile
                                     permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
                                 End If
                                 permStud.AssignmentsBTEC.Add(permAsmtNew)
-                                permStud.AddToActivityLog("Imported assignment (" & permAsmtExisting.BaseAssignment.Name & ").")
+                                permStud.AddToActivityLog("Imported assignment (" & permAsmtNew.BaseAssignment.Name & ").")
 
                                 If chkMarkImportedAsProcessed.Checked Then
                                     permAsmtNew.Processed = True
@@ -860,7 +927,7 @@ Public Class ImportMarkingFromOtherSemesterFile
                                 '   If new assignment's overall RW and improvement RW are empty, skip this student
                                 '   if existing assignment and new assignment both have overall RW and improvement RW contents, then notify the user to process it manually (or give a sync decider dialog)
                                 If tempAsmt.OverallCommentsRework.Trim().Length + tempAsmt.ImprovementCommentsRework.Trim().Length = 0 Then
-                                    '-- skip and leave existing asmt alone
+                                    '-- skip and leave existing asmt alone (new temp asmt is empty as far as RW)
                                     Continue For
                                 Else
                                     '-- new assignment has rework contents, make sure existing does not
@@ -874,7 +941,7 @@ Public Class ImportMarkingFromOtherSemesterFile
                                             If tempOC.SecondTryStatus <> OutcomeResultStatusEnum.Unknown Then
                                                 '-- Now finding the matching outcome on the permExisting assignment and update it
                                                 For Each permOC As OutcomeResult In permAsmtExisting.Outcomes
-                                                    If permOC.BaseOutcome Is tempOC.BaseOutcome Then
+                                                    If permOC.BaseOutcome.ID = tempOC.BaseOutcome.ID Then
                                                         '-- We found the matching learning outcome on the permAssignment
                                                         permOC.SecondTryStatus = tempOC.SecondTryStatus
                                                         permOC.SecondTryComments = tempOC.SecondTryComments

@@ -29,8 +29,8 @@
             lblExistingPoints.Text = obj.PermExistingAssignment.SecondTryPoints.ToString()
 
             lblImportOverall.Text = obj.TempAssignment.OverallCommentsRework
-            lblImportOverall.Text = obj.TempAssignment.ImprovementCommentsRework
-            lblImportOverall.Text = obj.TempAssignment.SecondTryPoints.ToString()
+            lblImportImprovement.Text = obj.TempAssignment.ImprovementCommentsRework
+            lblImportPoints.Text = obj.TempAssignment.SecondTryPoints.ToString()
 
         Else
             '-- clear everything
@@ -41,8 +41,8 @@
             lblExistingPoints.Text = String.Empty
 
             lblImportOverall.Text = String.Empty
-            lblImportOverall.Text = String.Empty
-            lblImportOverall.Text = String.Empty
+            lblImportImprovement.Text = String.Empty
+            lblImportPoints.Text = String.Empty
 
         End If
     End Sub

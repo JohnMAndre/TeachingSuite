@@ -22,32 +22,40 @@ Partial Class ImportMarkingFromOtherSemesterFile
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle64 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle65 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle66 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle67 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle68 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle69 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle70 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle71 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle72 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle73 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle74 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle75 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle76 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle77 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle78 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle79 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle80 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle81 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle82 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle83 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle84 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportStudentAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OverwriteExistingCompletelyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OverwriteOnlyReworkElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -62,6 +70,12 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.llblBrowseForSemesterFile = New System.Windows.Forms.LinkLabel()
         Me.txtSemesterFile = New System.Windows.Forms.TextBox()
         Me.dgvStudentsNormal = New System.Windows.Forms.DataGridView()
+        Me.lblStudentCount = New System.Windows.Forms.Label()
+        Me.txtOverrideMarkerName = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chkMarkImportedAsProcessed = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dgvStudentsBTEC = New System.Windows.Forms.DataGridView()
         Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -73,17 +87,15 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolStudentTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NormalAltID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CountExistingAssignmentsNormal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AssignmentFirstColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OverallColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ImprovementColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecondScore = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Overall2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Improve2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreatorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EditorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lblStudentCount = New System.Windows.Forms.Label()
-        Me.txtOverrideMarkerName = New System.Windows.Forms.TextBox()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.chkMarkImportedAsProcessed = New System.Windows.Forms.CheckBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dgvStudentsBTEC = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -95,16 +107,16 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AltID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CountExistingAssignments = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AchievedPass = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.AchievedMerit = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.AchievedDistinction = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OverallRW = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImproveRW = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OverwriteExistingCompletelyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OverwriteOnlyReworkElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -135,7 +147,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ActionToolStripMenuItem
@@ -151,6 +163,24 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.ImportStudentAssignmentsToolStripMenuItem.Name = "ImportStudentAssignmentsToolStripMenuItem"
         Me.ImportStudentAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(264, 22)
         Me.ImportStudentAssignmentsToolStripMenuItem.Text = "&Import student assignments"
+        '
+        'OverwriteExistingCompletelyToolStripMenuItem
+        '
+        Me.OverwriteExistingCompletelyToolStripMenuItem.Name = "OverwriteExistingCompletelyToolStripMenuItem"
+        Me.OverwriteExistingCompletelyToolStripMenuItem.Size = New System.Drawing.Size(290, 22)
+        Me.OverwriteExistingCompletelyToolStripMenuItem.Text = "Overwrite existing &completely"
+        '
+        'OverwriteOnlyReworkElementsToolStripMenuItem
+        '
+        Me.OverwriteOnlyReworkElementsToolStripMenuItem.Name = "OverwriteOnlyReworkElementsToolStripMenuItem"
+        Me.OverwriteOnlyReworkElementsToolStripMenuItem.Size = New System.Drawing.Size(290, 22)
+        Me.OverwriteOnlyReworkElementsToolStripMenuItem.Text = "Overwrite only &rework elements"
+        '
+        'SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem
+        '
+        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Name = "SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem"
+        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Size = New System.Drawing.Size(290, 22)
+        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Text = "&Skip any assignment which already exists"
         '
         'ToolStripSeparator1
         '
@@ -287,7 +317,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudentsNormal.AllowUserToDeleteRows = False
         Me.dgvStudentsNormal.AllowUserToOrderColumns = True
         Me.dgvStudentsNormal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudentsNormal.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolLocalName, Me.dcolNickname, Me.dcolExtStudentID, Me.dcolStudentID, Me.dcolTags, Me.dcolPresentationQuality, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.NormalAltID, Me.dcolClass, Me.AssignmentFirstColumn, Me.OverallColumn, Me.ImprovementColumn, Me.CreatorColumn, Me.EditorColumn})
+        Me.dgvStudentsNormal.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolLocalName, Me.dcolNickname, Me.dcolExtStudentID, Me.dcolStudentID, Me.dcolTags, Me.dcolPresentationQuality, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.NormalAltID, Me.dcolClass, Me.CountExistingAssignmentsNormal, Me.AssignmentFirstColumn, Me.OverallColumn, Me.ImprovementColumn, Me.SecondScore, Me.Overall2, Me.Improve2, Me.CreatorColumn, Me.EditorColumn})
         Me.dgvStudentsNormal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudentsNormal.Location = New System.Drawing.Point(183, 83)
         Me.dgvStudentsNormal.Name = "dgvStudentsNormal"
@@ -295,138 +325,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudentsNormal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvStudentsNormal.Size = New System.Drawing.Size(932, 471)
         Me.dgvStudentsNormal.TabIndex = 6
-        '
-        'dcolAdmin
-        '
-        Me.dcolAdmin.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle64
-        Me.dcolAdmin.HeaderText = "Admin"
-        Me.dcolAdmin.Name = "dcolAdmin"
-        Me.dcolAdmin.ReadOnly = True
-        '
-        'dcolLocalName
-        '
-        Me.dcolLocalName.DataPropertyName = "LocalName"
-        DataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle65
-        Me.dcolLocalName.HeaderText = "Name"
-        Me.dcolLocalName.Name = "dcolLocalName"
-        Me.dcolLocalName.ReadOnly = True
-        '
-        'dcolNickname
-        '
-        Me.dcolNickname.DataPropertyName = "Nickname"
-        DataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle66
-        Me.dcolNickname.HeaderText = "Nickname"
-        Me.dcolNickname.Name = "dcolNickname"
-        Me.dcolNickname.ReadOnly = True
-        '
-        'dcolExtStudentID
-        '
-        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle67
-        Me.dcolExtStudentID.HeaderText = "ExtID"
-        Me.dcolExtStudentID.Name = "dcolExtStudentID"
-        Me.dcolExtStudentID.ReadOnly = True
-        '
-        'dcolStudentID
-        '
-        Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle68
-        Me.dcolStudentID.HeaderText = "StudentID"
-        Me.dcolStudentID.Name = "dcolStudentID"
-        Me.dcolStudentID.ReadOnly = True
-        '
-        'dcolTags
-        '
-        Me.dcolTags.DataPropertyName = "Tags"
-        DataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle69
-        Me.dcolTags.HeaderText = "Tags"
-        Me.dcolTags.Name = "dcolTags"
-        Me.dcolTags.ReadOnly = True
-        '
-        'dcolPresentationQuality
-        '
-        Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle70
-        Me.dcolPresentationQuality.HeaderText = "Pres"
-        Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
-        Me.dcolPresentationQuality.ReadOnly = True
-        '
-        'dcolStudentGroup
-        '
-        Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle71
-        Me.dcolStudentGroup.HeaderText = "Group"
-        Me.dcolStudentGroup.Name = "dcolStudentGroup"
-        Me.dcolStudentGroup.ReadOnly = True
-        '
-        'dcolStudentTeam
-        '
-        Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle72
-        Me.dcolStudentTeam.HeaderText = "Team"
-        Me.dcolStudentTeam.Name = "dcolStudentTeam"
-        Me.dcolStudentTeam.ReadOnly = True
-        '
-        'NormalAltID
-        '
-        Me.NormalAltID.DataPropertyName = "AltID"
-        Me.NormalAltID.HeaderText = "Alt"
-        Me.NormalAltID.Name = "NormalAltID"
-        Me.NormalAltID.ReadOnly = True
-        '
-        'dcolClass
-        '
-        Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle73
-        Me.dcolClass.HeaderText = "Class"
-        Me.dcolClass.Name = "dcolClass"
-        Me.dcolClass.ReadOnly = True
-        '
-        'AssignmentFirstColumn
-        '
-        Me.AssignmentFirstColumn.DataPropertyName = "AssignmentScoreFirst"
-        Me.AssignmentFirstColumn.HeaderText = "1st"
-        Me.AssignmentFirstColumn.Name = "AssignmentFirstColumn"
-        Me.AssignmentFirstColumn.ReadOnly = True
-        '
-        'OverallColumn
-        '
-        Me.OverallColumn.DataPropertyName = "Overall"
-        Me.OverallColumn.HeaderText = "Overall"
-        Me.OverallColumn.Name = "OverallColumn"
-        Me.OverallColumn.ReadOnly = True
-        '
-        'ImprovementColumn
-        '
-        Me.ImprovementColumn.DataPropertyName = "Improvement"
-        Me.ImprovementColumn.HeaderText = "Improve"
-        Me.ImprovementColumn.Name = "ImprovementColumn"
-        Me.ImprovementColumn.ReadOnly = True
-        '
-        'CreatorColumn
-        '
-        Me.CreatorColumn.DataPropertyName = "Creator"
-        Me.CreatorColumn.HeaderText = "Creator"
-        Me.CreatorColumn.Name = "CreatorColumn"
-        Me.CreatorColumn.ReadOnly = True
-        '
-        'EditorColumn
-        '
-        Me.EditorColumn.DataPropertyName = "Editor"
-        Me.EditorColumn.HeaderText = "Editor"
-        Me.EditorColumn.Name = "EditorColumn"
-        Me.EditorColumn.ReadOnly = True
         '
         'lblStudentCount
         '
@@ -485,7 +383,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudentsBTEC.AllowUserToDeleteRows = False
         Me.dgvStudentsBTEC.AllowUserToOrderColumns = True
         Me.dgvStudentsBTEC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudentsBTEC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.AltID, Me.DataGridViewTextBoxColumn10, Me.AchievedPass, Me.AchievedMerit, Me.AchievedDistinction, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
+        Me.dgvStudentsBTEC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.AltID, Me.DataGridViewTextBoxColumn10, Me.CountExistingAssignments, Me.AchievedPass, Me.AchievedMerit, Me.AchievedDistinction, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.OverallRW, Me.ImproveRW, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
         Me.dgvStudentsBTEC.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudentsBTEC.Location = New System.Drawing.Point(183, 83)
         Me.dgvStudentsBTEC.Name = "dgvStudentsBTEC"
@@ -495,11 +393,180 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudentsBTEC.TabIndex = 12
         Me.dgvStudentsBTEC.Visible = False
         '
+        'dcolAdmin
+        '
+        Me.dcolAdmin.DataPropertyName = "AdminNumber"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
+        Me.dcolAdmin.HeaderText = "Admin"
+        Me.dcolAdmin.Name = "dcolAdmin"
+        Me.dcolAdmin.ReadOnly = True
+        '
+        'dcolLocalName
+        '
+        Me.dcolLocalName.DataPropertyName = "LocalName"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dcolLocalName.HeaderText = "Name"
+        Me.dcolLocalName.Name = "dcolLocalName"
+        Me.dcolLocalName.ReadOnly = True
+        '
+        'dcolNickname
+        '
+        Me.dcolNickname.DataPropertyName = "Nickname"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dcolNickname.HeaderText = "Nickname"
+        Me.dcolNickname.Name = "dcolNickname"
+        Me.dcolNickname.ReadOnly = True
+        '
+        'dcolExtStudentID
+        '
+        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle4
+        Me.dcolExtStudentID.HeaderText = "ExtID"
+        Me.dcolExtStudentID.Name = "dcolExtStudentID"
+        Me.dcolExtStudentID.ReadOnly = True
+        '
+        'dcolStudentID
+        '
+        Me.dcolStudentID.DataPropertyName = "StudentID"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle5
+        Me.dcolStudentID.HeaderText = "StudentID"
+        Me.dcolStudentID.Name = "dcolStudentID"
+        Me.dcolStudentID.ReadOnly = True
+        '
+        'dcolTags
+        '
+        Me.dcolTags.DataPropertyName = "Tags"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dcolTags.HeaderText = "Tags"
+        Me.dcolTags.Name = "dcolTags"
+        Me.dcolTags.ReadOnly = True
+        '
+        'dcolPresentationQuality
+        '
+        Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dcolPresentationQuality.HeaderText = "Pres"
+        Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
+        Me.dcolPresentationQuality.ReadOnly = True
+        '
+        'dcolStudentGroup
+        '
+        Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle8
+        Me.dcolStudentGroup.HeaderText = "Group"
+        Me.dcolStudentGroup.Name = "dcolStudentGroup"
+        Me.dcolStudentGroup.ReadOnly = True
+        '
+        'dcolStudentTeam
+        '
+        Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle9
+        Me.dcolStudentTeam.HeaderText = "Team"
+        Me.dcolStudentTeam.Name = "dcolStudentTeam"
+        Me.dcolStudentTeam.ReadOnly = True
+        '
+        'NormalAltID
+        '
+        Me.NormalAltID.DataPropertyName = "AltID"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.NormalAltID.DefaultCellStyle = DataGridViewCellStyle10
+        Me.NormalAltID.HeaderText = "Alt"
+        Me.NormalAltID.Name = "NormalAltID"
+        Me.NormalAltID.ReadOnly = True
+        '
+        'dcolClass
+        '
+        Me.dcolClass.DataPropertyName = "SchoolClassName"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle11
+        Me.dcolClass.HeaderText = "Class"
+        Me.dcolClass.Name = "dcolClass"
+        Me.dcolClass.ReadOnly = True
+        '
+        'CountExistingAssignmentsNormal
+        '
+        Me.CountExistingAssignmentsNormal.DataPropertyName = "CountMatchingAssignmentsNormal"
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.CountExistingAssignmentsNormal.DefaultCellStyle = DataGridViewCellStyle12
+        Me.CountExistingAssignmentsNormal.HeaderText = "ExistAsmt"
+        Me.CountExistingAssignmentsNormal.Name = "CountExistingAssignmentsNormal"
+        Me.CountExistingAssignmentsNormal.ReadOnly = True
+        Me.CountExistingAssignmentsNormal.Width = 20
+        '
+        'AssignmentFirstColumn
+        '
+        Me.AssignmentFirstColumn.DataPropertyName = "AssignmentScoreFirst"
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.AssignmentFirstColumn.DefaultCellStyle = DataGridViewCellStyle13
+        Me.AssignmentFirstColumn.HeaderText = "1st"
+        Me.AssignmentFirstColumn.Name = "AssignmentFirstColumn"
+        Me.AssignmentFirstColumn.ReadOnly = True
+        '
+        'OverallColumn
+        '
+        Me.OverallColumn.DataPropertyName = "Overall"
+        Me.OverallColumn.HeaderText = "Overall"
+        Me.OverallColumn.Name = "OverallColumn"
+        Me.OverallColumn.ReadOnly = True
+        '
+        'ImprovementColumn
+        '
+        Me.ImprovementColumn.DataPropertyName = "Improvement"
+        Me.ImprovementColumn.HeaderText = "Improve"
+        Me.ImprovementColumn.Name = "ImprovementColumn"
+        Me.ImprovementColumn.ReadOnly = True
+        '
+        'SecondScore
+        '
+        Me.SecondScore.DataPropertyName = "AssignmentScoreSecond"
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.SecondScore.DefaultCellStyle = DataGridViewCellStyle14
+        Me.SecondScore.HeaderText = "2nd"
+        Me.SecondScore.Name = "SecondScore"
+        Me.SecondScore.ReadOnly = True
+        '
+        'Overall2
+        '
+        Me.Overall2.DataPropertyName = "Overall2"
+        Me.Overall2.HeaderText = "OverallRW"
+        Me.Overall2.Name = "Overall2"
+        Me.Overall2.ReadOnly = True
+        '
+        'Improve2
+        '
+        Me.Improve2.DataPropertyName = "Improvement2"
+        Me.Improve2.HeaderText = "ImproveRW"
+        Me.Improve2.Name = "Improve2"
+        Me.Improve2.ReadOnly = True
+        '
+        'CreatorColumn
+        '
+        Me.CreatorColumn.DataPropertyName = "Creator"
+        Me.CreatorColumn.HeaderText = "Creator"
+        Me.CreatorColumn.Name = "CreatorColumn"
+        Me.CreatorColumn.ReadOnly = True
+        '
+        'EditorColumn
+        '
+        Me.EditorColumn.DataPropertyName = "Editor"
+        Me.EditorColumn.HeaderText = "Editor"
+        Me.EditorColumn.Name = "EditorColumn"
+        Me.EditorColumn.ReadOnly = True
+        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle74.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle74
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridViewTextBoxColumn1.HeaderText = "Admin"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -507,8 +574,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.DataPropertyName = "LocalName"
-        DataGridViewCellStyle75.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle75
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
@@ -516,8 +583,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.DataPropertyName = "Nickname"
-        DataGridViewCellStyle76.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle76
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle17
         Me.DataGridViewTextBoxColumn3.HeaderText = "Nickname"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.ReadOnly = True
@@ -525,8 +592,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn4
         '
         Me.DataGridViewTextBoxColumn4.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle77
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle18
         Me.DataGridViewTextBoxColumn4.HeaderText = "ExtID"
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         Me.DataGridViewTextBoxColumn4.ReadOnly = True
@@ -534,8 +601,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn5
         '
         Me.DataGridViewTextBoxColumn5.DataPropertyName = "StudentID"
-        DataGridViewCellStyle78.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle78
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewTextBoxColumn5.HeaderText = "StudentID"
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.ReadOnly = True
@@ -543,8 +610,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn6
         '
         Me.DataGridViewTextBoxColumn6.DataPropertyName = "Tags"
-        DataGridViewCellStyle79.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle79
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle20
         Me.DataGridViewTextBoxColumn6.HeaderText = "Tags"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         Me.DataGridViewTextBoxColumn6.ReadOnly = True
@@ -552,8 +619,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle80.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle80
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle21
         Me.DataGridViewTextBoxColumn7.HeaderText = "Pres"
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         Me.DataGridViewTextBoxColumn7.ReadOnly = True
@@ -561,8 +628,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn8
         '
         Me.DataGridViewTextBoxColumn8.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle81.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle81
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle22
         Me.DataGridViewTextBoxColumn8.HeaderText = "Group"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
         Me.DataGridViewTextBoxColumn8.ReadOnly = True
@@ -570,8 +637,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle82.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle82
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle23
         Me.DataGridViewTextBoxColumn9.HeaderText = "Team"
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         Me.DataGridViewTextBoxColumn9.ReadOnly = True
@@ -579,8 +646,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'AltID
         '
         Me.AltID.DataPropertyName = "AltID"
-        DataGridViewCellStyle83.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.AltID.DefaultCellStyle = DataGridViewCellStyle83
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.AltID.DefaultCellStyle = DataGridViewCellStyle24
         Me.AltID.HeaderText = "Alt"
         Me.AltID.Name = "AltID"
         Me.AltID.ReadOnly = True
@@ -588,11 +655,22 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'DataGridViewTextBoxColumn10
         '
         Me.DataGridViewTextBoxColumn10.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle84.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle84
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle25
         Me.DataGridViewTextBoxColumn10.HeaderText = "Class"
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         Me.DataGridViewTextBoxColumn10.ReadOnly = True
+        '
+        'CountExistingAssignments
+        '
+        Me.CountExistingAssignments.DataPropertyName = "CountMatchingAssignmentsBTEC"
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.CountExistingAssignments.DefaultCellStyle = DataGridViewCellStyle26
+        Me.CountExistingAssignments.HeaderText = "ExistAsmt"
+        Me.CountExistingAssignments.Name = "CountExistingAssignments"
+        Me.CountExistingAssignments.ReadOnly = True
+        Me.CountExistingAssignments.ToolTipText = "Count of existing assignments"
+        Me.CountExistingAssignments.Width = 20
         '
         'AchievedPass
         '
@@ -635,6 +713,20 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
         Me.DataGridViewTextBoxColumn13.ReadOnly = True
         '
+        'OverallRW
+        '
+        Me.OverallRW.DataPropertyName = "Overall2"
+        Me.OverallRW.HeaderText = "OverallRW"
+        Me.OverallRW.Name = "OverallRW"
+        Me.OverallRW.ReadOnly = True
+        '
+        'ImproveRW
+        '
+        Me.ImproveRW.DataPropertyName = "Improvement2"
+        Me.ImproveRW.HeaderText = "ImproveRW"
+        Me.ImproveRW.Name = "ImproveRW"
+        Me.ImproveRW.ReadOnly = True
+        '
         'DataGridViewTextBoxColumn14
         '
         Me.DataGridViewTextBoxColumn14.DataPropertyName = "Creator"
@@ -648,24 +740,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DataGridViewTextBoxColumn15.HeaderText = "Editor"
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         Me.DataGridViewTextBoxColumn15.ReadOnly = True
-        '
-        'OverwriteExistingCompletelyToolStripMenuItem
-        '
-        Me.OverwriteExistingCompletelyToolStripMenuItem.Name = "OverwriteExistingCompletelyToolStripMenuItem"
-        Me.OverwriteExistingCompletelyToolStripMenuItem.Size = New System.Drawing.Size(290, 22)
-        Me.OverwriteExistingCompletelyToolStripMenuItem.Text = "Overwrite existing &completely"
-        '
-        'OverwriteOnlyReworkElementsToolStripMenuItem
-        '
-        Me.OverwriteOnlyReworkElementsToolStripMenuItem.Name = "OverwriteOnlyReworkElementsToolStripMenuItem"
-        Me.OverwriteOnlyReworkElementsToolStripMenuItem.Size = New System.Drawing.Size(290, 22)
-        Me.OverwriteOnlyReworkElementsToolStripMenuItem.Text = "Overwrite only &rework elements"
-        '
-        'SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem
-        '
-        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Name = "SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem"
-        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Size = New System.Drawing.Size(290, 22)
-        Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem.Text = "&Skip any assignment which already exists"
         '
         'ImportMarkingFromOtherSemesterFile
         '
@@ -722,42 +796,49 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents DeleteSelectedAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents dgvStudentsBTEC As System.Windows.Forms.DataGridView
-    Friend WithEvents dcolAdmin As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolLocalName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolNickname As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolExtStudentID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolStudentID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolTags As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolPresentationQuality As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolStudentGroup As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolStudentTeam As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NormalAltID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolClass As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AssignmentFirstColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents OverallColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ImprovementColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CreatorColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents EditorColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AltID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AchievedPass As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents AchievedMerit As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents AchievedDistinction As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn13 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn14 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn15 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents chkMarkImportedAsProcessed As CheckBox
     Friend WithEvents OverwriteExistingCompletelyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OverwriteOnlyReworkElementsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents dcolAdmin As DataGridViewTextBoxColumn
+    Friend WithEvents dcolLocalName As DataGridViewTextBoxColumn
+    Friend WithEvents dcolNickname As DataGridViewTextBoxColumn
+    Friend WithEvents dcolExtStudentID As DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentID As DataGridViewTextBoxColumn
+    Friend WithEvents dcolTags As DataGridViewTextBoxColumn
+    Friend WithEvents dcolPresentationQuality As DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentGroup As DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentTeam As DataGridViewTextBoxColumn
+    Friend WithEvents NormalAltID As DataGridViewTextBoxColumn
+    Friend WithEvents dcolClass As DataGridViewTextBoxColumn
+    Friend WithEvents CountExistingAssignmentsNormal As DataGridViewTextBoxColumn
+    Friend WithEvents AssignmentFirstColumn As DataGridViewTextBoxColumn
+    Friend WithEvents OverallColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ImprovementColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SecondScore As DataGridViewTextBoxColumn
+    Friend WithEvents Overall2 As DataGridViewTextBoxColumn
+    Friend WithEvents Improve2 As DataGridViewTextBoxColumn
+    Friend WithEvents CreatorColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EditorColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents AltID As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents CountExistingAssignments As DataGridViewTextBoxColumn
+    Friend WithEvents AchievedPass As DataGridViewCheckBoxColumn
+    Friend WithEvents AchievedMerit As DataGridViewCheckBoxColumn
+    Friend WithEvents AchievedDistinction As DataGridViewCheckBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents OverallRW As DataGridViewTextBoxColumn
+    Friend WithEvents ImproveRW As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
 End Class

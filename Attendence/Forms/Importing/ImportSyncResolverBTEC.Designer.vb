@@ -57,8 +57,13 @@ Partial Class ImportSyncResolverBTEC
         Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn16 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn17 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         CType(Me.olvOutcomes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ObjectListView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -74,23 +79,22 @@ Partial Class ImportSyncResolverBTEC
         '
         'btnUseImport
         '
-        Me.btnUseImport.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnUseImport.Location = New System.Drawing.Point(483, 447)
+        Me.btnUseImport.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.btnUseImport.Location = New System.Drawing.Point(0, 426)
         Me.btnUseImport.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnUseImport.Name = "btnUseImport"
-        Me.btnUseImport.Size = New System.Drawing.Size(256, 32)
+        Me.btnUseImport.Size = New System.Drawing.Size(291, 32)
         Me.btnUseImport.TabIndex = 34
         Me.btnUseImport.Text = "Use &import"
         Me.btnUseImport.UseVisualStyleBackColor = True
         '
         'btnUseExisting
         '
-        Me.btnUseExisting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUseExisting.Location = New System.Drawing.Point(253, 447)
+        Me.btnUseExisting.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.btnUseExisting.Location = New System.Drawing.Point(0, 426)
         Me.btnUseExisting.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnUseExisting.Name = "btnUseExisting"
-        Me.btnUseExisting.Size = New System.Drawing.Size(220, 32)
+        Me.btnUseExisting.Size = New System.Drawing.Size(240, 32)
         Me.btnUseExisting.TabIndex = 33
         Me.btnUseExisting.Text = "Use &existing"
         Me.btnUseExisting.UseVisualStyleBackColor = True
@@ -106,61 +110,59 @@ Partial Class ImportSyncResolverBTEC
         '
         'lblImportImprovement
         '
-        Me.lblImportImprovement.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblImportImprovement.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblImportImprovement.Location = New System.Drawing.Point(480, 292)
+        Me.lblImportImprovement.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblImportImprovement.Location = New System.Drawing.Point(0, 251)
         Me.lblImportImprovement.Name = "lblImportImprovement"
-        Me.lblImportImprovement.Size = New System.Drawing.Size(261, 150)
+        Me.lblImportImprovement.Size = New System.Drawing.Size(291, 175)
         Me.lblImportImprovement.TabIndex = 31
         '
         'lblImportOverall
         '
-        Me.lblImportOverall.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblImportOverall.BackColor = System.Drawing.Color.White
-        Me.lblImportOverall.Location = New System.Drawing.Point(480, 216)
+        Me.lblImportOverall.Dock = System.Windows.Forms.DockStyle.Top
+        Me.lblImportOverall.Location = New System.Drawing.Point(0, 160)
         Me.lblImportOverall.Name = "lblImportOverall"
-        Me.lblImportOverall.Size = New System.Drawing.Size(261, 65)
+        Me.lblImportOverall.Size = New System.Drawing.Size(291, 91)
         Me.lblImportOverall.TabIndex = 30
         '
         'lblExistingImprovement
         '
-        Me.lblExistingImprovement.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblExistingImprovement.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblExistingImprovement.Location = New System.Drawing.Point(249, 292)
+        Me.lblExistingImprovement.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblExistingImprovement.Location = New System.Drawing.Point(0, 251)
         Me.lblExistingImprovement.Name = "lblExistingImprovement"
-        Me.lblExistingImprovement.Size = New System.Drawing.Size(224, 150)
+        Me.lblExistingImprovement.Size = New System.Drawing.Size(240, 175)
         Me.lblExistingImprovement.TabIndex = 29
         '
         'lblExistingOverall
         '
         Me.lblExistingOverall.BackColor = System.Drawing.Color.White
-        Me.lblExistingOverall.Location = New System.Drawing.Point(249, 216)
+        Me.lblExistingOverall.Dock = System.Windows.Forms.DockStyle.Top
+        Me.lblExistingOverall.Location = New System.Drawing.Point(0, 160)
         Me.lblExistingOverall.Name = "lblExistingOverall"
-        Me.lblExistingOverall.Size = New System.Drawing.Size(224, 65)
+        Me.lblExistingOverall.Size = New System.Drawing.Size(240, 91)
         Me.lblExistingOverall.TabIndex = 28
         '
         'Label7
         '
-        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(613, 41)
+        Me.Label7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label7.Location = New System.Drawing.Point(0, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(61, 16)
+        Me.Label7.Size = New System.Drawing.Size(291, 16)
         Me.Label7.TabIndex = 25
         Me.Label7.Text = "To import"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(309, 41)
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label6.Location = New System.Drawing.Point(0, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(55, 16)
+        Me.Label6.Size = New System.Drawing.Size(240, 16)
         Me.Label6.TabIndex = 24
         Me.Label6.Text = "Existing"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lblStudentName
         '
@@ -222,20 +224,18 @@ Partial Class ImportSyncResolverBTEC
         Me.olvOutcomes.AllColumns.Add(Me.OlvColumn12)
         Me.olvOutcomes.AllColumns.Add(Me.OlvColumn2)
         Me.olvOutcomes.AllowColumnReorder = True
-        Me.olvOutcomes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvOutcomes.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvOutcomes.CellEditUseWholeCell = False
         Me.olvOutcomes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumnOutcomeName, Me.OlvColumn6, Me.OlvColumn7, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn10, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn2})
         Me.olvOutcomes.Cursor = System.Windows.Forms.Cursors.Default
+        Me.olvOutcomes.Dock = System.Windows.Forms.DockStyle.Top
         Me.olvOutcomes.EmptyListMsg = "No learning outcomes for this assessment"
         Me.olvOutcomes.FullRowSelect = True
         Me.olvOutcomes.HideSelection = False
-        Me.olvOutcomes.Location = New System.Drawing.Point(250, 64)
+        Me.olvOutcomes.Location = New System.Drawing.Point(0, 16)
         Me.olvOutcomes.Name = "olvOutcomes"
         Me.olvOutcomes.ShowGroups = False
-        Me.olvOutcomes.Size = New System.Drawing.Size(221, 144)
+        Me.olvOutcomes.Size = New System.Drawing.Size(240, 144)
         Me.olvOutcomes.TabIndex = 43
         Me.olvOutcomes.TriggerCellOverEventsWhenOverHeader = False
         Me.olvOutcomes.UseCompatibleStateImageBehavior = False
@@ -320,20 +320,18 @@ Partial Class ImportSyncResolverBTEC
         Me.ObjectListView1.AllColumns.Add(Me.OlvColumn16)
         Me.ObjectListView1.AllColumns.Add(Me.OlvColumn17)
         Me.ObjectListView1.AllowColumnReorder = True
-        Me.ObjectListView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ObjectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.ObjectListView1.CellEditUseWholeCell = False
         Me.ObjectListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn16, Me.OlvColumn17})
         Me.ObjectListView1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.ObjectListView1.Dock = System.Windows.Forms.DockStyle.Top
         Me.ObjectListView1.EmptyListMsg = "No learning outcomes for this assessment"
         Me.ObjectListView1.FullRowSelect = True
         Me.ObjectListView1.HideSelection = False
-        Me.ObjectListView1.Location = New System.Drawing.Point(481, 64)
+        Me.ObjectListView1.Location = New System.Drawing.Point(0, 16)
         Me.ObjectListView1.Name = "ObjectListView1"
         Me.ObjectListView1.ShowGroups = False
-        Me.ObjectListView1.Size = New System.Drawing.Size(256, 144)
+        Me.ObjectListView1.Size = New System.Drawing.Size(291, 144)
         Me.ObjectListView1.TabIndex = 44
         Me.ObjectListView1.TriggerCellOverEventsWhenOverHeader = False
         Me.ObjectListView1.UseCompatibleStateImageBehavior = False
@@ -405,34 +403,56 @@ Partial Class ImportSyncResolverBTEC
         Me.OlvColumn17.Text = "Grade"
         Me.OlvColumn17.Width = 77
         '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.Location = New System.Drawing.Point(244, 43)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.lblExistingImprovement)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.lblExistingOverall)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.olvOutcomes)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnUseExisting)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label6)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.lblImportImprovement)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.lblImportOverall)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.ObjectListView1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Label7)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnUseImport)
+        Me.SplitContainer1.Size = New System.Drawing.Size(535, 458)
+        Me.SplitContainer1.SplitterDistance = 240
+        Me.SplitContainer1.TabIndex = 45
+        '
         'ImportSyncResolverBTEC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(777, 499)
-        Me.Controls.Add(Me.ObjectListView1)
-        Me.Controls.Add(Me.olvOutcomes)
         Me.Controls.Add(Me.btnClose)
-        Me.Controls.Add(Me.btnUseImport)
-        Me.Controls.Add(Me.btnUseExisting)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.lblImportImprovement)
-        Me.Controls.Add(Me.lblImportOverall)
-        Me.Controls.Add(Me.lblExistingImprovement)
-        Me.Controls.Add(Me.lblExistingOverall)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblStudentName)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lstStudentID)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ImportSyncResolverBTEC"
         Me.Text = "BTEC Asmt Sync Resolver"
         CType(Me.olvOutcomes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectListView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -473,4 +493,5 @@ Partial Class ImportSyncResolverBTEC
     Friend WithEvents OlvColumn15 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn16 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn17 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents SplitContainer1 As SplitContainer
 End Class
