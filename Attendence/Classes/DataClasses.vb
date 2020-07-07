@@ -1963,25 +1963,33 @@ Public Class StudentAssignment
             End If
         Next
 
-        FirstUserFullName = xElement.GetAttribute("FirstUserFullName")
-        LastUserFullName = xElement.GetAttribute("LastUserFullName")
+        If BaseAssignment IsNot Nothing Then
+            FirstUserFullName = xElement.GetAttribute("FirstUserFullName")
+            LastUserFullName = xElement.GetAttribute("LastUserFullName")
 
-        FirstTryPoints = ConvertToInt32(xElement.GetAttribute("FirstTryPoints"), 0)
-        SecondTryPoints = ConvertToInt32(xElement.GetAttribute("SecondTryPoints"), 0)
-        ThirdTryPoints = ConvertToInt32(xElement.GetAttribute("ThirdTryPoints"), 0)
+            FirstTryPoints = ConvertToInt32(xElement.GetAttribute("FirstTryPoints"), 0)
+            SecondTryPoints = ConvertToInt32(xElement.GetAttribute("SecondTryPoints"), 0)
+            ThirdTryPoints = ConvertToInt32(xElement.GetAttribute("ThirdTryPoints"), 0)
 
-        OverallComments = xElement.GetAttribute("OverallComments")
-        ImprovementComments = xElement.GetAttribute("ImprovementComments")
-        OverallCommentsRework = xElement.GetAttribute("OverallCommentsRework")
-        ImprovementCommentsRework = xElement.GetAttribute("ImprovementCommentsRework")
-        Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
+            OverallComments = xElement.GetAttribute("OverallComments")
+            ImprovementComments = xElement.GetAttribute("ImprovementComments")
+            OverallCommentsRework = xElement.GetAttribute("OverallCommentsRework")
+            ImprovementCommentsRework = xElement.GetAttribute("ImprovementCommentsRework")
+            Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
 
 
-        Me.Student = Student
+            Me.Student = Student
 
-        FirstTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("FirstTryPrintDate"), DATE_NO_DATE)
-        SecondTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("SecondTryPrintDate"), DATE_NO_DATE)
-        ThirdTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("ThirdTryPrintDate"), DATE_NO_DATE)
+            FirstTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("FirstTryPrintDate"), DATE_NO_DATE)
+            SecondTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("SecondTryPrintDate"), DATE_NO_DATE)
+            ThirdTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("ThirdTryPrintDate"), DATE_NO_DATE)
+
+        Else
+            '-- This happens when a ClassAssignment gets deleted but since
+            '   student's performance is held under the student branch, it can still persist
+            '   so we purge it here, on load
+            Application.DoEvents() '-- for breakpoint only
+        End If
 
 
     End Sub
@@ -2174,65 +2182,67 @@ Public Class StudentAssignmentBTEC
             End If
         Next
 
-        FirstUserFullName = xElement.GetAttribute("FirstUserFullName")
-        LastUserFullName = xElement.GetAttribute("LastUserFullName")
+        If BaseAssignment IsNot Nothing Then
+            FirstUserFullName = xElement.GetAttribute("FirstUserFullName")
+            LastUserFullName = xElement.GetAttribute("LastUserFullName")
 
 
-        OverallComments = xElement.GetAttribute("OverallComments")
-        ImprovementComments = xElement.GetAttribute("ImprovementComments")
-        OverallCommentsRework = xElement.GetAttribute("OverallCommentsRework")
-        ImprovementCommentsRework = xElement.GetAttribute("ImprovementCommentsRework")
-        ObservationComments = xElement.GetAttribute("ObservationComments")
-        Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
+            OverallComments = xElement.GetAttribute("OverallComments")
+            ImprovementComments = xElement.GetAttribute("ImprovementComments")
+            OverallCommentsRework = xElement.GetAttribute("OverallCommentsRework")
+            ImprovementCommentsRework = xElement.GetAttribute("ImprovementCommentsRework")
+            ObservationComments = xElement.GetAttribute("ObservationComments")
+            Processed = ConvertToBool(xElement.GetAttribute("Processed"), False)
 
-        Dim xOutcomeResultList As Xml.XmlNodeList = xElement.SelectNodes("OutcomeResult")
-        For Each xOutcomeResultNode As Xml.XmlElement In xOutcomeResultList
-            Dim objOutcomeResult As New OutcomeResult(xOutcomeResultNode, BaseAssignment, Me)
-            Outcomes.Add(objOutcomeResult)
-        Next
+            Dim xOutcomeResultList As Xml.XmlNodeList = xElement.SelectNodes("OutcomeResult")
+            For Each xOutcomeResultNode As Xml.XmlElement In xOutcomeResultList
+                Dim objOutcomeResult As New OutcomeResult(xOutcomeResultNode, BaseAssignment, Me)
+                Outcomes.Add(objOutcomeResult)
+            Next
 
-        '-- Changed in version 2
-        '-- Need to add any outcome results for the higher outcomes (M's and D's)
+            '-- Changed in version 2
+            '-- Need to add any outcome results for the higher outcomes (M's and D's)
 
-        If Me.BaseAssignment.Outcomes.Count > Me.Outcomes.Count Then
-            Dim objBaseOutcome As AssignmentOutcome
-            Dim objOutcomeResult As OutcomeResult
-            For intCounterBase As Integer = 0 To Me.BaseAssignment.Outcomes.Count - 1
-                objBaseOutcome = Me.BaseAssignment.Outcomes(intCounterBase)
+            If Me.BaseAssignment.Outcomes.Count > Me.Outcomes.Count Then
+                Dim objBaseOutcome As AssignmentOutcome
+                Dim objOutcomeResult As OutcomeResult
+                For intCounterBase As Integer = 0 To Me.BaseAssignment.Outcomes.Count - 1
+                    objBaseOutcome = Me.BaseAssignment.Outcomes(intCounterBase)
 
-                '-- Is this BaseOutcome represented on this student's assignment? If not, add it
-                objOutcomeResult = Nothing '-- reset
-                For intCounterStudent As Integer = 0 To Me.Outcomes.Count - 1
-                    If Me.Outcomes(intCounterStudent).BaseOutcome Is objBaseOutcome Then
-                        objOutcomeResult = Me.Outcomes(intCounterStudent)
-                        Exit For '-- This BaseOutcome is already represented on this student's assignment
+                    '-- Is this BaseOutcome represented on this student's assignment? If not, add it
+                    objOutcomeResult = Nothing '-- reset
+                    For intCounterStudent As Integer = 0 To Me.Outcomes.Count - 1
+                        If Me.Outcomes(intCounterStudent).BaseOutcome Is objBaseOutcome Then
+                            objOutcomeResult = Me.Outcomes(intCounterStudent)
+                            Exit For '-- This BaseOutcome is already represented on this student's assignment
+                        End If
+                    Next
+                    If objOutcomeResult Is Nothing Then
+                        '-- This assignment outcome is NOT represented on this student's assignment, so add it
+                        objOutcomeResult = New OutcomeResult(objBaseOutcome, Me)
+                        If ConvertToBool(xElement.GetAttribute(objBaseOutcome.Name & "Achieved"), True) Then
+                            objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved
+                        Else
+                            objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
+                        End If
+                        Me.Outcomes.Add(objOutcomeResult)
                     End If
                 Next
-                If objOutcomeResult Is Nothing Then
-                    '-- This assignment outcome is NOT represented on this student's assignment, so add it
-                    objOutcomeResult = New OutcomeResult(objBaseOutcome, Me)
-                    If ConvertToBool(xElement.GetAttribute(objBaseOutcome.Name & "Achieved"), True) Then
-                        objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.Achieved
-                    Else
-                        objOutcomeResult.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved
-                    End If
-                    Me.Outcomes.Add(objOutcomeResult)
-                End If
-            Next
+            End If
+
+            Me.Student = Student
+
+            FirstTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("FirstTryPrintDate"), DATE_NO_DATE)
+            SecondTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("SecondTryPrintDate"), DATE_NO_DATE)
+            ThirdTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("ThirdTryPrintDate"), DATE_NO_DATE)
+
+        Else
+            '-- This happens when a ClassAssignment gets deleted but since
+            '   student's performance is held under the student branch, it can still persist
+            '   so we purge it here, on load
+            Application.DoEvents() '-- for breakpoint only
         End If
 
-        'M1Achieved = ConvertToBool(xElement.GetAttribute("M1Achieved"), True)
-        'M2Achieved = ConvertToBool(xElement.GetAttribute("M2Achieved"), True)
-        'M3Achieved = ConvertToBool(xElement.GetAttribute("M3Achieved"), True)
-        'D1Achieved = ConvertToBool(xElement.GetAttribute("D1Achieved"), True)
-        'D2Achieved = ConvertToBool(xElement.GetAttribute("D2Achieved"), True)
-        'D3Achieved = ConvertToBool(xElement.GetAttribute("D3Achieved"), True)
-
-        Me.Student = Student
-
-        FirstTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("FirstTryPrintDate"), DATE_NO_DATE)
-        SecondTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("SecondTryPrintDate"), DATE_NO_DATE)
-        ThirdTryPrintDate = ConvertToDateFromXML(xElement.GetAttribute("ThirdTryPrintDate"), DATE_NO_DATE)
 
 
     End Sub
@@ -4008,19 +4018,20 @@ Public Class Student
         Dim xAssignmentList As Xml.XmlNodeList = xElement.SelectNodes("StudentAssignment")
         For Each xAssignmentNode As Xml.XmlElement In xAssignmentList
             Dim objAssignment As New StudentAssignmentBTEC(xAssignmentNode, Me)
-            If objAssignment.OverallComments.StartsWith("Imported ") Then
+            If objAssignment.BaseAssignment Is Nothing OrElse objAssignment.OverallComments.StartsWith("Imported ") Then
+                '-- BaseAssignment is nothing when purging student performance data on an assignment which was deleted
                 Application.DoEvents()
             Else
                 AssignmentsBTEC.Add(objAssignment)
             End If
-            'Dim objAssignment As New StudentAssignment(xAssignmentNode, Me)
-            'Assignments.Add(objAssignment)
         Next
 
         xAssignmentList = xElement.SelectNodes("StudentAssignmentNormal")
         For Each xAssignmentNode As Xml.XmlElement In xAssignmentList
             Dim objAssignment As New StudentAssignment(xAssignmentNode, Me)
-            Assignments.Add(objAssignment)
+            If objAssignment.BaseAssignment IsNot Nothing Then
+                Assignments.Add(objAssignment)
+            End If
         Next
     End Sub
     Public Class StudentModuleResult

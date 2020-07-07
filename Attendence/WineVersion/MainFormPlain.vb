@@ -849,7 +849,7 @@ Public Class MainFormPlain
         If GetSelectedAssignment() Is Nothing Then
             MessageBox.Show("Please select an assignment first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            If MessageBox.Show("Are you sure you want to delete " & GetSelectedAssignment.Name & " for the class " & GetSelectedClass.Name & "?" &
+            If MessageBox.Show("Are you sure you want to delete " & GetSelectedAssignment.Name & " for the class " & GetSelectedClassGroup.Name & "?" &
                                Environment.NewLine & Environment.NewLine, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 If GetSelectedAssignment.AssignmentType = AssignmentType.BTEC Then
                     AddApplicationHistory("Deleted BTEC Assignment: " & GetSelectedAssignment.Name)
