@@ -331,6 +331,7 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
+        Me.StudentAssignmentErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -582,7 +583,7 @@ Partial Class MainFormPlain
         '
         Me.llblSemesterLabel.Location = New System.Drawing.Point(12, 9)
         Me.llblSemesterLabel.Name = "llblSemesterLabel"
-        Me.llblSemesterLabel.Size = New System.Drawing.Size(72, 19)
+        Me.llblSemesterLabel.Size = New System.Drawing.Size(64, 20)
         Me.llblSemesterLabel.TabIndex = 37
         Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblSemesterLabel.Values.Text = "Semester:"
@@ -1862,19 +1863,19 @@ Partial Class MainFormPlain
         'FirstTryToolStripMenuItem
         '
         Me.FirstTryToolStripMenuItem.Name = "FirstTryToolStripMenuItem"
-        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.FirstTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.FirstTryToolStripMenuItem.Text = "First try"
         '
         'SecondTryToolStripMenuItem
         '
         Me.SecondTryToolStripMenuItem.Name = "SecondTryToolStripMenuItem"
-        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SecondTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.SecondTryToolStripMenuItem.Text = "Second try"
         '
         'ThirdTryToolStripMenuItem
         '
         Me.ThirdTryToolStripMenuItem.Name = "ThirdTryToolStripMenuItem"
-        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ThirdTryToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.ThirdTryToolStripMenuItem.Text = "Third try"
         '
         'MarkGroupPresentationToolStripMenuItem
@@ -1977,7 +1978,7 @@ Partial Class MainFormPlain
         '
         'ReportsToolStripMenuItem
         '
-        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem, Me.StudentsWithSelectedAssignmentsToolStripMenuItem, Me.AttendanceAssessmentStatusToolStripMenuItem, Me.AttendanceForClassToolStripMenuItem})
+        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.StudentAssignmentErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem, Me.StudentsWithSelectedAssignmentsToolStripMenuItem, Me.AttendanceAssessmentStatusToolStripMenuItem, Me.AttendanceForClassToolStripMenuItem})
         Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
         Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ReportsToolStripMenuItem.Text = "&Reports"
@@ -1986,7 +1987,7 @@ Partial Class MainFormPlain
         '
         Me.StudentAttendanceErrorsToolStripMenuItem.Name = "StudentAttendanceErrorsToolStripMenuItem"
         Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.StudentAttendanceErrorsToolStripMenuItem.Text = "Student &Attendance Errors..."
+        Me.StudentAttendanceErrorsToolStripMenuItem.Text = "Student &attendance errors..."
         '
         'ToolStripSeparator17
         '
@@ -2513,6 +2514,12 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
+        'StudentAssignmentErrorsToolStripMenuItem
+        '
+        Me.StudentAssignmentErrorsToolStripMenuItem.Name = "StudentAssignmentErrorsToolStripMenuItem"
+        Me.StudentAssignmentErrorsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.StudentAssignmentErrorsToolStripMenuItem.Text = "Student assignment errors..."
+        '
         'MainFormPlain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -2855,4 +2862,5 @@ Partial Class MainFormPlain
     Friend WithEvents ExportAllGradeDataToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AttendanceForClassToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents llblSemesterLabel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents StudentAssignmentErrorsToolStripMenuItem As ToolStripMenuItem
 End Class

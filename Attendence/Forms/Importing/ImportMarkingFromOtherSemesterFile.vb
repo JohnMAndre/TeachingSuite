@@ -909,6 +909,12 @@ Public Class ImportMarkingFromOtherSemesterFile
                                 '-- Just import full assignment since there is no existing
                                 '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
                                 permAsmtNew = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+
+                                If permAsmtNew.BaseAssignment Is Nothing Then
+                                    MessageBox.Show("There is no matching assignment in the current database.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    Exit Sub
+                                End If
+
                                 If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
                                     '-- Need to override the marker's name
                                     permAsmtNew.FirstUserFullName = txtOverrideMarkerName.Text.Trim()

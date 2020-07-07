@@ -3695,4 +3695,8 @@ Public Class MainFormPlain
         End If
     End Sub
 
+    Private Sub StudentAssignmentErrorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StudentAssignmentErrorsToolStripMenuItem.Click
+        Dim frm As New EmptyStudentAssignments()
+        frm.Show()
+    End Sub
 End Class

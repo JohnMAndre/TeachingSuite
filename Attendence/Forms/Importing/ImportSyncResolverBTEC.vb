@@ -113,6 +113,8 @@
             If MessageBox.Show("Are you sure you want to close and ignore the remaining assignments?", PRODUCT_NAME, MessageBoxButtons.YesNo) = DialogResult.Yes Then
                 Me.Close()
             End If
+        Else
+            Me.Close()
         End If
     End Sub
 End Class

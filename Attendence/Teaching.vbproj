@@ -172,6 +172,12 @@
     <Compile Include="Forms\Reports\AttendanceReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Reports\EmptyStudentAssignments.Designer.vb">
+      <DependentUpon>EmptyStudentAssignments.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\EmptyStudentAssignments.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Utilities\AssignWorkshopGroups.Designer.vb">
       <DependentUpon>AssignWorkshopGroups.vb</DependentUpon>
     </Compile>
@@ -658,6 +664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\AttendanceReport.resx">
       <DependentUpon>AttendanceReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\EmptyStudentAssignments.resx">
+      <DependentUpon>EmptyStudentAssignments.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Utilities\AssignWorkshopGroups.resx">
       <DependentUpon>AssignWorkshopGroups.vb</DependentUpon>
