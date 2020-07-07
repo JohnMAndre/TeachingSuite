@@ -225,15 +225,19 @@ Public Class EmptyStudentAssignments
     Private Sub DeleteSelectedBTECAssignment()
         Dim lst As List(Of AssignmentReportDataBTEC) = GetSelectedBTECAssignmentsFromGrid()
         For Each obj As AssignmentReportDataBTEC In lst
+            obj.Student.AddToActivityLog("Manually deleted empty BTEC assignment: " & obj.Assignment.BaseAssignment.Name & ".")
             obj.Student.AssignmentsBTEC.Remove(obj.Assignment) '-- This should not cause a problem because we are delete deep down the tree, so iterator should not change
         Next
+        AddApplicationHistory("Manually deleted " & lst.Count().ToString("#,##0") & " empty BTEC assignments.")
         ReloadData()
     End Sub
     Private Sub DeleteSelectedNormalAssignment()
         Dim lst As List(Of AssignmentReportDataNormal) = GetSelectedNormalAssignmentsFromGrid()
         For Each obj As AssignmentReportDataNormal In lst
+            obj.Student.AddToActivityLog("Manually deleted empty normal assignment: " & obj.Assignment.BaseAssignment.Name & ".")
             obj.Student.Assignments.Remove(obj.Assignment) '-- This should not cause a problem because we are delete deep down the tree, so iterator should not change
         Next
+        AddApplicationHistory("Manually deleted " & lst.Count().ToString("#,##0") & " empty normal assignments.")
         ReloadData()
     End Sub
     Private Sub btnOpen_Click(sender As Object, e As EventArgs) Handles btnOpen.Click
