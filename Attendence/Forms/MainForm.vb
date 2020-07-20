@@ -1160,7 +1160,7 @@ Public Class MainForm
         If GetSelectedClass() Is Nothing Then
             MessageBox.Show("Please select a class to group.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            Using frm As New BuildGroups(GetSelectedClass())
+            Using frm As New BuildGroupsK(GetSelectedClass())
                 frm.ShowDialog(Me)
             End Using
         End If

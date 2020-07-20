@@ -199,6 +199,13 @@ Public Class Semester
             '-- Load from data file
             Dim strAutoSaveFilename As String
 
+            '-- If this class gets instanciated from another app
+            '   then it will throw an error everywhere AppSettings is, because that gets instanciated
+            '   only in MainForm
+            If AppSettings Is Nothing Then
+                AppSettings = New ApplicationSettings()
+            End If
+
             m_strFilename = GetMainDataFilename(name)
             strAutoSaveFilename = GetAutoSaveFilename(name)
 

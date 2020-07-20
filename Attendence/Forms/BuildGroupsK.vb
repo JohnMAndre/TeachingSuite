@@ -1,4 +1,5 @@
-﻿Public Class BuildGroups
+Public Class BuildGroupsK
+
     Private m_assignmentStudents As New List(Of Integer)
     Private m_class As SchoolClass
 
@@ -11,24 +12,8 @@
 
         olvStudents.SetObjects(m_class.Students)
     End Sub
-
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Close()
-    End Sub
-
-    Private Sub BuildGroupsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuildGroupsToolStripMenuItem.Click
+    Private Sub llblCreateGroups_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblCreateGroups.LinkClicked
         Try
-            Dim lstGroupNames As New List(Of String)
-            If chkUseCustomGroupNames.Checked Then
-                For Each line As String In txtGroupNames.Lines
-                    lstGroupNames.Add(line)
-                Next
-            Else
-                For intCounter As Integer = 1 To nudNumberOfGroups.Value
-                    lstGroupNames.Add("Group_" & intCounter.ToString("00"))
-                Next
-            End If
-
             If nudNumberOfGroups.Value > 1 Then
                 '-- Randomly assign members to each group
                 Randomize()
@@ -55,7 +40,7 @@
                         m_class.Students(intPos).Tags &= " "
                     End If
 
-                    m_class.Students(intPos).Tags &= lstGroupNames(intGroup - 1)
+                    m_class.Students(intPos).Tags &= "Group " & intGroup.ToString()
                     Me.olvStudents.RefreshObject(m_class.Students(intPos))
                     m_assignmentStudents.Add(intPos)
                 Loop
@@ -68,19 +53,12 @@
         End Try
     End Sub
 
-    Private Sub nudGroups_ValueChanged(sender As Object, e As EventArgs) Handles nudNumberOfGroups.ValueChanged
+    Private Sub nudNumberOfGroups_ValueChanged(sender As System.Object, e As System.EventArgs) Handles nudNumberOfGroups.ValueChanged
         Try
-            UpdateStats()
+            Dim dblGroupSize As Double = olvStudents.Items.Count / nudNumberOfGroups.Value
+            lblMembersPerGroup.Text = dblGroupSize.ToString("#,##0.0") & " students in each group"
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK)
         End Try
-    End Sub
-    Private Sub UpdateStats()
-        Dim dblGroupSize As Double = olvStudents.Items.Count / nudNumberOfGroups.Value
-        lblMembersPerGroup.Text = dblGroupSize.ToString("#,##0.0") & " students in each group"
-    End Sub
-
-    Private Sub BuildGroups_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        UpdateStats()
     End Sub
 End Class
