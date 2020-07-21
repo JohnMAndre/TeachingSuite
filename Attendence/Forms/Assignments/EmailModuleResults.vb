@@ -603,10 +603,22 @@ Public Class EmailModuleResults
                         str.Append("<br>")
                         str.Append("<b>Overall comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallComments.Replace(vbLf, "<br>"))
                         str.Append("<br>")
+                        If asmt.OverallCommentsRework.Length > 0 Then
+                            str.Append("<br>")
+                            str.Append("<b>Overall comments for rework of " & asmt.BaseAssignment.Name & ": </b>" & asmt.OverallCommentsRework.Replace(vbLf, "<br>"))
+                            str.Append("<br>")
+                            str.Append("<br>")
+                        End If
                     Else
                         str.Append(Environment.NewLine)
                         str.Append("Overall comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.OverallComments)
                         str.Append(Environment.NewLine)
+                        If asmt.OverallCommentsRework.Length > 0 Then
+                            str.Append(Environment.NewLine)
+                            str.Append("Overall comments for rework of " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.OverallCommentsRework)
+                            str.Append(Environment.NewLine)
+                            str.Append(Environment.NewLine)
+                        End If
                     End If
                 End If
 
@@ -616,11 +628,23 @@ Public Class EmailModuleResults
                         str.Append("<b>Improvement comments for " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementComments.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
                         str.Append("<br>")
                         str.Append("<br>")
+                        If asmt.ImprovementCommentsRework.Length > 0 Then
+                            str.Append("<br>")
+                            str.Append("<b>Improvement comments for rework of " & asmt.BaseAssignment.Name & ": </b>" & asmt.ImprovementCommentsRework.Replace(vbLf, "<br>")) '-- Not sure wby newline does not work but only LF char is there
+                            str.Append("<br>")
+                            str.Append("<br>")
+                        End If
                     Else
                         str.Append(Environment.NewLine)
                         str.Append("Improvement comments for " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.ImprovementComments)
                         str.Append(Environment.NewLine)
                         str.Append(Environment.NewLine)
+                        If asmt.ImprovementCommentsRework.Length > 0 Then
+                            str.Append(Environment.NewLine)
+                            str.Append("Improvement comments for rework of " & asmt.BaseAssignment.Name & ": " & Environment.NewLine & asmt.ImprovementCommentsRework)
+                            str.Append(Environment.NewLine)
+                            str.Append(Environment.NewLine)
+                        End If
                     End If
                 End If
             End If
