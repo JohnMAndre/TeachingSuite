@@ -392,8 +392,14 @@ Public Class ActualSessionItem
         UniqueID = Guid.NewGuid.ToString()
         NumberOfTimesExported = 0
     End Sub
-
+    Public Enum ActualSessionItemTypeEnum
+        Unknown
+        Lecture
+        Workshop
+        Tutorial
+    End Enum
     Public Property SchoolClass As SchoolClass
+    Public Property SessionItemType As ActualSessionItemTypeEnum
     Public Property StartDateTime As Date
     Public Property SessionNumber As Integer
     Public Property Topic As String '-- name,title, id, etc.
@@ -1804,6 +1810,16 @@ Public Class SchoolClass
             Dim obj As New ActualSessionItem(Me)
             obj.StartDateTime = Xml.XmlConvert.ToDateTime(xActualSessionItem.GetAttribute("StartDateTime"), Xml.XmlDateTimeSerializationMode.Unspecified)
             obj.ScheduleType = [Enum].Parse(GetType(ScheduleTypeEnum), xActualSessionItem.GetAttribute("ScheduleType"), True)
+
+            '-- Added July 2020
+            Dim temp As ActualSessionItem.ActualSessionItemTypeEnum
+            Dim boolTemp As Boolean = [Enum].TryParse(Of ActualSessionItem.ActualSessionItemTypeEnum)(xActualSessionItem.GetAttribute("SessionItemType"), temp)
+            If boolTemp Then
+                obj.SessionItemType = temp
+            Else
+                obj.SessionItemType = ActualSessionItem.ActualSessionItemTypeEnum.Unknown
+            End If
+
             obj.Topic = xActualSessionItem.GetAttribute("Topic")
             obj.Notes = xActualSessionItem.InnerText
             obj.Location = xActualSessionItem.GetAttribute("Location")
@@ -1878,6 +1894,7 @@ Public Class SchoolClass
         For Each objActualScheduleItem As ActualSessionItem In ActualSessions
             xActualSessionItem = xActualSessionItems.AppendChild(xDoc.CreateElement("ActualSessionItem"))
             xActualSessionItem.SetAttribute("ScheduleType", objActualScheduleItem.ScheduleType.ToString())
+            xActualSessionItem.SetAttribute("SessionItemType", objActualScheduleItem.SessionItemType.ToString())
             xActualSessionItem.SetAttribute("StartDateTime", objActualScheduleItem.StartDateTime.ToString(DATE_TIME_FORMAT_XML))
             xActualSessionItem.SetAttribute("Topic", objActualScheduleItem.Topic)
             xActualSessionItem.SetAttribute("Prepped", objActualScheduleItem.Prepped.ToString())

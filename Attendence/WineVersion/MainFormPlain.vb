@@ -2314,11 +2314,15 @@ Public Class MainFormPlain
         If GetSelectedClass() Is Nothing Then
             MessageBox.Show("Please select a class to edit.", Application.ProductName)
         Else
-            Using frm As New ClassDetails(GetSelectedClass())
-                If frm.ShowDialog(Me) = DialogResult.OK Then
-                    LoadClasses()
-                End If
-            End Using
+            If ClassIsCombinedView(GetSelectedClass()) Then
+                MessageBox.Show("Unavailable for combined view.", Application.ProductName)
+            Else
+                Using frm As New ClassDetails(GetSelectedClass())
+                    If frm.ShowDialog(Me) = DialogResult.OK Then
+                        LoadClasses()
+                    End If
+                End Using
+            End If
         End If
 
     End Sub

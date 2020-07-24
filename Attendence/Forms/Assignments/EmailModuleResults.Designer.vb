@@ -444,7 +444,7 @@ Partial Class EmailModuleResults
         Me.KryptonLabel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonLabel2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 19)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(998, 20)
         Me.KryptonLabel2.TabIndex = 4
         Me.KryptonLabel2.Values.Text = "Students:"
         '
@@ -725,7 +725,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 204)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(59, 19)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(53, 20)
         Me.KryptonLabel3.TabIndex = 32
         Me.KryptonLabel3.Values.Text = "Subject:"
         '
@@ -733,7 +733,7 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 174)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(114, 19)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(104, 20)
         Me.KryptonLabel1.TabIndex = 31
         Me.KryptonLabel1.Values.Text = "Sending account:"
         '
@@ -741,16 +741,16 @@ Partial Class EmailModuleResults
         '
         Me.KryptonLabel9.Location = New System.Drawing.Point(3, 38)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(67, 19)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(59, 20)
         Me.KryptonLabel9.TabIndex = 69
         Me.KryptonLabel9.Values.Text = "Selected:"
         '
         'llblWorkshopFeedback
         '
         Me.llblWorkshopFeedback.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblWorkshopFeedback.Location = New System.Drawing.Point(136, 272)
+        Me.llblWorkshopFeedback.Location = New System.Drawing.Point(145, 272)
         Me.llblWorkshopFeedback.Name = "llblWorkshopFeedback"
-        Me.llblWorkshopFeedback.Size = New System.Drawing.Size(98, 19)
+        Me.llblWorkshopFeedback.Size = New System.Drawing.Size(89, 20)
         Me.llblWorkshopFeedback.TabIndex = 125
         Me.llblWorkshopFeedback.Values.Text = "Feedback only"
         '
@@ -788,12 +788,12 @@ Partial Class EmailModuleResults
         Me.olvStudents.HasCollapsibleGroups = False
         Me.olvStudents.HideSelection = False
         Me.olvStudents.IncludeColumnHeadersInCopy = True
-        Me.olvStudents.Location = New System.Drawing.Point(0, 19)
+        Me.olvStudents.Location = New System.Drawing.Point(0, 20)
         Me.olvStudents.Name = "olvStudents"
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
         Me.olvStudents.ShowItemCountOnGroups = True
-        Me.olvStudents.Size = New System.Drawing.Size(998, 625)
+        Me.olvStudents.Size = New System.Drawing.Size(998, 624)
         Me.olvStudents.TabIndex = 3
         Me.olvStudents.UseAlternatingBackColors = True
         Me.olvStudents.UseCompatibleStateImageBehavior = False

@@ -91,6 +91,7 @@ Partial Class ClassDetails
         Me.ctxmnuAttendanceSession = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteAttendanceSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddAttendanceSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OlvColumn19 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -124,13 +125,13 @@ Partial Class ClassDetails
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel.Name = "KryptonPanel"
-        Me.KryptonPanel.Size = New System.Drawing.Size(885, 442)
+        Me.KryptonPanel.Size = New System.Drawing.Size(907, 442)
         Me.KryptonPanel.TabIndex = 0
         '
         'btnShowAttendanceSessions
         '
         Me.btnShowAttendanceSessions.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowAttendanceSessions.Location = New System.Drawing.Point(597, 85)
+        Me.btnShowAttendanceSessions.Location = New System.Drawing.Point(619, 85)
         Me.btnShowAttendanceSessions.Name = "btnShowAttendanceSessions"
         Me.btnShowAttendanceSessions.Size = New System.Drawing.Size(38, 34)
         Me.btnShowAttendanceSessions.TabIndex = 80
@@ -145,7 +146,7 @@ Partial Class ClassDetails
         Me.txtNotes.Location = New System.Drawing.Point(461, 27)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(412, 47)
+        Me.txtNotes.Size = New System.Drawing.Size(434, 47)
         Me.txtNotes.TabIndex = 139
         '
         'llblCalculateTotalTime
@@ -173,13 +174,13 @@ Partial Class ClassDetails
         '
         Me.txtEmailAddress.Location = New System.Drawing.Point(130, 54)
         Me.txtEmailAddress.Name = "txtEmailAddress"
-        Me.txtEmailAddress.Size = New System.Drawing.Size(275, 19)
+        Me.txtEmailAddress.Size = New System.Drawing.Size(275, 22)
         Me.txtEmailAddress.TabIndex = 85
         '
         'llblCopyTopics
         '
         Me.llblCopyTopics.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblCopyTopics.Location = New System.Drawing.Point(663, 85)
+        Me.llblCopyTopics.Location = New System.Drawing.Point(685, 85)
         Me.llblCopyTopics.Name = "llblCopyTopics"
         Me.llblCopyTopics.Size = New System.Drawing.Size(38, 34)
         Me.llblCopyTopics.TabIndex = 82
@@ -190,7 +191,7 @@ Partial Class ClassDetails
         'llblPasteTopics
         '
         Me.llblPasteTopics.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblPasteTopics.Location = New System.Drawing.Point(707, 85)
+        Me.llblPasteTopics.Location = New System.Drawing.Point(729, 85)
         Me.llblPasteTopics.Name = "llblPasteTopics"
         Me.llblPasteTopics.Size = New System.Drawing.Size(38, 34)
         Me.llblPasteTopics.TabIndex = 81
@@ -201,7 +202,7 @@ Partial Class ClassDetails
         'btnCopySessionsFromOtherClass
         '
         Me.btnCopySessionsFromOtherClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCopySessionsFromOtherClass.Location = New System.Drawing.Point(781, 85)
+        Me.btnCopySessionsFromOtherClass.Location = New System.Drawing.Point(803, 85)
         Me.btnCopySessionsFromOtherClass.Name = "btnCopySessionsFromOtherClass"
         Me.btnCopySessionsFromOtherClass.Size = New System.Drawing.Size(38, 34)
         Me.btnCopySessionsFromOtherClass.TabIndex = 80
@@ -212,7 +213,7 @@ Partial Class ClassDetails
         'btnRegenerateActualSchedule
         '
         Me.btnRegenerateActualSchedule.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRegenerateActualSchedule.Location = New System.Drawing.Point(840, 86)
+        Me.btnRegenerateActualSchedule.Location = New System.Drawing.Point(862, 86)
         Me.btnRegenerateActualSchedule.Name = "btnRegenerateActualSchedule"
         Me.btnRegenerateActualSchedule.Size = New System.Drawing.Size(38, 34)
         Me.btnRegenerateActualSchedule.TabIndex = 80
@@ -223,7 +224,7 @@ Partial Class ClassDetails
         '
         Me.txtClassName.Location = New System.Drawing.Point(130, 27)
         Me.txtClassName.Name = "txtClassName"
-        Me.txtClassName.Size = New System.Drawing.Size(275, 19)
+        Me.txtClassName.Size = New System.Drawing.Size(275, 22)
         Me.txtClassName.TabIndex = 64
         '
         'MenuStrip1
@@ -232,7 +233,7 @@ Partial Class ClassDetails
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ScheduleItemToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(885, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(907, 24)
         Me.MenuStrip1.TabIndex = 83
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -246,7 +247,7 @@ Partial Class ClassDetails
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ScheduleItemToolStripMenuItem
@@ -314,7 +315,7 @@ Partial Class ClassDetails
         'btnShowNormalSchedule
         '
         Me.btnShowNormalSchedule.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowNormalSchedule.Location = New System.Drawing.Point(509, 85)
+        Me.btnShowNormalSchedule.Location = New System.Drawing.Point(531, 85)
         Me.btnShowNormalSchedule.Name = "btnShowNormalSchedule"
         Me.btnShowNormalSchedule.Size = New System.Drawing.Size(38, 34)
         Me.btnShowNormalSchedule.TabIndex = 79
@@ -325,7 +326,7 @@ Partial Class ClassDetails
         'btnShowSkips
         '
         Me.btnShowSkips.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowSkips.Location = New System.Drawing.Point(465, 85)
+        Me.btnShowSkips.Location = New System.Drawing.Point(487, 85)
         Me.btnShowSkips.Name = "btnShowSkips"
         Me.btnShowSkips.Size = New System.Drawing.Size(38, 34)
         Me.btnShowSkips.TabIndex = 78
@@ -336,7 +337,7 @@ Partial Class ClassDetails
         'btnShowActualSessions
         '
         Me.btnShowActualSessions.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnShowActualSessions.Location = New System.Drawing.Point(553, 85)
+        Me.btnShowActualSessions.Location = New System.Drawing.Point(575, 85)
         Me.btnShowActualSessions.Name = "btnShowActualSessions"
         Me.btnShowActualSessions.Size = New System.Drawing.Size(38, 34)
         Me.btnShowActualSessions.TabIndex = 77
@@ -356,14 +357,16 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvPlannedSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvPlannedSchedule.CellEditUseWholeCell = False
         Me.olvPlannedSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn2, Me.OlvColumn7, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvPlannedSchedule.ContextMenuStrip = Me.ctxmnuPlannedSchedule
         Me.olvPlannedSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvPlannedSchedule.FullRowSelect = True
+        Me.olvPlannedSchedule.HideSelection = False
         Me.olvPlannedSchedule.Location = New System.Drawing.Point(3, 126)
         Me.olvPlannedSchedule.Name = "olvPlannedSchedule"
         Me.olvPlannedSchedule.ShowGroups = False
-        Me.olvPlannedSchedule.Size = New System.Drawing.Size(881, 273)
+        Me.olvPlannedSchedule.Size = New System.Drawing.Size(903, 273)
         Me.olvPlannedSchedule.TabIndex = 75
         Me.olvPlannedSchedule.UseCompatibleStateImageBehavior = False
         Me.olvPlannedSchedule.UseFiltering = True
@@ -451,14 +454,16 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvSessionsToSkip.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvSessionsToSkip.CellEditUseWholeCell = False
         Me.olvSessionsToSkip.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.OlvColumn16})
         Me.olvSessionsToSkip.ContextMenuStrip = Me.ctxmnuSkipSessions
         Me.olvSessionsToSkip.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvSessionsToSkip.FullRowSelect = True
+        Me.olvSessionsToSkip.HideSelection = False
         Me.olvSessionsToSkip.Location = New System.Drawing.Point(3, 126)
         Me.olvSessionsToSkip.Name = "olvSessionsToSkip"
         Me.olvSessionsToSkip.ShowGroups = False
-        Me.olvSessionsToSkip.Size = New System.Drawing.Size(881, 273)
+        Me.olvSessionsToSkip.Size = New System.Drawing.Size(903, 273)
         Me.olvSessionsToSkip.TabIndex = 62
         Me.olvSessionsToSkip.UseCompatibleStateImageBehavior = False
         Me.olvSessionsToSkip.UseFiltering = True
@@ -498,7 +503,7 @@ Partial Class ClassDetails
         'btnOK
         '
         Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnOK.Location = New System.Drawing.Point(461, 405)
+        Me.btnOK.Location = New System.Drawing.Point(472, 405)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(90, 25)
         Me.btnOK.TabIndex = 66
@@ -509,7 +514,7 @@ Partial Class ClassDetails
         '
         Me.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(334, 405)
+        Me.btnCancel.Location = New System.Drawing.Point(345, 405)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 25)
         Me.btnCancel.TabIndex = 65
@@ -523,6 +528,7 @@ Partial Class ClassDetails
         Me.olvActualSessions.AllColumns.Add(Me.OlvColumn6)
         Me.olvActualSessions.AllColumns.Add(Me.OlvColumn3)
         Me.olvActualSessions.AllColumns.Add(Me.OlvColumn4)
+        Me.olvActualSessions.AllColumns.Add(Me.OlvColumn19)
         Me.olvActualSessions.AllColumns.Add(Me.OlvColumn8)
         Me.olvActualSessions.AllColumns.Add(Me.OlvColumn9)
         Me.olvActualSessions.AllColumns.Add(Me.OlvColumn11)
@@ -535,15 +541,17 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvActualSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
-        Me.olvActualSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn18})
+        Me.olvActualSessions.CellEditUseWholeCell = False
+        Me.olvActualSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn5, Me.OlvColumn6, Me.OlvColumn3, Me.OlvColumn4, Me.OlvColumn19, Me.OlvColumn8, Me.OlvColumn9, Me.OlvColumn11, Me.OlvColumn12, Me.OlvColumn10, Me.OlvColumn17, Me.OlvColumn18})
         Me.olvActualSessions.ContextMenuStrip = Me.ctxmnuActualSessions
         Me.olvActualSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvActualSessions.FullRowSelect = True
+        Me.olvActualSessions.HideSelection = False
         Me.olvActualSessions.Location = New System.Drawing.Point(3, 126)
         Me.olvActualSessions.Name = "olvActualSessions"
         Me.olvActualSessions.ShowGroups = False
         Me.olvActualSessions.ShowImagesOnSubItems = True
-        Me.olvActualSessions.Size = New System.Drawing.Size(881, 273)
+        Me.olvActualSessions.Size = New System.Drawing.Size(903, 273)
         Me.olvActualSessions.TabIndex = 76
         Me.olvActualSessions.UseCompatibleStateImageBehavior = False
         Me.olvActualSessions.UseFiltering = True
@@ -710,15 +718,17 @@ Partial Class ClassDetails
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvAttendanceSessions.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvAttendanceSessions.CellEditUseWholeCell = False
         Me.olvAttendanceSessions.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn21, Me.OlvColumn28})
         Me.olvAttendanceSessions.ContextMenuStrip = Me.ctxmnuAttendanceSession
         Me.olvAttendanceSessions.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvAttendanceSessions.FullRowSelect = True
+        Me.olvAttendanceSessions.HideSelection = False
         Me.olvAttendanceSessions.Location = New System.Drawing.Point(2, 126)
         Me.olvAttendanceSessions.Name = "olvAttendanceSessions"
         Me.olvAttendanceSessions.ShowGroups = False
         Me.olvAttendanceSessions.ShowImagesOnSubItems = True
-        Me.olvAttendanceSessions.Size = New System.Drawing.Size(881, 273)
+        Me.olvAttendanceSessions.Size = New System.Drawing.Size(903, 273)
         Me.olvAttendanceSessions.TabIndex = 80
         Me.olvAttendanceSessions.UseCompatibleStateImageBehavior = False
         Me.olvAttendanceSessions.UseFiltering = True
@@ -763,11 +773,18 @@ Partial Class ClassDetails
         Me.AddAttendanceSessionToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
         Me.AddAttendanceSessionToolStripMenuItem.Text = "&Add attendance session"
         '
+        'OlvColumn19
+        '
+        Me.OlvColumn19.AspectName = "SessionItemType"
+        Me.OlvColumn19.Text = "Type"
+        Me.OlvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn19.Width = 88
+        '
         'ClassDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(885, 442)
+        Me.ClientSize = New System.Drawing.Size(907, 442)
         Me.Controls.Add(Me.btnShowNormalSchedule)
         Me.Controls.Add(Me.btnShowSkips)
         Me.Controls.Add(Me.btnShowActualSessions)
@@ -882,4 +899,5 @@ Partial Class ClassDetails
     Friend WithEvents ctxmnuAttendanceSession As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents DeleteAttendanceSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddAttendanceSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
 End Class
