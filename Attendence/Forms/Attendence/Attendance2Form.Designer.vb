@@ -79,11 +79,6 @@ Partial Class Attendance2Form
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PublicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
-        Me.pbTimer = New System.Windows.Forms.PictureBox()
-        Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -91,6 +86,12 @@ Partial Class Attendance2Form
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblStudentsPresent = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
+        Me.pbTimer = New System.Windows.Forms.PictureBox()
+        Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
+        Me.HilightBirthdaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -147,7 +148,7 @@ Partial Class Attendance2Form
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem, Me.ToolStripSeparator4, Me.EditCurrentStudentToolStripMenuItem, Me.OverlayClockToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem, Me.ToolStripSeparator4, Me.EditCurrentStudentToolStripMenuItem, Me.OverlayClockToolStripMenuItem, Me.HilightBirthdaysToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
         Me.ViewToolStripMenuItem.Text = "&View"
@@ -433,7 +434,7 @@ Partial Class Attendance2Form
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'txtSessionDate
@@ -489,42 +490,6 @@ Partial Class Attendance2Form
         Me.dgvStudents.Size = New System.Drawing.Size(719, 429)
         Me.dgvStudents.TabIndex = 2
         '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 456)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(719, 22)
-        Me.StatusStrip1.TabIndex = 3
-        '
-        'lblStudentsPresent
-        '
-        Me.lblStudentsPresent.Name = "lblStudentsPresent"
-        Me.lblStudentsPresent.Size = New System.Drawing.Size(0, 17)
-        '
-        'tmrStudentCount
-        '
-        Me.tmrStudentCount.Enabled = True
-        Me.tmrStudentCount.Interval = 2000
-        '
-        'pbTimer
-        '
-        Me.pbTimer.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pbTimer.BackColor = System.Drawing.Color.Black
-        Me.pbTimer.Location = New System.Drawing.Point(0, 49)
-        Me.pbTimer.Name = "pbTimer"
-        Me.pbTimer.Size = New System.Drawing.Size(719, 407)
-        Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbTimer.TabIndex = 4
-        Me.pbTimer.TabStop = False
-        Me.pbTimer.Visible = False
-        '
-        'tmrClock
-        '
-        Me.tmrClock.Interval = 1000
-        '
         'Column1
         '
         Me.Column1.DataPropertyName = "AdminNumber"
@@ -574,6 +539,48 @@ Partial Class Attendance2Form
         Me.Column6.ReadOnly = True
         Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStudentsPresent})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 456)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(719, 22)
+        Me.StatusStrip1.TabIndex = 3
+        '
+        'lblStudentsPresent
+        '
+        Me.lblStudentsPresent.Name = "lblStudentsPresent"
+        Me.lblStudentsPresent.Size = New System.Drawing.Size(0, 17)
+        '
+        'tmrStudentCount
+        '
+        Me.tmrStudentCount.Enabled = True
+        Me.tmrStudentCount.Interval = 2000
+        '
+        'pbTimer
+        '
+        Me.pbTimer.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pbTimer.BackColor = System.Drawing.Color.Black
+        Me.pbTimer.Location = New System.Drawing.Point(0, 49)
+        Me.pbTimer.Name = "pbTimer"
+        Me.pbTimer.Size = New System.Drawing.Size(719, 407)
+        Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbTimer.TabIndex = 4
+        Me.pbTimer.TabStop = False
+        Me.pbTimer.Visible = False
+        '
+        'tmrClock
+        '
+        Me.tmrClock.Interval = 1000
+        '
+        'HilightBirthdaysToolStripMenuItem
+        '
+        Me.HilightBirthdaysToolStripMenuItem.Name = "HilightBirthdaysToolStripMenuItem"
+        Me.HilightBirthdaysToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.HilightBirthdaysToolStripMenuItem.Text = "&Hilight birthdays"
         '
         'Attendance2Form
         '
@@ -664,4 +671,5 @@ Partial Class Attendance2Form
     Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column6 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents HilightBirthdaysToolStripMenuItem As ToolStripMenuItem
 End Class

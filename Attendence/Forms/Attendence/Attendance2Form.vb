@@ -130,6 +130,9 @@
     End Sub
     Private Sub ReloadStudentsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ReloadStudentsToolStripMenuItem.Click
         LoadStudents(True)
+        If AppSettings.HighlightAttendanceBirthday Then
+            ShowBirthdayPeople()
+        End If
     End Sub
     Private Sub SetStudentCountLabel()
         Dim intStudents As Integer
@@ -174,6 +177,63 @@
         Return CType(dgvStudents.CurrentRow.DataBoundItem, StudentAttendanceData)
     End Function
 
+    Private Sub ShowBirthdayPeople()
+        For Each row As DataGridViewRow In dgvStudents.Rows
+            Dim stud As StudentAttendanceData = CType(row.DataBoundItem, StudentAttendanceData)
+            If stud.Student.DateOfBirth.Month = Date.Today.Month AndAlso stud.Student.DateOfBirth.Day = Date.Today.Day Then
+                Dim style As New DataGridViewCellStyle(row.Cells(4).Style)
+                style.BackColor = Color.Yellow
+                For intCounter As Integer = 0 To 5
+                    row.Cells(intCounter).Style = style
+                Next
+            End If
+        Next
+        'obj.AttendanceStatus = status
+        'obj.SeatedInRow = SeatedInRow '-- Added 2018-11-16
+        'dgvStudents.UpdateCellValue(4, dgvStudents.CurrentRow.Index)
+
+        'Dim intIndex As Integer = dgvStudents.CurrentRow.Index
+        'If intIndex > 2 Then
+        '    dgvStudents.FirstDisplayedScrollingRowIndex = intIndex - 2 '-- last three processed are on top
+        'End If
+
+        'If dgvStudents.CurrentRow.Index <= m_lstStudents.Count - 1 Then
+        '    row = dgvStudents.Rows(intIndex)
+        '    Dim style As New DataGridViewCellStyle(row.Cells(4).Style)
+        '    Select Case status
+        '        Case AttendanceStatusEnum.Present
+        '            style.BackColor = Color.LightGreen
+        '        Case AttendanceStatusEnum.Absent
+        '            style.BackColor = Color.Pink
+        '        Case AttendanceStatusEnum.Unknown
+        '            style.BackColor = Color.White
+        '        Case AttendanceStatusEnum.Excused
+        '            style.BackColor = Color.Yellow
+        '        Case AttendanceStatusEnum.Late
+        '            style.BackColor = Color.LightSkyBlue
+        '    End Select
+        '    For intCounter As Integer = 0 To 5
+        '        row.Cells(intCounter).Style = style
+        '    Next
+        '    row.Selected = False
+
+        '    Dim intCurrentIndex As Integer
+        '    If dgvStudents.CurrentRow.Index = m_lstStudents.Count - 1 Then
+        '        '-- Last row
+        '        intCurrentIndex = intIndex - 1
+        '    Else
+        '        intCurrentIndex = intIndex + 1
+        '    End If
+        '    row = dgvStudents.Rows(intCurrentIndex)
+
+        '    row.Selected = True
+        '    dgvStudents.CurrentCell = dgvStudents.Rows(intCurrentIndex).Cells(0)
+        'End If
+
+        'If m_frmPublic IsNot Nothing Then
+        '    m_frmPublic.UpdateStudent(obj)
+        'End If
+    End Sub
     Private Sub SetStudentStatus(status As AttendanceStatusEnum, Optional SeatedInRow As Integer = 0)
         If dgvStudents.SelectedRows.Count = 0 Then
             'dgvStudents.SelectedIndex = 0
@@ -518,7 +578,7 @@
         SetStudentStatus(AttendanceStatusEnum.Present, 9)
     End Sub
 
-    Private Sub dgvStudents_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles dgvStudents.RowPrePaint
-
+    Private Sub HilightBirthdaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HilightBirthdaysToolStripMenuItem.Click
+        ShowBirthdayPeople()
     End Sub
 End Class

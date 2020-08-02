@@ -98,9 +98,17 @@ Public Class AttendenceForm
             Else
                 newColor = NORMAL_COLOR '-- unknown
             End If
+        ElseIf AppSettings.HighlightAttendanceBirthday Then
+            '-- Highlight birthday students
+            If stud.DateOfBirth.Month = Date.Today.Month AndAlso stud.DateOfBirth.Day = Date.Today.Day Then
+                newColor = HIGHLIGHT_COLOR_1 '-- Birthday!
+            Else
+                newColor = NORMAL_COLOR '-- not
+            End If
         End If
 
-        If stud IsNot Nothing AndAlso (AppSettings.HighlightAttendanceUnknownGender OrElse AppSettings.HighlightAttendanceNoPresentationQuality) Then
+
+        If stud IsNot Nothing AndAlso (AppSettings.HighlightAttendanceUnknownGender OrElse AppSettings.HighlightAttendanceNoPresentationQuality OrElse AppSettings.HighlightAttendanceBirthday) Then
             olvi.BackColor = newColor
             For intCounter As Integer = 0 To olvi.SubItems.Count - 1
                 olvi.SubItems(intCounter).BackColor = newColor

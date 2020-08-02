@@ -63,9 +63,15 @@ Public Class OptionsForm
         If rdoAttendanceHighlightUnknownPresentationQuality.Checked Then
             AppSettings.HighlightAttendanceNoPresentationQuality = True
             AppSettings.HighlightAttendanceUnknownGender = False
+            AppSettings.HighlightAttendanceBirthday = False
         ElseIf rdoAttendanceHighlightUnknownGender.Checked Then
             AppSettings.HighlightAttendanceUnknownGender = True
             AppSettings.HighlightAttendanceNoPresentationQuality = False
+            AppSettings.HighlightAttendanceBirthday = False
+        ElseIf rdoAttendanceHighlightBirthdays.Checked Then
+            AppSettings.HighlightAttendanceNoPresentationQuality = False
+            AppSettings.HighlightAttendanceUnknownGender = False
+            AppSettings.HighlightAttendanceBirthday = True
         Else
             AppSettings.HighlightAttendanceUnknownGender = False
             AppSettings.HighlightAttendanceNoPresentationQuality = False
@@ -179,6 +185,8 @@ Public Class OptionsForm
                 rdoAttendanceHighlightUnknownPresentationQuality.Checked = True
             ElseIf AppSettings.HighlightAttendanceUnknownGender Then
                 rdoAttendanceHighlightUnknownGender.Checked = True
+            ElseIf AppSettings.HighlightAttendanceBirthday Then
+                rdoAttendanceHighlightBirthdays.Checked = True
             Else
                 rdoAttendanceHighlightNothing.Checked = True
             End If

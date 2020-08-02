@@ -141,6 +141,7 @@ Partial Class OptionsForm
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblLanguageWeight = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.rdoAttendanceHighlightBirthdays = New System.Windows.Forms.RadioButton()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -353,7 +354,7 @@ Partial Class OptionsForm
         '
         Me.txtCDDrive.Location = New System.Drawing.Point(191, 66)
         Me.txtCDDrive.Name = "txtCDDrive"
-        Me.txtCDDrive.Size = New System.Drawing.Size(53, 19)
+        Me.txtCDDrive.Size = New System.Drawing.Size(53, 22)
         Me.txtCDDrive.TabIndex = 130
         '
         'chkAutoSaveEnabled
@@ -361,7 +362,7 @@ Partial Class OptionsForm
         Me.chkAutoSaveEnabled.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkAutoSaveEnabled.Location = New System.Drawing.Point(66, 41)
         Me.chkAutoSaveEnabled.Name = "chkAutoSaveEnabled"
-        Me.chkAutoSaveEnabled.Size = New System.Drawing.Size(112, 20)
+        Me.chkAutoSaveEnabled.Size = New System.Drawing.Size(124, 19)
         Me.chkAutoSaveEnabled.TabIndex = 138
         Me.chkAutoSaveEnabled.Text = "Auto save every:"
         Me.chkAutoSaveEnabled.Values.Text = "Auto save every:"
@@ -370,7 +371,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel23.Location = New System.Drawing.Point(34, 144)
         Me.KryptonLabel23.Name = "KryptonLabel23"
-        Me.KryptonLabel23.Size = New System.Drawing.Size(144, 20)
+        Me.KryptonLabel23.Size = New System.Drawing.Size(157, 19)
         Me.KryptonLabel23.TabIndex = 134
         Me.KryptonLabel23.Values.Text = "Max app history file size:"
         '
@@ -378,7 +379,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel18.Location = New System.Drawing.Point(65, 92)
         Me.KryptonLabel18.Name = "KryptonLabel18"
-        Me.KryptonLabel18.Size = New System.Drawing.Size(113, 20)
+        Me.KryptonLabel18.Size = New System.Drawing.Size(121, 19)
         Me.KryptonLabel18.TabIndex = 134
         Me.KryptonLabel18.Values.Text = "Logging threshold:"
         '
@@ -386,7 +387,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel11.Location = New System.Drawing.Point(73, 117)
         Me.KryptonLabel11.Name = "KryptonLabel11"
-        Me.KryptonLabel11.Size = New System.Drawing.Size(105, 20)
+        Me.KryptonLabel11.Size = New System.Drawing.Size(114, 19)
         Me.KryptonLabel11.TabIndex = 132
         Me.KryptonLabel11.Values.Text = "Dictionary to use:"
         '
@@ -394,7 +395,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel13.Location = New System.Drawing.Point(42, 13)
         Me.KryptonLabel13.Name = "KryptonLabel13"
-        Me.KryptonLabel13.Size = New System.Drawing.Size(136, 20)
+        Me.KryptonLabel13.Size = New System.Drawing.Size(149, 19)
         Me.KryptonLabel13.TabIndex = 132
         Me.KryptonLabel13.Values.Text = "Data backups to retain:"
         '
@@ -402,7 +403,7 @@ Partial Class OptionsForm
         '
         Me.lblCDDrive.Location = New System.Drawing.Point(117, 66)
         Me.lblCDDrive.Name = "lblCDDrive"
-        Me.lblCDDrive.Size = New System.Drawing.Size(61, 20)
+        Me.lblCDDrive.Size = New System.Drawing.Size(69, 19)
         Me.lblCDDrive.TabIndex = 131
         Me.lblCDDrive.Values.Text = "CD Drive:"
         '
@@ -429,12 +430,13 @@ Partial Class OptionsForm
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.rdoAttendanceHighlightBirthdays)
         Me.GroupBox1.Controls.Add(Me.rdoAttendanceHighlightNothing)
         Me.GroupBox1.Controls.Add(Me.rdoAttendanceHighlightUnknownPresentationQuality)
         Me.GroupBox1.Controls.Add(Me.rdoAttendanceHighlightUnknownGender)
         Me.GroupBox1.Location = New System.Drawing.Point(15, 19)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(287, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(287, 123)
         Me.GroupBox1.TabIndex = 58
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Highlight on attendance"
@@ -476,9 +478,9 @@ Partial Class OptionsForm
         '
         Me.chkShowHiddenStudents.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkShowHiddenStudents.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkShowHiddenStudents.Location = New System.Drawing.Point(19, 136)
+        Me.chkShowHiddenStudents.Location = New System.Drawing.Point(19, 148)
         Me.chkShowHiddenStudents.Name = "chkShowHiddenStudents"
-        Me.chkShowHiddenStudents.Size = New System.Drawing.Size(228, 20)
+        Me.chkShowHiddenStudents.Size = New System.Drawing.Size(246, 19)
         Me.chkShowHiddenStudents.TabIndex = 57
         Me.chkShowHiddenStudents.Text = "Show hidden students on Attendence"
         Me.chkShowHiddenStudents.Values.Text = "Show hidden students on Attendence"
@@ -526,7 +528,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel15.Location = New System.Drawing.Point(3, 12)
         Me.KryptonLabel15.Name = "KryptonLabel15"
-        Me.KryptonLabel15.Size = New System.Drawing.Size(37, 20)
+        Me.KryptonLabel15.Size = New System.Drawing.Size(44, 19)
         Me.KryptonLabel15.TabIndex = 26
         Me.KryptonLabel15.Values.Text = "Pass:"
         '
@@ -534,7 +536,7 @@ Partial Class OptionsForm
         '
         Me.txtOutcomeMarkPass.Location = New System.Drawing.Point(74, 12)
         Me.txtOutcomeMarkPass.Name = "txtOutcomeMarkPass"
-        Me.txtOutcomeMarkPass.Size = New System.Drawing.Size(63, 20)
+        Me.txtOutcomeMarkPass.Size = New System.Drawing.Size(63, 23)
         Me.txtOutcomeMarkPass.TabIndex = 27
         Me.txtOutcomeMarkPass.Text = "P"
         Me.txtOutcomeMarkPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -543,7 +545,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel17.Location = New System.Drawing.Point(3, 38)
         Me.KryptonLabel17.Name = "KryptonLabel17"
-        Me.KryptonLabel17.Size = New System.Drawing.Size(31, 20)
+        Me.KryptonLabel17.Size = New System.Drawing.Size(36, 19)
         Me.KryptonLabel17.TabIndex = 28
         Me.KryptonLabel17.Values.Text = "Fail:"
         '
@@ -551,7 +553,7 @@ Partial Class OptionsForm
         '
         Me.txtOutcomeMarkFail.Location = New System.Drawing.Point(74, 38)
         Me.txtOutcomeMarkFail.Name = "txtOutcomeMarkFail"
-        Me.txtOutcomeMarkFail.Size = New System.Drawing.Size(63, 20)
+        Me.txtOutcomeMarkFail.Size = New System.Drawing.Size(63, 23)
         Me.txtOutcomeMarkFail.TabIndex = 29
         Me.txtOutcomeMarkFail.Text = "L"
         Me.txtOutcomeMarkFail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -560,7 +562,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel19.Location = New System.Drawing.Point(3, 64)
         Me.KryptonLabel19.Name = "KryptonLabel19"
-        Me.KryptonLabel19.Size = New System.Drawing.Size(65, 20)
+        Me.KryptonLabel19.Size = New System.Drawing.Size(70, 19)
         Me.KryptonLabel19.TabIndex = 30
         Me.KryptonLabel19.Values.Text = "Unknown:"
         '
@@ -568,7 +570,7 @@ Partial Class OptionsForm
         '
         Me.txtOutcomeMarkUnknown.Location = New System.Drawing.Point(74, 64)
         Me.txtOutcomeMarkUnknown.Name = "txtOutcomeMarkUnknown"
-        Me.txtOutcomeMarkUnknown.Size = New System.Drawing.Size(63, 20)
+        Me.txtOutcomeMarkUnknown.Size = New System.Drawing.Size(63, 23)
         Me.txtOutcomeMarkUnknown.TabIndex = 31
         Me.txtOutcomeMarkUnknown.Text = "U"
         Me.txtOutcomeMarkUnknown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -601,7 +603,7 @@ Partial Class OptionsForm
         '
         Me.txtAttendenceMarkExcused.Location = New System.Drawing.Point(74, 142)
         Me.txtAttendenceMarkExcused.Name = "txtAttendenceMarkExcused"
-        Me.txtAttendenceMarkExcused.Size = New System.Drawing.Size(63, 20)
+        Me.txtAttendenceMarkExcused.Size = New System.Drawing.Size(63, 23)
         Me.txtAttendenceMarkExcused.TabIndex = 37
         Me.txtAttendenceMarkExcused.Text = "E"
         Me.txtAttendenceMarkExcused.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -610,7 +612,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel9.Location = New System.Drawing.Point(3, 142)
         Me.KryptonLabel9.Name = "KryptonLabel9"
-        Me.KryptonLabel9.Size = New System.Drawing.Size(57, 20)
+        Me.KryptonLabel9.Size = New System.Drawing.Size(66, 19)
         Me.KryptonLabel9.TabIndex = 36
         Me.KryptonLabel9.Values.Text = "Excused:"
         '
@@ -618,7 +620,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel2.Location = New System.Drawing.Point(3, 12)
         Me.KryptonLabel2.Name = "KryptonLabel2"
-        Me.KryptonLabel2.Size = New System.Drawing.Size(54, 20)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(61, 19)
         Me.KryptonLabel2.TabIndex = 26
         Me.KryptonLabel2.Values.Text = "Present:"
         '
@@ -626,7 +628,7 @@ Partial Class OptionsForm
         '
         Me.txtAttendenceMarkUnknown.Location = New System.Drawing.Point(74, 116)
         Me.txtAttendenceMarkUnknown.Name = "txtAttendenceMarkUnknown"
-        Me.txtAttendenceMarkUnknown.Size = New System.Drawing.Size(63, 20)
+        Me.txtAttendenceMarkUnknown.Size = New System.Drawing.Size(63, 23)
         Me.txtAttendenceMarkUnknown.TabIndex = 35
         Me.txtAttendenceMarkUnknown.Text = "U"
         Me.txtAttendenceMarkUnknown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -635,7 +637,7 @@ Partial Class OptionsForm
         '
         Me.txtAttendenceMarkPresent.Location = New System.Drawing.Point(74, 12)
         Me.txtAttendenceMarkPresent.Name = "txtAttendenceMarkPresent"
-        Me.txtAttendenceMarkPresent.Size = New System.Drawing.Size(63, 20)
+        Me.txtAttendenceMarkPresent.Size = New System.Drawing.Size(63, 23)
         Me.txtAttendenceMarkPresent.TabIndex = 27
         Me.txtAttendenceMarkPresent.Text = "P"
         Me.txtAttendenceMarkPresent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -644,7 +646,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel5.Location = New System.Drawing.Point(3, 116)
         Me.KryptonLabel5.Name = "KryptonLabel5"
-        Me.KryptonLabel5.Size = New System.Drawing.Size(65, 20)
+        Me.KryptonLabel5.Size = New System.Drawing.Size(70, 19)
         Me.KryptonLabel5.TabIndex = 34
         Me.KryptonLabel5.Values.Text = "Unknown:"
         '
@@ -652,7 +654,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(3, 38)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(36, 20)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(41, 19)
         Me.KryptonLabel1.TabIndex = 28
         Me.KryptonLabel1.Values.Text = "Late:"
         '
@@ -660,7 +662,7 @@ Partial Class OptionsForm
         '
         Me.txtAttendenceMarkRemoved.Location = New System.Drawing.Point(74, 90)
         Me.txtAttendenceMarkRemoved.Name = "txtAttendenceMarkRemoved"
-        Me.txtAttendenceMarkRemoved.Size = New System.Drawing.Size(63, 20)
+        Me.txtAttendenceMarkRemoved.Size = New System.Drawing.Size(63, 23)
         Me.txtAttendenceMarkRemoved.TabIndex = 33
         Me.txtAttendenceMarkRemoved.Text = "R"
         Me.txtAttendenceMarkRemoved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -669,7 +671,7 @@ Partial Class OptionsForm
         '
         Me.txtAttendenceMarkLate.Location = New System.Drawing.Point(74, 38)
         Me.txtAttendenceMarkLate.Name = "txtAttendenceMarkLate"
-        Me.txtAttendenceMarkLate.Size = New System.Drawing.Size(63, 20)
+        Me.txtAttendenceMarkLate.Size = New System.Drawing.Size(63, 23)
         Me.txtAttendenceMarkLate.TabIndex = 29
         Me.txtAttendenceMarkLate.Text = "L"
         Me.txtAttendenceMarkLate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -678,7 +680,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(3, 90)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(65, 20)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(72, 19)
         Me.KryptonLabel4.TabIndex = 32
         Me.KryptonLabel4.Values.Text = "Removed:"
         '
@@ -686,7 +688,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel3.Location = New System.Drawing.Point(3, 64)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(51, 20)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(56, 19)
         Me.KryptonLabel3.TabIndex = 30
         Me.KryptonLabel3.Values.Text = "Absent:"
         '
@@ -694,7 +696,7 @@ Partial Class OptionsForm
         '
         Me.txtAttendenceMarkAbsent.Location = New System.Drawing.Point(74, 64)
         Me.txtAttendenceMarkAbsent.Name = "txtAttendenceMarkAbsent"
-        Me.txtAttendenceMarkAbsent.Size = New System.Drawing.Size(63, 20)
+        Me.txtAttendenceMarkAbsent.Size = New System.Drawing.Size(63, 23)
         Me.txtAttendenceMarkAbsent.TabIndex = 31
         Me.txtAttendenceMarkAbsent.Text = "A"
         Me.txtAttendenceMarkAbsent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -781,7 +783,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEmailQuizResultsIncorrectFeedback.Location = New System.Drawing.Point(244, 121)
         Me.txtEmailQuizResultsIncorrectFeedback.Name = "txtEmailQuizResultsIncorrectFeedback"
-        Me.txtEmailQuizResultsIncorrectFeedback.Size = New System.Drawing.Size(541, 19)
+        Me.txtEmailQuizResultsIncorrectFeedback.Size = New System.Drawing.Size(541, 22)
         Me.txtEmailQuizResultsIncorrectFeedback.TabIndex = 135
         '
         'nudEmailAccountToUse
@@ -827,7 +829,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPathToTrulyMail.Location = New System.Drawing.Point(244, 12)
         Me.txtPathToTrulyMail.Name = "txtPathToTrulyMail"
-        Me.txtPathToTrulyMail.Size = New System.Drawing.Size(541, 19)
+        Me.txtPathToTrulyMail.Size = New System.Drawing.Size(541, 22)
         Me.txtPathToTrulyMail.TabIndex = 52
         '
         'tabMarking
@@ -941,9 +943,9 @@ Partial Class OptionsForm
         Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Name = "chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel"
         Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Size = New System.Drawing.Size(554, 19)
         Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.TabIndex = 145
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Text = "Group presentation marking should update Presentation and Research performance le" & _
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Text = "Group presentation marking should update Presentation and Research performance le" &
     "vel"
-        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Values.Text = "Group presentation marking should update Presentation and Research performance le" & _
+        Me.chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Values.Text = "Group presentation marking should update Presentation and Research performance le" &
     "vel"
         '
         'chkPromptWhenMarkingAssignmentProcessedWithoutFullText
@@ -954,9 +956,9 @@ Partial Class OptionsForm
         Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Name = "chkPromptWhenMarkingAssignmentProcessedWithoutFullText"
         Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Size = New System.Drawing.Size(550, 19)
         Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.TabIndex = 145
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" & _
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" &
     "sing"
-        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Values.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" & _
+        Me.chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Values.Text = "Prompt when marking assignment ""processed"" if overall and improvement text is mis" &
     "sing"
         '
         'txtImprovementWithPassAll
@@ -965,7 +967,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtImprovementWithPassAll.Location = New System.Drawing.Point(206, 317)
         Me.txtImprovementWithPassAll.Name = "txtImprovementWithPassAll"
-        Me.txtImprovementWithPassAll.Size = New System.Drawing.Size(597, 19)
+        Me.txtImprovementWithPassAll.Size = New System.Drawing.Size(597, 22)
         Me.txtImprovementWithPassAll.TabIndex = 141
         '
         'txtImprovementWithMerit
@@ -974,7 +976,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtImprovementWithMerit.Location = New System.Drawing.Point(206, 291)
         Me.txtImprovementWithMerit.Name = "txtImprovementWithMerit"
-        Me.txtImprovementWithMerit.Size = New System.Drawing.Size(597, 19)
+        Me.txtImprovementWithMerit.Size = New System.Drawing.Size(597, 22)
         Me.txtImprovementWithMerit.TabIndex = 139
         '
         'txtReworkPassAllDefaultComment
@@ -983,7 +985,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtReworkPassAllDefaultComment.Location = New System.Drawing.Point(206, 419)
         Me.txtReworkPassAllDefaultComment.Name = "txtReworkPassAllDefaultComment"
-        Me.txtReworkPassAllDefaultComment.Size = New System.Drawing.Size(597, 19)
+        Me.txtReworkPassAllDefaultComment.Size = New System.Drawing.Size(597, 22)
         Me.txtReworkPassAllDefaultComment.TabIndex = 63
         '
         'txtLateSubmitDefaultComment
@@ -992,7 +994,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtLateSubmitDefaultComment.Location = New System.Drawing.Point(206, 394)
         Me.txtLateSubmitDefaultComment.Name = "txtLateSubmitDefaultComment"
-        Me.txtLateSubmitDefaultComment.Size = New System.Drawing.Size(597, 19)
+        Me.txtLateSubmitDefaultComment.Size = New System.Drawing.Size(597, 22)
         Me.txtLateSubmitDefaultComment.TabIndex = 63
         '
         'txtImprovementWithFailAll
@@ -1001,7 +1003,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtImprovementWithFailAll.Location = New System.Drawing.Point(206, 369)
         Me.txtImprovementWithFailAll.Name = "txtImprovementWithFailAll"
-        Me.txtImprovementWithFailAll.Size = New System.Drawing.Size(597, 19)
+        Me.txtImprovementWithFailAll.Size = New System.Drawing.Size(597, 22)
         Me.txtImprovementWithFailAll.TabIndex = 63
         '
         'txtImprovementWithFailSome
@@ -1010,7 +1012,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtImprovementWithFailSome.Location = New System.Drawing.Point(206, 343)
         Me.txtImprovementWithFailSome.Name = "txtImprovementWithFailSome"
-        Me.txtImprovementWithFailSome.Size = New System.Drawing.Size(597, 19)
+        Me.txtImprovementWithFailSome.Size = New System.Drawing.Size(597, 22)
         Me.txtImprovementWithFailSome.TabIndex = 44
         '
         'txtImprovementWithDistinction
@@ -1019,7 +1021,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtImprovementWithDistinction.Location = New System.Drawing.Point(206, 265)
         Me.txtImprovementWithDistinction.Name = "txtImprovementWithDistinction"
-        Me.txtImprovementWithDistinction.Size = New System.Drawing.Size(597, 19)
+        Me.txtImprovementWithDistinction.Size = New System.Drawing.Size(597, 22)
         Me.txtImprovementWithDistinction.TabIndex = 40
         '
         'KryptonLabel31
@@ -1036,7 +1038,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtUnknownResultsText.Location = New System.Drawing.Point(581, 117)
         Me.txtUnknownResultsText.Name = "txtUnknownResultsText"
-        Me.txtUnknownResultsText.Size = New System.Drawing.Size(222, 19)
+        Me.txtUnknownResultsText.Size = New System.Drawing.Size(222, 22)
         Me.txtUnknownResultsText.TabIndex = 143
         '
         'KryptonLabel38
@@ -1061,7 +1063,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtFailResultsText.Location = New System.Drawing.Point(206, 117)
         Me.txtFailResultsText.Name = "txtFailResultsText"
-        Me.txtFailResultsText.Size = New System.Drawing.Size(191, 19)
+        Me.txtFailResultsText.Size = New System.Drawing.Size(191, 22)
         Me.txtFailResultsText.TabIndex = 141
         '
         'KryptonLabel37
@@ -1086,7 +1088,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPassResultsText.Location = New System.Drawing.Point(206, 91)
         Me.txtPassResultsText.Name = "txtPassResultsText"
-        Me.txtPassResultsText.Size = New System.Drawing.Size(191, 19)
+        Me.txtPassResultsText.Size = New System.Drawing.Size(191, 22)
         Me.txtPassResultsText.TabIndex = 139
         '
         'KryptonLabel27
@@ -1202,7 +1204,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPathToFeedbackSaveFolder.Location = New System.Drawing.Point(206, 172)
         Me.txtPathToFeedbackSaveFolder.Name = "txtPathToFeedbackSaveFolder"
-        Me.txtPathToFeedbackSaveFolder.Size = New System.Drawing.Size(572, 19)
+        Me.txtPathToFeedbackSaveFolder.Size = New System.Drawing.Size(572, 22)
         Me.txtPathToFeedbackSaveFolder.TabIndex = 73
         '
         'KryptonLabel40
@@ -1243,7 +1245,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtStudentDidNotSubmitDefaultOutcomeComment.Location = New System.Drawing.Point(581, 143)
         Me.txtStudentDidNotSubmitDefaultOutcomeComment.Name = "txtStudentDidNotSubmitDefaultOutcomeComment"
-        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Size = New System.Drawing.Size(222, 19)
+        Me.txtStudentDidNotSubmitDefaultOutcomeComment.Size = New System.Drawing.Size(222, 22)
         Me.txtStudentDidNotSubmitDefaultOutcomeComment.TabIndex = 55
         '
         'KryptonLabel14
@@ -1260,7 +1262,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtExamPassWeakDefaultFeedback.Location = New System.Drawing.Point(581, 91)
         Me.txtExamPassWeakDefaultFeedback.Name = "txtExamPassWeakDefaultFeedback"
-        Me.txtExamPassWeakDefaultFeedback.Size = New System.Drawing.Size(222, 19)
+        Me.txtExamPassWeakDefaultFeedback.Size = New System.Drawing.Size(222, 22)
         Me.txtExamPassWeakDefaultFeedback.TabIndex = 53
         '
         'KryptonLabel35
@@ -1285,7 +1287,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNoSubmitFeedback.Location = New System.Drawing.Point(206, 143)
         Me.txtNoSubmitFeedback.Name = "txtNoSubmitFeedback"
-        Me.txtNoSubmitFeedback.Size = New System.Drawing.Size(191, 19)
+        Me.txtNoSubmitFeedback.Size = New System.Drawing.Size(191, 22)
         Me.txtNoSubmitFeedback.TabIndex = 44
         '
         'KryptonLabel8
@@ -1302,7 +1304,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtExamPassDefaultFeedback.Location = New System.Drawing.Point(581, 65)
         Me.txtExamPassDefaultFeedback.Name = "txtExamPassDefaultFeedback"
-        Me.txtExamPassDefaultFeedback.Size = New System.Drawing.Size(222, 19)
+        Me.txtExamPassDefaultFeedback.Size = New System.Drawing.Size(222, 22)
         Me.txtExamPassDefaultFeedback.TabIndex = 42
         '
         'KryptonLabel20
@@ -1335,7 +1337,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtUserFullName.Location = New System.Drawing.Point(206, 11)
         Me.txtUserFullName.Name = "txtUserFullName"
-        Me.txtUserFullName.Size = New System.Drawing.Size(142, 19)
+        Me.txtUserFullName.Size = New System.Drawing.Size(142, 22)
         Me.txtUserFullName.TabIndex = 40
         '
         'txtExamFailDefaultFeedback
@@ -1344,7 +1346,7 @@ Partial Class OptionsForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtExamFailDefaultFeedback.Location = New System.Drawing.Point(206, 65)
         Me.txtExamFailDefaultFeedback.Name = "txtExamFailDefaultFeedback"
-        Me.txtExamFailDefaultFeedback.Size = New System.Drawing.Size(191, 19)
+        Me.txtExamFailDefaultFeedback.Size = New System.Drawing.Size(191, 22)
         Me.txtExamFailDefaultFeedback.TabIndex = 40
         '
         'nudExamClockDuration
@@ -1362,7 +1364,7 @@ Partial Class OptionsForm
         '
         Me.KryptonLabel6.Location = New System.Drawing.Point(9, 39)
         Me.KryptonLabel6.Name = "KryptonLabel6"
-        Me.KryptonLabel6.Size = New System.Drawing.Size(178, 20)
+        Me.KryptonLabel6.Size = New System.Drawing.Size(198, 19)
         Me.KryptonLabel6.TabIndex = 36
         Me.KryptonLabel6.Values.Text = "Exam clock duration (seconds):"
         '
@@ -1370,7 +1372,7 @@ Partial Class OptionsForm
         '
         Me.lblLanguageWeight.Location = New System.Drawing.Point(691, 11)
         Me.lblLanguageWeight.Name = "lblLanguageWeight"
-        Me.lblLanguageWeight.Size = New System.Drawing.Size(40, 20)
+        Me.lblLanguageWeight.Size = New System.Drawing.Size(44, 19)
         Me.lblLanguageWeight.TabIndex = 148
         Me.lblLanguageWeight.Values.Text = "Lang:"
         '
@@ -1383,6 +1385,17 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Name = "KryptonPanel5"
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
+        '
+        'rdoAttendanceHighlightBirthdays
+        '
+        Me.rdoAttendanceHighlightBirthdays.AutoSize = True
+        Me.rdoAttendanceHighlightBirthdays.Location = New System.Drawing.Point(20, 88)
+        Me.rdoAttendanceHighlightBirthdays.Name = "rdoAttendanceHighlightBirthdays"
+        Me.rdoAttendanceHighlightBirthdays.Size = New System.Drawing.Size(158, 17)
+        Me.rdoAttendanceHighlightBirthdays.TabIndex = 3
+        Me.rdoAttendanceHighlightBirthdays.TabStop = True
+        Me.rdoAttendanceHighlightBirthdays.Text = "Students with birthday today"
+        Me.rdoAttendanceHighlightBirthdays.UseVisualStyleBackColor = True
         '
         'OptionsForm
         '
@@ -1565,4 +1578,5 @@ Partial Class OptionsForm
     Friend WithEvents nudContentWeight As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
     Friend WithEvents lblContentWeight As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lblLanguageWeight As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents rdoAttendanceHighlightBirthdays As RadioButton
 End Class

@@ -301,6 +301,13 @@
                     UnknownResultsText = "Did not submit"
                 End If
 
+                xElement = xDoc.SelectSingleNode("//HighlightAttendanceBirthday")
+                If xElement IsNot Nothing Then
+                    HighlightAttendanceBirthday = ConvertToBool(xElement.InnerText, False)
+                Else
+                    HighlightAttendanceBirthday = False
+                End If
+
                 xElement = xDoc.SelectSingleNode("//HighlightAttendanceNoPresentationQuality")
                 If xElement IsNot Nothing Then
                     HighlightAttendanceNoPresentationQuality = ConvertToBool(xElement.InnerText, False)
@@ -602,6 +609,7 @@
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "FailResultsText", FailResultsText))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UnknownResultsText", UnknownResultsText))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "HighlightAttendanceNoPresentationQuality", HighlightAttendanceNoPresentationQuality))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "HighlightAttendanceBirthday", HighlightAttendanceBirthday))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "HighlightAttendanceUnknownGender", HighlightAttendanceUnknownGender))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailQuizResultsIncorrectComments", EmailQuizResultsIncorrectComments))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "EmailQuizTrailingText", EmailQuizTrailingText))
@@ -744,6 +752,7 @@
     Public Property EmailQuizResultsIncorrectComments As String
     Public Property HighlightAttendanceUnknownGender As Boolean
     Public Property HighlightAttendanceNoPresentationQuality As Boolean
+    Public Property HighlightAttendanceBirthday As Boolean
     Public Property PassResultsText As String
     Public Property FailResultsText As String
     Public Property UnknownResultsText As String
