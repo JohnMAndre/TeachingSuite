@@ -247,6 +247,7 @@ Partial Class MainFormPlain
         Me.EditStudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAttendanceErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StudentAssignmentErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator()
         Me.AssignmentResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModuleResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -331,7 +332,6 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.StudentAssignmentErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1989,6 +1989,12 @@ Partial Class MainFormPlain
         Me.StudentAttendanceErrorsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentAttendanceErrorsToolStripMenuItem.Text = "Student &attendance errors..."
         '
+        'StudentAssignmentErrorsToolStripMenuItem
+        '
+        Me.StudentAssignmentErrorsToolStripMenuItem.Name = "StudentAssignmentErrorsToolStripMenuItem"
+        Me.StudentAssignmentErrorsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.StudentAssignmentErrorsToolStripMenuItem.Text = "Student assignment errors..."
+        '
         'ToolStripSeparator17
         '
         Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
@@ -2453,37 +2459,37 @@ Partial Class MainFormPlain
         'CheckForupdatesToolStripMenuItem
         '
         Me.CheckForupdatesToolStripMenuItem.Name = "CheckForupdatesToolStripMenuItem"
-        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CheckForupdatesToolStripMenuItem.Text = "Check for &updates..."
         '
         'UpgradeToolStripMenuItem
         '
         Me.UpgradeToolStripMenuItem.Name = "UpgradeToolStripMenuItem"
-        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UpgradeToolStripMenuItem.Text = "&Upgrade..."
         Me.UpgradeToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator16
         '
         Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(176, 6)
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(177, 6)
         '
         'ViewLogFileToolStripMenuItem
         '
         Me.ViewLogFileToolStripMenuItem.Name = "ViewLogFileToolStripMenuItem"
-        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewLogFileToolStripMenuItem.Text = "&View log file..."
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "&About..."
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(179, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
         Me.ToolStripMenuItem2.Text = "Test...do not use"
         Me.ToolStripMenuItem2.Visible = False
         '
@@ -2513,12 +2519,6 @@ Partial Class MainFormPlain
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'StudentAssignmentErrorsToolStripMenuItem
-        '
-        Me.StudentAssignmentErrorsToolStripMenuItem.Name = "StudentAssignmentErrorsToolStripMenuItem"
-        Me.StudentAssignmentErrorsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.StudentAssignmentErrorsToolStripMenuItem.Text = "Student assignment errors..."
         '
         'MainFormPlain
         '

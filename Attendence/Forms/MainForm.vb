@@ -87,9 +87,6 @@ Public Class MainForm
 
         SetupForLiteVersion()
 
-        '-- setup spell check for notes
-        C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
-        C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
 
         '-- Check for update
         Dim ts As TimeSpan = Date.Now - AppSettings.LastUpdateCheck
@@ -765,7 +762,7 @@ Public Class MainForm
         Using frm As New OptionsForm
             If frm.ShowDialog(Me) = DialogResult.OK Then
                 '-- reload data which might have changed
-                C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
+
             End If
         End Using
     End Sub

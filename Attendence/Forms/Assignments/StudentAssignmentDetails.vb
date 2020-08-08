@@ -7,6 +7,10 @@ Imports DocumentFormat.OpenXml.Wordprocessing
 
 Friend Class StudentAssignmentDetails
 
+#If SUPPORT_SPELL Then
+    Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
+#End If
+
     Private m_student As Student
     Private m_studentAssignment As StudentAssignmentBTEC
     Private m_studentModuleResults As Student.StudentModuleResult
@@ -105,10 +109,20 @@ Friend Class StudentAssignmentDetails
         txtTags.Text = m_student.Tags
         m_strStudentTagsOriginal = m_student.Tags
 
+#If SUPPORT_SPELL Then
+        Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
+
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
         C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbObservationComments, True)
         C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementCommentsRework, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbOverallCommentsRework, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments, True)
+#End If
+
 
         Me.olvPassFailFeedback.ImageGetter = New BrightIdeasSoftware.ImageGetterDelegate(AddressOf PassFailImageGetter)
         Me.olvModuleResultsPassFail.ImageGetter = New BrightIdeasSoftware.ImageGetterDelegate(AddressOf PassFailTextImageGetter)

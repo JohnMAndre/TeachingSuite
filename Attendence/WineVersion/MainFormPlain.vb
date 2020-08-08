@@ -86,9 +86,6 @@ Public Class MainFormPlain
         tmrAutoSave.Start()
 
 
-        '-- setup spell check for notes
-        'C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
-        'C1SpellChecker1.SetActiveSpellChecking(txtNotes, True)
 
         '-- Check for update
         'Dim ts As TimeSpan = Date.Now - AppSettings.LastUpdateCheck
@@ -787,7 +784,7 @@ Public Class MainFormPlain
         Using frm As New OptionsForm
             If frm.ShowDialog(Me) = DialogResult.OK Then
                 '-- reload data which might have changed
-                'C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
+
             End If
         End Using
     End Sub
@@ -2535,13 +2532,76 @@ Public Class MainFormPlain
     Private Sub NotesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotesToolStripMenuItem.Click
         pnlNotes.Visible = NotesToolStripMenuItem.Checked
     End Sub
-    'Private
-    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
-        'AppSettings.PremiumFeaturesEnabled = Not AppSettings.PremiumFeaturesEnabled
-        '-- Going to import student Normal assignments from another database
-        'ImportAssignmentsFromOtherSemester()
-    End Sub
 
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        '-- This is Under Help->Test and is just used for manipuliation in debug mode
+        '   Normally, Help->Test should not be visible
+        Dim asmt As StudentAssignment
+        Dim strName As String
+
+        Dim grp As ClassGroup = GetSelectedClassGroup() '-- just select hrm
+        For Each cls As SchoolClass In grp.Classes
+            For Each stud In cls.Students
+                '-- Convert BTEC into normal assignment
+                'For Each asmtB As StudentAssignmentBTEC In stud.AssignmentsBTEC
+                '    strName = asmtB.BaseAssignment.Name.Substring(0, asmtB.BaseAssignment.Name.IndexOf("-"))
+
+                '    asmt = GetStudentAssignmentByBaseName(stud, strName)
+
+                '    '-- create if needed
+                '    If asmt Is Nothing Then
+                '        asmt = New StudentAssignment(GetClassAssignmentByBaseName(grp, strName))
+                '        stud.Assignments.Add(asmt)
+                '    End If
+
+                '    '-- Just assign to the numeric grade
+                '    If asmtB.AchievedDistinction Then
+                '        asmt.FirstTryPoints = 50
+                '    ElseIf asmtB.AchievedMerit Then
+                '        asmt.FirstTryPoints = 40
+                '    ElseIf asmtB.AchievedPass Then
+                '        asmt.FirstTryPoints = 30
+                '    Else
+                '        asmt.FirstTryPoints = 0
+                '    End If
+                'Next
+                '-- re-score peer evals
+                For Each asmt In stud.Assignments
+                    If asmt.BaseAssignment.Name.Contains("-Peer") Then
+                        If asmt.FirstTryPoints < 20 Then
+                            asmt.FirstTryPoints = 0
+                        ElseIf asmt.FirstTryPoints >= 20 AndAlso asmt.FirstTryPoints < 30 Then
+                            asmt.FirstTryPoints = 5
+                        ElseIf asmt.FirstTryPoints >= 30 AndAlso asmt.FirstTryPoints < 40 Then
+                            asmt.FirstTryPoints = 10
+                        ElseIf asmt.FirstTryPoints >= 40 Then
+                            asmt.FirstTryPoints = 15
+                        End If
+                    End If
+                Next
+            Next
+        Next
+
+        MessageBox.Show("Done")
+    End Sub
+    Private Function GetClassAssignmentByBaseName(grp As ClassGroup, name As String) As ClassAssignment
+        For Each asmt As ClassAssignment In grp.Assignments
+            If asmt.Name = name Then
+                Return asmt
+            End If
+        Next
+
+        Return Nothing '-- nothing found
+    End Function
+    Private Function GetStudentAssignmentByBaseName(stud As Student, name As String) As StudentAssignment
+        For Each asmt As StudentAssignment In stud.Assignments
+            If asmt.BaseAssignment.Name = name Then
+                Return asmt
+            End If
+        Next
+
+        Return Nothing '-- nothing found
+    End Function
     Private m_dtStopwatch As Date
     Private m_boolStopwatchRunning As Boolean
     Private Sub tmrStopwatch_Tick(sender As Object, e As EventArgs) Handles tmrStopwatch.Tick

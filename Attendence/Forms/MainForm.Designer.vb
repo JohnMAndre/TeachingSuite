@@ -175,6 +175,7 @@ Partial Class MainForm
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.dtpSemesterEnd = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
         Me.dtpSemesterStart = New ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker()
+        Me.llblSemesterLabel = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadSemesterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -293,8 +294,6 @@ Partial Class MainForm
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        Me.llblSemesterLabel = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -349,7 +348,6 @@ Partial Class MainForm
         CType(Me.cboSemester, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.ctxmnuNewAssignment.SuspendLayout()
-        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel
@@ -1940,6 +1938,16 @@ Partial Class MainForm
         Me.dtpSemesterStart.Size = New System.Drawing.Size(127, 21)
         Me.dtpSemesterStart.TabIndex = 11
         '
+        'llblSemesterLabel
+        '
+        Me.llblSemesterLabel.Location = New System.Drawing.Point(3, 3)
+        Me.llblSemesterLabel.Name = "llblSemesterLabel"
+        Me.llblSemesterLabel.Size = New System.Drawing.Size(72, 19)
+        Me.llblSemesterLabel.TabIndex = 36
+        Me.ToolTip1.SetToolTip(Me.llblSemesterLabel, "Most recent semester")
+        Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
+        Me.llblSemesterLabel.Values.Text = "Semester:"
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
@@ -2681,16 +2689,6 @@ Partial Class MainForm
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'llblSemesterLabel
-        '
-        Me.llblSemesterLabel.Location = New System.Drawing.Point(3, 3)
-        Me.llblSemesterLabel.Name = "llblSemesterLabel"
-        Me.llblSemesterLabel.Size = New System.Drawing.Size(72, 19)
-        Me.llblSemesterLabel.TabIndex = 36
-        Me.ToolTip1.SetToolTip(Me.llblSemesterLabel, "Most recent semester")
-        Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblSemesterLabel.Values.Text = "Semester:"
-        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2765,7 +2763,6 @@ Partial Class MainForm
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ctxmnuNewAssignment.ResumeLayout(False)
-        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3034,7 +3031,6 @@ Partial Class MainForm
     Friend WithEvents llblScheduleBackOneDay As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents dtpScheduleDate As ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker
     Friend WithEvents llblRefreshSchedule As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
     Friend WithEvents txtSemesterNotes As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents ExportEntireSemesterAsXMLToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

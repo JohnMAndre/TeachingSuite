@@ -1,4 +1,10 @@
 ﻿Friend Class StudentAssignmentNormalDetails
+
+#If SUPPORT_SPELL Then
+    Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
+
+#End If
+
     Private m_student As Student
     Private m_studentAssignment As StudentAssignment
     Private m_studentModuleResults As Student.StudentModuleResult
@@ -112,10 +118,18 @@
         nudSecondTryPoints.Value = m_studentAssignment.SecondTryPoints
         nudThirdTryPoints.Value = m_studentAssignment.ThirdTryPoints
 
+#If SUPPORT_SPELL Then
+        Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
 
         C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
         C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments, True)
         C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementCommentsRework, True)
+        C1SpellChecker1.SetActiveSpellChecking(rtbOverallCommentsRework, True)
+#End If
 
         nudPlagiarismSeverity.Value = m_student.PlagiarismSeverity
 
