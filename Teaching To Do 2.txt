@@ -1,3 +1,0 @@
-Assignment details form
-	outcome selector with check, should include X to fail and apply text
-	Fix tool tip over download button
