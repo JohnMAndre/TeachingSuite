@@ -1,9 +1,0 @@
-Next: point to point file transfer
-
-
-
-
-
-Main form, load should show status of current session...if there is one today (or maybe just last session)
-
-http://files.canon-europe.com/files/soft37998/software/LBP3300_R113_V310_Win_x64_EN_7.exe
