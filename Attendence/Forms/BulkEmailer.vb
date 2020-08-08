@@ -1,3 +1,19 @@
+'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
 Public Class BulkEmailer
 
     Private m_clas As SchoolClass
@@ -155,18 +171,18 @@ Public Class BulkEmailer
                 End If
 
                 Try
-                        tm.SendThisMessage(dt)
-                    Catch ex As Exception
-                        Log(ex)
-                        dataItem.ProcessStatus = ex.Message
-                        olvStudents.RefreshObject(dataItem)
-                        tm.CloseSaveAsDraft()
-                        tm = Nothing
-                        Continue For
-                    End Try
-                    dataItem.ProcessStatus = "Sent: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL)
+                    tm.SendThisMessage(dt)
+                Catch ex As Exception
+                    Log(ex)
+                    dataItem.ProcessStatus = ex.Message
                     olvStudents.RefreshObject(dataItem)
-                End If
+                    tm.CloseSaveAsDraft()
+                    tm = Nothing
+                    Continue For
+                End Try
+                dataItem.ProcessStatus = "Sent: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL)
+                olvStudents.RefreshObject(dataItem)
+            End If
         Next
 
         'If MessageBox.Show(lstErrors.ToString() & " items had errors sending. Do you want to see a list of those items?", Application.ProductName, MessageBoxButtons.YesNo) = DialogResult.Yes Then

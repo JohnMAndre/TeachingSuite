@@ -1,4 +1,20 @@
-﻿Public Class HistoricalStudentFinderPlain
+﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+Public Class HistoricalStudentFinderPlain
 
     Private m_objSemesterCache As SemesterCache
 
@@ -63,7 +79,7 @@
                                 m_lstFoundStudents.Add(stud)
                             ElseIf txtEmail.Text.Length > 0 AndAlso ((stud.EmailAddress.ToUpper() = txtEmail.Text.ToUpper()) OrElse (chkPartials.Checked AndAlso stud.EmailAddress.ToUpper.Contains(txtEmail.Text.Trim().ToUpper()))) Then
                                 m_lstFoundStudents.Add(stud)
-                            ElseIf txtTags.Text.Length > 0 AndAlso ((stud.tags.ToUpper() = txtTags.Text.ToUpper()) OrElse (chkPartials.Checked AndAlso stud.Tags.ToUpper.Contains(txtTags.Text.Trim().ToUpper()))) Then
+                            ElseIf txtTags.Text.Length > 0 AndAlso ((stud.Tags.ToUpper() = txtTags.Text.ToUpper()) OrElse (chkPartials.Checked AndAlso stud.Tags.ToUpper.Contains(txtTags.Text.Trim().ToUpper()))) Then
                                 m_lstFoundStudents.Add(stud)
                             ElseIf txtLocalName.Text.Length > 0 Then
                                 '-- Now we need to check for multiple names so we can do an AND compare

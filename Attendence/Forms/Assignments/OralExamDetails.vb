@@ -1,3 +1,19 @@
+'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
 Public Class OralExamDetails
 
     Private m_frmPublic As ExamClockForm
@@ -287,7 +303,7 @@ Public Class OralExamDetails
                         '   but also skip if there are no outcomes with unknown status
                         boolAssignmentDoesExist = True
                         For Each outcome As OutcomeResult In asmt.Outcomes
-                            If outcome.FirstTryComments.StartsWith(AppSettings.ExamPassDefaultFeedback) OrElse outcome.FirstTryComments.StartsWith(AppSettings.ExamFailDefaultFeedback) OrElse _
+                            If outcome.FirstTryComments.StartsWith(AppSettings.ExamPassDefaultFeedback) OrElse outcome.FirstTryComments.StartsWith(AppSettings.ExamFailDefaultFeedback) OrElse
                                 outcome.FirstTryComments.StartsWith(AppSettings.ExamPassWeakDefaultFeedback) OrElse outcome.FirstTryComments.StartsWith(m_strABSENT_TEXT) Then
                                 '-- this student has already been processed this time
                                 Return False
@@ -715,7 +731,7 @@ Public Class OralExamDetails
         'chkD1.Enabled = m_baseAssignment.D1Available
         'chkD2.Enabled = m_baseAssignment.D2Available
         'chkD3.Enabled = m_baseAssignment.D3Available
-        
+
         lstOutcomes.Items.Clear()
         If m_baseAssignment IsNot Nothing Then
             For Each oc As AssignmentOutcome In m_baseAssignment.Outcomes

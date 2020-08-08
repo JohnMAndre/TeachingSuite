@@ -1,9 +1,23 @@
-﻿Friend Class StudentAssignmentNormalDetails
+﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
 
-#If SUPPORT_SPELL Then
-    Friend WithEvents C1SpellChecker1 As C1.Win.C1SpellChecker.C1SpellChecker
+'This file Is part of Teaching Suite.
 
-#End If
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+
+Imports DocumentFormat.OpenXml.Drawing
+
+Friend Class StudentAssignmentNormalDetails
 
     Private m_student As Student
     Private m_studentAssignment As StudentAssignment
@@ -118,19 +132,6 @@
         nudSecondTryPoints.Value = m_studentAssignment.SecondTryPoints
         nudThirdTryPoints.Value = m_studentAssignment.ThirdTryPoints
 
-#If SUPPORT_SPELL Then
-        Me.C1SpellChecker1 = New C1.Win.C1SpellChecker.C1SpellChecker(Me.components)
-        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1SpellChecker1, System.ComponentModel.ISupportInitialize).EndInit()
-
-        C1SpellChecker1.MainDictionary.FileName = GetDictionaryFilename()
-        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementComments, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbOverallComments, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbImprovementCommentsRework, True)
-        C1SpellChecker1.SetActiveSpellChecking(rtbOverallCommentsRework, True)
-#End If
-
         nudPlagiarismSeverity.Value = m_student.PlagiarismSeverity
 
         '-- Load improvement items
@@ -181,7 +182,7 @@
 
 
 
-        Me.Location = New Point(AppSettings.StudentAssignmentNormalWindowX, AppSettings.StudentAssignmentNormalWindowY)
+        'Me.Location = New Point(AppSettings.StudentAssignmentNormalWindowX, AppSettings.StudentAssignmentNormalWindowY)
         Me.Size = New Size(AppSettings.StudentAssignmentNormalWindowWidth, AppSettings.StudentAssignmentNormalWindowHeight)
 
     End Sub
@@ -251,7 +252,7 @@
     End Sub
     Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As EventArgs) Handles llblDeleteAssignment.LinkClicked
         If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
-            m_student.Assignments.Remove(m_studentAssignment)
+        m_student.Assignments.Remove(m_studentAssignment)
             MessageBox.Show("Assignment was removed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Close()
         End If

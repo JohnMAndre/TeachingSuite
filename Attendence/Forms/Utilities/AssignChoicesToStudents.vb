@@ -1,4 +1,20 @@
-﻿Public Class AssignChoicesToStudents
+﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+Public Class AssignChoicesToStudents
 
 #Region " module-level stuff "
     Public Class Choice
@@ -98,8 +114,8 @@
             Dim intChoicesNeeded As Integer = intStudents * nudChoicesPerStudent.Value
 
             If intChoicesNeeded > m_lstChoices.Count Then
-                MessageBox.Show("Choices needed:   " & intChoicesNeeded.ToString("#,##0") & Environment.NewLine & _
-                                "Choices available: " & m_lstChoices.Count.ToString("#,##0") & Environment.NewLine & _
+                MessageBox.Show("Choices needed:   " & intChoicesNeeded.ToString("#,##0") & Environment.NewLine &
+                                "Choices available: " & m_lstChoices.Count.ToString("#,##0") & Environment.NewLine &
                                 "You need more choices or fewer choices per student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
@@ -124,7 +140,7 @@
             '   because we don't want a student to lose their preference simply due to random assignment
 
             '-- Output file will be written: StudentID, CompanyID, Short, Long, StudentPreference
-            
+
             '-- Process students with preference records
             For Each pref As StudentPreference In m_lstPreferences
                 '-- Should be walking through in order (highest grade, lowest preference first)

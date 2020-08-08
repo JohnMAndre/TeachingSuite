@@ -1,4 +1,21 @@
-﻿Imports System.Runtime.CompilerServices
+﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+
+Imports System.Runtime.CompilerServices
 
 Module Globals
 
@@ -436,6 +453,33 @@ Module Globals
     End Function
     Public Function GetAssignmentNormalGrade(asmt As StudentAssignment) As Integer
         Return asmt.FirstTryPoints
+    End Function
+
+    Public Function LoadClass(ByVal sAssemblyPath As String, ByVal sClassName As String) As Object
+
+        'Get Assembly
+        Dim oAssembly As Reflection.Assembly
+        Try
+            oAssembly = Reflection.[Assembly].LoadFrom(sAssemblyPath)
+        Catch
+            Throw New ArgumentException("Can't load assembly " + sAssemblyPath)
+        End Try
+
+        'Get Class
+        Dim oType As Type = oAssembly.GetType(sClassName, False, False)
+        If oType Is Nothing Then
+            Throw New ArgumentException("Can't load type " + sClassName)
+        End If
+
+        'Instantiate
+        Dim oTypes(-1) As Type
+        Dim oInfo As Reflection.ConstructorInfo = oType.GetConstructor(oTypes)
+        Dim oRetObj As Object = oInfo.Invoke(Nothing)
+        If oRetObj Is Nothing Then
+            Throw New ArgumentException("Can't instantiate type " + sClassName)
+        End If
+
+        Return oRetObj
     End Function
 End Module
 

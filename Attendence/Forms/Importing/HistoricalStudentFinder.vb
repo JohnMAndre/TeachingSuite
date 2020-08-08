@@ -1,3 +1,19 @@
+'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
 Public Class HistoricalStudentFinder
 
     Private m_objSemesterCache As SemesterCache
@@ -81,10 +97,10 @@ Public Class HistoricalStudentFinder
             m_boolCancel = False
             btnSearch.Enabled = False
 
-            If txtExtStudentID.Text.Length = 0 AndAlso _
-                txtEmail.Text.Length = 0 AndAlso _
-                txtNickName.Text.Length = 0 AndAlso _
-                txtStudentID.Text.Length = 0 AndAlso _
+            If txtExtStudentID.Text.Length = 0 AndAlso
+                txtEmail.Text.Length = 0 AndAlso
+                txtNickName.Text.Length = 0 AndAlso
+                txtStudentID.Text.Length = 0 AndAlso
                 txtLocalName.Text.Length = 0 Then
 
                 MessageBox.Show("Please enter some search criteria.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)

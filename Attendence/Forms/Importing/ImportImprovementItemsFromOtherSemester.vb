@@ -1,4 +1,20 @@
-﻿Public Class ImportImprovementItemsFromOtherSemester
+﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+Public Class ImportImprovementItemsFromOtherSemester
 
     Private m_sourceSemester As Semester
 
@@ -74,8 +90,8 @@
             boolOKToAdd = True
             '-- make sure it does not exist already
             For Each existing As ImprovementItem In ThisSemester.ImprovementItems
-                If existing.Name.ToLower = item.Name.ToLower OrElse _
-                    existing.Description.ToLower = item.Description.ToLower OrElse _
+                If existing.Name.ToLower = item.Name.ToLower OrElse
+                    existing.Description.ToLower = item.Description.ToLower OrElse
                     existing.ID.ToLower = item.ID.ToLower Then
                     lstItemsNotImported.Add(item)
                     boolOKToAdd = False
@@ -88,7 +104,7 @@
         Next
 
         If lstItemsNotImported.Count > 0 Then
-            If MessageBox.Show(lstItemsNotImported.Count.ToString("#,##0") & " items were not added because they seem to exist already." & _
+            If MessageBox.Show(lstItemsNotImported.Count.ToString("#,##0") & " items were not added because they seem to exist already." &
                             Environment.NewLine & Environment.NewLine & "Would you like to see that list now?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                 olvImprovementItems.SetObjects(lstItemsNotImported)
             End If

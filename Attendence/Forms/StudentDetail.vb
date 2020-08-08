@@ -1,3 +1,19 @@
+'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+
+'This file Is part of Teaching Suite.
+
+'Teaching Suite Is free software: you can redistribute it And/Or modify
+'it under the terms Of the GNU General Public License As published by
+'the Free Software Foundation, either version 3 Of the License, Or
+'(at your option) any later version.
+
+'Foobar Is distributed In the hope that it will be useful,
+'but WITHOUT ANY WARRANTY; without even the implied warranty of
+'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'GNU General Public License For more details.
+
+'You should have received a copy Of the GNU General Public License
+'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
 Public Class StudentDetail
 
     Private m_student As Student
@@ -191,8 +207,8 @@ Public Class StudentDetail
         Dim UNKNOWN_COLOR As Color = Color.White
         Dim newColor As Color
 
-        If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
-            ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse _
+        If ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse
+            ocrslt.SecondTryStatus = OutcomeResultStatusEnum.Achieved OrElse
             ocrslt.ThirdTryStatus = OutcomeResultStatusEnum.Achieved Then
             newColor = PASS_COLOR
         ElseIf ocrslt.FirstTryStatus = OutcomeResultStatusEnum.Unknown Then
