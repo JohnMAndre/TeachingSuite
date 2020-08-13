@@ -7,13 +7,13 @@
 'the Free Software Foundation, either version 3 Of the License, Or
 '(at your option) any later version.
 
-'Foobar Is distributed In the hope that it will be useful,
+'Teaching Suite Is distributed In the hope that it will be useful,
 'but WITHOUT ANY WARRANTY; without even the implied warranty of
 'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
 'GNU General Public License For more details.
 
 'You should have received a copy Of the GNU General Public License
-'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
 Public Class PreperationStatus
 
     Private Class SessionPrepReportItem

@@ -7,13 +7,13 @@
 'the Free Software Foundation, either version 3 Of the License, Or
 '(at your option) any later version.
 
-'Foobar Is distributed In the hope that it will be useful,
+'Teaching Suite Is distributed In the hope that it will be useful,
 'but WITHOUT ANY WARRANTY; without even the implied warranty of
 'MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
 'GNU General Public License For more details.
 
 'You should have received a copy Of the GNU General Public License
-'along with Foobar.  If Not, see < https: //www.gnu.org/licenses/>.
+'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
 
 Imports System.Windows.Forms
 
@@ -2560,28 +2560,29 @@ Public Class MainFormPlain
         For Each cls As SchoolClass In grp.Classes
             For Each stud In cls.Students
                 '-- Convert BTEC into normal assignment
-                'For Each asmtB As StudentAssignmentBTEC In stud.AssignmentsBTEC
-                '    strName = asmtB.BaseAssignment.Name.Substring(0, asmtB.BaseAssignment.Name.IndexOf("-"))
+                For Each asmtB As StudentAssignmentBTEC In stud.AssignmentsBTEC
+                    strName = asmtB.BaseAssignment.Name.Substring(0, asmtB.BaseAssignment.Name.IndexOf("-"))
 
-                '    asmt = GetStudentAssignmentByBaseName(stud, strName)
+                    asmt = GetStudentAssignmentByBaseName(stud, strName)
 
-                '    '-- create if needed
-                '    If asmt Is Nothing Then
-                '        asmt = New StudentAssignment(GetClassAssignmentByBaseName(grp, strName))
-                '        stud.Assignments.Add(asmt)
-                '    End If
+                    '-- create if needed
+                    If asmt Is Nothing Then
+                        asmt = New StudentAssignment(GetClassAssignmentByBaseName(grp, strName))
+                        stud.Assignments.Add(asmt)
+                    End If
 
-                '    '-- Just assign to the numeric grade
-                '    If asmtB.AchievedDistinction Then
-                '        asmt.FirstTryPoints = 50
-                '    ElseIf asmtB.AchievedMerit Then
-                '        asmt.FirstTryPoints = 40
-                '    ElseIf asmtB.AchievedPass Then
-                '        asmt.FirstTryPoints = 30
-                '    Else
-                '        asmt.FirstTryPoints = 0
-                '    End If
-                'Next
+                    '-- Just assign to the numeric grade
+                    If asmtB.AchievedDistinction Then
+                        asmt.FirstTryPoints = 50
+                    ElseIf asmtB.AchievedMerit Then
+                        asmt.FirstTryPoints = 40
+                    ElseIf asmtB.AchievedPass Then
+                        asmt.FirstTryPoints = 30
+                    Else
+                        asmt.FirstTryPoints = 0
+                    End If
+                Next
+
                 '-- re-score peer evals
                 For Each asmt In stud.Assignments
                     If asmt.BaseAssignment.Name.Contains("-Peer") Then
@@ -2612,6 +2613,9 @@ Public Class MainFormPlain
     End Function
     Private Function GetStudentAssignmentByBaseName(stud As Student, name As String) As StudentAssignment
         For Each asmt As StudentAssignment In stud.Assignments
+            If asmt.BaseAssignment Is Nothing Then
+                Return Nothing
+            End If
             If asmt.BaseAssignment.Name = name Then
                 Return asmt
             End If
