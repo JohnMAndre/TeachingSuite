@@ -69,6 +69,7 @@ Partial Class ClassDetails
         Me.OlvColumn6 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn4 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn19 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn8 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn9 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn11 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -91,7 +92,7 @@ Partial Class ClassDetails
         Me.ctxmnuAttendanceSession = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteAttendanceSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddAttendanceSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OlvColumn19 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.OlvColumn20 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -353,12 +354,13 @@ Partial Class ClassDetails
         Me.olvPlannedSchedule.AllColumns.Add(Me.OlvColumn13)
         Me.olvPlannedSchedule.AllColumns.Add(Me.OlvColumn14)
         Me.olvPlannedSchedule.AllColumns.Add(Me.OlvColumn15)
+        Me.olvPlannedSchedule.AllColumns.Add(Me.OlvColumn20)
         Me.olvPlannedSchedule.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.olvPlannedSchedule.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvPlannedSchedule.CellEditUseWholeCell = False
-        Me.olvPlannedSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn2, Me.OlvColumn7, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
+        Me.olvPlannedSchedule.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn2, Me.OlvColumn7, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15, Me.OlvColumn20})
         Me.olvPlannedSchedule.ContextMenuStrip = Me.ctxmnuPlannedSchedule
         Me.olvPlannedSchedule.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvPlannedSchedule.FullRowSelect = True
@@ -596,6 +598,13 @@ Partial Class ClassDetails
         Me.OlvColumn4.Text = "Topic"
         Me.OlvColumn4.Width = 174
         '
+        'OlvColumn19
+        '
+        Me.OlvColumn19.AspectName = "SessionItemType"
+        Me.OlvColumn19.Text = "Type"
+        Me.OlvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.OlvColumn19.Width = 88
+        '
         'OlvColumn8
         '
         Me.OlvColumn8.AspectName = "Prepped"
@@ -773,12 +782,11 @@ Partial Class ClassDetails
         Me.AddAttendanceSessionToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
         Me.AddAttendanceSessionToolStripMenuItem.Text = "&Add attendance session"
         '
-        'OlvColumn19
+        'OlvColumn20
         '
-        Me.OlvColumn19.AspectName = "SessionItemType"
-        Me.OlvColumn19.Text = "Type"
-        Me.OlvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.OlvColumn19.Width = 88
+        Me.OlvColumn20.AspectName = "SessionItemType"
+        Me.OlvColumn20.Text = "Type"
+        Me.OlvColumn20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ClassDetails
         '
@@ -900,4 +908,5 @@ Partial Class ClassDetails
     Friend WithEvents DeleteAttendanceSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddAttendanceSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OlvColumn19 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents OlvColumn20 As BrightIdeasSoftware.OLVColumn
 End Class

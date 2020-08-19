@@ -204,6 +204,9 @@ Public Class ClassDetails
                             m_class.ActualSessions(intCounter).Prepped = frm.SelectedClass.ActualSessions(intCounter).Prepped
                             m_class.ActualSessions(intCounter).StudentsEmailed = frm.SelectedClass.ActualSessions(intCounter).StudentsEmailed
                             m_class.ActualSessions(intCounter).Notes = frm.SelectedClass.ActualSessions(intCounter).Notes
+                            m_class.ActualSessions(intCounter).SessionItemType = frm.SelectedClass.ActualSessions(intCounter).SessionItemType
+                            m_class.ActualSessions(intCounter).DurationInMinutes = frm.SelectedClass.ActualSessions(intCounter).DurationInMinutes
+                            m_class.ActualSessions(intCounter).Location = frm.SelectedClass.ActualSessions(intCounter).Location
                         End If
                     Next
                     LoadActualSessions()
@@ -242,6 +245,8 @@ Public Class ClassDetails
                             Dim xElement As Xml.XmlElement = xDoc.DocumentElement.ChildNodes(intCounter)
                             item.Topic = xElement.InnerText
                             item.Notes = xElement.GetAttribute("Notes")
+                            item.SessionItemType = xElement.GetAttribute("SessionItemType")
+                            item.DurationInMinutes = xElement.GetAttribute("DurationInMinutes")
                             olvActualSessions.RefreshObject(item)
                         Else
                             '-- nothing else from clipboard to use
@@ -271,6 +276,8 @@ Public Class ClassDetails
             xTopic = xDoc.CreateElement("Topic")
             xTopic.InnerText = item.Topic
             xTopic.SetAttribute("Notes", item.Notes)
+            xTopic.SetAttribute("SessionItemType", item.SessionItemType)
+            xTopic.SetAttribute("DurationInMinutes", item.DurationInMinutes)
             root.AppendChild(xTopic)
         Next
         Clipboard.SetText(xDoc.OuterXml)

@@ -2550,9 +2550,8 @@ Public Class MainFormPlain
         pnlNotes.Visible = NotesToolStripMenuItem.Checked
     End Sub
 
-    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
-        '-- This is Under Help->Test and is just used for manipuliation in debug mode
-        '   Normally, Help->Test should not be visible
+    Private Sub TESTConvertBTECToNormalScores()
+        '-- This is for manual processing, it is not needed by this program
         Dim asmt As StudentAssignment
         Dim strName As String
 
@@ -2600,7 +2599,27 @@ Public Class MainFormPlain
             Next
         Next
 
-        MessageBox.Show("Done")
+    End Sub
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        '-- This is Under Help->Test and is just used for manipuliation in debug mode
+        '   Normally, Help->Test should not be visible
+
+        Dim intChanges As Integer
+        For Each cls As SchoolClass In GetSelectedClassGroup.Classes
+            For Each stud As Student In cls.Students
+                For Each session As TeachingSession In stud.TeachingSessions
+                    '-- Assign session ID
+                    For Each actual As ActualSessionItem In cls.ActualSessions
+                        If session.StartDate = actual.StartDateTime.Date Then
+                            session.ActualSessionID = actual.UniqueID
+                            intChanges += 1
+                            Exit For
+                        End If
+                    Next
+                Next
+            Next
+        Next
+        MessageBox.Show("Made " & intChanges.ToString() & " changes")
     End Sub
     Private Function GetClassAssignmentByBaseName(grp As ClassGroup, name As String) As ClassAssignment
         For Each asmt As ClassAssignment In grp.Assignments

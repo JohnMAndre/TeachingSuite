@@ -77,7 +77,7 @@ Public Class Attendance2Form
     Private m_dtStartTime As Date
     Private m_font As Font
     Private m_tsCurrent As TimeSpan
-
+    Private m_strActualSessionID As String
 
     Public Sub New(schoolClass As SchoolClass)
 
@@ -101,6 +101,7 @@ Public Class Attendance2Form
         m_class = item.SchoolClass
         txtStudentGroup.Text = item.StudentGroup
         m_dtStartTime = item.StartDateTime
+        m_strActualSessionID = item.UniqueID
 
     End Sub
 
@@ -125,6 +126,7 @@ Public Class Attendance2Form
                     session.StartDate = dtSessionDate
                     session.AttendenceStatus = stu.AttendanceStatus
                     session.SeatedInRow = stu.SeatedInRow
+                    session.ActualSessionID = m_strActualSessionID
                     stu.Student.TeachingSessions.Add(session)
                 End If
             Next

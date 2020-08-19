@@ -393,6 +393,7 @@ Public Class PlannedScheduleItem
     Public Property Location As String '-- Room number, for example
     Public Property DurationInMinutes As Integer
     Public Property StudentGroup As Integer '== 0=all students, regardless of group
+    Public Property SessionItemType As ActualSessionItem.SessionItemTypeEnum '-- Lecture, etc.
 End Class
 Public Enum ScheduleTypeEnum
     Automatic
@@ -409,14 +410,14 @@ Public Class ActualSessionItem
         UniqueID = Guid.NewGuid.ToString()
         NumberOfTimesExported = 0
     End Sub
-    Public Enum ActualSessionItemTypeEnum
+    Public Enum SessionItemTypeEnum
         Unknown
         Lecture
         Workshop
         Tutorial
     End Enum
     Public Property SchoolClass As SchoolClass
-    Public Property SessionItemType As ActualSessionItemTypeEnum
+    Public Property SessionItemType As SessionItemTypeEnum
     Public Property StartDateTime As Date
     Public Property SessionNumber As Integer
     Public Property Topic As String '-- name,title, id, etc.
@@ -1212,6 +1213,7 @@ Public Class SchoolClass
                 objProposedAdd.Location = PlannedSchedule(intPlanningCounter).Location
                 objProposedAdd.StudentGroup = PlannedSchedule(intPlanningCounter).StudentGroup
                 objProposedAdd.DurationInMinutes = PlannedSchedule(intPlanningCounter).DurationInMinutes
+                objProposedAdd.SessionItemType = PlannedSchedule(intPlanningCounter).SessionItemType
 
                 '-- make sure the item doesn't exist already (as a manual item, for example)
                 boolExistsAlready = False
@@ -1829,12 +1831,12 @@ Public Class SchoolClass
             obj.ScheduleType = [Enum].Parse(GetType(ScheduleTypeEnum), xActualSessionItem.GetAttribute("ScheduleType"), True)
 
             '-- Added July 2020
-            Dim temp As ActualSessionItem.ActualSessionItemTypeEnum
-            Dim boolTemp As Boolean = [Enum].TryParse(Of ActualSessionItem.ActualSessionItemTypeEnum)(xActualSessionItem.GetAttribute("SessionItemType"), temp)
+            Dim temp As ActualSessionItem.SessionItemTypeEnum
+            Dim boolTemp As Boolean = [Enum].TryParse(Of ActualSessionItem.SessionItemTypeEnum)(xActualSessionItem.GetAttribute("SessionItemType"), temp)
             If boolTemp Then
                 obj.SessionItemType = temp
             Else
-                obj.SessionItemType = ActualSessionItem.ActualSessionItemTypeEnum.Unknown
+                obj.SessionItemType = ActualSessionItem.SessionItemTypeEnum.Unknown
             End If
 
             obj.Topic = xActualSessionItem.GetAttribute("Topic")
@@ -3864,6 +3866,7 @@ Public Class Student
                 xSessionElement.SetAttribute("Status", objSession.AttendenceStatus.ToString())
                 xSessionElement.SetAttribute("SeatedInRow", objSession.SeatedInRow.ToString())
                 xSessionElement.SetAttribute("Notes", objSession.Notes)
+                xSessionElement.SetAttribute("ActualSessionID", objSession.ActualSessionID)
                 xStudentElement.AppendChild(xSessionElement)
             Next
 
@@ -4398,6 +4401,7 @@ Public Class TeachingSession
     Public Property Notes As String
     Public Property Student As Student
     Public Property SeatedInRow As Integer
+    Public Property ActualSessionID As String
 
     Public Sub New(student As Student)
         Me.Student = student
@@ -4410,6 +4414,7 @@ Public Class TeachingSession
         AttendenceStatus = [Enum].Parse(GetType(AttendanceStatusEnum), strValue, True)
         SeatedInRow = ConvertToInt32(xElement.GetAttribute("SeatedInRow"), 0)
         Notes = xElement.GetAttribute("Notes")
+        ActualSessionID = xElement.GetAttribute("ActualSessionID")
         Me.Student = student
 
     End Sub
