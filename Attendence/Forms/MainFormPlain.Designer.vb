@@ -583,7 +583,7 @@ Partial Class MainFormPlain
         '
         Me.llblSemesterLabel.Location = New System.Drawing.Point(12, 9)
         Me.llblSemesterLabel.Name = "llblSemesterLabel"
-        Me.llblSemesterLabel.Size = New System.Drawing.Size(72, 19)
+        Me.llblSemesterLabel.Size = New System.Drawing.Size(64, 20)
         Me.llblSemesterLabel.TabIndex = 37
         Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblSemesterLabel.Values.Text = "Semester:"
@@ -2491,6 +2491,7 @@ Partial Class MainFormPlain
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
         Me.ToolStripMenuItem2.Text = "Test...do not use"
+        Me.ToolStripMenuItem2.Visible = False
         '
         'tmrAutoSave
         '

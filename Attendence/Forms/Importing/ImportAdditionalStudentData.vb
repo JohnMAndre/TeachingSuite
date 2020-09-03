@@ -23,6 +23,7 @@ Public Class ImportAdditionalStudentData
         Public Property Tags As String
         Public Property PeerRevieweeStudentID As String
         Public Property StudentGroup As Integer
+        Public Property StudentTeam As String
     End Class
     Private m_lstImportData As List(Of ImportData)
     Private m_lstStudents As List(Of Student)
@@ -39,7 +40,7 @@ Public Class ImportAdditionalStudentData
             txtErrors.Text = String.Empty
             txtErrors.Visible = True
             For Each item As ImportData In m_lstImportData
-                stud = GetStudentByID(item.StudentID)
+                stud = GetStudentByID(item.StudentID.Trim())
                 If stud Is Nothing Then
                     '-- cannot match on student ID - flag for user to deal with
                     txtErrors.Text &= item.StudentID & Environment.NewLine
@@ -84,6 +85,10 @@ Public Class ImportAdditionalStudentData
                     If chkGroup.Checked Then
                         stud.StudentGroup = item.StudentGroup
                     End If
+
+                    If chkTeam.Checked Then
+                        stud.StudentTeam = item.StudentTeam
+                    End If
                 End If
 
 
@@ -124,7 +129,7 @@ Public Class ImportAdditionalStudentData
                 Dim intIndexExtID As Integer
                 Dim intIndexTags As Integer
                 Dim intIndexPeerReviewStudentID As Integer
-                Dim intIndexStudentGroup As Integer
+                Dim intIndexStudentGroup, intIndexStudentTeam As Integer
                 Dim intIndexes As Integer
                 Dim intCurrentIndex As Integer
 
@@ -164,8 +169,14 @@ Public Class ImportAdditionalStudentData
                     intIndexes += 1
                 End If
 
+                If chkTeam.Checked Then
+                    intCurrentIndex += 1
+                    intIndexStudentTeam = intCurrentIndex
+                    intIndexes += 1
+                End If
+
                 For intCounter As Integer = 0 To strRows.Count - 1
-                    row = strRows(intCounter).Trim.Split(vbTab)
+                    row = strRows(intCounter).Split(vbTab)
                     If row.Length < intIndexes + 1 Then
                         If m_lstImportData.Count > 0 Then
                             '-- we are done
@@ -196,6 +207,9 @@ Public Class ImportAdditionalStudentData
                     If intIndexStudentGroup > 0 Then
                         objData.StudentGroup = ConvertToInt32(row(intIndexStudentGroup), 0)
                     End If
+                    If intIndexStudentTeam > 0 Then
+                        objData.StudentTeam = row(intIndexStudentTeam)
+                    End If
 
                     m_lstImportData.Add(objData)
                 Next
@@ -208,21 +222,6 @@ Public Class ImportAdditionalStudentData
         End Try
     End Sub
 
-    Private Sub ImportnicknameToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        SetColumnVisibility()
-    End Sub
-
-    Private Sub ImportemailToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        SetColumnVisibility()
-    End Sub
-
-    Private Sub ImportExtIDToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        SetColumnVisibility()
-    End Sub
-
-    Private Sub ImporttagsToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        SetColumnVisibility()
-    End Sub
     Private Sub SetColumnVisibility()
         If chkTags.Checked Then
             colTags.Width = 100
@@ -258,6 +257,12 @@ Public Class ImportAdditionalStudentData
             colStudentGroup.Width = 100
         Else
             colStudentGroup.Width = 0
+        End If
+
+        If chkTeam.Checked Then
+            colTeam.Width = 100
+        Else
+            colTeam.Width = 0
         End If
     End Sub
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
@@ -298,15 +303,7 @@ Public Class ImportAdditionalStudentData
         End If
     End Function
 
-    Private Sub ImportpeerRevieweeStudentIDToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        SetColumnVisibility()
-    End Sub
-
-    Private Sub ImportStudentGroupToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        SetColumnVisibility()
-    End Sub
-
-    Private Sub chkGroup_CheckStateChanged(sender As Object, e As EventArgs) Handles chkTags.CheckStateChanged, chkPeerStudentID.CheckStateChanged, chkNickname.CheckStateChanged, chkGroup.CheckStateChanged, chkExtStudentID.CheckStateChanged, chkEmail.CheckStateChanged
+    Private Sub chk_CheckStateChanged(sender As Object, e As EventArgs) Handles chkTags.CheckStateChanged, chkPeerStudentID.CheckStateChanged, chkNickname.CheckStateChanged, chkGroup.CheckStateChanged, chkExtStudentID.CheckStateChanged, chkEmail.CheckStateChanged, chkTeam.CheckStateChanged
         SetColumnVisibility()
     End Sub
 
@@ -317,6 +314,7 @@ Public Class ImportAdditionalStudentData
         chkTags.Checked = False
         chkPeerStudentID.Checked = False
         chkGroup.Checked = False
+        chkTeam.Checked = False
     End Sub
 
     Private Sub CheckAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckAllToolStripMenuItem.Click
@@ -326,5 +324,8 @@ Public Class ImportAdditionalStudentData
         chkTags.Checked = True
         chkPeerStudentID.Checked = True
         chkGroup.Checked = True
+        chkTeam.Checked = True
     End Sub
+
+
 End Class

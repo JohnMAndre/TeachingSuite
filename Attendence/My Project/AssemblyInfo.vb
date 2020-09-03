@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Teaching App")> 
-<Assembly: AssemblyDescription("Teaching App is an application to manage classes, students, attendance, assignment marking, with many other features needed by teaching professors.")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Teaching App")> 
-<Assembly: AssemblyCopyright("Copyright ©  2012-2019 by John M. Andre (John@JohnMAndre.com)")> 
+<Assembly: AssemblyTitle("Teaching Suite")>
+<Assembly: AssemblyDescription("Teaching Suite is a system to manage classes, students, attendance, assignment marking, with many other features needed by teaching professors.")>
+<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyProduct("Teaching Suite")>
+<Assembly: AssemblyCopyright("Copyright ©  2012-2020 by John M. Andre (John@JohnMAndre.com)")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0")> 
-<Assembly: AssemblyFileVersion("2.5.0")> 
+<Assembly: AssemblyVersion("1.0.0")>
+<Assembly: AssemblyFileVersion("2.7.0")>

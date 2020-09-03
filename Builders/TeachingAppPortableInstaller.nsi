@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Teaching App"
-!define PRODUCT_VERSION "2.3.0"
+!define PRODUCT_VERSION "2.7.0"
 !define PRODUCT_PUBLISHER "John M. Andre"
 !define PRODUCT_WEB_SITE "http://educators.JohnMAndre.com"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Teaching.exe"
@@ -66,21 +66,9 @@ Section "MainSection" SEC01
   SetOverwrite on
   File "..\Attendence\bin\Debug\Teaching.exe"
   File "..\Attendence\bin\Debug\Teaching.exe.config"
-  File "..\Attendence\bin\Debug\TeachingUpdater.exe"
-  File "..\Attendence\bin\Debug\TeachingUpdater.exe.config"
-  File "..\Attendence\bin\Debug\UpdaterReplacer.exe"
-  File "..\Attendence\bin\Debug\UpdaterReplacer.exe.config"
-  File "..\Attendence\bin\Debug\C1.Data.2.dll"
-  File "..\Attendence\bin\Debug\C1.Win.C1Editor.2.dll"
-  File "..\Attendence\bin\Debug\C1.Win.C1Input.2.dll"
-  File "..\Attendence\bin\Debug\C1.Win.C1SpellChecker.2.dll"
   File "..\Attendence\bin\Debug\ComponentFactory.Krypton.Toolkit.dll"
   File "..\Attendence\bin\Debug\Ionic.Zip.dll"
   File "..\Attendence\bin\Debug\ObjectListView.dll"
-  File "..\Attendence\English (US).dct"
-  File "..\Attendence\English (GB).dct"
-  File "..\Attendence\English (AU).dct"
-  File "..\Attendence\English (CA).dct"
 SectionEnd
 
 Section -Post
@@ -112,21 +100,9 @@ Section Uninstall
   Delete "$INSTDIR\App\uninst.exe"
   Delete "$INSTDIR\App\Teaching.exe"
   Delete "$INSTDIR\App\Teaching.exe.config"
-  Delete "$INSTDIR\App\TeachingUpdater.exe"
-  Delete "$INSTDIR\App\TeachingUpdater.exe.config"
-  Delete "$INSTDIR\App\UpdaterReplacer.exe"
-  Delete "$INSTDIR\App\UpdaterReplacer.exe.config"
-  Delete "$INSTDIR\App\C1.Data.2.dll"
-  Delete "$INSTDIR\App\C1.Win.C1Editor.2.dll"
-  Delete "$INSTDIR\App\C1.Win.C1Input.2.dll"
-  Delete "$INSTDIR\App\C1.Win.C1SpellChecker.2.dll"
   Delete "$INSTDIR\App\ComponentFactory.Krypton.Toolkit.dll"
   Delete "$INSTDIR\App\Ionic.Zip.dll"
   Delete "$INSTDIR\App\ObjectListView.dll"
-  Delete "$INSTDIR\App\English (US).dct"
-  Delete "$INSTDIR\App\English (UK).dct"
-  Delete "$INSTDIR\App\English (CA).dct"
-  Delete "$INSTDIR\App\English (AU).dct"
 
   RMDir "$INSTDIR"
 
