@@ -40,7 +40,7 @@ Public Class ImportAdditionalStudentData
             txtErrors.Text = String.Empty
             txtErrors.Visible = True
             For Each item As ImportData In m_lstImportData
-                stud = GetStudentByID(item.StudentID.Trim())
+                stud = GetStudentByID(item.StudentID)
                 If stud Is Nothing Then
                     '-- cannot match on student ID - flag for user to deal with
                     txtErrors.Text &= item.StudentID & Environment.NewLine
@@ -188,7 +188,7 @@ Public Class ImportAdditionalStudentData
                     End If
 
                     objData = New ImportData()
-                    objData.StudentID = row(0)
+                    objData.StudentID = row(0).Trim()
                     If intIndexNickname > 0 Then
                         objData.Nickname = row(intIndexNickname)
                     End If
