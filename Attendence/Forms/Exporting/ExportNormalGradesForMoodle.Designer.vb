@@ -26,13 +26,15 @@ Partial Class ExportNormalGradesForMoodle
         Me.btnExport = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lstAssignments = New System.Windows.Forms.ListBox()
+        Me.chkIncludeImprovementFeedback = New System.Windows.Forms.CheckBox()
+        Me.chkIncludeOverallFeedback = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'lblStatus
         '
         Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(17, 208)
+        Me.lblStatus.Location = New System.Drawing.Point(17, 272)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(0, 18)
         Me.lblStatus.TabIndex = 13
@@ -40,7 +42,7 @@ Partial Class ExportNormalGradesForMoodle
         'btnExport
         '
         Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnExport.Location = New System.Drawing.Point(177, 203)
+        Me.btnExport.Location = New System.Drawing.Point(177, 267)
         Me.btnExport.Name = "btnExport"
         Me.btnExport.Size = New System.Drawing.Size(101, 29)
         Me.btnExport.TabIndex = 12
@@ -63,24 +65,52 @@ Partial Class ExportNormalGradesForMoodle
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstAssignments.FormattingEnabled = True
         Me.lstAssignments.ItemHeight = 18
-        Me.lstAssignments.Location = New System.Drawing.Point(18, 44)
+        Me.lstAssignments.Location = New System.Drawing.Point(18, 34)
         Me.lstAssignments.Margin = New System.Windows.Forms.Padding(4)
         Me.lstAssignments.Name = "lstAssignments"
         Me.lstAssignments.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.lstAssignments.Size = New System.Drawing.Size(397, 148)
+        Me.lstAssignments.Size = New System.Drawing.Size(397, 166)
         Me.lstAssignments.TabIndex = 10
+        '
+        'chkIncludeImprovementFeedback
+        '
+        Me.chkIncludeImprovementFeedback.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkIncludeImprovementFeedback.AutoSize = True
+        Me.chkIncludeImprovementFeedback.Checked = True
+        Me.chkIncludeImprovementFeedback.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeImprovementFeedback.Location = New System.Drawing.Point(20, 239)
+        Me.chkIncludeImprovementFeedback.Name = "chkIncludeImprovementFeedback"
+        Me.chkIncludeImprovementFeedback.Size = New System.Drawing.Size(237, 22)
+        Me.chkIncludeImprovementFeedback.TabIndex = 14
+        Me.chkIncludeImprovementFeedback.Text = "Include Improvement feedback"
+        Me.chkIncludeImprovementFeedback.UseVisualStyleBackColor = True
+        '
+        'chkIncludeOverallFeedback
+        '
+        Me.chkIncludeOverallFeedback.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkIncludeOverallFeedback.AutoSize = True
+        Me.chkIncludeOverallFeedback.Checked = True
+        Me.chkIncludeOverallFeedback.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeOverallFeedback.Location = New System.Drawing.Point(20, 211)
+        Me.chkIncludeOverallFeedback.Name = "chkIncludeOverallFeedback"
+        Me.chkIncludeOverallFeedback.Size = New System.Drawing.Size(196, 22)
+        Me.chkIncludeOverallFeedback.TabIndex = 15
+        Me.chkIncludeOverallFeedback.Text = "Include Overall feedback"
+        Me.chkIncludeOverallFeedback.UseVisualStyleBackColor = True
         '
         'ExportNormalGradesForMoodle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(433, 243)
+        Me.ClientSize = New System.Drawing.Size(433, 307)
+        Me.Controls.Add(Me.chkIncludeOverallFeedback)
+        Me.Controls.Add(Me.chkIncludeImprovementFeedback)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.btnExport)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lstAssignments)
         Me.Font = New System.Drawing.Font("Arial", 12.0!)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "ExportNormalGradesForMoodle"
         Me.Text = "Export Normal Grades for Moodle"
         Me.ResumeLayout(False)
@@ -92,4 +122,6 @@ Partial Class ExportNormalGradesForMoodle
     Friend WithEvents btnExport As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents lstAssignments As ListBox
+    Friend WithEvents chkIncludeImprovementFeedback As CheckBox
+    Friend WithEvents chkIncludeOverallFeedback As CheckBox
 End Class

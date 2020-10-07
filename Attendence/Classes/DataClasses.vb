@@ -1721,6 +1721,8 @@ Public Class SchoolClass
             tw.Write("Gender")
             tw.Write(DELIMITER)
             tw.Write("DateOfBirth")
+            tw.Write(DELIMITER)
+            tw.Write("PeerToReview")
 
             tw.Write(Environment.NewLine)
 
@@ -1766,6 +1768,8 @@ Public Class SchoolClass
                 tw.Write(student.Gender.ToString())
                 tw.Write(DELIMITER)
                 tw.Write(student.DateOfBirth.ToString("yyyy-MM-dd"))
+                tw.Write(DELIMITER)
+                tw.Write(student.StudentIDToPeerReview)
 
 
                 '-- Prep for new student

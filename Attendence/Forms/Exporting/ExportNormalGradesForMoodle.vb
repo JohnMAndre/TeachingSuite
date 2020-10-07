@@ -50,7 +50,7 @@ Public Class ExportNormalGradesForMoodle
             Dim tw As System.IO.TextWriter = System.IO.File.CreateText(sfd.FileName)
 
             '-- First, write out the headers
-            tw.Write("StudentID" & vbTab & "Email")
+            tw.Write("StudentID" & vbTab & "Email" & vbTab & "Team" & vbTab & "Group")
             For Each item As ClassAssignment In lstAssignments.SelectedItems
                 tw.Write(vbTab & "Assignment: " & item.Name & " (Real)" & vbTab & "Assignment: " & item.Name & " (Feedback)")
             Next
@@ -62,9 +62,8 @@ Public Class ExportNormalGradesForMoodle
             For Each cls As SchoolClass In m_group.Classes
                 For Each stud As Student In cls.Students
                     intAsmtCounter = 0 '-- reset
-                    tw.WriteLine(String.Empty) '-- just to get the end of line char for the previous line (I think this will work) 
 
-                    strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress
+                    strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress & vbTab & stud.StudentTeam & vbTab & stud.StudentGroup
                     '--  WARNING: It is possible that A2 is created before A1 so need to sort first, otherwise columns will not sync up
                     stud.Assignments.Sort()
 
@@ -85,7 +84,24 @@ Public Class ExportNormalGradesForMoodle
                             strLineToWrite &= vbTab & stAsmt.FirstTryPoints
 
                             '-- Need to remove end of line chars
-                            strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+                            If chkIncludeOverallFeedback.Checked Then
+                                If chkIncludeImprovementFeedback.Checked Then
+                                    '-- Both
+                                    Dim strFeedback As String = stAsmt.OverallComments & " # " & stAsmt.ImprovementComments
+                                    strLineToWrite &= vbTab & "" & strFeedback.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+                                Else
+                                    '-- Just Overall
+                                    strLineToWrite &= vbTab & "" & stAsmt.OverallComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+                                End If
+                            Else
+                                If chkIncludeImprovementFeedback.Checked Then
+                                    '-- Just improvement
+                                    strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+                                Else
+                                    '-- Neither
+                                    '-- Do nothing
+                                End If
+                            End If
 
                             intAsmtCounter += 1
                         End If

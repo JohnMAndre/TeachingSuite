@@ -376,4 +376,14 @@ Public Class ImportStudentsFromText
         End Try
     End Sub
 
+    Private Sub CopyColumnHeadersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyColumnHeadersToolStripMenuItem.Click
+        Dim strOutput As String = String.Empty
+        For Each col As DataGridViewColumn In dgvStudents.Columns
+            If strOutput.Length > 0 Then
+                strOutput &= vbTab
+            End If
+            strOutput &= col.HeaderText
+        Next
+        Clipboard.SetText(strOutput)
+    End Sub
 End Class

@@ -250,7 +250,7 @@ Partial Class BuildGroups
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "BuildGroups"
-        Me.Text = "BuildGroups"
+        Me.Text = "Build Groups (will change Tag for student)"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)

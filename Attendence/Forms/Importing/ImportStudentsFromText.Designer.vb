@@ -63,6 +63,7 @@ Partial Class ImportStudentsFromText
         Me.KryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.CopyColumnHeadersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,12 +309,12 @@ Partial Class ImportStudentsFromText
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyColumnHeadersToolStripMenuItem, Me.PasteToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "&Edit"
@@ -322,16 +323,12 @@ Partial Class ImportStudentsFromText
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
         Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
         '
         'KryptonManager
         '
-        '
-        'kryptonPalette2
-        '
-        Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPalette = Me.KryptonPalette2
         Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonPalette2
@@ -347,6 +344,12 @@ Partial Class ImportStudentsFromText
         '
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 200
+        '
+        'CopyColumnHeadersToolStripMenuItem
+        '
+        Me.CopyColumnHeadersToolStripMenuItem.Name = "CopyColumnHeadersToolStripMenuItem"
+        Me.CopyColumnHeadersToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.CopyColumnHeadersToolStripMenuItem.Text = "&Copy column headers"
         '
         'ImportStudentsFromText
         '
@@ -418,4 +421,5 @@ Partial Class ImportStudentsFromText
     Friend WithEvents dcolGender As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dcolNameLatinLetters As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents KryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents CopyColumnHeadersToolStripMenuItem As ToolStripMenuItem
 End Class
