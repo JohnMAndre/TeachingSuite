@@ -2193,6 +2193,7 @@ Partial Class MainFormPlain
         '
         'ExportBTECGradesForMoodleToolStripMenuItem
         '
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.MoodleIcon
         Me.ExportBTECGradesForMoodleToolStripMenuItem.Name = "ExportBTECGradesForMoodleToolStripMenuItem"
         Me.ExportBTECGradesForMoodleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportBTECGradesForMoodleToolStripMenuItem.Text = "Export &BTEC / normal grades for Moodle"
@@ -2459,37 +2460,37 @@ Partial Class MainFormPlain
         'CheckForupdatesToolStripMenuItem
         '
         Me.CheckForupdatesToolStripMenuItem.Name = "CheckForupdatesToolStripMenuItem"
-        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CheckForupdatesToolStripMenuItem.Text = "Check for &updates..."
         '
         'UpgradeToolStripMenuItem
         '
         Me.UpgradeToolStripMenuItem.Name = "UpgradeToolStripMenuItem"
-        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.UpgradeToolStripMenuItem.Text = "&Upgrade..."
         Me.UpgradeToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator16
         '
         Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(176, 6)
         '
         'ViewLogFileToolStripMenuItem
         '
         Me.ViewLogFileToolStripMenuItem.Name = "ViewLogFileToolStripMenuItem"
-        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.ViewLogFileToolStripMenuItem.Text = "&View log file..."
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.AboutToolStripMenuItem.Text = "&About..."
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(179, 22)
         Me.ToolStripMenuItem2.Text = "Test...do not use"
         Me.ToolStripMenuItem2.Visible = False
         '

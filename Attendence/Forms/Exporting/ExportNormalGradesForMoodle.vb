@@ -62,6 +62,7 @@ Public Class ExportNormalGradesForMoodle
             For Each cls As SchoolClass In m_group.Classes
                 For Each stud As Student In cls.Students
                     intAsmtCounter = 0 '-- reset
+                    'tw.WriteLine(String.Empty) '-- just to get the end of line char for the previous row
 
                     strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress & vbTab & stud.StudentTeam & vbTab & stud.StudentGroup
                     '--  WARNING: It is possible that A2 is created before A1 so need to sort first, otherwise columns will not sync up
@@ -106,7 +107,7 @@ Public Class ExportNormalGradesForMoodle
                             intAsmtCounter += 1
                         End If
                     Next
-                    tw.Write(strLineToWrite)
+                    tw.WriteLine(strLineToWrite)
                 Next
             Next
 

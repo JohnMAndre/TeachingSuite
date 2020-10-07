@@ -960,6 +960,7 @@
     <None Include="Resources\MarkingGridForPresentations4.5.png" />
     <None Include="Resources\MarkingGridForPresentations5.0.png" />
     <None Include="Resources\MarkingGridForPresentationsInverse.png" />
+    <None Include="Resources\MoodleIcon.png" />
     <Content Include="XMLFile1.xml" />
     <None Include="Resources\download.png" />
     <None Include="Resources\download_16.png" />
