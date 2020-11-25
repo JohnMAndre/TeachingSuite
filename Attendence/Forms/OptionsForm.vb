@@ -93,6 +93,8 @@ Public Class OptionsForm
             AppSettings.HighlightAttendanceNoPresentationQuality = False
         End If
 
+        AppSettings.AttendanceMessage = txtAttendanceMessage.Text
+
         '-- Marking
         AppSettings.UserFullName = txtUserFullName.Text
         AppSettings.DataBackupsToRetain = nudDataBackupsToRetain.Value
@@ -206,6 +208,8 @@ Public Class OptionsForm
             Else
                 rdoAttendanceHighlightNothing.Checked = True
             End If
+            txtAttendanceMessage.Text = AppSettings.AttendanceMessage
+
 
             '-- Marking
             txtUserFullName.Text = AppSettings.UserFullName
@@ -292,10 +296,6 @@ Public Class OptionsForm
         If fbd.ShowDialog = DialogResult.OK Then
             txtPathToFeedbackSaveFolder.Text = fbd.SelectedPath
         End If
-    End Sub
-
-    Private Sub llblDictionaryInfo_LinkClicked(sender As Object, e As EventArgs) Handles llblDictionaryInfo.LinkClicked
-        MessageBox.Show("If you would like more dictionaries, just email John@JohnMAndre.com.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
 End Class

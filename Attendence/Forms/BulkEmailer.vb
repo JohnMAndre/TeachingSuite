@@ -133,15 +133,23 @@ Public Class BulkEmailer
                 olvStudents.RefreshObject(dataItem)
                 tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- True to force plaintext
 
+                Dim strNameForToField As String
+
                 If m_clas.ClassGroup.UseNickname Then
                     If dataItem.Student.Nickname.Trim.Length = 0 Then
-                        tm.AddRecipient(dataItem.Student.LocalNameLatinLetters, dataItem.Student.EmailAddress)
+                        strNameForToField = dataItem.Student.LocalNameLatinLetters
                     Else
-                        tm.AddRecipient(dataItem.Student.Nickname, dataItem.Student.EmailAddress)
+                        strNameForToField = dataItem.Student.Nickname
                     End If
                 Else
-                    tm.AddRecipient(dataItem.Student.LocalNameLatinLetters, dataItem.Student.EmailAddress)
+                    strNameForToField = dataItem.Student.LocalNameLatinLetters
                 End If
+
+                If chkIncludeStudentID.Checked Then
+                    strNameForToField &= " (" & dataItem.Student.StudentID & ")"
+                End If
+
+                tm.AddRecipient(strNameForToField, dataItem.Student.EmailAddress)
 
                 tm.show() '-- don't show, doesn't load all the smtp accounts
                 Application.DoEvents()

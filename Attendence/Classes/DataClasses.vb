@@ -3708,6 +3708,38 @@ Public Class Student
             End If
         End Set
     End Property
+    Public Property Icon As Image
+        Get
+            If EmailAddress IsNot Nothing Then
+                Dim strImagePath As String = System.IO.Path.Combine(GetStudentIconFolder, EmailAddress.ToLower().ToLower) & ".png"
+                If System.IO.File.Exists(strImagePath) Then
+                    Try
+                        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(strImagePath)
+                        Return img
+                    Catch ex As Exception
+                        Return Nothing
+                    End Try
+                Else
+                    Return Nothing
+                End If
+            Else
+                Return Nothing
+            End If
+        End Get
+        Set(value As Image)
+            Dim strImagePath As String = System.IO.Path.Combine(GetStudentIconFolder, EmailAddress.ToLower().ToLower) & ".png"
+            If value Is Nothing Then
+                '-- delete image if it exists
+                If System.IO.File.Exists(strImagePath) Then
+                    AddToActivityLog("Deleted image: " & strImagePath)
+                    System.IO.File.Delete(strImagePath)
+                End If
+            Else
+                AddToActivityLog("Saved new image: " & strImagePath)
+                value.Save(strImagePath, System.Drawing.Imaging.ImageFormat.Png)
+            End If
+        End Set
+    End Property
     Public ReadOnly Property TotalAbsences As Decimal
         Get
             Try

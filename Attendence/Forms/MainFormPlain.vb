@@ -15,6 +15,7 @@
 'You should have received a copy Of the GNU General Public License
 'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
 
+Imports System.IO
 Imports System.Windows.Forms
 
 Public Class MainFormPlain
@@ -45,8 +46,8 @@ Public Class MainFormPlain
                 ThisSemester.Save()
             Catch ex As Exception
                 Log(ex)
-                Dim rslt As DialogResult = MessageBox.Show("There was an error saving this semester. Do you want to close WITHOUT saving?" & _
-                                                           Environment.NewLine & Environment.NewLine & "This will cause you to LOSE the DATA since you opened this application.", _
+                Dim rslt As DialogResult = MessageBox.Show("There was an error saving this semester. Do you want to close WITHOUT saving?" &
+                                                           Environment.NewLine & Environment.NewLine & "This will cause you to LOSE the DATA since you opened this application.",
                                                            Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
                 If rslt = System.Windows.Forms.DialogResult.Yes Then
                     Log("User chose to close without saving after save error.", 1)
@@ -717,40 +718,23 @@ Public Class MainFormPlain
     End Sub
 
     Property m_lstRandomlySelected As New List(Of Integer)
-    Private Function SelectRandomStudent() As Boolean
-        If GetSelectedClass() Is Nothing Then
-            MessageBox.Show("Please select a class before requesting a random student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        Else
-            Randomize()
-            Dim int As Integer
+    Private Sub SelectRandomStudent()
+        Randomize()
+        Dim int As Integer
 
-            '-- don't select the same student twice unless all students have been selected. In that case, clear the list and start anew
-            If m_lstRandomlySelected.Count = m_lstCurrentListOfStudents.Count Then
-                m_lstRandomlySelected.Clear()
-            End If
-
-            Do
-                Dim rnd As New Random()
-                int = rnd.Next Mod GetSelectedClass.Students.Count
-            Loop While m_lstRandomlySelected.Contains(int) '-- select another one
-
-            'If olvStudents.Items.Count <= int Then
-            '    MessageBox.Show("Too few students. Is the filter set?", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            'Else
-            '    m_lstRandomlySelected.Add(int)
-            '    olvStudents.Items(int).Selected = True
-            '    olvStudents.Items(int).EnsureVisible()
-            'End If
-
-            'olvStudents.Focus()
-            Return True
+        '-- don't select the same student twice unless all students have been selected. In that case, clear the list and start anew
+        If m_lstRandomlySelected.Count = m_lstCurrentListOfStudents.Count Then
+            m_lstRandomlySelected.Clear()
         End If
-    End Function
-    Private Sub btnSelectRandomStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnSelectRandomStudent.Click
-        SelectRandomStudent()
-    End Sub
 
+        Do
+            Dim rnd As New Random()
+            int = rnd.Next Mod m_lstCurrentListOfStudents.Count
+        Loop While m_lstRandomlySelected.Contains(int) '-- select another one
+
+        m_lstRandomlySelected.Add(int)
+
+    End Sub
     Private Sub ExportAttendenceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAttendanceToolStripMenuItem.Click
         If GetSelectedClass() Is Nothing Then
             MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1571,29 +1555,8 @@ Public Class MainFormPlain
             frm.ShowDialog(Me)
         End Using
     End Sub
-    Private Sub SelectRandomStudentAndDisplayMessage()
-        If SelectRandomStudent() Then
-            Dim stud As Student = GetSelectedStudentGridCanOnlyBeOne() 'GetSelectedStudentCanOnlyBeOne
 
-            Select Case MessageBox.Show(stud.Nickname & " - " & stud.LocalName & " - " & stud.CurrentAttendenceStatus.ToString() &
-                                                                    Environment.NewLine & Environment.NewLine & "Overall: " & stud.PresentationQuality.ToString() &
-                                                                    Environment.NewLine & Environment.NewLine & "Mark removed and select a new student (yes)?" &
-                                                                    Environment.NewLine & "Ignore and select a new student (no)?" &
-                                                                    Environment.NewLine & "Do nothing (cancel)?", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3)
-                Case DialogResult.Yes
-                    RemoveCurrentStudent()
-                    SelectRandomStudentAndDisplayMessage()
-                Case DialogResult.No
-                    SelectRandomStudentAndDisplayMessage()
-                Case DialogResult.Cancel
-                    '-- do nothing
-                    Application.DoEvents() '-- for breakpoint
-            End Select
-        End If
-    End Sub
-    Private Sub SelectRandomStudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-        SelectRandomStudentAndDisplayMessage()
-    End Sub
+
 
     Private Sub EmailstudentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         EmailStudent(GetSelectedStudentsFromGrid())
@@ -2414,7 +2377,8 @@ Public Class MainFormPlain
     Private Sub ImportStudentAssignmentScoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentAssignmentScoresToolStripMenuItem.Click
         If GetSelectedClassGroup() IsNot Nothing Then
             If GetSelectedAssignment() IsNot Nothing Then
-                Using frm As New ImportAssignmentNormalGrades(GetSelectedClassGroup(), GetSelectedAssignment())
+                'Using frm As New ImportAssignmentNormalGrades(GetSelectedClassGroup(), GetSelectedAssignment())
+                Using frm As New ImportAssignmentNormalGradeData(GetSelectedClassGroup(), GetSelectedAssignment())
                     frm.ShowDialog()
                 End Using
             Else
@@ -2602,24 +2566,29 @@ Public Class MainFormPlain
     End Sub
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
         '-- This is Under Help->Test and is just used for manipuliation in debug mode
-        '   Normally, Help->Test should not be visible
+        '   Normally, Help->Test should not be visible for production use
+        Dim lst As New List(Of Double)
+        Dim dbl As Double
+        dbl = 0.5
+        lst.Add(dbl)
+        dbl = 0.3
+        lst.Add(dbl)
+        dbl = 0.49
+        lst.Add(dbl)
+        dbl = 0.95
+        lst.Add(dbl)
+        dbl = 0.45
+        lst.Add(dbl)
+        dbl = 0.64
+        lst.Add(dbl)
+        dbl = 0.73
+        lst.Add(dbl)
 
-        Dim intChanges As Integer
-        For Each cls As SchoolClass In GetSelectedClassGroup.Classes
-            For Each stud As Student In cls.Students
-                For Each session As TeachingSession In stud.TeachingSessions
-                    '-- Assign session ID
-                    For Each actual As ActualSessionItem In cls.ActualSessions
-                        If session.StartDate = actual.StartDateTime.Date Then
-                            session.ActualSessionID = actual.UniqueID
-                            intChanges += 1
-                            Exit For
-                        End If
-                    Next
-                Next
-            Next
-        Next
-        MessageBox.Show("Made " & intChanges.ToString() & " changes")
+        dbl = GetStandardDeviation(lst)
+
+
+
+        MessageBox.Show("Done: " & dbl.ToString("0.000"))
     End Sub
     Private Function GetClassAssignmentByBaseName(grp As ClassGroup, name As String) As ClassAssignment
         For Each asmt As ClassAssignment In grp.Assignments
@@ -3081,13 +3050,13 @@ Public Class MainFormPlain
                     End Select
 
                 Else
-                    lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentID.ToLower.Contains(strSearchFor) OrElse _
-                                                                                     x.Nickname.ToLower.Contains(strSearchFor) OrElse _
-                                                                                     x.LocalNameLatinLetters.ToLower.Contains(strSearchFor) OrElse _
-                                                                                     x.ExtStudentID.ToLower.Contains(strSearchFor) OrElse _
-                                                                                     x.Tags.ToLower.Contains(strSearchFor) OrElse _
-                                                                                     x.EmailAddress.ToLower.Contains(strSearchFor) OrElse _
-                                                                                     x.Nickname.ToLower.Contains(strSearchFor) OrElse _
+                    lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentID.ToLower.Contains(strSearchFor) OrElse
+                                                                                     x.Nickname.ToLower.Contains(strSearchFor) OrElse
+                                                                                     x.LocalNameLatinLetters.ToLower.Contains(strSearchFor) OrElse
+                                                                                     x.ExtStudentID.ToLower.Contains(strSearchFor) OrElse
+                                                                                     x.Tags.ToLower.Contains(strSearchFor) OrElse
+                                                                                     x.EmailAddress.ToLower.Contains(strSearchFor) OrElse
+                                                                                     x.Nickname.ToLower.Contains(strSearchFor) OrElse
                                                                                      x.StudentTeam.ToLower.Contains(strSearchFor)).ToList()
 
                 End If
@@ -3213,10 +3182,10 @@ Public Class MainFormPlain
 
     Private Sub ConvertLocalNamesToStandardnondiacriticToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Click
         Dim boolConvertAll As Boolean
-        Select Case MessageBox.Show("Convert all classes?" & Environment.NewLine & _
-                                    Environment.NewLine & _
-                                    "Yes    = Convert all classes" & Environment.NewLine & _
-                                    "No     = Convert this class" & Environment.NewLine & _
+        Select Case MessageBox.Show("Convert all classes?" & Environment.NewLine &
+                                    Environment.NewLine &
+                                    "Yes    = Convert all classes" & Environment.NewLine &
+                                    "No     = Convert this class" & Environment.NewLine &
                                     "Cancel = Do nothing", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             Case Windows.Forms.DialogResult.Yes
                 boolConvertAll = True
@@ -3444,17 +3413,17 @@ Public Class MainFormPlain
         Dim strTitle As String = Me.Text
         Try
 
-        
-        Dim semesters As List(Of String) = Semester.ListExistingSemesters()
-        Dim objSemester As Semester
-        Dim strOutputFilename As String
-        Dim sfd As New SaveFileDialog()
-        Dim intSessions, intTotalPresent, intTotalAbsent, intTotalExcused, intTotalRemoved As Integer
-        If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
-            strOutputFilename = sfd.FileName
-            Dim tw As System.IO.TextWriter = System.IO.File.CreateText(strOutputFilename)
-            '-- Headers
-            tw.WriteLine("Semester" & vbTab & "LocalName" & vbTab & "Nickname" & vbTab & "StudentID" & vbTab & "ExtStudentID" & vbTab & "Module" & vbTab & "Class" & vbTab & "PresentationQual" & vbTab & "ResearchQuality" & vbTab &
+
+            Dim semesters As List(Of String) = Semester.ListExistingSemesters()
+            Dim objSemester As Semester
+            Dim strOutputFilename As String
+            Dim sfd As New SaveFileDialog()
+            Dim intSessions, intTotalPresent, intTotalAbsent, intTotalExcused, intTotalRemoved As Integer
+            If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
+                strOutputFilename = sfd.FileName
+                Dim tw As System.IO.TextWriter = System.IO.File.CreateText(strOutputFilename)
+                '-- Headers
+                tw.WriteLine("Semester" & vbTab & "LocalName" & vbTab & "Nickname" & vbTab & "StudentID" & vbTab & "ExtStudentID" & vbTab & "Module" & vbTab & "Class" & vbTab & "PresentationQual" & vbTab & "ResearchQuality" & vbTab &
                          "#Sessions" & vbTab & "#Present" & vbTab & "#Excused" & vbTab & "#Absent" & vbTab & "#Removed" & vbTab & "Final grade" & vbTab & "Tags" & vbTab & "Group" & vbTab & "Team" & vbTab & "Plag" & vbTab & "Gender")
                 For intCounter As Integer = 0 To semesters.Count - 1
                     Dim semesterName As String = semesters(intCounter)
@@ -3824,4 +3793,166 @@ Public Class MainFormPlain
         Dim frm As New EmptyStudentAssignments()
         frm.Show()
     End Sub
+
+    Private Sub AssignStudentsRandomIconToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignStudentsRandomIconToolStripMenuItem.Click
+        Dim fbd As New FolderBrowserDialog()
+        fbd.Description = "Select folder with png source files."
+        If fbd.ShowDialog = DialogResult.OK Then
+            Dim strFolder As String = fbd.SelectedPath
+            Dim files() As String = System.IO.Directory.GetFiles(strFolder, "*.png")
+            Randomize()
+            Dim strSourceFilename, strDestinationFilename As String
+            Dim rnd As New Random()
+            For Each grp As ClassGroup In ThisSemester.ClassGroups
+                For Each cls As SchoolClass In grp.Classes
+                    For Each stud As Student In cls.Students
+                        If stud.Icon Is Nothing AndAlso stud.EmailAddress.Length > 0 Then
+                            '-- assign one icon at random
+                            Dim intRandom As Integer = rnd.Next(1, files.Length)
+                            strSourceFilename = System.IO.Path.Combine(strFolder, intRandom.ToString("000") & ".png")
+                            strDestinationFilename = System.IO.Path.Combine(GetStudentIconFolder(), stud.EmailAddress & ".png")
+                            System.IO.File.Copy(strSourceFilename, strDestinationFilename)
+                        End If
+                    Next
+                Next
+            Next
+            MessageBox.Show("Done.", PRODUCT_NAME)
+        End If
+
+    End Sub
+
+    Private Sub AttendanceDataForAllSemestersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AttendanceDataForAllSemestersToolStripMenuItem.Click
+        GenerateAttendanceReportForAllSemesters(False)
+    End Sub
+    Private Sub GenerateAttendanceReportForAllSemesters(justOneSessionType As Boolean, Optional sessionType As ActualSessionItem.SessionItemTypeEnum = ActualSessionItem.SessionItemTypeEnum.Unknown)
+        '-- This is for research purposes
+        Try
+            '-- Export all attendance data
+            Dim sfd As New SaveFileDialog()
+            sfd.Filter = "Text files|*.txt"
+            Dim strFilename As String
+            If sfd.ShowDialog = DialogResult.OK Then
+                strFilename = sfd.FileName
+            Else
+                Exit Sub
+            End If
+
+            Dim intTotalSessions, intMin, intMax, intTotalPresent As Integer
+            Dim dblAvgPresentPercent, dblStdDev, dblMin, dblMax As Double
+            Dim lstAttendanceForSessions As New List(Of Double)
+
+            Dim tw As TextWriter = System.IO.File.CreateText(strFilename)
+
+            If justOneSessionType Then
+                '-- Not implemented yet (see todos)
+                'Select Case sessionType
+                '    Case ActualSessionItem.SessionItemTypeEnum.Lecture
+                '        tw.WriteLine("Semester" & vbTab & "ClassGroup" & vbTab & "Class" & vbTab & "Students" & vbTab & "Lectures" & vbTab & "Min" & vbTab & "Max" & vbTab & "Avg %" & vbTab & "Std Dev")
+                '    Case ActualSessionItem.SessionItemTypeEnum.Tutorial
+                '        tw.WriteLine("Semester" & vbTab & "ClassGroup" & vbTab & "Class" & vbTab & "Students" & vbTab & "Tutorials" & vbTab & "Min" & vbTab & "Max" & vbTab & "Avg %" & vbTab & "Std Dev")
+                '    Case ActualSessionItem.SessionItemTypeEnum.Workshop
+                '        tw.WriteLine("Semester" & vbTab & "ClassGroup" & vbTab & "Class" & vbTab & "Students" & vbTab & "Workshops" & vbTab & "Min" & vbTab & "Max" & vbTab & "Avg %" & vbTab & "Std Dev")
+                '    Case ActualSessionItem.SessionItemTypeEnum.Unknown
+                '        tw.WriteLine("Semester" & vbTab & "ClassGroup" & vbTab & "Class" & vbTab & "Students" & vbTab & "Unknown Sessions" & vbTab & "Min" & vbTab & "Max" & vbTab & "Avg %" & vbTab & "Std Dev")
+                'End Select
+            Else
+                '-- All
+                tw.WriteLine("Semester" & vbTab & "ClassGroup" & vbTab & "Class" & vbTab & "Students" & vbTab & "Sessions" & vbTab & "Min" & vbTab & "Max" & vbTab & "Avg %" & vbTab & "Std Dev")
+            End If
+
+            Dim objCache As SemesterCache = SemesterCache.GetCache
+            Dim intTotal, intPresent As Integer
+            Do
+                For Each semCurrent In objCache.Semesters
+                    Application.DoEvents()
+                    For Each clsgrp As ClassGroup In semCurrent.ClassGroups
+
+                        For Each clas As SchoolClass In clsgrp.Classes
+                            If clas.Students.Count > 0 AndAlso clas.ClassSessions.Count > 0 Then
+                                intMin = 10000
+                                intMax = 0
+                                intTotalPresent = 0
+                                intTotalSessions = 0
+                                lstAttendanceForSessions.Clear()
+
+                                For Each sess As ClassSession In clas.ClassSessions
+                                    '-- combine all session types together
+
+                                    '=========================
+                                    'todo: Need to get session type from ActualSessionItem (scheduled) 
+                                    '=========================
+                                    intTotal = 0
+                                    intPresent = 0
+
+                                    '-- What was attendance like for each session
+                                    For Each stud In clas.Students
+                                        For Each tsess As TeachingSession In stud.TeachingSessions
+                                            If tsess.StartDate.Date = sess.StartDate.Date Then
+                                                '-- we have the teaching session for the student and the class session for the class
+                                                intTotal += 1
+                                                If tsess.AttendenceStatus = AttendanceStatusEnum.Present OrElse tsess.AttendenceStatus = AttendanceStatusEnum.Excused Then
+                                                    intPresent += 1
+                                                End If
+                                                Exit For '-- We just take the first one for the day
+                                            End If
+                                        Next
+                                    Next
+
+                                    intTotalSessions += 1
+                                    intTotalPresent += intPresent
+
+                                    lstAttendanceForSessions.Add(Convert.ToDouble(intPresent) / clas.Students.Count)
+
+                                    If intPresent < intMin Then
+                                        intMin = intPresent
+                                    End If
+
+                                    If intPresent > intMax Then
+                                        intMax = intPresent
+                                    End If
+
+                                Next
+                                '-- Write out summary
+                                dblAvgPresentPercent = (intTotalPresent / intTotalSessions) / clas.Students.Count
+                                dblStdDev = GetStandardDeviation(lstAttendanceForSessions)
+                                dblMin = intMin / clas.Students.Count
+                                dblMax = intMax / clas.Students.Count
+
+                                tw.WriteLine(semCurrent.Name & vbTab & clsgrp.Name & vbTab & clas.Name & vbTab & clas.Students.Count.ToString() & vbTab & intTotalSessions.ToString("0") & vbTab & dblMin.ToString("0.0%") & vbTab & dblMax.ToString("0.0%") & vbTab & dblAvgPresentPercent.ToString("#0.0%") & vbTab & dblStdDev.ToString("0.00"))
+                            End If
+                        Next
+                    Next
+                Next
+                Exit Do
+            Loop While True
+
+            tw.Close()
+            tw.Dispose()
+
+            MessageBox.Show("Done.", PRODUCT_NAME)
+
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub SelectRandomStudentToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles SelectRandomStudentToolStripMenuItem.Click
+        Try
+            If GetSelectedClass() Is Nothing Then
+                MessageBox.Show("Please select a class before requesting a random student.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                SelectRandomStudent()
+
+                Dim stud As Student = m_lstCurrentListOfStudents(m_lstRandomlySelected.Last)
+                Dim strMessage As String = "Selected student: " & stud.ToString()
+                strMessage &= Environment.NewLine & Environment.NewLine & "Attendance status: " & stud.LatestAttendenceStatus.ToString()
+
+                MessageBox.Show(strMessage, PRODUCT_NAME)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message, PRODUCT_NAME)
+        End Try
+    End Sub
+
 End Class

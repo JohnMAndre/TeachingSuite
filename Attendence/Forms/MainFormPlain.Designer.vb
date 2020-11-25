@@ -122,7 +122,6 @@ Partial Class MainFormPlain
         Me.lblStudentCount = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.btnEditStudent = New System.Windows.Forms.PictureBox()
-        Me.btnSelectRandomStudent = New System.Windows.Forms.PictureBox()
         Me.btnRemoveStudent = New System.Windows.Forms.PictureBox()
         Me.llblRemoveStudent = New System.Windows.Forms.PictureBox()
         Me.llblAddStudent = New System.Windows.Forms.PictureBox()
@@ -245,6 +244,8 @@ Partial Class MainFormPlain
         Me.ClearTeamForTheseStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CaptureStudentImageFromClipboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditStudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignStudentsRandomIconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectRandomStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAttendanceErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAssignmentErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -268,6 +269,8 @@ Partial Class MainFormPlain
         Me.StudentsWithSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AttendanceAssessmentStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AttendanceForClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportsForResearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AttendanceDataForAllSemestersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportMarkingFromOtherDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -356,7 +359,6 @@ Partial Class MainFormPlain
         CType(Me.picSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblAddTag, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnEditStudent, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnSelectRandomStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnRemoveStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblRemoveStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblAddStudent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -612,7 +614,6 @@ Partial Class MainFormPlain
         Me.splitOverall.Panel2.Controls.Add(Me.lblStudentCount)
         Me.splitOverall.Panel2.Controls.Add(Me.Label13)
         Me.splitOverall.Panel2.Controls.Add(Me.btnEditStudent)
-        Me.splitOverall.Panel2.Controls.Add(Me.btnSelectRandomStudent)
         Me.splitOverall.Panel2.Controls.Add(Me.btnRemoveStudent)
         Me.splitOverall.Panel2.Controls.Add(Me.llblRemoveStudent)
         Me.splitOverall.Panel2.Controls.Add(Me.llblAddStudent)
@@ -1002,16 +1003,6 @@ Partial Class MainFormPlain
         Me.btnEditStudent.Size = New System.Drawing.Size(17, 17)
         Me.btnEditStudent.TabIndex = 55
         Me.btnEditStudent.TabStop = False
-        '
-        'btnSelectRandomStudent
-        '
-        Me.btnSelectRandomStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSelectRandomStudent.Image = Global.Teaching.My.Resources.Resources.userprofile_16
-        Me.btnSelectRandomStudent.Location = New System.Drawing.Point(707, 2)
-        Me.btnSelectRandomStudent.Name = "btnSelectRandomStudent"
-        Me.btnSelectRandomStudent.Size = New System.Drawing.Size(17, 17)
-        Me.btnSelectRandomStudent.TabIndex = 54
-        Me.btnSelectRandomStudent.TabStop = False
         '
         'btnRemoveStudent
         '
@@ -1900,7 +1891,7 @@ Partial Class MainFormPlain
         '
         'StudentToolStripMenuItem
         '
-        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.ClearTeamForTheseStudentsToolStripMenuItem, Me.CaptureStudentImageFromClipboardToolStripMenuItem, Me.EditStudentToolStripMenuItem1})
+        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.ClearTeamForTheseStudentsToolStripMenuItem, Me.CaptureStudentImageFromClipboardToolStripMenuItem, Me.EditStudentToolStripMenuItem1, Me.AssignStudentsRandomIconToolStripMenuItem, Me.SelectRandomStudentToolStripMenuItem})
         Me.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem"
         Me.StudentToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.StudentToolStripMenuItem.Text = "&Student"
@@ -1976,9 +1967,21 @@ Partial Class MainFormPlain
         Me.EditStudentToolStripMenuItem1.Size = New System.Drawing.Size(314, 22)
         Me.EditStudentToolStripMenuItem1.Text = "Edit &student"
         '
+        'AssignStudentsRandomIconToolStripMenuItem
+        '
+        Me.AssignStudentsRandomIconToolStripMenuItem.Name = "AssignStudentsRandomIconToolStripMenuItem"
+        Me.AssignStudentsRandomIconToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
+        Me.AssignStudentsRandomIconToolStripMenuItem.Text = "Assign students random icon"
+        '
+        'SelectRandomStudentToolStripMenuItem
+        '
+        Me.SelectRandomStudentToolStripMenuItem.Name = "SelectRandomStudentToolStripMenuItem"
+        Me.SelectRandomStudentToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
+        Me.SelectRandomStudentToolStripMenuItem.Text = "Select random student"
+        '
         'ReportsToolStripMenuItem
         '
-        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.StudentAssignmentErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem, Me.StudentsWithSelectedAssignmentsToolStripMenuItem, Me.AttendanceAssessmentStatusToolStripMenuItem, Me.AttendanceForClassToolStripMenuItem})
+        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StudentAttendanceErrorsToolStripMenuItem, Me.StudentAssignmentErrorsToolStripMenuItem, Me.ToolStripSeparator17, Me.AssignmentResultsToolStripMenuItem, Me.ModuleResultsToolStripMenuItem, Me.FailedoutcomesToolStripMenuItem, Me.ModuleFeedbackCheckToolStripMenuItem, Me.StudentOutcomeResultsToolStripMenuItem, Me.ToolStripSeparator18, Me.SessionprepStatusToolStripMenuItem, Me.AssignmentProcessingToolStripMenuItem, Me.ScheduledSessionsToolStripMenuItem, Me.StudentQualityToolStripMenuItem, Me.StudentGradesToolStripMenuItem, Me.SemesterStatisticsToolStripMenuItem, Me.ExcessiveAbsencesToolStripMenuItem, Me.MissingGradeDataToolStripMenuItem, Me.ImprovementItemsToolStripMenuItem, Me.StudentAssessmentcompletionToolStripMenuItem, Me.StudentsWithSelectedAssignmentsToolStripMenuItem, Me.AttendanceAssessmentStatusToolStripMenuItem, Me.AttendanceForClassToolStripMenuItem, Me.ReportsForResearchToolStripMenuItem})
         Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
         Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.ReportsToolStripMenuItem.Text = "&Reports"
@@ -2113,6 +2116,19 @@ Partial Class MainFormPlain
         Me.AttendanceForClassToolStripMenuItem.Name = "AttendanceForClassToolStripMenuItem"
         Me.AttendanceForClassToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AttendanceForClassToolStripMenuItem.Text = "Attendance for class..."
+        '
+        'ReportsForResearchToolStripMenuItem
+        '
+        Me.ReportsForResearchToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttendanceDataForAllSemestersToolStripMenuItem})
+        Me.ReportsForResearchToolStripMenuItem.Name = "ReportsForResearchToolStripMenuItem"
+        Me.ReportsForResearchToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ReportsForResearchToolStripMenuItem.Text = "Reports for research"
+        '
+        'AttendanceDataForAllSemestersToolStripMenuItem
+        '
+        Me.AttendanceDataForAllSemestersToolStripMenuItem.Name = "AttendanceDataForAllSemestersToolStripMenuItem"
+        Me.AttendanceDataForAllSemestersToolStripMenuItem.Size = New System.Drawing.Size(327, 22)
+        Me.AttendanceDataForAllSemestersToolStripMenuItem.Text = "Attendance data for all semesters (all sessions)..."
         '
         'DataToolStripMenuItem
         '
@@ -2559,7 +2575,6 @@ Partial Class MainFormPlain
         CType(Me.picSearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblAddTag, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnEditStudent, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnSelectRandomStudent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnRemoveStudent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblRemoveStudent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblAddStudent, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2744,7 +2759,6 @@ Partial Class MainFormPlain
     Friend WithEvents llblAddStudent As System.Windows.Forms.PictureBox
     Friend WithEvents llblMoveStudent As System.Windows.Forms.PictureBox
     Friend WithEvents btnEditStudent As System.Windows.Forms.PictureBox
-    Friend WithEvents btnSelectRandomStudent As System.Windows.Forms.PictureBox
     Friend WithEvents btnRemoveStudent As System.Windows.Forms.PictureBox
     Friend WithEvents ctxmnuAssignment As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents CopyAssignmentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2864,4 +2878,8 @@ Partial Class MainFormPlain
     Friend WithEvents AttendanceForClassToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents llblSemesterLabel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents StudentAssignmentErrorsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignStudentsRandomIconToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReportsForResearchToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AttendanceDataForAllSemestersToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SelectRandomStudentToolStripMenuItem As ToolStripMenuItem
 End Class

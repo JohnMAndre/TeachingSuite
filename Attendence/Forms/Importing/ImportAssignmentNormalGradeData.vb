@@ -14,7 +14,7 @@
 
 'You should have received a copy Of the GNU General Public License
 'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
-Public Class ImportAssignmentNormalGrades
+Public Class ImportAssignmentNormalGradeData
     Friend Class ImportData
         Public Property Student As Student
         Public Property ExtStudentID As String
@@ -93,12 +93,26 @@ Public Class ImportAssignmentNormalGrades
                         End If
 
                     End If
+                    If row.Length > 3 Then
+                        objData.ImprovementComments = row(3).Trim()
+                        If objData.ImprovementComments.StartsWith("""") Then
+                            objData.ImprovementComments = objData.ImprovementComments.Substring(1) '-- eliminate leading quote
+                        End If
+
+                        If objData.ImprovementComments.EndsWith("""") Then
+                            objData.ImprovementComments = objData.ImprovementComments.Substring(0, objData.ImprovementComments.Length - 1) '-- eliminate trailing quote
+                        End If
+
+                    End If
 
                     Select Case cboIDToUse.SelectedIndex
                         Case 0
                             objStud = GetStudentByStudentID(objData.ExtStudentID)
                         Case 1
                             objStud = GetStudentByExtStudentID(objData.ExtStudentID)
+                        Case Else
+                            MessageBox.Show("Please select StudentID or ExtStudentID.")
+                            Exit Sub
                     End Select
                     If objStud IsNot Nothing Then
                         objData.Student = objStud
@@ -133,18 +147,24 @@ Public Class ImportAssignmentNormalGrades
         Dim ht As New Hashtable() '-- key  = extstudentID, value = student object
 
         Dim intStudentsAdded, intStudentsSearched As Integer
+        Dim boolAdded As Boolean
         Do
             For Each cls As SchoolClass In m_clsGroup.Classes
                 For Each stud In cls.Students
                     intStudentsSearched += 1
+                    boolAdded = False
                     '-- add to collection, only if there IS a student ID
                     If Not m_dictHistoricalStudentsByExtStudentID.ContainsKey(stud.ExtStudentID.ToUpper()) AndAlso stud.ExtStudentID.Trim.Length > 0 Then
-                        m_dictHistoricalStudentsByExtStudentID.Add(stud.ExtStudentID.ToUpper, stud)
-                        intStudentsAdded += 1
+                        m_dictHistoricalStudentsByExtStudentID.Add(stud.ExtStudentID.ToUpper(), stud)
+                        boolAdded = True
                     End If
 
                     If Not m_dictHistoricalStudentsByStudentID.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
-                        m_dictHistoricalStudentsByStudentID.Add(stud.StudentID.ToUpper, stud)
+                        m_dictHistoricalStudentsByStudentID.Add(stud.StudentID.ToUpper(), stud)
+                        boolAdded = True
+                    End If
+
+                    If boolAdded Then
                         intStudentsAdded += 1
                     End If
 
@@ -184,6 +204,7 @@ Public Class ImportAssignmentNormalGrades
                         asmtToUse = data.Student.AddAssignment(m_asmt)
                         asmtToUse.FirstTryPoints = data.Grade
                         asmtToUse.OverallComments = data.OverallComments
+                        asmtToUse.ImprovementComments = data.ImprovementComments
                         If chkIncludeImportingData.Checked Then
                             asmtToUse.OverallComments &= Environment.NewLine & Environment.NewLine & "Imported on " & Date.Today.ToString("dd-MM-yyyy")
                         End If

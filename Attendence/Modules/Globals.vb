@@ -76,6 +76,13 @@ Module Globals
         End If
         Return strFolder
     End Function
+    Public Function GetStudentIconFolder() As String
+        Dim strFolder As String = System.IO.Path.Combine(GetDataFolder(), "StudentIcons")
+        If Not System.IO.Directory.Exists(strFolder) Then
+            System.IO.Directory.CreateDirectory(strFolder)
+        End If
+        Return strFolder
+    End Function
     Public Function GetModuleDataFolder() As String
         Dim strFolder As String = System.IO.Path.Combine(GetDataFolder(), "ModuleData")
         If Not System.IO.Directory.Exists(strFolder) Then

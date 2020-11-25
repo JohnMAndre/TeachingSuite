@@ -33,6 +33,11 @@ Public Class Attendance2Form
                 Return Student.LocalName
             End Get
         End Property
+        Public ReadOnly Property Icon As Image
+            Get
+                Return Student.Icon
+            End Get
+        End Property
         Public Property Nickname As String
             Get
                 Return Student.Nickname
@@ -75,7 +80,9 @@ Public Class Attendance2Form
     Private m_lstStudents As List(Of StudentAttendanceData)
 
     Private m_dtStartTime As Date
-    Private m_font As Font
+    Private m_fontTimer As Font
+    Private m_fontMessage As Font
+    Private m_ptMessage As PointF
     Private m_tsCurrent As TimeSpan
     Private m_strActualSessionID As String
 
@@ -192,7 +199,11 @@ Public Class Attendance2Form
         SetStudentStatus(AttendanceStatusEnum.Excused)
     End Sub
     Private Function GetCurrentlySelectedStudent() As StudentAttendanceData
-        Return CType(dgvStudents.CurrentRow.DataBoundItem, StudentAttendanceData)
+        If dgvStudents.CurrentRow Is Nothing Then
+            Return Nothing
+        Else
+            Return CType(dgvStudents.CurrentRow.DataBoundItem, StudentAttendanceData)
+        End If
     End Function
 
     Private Sub ShowBirthdayPeople()
@@ -259,53 +270,55 @@ Public Class Attendance2Form
         End If
 
         Dim obj As StudentAttendanceData = GetCurrentlySelectedStudent() 'CType(dgvStudents.CurrentRow.DataBoundItem, Student)
-        obj.AttendanceStatus = status
-        obj.SeatedInRow = SeatedInRow '-- Added 2018-11-16
-        dgvStudents.UpdateCellValue(4, dgvStudents.CurrentRow.Index)
+        If obj IsNot Nothing Then
+            obj.AttendanceStatus = status
+            obj.SeatedInRow = SeatedInRow '-- Added 2018-11-16
+            dgvStudents.UpdateCellValue(4, dgvStudents.CurrentRow.Index)
 
-        Dim row As DataGridViewRow
-        Dim intIndex As Integer = dgvStudents.CurrentRow.Index
-        If intIndex > 2 Then
-            dgvStudents.FirstDisplayedScrollingRowIndex = intIndex - 2 '-- last three processed are on top
-        End If
-
-        If dgvStudents.CurrentRow.Index <= m_lstStudents.Count - 1 Then
-            row = dgvStudents.Rows(intIndex)
-            Dim style As New DataGridViewCellStyle(row.Cells(4).Style)
-            Select Case status
-                Case AttendanceStatusEnum.Present
-                    style.BackColor = Color.LightGreen
-                Case AttendanceStatusEnum.Absent
-                    style.BackColor = Color.Pink
-                Case AttendanceStatusEnum.Unknown
-                    style.BackColor = Color.White
-                Case AttendanceStatusEnum.Excused
-                    style.BackColor = Color.Yellow
-                Case AttendanceStatusEnum.Late
-                    style.BackColor = Color.LightSkyBlue
-            End Select
-            For intCounter As Integer = 0 To 5
-                row.Cells(intCounter).Style = style
-            Next
-            row.Selected = False
-
-            Dim intCurrentIndex As Integer
-            If dgvStudents.CurrentRow.Index = m_lstStudents.Count - 1 Then
-                '-- Last row
-                intCurrentIndex = intIndex - 1
-            Else
-                intCurrentIndex = intIndex + 1
+            Dim row As DataGridViewRow
+            Dim intIndex As Integer = dgvStudents.CurrentRow.Index
+            If intIndex > 2 Then
+                dgvStudents.FirstDisplayedScrollingRowIndex = intIndex - 2 '-- last three processed are on top
             End If
-            row = dgvStudents.Rows(intCurrentIndex)
 
-            row.Selected = True
-            dgvStudents.CurrentCell = dgvStudents.Rows(intCurrentIndex).Cells(0)
+            If dgvStudents.CurrentRow.Index <= m_lstStudents.Count - 1 Then
+                row = dgvStudents.Rows(intIndex)
+                Dim style As New DataGridViewCellStyle(row.Cells(4).Style)
+                Select Case status
+                    Case AttendanceStatusEnum.Present
+                        style.BackColor = Color.LightGreen
+                    Case AttendanceStatusEnum.Absent
+                        style.BackColor = Color.Pink
+                    Case AttendanceStatusEnum.Unknown
+                        style.BackColor = Color.White
+                    Case AttendanceStatusEnum.Excused
+                        style.BackColor = Color.Yellow
+                    Case AttendanceStatusEnum.Late
+                        style.BackColor = Color.LightSkyBlue
+                End Select
+                For intCounter As Integer = 0 To 5
+                    row.Cells(intCounter).Style = style
+                Next
+                row.Selected = False
+
+                Dim intCurrentIndex As Integer
+                If dgvStudents.CurrentRow.Index = m_lstStudents.Count - 1 Then
+                    '-- Last row
+                    intCurrentIndex = intIndex - 1
+                Else
+                    intCurrentIndex = intIndex + 1
+                End If
+                row = dgvStudents.Rows(intCurrentIndex)
+
+                row.Selected = True
+                dgvStudents.CurrentCell = dgvStudents.Rows(intCurrentIndex).Cells(0)
+            End If
+            m_boolDirty = True
+
+            'If m_frmPublic IsNot Nothing Then
+            '    m_frmPublic.UpdateStudent(obj)
+            'End If
         End If
-        m_boolDirty = True
-
-        'If m_frmPublic IsNot Nothing Then
-        '    m_frmPublic.UpdateStudent(obj)
-        'End If
     End Sub
 
     Private Sub Attendance2Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -378,7 +391,9 @@ Public Class Attendance2Form
     End Sub
     Private Sub SetCurrentStudentGender(gender As Student.GenderEnum)
         Dim stud As StudentAttendanceData = GetCurrentlySelectedStudent() '
-        stud.Student.Gender = gender
+        If stud IsNot Nothing Then
+            stud.Student.Gender = gender
+        End If
     End Sub
     Private Sub SetGendermaleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGendermaleToolStripMenuItem.Click
         Try
@@ -495,7 +510,19 @@ Public Class Attendance2Form
             If m_tsCurrent.TotalSeconds < 0 Then
                 strText = "-" & strText
             End If
-            g.DrawString(strText, m_font, New SolidBrush(Color.White), New PointF(1, 1))
+
+            Dim brush As Brush
+            If m_tsCurrent.TotalSeconds < 6 AndAlso RedUnder5SecondsToolStripMenuItem.Checked Then
+                brush = New SolidBrush(Color.Red)
+            Else
+                brush = New SolidBrush(Color.White)
+            End If
+
+            g.DrawString(strText, m_fontTimer, brush, New PointF(1, 1))
+
+            If MessageToolStripMenuItem.Checked Then
+                g.DrawString(AppSettings.AttendanceMessage, m_fontMessage, brush, m_ptMessage)
+            End If
         End If
     End Sub
     Private Sub pbTimer_Paint(sender As Object, e As System.Windows.Forms.PaintEventArgs) Handles pbTimer.Paint
@@ -513,9 +540,11 @@ Public Class Attendance2Form
             Dim sz As SizeF
             Dim intFontSize As Integer = 8
             Const INCREMENT As Integer = 4
+
+            '-- set font for timer
             Do While True
-                m_font = New Font("Arial", intFontSize)
-                sz = g.MeasureString(strText, m_font)
+                m_fontTimer = New Font("Arial", intFontSize)
+                sz = g.MeasureString(strText, m_fontTimer)
                 If sz.Width > pbTimer.Width OrElse sz.Height > pbTimer.Height Then
                     '-- just past limit
                     Exit Do
@@ -524,7 +553,36 @@ Public Class Attendance2Form
                 End If
             Loop
             intFontSize -= INCREMENT
-            m_font = New Font("Arial", intFontSize)
+            If MessageToolStripMenuItem.Checked Then
+                '-- Give a little more room for the message if it will show
+                intFontSize -= INCREMENT
+            End If
+            m_fontTimer = New Font("Arial", intFontSize)
+
+
+            '-- set font for message
+            intFontSize = 12
+            strText = AppSettings.AttendanceMessage
+            If MessageToolStripMenuItem.Checked AndAlso strText.Length > 2 Then
+                Do While True
+                    m_fontMessage = New Font("Arial", intFontSize)
+                    sz = g.MeasureString(strText, m_fontMessage)
+                    If sz.Width > pbTimer.Width OrElse sz.Height > 100 Then
+                        '-- just past limit
+                        Exit Do
+                    Else
+                        intFontSize += INCREMENT
+                    End If
+                Loop
+                intFontSize -= INCREMENT
+            End If
+            m_fontMessage = New Font("Arial", intFontSize)
+            sz = g.MeasureString(strText, m_fontMessage)
+
+            Dim intTop As Integer = pbTimer.Height - 100
+            Dim intLeft As Integer = (pbTimer.Width / 2) - (sz.Width / 2) + 10
+            m_ptMessage = New PointF(intLeft, intTop)
+
         End Using
     End Sub
 
@@ -598,5 +656,22 @@ Public Class Attendance2Form
 
     Private Sub HilightBirthdaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HilightBirthdaysToolStripMenuItem.Click
         ShowBirthdayPeople()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        Using frm As New AboutBox()
+            frm.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub FlagStudentInTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FlagStudentInTagToolStripMenuItem.Click
+        If dgvStudents.SelectedRows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim obj As StudentAttendanceData = GetCurrentlySelectedStudent() 'CType(dgvStudents.CurrentRow.DataBoundItem, Student)
+        If obj IsNot Nothing Then
+            obj.Student.Tags &= " flag "
+        End If
     End Sub
 End Class

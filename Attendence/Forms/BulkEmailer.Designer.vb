@@ -68,13 +68,14 @@ Partial Class BulkEmailer
         Me.AddfixedAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddstudentspecificAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.StatusCheckToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem25 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.chkIncludeStudentID = New System.Windows.Forms.CheckBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +150,7 @@ Partial Class BulkEmailer
         '
         'splitOverall.Panel1
         '
+        Me.splitOverall.Panel1.Controls.Add(Me.chkIncludeStudentID)
         Me.splitOverall.Panel1.Controls.Add(Me.txtEmailTrailingText)
         Me.splitOverall.Panel1.Controls.Add(Me.txtLinkAddress)
         Me.splitOverall.Panel1.Controls.Add(Me.llblCreateLink)
@@ -184,25 +186,25 @@ Partial Class BulkEmailer
         Me.txtEmailTrailingText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 221)
+        Me.txtEmailTrailingText.Location = New System.Drawing.Point(0, 250)
         Me.txtEmailTrailingText.Multiline = True
         Me.txtEmailTrailingText.Name = "txtEmailTrailingText"
         Me.txtEmailTrailingText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtEmailTrailingText.Size = New System.Drawing.Size(210, 236)
+        Me.txtEmailTrailingText.Size = New System.Drawing.Size(210, 207)
         Me.txtEmailTrailingText.TabIndex = 64
         '
         'txtLinkAddress
         '
         Me.txtLinkAddress.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtLinkAddress.Location = New System.Drawing.Point(49, 172)
+        Me.txtLinkAddress.Location = New System.Drawing.Point(49, 205)
         Me.txtLinkAddress.Name = "txtLinkAddress"
         Me.txtLinkAddress.Size = New System.Drawing.Size(157, 22)
         Me.txtLinkAddress.TabIndex = 62
         '
         'llblCreateLink
         '
-        Me.llblCreateLink.Location = New System.Drawing.Point(8, 174)
+        Me.llblCreateLink.Location = New System.Drawing.Point(8, 207)
         Me.llblCreateLink.Name = "llblCreateLink"
         Me.llblCreateLink.Size = New System.Drawing.Size(39, 19)
         Me.llblCreateLink.TabIndex = 61
@@ -242,7 +244,7 @@ Partial Class BulkEmailer
         'KryptonLabel7
         '
         Me.KryptonLabel7.ContextMenuStrip = Me.ctxmnuSendingReplacementCodes
-        Me.KryptonLabel7.Location = New System.Drawing.Point(4, 196)
+        Me.KryptonLabel7.Location = New System.Drawing.Point(4, 229)
         Me.KryptonLabel7.Name = "KryptonLabel7"
         Me.KryptonLabel7.Size = New System.Drawing.Size(94, 19)
         Me.KryptonLabel7.TabIndex = 42
@@ -332,7 +334,7 @@ Partial Class BulkEmailer
         '
         Me.btnOK.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnOK.Location = New System.Drawing.Point(8, 143)
+        Me.btnOK.Location = New System.Drawing.Point(8, 176)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(196, 25)
         Me.btnOK.TabIndex = 27
@@ -555,6 +557,11 @@ Partial Class BulkEmailer
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
+        '
         'StatusCheckToolStripMenuItem
         '
         Me.StatusCheckToolStripMenuItem.Name = "StatusCheckToolStripMenuItem"
@@ -587,10 +594,18 @@ Partial Class BulkEmailer
         '
         Me.tmrFilterStudents.Interval = 200
         '
-        'ToolStripSeparator1
+        'chkIncludeStudentID
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
+        Me.chkIncludeStudentID.BackColor = System.Drawing.Color.Transparent
+        Me.chkIncludeStudentID.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkIncludeStudentID.Checked = True
+        Me.chkIncludeStudentID.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeStudentID.Location = New System.Drawing.Point(8, 146)
+        Me.chkIncludeStudentID.Name = "chkIncludeStudentID"
+        Me.chkIncludeStudentID.Size = New System.Drawing.Size(157, 24)
+        Me.chkIncludeStudentID.TabIndex = 65
+        Me.chkIncludeStudentID.Text = "Include StudentID"
+        Me.chkIncludeStudentID.UseVisualStyleBackColor = False
         '
         'BulkEmailer
         '
@@ -695,4 +710,5 @@ Partial Class BulkEmailer
     Friend WithEvents UseExtIDuncheckToUseStudentIDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StatusCheckToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents chkIncludeStudentID As CheckBox
 End Class

@@ -37,6 +37,10 @@ Partial Class Attendance2Form
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditCurrentStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OverlayClockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HilightBirthdaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.RedUnder5SecondsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MessageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PresentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,16 +62,6 @@ Partial Class Attendance2Form
         Me.PresentEighthRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PresentWayBackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetQualityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation3ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation5ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation6ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation7ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation8ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Presentation9ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.SetGendermaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetGenderfemaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetGenderUnknownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -80,6 +74,7 @@ Partial Class Attendance2Form
         Me.PublicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -91,7 +86,8 @@ Partial Class Attendance2Form
         Me.tmrStudentCount = New System.Windows.Forms.Timer(Me.components)
         Me.pbTimer = New System.Windows.Forms.PictureBox()
         Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
-        Me.HilightBirthdaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.FlagStudentInTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -148,7 +144,7 @@ Partial Class Attendance2Form
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem, Me.ToolStripSeparator4, Me.EditCurrentStudentToolStripMenuItem, Me.OverlayClockToolStripMenuItem, Me.HilightBirthdaysToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IncreaseFontToolStripMenuItem, Me.DecreaseFontToolStripMenuItem, Me.ToolStripSeparator4, Me.EditCurrentStudentToolStripMenuItem, Me.OverlayClockToolStripMenuItem, Me.HilightBirthdaysToolStripMenuItem, Me.ToolStripSeparator6, Me.RedUnder5SecondsToolStripMenuItem, Me.MessageToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
         Me.ViewToolStripMenuItem.Text = "&View"
@@ -157,34 +153,63 @@ Partial Class Attendance2Form
         '
         Me.IncreaseFontToolStripMenuItem.Name = "IncreaseFontToolStripMenuItem"
         Me.IncreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.IncreaseFontToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
         Me.IncreaseFontToolStripMenuItem.Text = "&Increase font"
         '
         'DecreaseFontToolStripMenuItem
         '
         Me.DecreaseFontToolStripMenuItem.Name = "DecreaseFontToolStripMenuItem"
         Me.DecreaseFontToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.DecreaseFontToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
         Me.DecreaseFontToolStripMenuItem.Text = "&Decrease font"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(194, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(253, 6)
         '
         'EditCurrentStudentToolStripMenuItem
         '
         Me.EditCurrentStudentToolStripMenuItem.Name = "EditCurrentStudentToolStripMenuItem"
         Me.EditCurrentStudentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
-        Me.EditCurrentStudentToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.EditCurrentStudentToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
         Me.EditCurrentStudentToolStripMenuItem.Text = "&Edit current student"
         '
         'OverlayClockToolStripMenuItem
         '
         Me.OverlayClockToolStripMenuItem.Name = "OverlayClockToolStripMenuItem"
         Me.OverlayClockToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OverlayClockToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.OverlayClockToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
         Me.OverlayClockToolStripMenuItem.Text = "&Overlay clock"
+        '
+        'HilightBirthdaysToolStripMenuItem
+        '
+        Me.HilightBirthdaysToolStripMenuItem.Name = "HilightBirthdaysToolStripMenuItem"
+        Me.HilightBirthdaysToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.HilightBirthdaysToolStripMenuItem.Text = "&Hilight birthdays"
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(253, 6)
+        '
+        'RedUnder5SecondsToolStripMenuItem
+        '
+        Me.RedUnder5SecondsToolStripMenuItem.CheckOnClick = True
+        Me.RedUnder5SecondsToolStripMenuItem.Name = "RedUnder5SecondsToolStripMenuItem"
+        Me.RedUnder5SecondsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.RedUnder5SecondsToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.RedUnder5SecondsToolStripMenuItem.Text = "&Red under 5 seconds"
+        '
+        'MessageToolStripMenuItem
+        '
+        Me.MessageToolStripMenuItem.CheckOnClick = True
+        Me.MessageToolStripMenuItem.Name = "MessageToolStripMenuItem"
+        Me.MessageToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MessageToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.MessageToolStripMenuItem.Text = "Message"
         '
         'MarkToolStripMenuItem
         '
@@ -210,7 +235,7 @@ Partial Class Attendance2Form
         'RemovedToolStripMenuItem
         '
         Me.RemovedToolStripMenuItem.Name = "RemovedToolStripMenuItem"
-        Me.RemovedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.RemovedToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
         Me.RemovedToolStripMenuItem.Size = New System.Drawing.Size(258, 22)
         Me.RemovedToolStripMenuItem.Text = "&Removed"
         '
@@ -330,78 +355,10 @@ Partial Class Attendance2Form
         '
         'SetQualityToolStripMenuItem
         '
-        Me.SetQualityToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Presentation1ToolStripMenuItem, Me.Presentation2ToolStripMenuItem, Me.Presentation3ToolStripMenuItem, Me.Presentation4ToolStripMenuItem, Me.Presentation5ToolStripMenuItem, Me.Presentation6ToolStripMenuItem, Me.Presentation7ToolStripMenuItem, Me.Presentation8ToolStripMenuItem, Me.Presentation9ToolStripMenuItem, Me.ToolStripSeparator1, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.SetGenderUnknownToolStripMenuItem})
+        Me.SetQualityToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.SetGenderUnknownToolStripMenuItem, Me.ToolStripSeparator1, Me.FlagStudentInTagToolStripMenuItem})
         Me.SetQualityToolStripMenuItem.Name = "SetQualityToolStripMenuItem"
-        Me.SetQualityToolStripMenuItem.Size = New System.Drawing.Size(74, 23)
-        Me.SetQualityToolStripMenuItem.Text = "Set quality"
-        '
-        'Presentation1ToolStripMenuItem
-        '
-        Me.Presentation1ToolStripMenuItem.Name = "Presentation1ToolStripMenuItem"
-        Me.Presentation1ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.Presentation1ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation1ToolStripMenuItem.Text = "Presentation = 1"
-        '
-        'Presentation2ToolStripMenuItem
-        '
-        Me.Presentation2ToolStripMenuItem.Name = "Presentation2ToolStripMenuItem"
-        Me.Presentation2ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.Presentation2ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation2ToolStripMenuItem.Text = "Presentation = 2"
-        '
-        'Presentation3ToolStripMenuItem
-        '
-        Me.Presentation3ToolStripMenuItem.Name = "Presentation3ToolStripMenuItem"
-        Me.Presentation3ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D3), System.Windows.Forms.Keys)
-        Me.Presentation3ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation3ToolStripMenuItem.Text = "Presentation = 3"
-        '
-        'Presentation4ToolStripMenuItem
-        '
-        Me.Presentation4ToolStripMenuItem.Name = "Presentation4ToolStripMenuItem"
-        Me.Presentation4ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D4), System.Windows.Forms.Keys)
-        Me.Presentation4ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation4ToolStripMenuItem.Text = "Presentation = 4"
-        '
-        'Presentation5ToolStripMenuItem
-        '
-        Me.Presentation5ToolStripMenuItem.Name = "Presentation5ToolStripMenuItem"
-        Me.Presentation5ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D5), System.Windows.Forms.Keys)
-        Me.Presentation5ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation5ToolStripMenuItem.Text = "Presentation = 5"
-        '
-        'Presentation6ToolStripMenuItem
-        '
-        Me.Presentation6ToolStripMenuItem.Name = "Presentation6ToolStripMenuItem"
-        Me.Presentation6ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D6), System.Windows.Forms.Keys)
-        Me.Presentation6ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation6ToolStripMenuItem.Text = "Presentation = 6"
-        '
-        'Presentation7ToolStripMenuItem
-        '
-        Me.Presentation7ToolStripMenuItem.Name = "Presentation7ToolStripMenuItem"
-        Me.Presentation7ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D7), System.Windows.Forms.Keys)
-        Me.Presentation7ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation7ToolStripMenuItem.Text = "Presentation = 7"
-        '
-        'Presentation8ToolStripMenuItem
-        '
-        Me.Presentation8ToolStripMenuItem.Name = "Presentation8ToolStripMenuItem"
-        Me.Presentation8ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D8), System.Windows.Forms.Keys)
-        Me.Presentation8ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation8ToolStripMenuItem.Text = "Presentation = 8"
-        '
-        'Presentation9ToolStripMenuItem
-        '
-        Me.Presentation9ToolStripMenuItem.Name = "Presentation9ToolStripMenuItem"
-        Me.Presentation9ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D9), System.Windows.Forms.Keys)
-        Me.Presentation9ToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.Presentation9ToolStripMenuItem.Text = "Presentation = 9"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(227, 6)
+        Me.SetQualityToolStripMenuItem.Size = New System.Drawing.Size(60, 23)
+        Me.SetQualityToolStripMenuItem.Text = "&Student"
         '
         'SetGendermaleToolStripMenuItem
         '
@@ -434,11 +391,12 @@ Partial Class Attendance2Form
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'txtSessionDate
         '
+        Me.txtSessionDate.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSessionDate.Name = "txtSessionDate"
         Me.txtSessionDate.Size = New System.Drawing.Size(100, 23)
         Me.txtSessionDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -446,6 +404,7 @@ Partial Class Attendance2Form
         '
         'txtFilter
         '
+        Me.txtFilter.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtFilter.Name = "txtFilter"
         Me.txtFilter.Size = New System.Drawing.Size(100, 23)
         Me.txtFilter.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -453,6 +412,7 @@ Partial Class Attendance2Form
         '
         'txtStudentGroup
         '
+        Me.txtStudentGroup.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtStudentGroup.MaxLength = 2
         Me.txtStudentGroup.Name = "txtStudentGroup"
         Me.txtStudentGroup.Size = New System.Drawing.Size(100, 23)
@@ -479,7 +439,7 @@ Partial Class Attendance2Form
         Me.dgvStudents.AllowUserToAddRows = False
         Me.dgvStudents.AllowUserToDeleteRows = False
         Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column7, Me.Column6})
+        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column8, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column7, Me.Column6})
         Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudents.Location = New System.Drawing.Point(0, 27)
         Me.dgvStudents.MultiSelect = False
@@ -496,6 +456,15 @@ Partial Class Attendance2Form
         Me.Column1.HeaderText = "#"
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.DataPropertyName = "Icon"
+        Me.Column8.HeaderText = "Icon"
+        Me.Column8.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        Me.Column8.Width = 60
         '
         'Column2
         '
@@ -564,9 +533,9 @@ Partial Class Attendance2Form
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbTimer.BackColor = System.Drawing.Color.Black
-        Me.pbTimer.Location = New System.Drawing.Point(0, 49)
+        Me.pbTimer.Location = New System.Drawing.Point(0, 50)
         Me.pbTimer.Name = "pbTimer"
-        Me.pbTimer.Size = New System.Drawing.Size(719, 407)
+        Me.pbTimer.Size = New System.Drawing.Size(719, 406)
         Me.pbTimer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbTimer.TabIndex = 4
         Me.pbTimer.TabStop = False
@@ -576,11 +545,17 @@ Partial Class Attendance2Form
         '
         Me.tmrClock.Interval = 1000
         '
-        'HilightBirthdaysToolStripMenuItem
+        'ToolStripSeparator1
         '
-        Me.HilightBirthdaysToolStripMenuItem.Name = "HilightBirthdaysToolStripMenuItem"
-        Me.HilightBirthdaysToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.HilightBirthdaysToolStripMenuItem.Text = "&Hilight birthdays"
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(227, 6)
+        '
+        'FlagStudentInTagToolStripMenuItem
+        '
+        Me.FlagStudentInTagToolStripMenuItem.Name = "FlagStudentInTagToolStripMenuItem"
+        Me.FlagStudentInTagToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
+        Me.FlagStudentInTagToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.FlagStudentInTagToolStripMenuItem.Text = "Flag student in tag"
         '
         'Attendance2Form
         '
@@ -624,16 +599,6 @@ Partial Class Attendance2Form
     Friend WithEvents AllStuentsAbsentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AllStudentsExcusedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetQualityToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation1ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation2ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation3ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation4ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation5ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation6ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation7ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation8ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Presentation9ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SetGendermaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetGenderfemaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetGenderUnknownToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -664,12 +629,18 @@ Partial Class Attendance2Form
     Friend WithEvents PresentSeventhRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PresentEighthRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PresentWayBackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents HilightBirthdaysToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents RedUnder5SecondsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MessageToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewImageColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewCheckBoxColumn
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents FlagStudentInTagToolStripMenuItem As ToolStripMenuItem
 End Class

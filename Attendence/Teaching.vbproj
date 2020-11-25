@@ -168,6 +168,12 @@
     <Compile Include="Forms\Importing\HistoricalStudentFinderPlain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Importing\ImportAssignmentNormalGradeData.Designer.vb">
+      <DependentUpon>ImportAssignmentNormalGradeData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importing\ImportAssignmentNormalGradeData.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Importing\ImportSyncResolveNormal.Designer.vb">
       <DependentUpon>ImportSyncResolveNormal.vb</DependentUpon>
     </Compile>
@@ -598,6 +604,7 @@
     </Compile>
     <Compile Include="Modules\Conversion.vb" />
     <Compile Include="Modules\Globals.vb" />
+    <Compile Include="Modules\Statistics.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -659,6 +666,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\HistoricalStudentFinderPlain.resx">
       <DependentUpon>HistoricalStudentFinderPlain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importing\ImportAssignmentNormalGradeData.resx">
+      <DependentUpon>ImportAssignmentNormalGradeData.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\ImportSyncResolveNormal.resx">
       <DependentUpon>ImportSyncResolveNormal.vb</DependentUpon>

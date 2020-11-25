@@ -38,6 +38,8 @@ Partial Class ImportAssignmentNormalGrades
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtOutput = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.chkMarkAssignmentProcessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
+        Me.chkIncludeImportingData = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.cboIDToUse = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
@@ -48,8 +50,6 @@ Partial Class ImportAssignmentNormalGrades
         Me.lblStudentsSearched = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblStudentsSearchedCaption = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.chkIncludeImportingData = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.chkMarkAssignmentProcessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
@@ -81,7 +81,7 @@ Partial Class ImportAssignmentNormalGrades
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
@@ -203,6 +203,28 @@ Partial Class ImportAssignmentNormalGrades
         Me.KryptonPanel2.Size = New System.Drawing.Size(955, 32)
         Me.KryptonPanel2.TabIndex = 6
         '
+        'chkMarkAssignmentProcessed
+        '
+        Me.chkMarkAssignmentProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkMarkAssignmentProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkMarkAssignmentProcessed.Location = New System.Drawing.Point(571, 6)
+        Me.chkMarkAssignmentProcessed.Name = "chkMarkAssignmentProcessed"
+        Me.chkMarkAssignmentProcessed.Size = New System.Drawing.Size(207, 19)
+        Me.chkMarkAssignmentProcessed.TabIndex = 54
+        Me.chkMarkAssignmentProcessed.Text = "Mark assignments ""processed"""
+        Me.chkMarkAssignmentProcessed.Values.Text = "Mark assignments ""processed"""
+        '
+        'chkIncludeImportingData
+        '
+        Me.chkIncludeImportingData.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
+        Me.chkIncludeImportingData.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
+        Me.chkIncludeImportingData.Location = New System.Drawing.Point(335, 6)
+        Me.chkIncludeImportingData.Name = "chkIncludeImportingData"
+        Me.chkIncludeImportingData.Size = New System.Drawing.Size(190, 19)
+        Me.chkIncludeImportingData.TabIndex = 54
+        Me.chkIncludeImportingData.Text = "Include ""Imported on {date}"""
+        Me.chkIncludeImportingData.Values.Text = "Include ""Imported on {date}"""
+        '
         'KryptonLabel1
         '
         Me.KryptonLabel1.Location = New System.Drawing.Point(12, 6)
@@ -238,9 +260,9 @@ Partial Class ImportAssignmentNormalGrades
         'lblStudentsLoaded
         '
         Me.lblStudentsLoaded.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsLoaded.Location = New System.Drawing.Point(890, 26)
+        Me.lblStudentsLoaded.Location = New System.Drawing.Point(891, 26)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(17, 20)
         Me.lblStudentsLoaded.TabIndex = 80
         Me.lblStudentsLoaded.Values.Text = "0"
         '
@@ -258,9 +280,9 @@ Partial Class ImportAssignmentNormalGrades
         'KryptonLabel3
         '
         Me.KryptonLabel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel3.Location = New System.Drawing.Point(742, 26)
+        Me.KryptonLabel3.Location = New System.Drawing.Point(751, 26)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(111, 19)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(102, 20)
         Me.KryptonLabel3.TabIndex = 79
         Me.KryptonLabel3.Values.Text = "Students loaded:"
         '
@@ -278,18 +300,18 @@ Partial Class ImportAssignmentNormalGrades
         'lblStudentsSearched
         '
         Me.lblStudentsSearched.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearched.Location = New System.Drawing.Point(890, 6)
+        Me.lblStudentsSearched.Location = New System.Drawing.Point(891, 6)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(17, 20)
         Me.lblStudentsSearched.TabIndex = 78
         Me.lblStudentsSearched.Values.Text = "0"
         '
         'lblStudentsSearchedCaption
         '
         Me.lblStudentsSearchedCaption.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(727, 6)
+        Me.lblStudentsSearchedCaption.Location = New System.Drawing.Point(740, 6)
         Me.lblStudentsSearchedCaption.Name = "lblStudentsSearchedCaption"
-        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(126, 19)
+        Me.lblStudentsSearchedCaption.Size = New System.Drawing.Size(113, 20)
         Me.lblStudentsSearchedCaption.TabIndex = 77
         Me.lblStudentsSearchedCaption.Values.Text = "Students searched:"
         '
@@ -297,28 +319,6 @@ Partial Class ImportAssignmentNormalGrades
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 200
-        '
-        'chkIncludeImportingData
-        '
-        Me.chkIncludeImportingData.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkIncludeImportingData.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkIncludeImportingData.Location = New System.Drawing.Point(335, 6)
-        Me.chkIncludeImportingData.Name = "chkIncludeImportingData"
-        Me.chkIncludeImportingData.Size = New System.Drawing.Size(190, 19)
-        Me.chkIncludeImportingData.TabIndex = 54
-        Me.chkIncludeImportingData.Text = "Include ""Imported on {date}"""
-        Me.chkIncludeImportingData.Values.Text = "Include ""Imported on {date}"""
-        '
-        'chkMarkAssignmentProcessed
-        '
-        Me.chkMarkAssignmentProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkMarkAssignmentProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
-        Me.chkMarkAssignmentProcessed.Location = New System.Drawing.Point(571, 6)
-        Me.chkMarkAssignmentProcessed.Name = "chkMarkAssignmentProcessed"
-        Me.chkMarkAssignmentProcessed.Size = New System.Drawing.Size(207, 19)
-        Me.chkMarkAssignmentProcessed.TabIndex = 54
-        Me.chkMarkAssignmentProcessed.Text = "Mark assignments ""processed"""
-        Me.chkMarkAssignmentProcessed.Values.Text = "Mark assignments ""processed"""
         '
         'ImportAssignmentNormalGrades
         '
