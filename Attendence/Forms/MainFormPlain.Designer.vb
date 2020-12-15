@@ -317,6 +317,7 @@ Partial Class MainFormPlain
         Me.EitherOrToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SpecialAttendanceToolToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignNicknameFromLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BulkReassignStudentAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignworkshopGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -335,6 +336,8 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
+        Me.FirstElementOfLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LastElementOfLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2364,7 +2367,7 @@ Partial Class MainFormPlain
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem, Me.BulkReassignStudentAssignmentToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.AssignworkshopGroupsToolStripMenuItem, Me.AssignChoicesToStudentsToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem, Me.AssignNicknameFromLocalNameToolStripMenuItem, Me.BulkReassignStudentAssignmentToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.AssignworkshopGroupsToolStripMenuItem, Me.AssignChoicesToStudentsToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
@@ -2429,6 +2432,13 @@ Partial Class MainFormPlain
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Name = "ConvertLocalNamesToStandardnondiacriticToolStripMenuItem"
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Text = "Convert local names to standard (non-diacritic)"
+        '
+        'AssignNicknameFromLocalNameToolStripMenuItem
+        '
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FirstElementOfLocalNameToolStripMenuItem, Me.LastElementOfLocalNameToolStripMenuItem})
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.Name = "AssignNicknameFromLocalNameToolStripMenuItem"
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.Text = "Assign nickname from local name"
         '
         'BulkReassignStudentAssignmentToolStripMenuItem
         '
@@ -2536,6 +2546,18 @@ Partial Class MainFormPlain
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
+        '
+        'FirstElementOfLocalNameToolStripMenuItem
+        '
+        Me.FirstElementOfLocalNameToolStripMenuItem.Name = "FirstElementOfLocalNameToolStripMenuItem"
+        Me.FirstElementOfLocalNameToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.FirstElementOfLocalNameToolStripMenuItem.Text = "&First element of local name"
+        '
+        'LastElementOfLocalNameToolStripMenuItem
+        '
+        Me.LastElementOfLocalNameToolStripMenuItem.Name = "LastElementOfLocalNameToolStripMenuItem"
+        Me.LastElementOfLocalNameToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.LastElementOfLocalNameToolStripMenuItem.Text = "&Last element of local name"
         '
         'MainFormPlain
         '
@@ -2882,4 +2904,7 @@ Partial Class MainFormPlain
     Friend WithEvents ReportsForResearchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AttendanceDataForAllSemestersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SelectRandomStudentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignNicknameFromLocalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FirstElementOfLocalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LastElementOfLocalNameToolStripMenuItem As ToolStripMenuItem
 End Class

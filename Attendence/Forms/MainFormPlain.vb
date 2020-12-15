@@ -3955,4 +3955,77 @@ Public Class MainFormPlain
         End Try
     End Sub
 
+    Private Sub AutoAssignNickname(includeStudentsWithNickname As Boolean, useFirstElementOfLocalName As Boolean)
+
+        Dim cls As SchoolClass = GetSelectedClass()
+        If cls Is Nothing Then
+            MessageBox.Show("Please select a class to convert and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+        Dim strNewNickname As String
+        Dim intPos As Integer
+        For Each stud As Student In cls.Students
+            stud.LocalName = stud.LocalName.Trim() '-- make sure no leading or trailing spaces
+            If useFirstElementOfLocalName Then
+                intPos = stud.LocalName.IndexOf(" ")
+                If intPos < 1 Then
+                    strNewNickname = stud.LocalName '-- use entire name, since there are no spaces
+                Else
+                    strNewNickname = stud.LocalName.Substring(0, intPos)
+                End If
+            Else
+                intPos = stud.LocalName.LastIndexOf(" ")
+                If intPos < 1 Then
+                    strNewNickname = stud.LocalName '-- use entire name, since there are no spaces
+                Else
+                    strNewNickname = stud.LocalName.Substring(intPos + 1) '-- From after the last space onward
+                End If
+            End If
+
+            If includeStudentsWithNickname OrElse stud.Nickname Is Nothing OrElse stud.Nickname.Trim.Length = 0 Then
+                stud.Nickname = strNewNickname
+            Else
+                '-- Do nothing to this student
+            End If
+        Next
+
+        MessageBox.Show("Done.", Application.ProductName)
+    End Sub
+
+    Private Sub FirstElementOfLocalNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FirstElementOfLocalNameToolStripMenuItem.Click
+        Dim boolConvertAll As Boolean
+        Select Case MessageBox.Show("Include those who already have nicknames?" & Environment.NewLine &
+                                    Environment.NewLine &
+                                    "Yes    = include all students" & Environment.NewLine &
+                                    "No     = include only students without a nickname" & Environment.NewLine &
+                                    "Cancel = Do nothing", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+            Case Windows.Forms.DialogResult.Yes
+                boolConvertAll = True
+            Case Windows.Forms.DialogResult.No
+                boolConvertAll = False
+            Case Windows.Forms.DialogResult.Cancel
+                Exit Sub
+        End Select
+
+        AutoAssignNickname(boolConvertAll, True)
+    End Sub
+
+    Private Sub LastElementOfLocalNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LastElementOfLocalNameToolStripMenuItem.Click
+        Dim boolConvertAll As Boolean
+        Select Case MessageBox.Show("Include those who already have nicknames?" & Environment.NewLine &
+                                    Environment.NewLine &
+                                    "Yes    = include all students" & Environment.NewLine &
+                                    "No     = include only students without a nickname" & Environment.NewLine &
+                                    "Cancel = Do nothing", Application.ProductName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+            Case Windows.Forms.DialogResult.Yes
+                boolConvertAll = True
+            Case Windows.Forms.DialogResult.No
+                boolConvertAll = False
+            Case Windows.Forms.DialogResult.Cancel
+                Exit Sub
+        End Select
+
+        AutoAssignNickname(boolConvertAll, False)
+    End Sub
+
 End Class
