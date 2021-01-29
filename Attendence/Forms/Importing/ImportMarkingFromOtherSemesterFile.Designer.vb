@@ -70,12 +70,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.llblBrowseForSemesterFile = New System.Windows.Forms.LinkLabel()
         Me.txtSemesterFile = New System.Windows.Forms.TextBox()
         Me.dgvStudentsNormal = New System.Windows.Forms.DataGridView()
-        Me.lblStudentCount = New System.Windows.Forms.Label()
-        Me.txtOverrideMarkerName = New System.Windows.Forms.TextBox()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.chkMarkImportedAsProcessed = New System.Windows.Forms.CheckBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dgvStudentsBTEC = New System.Windows.Forms.DataGridView()
         Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -96,6 +90,12 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Improve2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreatorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EditorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblStudentCount = New System.Windows.Forms.Label()
+        Me.txtOverrideMarkerName = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chkMarkImportedAsProcessed = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dgvStudentsBTEC = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -117,6 +117,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.ImproveRW = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -152,7 +153,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         'ActionToolStripMenuItem
         '
-        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteSelectedAssignmentsToolStripMenuItem})
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteSelectedAssignmentsToolStripMenuItem, Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem})
         Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
         Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
         Me.ActionToolStripMenuItem.Text = "&Action"
@@ -161,7 +162,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         Me.ImportStudentAssignmentsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OverwriteExistingCompletelyToolStripMenuItem, Me.OverwriteOnlyReworkElementsToolStripMenuItem, Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem})
         Me.ImportStudentAssignmentsToolStripMenuItem.Name = "ImportStudentAssignmentsToolStripMenuItem"
-        Me.ImportStudentAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(264, 22)
+        Me.ImportStudentAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
         Me.ImportStudentAssignmentsToolStripMenuItem.Text = "&Import student assignments"
         '
         'OverwriteExistingCompletelyToolStripMenuItem
@@ -185,13 +186,13 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(261, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(292, 6)
         '
         'DeleteSelectedAssignmentsToolStripMenuItem
         '
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Name = "DeleteSelectedAssignmentsToolStripMenuItem"
         Me.DeleteSelectedAssignmentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.DeleteSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(264, 22)
+        Me.DeleteSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Text = "&Delete selected assignments"
         '
         'Panel1
@@ -325,73 +326,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudentsNormal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvStudentsNormal.Size = New System.Drawing.Size(932, 471)
         Me.dgvStudentsNormal.TabIndex = 6
-        '
-        'lblStudentCount
-        '
-        Me.lblStudentCount.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblStudentCount.Location = New System.Drawing.Point(183, 58)
-        Me.lblStudentCount.Name = "lblStudentCount"
-        Me.lblStudentCount.Size = New System.Drawing.Size(932, 25)
-        Me.lblStudentCount.TabIndex = 9
-        '
-        'txtOverrideMarkerName
-        '
-        Me.txtOverrideMarkerName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtOverrideMarkerName.Location = New System.Drawing.Point(140, 7)
-        Me.txtOverrideMarkerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.txtOverrideMarkerName.Name = "txtOverrideMarkerName"
-        Me.txtOverrideMarkerName.Size = New System.Drawing.Size(658, 22)
-        Me.txtOverrideMarkerName.TabIndex = 10
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.chkMarkImportedAsProcessed)
-        Me.Panel3.Controls.Add(Me.txtOverrideMarkerName)
-        Me.Panel3.Controls.Add(Me.Label1)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(183, 554)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(932, 37)
-        Me.Panel3.TabIndex = 11
-        '
-        'chkMarkImportedAsProcessed
-        '
-        Me.chkMarkImportedAsProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkMarkImportedAsProcessed.AutoSize = True
-        Me.chkMarkImportedAsProcessed.Checked = True
-        Me.chkMarkImportedAsProcessed.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkMarkImportedAsProcessed.Location = New System.Drawing.Point(804, 9)
-        Me.chkMarkImportedAsProcessed.Name = "chkMarkImportedAsProcessed"
-        Me.chkMarkImportedAsProcessed.Size = New System.Drawing.Size(122, 20)
-        Me.chkMarkImportedAsProcessed.TabIndex = 12
-        Me.chkMarkImportedAsProcessed.Text = "&Mark Processed"
-        Me.chkMarkImportedAsProcessed.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 10)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(103, 16)
-        Me.Label1.TabIndex = 11
-        Me.Label1.Text = "Override Marker:"
-        '
-        'dgvStudentsBTEC
-        '
-        Me.dgvStudentsBTEC.AllowUserToAddRows = False
-        Me.dgvStudentsBTEC.AllowUserToDeleteRows = False
-        Me.dgvStudentsBTEC.AllowUserToOrderColumns = True
-        Me.dgvStudentsBTEC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudentsBTEC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.AltID, Me.DataGridViewTextBoxColumn10, Me.CountExistingAssignments, Me.AchievedPass, Me.AchievedMerit, Me.AchievedDistinction, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.OverallRW, Me.ImproveRW, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
-        Me.dgvStudentsBTEC.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvStudentsBTEC.Location = New System.Drawing.Point(183, 83)
-        Me.dgvStudentsBTEC.Name = "dgvStudentsBTEC"
-        Me.dgvStudentsBTEC.ReadOnly = True
-        Me.dgvStudentsBTEC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvStudentsBTEC.Size = New System.Drawing.Size(932, 471)
-        Me.dgvStudentsBTEC.TabIndex = 12
-        Me.dgvStudentsBTEC.Visible = False
         '
         'dcolAdmin
         '
@@ -561,6 +495,73 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.EditorColumn.HeaderText = "Editor"
         Me.EditorColumn.Name = "EditorColumn"
         Me.EditorColumn.ReadOnly = True
+        '
+        'lblStudentCount
+        '
+        Me.lblStudentCount.Dock = System.Windows.Forms.DockStyle.Top
+        Me.lblStudentCount.Location = New System.Drawing.Point(183, 58)
+        Me.lblStudentCount.Name = "lblStudentCount"
+        Me.lblStudentCount.Size = New System.Drawing.Size(932, 25)
+        Me.lblStudentCount.TabIndex = 9
+        '
+        'txtOverrideMarkerName
+        '
+        Me.txtOverrideMarkerName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtOverrideMarkerName.Location = New System.Drawing.Point(140, 7)
+        Me.txtOverrideMarkerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtOverrideMarkerName.Name = "txtOverrideMarkerName"
+        Me.txtOverrideMarkerName.Size = New System.Drawing.Size(658, 22)
+        Me.txtOverrideMarkerName.TabIndex = 10
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.chkMarkImportedAsProcessed)
+        Me.Panel3.Controls.Add(Me.txtOverrideMarkerName)
+        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(183, 554)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(932, 37)
+        Me.Panel3.TabIndex = 11
+        '
+        'chkMarkImportedAsProcessed
+        '
+        Me.chkMarkImportedAsProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkMarkImportedAsProcessed.AutoSize = True
+        Me.chkMarkImportedAsProcessed.Checked = True
+        Me.chkMarkImportedAsProcessed.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkMarkImportedAsProcessed.Location = New System.Drawing.Point(804, 9)
+        Me.chkMarkImportedAsProcessed.Name = "chkMarkImportedAsProcessed"
+        Me.chkMarkImportedAsProcessed.Size = New System.Drawing.Size(122, 20)
+        Me.chkMarkImportedAsProcessed.TabIndex = 12
+        Me.chkMarkImportedAsProcessed.Text = "&Mark Processed"
+        Me.chkMarkImportedAsProcessed.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 10)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(103, 16)
+        Me.Label1.TabIndex = 11
+        Me.Label1.Text = "Override Marker:"
+        '
+        'dgvStudentsBTEC
+        '
+        Me.dgvStudentsBTEC.AllowUserToAddRows = False
+        Me.dgvStudentsBTEC.AllowUserToDeleteRows = False
+        Me.dgvStudentsBTEC.AllowUserToOrderColumns = True
+        Me.dgvStudentsBTEC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStudentsBTEC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.AltID, Me.DataGridViewTextBoxColumn10, Me.CountExistingAssignments, Me.AchievedPass, Me.AchievedMerit, Me.AchievedDistinction, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.OverallRW, Me.ImproveRW, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
+        Me.dgvStudentsBTEC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvStudentsBTEC.Location = New System.Drawing.Point(183, 83)
+        Me.dgvStudentsBTEC.Name = "dgvStudentsBTEC"
+        Me.dgvStudentsBTEC.ReadOnly = True
+        Me.dgvStudentsBTEC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvStudentsBTEC.Size = New System.Drawing.Size(932, 471)
+        Me.dgvStudentsBTEC.TabIndex = 12
+        Me.dgvStudentsBTEC.Visible = False
         '
         'DataGridViewTextBoxColumn1
         '
@@ -741,6 +742,12 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         Me.DataGridViewTextBoxColumn15.ReadOnly = True
         '
+        'ImportreworkForAllExistingAssignmentsToolStripMenuItem
+        '
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Name = "ImportreworkForAllExistingAssignmentsToolStripMenuItem"
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Text = "Import &rework for all existing assignments"
+        '
         'ImportMarkingFromOtherSemesterFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -841,4 +848,5 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents ImproveRW As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents ImportreworkForAllExistingAssignmentsToolStripMenuItem As ToolStripMenuItem
 End Class

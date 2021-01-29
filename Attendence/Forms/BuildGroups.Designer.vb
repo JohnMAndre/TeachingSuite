@@ -41,6 +41,8 @@ Partial Class BuildGroups
         Me.OlvColumn3 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn7 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn13 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.chkUseTeam = New System.Windows.Forms.CheckBox()
+        Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.nudNumberOfGroups, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,11 +83,12 @@ Partial Class BuildGroups
         'BuildGroupsToolStripMenuItem
         '
         Me.BuildGroupsToolStripMenuItem.Name = "BuildGroupsToolStripMenuItem"
-        Me.BuildGroupsToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
-        Me.BuildGroupsToolStripMenuItem.Text = "&Build groups"
+        Me.BuildGroupsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BuildGroupsToolStripMenuItem.Text = "&Build teams"
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.chkUseTeam)
         Me.Panel1.Controls.Add(Me.txtGroupNames)
         Me.Panel1.Controls.Add(Me.chkUseCustomGroupNames)
         Me.Panel1.Controls.Add(Me.nudNumberOfGroups)
@@ -144,9 +147,9 @@ Partial Class BuildGroups
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 16)
+        Me.Label1.Size = New System.Drawing.Size(50, 16)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Groups:"
+        Me.Label1.Text = "Teams:"
         '
         'Label2
         '
@@ -154,7 +157,7 @@ Partial Class BuildGroups
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(150, 43)
         Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Write group names on separate lines"
+        Me.Label2.Text = "Write team names on separate lines"
         '
         'olvStudents
         '
@@ -164,11 +167,12 @@ Partial Class BuildGroups
         Me.olvStudents.AllColumns.Add(Me.OlvColumn3)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn7)
         Me.olvStudents.AllColumns.Add(Me.OlvColumn13)
+        Me.olvStudents.AllColumns.Add(Me.OlvColumn5)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn7, Me.OlvColumn13})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn7, Me.OlvColumn13, Me.OlvColumn5})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
@@ -238,6 +242,22 @@ Partial Class BuildGroups
         Me.OlvColumn13.Text = "Tags"
         Me.OlvColumn13.Width = 146
         '
+        'chkUseTeam
+        '
+        Me.chkUseTeam.AutoSize = True
+        Me.chkUseTeam.Location = New System.Drawing.Point(15, 56)
+        Me.chkUseTeam.Name = "chkUseTeam"
+        Me.chkUseTeam.Size = New System.Drawing.Size(146, 20)
+        Me.chkUseTeam.TabIndex = 5
+        Me.chkUseTeam.Text = "Use Team (not Tags)"
+        Me.chkUseTeam.UseVisualStyleBackColor = True
+        '
+        'OlvColumn5
+        '
+        Me.OlvColumn5.AspectName = "StudentTeam"
+        Me.OlvColumn5.Text = "Team"
+        Me.OlvColumn5.Width = 76
+        '
         'BuildGroups
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -250,7 +270,7 @@ Partial Class BuildGroups
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "BuildGroups"
-        Me.Text = "Build Groups (will change Tag for student)"
+        Me.Text = "Build Teams (will change Tag for student)"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -281,4 +301,6 @@ Partial Class BuildGroups
     Friend WithEvents txtGroupNames As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents lblMembersPerGroup As Label
+    Friend WithEvents chkUseTeam As CheckBox
+    Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
 End Class

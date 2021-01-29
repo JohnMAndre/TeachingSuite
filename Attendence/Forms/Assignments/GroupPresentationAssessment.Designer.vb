@@ -29,6 +29,8 @@ Partial Class GroupPresentationAssessment
         Me.lblTimer = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.btnSaveAllKeepOpen = New System.Windows.Forms.Button()
+        Me.picMoreInfo = New System.Windows.Forms.PictureBox()
+        CType(Me.picMoreInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'FlowLayoutPanel1
@@ -40,15 +42,15 @@ Partial Class GroupPresentationAssessment
         Me.FlowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 2)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(717, 370)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(717, 365)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'btnSave
         '
         Me.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSave.Location = New System.Drawing.Point(246, 373)
+        Me.btnSave.Location = New System.Drawing.Point(246, 368)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.Size = New System.Drawing.Size(75, 26)
         Me.btnSave.TabIndex = 43
         Me.btnSave.Text = "&Save all"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -71,18 +73,30 @@ Partial Class GroupPresentationAssessment
         'btnSaveAllKeepOpen
         '
         Me.btnSaveAllKeepOpen.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(436, 373)
+        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(436, 368)
         Me.btnSaveAllKeepOpen.Name = "btnSaveAllKeepOpen"
-        Me.btnSaveAllKeepOpen.Size = New System.Drawing.Size(167, 23)
+        Me.btnSaveAllKeepOpen.Size = New System.Drawing.Size(167, 26)
         Me.btnSaveAllKeepOpen.TabIndex = 45
         Me.btnSaveAllKeepOpen.Text = "&Save (keep marking)"
         Me.btnSaveAllKeepOpen.UseVisualStyleBackColor = True
+        '
+        'picMoreInfo
+        '
+        Me.picMoreInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picMoreInfo.Image = Global.Teaching.My.Resources.Resources.info_32
+        Me.picMoreInfo.Location = New System.Drawing.Point(687, 369)
+        Me.picMoreInfo.Name = "picMoreInfo"
+        Me.picMoreInfo.Size = New System.Drawing.Size(30, 25)
+        Me.picMoreInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picMoreInfo.TabIndex = 46
+        Me.picMoreInfo.TabStop = False
         '
         'GroupPresentationAssessment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(719, 396)
+        Me.Controls.Add(Me.picMoreInfo)
         Me.Controls.Add(Me.btnSaveAllKeepOpen)
         Me.Controls.Add(Me.lblTimer)
         Me.Controls.Add(Me.btnSave)
@@ -93,6 +107,7 @@ Partial Class GroupPresentationAssessment
         Me.Name = "GroupPresentationAssessment"
         Me.Text = "Group Presentation Assessment"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.picMoreInfo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -102,4 +117,5 @@ Partial Class GroupPresentationAssessment
     Friend WithEvents lblTimer As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents btnSaveAllKeepOpen As System.Windows.Forms.Button
+    Friend WithEvents picMoreInfo As PictureBox
 End Class

@@ -28,13 +28,14 @@ Partial Class ExportNormalGradesForMoodle
         Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.chkIncludeImprovementFeedback = New System.Windows.Forms.CheckBox()
         Me.chkIncludeOverallFeedback = New System.Windows.Forms.CheckBox()
+        Me.chkIncludeRework = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'lblStatus
         '
         Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(17, 272)
+        Me.lblStatus.Location = New System.Drawing.Point(17, 271)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(0, 18)
         Me.lblStatus.TabIndex = 13
@@ -42,7 +43,7 @@ Partial Class ExportNormalGradesForMoodle
         'btnExport
         '
         Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnExport.Location = New System.Drawing.Point(177, 267)
+        Me.btnExport.Location = New System.Drawing.Point(177, 266)
         Me.btnExport.Name = "btnExport"
         Me.btnExport.Size = New System.Drawing.Size(101, 29)
         Me.btnExport.TabIndex = 12
@@ -69,7 +70,7 @@ Partial Class ExportNormalGradesForMoodle
         Me.lstAssignments.Margin = New System.Windows.Forms.Padding(4)
         Me.lstAssignments.Name = "lstAssignments"
         Me.lstAssignments.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.lstAssignments.Size = New System.Drawing.Size(397, 166)
+        Me.lstAssignments.Size = New System.Drawing.Size(397, 130)
         Me.lstAssignments.TabIndex = 10
         '
         'chkIncludeImprovementFeedback
@@ -78,7 +79,7 @@ Partial Class ExportNormalGradesForMoodle
         Me.chkIncludeImprovementFeedback.AutoSize = True
         Me.chkIncludeImprovementFeedback.Checked = True
         Me.chkIncludeImprovementFeedback.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeImprovementFeedback.Location = New System.Drawing.Point(20, 239)
+        Me.chkIncludeImprovementFeedback.Location = New System.Drawing.Point(20, 238)
         Me.chkIncludeImprovementFeedback.Name = "chkIncludeImprovementFeedback"
         Me.chkIncludeImprovementFeedback.Size = New System.Drawing.Size(237, 22)
         Me.chkIncludeImprovementFeedback.TabIndex = 14
@@ -91,18 +92,32 @@ Partial Class ExportNormalGradesForMoodle
         Me.chkIncludeOverallFeedback.AutoSize = True
         Me.chkIncludeOverallFeedback.Checked = True
         Me.chkIncludeOverallFeedback.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeOverallFeedback.Location = New System.Drawing.Point(20, 211)
+        Me.chkIncludeOverallFeedback.Location = New System.Drawing.Point(20, 210)
         Me.chkIncludeOverallFeedback.Name = "chkIncludeOverallFeedback"
         Me.chkIncludeOverallFeedback.Size = New System.Drawing.Size(196, 22)
         Me.chkIncludeOverallFeedback.TabIndex = 15
         Me.chkIncludeOverallFeedback.Text = "Include Overall feedback"
         Me.chkIncludeOverallFeedback.UseVisualStyleBackColor = True
         '
+        'chkIncludeRework
+        '
+        Me.chkIncludeRework.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkIncludeRework.AutoSize = True
+        Me.chkIncludeRework.Checked = True
+        Me.chkIncludeRework.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeRework.Location = New System.Drawing.Point(20, 182)
+        Me.chkIncludeRework.Name = "chkIncludeRework"
+        Me.chkIncludeRework.Size = New System.Drawing.Size(192, 22)
+        Me.chkIncludeRework.TabIndex = 16
+        Me.chkIncludeRework.Text = "Include Rework (2nd try)"
+        Me.chkIncludeRework.UseVisualStyleBackColor = True
+        '
         'ExportNormalGradesForMoodle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(433, 307)
+        Me.ClientSize = New System.Drawing.Size(433, 306)
+        Me.Controls.Add(Me.chkIncludeRework)
         Me.Controls.Add(Me.chkIncludeOverallFeedback)
         Me.Controls.Add(Me.chkIncludeImprovementFeedback)
         Me.Controls.Add(Me.lblStatus)
@@ -124,4 +139,5 @@ Partial Class ExportNormalGradesForMoodle
     Friend WithEvents lstAssignments As ListBox
     Friend WithEvents chkIncludeImprovementFeedback As CheckBox
     Friend WithEvents chkIncludeOverallFeedback As CheckBox
+    Friend WithEvents chkIncludeRework As CheckBox
 End Class

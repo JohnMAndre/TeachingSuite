@@ -1242,6 +1242,7 @@ Public Class MainFormPlain
 
             Using frm As New BuildGroups(objClassToSend)
                 frm.ShowDialog(Me)
+                Me.dgvStudents.Refresh()
             End Using
         End If
     End Sub
@@ -4028,4 +4029,64 @@ Public Class MainFormPlain
         AutoAssignNickname(boolConvertAll, False)
     End Sub
 
+    Private Sub MoveClassGroupUpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveClassGroupUpToolStripMenuItem.Click
+        Dim intIndex As Integer = lstClassGroups.SelectedIndex
+        If intIndex > 0 Then
+            Dim grp As ClassGroup = lstClassGroups.SelectedItem
+            ThisSemester.ClassGroups.Remove(grp)
+            ThisSemester.ClassGroups.Insert(intIndex - 1, grp)
+            LoadClassGroups()
+        End If
+    End Sub
+
+    Private Sub MoveClassGroupDownToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveClassGroupDownToolStripMenuItem.Click
+        Dim intIndex As Integer = lstClassGroups.SelectedIndex
+        If intIndex < lstClassGroups.Items.Count - 1 Then
+            Dim grp As ClassGroup = lstClassGroups.SelectedItem
+            ThisSemester.ClassGroups.Remove(grp)
+            ThisSemester.ClassGroups.Insert(intIndex + 1, grp)
+            LoadClassGroups()
+        End If
+    End Sub
+
+    Private Sub picImportAssignmentsFromPreviousSemester_Click(sender As Object, e As EventArgs) Handles picImportAssignmentsFromPreviousSemester.Click
+        If GetSelectedClassGroup() Is Nothing Then
+            MessageBox.Show("Please select a module for import.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Using frm As New ImportAssignmentsFromSemester(GetSelectedClassGroup())
+                If frm.ShowDialog(Me) = DialogResult.OK Then
+                    LoadClassAssignments()
+                End If
+            End Using
+        End If
+    End Sub
+
+    Private Sub AssignPeersForEvaluationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignPeersForEvaluationToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to process.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Dim objClassToSend As SchoolClass
+            Dim objClass As SchoolClass = CType(lstClasses.Items(lstClasses.SelectedIndex), SchoolClass)
+            If ClassIsCombinedView(objClass) Then
+                Dim boolSetAlready As Boolean
+                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                    If Not boolSetAlready Then
+                        Dim grp As New ClassGroup(Nothing)
+                        grp.UseNickname = GetSelectedClassGroup.UseNickname
+                        objClassToSend = New SchoolClass(grp)
+                        objClassToSend.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                        objClassToSend.Students.AddRange(objCls.Students)
+                        boolSetAlready = True
+                    Else
+                        objClassToSend.Students.AddRange(objCls.Students)
+                    End If
+                Next
+            Else
+                objClassToSend = objClass
+            End If
+
+            Dim frm As New AssignPeerEvaluation(objClassToSend)
+            frm.Show()
+        End If
+    End Sub
 End Class

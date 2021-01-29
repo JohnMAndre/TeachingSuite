@@ -1080,4 +1080,156 @@ Public Class ImportMarkingFromOtherSemesterFile
 
     End Sub
 
+    Private Sub ImportreworkForAllExistingAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportreworkForAllExistingAssignmentsToolStripMenuItem.Click
+        Dim permStud As Student '-- in the perm database (ThisSemester)
+        Dim baseAsmt As IClassAssignment
+        Dim grp As ClassGroup
+        Dim boolSkipBTEC As Boolean
+        Dim xDoc As Xml.XmlDocument '-- just for working with xmlpersistance routines
+        Dim intUpdatesMade As Integer
+
+        Try
+            xDoc = New Xml.XmlDocument()
+            grp = GetSelectedClassGroup()
+
+            If grp IsNot Nothing Then
+                If MessageBox.Show("Are you sure you want to overall write all 2nd markings (grades and comments) for ALL assessments in all classes in the selected module (" &
+                                   grp.Name & ") in the selected database?", PRODUCT_NAME, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                    For Each cls As SchoolClass In grp.Classes '-- in external DB
+                        For Each tempStud As Student In cls.Students
+                            '-- Match external student with local database student
+                            permStud = m_objLocalClassGroup.GetStudentByID(tempStud.StudentID)
+                            If permStud Is Nothing Then
+                                If MessageBox.Show("Could not match student (ID:" & tempStud.StudentID & " - " & tempStud.LocalName & "). Cancel?",
+                                                   PRODUCT_NAME, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
+                                    Exit Sub
+                                Else
+                                    Continue For
+                                End If
+                            End If
+
+                            '-- Process all assignments for this student in the external db
+                            For Each studAsmt As StudentAssignment In tempStud.Assignments
+                                baseAsmt = GetLocalBaseAssignmentByID(studAsmt.BaseAssignment.ID)
+
+                                '-- Normal Assignment
+                                If baseAsmt.AssignmentType = AssignmentType.Normal Then
+                                    Dim tempAsmt As StudentAssignment '-- in external database
+                                    Dim permAsmtExisting As StudentAssignment '-- existing in present database
+                                    Dim permAsmtNew As StudentAssignment '-- Going to be added to present database
+
+                                    '-- reset on the loop
+                                    tempAsmt = studAsmt
+                                    permAsmtExisting = Nothing
+                                    permAsmtNew = Nothing
+
+                                    '-- Is there an existing student assignment?
+                                    For Each asmt As StudentAssignment In permStud.Assignments
+                                        If asmt.BaseAssignment.ID = baseAsmt.ID Then
+                                            permAsmtExisting = asmt
+                                            Exit For
+                                        End If
+                                    Next
+
+                                    '-- Note: We will always overwrite rework (or add new if missing) using this feature
+                                    If permAsmtExisting Is Nothing Then
+                                        '-- Just import full assignment since there is no existing
+                                        '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
+                                        permAsmtNew = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
+                                        If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                            '-- Need to override the marker's name
+                                            permAsmtNew.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
+                                            permAsmtNew.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                                        End If
+                                        permStud.Assignments.Add(permAsmtNew)
+                                        permStud.AddToActivityLog("Imported assignment (" & permAsmtNew.BaseAssignment.Name & ").")
+
+                                        If chkMarkImportedAsProcessed.Checked Then
+                                            permAsmtNew.Processed = True
+                                        End If
+
+                                        intUpdatesMade += 1
+                                    Else
+                                        '-- Since there is existing, we only want to update that existing assignment
+                                        '   but only update rework elements, and only where rework exists and original assignment's rework elements are empty
+                                        '   If external assignment's overall RW and improvement RW contain something and existing assignment's overall RW and improvement RW do not, 
+                                        '   ... then overwrite RW elements
+                                        '   If external assignment's overall RW and improvement RW are empty, skip this student
+                                        '   if existing assignment and new assignment both have overall RW and improvement RW contents, 
+                                        '   ... then notify the user to process it manually (or give a sync decider dialog)
+                                        If tempAsmt.OverallCommentsRework.Trim().Length + tempAsmt.ImprovementCommentsRework.Trim().Length = 0 Then
+                                            '-- skip and leave existing asmt alone
+                                            Continue For
+                                        Else
+                                            '-- external assignment has rework contents, make sure existing does not
+                                            If permAsmtExisting.OverallCommentsRework.Trim().Length + permAsmtExisting.ImprovementCommentsRework.Trim().Length = 0 Then
+                                                '-- Set rework data in existing assignment
+                                                permAsmtExisting.OverallCommentsRework = tempAsmt.OverallCommentsRework
+                                                permAsmtExisting.ImprovementCommentsRework = tempAsmt.ImprovementCommentsRework
+                                                permAsmtExisting.SecondTryPoints = tempAsmt.SecondTryPoints
+
+                                                If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
+                                                    '-- Need to override the marker's name
+                                                    permAsmtExisting.LastUserFullName = txtOverrideMarkerName.Text.Trim()
+                                                Else
+                                                    permAsmtExisting.LastUserFullName = tempAsmt.LastUserFullName
+                                                End If
+
+                                                If chkMarkImportedAsProcessed.Checked Then
+                                                    permAsmtExisting.Processed = True
+                                                End If
+
+                                                '-- Update only if new data is greater than old data
+                                                If tempStud.PlagiarismSeverity > permStud.PlagiarismSeverity Then
+                                                    permStud.PlagiarismSeverity = tempStud.PlagiarismSeverity
+                                                End If
+                                                permStud.AddToActivityLog("Updated existing assignment (" & permAsmtExisting.BaseAssignment.Name & ")  with imported rework data.")
+                                                intUpdatesMade += 1
+                                            Else
+                                                '-- Both new asmt and existing asmt have rework contents, need user to decide case by case (special dialog needed here)
+                                                Dim resolverData As New SyncResolverNormalData()
+                                                resolverData.Student = permStud
+                                                resolverData.TempAssignment = tempAsmt
+                                                resolverData.PermExistingAssignment = permAsmtExisting
+                                                m_lstSyncResolverNormal.Add(resolverData)
+                                            End If
+                                        End If
+                                    End If
+
+                                Else
+                                    boolSkipBTEC = True '-- just notify at the end (not a thousand times during processing)
+                                End If
+                            Next
+                        Next
+                    Next
+
+                    AddApplicationHistory("Bulk import of rework data (" & grp.Name & "). " & intUpdatesMade.ToString("#,##0") & " assessments updated or created.")
+
+                    If boolSkipBTEC Then
+                        MessageBox.Show("Skipped BTEC assignments (functionality not implemented).")
+                    End If
+
+                    MessageBox.Show("Done. " & intUpdatesMade.ToString("#,##0") & " assessments updated or created.")
+                End If
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error: " & ex.Message)
+        End Try
+    End Sub
+    Private Function GetLocalBaseAssignmentByID(id As String) As IClassAssignment
+        For Each asmt As ClassAssignment In m_objLocalClassGroup.Assignments
+            If asmt.ID = id Then
+                Return asmt
+            End If
+        Next
+
+        For Each asmt As ClassAssignmentBTEC In m_objLocalClassGroup.AssignmentsBTEC
+            If asmt.ID = id Then
+                Return asmt
+            End If
+        Next
+
+        Return Nothing '-- could not match regular or BTEC assignment
+    End Function
 End Class

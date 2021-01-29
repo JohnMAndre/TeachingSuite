@@ -417,14 +417,14 @@ Public Class ActualSessionItem
         Tutorial
     End Enum
     Public Property SchoolClass As SchoolClass
-    Public Property SessionItemType As SessionItemTypeEnum
+    Public Property SessionItemType As SessionItemTypeEnum '-- lecture, etc.
     Public Property StartDateTime As Date
     Public Property SessionNumber As Integer
     Public Property Topic As String '-- name,title, id, etc.
     Public Property Notes As String
     Public Property Prepped As Boolean
     Public Property StudentsEmailed As Boolean
-    Public Property ScheduleType As ScheduleTypeEnum
+    Public Property ScheduleType As ScheduleTypeEnum '-- manual or automatic
     Public Property Location As String
     Public Property StudentGroup As Integer '-- for workshop session support; 0=all students
     Public Property DurationInMinutes As Integer '-- need here for exporting schedule (may be able to find a work around but too busy now)
@@ -2402,7 +2402,16 @@ Public Class ClassAssignment
     Implements IComparable(Of ClassAssignment), IClassAssignment
     Public Property MaxPoints As Integer = 100 '-- default to 100 to make percents easy
 
+    Private m_dlbWeighting As Double
     Public Property Weighting As Double '-- should sum to 100% across all assignments
+        Get
+            Return m_dlbWeighting
+        End Get
+        Set(value As Double)
+            '-- ensure the value is between 0 and 1 (it's a percent)
+            m_dlbWeighting = Math.Min(Math.Max(value, 0), 1)
+        End Set
+    End Property
     Public Property ClassGroup As ClassGroup Implements IClassAssignment.ClassGroup
 
     Public Property ID As String Implements IClassAssignment.ID

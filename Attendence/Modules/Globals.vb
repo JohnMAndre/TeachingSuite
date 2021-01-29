@@ -488,5 +488,21 @@ Module Globals
 
         Return oRetObj
     End Function
+    Public Function ConvertToLetter(number As Integer) As String
+        Dim strReturn As String = String.Empty
+        Dim iAlpha As Integer
+        Dim iRemainder As Integer
+        iAlpha = Int(number / 27)
+        iRemainder = number - (iAlpha * 26)
+        If iAlpha > 0 Then
+            strReturn = Chr(iAlpha + 64)
+        End If
+        If iRemainder > 0 Then
+            strReturn &= Chr(iRemainder + 64)
+        End If
+
+        Return strReturn
+    End Function
+
 End Module
 

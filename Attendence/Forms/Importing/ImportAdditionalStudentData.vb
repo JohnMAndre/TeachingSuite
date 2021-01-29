@@ -53,7 +53,7 @@ Public Class ImportAdditionalStudentData
                         End If
                     End If
 
-                    If chkNickname.Checked Then
+                    If chkEmail.Checked Then
                         If item.EmailAddress.Trim.Length > 0 Then
                             stud.EmailAddress = item.EmailAddress
                         End If

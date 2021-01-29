@@ -183,4 +183,15 @@ Public Class GroupPresentationAssessment
     Private Sub lblTimer_Click(sender As Object, e As EventArgs) Handles lblTimer.Click
         ReArrangeControls()
     End Sub
+
+    Private Sub picMoreInfo_Click(sender As Object, e As EventArgs) Handles picMoreInfo.Click
+        Dim strMessage As String
+        strMessage = "Pe = Performance level (current)" & Environment.NewLine
+        strMessage &= "Pr = Performance level (previous)" & Environment.NewLine
+        strMessage &= "D = Days since last included for this student" & Environment.NewLine
+        strMessage &= "Q = Quantity, number of times given to this student" & Environment.NewLine
+        strMessage &= "O = Checkbox to include when generating feedback."
+
+        MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 End Class

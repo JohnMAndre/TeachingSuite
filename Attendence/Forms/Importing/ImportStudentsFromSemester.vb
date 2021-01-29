@@ -18,6 +18,7 @@
 Public Class ImportStudentsFromSemester
 
     Private m_TargetClass As SchoolClass
+    Private m_sourceSemester As Semester
 
     Public Sub New(clas As SchoolClass)
 
@@ -28,7 +29,6 @@ Public Class ImportStudentsFromSemester
 
     End Sub
 
-    Private m_sourceSemester As Semester
 
     Private Sub ImportStudentsFromSemester_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         LoadSemesters()

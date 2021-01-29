@@ -52,7 +52,10 @@ Public Class ExportNormalGradesForMoodle
             '-- First, write out the headers
             tw.Write("StudentID" & vbTab & "Email" & vbTab & "Team" & vbTab & "Group")
             For Each item As ClassAssignment In lstAssignments.SelectedItems
-                tw.Write(vbTab & "Assignment: " & item.Name & " (Real)" & vbTab & "Assignment: " & item.Name & " (Feedback)")
+                tw.Write(vbTab & "Assignment: " & item.Name & " (Real)")
+                If chkIncludeImprovementFeedback.Checked OrElse chkIncludeOverallFeedback.Checked Then
+                    tw.Write(vbTab & "Assignment: " & item.Name & " (Feedback)")
+                End If
             Next
             tw.WriteLine(String.Empty) '-- just to get the end of line char (I think this will work)
 
@@ -77,12 +80,21 @@ Public Class ExportNormalGradesForMoodle
                             Do Until intAsmtCounter >= lstAssignments.SelectedItems.Count OrElse (lstAssignments.SelectedItems(intAsmtCounter) Is stAsmt.BaseAssignment)
                                 '-- We assume this student is missing at least one assignment, so we skip it, 
                                 '   but still need to write something to align the columns
-                                strLineToWrite &= vbTab & "-" & vbTab & String.Empty
+                                strLineToWrite &= vbTab & "-" '-- grade
+
+                                If chkIncludeImprovementFeedback.Checked OrElse chkIncludeOverallFeedback.Checked Then
+                                    strLineToWrite &= vbTab & String.Empty '-- feedback
+                                End If
+
                                 intAsmtCounter += 1
                             Loop
 
-                            '-- This is the one it should be
-                            strLineToWrite &= vbTab & stAsmt.FirstTryPoints
+                            If chkIncludeRework.Checked Then
+                                '-- Include the greater of either first try or second try
+                                strLineToWrite &= vbTab & Math.Max(stAsmt.FirstTryPoints, stAsmt.SecondTryPoints)
+                            Else
+                                strLineToWrite &= vbTab & stAsmt.FirstTryPoints
+                            End If
 
                             '-- Need to remove end of line chars
                             If chkIncludeOverallFeedback.Checked Then
@@ -107,20 +119,22 @@ Public Class ExportNormalGradesForMoodle
                             intAsmtCounter += 1
                         End If
                     Next
+
+                    '-- If student did not do the assignments at the end, we still write zeros
+                    Do Until intAsmtCounter = lstAssignments.SelectedItems.Count
+                        strLineToWrite &= vbTab & "-" '-- grade
+                        If chkIncludeImprovementFeedback.Checked OrElse chkIncludeOverallFeedback.Checked Then
+                            strLineToWrite &= vbTab & String.Empty '-- feedback
+                        End If
+                        intAsmtCounter += 1
+                    Loop
+
                     tw.WriteLine(strLineToWrite)
                 Next
             Next
 
             tw.Close()
             tw.Dispose()
-            '= lstAssignments.Items(2)
-
-            'If lstAssignments.SelectedItems.Contains(asmt) Then
-            '    MessageBox.Show("It is selected")
-            'Else
-            '    MessageBox.Show("It is not selected")
-            'End If
-
         End If
 
 

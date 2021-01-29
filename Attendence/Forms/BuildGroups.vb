@@ -31,9 +31,30 @@ Public Class BuildGroups
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Close()
     End Sub
+    Private Sub EraseTeams()
+        Dim boolEraseAll As Boolean
+        For intCounter As Integer = 0 To m_class.Students.Count - 1
+            If m_class.Students(intCounter).StudentTeam.Length > 0 Then
+                boolEraseAll = (MessageBox.Show("Teams is not empty. Erase and replace?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes)
+                Exit For
+            End If
+        Next
 
+        If boolEraseAll Then
+            For intCounter As Integer = 0 To m_class.Students.Count - 1
+                m_class.Students(intCounter).StudentTeam = String.Empty
+                Me.olvStudents.RefreshObject(m_class.Students(intCounter))
+            Next
+        End If
+    End Sub
     Private Sub BuildGroupsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuildGroupsToolStripMenuItem.Click
         Try
+            If chkUseTeam.Checked Then
+                EraseTeams()
+            End If
+
+            m_assignmentStudents.Clear()
+
             Dim lstGroupNames As New List(Of String)
             If chkUseCustomGroupNames.Checked Then
                 For Each line As String In txtGroupNames.Lines
@@ -41,7 +62,12 @@ Public Class BuildGroups
                 Next
             Else
                 For intCounter As Integer = 1 To nudNumberOfGroups.Value
-                    lstGroupNames.Add("Group_" & intCounter.ToString("00"))
+                    If chkUseTeam.Checked Then
+                        Dim strName As String = ConvertToLetter(intCounter)
+                        lstGroupNames.Add(strName.ToUpper())
+                    Else
+                        lstGroupNames.Add("Team_" & intCounter.ToString("00"))
+                    End If
                 Next
             End If
 
@@ -67,17 +93,23 @@ Public Class BuildGroups
                         intLoopCounter += 1
                     Loop
 
-                    If m_class.Students(intPos).Tags.Length > 0 Then
-                        m_class.Students(intPos).Tags &= " "
+                    If chkUseTeam.Checked Then
+                        '-- Team was erased earlier
+                        m_class.Students(intPos).StudentTeam = lstGroupNames(intGroup - 1)
+                    Else
+                        '-- Tags get appended
+                        If m_class.Students(intPos).Tags.Length > 0 Then
+                            m_class.Students(intPos).Tags &= " "
+                        End If
+                        m_class.Students(intPos).Tags &= lstGroupNames(intGroup - 1)
                     End If
 
-                    m_class.Students(intPos).Tags &= lstGroupNames(intGroup - 1)
                     Me.olvStudents.RefreshObject(m_class.Students(intPos))
                     m_assignmentStudents.Add(intPos)
                 Loop
                 Application.DoEvents()
             Else
-                MessageBox.Show("Please select a number of groups above 1.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Please select a number of teams above 1.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Catch ex As Exception
             MessageBox.Show("There was an error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -93,7 +125,7 @@ Public Class BuildGroups
     End Sub
     Private Sub UpdateStats()
         Dim dblGroupSize As Double = olvStudents.Items.Count / nudNumberOfGroups.Value
-        lblMembersPerGroup.Text = dblGroupSize.ToString("#,##0.0") & " students in each group"
+        lblMembersPerGroup.Text = dblGroupSize.ToString("#,##0.0") & " students in each team"
     End Sub
 
     Private Sub BuildGroups_Load(sender As Object, e As EventArgs) Handles MyBase.Load
