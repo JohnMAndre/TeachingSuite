@@ -30,6 +30,7 @@ Partial Class GroupPresentationAssessment
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.btnSaveAllKeepOpen = New System.Windows.Forms.Button()
         Me.picMoreInfo = New System.Windows.Forms.PictureBox()
+        Me.btnReloadMissing = New System.Windows.Forms.Button()
         CType(Me.picMoreInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -77,7 +78,7 @@ Partial Class GroupPresentationAssessment
         Me.btnSaveAllKeepOpen.Name = "btnSaveAllKeepOpen"
         Me.btnSaveAllKeepOpen.Size = New System.Drawing.Size(167, 26)
         Me.btnSaveAllKeepOpen.TabIndex = 45
-        Me.btnSaveAllKeepOpen.Text = "&Save (keep marking)"
+        Me.btnSaveAllKeepOpen.Text = "Sa&ve (keep marking)"
         Me.btnSaveAllKeepOpen.UseVisualStyleBackColor = True
         '
         'picMoreInfo
@@ -91,6 +92,16 @@ Partial Class GroupPresentationAssessment
         Me.picMoreInfo.TabIndex = 46
         Me.picMoreInfo.TabStop = False
         '
+        'btnReloadMissing
+        '
+        Me.btnReloadMissing.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnReloadMissing.Location = New System.Drawing.Point(82, 368)
+        Me.btnReloadMissing.Name = "btnReloadMissing"
+        Me.btnReloadMissing.Size = New System.Drawing.Size(75, 26)
+        Me.btnReloadMissing.TabIndex = 43
+        Me.btnReloadMissing.Text = "&Reload"
+        Me.btnReloadMissing.UseVisualStyleBackColor = True
+        '
         'GroupPresentationAssessment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -99,6 +110,7 @@ Partial Class GroupPresentationAssessment
         Me.Controls.Add(Me.picMoreInfo)
         Me.Controls.Add(Me.btnSaveAllKeepOpen)
         Me.Controls.Add(Me.lblTimer)
+        Me.Controls.Add(Me.btnReloadMissing)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -118,4 +130,5 @@ Partial Class GroupPresentationAssessment
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents btnSaveAllKeepOpen As System.Windows.Forms.Button
     Friend WithEvents picMoreInfo As PictureBox
+    Friend WithEvents btnReloadMissing As Button
 End Class

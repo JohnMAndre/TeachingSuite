@@ -117,9 +117,20 @@ Public Class Attendance2Form
     End Sub
 
     Private Sub SaveAndCloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAndCloseToolStripMenuItem.Click
-        SaveSessionStatuses()
-        Close()
+        If AllAreMarked() OrElse MessageBox.Show("Not all students have been marked. Are you sure you want to save and close?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel) = DialogResult.Yes Then
+            SaveSessionStatuses()
+            Close()
+        End If
     End Sub
+    Private Function AllAreMarked() As Boolean
+        For Each stu As StudentAttendanceData In m_lstStudents
+            If stu.AttendanceStatus = AttendanceStatusEnum.Unknown Then
+                Return False
+            End If
+        Next
+
+        Return True
+    End Function
 
     Private Sub SaveSessionStatuses()
         Try

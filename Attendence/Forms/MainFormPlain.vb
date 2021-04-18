@@ -1505,7 +1505,7 @@ Public Class MainFormPlain
                 sfd.AddExtension = True
                 sfd.Filter = "Text files (*.txt)|*.txt"
                 sfd.OverwritePrompt = True
-                sfd.FileName = GetSelectedClass.Name & " Student Export"
+                sfd.FileName = GetSelectedClassGroup.Name & "-" & GetSelectedClass.Name & " Student Export"
                 If sfd.ShowDialog = DialogResult.OK Then
                     '-- Export
                     m_bkgndExportStudents = New System.ComponentModel.BackgroundWorker()
@@ -2494,19 +2494,18 @@ Public Class MainFormPlain
             MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             If MessageBox.Show("Are you sure you want to remove all these students from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = DialogResult.Yes Then
-                'Dim lst As New List(Of Student)
-                'For Each stud As Student In olvStudents.FilteredObjects()
-                '    lst.Add(stud)
-                'Next
+                Dim lst As New List(Of Student)
+                For Each stud As Student In GetSelectedClass().Students
+                    lst.Add(stud)
+                Next
 
-                'For Each stud As Student In lst
-                '    GetSelectedClass.Students.Remove(stud)
-                'Next
+                For Each stud As Student In lst
+                    GetSelectedClass.Students.Remove(stud)
+                Next
 
-                'lst.Clear()
+                lst.Clear()
 
-                'LoadStudents() '-- refresh list
-
+                LoadStudents() '-- refresh list
             End If
         End If
     End Sub
@@ -4088,5 +4087,10 @@ Public Class MainFormPlain
             Dim frm As New AssignPeerEvaluation(objClassToSend)
             frm.Show()
         End If
+    End Sub
+
+    Private Sub ExportTutorDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTutorDatabaseToolStripMenuItem.Click
+        Dim frm As New ExportTutorDatabase()
+        frm.Show()
     End Sub
 End Class

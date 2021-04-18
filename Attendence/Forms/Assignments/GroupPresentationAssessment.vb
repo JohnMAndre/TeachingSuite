@@ -120,7 +120,28 @@ Public Class GroupPresentationAssessment
             MessageBox.Show("There was an error resizing: " & ex.Message)
         End Try
     End Sub
+    Private Sub ReloadClosedStudents()
+        Dim sz As New Size(100, 100)
+        Dim boolLoadedAlready As Boolean
+        For Each stud In m_lstStudents
+            boolLoadedAlready = False
+            For Each ctl As IndividualMarkInGroupPresentation In Me.FlowLayoutPanel1.Controls
+                If ctl.txtStudentID.Text = stud.StudentID Then
+                    boolLoadedAlready = True
+                    Exit For
+                End If
+            Next
 
+            '-- Load if not there already
+            If Not boolLoadedAlready Then
+                LoadStudent(stud, m_asmt, m_try, sz)
+            End If
+        Next
+
+
+
+        ReArrangeControls()
+    End Sub
     Private Sub btnSaveAllKeepOpen_Click(sender As Object, e As EventArgs) Handles btnSaveAllKeepOpen.Click
         Try
             For Each ctl As IndividualMarkInGroupPresentation In Me.FlowLayoutPanel1.Controls
@@ -193,5 +214,9 @@ Public Class GroupPresentationAssessment
         strMessage &= "O = Checkbox to include when generating feedback."
 
         MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub btnReloadMissing_Click(sender As Object, e As EventArgs) Handles btnReloadMissing.Click
+        ReloadClosedStudents()
     End Sub
 End Class

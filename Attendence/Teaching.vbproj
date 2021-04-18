@@ -162,6 +162,12 @@
     <Compile Include="Forms\Exporting\ExportNormalGradesForMoodle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Exporting\ExportTutorDatabase.Designer.vb">
+      <DependentUpon>ExportTutorDatabase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Exporting\ExportTutorDatabase.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Importing\HistoricalStudentFinderPlain.Designer.vb">
       <DependentUpon>HistoricalStudentFinderPlain.vb</DependentUpon>
     </Compile>
@@ -669,6 +675,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Exporting\ExportNormalGradesForMoodle.resx">
       <DependentUpon>ExportNormalGradesForMoodle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Exporting\ExportTutorDatabase.resx">
+      <DependentUpon>ExportTutorDatabase.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Importing\HistoricalStudentFinderPlain.resx">
       <DependentUpon>HistoricalStudentFinderPlain.vb</DependentUpon>

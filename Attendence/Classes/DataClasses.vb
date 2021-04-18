@@ -376,6 +376,13 @@ Public Class Semester
 
         Return xDoc
     End Function
+    ''' <summary>
+    ''' Returns a deep copy of the semester
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function Clone() As Semester
+        Return New Semester(Me.GetXMLDocumentToPersist().DocumentElement)
+    End Function
 End Class
 
 Public Class UnicodeTextWriter
@@ -3043,6 +3050,8 @@ Public Class Student
         Female
         Other
     End Enum
+
+    Public Property SupressChangeTracking As Boolean '-- Not persisted and generally used for things like exporting tutor database so clearing tags in export does not trigger student history data change
     ''' <summary>
     ''' Only works for Normal assignments (not BTEC)
     ''' </summary>
@@ -3477,8 +3486,10 @@ Public Class Student
         End Get
         Set(value As String)
             If value <> m_strTags Then
-                AddToActivityLog("Tags changed from " & m_strTags & " to " & value)
-                HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "Tags", m_strTags)
+                If Not SupressChangeTracking Then
+                    AddToActivityLog("Tags changed from " & m_strTags & " to " & value)
+                    HistoricalStudentData.AddHistoricalData(Me.StudentID, String.Empty, "Tags", m_strTags)
+                End If
             End If
             m_strTags = value
         End Set

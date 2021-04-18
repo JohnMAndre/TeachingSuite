@@ -78,6 +78,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.lblActiveTime = New System.Windows.Forms.Label()
         Me.llblStudentName = New System.Windows.Forms.LinkLabel()
+        Me.llblSaveClose = New System.Windows.Forms.LinkLabel()
         CType(Me.dgvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudFirstGrade, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSecondGrade, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -590,6 +591,16 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblStudentName.TabStop = True
         Me.llblStudentName.Text = "Name"
         '
+        'llblSaveClose
+        '
+        Me.llblSaveClose.AutoSize = True
+        Me.llblSaveClose.Location = New System.Drawing.Point(2, 258)
+        Me.llblSaveClose.Name = "llblSaveClose"
+        Me.llblSaveClose.Size = New System.Drawing.Size(73, 16)
+        Me.llblSaveClose.TabIndex = 54
+        Me.llblSaveClose.TabStop = True
+        Me.llblSaveClose.Text = "Save/Close"
+        '
         'IndividualMarkInGroupPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -598,6 +609,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.lblActiveTime)
         Me.Controls.Add(Me.llblClearChecks)
         Me.Controls.Add(Me.lblImprovementCharCount)
+        Me.Controls.Add(Me.llblSaveClose)
         Me.Controls.Add(Me.llblAbsent)
         Me.Controls.Add(Me.llblGenerateImprovements)
         Me.Controls.Add(Me.nudPresentationQuality)
@@ -711,5 +723,5 @@ Partial Class IndividualMarkInGroupPresentation
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents lblActiveTime As System.Windows.Forms.Label
     Friend WithEvents llblStudentName As System.Windows.Forms.LinkLabel
-
+    Friend WithEvents llblSaveClose As LinkLabel
 End Class

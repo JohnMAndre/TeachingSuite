@@ -409,4 +409,11 @@ Public Class IndividualMarkInGroupPresentation
             frm.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub llblSaveClose_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llblSaveClose.LinkClicked
+        If MessageBox.Show("Save, close student, and re-arrange?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
+            Me.Save()
+            RaiseEvent RequestRemoval(Me)
+        End If
+    End Sub
 End Class

@@ -19,8 +19,6 @@ Public Class ImportClassFromSemester
     Private m_sourceSemester As Semester
 
     Private Sub ImportStudentsFromSemester_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        lstAssignments.Visible = False
-        lblAssignments.Visible = False
 
         LoadSemesters()
     End Sub
@@ -52,7 +50,7 @@ Public Class ImportClassFromSemester
         End Try
     End Sub
     Private Sub LoadClassGroups()
-        lstAssignments.Items.Clear()
+        lstAssignmentsBTEC.Items.Clear()
         lstClasses.Items.Clear()
         lstClassGroups.Items.Clear()
         For Each objClassGroup As ClassGroup In m_sourceSemester.ClassGroups
@@ -81,10 +79,22 @@ Public Class ImportClassFromSemester
         If GetSelectedClassGroup() Is Nothing Then
             MessageBox.Show("Please select a class first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            lstAssignments.Items.Clear()
+            '-- First BTEC
+            lstAssignmentsBTEC.Items.Clear()
             For Each objClassAssignment As ClassAssignmentBTEC In GetSelectedClassGroup().AssignmentsBTEC
-                lstAssignments.Items.Add(objClassAssignment)
+                lstAssignmentsBTEC.Items.Add(objClassAssignment)
             Next
+            lstAssignmentsBTEC.Visible = lstAssignmentsBTEC.Items.Count > 0
+
+            '-- Now normal assignments
+            lstAssignmentsNormal.Items.Clear()
+            For Each objClassAssignment As ClassAssignment In GetSelectedClassGroup().Assignments
+                lstAssignmentsNormal.Items.Add(objClassAssignment)
+            Next
+            lstAssignmentsNormal.Visible = lstAssignmentsNormal.Items.Count > 0
+
+            '-- Now the label
+            lblAssignments.Visible = lstAssignmentsNormal.Visible OrElse lstAssignmentsBTEC.Visible
         End If
     End Sub
 
@@ -98,27 +108,34 @@ Public Class ImportClassFromSemester
 
             '-- Should we import class(es)?
             For Each clas As SchoolClass In lstClasses.SelectedItems
-                'MsgBox("Import Class: " & clas.Name)
+
                 '-- Import class, students, but not student assignment or outcome results or sessions
                 group.Classes.Add(clas)
                 clas.ClassSessions.Clear()
-                For Each stud As Student In clas.Students
-                    stud.TeachingSessions.Clear()
-                    stud.Hidden = False
-                    stud.MeritPoints = 0
-                    stud.EmailedData = String.Empty
-                    'stud.AltNumber = 0
-                    'stud.AdminNumber=0
-                    stud.AssignmentsBTEC.Clear()
-                Next
+
+                If chkRemoveStudents.Checked Then
+                    clas.Students.Clear()
+                Else
+                    For Each stud As Student In clas.Students
+                        stud.TeachingSessions.Clear()
+                        stud.Hidden = False
+                        stud.MeritPoints = 0
+                        stud.EmailedData = String.Empty
+                        stud.AssignmentsBTEC.Clear()
+                        stud.Assignments.Clear()
+                    Next
+                End If
                 AddApplicationHistory("Imported class from previous semester (Prev Semester: " & m_sourceSemester.Name & ", Class: " & clas.ToString() & ").")
             Next
 
             '-- Should we import class assignment(s)?
-            For Each asmt As ClassAssignmentBTEC In lstAssignments.SelectedItems
-                'MsgBox("Import assignment: " & asmt.Name)
+            For Each asmt As ClassAssignmentBTEC In lstAssignmentsBTEC.SelectedItems
                 group.AssignmentsBTEC.Add(asmt)
                 asmt.SavedAssignmentsFolder = String.Empty
+            Next
+
+            For Each asmt As ClassAssignment In lstAssignmentsNormal.SelectedItems
+                group.Assignments.Add(asmt)
             Next
 
             Me.DialogResult = DialogResult.OK
