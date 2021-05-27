@@ -84,125 +84,126 @@ Public Class BulkEmailer
         m_clas.ClassGroup.LastQuizName = txtSubject.Text
     End Sub
     Private Sub EmailSelectedStudents()
-        If AppSettings.PathToTrulyMailEXE.Trim.Length = 0 OrElse Not System.IO.File.Exists(AppSettings.PathToTrulyMailEXE) Then
-            MessageBox.Show("Please go to Tools->Options on main form and select the path to TrulyMail. TrulyMail must be used for emailing module results.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
-        End If
+        Try
+            If AppSettings.PathToTrulyMailEXE.Trim.Length = 0 OrElse Not System.IO.File.Exists(AppSettings.PathToTrulyMailEXE) Then
+                MessageBox.Show("Please go to Tools->Options on main form and select the path to TrulyMail. TrulyMail must be used for emailing module results.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
 
-        btnCancel.Show()
-        m_boolCancel = False
+            btnCancel.Show()
+            m_boolCancel = False
 
-        lblSendingStatus.Text = "Preparing TrulyMail..."
-        ProgressBar1.Show()
-        ProgressBar1.Maximum = m_lst.Count
-        Application.DoEvents()
-
-        Dim tm As Object ' New TrulyMail.NewMessage()
-        Dim mainform As System.Runtime.Remoting.ObjectHandle
-        Dim obj As Object
-        mainform = Activator.CreateInstanceFrom(AppSettings.PathToTrulyMailEXE, "TrulyMail.MainForm") '-- load appsettings, etc.
-        obj = mainform.Unwrap()
-        Dim intCounter As Integer
-        Dim dt As Date = Date.UtcNow.AddHours(nudSendInXHours.Value) '-- must be in UTC
-
-        Application.DoEvents()
-        'Dim lstErrors As New List(Of BulkEmailData)
-
-        For Each dataItem As BulkEmailData In m_lst
-            intCounter += 1
-            ProgressBar1.Value = intCounter
+            lblSendingStatus.Text = "Preparing TrulyMail..."
+            ProgressBar1.Show()
+            ProgressBar1.Maximum = m_lst.Count
             Application.DoEvents()
-            If m_boolCancel Then
-                Exit For
-            End If
 
-            If dataItem.Selected Then
+            Dim tm As Object ' New TrulyMail.NewMessage()
+            Dim mainform As System.Runtime.Remoting.ObjectHandle
+            Dim obj As Object
+            mainform = Activator.CreateInstanceFrom(AppSettings.PathToTrulyMailEXE, "TrulyMail.MainForm") '-- load appsettings, etc.
+            obj = mainform.Unwrap()
+            Dim intCounter As Integer
+            Dim dt As Date = Date.UtcNow.AddHours(nudSendInXHours.Value) '-- must be in UTC
 
-                'GenerateEmailBodyForStudent(dataItem)
+            Application.DoEvents()
 
-
-
-
-
-                lblSendingStatus.Text = "Sending " & intCounter.ToString() & " of " & m_lst.Count.ToString()
-                If dataItem.Student.EmailedData Is Nothing OrElse dataItem.Student.EmailedData.Trim.Length = 0 Then
-                    dataItem.Student.EmailedData = Date.Now.ToString("yyyy MMM dd")
-                Else
-                    dataItem.Student.EmailedData &= ", " & Date.Now.ToString("yyyy MMM dd")
-                End If
-                olvStudents.RefreshObject(dataItem)
-                tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- True to force plaintext
-
-                Dim strNameForToField As String
-
-                If m_clas.ClassGroup.UseNickname Then
-                    If dataItem.Student.Nickname.Trim.Length = 0 Then
-                        strNameForToField = dataItem.Student.LocalNameLatinLetters
-                    Else
-                        strNameForToField = dataItem.Student.Nickname
-                    End If
-                Else
-                    strNameForToField = dataItem.Student.LocalNameLatinLetters
-                End If
-
-                If chkIncludeStudentID.Checked Then
-                    strNameForToField &= " (" & dataItem.Student.StudentID & ")"
-                End If
-
-                tm.AddRecipient(strNameForToField, dataItem.Student.EmailAddress)
-
-                tm.show() '-- don't show, doesn't load all the smtp accounts
+            For Each dataItem As BulkEmailData In m_lst
+                intCounter += 1
+                ProgressBar1.Value = intCounter
                 Application.DoEvents()
-                tm.UseSendingAccount(nudEmailSendingAccount.Value)
-                tm.Subject = txtSubject.Text
-                tm.Body = GenerateEmailBodyForStudent(dataItem)
-                tm.SendAsPlainText = False
-
-                '-- Same file(s) for all students
-                If AddfixedAttachmentToolStripMenuItem.Checked Then
-                    For Each strFilename As String In m_lstGeneralAttachments
-                        tm.AddAttachment(strFilename)
-                    Next
+                If m_boolCancel Then
+                    Exit For
                 End If
 
-                '-- Different file(s) for each student
-                If AddstudentspecificAttachmentToolStripMenuItem.Checked Then
+                If dataItem.Selected Then
+
+                    lblSendingStatus.Text = "Sending " & intCounter.ToString() & " of " & m_lst.Count.ToString()
+
+                    '-- Different file(s) for each student
+                    '   Need to avoid creating TrulyMail object when we will not sent
                     Dim files() As String
-                    If Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Checked Then
-                        files = System.IO.Directory.GetFiles(m_strStudentSpecificAttachmentPath, "*" & dataItem.Student.ExtStudentID & "*.*")
-                    Else
-                        files = System.IO.Directory.GetFiles(m_strStudentSpecificAttachmentPath, "*" & dataItem.Student.StudentID & "*.*")
+                    If AddstudentspecificAttachmentToolStripMenuItem.Checked Then
+                        If Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Checked Then
+                            files = System.IO.Directory.GetFiles(m_strStudentSpecificAttachmentPath, "*" & dataItem.Student.ExtStudentID & "*.*")
+                        Else
+                            files = System.IO.Directory.GetFiles(m_strStudentSpecificAttachmentPath, "*" & dataItem.Student.StudentID & "*.*")
+                        End If
+
+                        If IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.Checked AndAlso files.Count = 0 Then
+                            Continue For '-- Do not send this student at all
+                        End If
                     End If
-                    For Each strFilename As String In files
-                        tm.AddAttachment(strFilename)
-                    Next
-                End If
 
-                Try
-                    tm.SendThisMessage(dt)
-                Catch ex As Exception
-                    Log(ex)
-                    dataItem.ProcessStatus = ex.Message
+
+                    If dataItem.Student.EmailedData Is Nothing OrElse dataItem.Student.EmailedData.Trim.Length = 0 Then
+                        dataItem.Student.EmailedData = Date.Now.ToString("yyyy MMM dd")
+                    Else
+                        dataItem.Student.EmailedData &= ", " & Date.Now.ToString("yyyy MMM dd")
+                    End If
                     olvStudents.RefreshObject(dataItem)
-                    tm.CloseSaveAsDraft()
-                    tm = Nothing
-                    Continue For
-                End Try
-                dataItem.ProcessStatus = "Sent: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL)
-                olvStudents.RefreshObject(dataItem)
-            End If
-        Next
+                    tm = obj.CreateNewMessage(Not AppSettings.EmailAsHTML) '-- True to force plaintext
 
-        'If MessageBox.Show(lstErrors.ToString() & " items had errors sending. Do you want to see a list of those items?", Application.ProductName, MessageBoxButtons.YesNo) = DialogResult.Yes Then
-        '    For Each item As BulkEmailData In lstErrors
-        '        item.Student
-        '    Next
-        'End If
+                    Dim strNameForToField As String
 
-        lblSendingStatus.Text = "Finished."
-        ProgressBar1.Hide()
-        btnCancel.Hide()
+                    If m_clas.ClassGroup.UseNickname Then
+                        If dataItem.Student.Nickname.Trim.Length = 0 Then
+                            strNameForToField = dataItem.Student.LocalNameLatinLetters
+                        Else
+                            strNameForToField = dataItem.Student.Nickname
+                        End If
+                    Else
+                        strNameForToField = dataItem.Student.LocalNameLatinLetters
+                    End If
 
+                    If chkIncludeStudentID.Checked Then
+                        strNameForToField &= " (" & dataItem.Student.StudentID & ")"
+                    End If
+
+                    tm.AddRecipient(strNameForToField, dataItem.Student.EmailAddress)
+
+                    tm.show() '-- don't show, doesn't load all the smtp accounts
+                    Application.DoEvents()
+                    tm.UseSendingAccount(nudEmailSendingAccount.Value)
+                    tm.Subject = txtSubject.Text
+                    tm.Body = GenerateEmailBodyForStudent(dataItem)
+                    tm.SendAsPlainText = False
+
+                    '-- Same file(s) for all students
+                    If AddfixedAttachmentToolStripMenuItem.Checked Then
+                        For Each strFilename As String In m_lstGeneralAttachments
+                            tm.AddAttachment(strFilename)
+                        Next
+                    End If
+
+                    '-- Now actually attach files from above
+                    If AddstudentspecificAttachmentToolStripMenuItem.Checked AndAlso files.Length > 0 Then
+                        For Each strFilename As String In files
+                            tm.AddAttachment(strFilename)
+                        Next
+                    End If
+
+                    Try
+                        tm.SendThisMessage(dt)
+                    Catch ex As Exception
+                        Log(ex)
+                        dataItem.ProcessStatus = ex.Message
+                        olvStudents.RefreshObject(dataItem)
+                        tm.CloseSaveAsDraft()
+                        tm = Nothing
+                        Continue For
+                    End Try
+                    dataItem.ProcessStatus = "Sent: " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL)
+                    olvStudents.RefreshObject(dataItem)
+                End If
+            Next
+
+            lblSendingStatus.Text = "Finished."
+            ProgressBar1.Hide()
+            btnCancel.Hide()
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message, PRODUCT_NAME)
+        End Try
     End Sub
 
     Private Function GenerateEmailBodyForStudent(item As BulkEmailData)
@@ -318,6 +319,8 @@ Public Class BulkEmailer
             Next
 
             olvStudents.RefreshSelectedObjects()
+
+            UpdateRecipientCount()
         End If
     End Sub
 
@@ -382,6 +385,31 @@ Public Class BulkEmailer
         End If
 
         MessageBox.Show(strMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub AddstudentspecificAttachmentToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles AddstudentspecificAttachmentToolStripMenuItem.CheckedChanged
+        IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.Enabled = AddstudentspecificAttachmentToolStripMenuItem.Checked
+    End Sub
+
+    Private Sub ToggleStudentsFromIDsOnClipboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ToggleStudentsFromIDsOnClipboardToolStripMenuItem.Click
+        Try
+            Dim lines() As String = Clipboard.GetText.Split(Environment.NewLine)
+            For Each strLine In lines
+                strLine = strLine.Trim()
+                For Each obj As BulkEmailData In m_lst
+                    If obj.Student.StudentID.ToLower() = strLine.ToLower() Then
+                        obj.Selected = Not obj.Selected
+                        Exit For '-- assume each student ID is unique
+                    End If
+                Next
+            Next
+
+            olvStudents.RefreshObjects(m_lst)
+            UpdateRecipientCount()
+
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message, PRODUCT_NAME)
+        End Try
     End Sub
 End Class
 

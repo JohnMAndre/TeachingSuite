@@ -735,32 +735,6 @@ Public Class MainFormPlain
         m_lstRandomlySelected.Add(int)
 
     End Sub
-    Private Sub ExportAttendenceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAttendanceToolStripMenuItem.Click
-        If GetSelectedClass() Is Nothing Then
-            MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            If ClassIsCombinedView(GetSelectedClass()) Then
-                '-- classes combined cannot get export of attendance
-                MessageBox.Show("Cannot export attendance on combined classes (sessions can be on different days).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Exit Sub
-            End If
-
-            Dim sfd As New SaveFileDialog()
-            sfd.Title = "Select export location"
-            sfd.AddExtension = True
-            sfd.Filter = "Text files (*.txt)|*.txt"
-            sfd.OverwritePrompt = True
-            sfd.FileName = GetSelectedClass.Name & " Export"
-            If sfd.ShowDialog = DialogResult.OK Then
-                '-- Export
-                m_bkgndExportAttendence = New System.ComponentModel.BackgroundWorker()
-                Dim expData As New ExportClassData
-                expData.SchoolClass = GetSelectedClass()
-                expData.Filename = sfd.FileName
-                m_bkgndExportAttendence.RunWorkerAsync(expData)
-            End If
-        End If
-    End Sub
 
 
     Private Class ExportModuleResultData
@@ -777,7 +751,12 @@ Public Class MainFormPlain
     Private Sub m_bkgndExportAttendence_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles m_bkgndExportAttendence.DoWork
         Dim expData As ExportClassData = CType(e.Argument, ExportClassData)
 
-        expData.SchoolClass.GenerateAttendaceExport(expData.Filename)
+        Select Case expData.ExportFileType
+            Case ExportClassData.FileTypeEnum.Standard
+                expData.SchoolClass.GenerateAttendaceExportStandard(expData.Filename)
+            Case ExportClassData.FileTypeEnum.Unisoft
+                expData.SchoolClass.GenerateAttendaceExportUnisoft(expData.Filename)
+        End Select
 
     End Sub
 
@@ -4092,5 +4071,80 @@ Public Class MainFormPlain
     Private Sub ExportTutorDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTutorDatabaseToolStripMenuItem.Click
         Dim frm As New ExportTutorDatabase()
         frm.Show()
+    End Sub
+
+    Private Sub StandardSpreadsheetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StandardSpreadsheetToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            If ClassIsCombinedView(GetSelectedClass()) Then
+                '-- classes combined cannot get export of attendance
+                MessageBox.Show("Cannot export attendance on combined classes (sessions can be on different days).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End If
+
+            Dim sfd As New SaveFileDialog()
+            sfd.Title = "Select export location"
+            sfd.AddExtension = True
+            sfd.Filter = "Text files (*.txt)|*.txt"
+            sfd.OverwritePrompt = True
+            sfd.FileName = GetSelectedClass.Name & " Export"
+            If sfd.ShowDialog = DialogResult.OK Then
+                '-- Export
+                m_bkgndExportAttendence = New System.ComponentModel.BackgroundWorker()
+                Dim expData As New ExportClassData
+                expData.SchoolClass = GetSelectedClass()
+                expData.Filename = sfd.FileName
+                expData.ExportFileType = ExportClassData.FileTypeEnum.Standard
+                m_bkgndExportAttendence.RunWorkerAsync(expData)
+            End If
+        End If
+
+    End Sub
+
+    Private Sub UnisoftSpreadsheetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnisoftSpreadsheetToolStripMenuItem.Click
+        If GetSelectedClass() Is Nothing Then
+            MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Dim objClassToUse As SchoolClass
+            Dim objClass As SchoolClass = CType(lstClasses.Items(lstClasses.SelectedIndex), SchoolClass)
+            If ClassIsCombinedView(objClass) Then
+                Dim boolSetAlready As Boolean
+                For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                    If Not boolSetAlready Then
+                        Dim grp As New ClassGroup(Nothing)
+                        grp.UseNickname = GetSelectedClassGroup.UseNickname
+                        objClassToUse = New SchoolClass(grp)
+                        objClassToUse.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                        objClassToUse.Students.AddRange(objCls.Students)
+                        boolSetAlready = True
+                    Else
+                        objClassToUse.Students.AddRange(objCls.Students)
+                    End If
+                Next
+            Else
+                objClassToUse = objClass
+            End If
+
+            objClassToUse.ClassGroup = GetSelectedClassGroup()
+
+
+
+            Dim sfd As New SaveFileDialog()
+            sfd.Title = "Select export location"
+            sfd.AddExtension = True
+            sfd.Filter = "Text files (*.txt)|*.txt"
+            sfd.OverwritePrompt = True
+            sfd.FileName = objClassToUse.Name & " Export"
+            If sfd.ShowDialog = DialogResult.OK Then
+                '-- Export
+                m_bkgndExportAttendence = New System.ComponentModel.BackgroundWorker()
+                Dim expData As New ExportClassData
+                expData.SchoolClass = objClassToUse
+                expData.Filename = sfd.FileName
+                expData.ExportFileType = ExportClassData.FileTypeEnum.Unisoft
+                m_bkgndExportAttendence.RunWorkerAsync(expData)
+            End If
+        End If
     End Sub
 End Class

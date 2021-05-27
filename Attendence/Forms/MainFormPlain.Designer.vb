@@ -24,35 +24,35 @@ Partial Class MainFormPlain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainFormPlain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle53 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle54 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle55 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle56 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle57 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle58 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlSelectSemester = New System.Windows.Forms.Panel()
         Me.llblCloseSemesterPanel = New System.Windows.Forms.PictureBox()
         Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
@@ -248,9 +248,15 @@ Partial Class MainFormPlain
         Me.ClearTeamForTheseStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CaptureStudentImageFromClipboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditStudentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssignStudentsRandomIconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssignPeersForEvaluationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectRandomStudentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignNicknameFromLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FirstElementOfLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LastElementOfLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignStudentsRandomIconToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignChoicesToStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignworkshopGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignPeersForEvaluationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAttendanceErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentAssignmentErrorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -288,6 +294,9 @@ Partial Class MainFormPlain
         Me.ImportImprovementItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StandardSpreadsheetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UnisoftSpreadsheetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportTutorDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportBTECGradesForMoodleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportModuleResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -322,13 +331,8 @@ Partial Class MainFormPlain
         Me.EitherOrToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SpecialAttendanceToolToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssignNicknameFromLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FirstElementOfLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LastElementOfLocalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BulkReassignStudentAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssignworkshopGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssignChoicesToStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -343,7 +347,6 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.ExportTutorDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSelectSemester.SuspendLayout()
         CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -596,7 +599,7 @@ Partial Class MainFormPlain
         '
         Me.llblSemesterLabel.Location = New System.Drawing.Point(12, 9)
         Me.llblSemesterLabel.Name = "llblSemesterLabel"
-        Me.llblSemesterLabel.Size = New System.Drawing.Size(64, 20)
+        Me.llblSemesterLabel.Size = New System.Drawing.Size(72, 19)
         Me.llblSemesterLabel.TabIndex = 37
         Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblSemesterLabel.Values.Text = "Semester:"
@@ -1124,16 +1127,16 @@ Partial Class MainFormPlain
         'dcolAdmin
         '
         Me.dcolAdmin.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle30
         Me.dcolAdmin.HeaderText = "Admin"
         Me.dcolAdmin.Name = "dcolAdmin"
         '
         'dcolAlt
         '
         Me.dcolAlt.DataPropertyName = "AltNumber"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle31
         Me.dcolAlt.HeaderText = "Alt"
         Me.dcolAlt.Name = "dcolAlt"
         Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1142,40 +1145,40 @@ Partial Class MainFormPlain
         'dcolLocalName
         '
         Me.dcolLocalName.DataPropertyName = "LocalName"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle32
         Me.dcolLocalName.HeaderText = "Name"
         Me.dcolLocalName.Name = "dcolLocalName"
         '
         'dcolNickname
         '
         Me.dcolNickname.DataPropertyName = "Nickname"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle33
         Me.dcolNickname.HeaderText = "Nickname"
         Me.dcolNickname.Name = "dcolNickname"
         '
         'dcolExtStudentID
         '
         Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle34
         Me.dcolExtStudentID.HeaderText = "ExtID"
         Me.dcolExtStudentID.Name = "dcolExtStudentID"
         '
         'dcolStudentID
         '
         Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle35
         Me.dcolStudentID.HeaderText = "StudentID"
         Me.dcolStudentID.Name = "dcolStudentID"
         '
         'dcolAttendanceStatus
         '
         Me.dcolAttendanceStatus.DataPropertyName = "LatestAttendenceStatus"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle36
         Me.dcolAttendanceStatus.HeaderText = "Status"
         Me.dcolAttendanceStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Excused", "Late"})
         Me.dcolAttendanceStatus.Name = "dcolAttendanceStatus"
@@ -1185,80 +1188,80 @@ Partial Class MainFormPlain
         'dcolTags
         '
         Me.dcolTags.DataPropertyName = "Tags"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle37
         Me.dcolTags.HeaderText = "Tags"
         Me.dcolTags.Name = "dcolTags"
         '
         'dcolTotalAbsences
         '
         Me.dcolTotalAbsences.DataPropertyName = "TotalAbsences"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle38
         Me.dcolTotalAbsences.HeaderText = "Total"
         Me.dcolTotalAbsences.Name = "dcolTotalAbsences"
         '
         'dcolPresentationQuality
         '
         Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle39
         Me.dcolPresentationQuality.HeaderText = "Pres"
         Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
         '
         'dcolStudentGroup
         '
         Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle40
         Me.dcolStudentGroup.HeaderText = "Group"
         Me.dcolStudentGroup.Name = "dcolStudentGroup"
         '
         'dcolStudentTeam
         '
         Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle41
         Me.dcolStudentTeam.HeaderText = "Team"
         Me.dcolStudentTeam.Name = "dcolStudentTeam"
         '
         'dcolWritingQuality
         '
         Me.dcolWritingQuality.DataPropertyName = "WritingQuality"
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle42
         Me.dcolWritingQuality.HeaderText = "Write"
         Me.dcolWritingQuality.Name = "dcolWritingQuality"
         '
         'dcolDateOfBirth
         '
         Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle43
         Me.dcolDateOfBirth.HeaderText = "DoB"
         Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
         '
         'dcolAssignmentCount
         '
         Me.dcolAssignmentCount.DataPropertyName = "AssignmentCount"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle44
         Me.dcolAssignmentCount.HeaderText = "Asmt"
         Me.dcolAssignmentCount.Name = "dcolAssignmentCount"
         '
         'dcolProcessedAssignmentCount
         '
         Me.dcolProcessedAssignmentCount.DataPropertyName = "ProcessedAssignments"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle45
         Me.dcolProcessedAssignmentCount.HeaderText = "P.Asmt"
         Me.dcolProcessedAssignmentCount.Name = "dcolProcessedAssignmentCount"
         '
         'dcolCurrentAbsences
         '
         Me.dcolCurrentAbsences.DataPropertyName = "CurrentAbsences"
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle46
         Me.dcolCurrentAbsences.HeaderText = "Abs"
         Me.dcolCurrentAbsences.Name = "dcolCurrentAbsences"
         '
@@ -1271,16 +1274,16 @@ Partial Class MainFormPlain
         'dcolMerit
         '
         Me.dcolMerit.DataPropertyName = "MeritPoints"
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle47
         Me.dcolMerit.HeaderText = "Merit"
         Me.dcolMerit.Name = "dcolMerit"
         '
         'dcolEmail
         '
         Me.dcolEmail.DataPropertyName = "EmailAddress"
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle48
         Me.dcolEmail.HeaderText = "Email"
         Me.dcolEmail.Name = "dcolEmail"
         Me.dcolEmail.ReadOnly = True
@@ -1288,16 +1291,16 @@ Partial Class MainFormPlain
         'dcolNameLatinLetters
         '
         Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle49
         Me.dcolNameLatinLetters.HeaderText = "Standard"
         Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
         '
         'dcolClass
         '
         Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle50
         Me.dcolClass.HeaderText = "Class"
         Me.dcolClass.Name = "dcolClass"
         Me.dcolClass.ReadOnly = True
@@ -1305,24 +1308,24 @@ Partial Class MainFormPlain
         'dcolPlagiarismSeverity
         '
         Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle51
         Me.dcolPlagiarismSeverity.HeaderText = "Plag"
         Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
         '
         'dcolExcusedAbsences
         '
         Me.dcolExcusedAbsences.DataPropertyName = "TotalExcused"
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle52
         Me.dcolExcusedAbsences.HeaderText = "Excu"
         Me.dcolExcusedAbsences.Name = "dcolExcusedAbsences"
         '
         'dcolGender
         '
         Me.dcolGender.DataPropertyName = "Gender"
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle53
         Me.dcolGender.HeaderText = "Gender"
         Me.dcolGender.Name = "dcolGender"
         Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1331,32 +1334,32 @@ Partial Class MainFormPlain
         'dcolDrafts
         '
         Me.dcolDrafts.DataPropertyName = "DraftsChecked"
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle54
         Me.dcolDrafts.HeaderText = "Drafts"
         Me.dcolDrafts.Name = "dcolDrafts"
         '
         'dcolOfficeHours
         '
         Me.dcolOfficeHours.DataPropertyName = "OfficeHoursVisited"
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle55
         Me.dcolOfficeHours.HeaderText = "Office hrs"
         Me.dcolOfficeHours.Name = "dcolOfficeHours"
         '
         'dcolResearchQuality
         '
         Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle56
         Me.dcolResearchQuality.HeaderText = "Research"
         Me.dcolResearchQuality.Name = "dcolResearchQuality"
         '
         'dcolLastQuizScore
         '
         Me.dcolLastQuizScore.DataPropertyName = "PerformanceLastOnlineQuiz"
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle57
         Me.dcolLastQuizScore.HeaderText = "Quiz"
         Me.dcolLastQuizScore.Name = "dcolLastQuizScore"
         '
@@ -1475,8 +1478,8 @@ Partial Class MainFormPlain
         'dgcStarts
         '
         Me.dgcStarts.DataPropertyName = "StartDateTime"
-        DataGridViewCellStyle29.Format = "dd-MMM-yy HH:mm"
-        Me.dgcStarts.DefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle58.Format = "dd-MMM-yy HH:mm"
+        Me.dgcStarts.DefaultCellStyle = DataGridViewCellStyle58
         Me.dgcStarts.HeaderText = "Starts"
         Me.dgcStarts.Name = "dgcStarts"
         Me.dgcStarts.ReadOnly = True
@@ -1934,7 +1937,7 @@ Partial Class MainFormPlain
         '
         'StudentToolStripMenuItem
         '
-        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.ClearTeamForTheseStudentsToolStripMenuItem, Me.CaptureStudentImageFromClipboardToolStripMenuItem, Me.EditStudentToolStripMenuItem1, Me.AssignStudentsRandomIconToolStripMenuItem, Me.AssignPeersForEvaluationToolStripMenuItem, Me.SelectRandomStudentToolStripMenuItem})
+        Me.StudentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleHiddenForSelectedToolStripMenuItem, Me.SetGendermaleToolStripMenuItem, Me.SetGenderfemaleToolStripMenuItem, Me.ClearStudentFilterToolStripMenuItem, Me.ExcuseMostRecentAbsenceToolStripMenuItem, Me.FilterForSelectedGroupToolStripMenuItem, Me.ClearTagsToolStripMenuItem, Me.ClearTeamForTheseStudentsToolStripMenuItem, Me.CaptureStudentImageFromClipboardToolStripMenuItem, Me.EditStudentToolStripMenuItem1, Me.SelectRandomStudentToolStripMenuItem, Me.AssignToolStripMenuItem})
         Me.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem"
         Me.StudentToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.StudentToolStripMenuItem.Text = "&Student"
@@ -2010,23 +2013,61 @@ Partial Class MainFormPlain
         Me.EditStudentToolStripMenuItem1.Size = New System.Drawing.Size(314, 22)
         Me.EditStudentToolStripMenuItem1.Text = "Edit &student"
         '
-        'AssignStudentsRandomIconToolStripMenuItem
-        '
-        Me.AssignStudentsRandomIconToolStripMenuItem.Name = "AssignStudentsRandomIconToolStripMenuItem"
-        Me.AssignStudentsRandomIconToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
-        Me.AssignStudentsRandomIconToolStripMenuItem.Text = "Assign students random icon"
-        '
-        'AssignPeersForEvaluationToolStripMenuItem
-        '
-        Me.AssignPeersForEvaluationToolStripMenuItem.Name = "AssignPeersForEvaluationToolStripMenuItem"
-        Me.AssignPeersForEvaluationToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
-        Me.AssignPeersForEvaluationToolStripMenuItem.Text = "Assign peers for evaluation..."
-        '
         'SelectRandomStudentToolStripMenuItem
         '
         Me.SelectRandomStudentToolStripMenuItem.Name = "SelectRandomStudentToolStripMenuItem"
         Me.SelectRandomStudentToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
         Me.SelectRandomStudentToolStripMenuItem.Text = "Select random student"
+        '
+        'AssignToolStripMenuItem
+        '
+        Me.AssignToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AssignNicknameFromLocalNameToolStripMenuItem, Me.AssignStudentsRandomIconToolStripMenuItem, Me.AssignChoicesToStudentsToolStripMenuItem, Me.AssignworkshopGroupsToolStripMenuItem, Me.AssignPeersForEvaluationToolStripMenuItem})
+        Me.AssignToolStripMenuItem.Name = "AssignToolStripMenuItem"
+        Me.AssignToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
+        Me.AssignToolStripMenuItem.Text = "&Assign"
+        '
+        'AssignNicknameFromLocalNameToolStripMenuItem
+        '
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FirstElementOfLocalNameToolStripMenuItem, Me.LastElementOfLocalNameToolStripMenuItem})
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.Name = "AssignNicknameFromLocalNameToolStripMenuItem"
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.AssignNicknameFromLocalNameToolStripMenuItem.Text = "Assign nickname from local name"
+        '
+        'FirstElementOfLocalNameToolStripMenuItem
+        '
+        Me.FirstElementOfLocalNameToolStripMenuItem.Name = "FirstElementOfLocalNameToolStripMenuItem"
+        Me.FirstElementOfLocalNameToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.FirstElementOfLocalNameToolStripMenuItem.Text = "&First element of local name"
+        '
+        'LastElementOfLocalNameToolStripMenuItem
+        '
+        Me.LastElementOfLocalNameToolStripMenuItem.Name = "LastElementOfLocalNameToolStripMenuItem"
+        Me.LastElementOfLocalNameToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.LastElementOfLocalNameToolStripMenuItem.Text = "&Last element of local name"
+        '
+        'AssignStudentsRandomIconToolStripMenuItem
+        '
+        Me.AssignStudentsRandomIconToolStripMenuItem.Name = "AssignStudentsRandomIconToolStripMenuItem"
+        Me.AssignStudentsRandomIconToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.AssignStudentsRandomIconToolStripMenuItem.Text = "Assign students random icon"
+        '
+        'AssignChoicesToStudentsToolStripMenuItem
+        '
+        Me.AssignChoicesToStudentsToolStripMenuItem.Name = "AssignChoicesToStudentsToolStripMenuItem"
+        Me.AssignChoicesToStudentsToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.AssignChoicesToStudentsToolStripMenuItem.Text = "Assi&gn choices to students..."
+        '
+        'AssignworkshopGroupsToolStripMenuItem
+        '
+        Me.AssignworkshopGroupsToolStripMenuItem.Name = "AssignworkshopGroupsToolStripMenuItem"
+        Me.AssignworkshopGroupsToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.AssignworkshopGroupsToolStripMenuItem.Text = "Assign &workshop groups..."
+        '
+        'AssignPeersForEvaluationToolStripMenuItem
+        '
+        Me.AssignPeersForEvaluationToolStripMenuItem.Name = "AssignPeersForEvaluationToolStripMenuItem"
+        Me.AssignPeersForEvaluationToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.AssignPeersForEvaluationToolStripMenuItem.Text = "Assign peers for evaluation..."
         '
         'ReportsToolStripMenuItem
         '
@@ -2252,9 +2293,28 @@ Partial Class MainFormPlain
         '
         'ExportAttendanceToolStripMenuItem
         '
+        Me.ExportAttendanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StandardSpreadsheetToolStripMenuItem, Me.UnisoftSpreadsheetToolStripMenuItem})
         Me.ExportAttendanceToolStripMenuItem.Name = "ExportAttendanceToolStripMenuItem"
         Me.ExportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportAttendanceToolStripMenuItem.Text = "Export a&ttendance..."
+        Me.ExportAttendanceToolStripMenuItem.Text = "Export a&ttendance"
+        '
+        'StandardSpreadsheetToolStripMenuItem
+        '
+        Me.StandardSpreadsheetToolStripMenuItem.Name = "StandardSpreadsheetToolStripMenuItem"
+        Me.StandardSpreadsheetToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.StandardSpreadsheetToolStripMenuItem.Text = "Standard spreadsheet..."
+        '
+        'UnisoftSpreadsheetToolStripMenuItem
+        '
+        Me.UnisoftSpreadsheetToolStripMenuItem.Name = "UnisoftSpreadsheetToolStripMenuItem"
+        Me.UnisoftSpreadsheetToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.UnisoftSpreadsheetToolStripMenuItem.Text = "Unisoft spreadsheet..."
+        '
+        'ExportTutorDatabaseToolStripMenuItem
+        '
+        Me.ExportTutorDatabaseToolStripMenuItem.Name = "ExportTutorDatabaseToolStripMenuItem"
+        Me.ExportTutorDatabaseToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportTutorDatabaseToolStripMenuItem.Text = "Export tutor database..."
         '
         'ExportBTECGradesForMoodleToolStripMenuItem
         '
@@ -2413,7 +2473,7 @@ Partial Class MainFormPlain
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem, Me.AssignNicknameFromLocalNameToolStripMenuItem, Me.BulkReassignStudentAssignmentToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.AssignworkshopGroupsToolStripMenuItem, Me.AssignChoicesToStudentsToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAssignmentToolStripMenuItem, Me.ManageImprovementItemsToolStripMenuItem, Me.EitherOrToolStripMenuItem, Me.SpecialAttendanceToolToolStripMenuItem, Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem, Me.BulkReassignStudentAssignmentToolStripMenuItem, Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem, Me.ToolStripSeparator11, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
@@ -2479,25 +2539,6 @@ Partial Class MainFormPlain
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.ConvertLocalNamesToStandardnondiacriticToolStripMenuItem.Text = "Convert local names to standard (non-diacritic)"
         '
-        'AssignNicknameFromLocalNameToolStripMenuItem
-        '
-        Me.AssignNicknameFromLocalNameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FirstElementOfLocalNameToolStripMenuItem, Me.LastElementOfLocalNameToolStripMenuItem})
-        Me.AssignNicknameFromLocalNameToolStripMenuItem.Name = "AssignNicknameFromLocalNameToolStripMenuItem"
-        Me.AssignNicknameFromLocalNameToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
-        Me.AssignNicknameFromLocalNameToolStripMenuItem.Text = "Assign nickname from local name"
-        '
-        'FirstElementOfLocalNameToolStripMenuItem
-        '
-        Me.FirstElementOfLocalNameToolStripMenuItem.Name = "FirstElementOfLocalNameToolStripMenuItem"
-        Me.FirstElementOfLocalNameToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
-        Me.FirstElementOfLocalNameToolStripMenuItem.Text = "&First element of local name"
-        '
-        'LastElementOfLocalNameToolStripMenuItem
-        '
-        Me.LastElementOfLocalNameToolStripMenuItem.Name = "LastElementOfLocalNameToolStripMenuItem"
-        Me.LastElementOfLocalNameToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
-        Me.LastElementOfLocalNameToolStripMenuItem.Text = "&Last element of local name"
-        '
         'BulkReassignStudentAssignmentToolStripMenuItem
         '
         Me.BulkReassignStudentAssignmentToolStripMenuItem.Name = "BulkReassignStudentAssignmentToolStripMenuItem"
@@ -2510,18 +2551,6 @@ Partial Class MainFormPlain
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Name = "RemoveAllStudentsFromSelectedClassToolStripMenuItem"
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.RemoveAllStudentsFromSelectedClassToolStripMenuItem.Text = "Remove all students &from selected class"
-        '
-        'AssignworkshopGroupsToolStripMenuItem
-        '
-        Me.AssignworkshopGroupsToolStripMenuItem.Name = "AssignworkshopGroupsToolStripMenuItem"
-        Me.AssignworkshopGroupsToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
-        Me.AssignworkshopGroupsToolStripMenuItem.Text = "Assign &workshop groups..."
-        '
-        'AssignChoicesToStudentsToolStripMenuItem
-        '
-        Me.AssignChoicesToStudentsToolStripMenuItem.Name = "AssignChoicesToStudentsToolStripMenuItem"
-        Me.AssignChoicesToStudentsToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
-        Me.AssignChoicesToStudentsToolStripMenuItem.Text = "Assi&gn choices to students..."
         '
         'ToolStripSeparator11
         '
@@ -2604,12 +2633,6 @@ Partial Class MainFormPlain
         'tmrStopwatch
         '
         Me.tmrStopwatch.Interval = 1000
-        '
-        'ExportTutorDatabaseToolStripMenuItem
-        '
-        Me.ExportTutorDatabaseToolStripMenuItem.Name = "ExportTutorDatabaseToolStripMenuItem"
-        Me.ExportTutorDatabaseToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportTutorDatabaseToolStripMenuItem.Text = "Export tutor database..."
         '
         'MainFormPlain
         '
@@ -2946,25 +2969,28 @@ Partial Class MainFormPlain
     Friend WithEvents StudentsWithSelectedAssignmentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AttendanceAssessmentStatusToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopyCellContentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AssignChoicesToStudentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AssignworkshopGroupsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportBTECGradesForMoodleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportAllGradeDataToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AttendanceForClassToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents llblSemesterLabel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents StudentAssignmentErrorsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AssignStudentsRandomIconToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportsForResearchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AttendanceDataForAllSemestersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SelectRandomStudentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AssignNicknameFromLocalNameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents FirstElementOfLocalNameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LastElementOfLocalNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ctxmnuClassGroup As ContextMenuStrip
     Friend WithEvents MoveClassGroupUpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MoveClassGroupDownToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents picImportAssignmentsFromPreviousSemester As PictureBox
     Friend WithEvents llblAddAssignment As PictureBox
-    Friend WithEvents AssignPeersForEvaluationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportTutorDatabaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignStudentsRandomIconToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignChoicesToStudentsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignworkshopGroupsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignNicknameFromLocalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FirstElementOfLocalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LastElementOfLocalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AssignPeersForEvaluationToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StandardSpreadsheetToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UnisoftSpreadsheetToolStripMenuItem As ToolStripMenuItem
 End Class

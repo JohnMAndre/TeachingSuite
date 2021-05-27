@@ -331,8 +331,13 @@ Module Globals
     End Function
 
     Friend Class ExportClassData
+        Public Enum FileTypeEnum
+            Standard
+            Unisoft
+        End Enum
         Public SchoolClass As SchoolClass
         Public Filename As String
+        Public ExportFileType As FileTypeEnum
     End Class
     ''' <summary>
     ''' Centralized routine for reading back zipped (or not) xml data file

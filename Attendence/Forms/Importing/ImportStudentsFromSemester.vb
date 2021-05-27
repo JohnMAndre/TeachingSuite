@@ -42,18 +42,14 @@ Public Class ImportStudentsFromSemester
     End Sub
 
     Private Sub cboSemester_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboSemester.SelectedIndexChanged
-        btnLoadSemester.Enabled = True
-    End Sub
-
-    Private Sub btnLoadSemester_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnLoadSemester.LinkClicked
         LoadSemester()
     End Sub
+
     Private Sub LoadSemester()
         Try
             '-- Load the selected semester from data file
             m_sourceSemester = New Semester(CType(cboSemester.Items(cboSemester.SelectedIndex), String))
             Me.Text = "Import From - " & m_sourceSemester.Name
-            btnLoadSemester.Enabled = False
 
             LoadClassGroups()
         Catch ex As Exception

@@ -42,9 +42,8 @@ Partial Class ImportStudentsFromSemester
         Me.OlvColumn15 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.btnLoadSemester = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.cboSemester = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
@@ -205,9 +204,11 @@ Partial Class ImportStudentsFromSemester
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
+        Me.olvStudents.CellEditUseWholeCell = False
         Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn4, Me.OlvColumn11, Me.OlvColumn1, Me.OlvColumn2, Me.OlvColumn3, Me.OlvColumn5, Me.OlvColumn13, Me.OlvColumn14, Me.OlvColumn15})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
+        Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
         Me.olvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.olvStudents.EmptyListMsg = "This class is empty"
         Me.olvStudents.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -217,7 +218,6 @@ Partial Class ImportStudentsFromSemester
         Me.olvStudents.HideSelection = False
         Me.olvStudents.Location = New System.Drawing.Point(0, 19)
         Me.olvStudents.Name = "olvStudents"
-        Me.olvStudents.OwnerDraw = True
         Me.olvStudents.SelectAllOnControlA = False
         Me.olvStudents.ShowGroups = False
         Me.olvStudents.ShowImagesOnSubItems = True
@@ -303,25 +303,24 @@ Partial Class ImportStudentsFromSemester
         '
         'KryptonPanel3
         '
-        Me.KryptonPanel3.Controls.Add(Me.btnLoadSemester)
-        Me.KryptonPanel3.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel3.Controls.Add(Me.cboSemester)
+        Me.KryptonPanel3.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonPanel3.Location = New System.Drawing.Point(0, 0)
         Me.KryptonPanel3.Name = "KryptonPanel3"
         Me.KryptonPanel3.Size = New System.Drawing.Size(684, 42)
         Me.KryptonPanel3.TabIndex = 30
         '
-        'btnLoadSemester
+        'cboSemester
         '
-        Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnLoadSemester.Enabled = False
-        Me.btnLoadSemester.Location = New System.Drawing.Point(650, 12)
-        Me.btnLoadSemester.Name = "btnLoadSemester"
-        Me.btnLoadSemester.Size = New System.Drawing.Size(22, 18)
-        Me.btnLoadSemester.TabIndex = 23
-        Me.btnLoadSemester.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnLoadSemester.Values.Text = ""
+        Me.cboSemester.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboSemester.DropDownWidth = 121
+        Me.cboSemester.Location = New System.Drawing.Point(90, 11)
+        Me.cboSemester.Name = "cboSemester"
+        Me.cboSemester.Size = New System.Drawing.Size(582, 20)
+        Me.cboSemester.TabIndex = 6
         '
         'KryptonLabel3
         '
@@ -330,17 +329,6 @@ Partial Class ImportStudentsFromSemester
         Me.KryptonLabel3.Size = New System.Drawing.Size(72, 19)
         Me.KryptonLabel3.TabIndex = 7
         Me.KryptonLabel3.Values.Text = "Semester:"
-        '
-        'cboSemester
-        '
-        Me.cboSemester.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboSemester.DropDownWidth = 121
-        Me.cboSemester.Location = New System.Drawing.Point(82, 11)
-        Me.cboSemester.Name = "cboSemester"
-        Me.cboSemester.Size = New System.Drawing.Size(562, 20)
-        Me.cboSemester.TabIndex = 6
         '
         'KryptonPanel2
         '
@@ -375,12 +363,12 @@ Partial Class ImportStudentsFromSemester
         '
         'KryptonManager
         '
+        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
+        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KryptonManager.GlobalPalette = Me.kryptonPalette2
-        Me.KryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Custom
         '
         'KryptonManager1
         '
@@ -455,7 +443,6 @@ Partial Class ImportStudentsFromSemester
     Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonPanel3 As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents btnLoadSemester As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents cboSemester As ComponentFactory.Krypton.Toolkit.KryptonComboBox
     Friend WithEvents KryptonPanel2 As ComponentFactory.Krypton.Toolkit.KryptonPanel

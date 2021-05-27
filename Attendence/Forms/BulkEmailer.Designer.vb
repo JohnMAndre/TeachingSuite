@@ -26,6 +26,7 @@ Partial Class BulkEmailer
         Me.ToolStripContainer2 = New System.Windows.Forms.ToolStripContainer()
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.splitOverall = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
+        Me.chkIncludeStudentID = New System.Windows.Forms.CheckBox()
         Me.txtEmailTrailingText = New System.Windows.Forms.TextBox()
         Me.txtLinkAddress = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblCreateLink = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -67,6 +68,7 @@ Partial Class BulkEmailer
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddfixedAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddstudentspecificAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.StatusCheckToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -75,7 +77,7 @@ Partial Class BulkEmailer
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.tmrFilterStudents = New System.Windows.Forms.Timer(Me.components)
-        Me.chkIncludeStudentID = New System.Windows.Forms.CheckBox()
+        Me.ToggleStudentsFromIDsOnClipboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.KryptonPanel4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,6 +182,19 @@ Partial Class BulkEmailer
         Me.splitOverall.Size = New System.Drawing.Size(1255, 597)
         Me.splitOverall.SplitterDistance = 211
         Me.splitOverall.TabIndex = 28
+        '
+        'chkIncludeStudentID
+        '
+        Me.chkIncludeStudentID.BackColor = System.Drawing.Color.Transparent
+        Me.chkIncludeStudentID.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkIncludeStudentID.Checked = True
+        Me.chkIncludeStudentID.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeStudentID.Location = New System.Drawing.Point(8, 146)
+        Me.chkIncludeStudentID.Name = "chkIncludeStudentID"
+        Me.chkIncludeStudentID.Size = New System.Drawing.Size(157, 24)
+        Me.chkIncludeStudentID.TabIndex = 65
+        Me.chkIncludeStudentID.Text = "Include StudentID"
+        Me.chkIncludeStudentID.UseVisualStyleBackColor = False
         '
         'txtEmailTrailingText
         '
@@ -531,7 +546,7 @@ Partial Class BulkEmailer
         '
         'OptionsToolStripMenuItem
         '
-        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddfixedAttachmentToolStripMenuItem, Me.AddstudentspecificAttachmentToolStripMenuItem, Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem, Me.ToolStripSeparator1, Me.StatusCheckToolStripMenuItem})
+        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddfixedAttachmentToolStripMenuItem, Me.AddstudentspecificAttachmentToolStripMenuItem, Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem, Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem, Me.ToggleStudentsFromIDsOnClipboardToolStripMenuItem, Me.ToolStripSeparator1, Me.StatusCheckToolStripMenuItem})
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
         Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.OptionsToolStripMenuItem.Text = "&Student"
@@ -540,33 +555,41 @@ Partial Class BulkEmailer
         '
         Me.AddfixedAttachmentToolStripMenuItem.CheckOnClick = True
         Me.AddfixedAttachmentToolStripMenuItem.Name = "AddfixedAttachmentToolStripMenuItem"
-        Me.AddfixedAttachmentToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.AddfixedAttachmentToolStripMenuItem.Size = New System.Drawing.Size(365, 22)
         Me.AddfixedAttachmentToolStripMenuItem.Text = "Add &fixed attachment(s)..."
         '
         'AddstudentspecificAttachmentToolStripMenuItem
         '
         Me.AddstudentspecificAttachmentToolStripMenuItem.CheckOnClick = True
         Me.AddstudentspecificAttachmentToolStripMenuItem.Name = "AddstudentspecificAttachmentToolStripMenuItem"
-        Me.AddstudentspecificAttachmentToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.AddstudentspecificAttachmentToolStripMenuItem.Size = New System.Drawing.Size(365, 22)
         Me.AddstudentspecificAttachmentToolStripMenuItem.Text = "Add &student-specific attachment(s)..."
+        '
+        'IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem
+        '
+        Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.CheckOnClick = True
+        Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.Enabled = False
+        Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.Name = "IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem"
+        Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.Size = New System.Drawing.Size(365, 22)
+        Me.IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem.Text = "Ignore students without student-specific attachment(s)"
         '
         'UseExtIDuncheckToUseStudentIDToolStripMenuItem
         '
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.CheckOnClick = True
         Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Name = "UseExtIDuncheckToUseStudentIDToolStripMenuItem"
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use ExtID (uncheck to use Student ID)"
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Size = New System.Drawing.Size(365, 22)
+        Me.UseExtIDuncheckToUseStudentIDToolStripMenuItem.Text = "Use &ExtID (uncheck to use Student ID)"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(362, 6)
         '
         'StatusCheckToolStripMenuItem
         '
         Me.StatusCheckToolStripMenuItem.Name = "StatusCheckToolStripMenuItem"
-        Me.StatusCheckToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.StatusCheckToolStripMenuItem.Text = "Status check..."
+        Me.StatusCheckToolStripMenuItem.Size = New System.Drawing.Size(365, 22)
+        Me.StatusCheckToolStripMenuItem.Text = "&Status check..."
         '
         'ToolStripMenuItem24
         '
@@ -594,18 +617,11 @@ Partial Class BulkEmailer
         '
         Me.tmrFilterStudents.Interval = 200
         '
-        'chkIncludeStudentID
+        'ToggleStudentsFromIDsOnClipboardToolStripMenuItem
         '
-        Me.chkIncludeStudentID.BackColor = System.Drawing.Color.Transparent
-        Me.chkIncludeStudentID.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkIncludeStudentID.Checked = True
-        Me.chkIncludeStudentID.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeStudentID.Location = New System.Drawing.Point(8, 146)
-        Me.chkIncludeStudentID.Name = "chkIncludeStudentID"
-        Me.chkIncludeStudentID.Size = New System.Drawing.Size(157, 24)
-        Me.chkIncludeStudentID.TabIndex = 65
-        Me.chkIncludeStudentID.Text = "Include StudentID"
-        Me.chkIncludeStudentID.UseVisualStyleBackColor = False
+        Me.ToggleStudentsFromIDsOnClipboardToolStripMenuItem.Name = "ToggleStudentsFromIDsOnClipboardToolStripMenuItem"
+        Me.ToggleStudentsFromIDsOnClipboardToolStripMenuItem.Size = New System.Drawing.Size(365, 22)
+        Me.ToggleStudentsFromIDsOnClipboardToolStripMenuItem.Text = "&Toggle students from IDs on clipboard"
         '
         'BulkEmailer
         '
@@ -711,4 +727,6 @@ Partial Class BulkEmailer
     Friend WithEvents StatusCheckToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents chkIncludeStudentID As CheckBox
+    Friend WithEvents IgnoreStudentsWithoutStudentspecificAttachmentsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToggleStudentsFromIDsOnClipboardToolStripMenuItem As ToolStripMenuItem
 End Class

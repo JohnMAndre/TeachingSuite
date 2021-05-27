@@ -29,19 +29,18 @@ Partial Class ImportClassFromSemester
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.lstClasses = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.lstAssignmentsNormal = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.lstAssignmentsBTEC = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         Me.lblAssignments = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel3 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.btnLoadSemester = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.cboSemester = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.chkRemoveStudents = New System.Windows.Forms.CheckBox()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonManager = New ComponentFactory.Krypton.Toolkit.KryptonManager(Me.components)
         Me.kryptonPalette2 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.chkRemoveStudents = New System.Windows.Forms.CheckBox()
-        Me.lstAssignmentsNormal = New ComponentFactory.Krypton.Toolkit.KryptonListBox()
         CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.splitOverall, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,6 +170,15 @@ Partial Class ImportClassFromSemester
         Me.KryptonLabel10.TabIndex = 2
         Me.KryptonLabel10.Values.Text = "Classes"
         '
+        'lstAssignmentsNormal
+        '
+        Me.lstAssignmentsNormal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lstAssignmentsNormal.Location = New System.Drawing.Point(0, 80)
+        Me.lstAssignmentsNormal.Name = "lstAssignmentsNormal"
+        Me.lstAssignmentsNormal.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
+        Me.lstAssignmentsNormal.Size = New System.Drawing.Size(557, 58)
+        Me.lstAssignmentsNormal.TabIndex = 5
+        '
         'lstAssignmentsBTEC
         '
         Me.lstAssignmentsBTEC.Dock = System.Windows.Forms.DockStyle.Top
@@ -191,7 +199,6 @@ Partial Class ImportClassFromSemester
         '
         'KryptonPanel3
         '
-        Me.KryptonPanel3.Controls.Add(Me.btnLoadSemester)
         Me.KryptonPanel3.Controls.Add(Me.cboSemester)
         Me.KryptonPanel3.Controls.Add(Me.KryptonLabel3)
         Me.KryptonPanel3.Dock = System.Windows.Forms.DockStyle.Top
@@ -199,25 +206,6 @@ Partial Class ImportClassFromSemester
         Me.KryptonPanel3.Name = "KryptonPanel3"
         Me.KryptonPanel3.Size = New System.Drawing.Size(557, 42)
         Me.KryptonPanel3.TabIndex = 30
-        '
-        'btnLoadSemester
-        '
-        Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnLoadSemester.Enabled = False
-        Me.btnLoadSemester.Location = New System.Drawing.Point(523, 12)
-        Me.btnLoadSemester.Name = "btnLoadSemester"
-        Me.btnLoadSemester.Size = New System.Drawing.Size(22, 18)
-        Me.btnLoadSemester.TabIndex = 23
-        Me.btnLoadSemester.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnLoadSemester.Values.Text = ""
-        '
-        'KryptonLabel3
-        '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(9, 12)
-        Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(72, 19)
-        Me.KryptonLabel3.TabIndex = 7
-        Me.KryptonLabel3.Values.Text = "Semester:"
         '
         'cboSemester
         '
@@ -227,8 +215,16 @@ Partial Class ImportClassFromSemester
         Me.cboSemester.DropDownWidth = 121
         Me.cboSemester.Location = New System.Drawing.Point(90, 11)
         Me.cboSemester.Name = "cboSemester"
-        Me.cboSemester.Size = New System.Drawing.Size(427, 20)
+        Me.cboSemester.Size = New System.Drawing.Size(455, 20)
         Me.cboSemester.TabIndex = 6
+        '
+        'KryptonLabel3
+        '
+        Me.KryptonLabel3.Location = New System.Drawing.Point(9, 12)
+        Me.KryptonLabel3.Name = "KryptonLabel3"
+        Me.KryptonLabel3.Size = New System.Drawing.Size(72, 19)
+        Me.KryptonLabel3.TabIndex = 7
+        Me.KryptonLabel3.Values.Text = "Semester:"
         '
         'KryptonPanel1
         '
@@ -240,6 +236,19 @@ Partial Class ImportClassFromSemester
         Me.KryptonPanel1.Name = "KryptonPanel1"
         Me.KryptonPanel1.Size = New System.Drawing.Size(557, 63)
         Me.KryptonPanel1.TabIndex = 3
+        '
+        'chkRemoveStudents
+        '
+        Me.chkRemoveStudents.AutoSize = True
+        Me.chkRemoveStudents.BackColor = System.Drawing.Color.Transparent
+        Me.chkRemoveStudents.Checked = True
+        Me.chkRemoveStudents.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkRemoveStudents.Location = New System.Drawing.Point(9, 4)
+        Me.chkRemoveStudents.Name = "chkRemoveStudents"
+        Me.chkRemoveStudents.Size = New System.Drawing.Size(122, 17)
+        Me.chkRemoveStudents.TabIndex = 29
+        Me.chkRemoveStudents.Text = "&Remove all students"
+        Me.chkRemoveStudents.UseVisualStyleBackColor = False
         '
         'btnOK
         '
@@ -270,28 +279,6 @@ Partial Class ImportClassFromSemester
         'kryptonPalette2
         '
         Me.kryptonPalette2.Common.StateCommon.Content.ShortText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        '
-        'chkRemoveStudents
-        '
-        Me.chkRemoveStudents.AutoSize = True
-        Me.chkRemoveStudents.BackColor = System.Drawing.Color.Transparent
-        Me.chkRemoveStudents.Checked = True
-        Me.chkRemoveStudents.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkRemoveStudents.Location = New System.Drawing.Point(9, 4)
-        Me.chkRemoveStudents.Name = "chkRemoveStudents"
-        Me.chkRemoveStudents.Size = New System.Drawing.Size(122, 17)
-        Me.chkRemoveStudents.TabIndex = 29
-        Me.chkRemoveStudents.Text = "&Remove all students"
-        Me.chkRemoveStudents.UseVisualStyleBackColor = False
-        '
-        'lstAssignmentsNormal
-        '
-        Me.lstAssignmentsNormal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lstAssignmentsNormal.Location = New System.Drawing.Point(0, 80)
-        Me.lstAssignmentsNormal.Name = "lstAssignmentsNormal"
-        Me.lstAssignmentsNormal.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.lstAssignmentsNormal.Size = New System.Drawing.Size(557, 58)
-        Me.lstAssignmentsNormal.TabIndex = 5
         '
         'ImportClassFromSemester
         '
@@ -365,7 +352,6 @@ Partial Class ImportClassFromSemester
     Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents lstAssignmentsBTEC As ComponentFactory.Krypton.Toolkit.KryptonListBox
     Friend WithEvents lblAssignments As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents btnLoadSemester As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Friend WithEvents kryptonPalette2 As ComponentFactory.Krypton.Toolkit.KryptonPalette
     Friend WithEvents chkRemoveStudents As CheckBox
     Friend WithEvents lstAssignmentsNormal As ComponentFactory.Krypton.Toolkit.KryptonListBox

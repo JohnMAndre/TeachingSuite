@@ -1322,10 +1322,10 @@ Public Class SchoolClass
             Return intReturn
         End Get
     End Property
-    Public Sub GenerateAttendaceExport(filename As String)
+    Public Sub GenerateAttendaceExportStandard(filename As String)
         '-- create a list with names and dates and export for opening/manipulation in Excel
         Const DELIMITER As String = vbTab
-        Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode) ' System.IO.File.Create(filename, 128, IO.FileOptions.None)
+        Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode)
             tw.Write(DELIMITER)
             tw.Write(DELIMITER)
             tw.Write(DELIMITER)
@@ -1436,6 +1436,77 @@ Public Class SchoolClass
 
                 '-- Prep for new student
                 tw.Write(Environment.NewLine)
+            Next
+            tw.Close()
+        End Using
+
+    End Sub
+    Public Sub GenerateAttendaceExportUnisoft(filename As String)
+        '-- create a list with names and dates and export for opening/manipulation in Excel
+        '   But this has a special format for the Unisoft system
+        Const DELIMITER As String = vbTab
+        Using tw As System.IO.StreamWriter = New System.IO.StreamWriter(filename, False, System.Text.Encoding.Unicode)
+
+            '-- write headers
+            Dim actualSession As ActualSessionItem
+
+            tw.WriteLine("Data" & DELIMITER & "Session" & DELIMITER & "Number of periods" & DELIMITER & "Student ID" & DELIMITER & "Present" & DELIMITER & "Absent with advance notice" & DELIMITER & "Absent WITHOUT advance notice" & DELIMITER & "Late" & DELIMITER & "Note")
+
+            '-- Defaults based on existing data
+            Dim strDefaultSessionTime As String = "1" '-- assume morning session
+            Dim strDefaultSessionType As String = "4" '-- assume lecture session
+
+            For Each stud As Student In Me.Students
+                For Each session As TeachingSession In stud.TeachingSessions
+                    tw.Write(session.StartDate.ToString("MM/dd/yyyy") & DELIMITER)
+
+                    actualSession = session.GetActualSessionItem()
+                    If actualSession Is Nothing Then
+                        '-- Assume morning session
+                        tw.Write(strDefaultSessionTime & DELIMITER)
+                    Else
+                        If actualSession.StartDateTime.TimeOfDay.Hours < 12 Then
+                            '-- Morning session
+                            tw.Write("1" & DELIMITER)
+                            strDefaultSessionTime = "1"
+                        Else
+                            '-- Afternoon session
+                            tw.Write("2" & DELIMITER)
+                            strDefaultSessionTime = "2" '-- reset default
+                        End If
+                    End If
+
+                    If actualSession Is Nothing Then
+                        '-- Assume lecture
+                        tw.Write(strDefaultSessionType & DELIMITER)
+                    Else
+                        Select Case actualSession.SessionItemType
+                            Case ActualSessionItem.SessionItemTypeEnum.Lecture
+                                tw.Write("4" & DELIMITER)
+                                strDefaultSessionType = "4"'-- reset default
+                            Case ActualSessionItem.SessionItemTypeEnum.Tutorial, ActualSessionItem.SessionItemTypeEnum.Workshop
+                                tw.Write("2" & DELIMITER)
+                                strDefaultSessionType = "2"'-- reset default
+                            Case ActualSessionItem.SessionItemTypeEnum.Unknown
+                                '-- If not known, we assume lecture
+                                tw.Write(strDefaultSessionType & DELIMITER)
+                        End Select
+                    End If
+
+                    tw.Write(stud.StudentID & DELIMITER)
+
+                    Select Case session.AttendenceStatus
+                        Case AttendanceStatusEnum.Present, AttendanceStatusEnum.Excused
+                            tw.WriteLine("1" & DELIMITER & "0" & DELIMITER & "0" & DELIMITER & "0" & DELIMITER & String.Empty)
+                        Case AttendanceStatusEnum.Late
+                            tw.WriteLine("1" & DELIMITER & "0" & DELIMITER & "0" & DELIMITER & "1" & DELIMITER & String.Empty)
+                        Case AttendanceStatusEnum.Absent, AttendanceStatusEnum.Removed
+                            tw.WriteLine("0" & DELIMITER & "0" & DELIMITER & "1" & DELIMITER & "0" & DELIMITER & String.Empty)
+                        Case AttendanceStatusEnum.Unknown
+                            '-- Should not be unknown, so we give the student the benefit of the doubt and mark them present
+                            tw.WriteLine("1" & DELIMITER & "0" & DELIMITER & "0" & DELIMITER & "0" & DELIMITER & String.Empty)
+                    End Select
+                Next
             Next
             tw.Close()
         End Using
@@ -4477,6 +4548,17 @@ Public Class TeachingSession
 
     Public Function CompareTo(other As TeachingSession) As Integer Implements System.IComparable(Of TeachingSession).CompareTo
         Return StartDate.CompareTo(other.StartDate)
+    End Function
+
+    Public Function GetActualSessionItem() As ActualSessionItem
+        For Each item As ActualSessionItem In Me.Student.SchoolClass.ActualSessions
+            If item.UniqueID = Me.ActualSessionID Then
+                Return item
+            End If
+        Next
+
+        '-- found nothing
+        Return Nothing
     End Function
 End Class
 
