@@ -90,7 +90,7 @@ Partial Class ExportTutorDatabase
         Me.btnOK.Size = New System.Drawing.Size(77, 27)
         Me.btnOK.TabIndex = 12
         Me.btnOK.Tag = "Click to browse to the file to use"
-        Me.btnOK.Text = "&OK"
+        Me.btnOK.Text = "&Export"
         Me.btnOK.UseVisualStyleBackColor = True
         '
         'lblExporting

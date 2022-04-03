@@ -416,4 +416,16 @@ Public Class IndividualMarkInGroupPresentation
             RaiseEvent RequestRemoval(Me)
         End If
     End Sub
+
+    Private Sub txtImprovement_KeyDown(sender As Object, e As KeyEventArgs) Handles txtImprovement.KeyDown
+        If e.KeyCode = Keys.A AndAlso e.Control Then
+            txtImprovement.SelectAll()
+        End If
+    End Sub
+
+    Private Sub txtOverall_KeyDown(sender As Object, e As KeyEventArgs) Handles txtOverall.KeyDown
+        If e.KeyCode = Keys.A AndAlso e.Control Then
+            txtImprovement.SelectAll()
+        End If
+    End Sub
 End Class

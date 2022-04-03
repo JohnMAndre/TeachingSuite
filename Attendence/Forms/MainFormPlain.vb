@@ -2546,28 +2546,16 @@ Public Class MainFormPlain
     Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
         '-- This is Under Help->Test and is just used for manipuliation in debug mode
         '   Normally, Help->Test should not be visible for production use
-        Dim lst As New List(Of Double)
-        Dim dbl As Double
-        dbl = 0.5
-        lst.Add(dbl)
-        dbl = 0.3
-        lst.Add(dbl)
-        dbl = 0.49
-        lst.Add(dbl)
-        dbl = 0.95
-        lst.Add(dbl)
-        dbl = 0.45
-        lst.Add(dbl)
-        dbl = 0.64
-        lst.Add(dbl)
-        dbl = 0.73
-        lst.Add(dbl)
-
-        dbl = GetStandardDeviation(lst)
+        'Dim obj As Object = dgvSchedule.Parent
+        'dgvSchedule.Parent = Nothing
+        'dgvSchedule.Hide()
+        'Application.DoEvents()
+        'dgvSchedule.Parent = obj
+        'dgvSchedule.Show()
 
 
 
-        MessageBox.Show("Done: " & dbl.ToString("0.000"))
+        MessageBox.Show("Done")
     End Sub
     Private Function GetClassAssignmentByBaseName(grp As ClassGroup, name As String) As ClassAssignment
         For Each asmt As ClassAssignment In grp.Assignments
@@ -2674,6 +2662,22 @@ Public Class MainFormPlain
                     '   Print the final grade (do that manually)
                     Dim frm As New BulkGenerateMarkingSheetsAllCombined(GetSelectedClassGroup(), GetSelectedClass(), markTry)
                     frm.Show()
+
+                    '== Changed Feb 2022
+                    '-- Rolled back because BTEC bulk generation does not combine various assignments into on
+                    'If GetSelectedAssignment().AssignmentType = AssignmentType.Normal Then
+                    '    Dim frm As New BulkGenerateMarkingSheetsAllCombined(GetSelectedClassGroup(), GetSelectedClass(), markTry)
+                    '    frm.Show()
+                    'Else
+                    '    Dim asmt As IClassAssignment = GetSelectedAssignment()
+                    '    Dim asmtBTEC As ClassAssignmentBTEC
+
+                    '    If TypeOf asmt Is ClassAssignmentBTEC Then
+                    '        asmtBTEC = CType(GetSelectedAssignment(), ClassAssignmentBTEC)
+                    '        Dim frm As New BulkGenerateMarkingSheets(GetSelectedClassGroup(), GetSelectedClass(), asmtBTEC, markTry)
+                    '        frm.Show()
+                    '    End If
+                    'End If
                 End If
             End If
 
@@ -2749,8 +2753,6 @@ Public Class MainFormPlain
     End Sub
     Private Sub CheckForupdatesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForupdatesToolStripMenuItem.Click
         Try
-            'Dim strFilename As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "TeachingUpdater.exe")
-            'System.Diagnostics.Process.Start(strFilename, Application.ProductVersion & " False") '-- this app is not supporting betas yet, but the updater does
             System.Diagnostics.Process.Start("http://educators.johnmandre.com/teaching-app-news") '-- Simpler, since I plan to take TrulyMail.com offline
 
         Catch ex As Exception
@@ -4145,6 +4147,100 @@ Public Class MainFormPlain
                 expData.ExportFileType = ExportClassData.FileTypeEnum.Unisoft
                 m_bkgndExportAttendence.RunWorkerAsync(expData)
             End If
+        End If
+    End Sub
+
+    Private Sub ExportStudentsForMoodleImportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportStudentsForMoodleImportToolStripMenuItem.Click
+        Try
+            If GetSelectedClass() Is Nothing Then
+                MessageBox.Show("Please select a class to export.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                Dim objClassToSend As SchoolClass
+                If ClassIsCombinedView(GetSelectedClass()) Then
+                    '-- need all classes combined
+                    Dim boolSetAlready As Boolean
+                    For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                        If Not boolSetAlready Then
+                            Dim grp As New ClassGroup(Nothing)
+                            grp.UseNickname = GetSelectedClassGroup.UseNickname
+                            objClassToSend = New SchoolClass(grp)
+                            objClassToSend.Students.AddRange(objCls.Students)
+                            boolSetAlready = True
+                        Else
+                            objClassToSend.Students.AddRange(objCls.Students)
+                        End If
+                    Next
+                Else
+                    objClassToSend = GetSelectedClass()
+                End If
+
+                Dim frm As New ExportStudentsForMoodle(objClassToSend)
+                frm.Show()
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error: " & ex.Message, PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+    Private Function GetSelectedClassEvenCombined() As SchoolClass
+        Try
+            If GetSelectedClass() Is Nothing Then
+                MessageBox.Show("Please select a class to use.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Function
+            Else
+                Dim objClassToSend As SchoolClass
+                If ClassIsCombinedView(GetSelectedClass()) Then
+                    '-- need all classes combined
+                    Dim boolSetAlready As Boolean
+                    For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                        If Not boolSetAlready Then
+                            Dim grp As New ClassGroup(Nothing)
+                            grp.Name = GetSelectedClassGroup.Name
+                            grp.Outcomes = GetSelectedClassGroup.Outcomes
+                            grp.UseNickname = GetSelectedClassGroup.UseNickname
+                            objClassToSend = New SchoolClass(grp)
+                            objClassToSend.Students.AddRange(objCls.Students)
+                            objClassToSend.Name = "Combined View"
+                            boolSetAlready = True
+                        Else
+                            objClassToSend.Students.AddRange(objCls.Students)
+                        End If
+                    Next
+                Else
+                    objClassToSend = GetSelectedClass()
+                End If
+                Return objClassToSend
+            End If
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error: " & ex.Message, PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Function
+
+    Private Sub AssignISMEEmailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignISMEEmailToolStripMenuItem.Click
+        Try
+            Dim lst As List(Of Student) = GetStudentsFromSelectedClass()
+            Dim strEmail As String
+            Dim strTemp As String
+            For Each stud As Student In lst
+                strEmail = stud.StudentID.Substring(2) '-- skip first 2 chars
+                strTemp = stud.LocalNameLatinLetters.Substring(0, stud.LocalNameLatinLetters.IndexOf(" ")) '-- first element
+                strEmail &= strTemp
+                strTemp = stud.LocalNameLatinLetters.Substring(stud.LocalNameLatinLetters.LastIndexOf(" ") + 1) '-- final element
+                strEmail &= "." & strTemp & "@isneu.org"
+                stud.EmailAddress = strEmail.ToLower()
+            Next
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub BTECBulkViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BTECBulkViewToolStripMenuItem.Click
+        Dim cls As SchoolClass = GetSelectedClassEvenCombined()
+        If cls IsNot Nothing Then
+            Dim frm As New BTECBulkView(cls)
+            frm.Show()
         End If
     End Sub
 End Class

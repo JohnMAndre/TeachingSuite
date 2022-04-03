@@ -31,8 +31,10 @@ Partial Class ImportAdditionalStudentData
         Me.colPeerRevieweeID = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colStudentGroup = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colTeam = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colDoB = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.txtErrors = New System.Windows.Forms.TextBox()
         Me.grpFields = New System.Windows.Forms.GroupBox()
+        Me.chkDob = New System.Windows.Forms.CheckBox()
         Me.chkTeam = New System.Windows.Forms.CheckBox()
         Me.chkGroup = New System.Windows.Forms.CheckBox()
         Me.chkPeerStudentID = New System.Windows.Forms.CheckBox()
@@ -104,11 +106,12 @@ Partial Class ImportAdditionalStudentData
         Me.olvStudents.AllColumns.Add(Me.colPeerRevieweeID)
         Me.olvStudents.AllColumns.Add(Me.colStudentGroup)
         Me.olvStudents.AllColumns.Add(Me.colTeam)
+        Me.olvStudents.AllColumns.Add(Me.colDoB)
         Me.olvStudents.AllowColumnReorder = True
         Me.olvStudents.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.olvStudents.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.F2Only
         Me.olvStudents.CellEditUseWholeCell = False
-        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colStudentID, Me.colEmail, Me.colNickname, Me.colExtID, Me.colTags, Me.colPeerRevieweeID, Me.colStudentGroup, Me.colTeam})
+        Me.olvStudents.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colStudentID, Me.colEmail, Me.colNickname, Me.colExtID, Me.colTags, Me.colPeerRevieweeID, Me.colStudentGroup, Me.colTeam, Me.colDoB})
         Me.olvStudents.CopySelectionOnControlC = False
         Me.olvStudents.CopySelectionOnControlCUsesDragSource = False
         Me.olvStudents.Cursor = System.Windows.Forms.Cursors.Default
@@ -192,6 +195,11 @@ Partial Class ImportAdditionalStudentData
         Me.colTeam.Text = "Team"
         Me.colTeam.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'colDoB
+        '
+        Me.colDoB.AspectName = "DateOfBirth"
+        Me.colDoB.Text = "DoB"
+        '
         'txtErrors
         '
         Me.txtErrors.Dock = System.Windows.Forms.DockStyle.Right
@@ -208,6 +216,7 @@ Partial Class ImportAdditionalStudentData
         'grpFields
         '
         Me.grpFields.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.grpFields.Controls.Add(Me.chkDob)
         Me.grpFields.Controls.Add(Me.chkTeam)
         Me.grpFields.Controls.Add(Me.chkGroup)
         Me.grpFields.Controls.Add(Me.chkPeerStudentID)
@@ -224,6 +233,17 @@ Partial Class ImportAdditionalStudentData
         Me.grpFields.TabIndex = 7
         Me.grpFields.TabStop = False
         Me.grpFields.Text = "Fields to import"
+        '
+        'chkDob
+        '
+        Me.chkDob.AutoSize = True
+        Me.chkDob.Location = New System.Drawing.Point(12, 219)
+        Me.chkDob.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkDob.Name = "chkDob"
+        Me.chkDob.Size = New System.Drawing.Size(75, 20)
+        Me.chkDob.TabIndex = 7
+        Me.chkDob.Text = "Birthday"
+        Me.chkDob.UseVisualStyleBackColor = True
         '
         'chkTeam
         '
@@ -322,7 +342,7 @@ Partial Class ImportAdditionalStudentData
         Me.lblStudentsLoaded.Location = New System.Drawing.Point(991, 27)
         Me.lblStudentsLoaded.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lblStudentsLoaded.Name = "lblStudentsLoaded"
-        Me.lblStudentsLoaded.Size = New System.Drawing.Size(18, 19)
+        Me.lblStudentsLoaded.Size = New System.Drawing.Size(51, 19)
         Me.lblStudentsLoaded.TabIndex = 81
         Me.lblStudentsLoaded.Text = "0"
         '
@@ -363,7 +383,7 @@ Partial Class ImportAdditionalStudentData
         Me.lblStudentsSearched.Location = New System.Drawing.Point(991, 2)
         Me.lblStudentsSearched.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(18, 19)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(51, 19)
         Me.lblStudentsSearched.TabIndex = 79
         Me.lblStudentsSearched.Text = "0"
         '
@@ -429,7 +449,7 @@ Partial Class ImportAdditionalStudentData
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
@@ -456,13 +476,13 @@ Partial Class ImportAdditionalStudentData
         'UncheckallToolStripMenuItem
         '
         Me.UncheckallToolStripMenuItem.Name = "UncheckallToolStripMenuItem"
-        Me.UncheckallToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UncheckallToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
         Me.UncheckallToolStripMenuItem.Text = "&Uncheck all"
         '
         'CheckAllToolStripMenuItem
         '
         Me.CheckAllToolStripMenuItem.Name = "CheckAllToolStripMenuItem"
-        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
         Me.CheckAllToolStripMenuItem.Text = "&Check all"
         '
         'Timer1
@@ -550,4 +570,6 @@ Partial Class ImportAdditionalStudentData
     Friend WithEvents Panel2 As Panel
     Friend WithEvents chkTeam As CheckBox
     Friend WithEvents colTeam As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents colDoB As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents chkDob As CheckBox
 End Class

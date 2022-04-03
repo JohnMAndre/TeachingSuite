@@ -207,3 +207,164 @@ Public Class StudentComparerByLocalNameLatinLetters
         Return x.LocalNameLatinLetters.CompareTo(y.LocalNameLatinLetters)
     End Function
 End Class
+
+
+
+Public Class ReportDataComparerByStudentID
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.StudentID.CompareTo(y.StudentID)
+    End Function
+End Class
+Public Class ReportDataComparerByAdminNumber
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.AdminNumber.CompareTo(y.AdminNumber)
+    End Function
+End Class
+
+Public Class ReportDataComparerByLocalName
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.LocalName.CompareTo(y.LocalName)
+    End Function
+End Class
+
+Public Class ReportDataComparerByNickname
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Nickname.CompareTo(y.Nickname)
+    End Function
+End Class
+
+Public Class ReportDataComparerByExtStudentID
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.ExtStudentID.CompareTo(y.ExtStudentID)
+    End Function
+End Class
+
+Public Class ReportDataComparerByTags
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Tags.CompareTo(y.Tags)
+    End Function
+End Class
+
+Public Class ReportDataComparerByPresentationQuality
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.PresentationQuality.CompareTo(y.PresentationQuality)
+    End Function
+End Class
+
+Public Class ReportDataComparerByStudentGroup
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.StudentGroup.CompareTo(y.StudentGroup)
+    End Function
+End Class
+
+Public Class ReportDataComparerByStudentTeam
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.StudentTeam.CompareTo(y.StudentTeam)
+    End Function
+End Class
+
+Public Class ReportDataComparerByAltID
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.AltID.CompareTo(y.AltID)
+    End Function
+End Class
+
+Public Class ReportDataComparerBySchoolClassName
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.SchoolClass.CompareTo(y.SchoolClass)
+    End Function
+End Class
+
+Public Class ReportDataComparerByCountMatchingAssignmentsNormal
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.CountMatchingAssignmentsNormal.CompareTo(y.CountMatchingAssignmentsNormal)
+    End Function
+End Class
+
+Public Class ReportDataComparerByAssignmentScoreFirst
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.AssignmentScoreFirst.CompareTo(y.AssignmentScoreFirst)
+    End Function
+End Class
+
+Public Class ReportDataComparerByOverall
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Overall.CompareTo(y.Overall)
+    End Function
+End Class
+
+Public Class ReportDataComparerByImprovement
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Improvement.CompareTo(y.Improvement)
+    End Function
+End Class
+
+Public Class ReportDataComparerByAssignmentScoreSecond
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.AssignmentScoreSecond.CompareTo(y.AssignmentScoreSecond)
+    End Function
+End Class
+
+Public Class ReportDataComparerByOverall2
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Overall2.CompareTo(y.Overall2)
+    End Function
+End Class
+
+Public Class ReportDataComparerByImprovement2
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Improvement2.CompareTo(y.Improvement2)
+    End Function
+End Class
+
+Public Class ReportDataComparerByCreator
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Creator.CompareTo(y.Creator)
+    End Function
+End Class
+
+Public Class ReportDataComparerByEditor
+    Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
+
+    Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
+        Return x.Editor.CompareTo(y.Editor)
+    End Function
+End Class

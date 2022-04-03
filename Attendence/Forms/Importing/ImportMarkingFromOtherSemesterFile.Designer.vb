@@ -48,6 +48,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportMarkingFromOtherSemesterFile))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,6 +59,9 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ManagableColumnSizesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -117,7 +121,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.ImproveRW = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteemptyAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -130,7 +134,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionToolStripMenuItem, Me.ViewToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -153,7 +157,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         'ActionToolStripMenuItem
         '
-        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteSelectedAssignmentsToolStripMenuItem, Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem})
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportStudentAssignmentsToolStripMenuItem, Me.ToolStripSeparator1, Me.DeleteSelectedAssignmentsToolStripMenuItem, Me.DeleteemptyAssignmentsToolStripMenuItem, Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem})
         Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
         Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
         Me.ActionToolStripMenuItem.Text = "&Action"
@@ -194,6 +198,25 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DeleteSelectedAssignmentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Text = "&Delete selected assignments"
+        '
+        'ImportreworkForAllExistingAssignmentsToolStripMenuItem
+        '
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Name = "ImportreworkForAllExistingAssignmentsToolStripMenuItem"
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Text = "Import &rework for all existing assignments"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManagableColumnSizesToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "&View"
+        '
+        'ManagableColumnSizesToolStripMenuItem
+        '
+        Me.ManagableColumnSizesToolStripMenuItem.Name = "ManagableColumnSizesToolStripMenuItem"
+        Me.ManagableColumnSizesToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ManagableColumnSizesToolStripMenuItem.Text = "&Managable column sizes"
         '
         'Panel1
         '
@@ -304,6 +327,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         '
         'txtSemesterFile
         '
+        Me.txtSemesterFile.AllowDrop = True
         Me.txtSemesterFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSemesterFile.Location = New System.Drawing.Point(119, 4)
@@ -322,7 +346,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dgvStudentsNormal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudentsNormal.Location = New System.Drawing.Point(183, 83)
         Me.dgvStudentsNormal.Name = "dgvStudentsNormal"
-        Me.dgvStudentsNormal.ReadOnly = True
         Me.dgvStudentsNormal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvStudentsNormal.Size = New System.Drawing.Size(932, 471)
         Me.dgvStudentsNormal.TabIndex = 6
@@ -334,7 +357,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
         Me.dcolAdmin.HeaderText = "Admin"
         Me.dcolAdmin.Name = "dcolAdmin"
-        Me.dcolAdmin.ReadOnly = True
         '
         'dcolLocalName
         '
@@ -343,7 +365,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle2
         Me.dcolLocalName.HeaderText = "Name"
         Me.dcolLocalName.Name = "dcolLocalName"
-        Me.dcolLocalName.ReadOnly = True
         '
         'dcolNickname
         '
@@ -352,7 +373,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle3
         Me.dcolNickname.HeaderText = "Nickname"
         Me.dcolNickname.Name = "dcolNickname"
-        Me.dcolNickname.ReadOnly = True
         '
         'dcolExtStudentID
         '
@@ -361,7 +381,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle4
         Me.dcolExtStudentID.HeaderText = "ExtID"
         Me.dcolExtStudentID.Name = "dcolExtStudentID"
-        Me.dcolExtStudentID.ReadOnly = True
         '
         'dcolStudentID
         '
@@ -370,7 +389,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle5
         Me.dcolStudentID.HeaderText = "StudentID"
         Me.dcolStudentID.Name = "dcolStudentID"
-        Me.dcolStudentID.ReadOnly = True
         '
         'dcolTags
         '
@@ -379,7 +397,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle6
         Me.dcolTags.HeaderText = "Tags"
         Me.dcolTags.Name = "dcolTags"
-        Me.dcolTags.ReadOnly = True
         '
         'dcolPresentationQuality
         '
@@ -388,7 +405,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle7
         Me.dcolPresentationQuality.HeaderText = "Pres"
         Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
-        Me.dcolPresentationQuality.ReadOnly = True
         '
         'dcolStudentGroup
         '
@@ -397,7 +413,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle8
         Me.dcolStudentGroup.HeaderText = "Group"
         Me.dcolStudentGroup.Name = "dcolStudentGroup"
-        Me.dcolStudentGroup.ReadOnly = True
         '
         'dcolStudentTeam
         '
@@ -406,7 +421,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle9
         Me.dcolStudentTeam.HeaderText = "Team"
         Me.dcolStudentTeam.Name = "dcolStudentTeam"
-        Me.dcolStudentTeam.ReadOnly = True
         '
         'NormalAltID
         '
@@ -415,7 +429,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.NormalAltID.DefaultCellStyle = DataGridViewCellStyle10
         Me.NormalAltID.HeaderText = "Alt"
         Me.NormalAltID.Name = "NormalAltID"
-        Me.NormalAltID.ReadOnly = True
         '
         'dcolClass
         '
@@ -424,7 +437,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle11
         Me.dcolClass.HeaderText = "Class"
         Me.dcolClass.Name = "dcolClass"
-        Me.dcolClass.ReadOnly = True
         '
         'CountExistingAssignmentsNormal
         '
@@ -433,7 +445,6 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.CountExistingAssignmentsNormal.DefaultCellStyle = DataGridViewCellStyle12
         Me.CountExistingAssignmentsNormal.HeaderText = "ExistAsmt"
         Me.CountExistingAssignmentsNormal.Name = "CountExistingAssignmentsNormal"
-        Me.CountExistingAssignmentsNormal.ReadOnly = True
         Me.CountExistingAssignmentsNormal.Width = 20
         '
         'AssignmentFirstColumn
@@ -443,21 +454,18 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.AssignmentFirstColumn.DefaultCellStyle = DataGridViewCellStyle13
         Me.AssignmentFirstColumn.HeaderText = "1st"
         Me.AssignmentFirstColumn.Name = "AssignmentFirstColumn"
-        Me.AssignmentFirstColumn.ReadOnly = True
         '
         'OverallColumn
         '
         Me.OverallColumn.DataPropertyName = "Overall"
         Me.OverallColumn.HeaderText = "Overall"
         Me.OverallColumn.Name = "OverallColumn"
-        Me.OverallColumn.ReadOnly = True
         '
         'ImprovementColumn
         '
         Me.ImprovementColumn.DataPropertyName = "Improvement"
         Me.ImprovementColumn.HeaderText = "Improve"
         Me.ImprovementColumn.Name = "ImprovementColumn"
-        Me.ImprovementColumn.ReadOnly = True
         '
         'SecondScore
         '
@@ -466,35 +474,30 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.SecondScore.DefaultCellStyle = DataGridViewCellStyle14
         Me.SecondScore.HeaderText = "2nd"
         Me.SecondScore.Name = "SecondScore"
-        Me.SecondScore.ReadOnly = True
         '
         'Overall2
         '
         Me.Overall2.DataPropertyName = "Overall2"
         Me.Overall2.HeaderText = "OverallRW"
         Me.Overall2.Name = "Overall2"
-        Me.Overall2.ReadOnly = True
         '
         'Improve2
         '
         Me.Improve2.DataPropertyName = "Improvement2"
         Me.Improve2.HeaderText = "ImproveRW"
         Me.Improve2.Name = "Improve2"
-        Me.Improve2.ReadOnly = True
         '
         'CreatorColumn
         '
         Me.CreatorColumn.DataPropertyName = "Creator"
         Me.CreatorColumn.HeaderText = "Creator"
         Me.CreatorColumn.Name = "CreatorColumn"
-        Me.CreatorColumn.ReadOnly = True
         '
         'EditorColumn
         '
         Me.EditorColumn.DataPropertyName = "Editor"
         Me.EditorColumn.HeaderText = "Editor"
         Me.EditorColumn.Name = "EditorColumn"
-        Me.EditorColumn.ReadOnly = True
         '
         'lblStudentCount
         '
@@ -742,11 +745,11 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         Me.DataGridViewTextBoxColumn15.ReadOnly = True
         '
-        'ImportreworkForAllExistingAssignmentsToolStripMenuItem
+        'DeleteemptyAssignmentsToolStripMenuItem
         '
-        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Name = "ImportreworkForAllExistingAssignmentsToolStripMenuItem"
-        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
-        Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem.Text = "Import &rework for all existing assignments"
+        Me.DeleteemptyAssignmentsToolStripMenuItem.Name = "DeleteemptyAssignmentsToolStripMenuItem"
+        Me.DeleteemptyAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.DeleteemptyAssignmentsToolStripMenuItem.Text = "Delete &empty assignments"
         '
         'ImportMarkingFromOtherSemesterFile
         '
@@ -761,6 +764,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ImportMarkingFromOtherSemesterFile"
@@ -849,4 +853,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
     Friend WithEvents ImportreworkForAllExistingAssignmentsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ManagableColumnSizesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteemptyAssignmentsToolStripMenuItem As ToolStripMenuItem
 End Class

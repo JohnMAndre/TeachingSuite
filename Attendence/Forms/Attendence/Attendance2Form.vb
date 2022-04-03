@@ -171,14 +171,26 @@ Public Class Attendance2Form
         End If
     End Sub
     Private Sub SetStudentCountLabel()
-        Dim intStudents As Integer
-        For Each Student As Student In m_class.Students
-            If Student.CurrentAttendenceStatus = AttendanceStatusEnum.Late OrElse Student.CurrentAttendenceStatus = AttendanceStatusEnum.Present Then
-                intStudents += 1
-            End If
-        Next
+        Dim intStudentsPresent, intStudentsAbsent, intStudentsLate, intStudentsExcused As Integer
+        If m_lstStudents IsNot Nothing Then
+            For Each student As StudentAttendanceData In m_lstStudents
+                Select Case student.AttendanceStatus
+                    Case AttendanceStatusEnum.Present
+                        intStudentsPresent += 1
+                    Case AttendanceStatusEnum.Excused
+                        intStudentsExcused += 1
+                    Case AttendanceStatusEnum.Late
+                        intStudentsLate += 1
+                    Case AttendanceStatusEnum.Absent
+                        intStudentsAbsent += 1
+                End Select
+            Next
 
-        lblStudentsPresent.Text = intStudents.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
+            lblStudentsPresent.Text = "P: " & intStudentsPresent.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
+            lblStudentsExcused.Text = "E: " & intStudentsExcused.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
+            lblStudentsLate.Text = "L: " & intStudentsLate.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
+            lblStudentsAbsent.Text = "A: " & intStudentsAbsent.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
+        End If
     End Sub
     Private Sub IncreaseFontToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IncreaseFontToolStripMenuItem.Click
         Dim newFont As Font = New Font(dgvStudents.Font.FontFamily, dgvStudents.Font.Size + 4)
@@ -324,7 +336,9 @@ Public Class Attendance2Form
                 row.Selected = True
                 dgvStudents.CurrentCell = dgvStudents.Rows(intCurrentIndex).Cells(0)
             End If
+
             m_boolDirty = True
+            SetStudentCountLabel()
 
             'If m_frmPublic IsNot Nothing Then
             '    m_frmPublic.UpdateStudent(obj)
@@ -364,8 +378,34 @@ Public Class Attendance2Form
 
             For intCounter As Integer = 0 To m_lstStudents.Count - 1
                 dgvStudents.UpdateCellValue(4, intCounter)
+
+                For Each row In dgvStudents.Rows
+                    Dim style As New DataGridViewCellStyle(row.Cells(4).Style)
+                    Select Case status
+                        Case AttendanceStatusEnum.Present
+                            style.BackColor = Color.LightGreen
+                        Case AttendanceStatusEnum.Absent
+                            style.BackColor = Color.Pink
+                        Case AttendanceStatusEnum.Unknown
+                            style.BackColor = Color.White
+                        Case AttendanceStatusEnum.Excused
+                            style.BackColor = Color.Yellow
+                        Case AttendanceStatusEnum.Late
+                            style.BackColor = Color.LightSkyBlue
+                    End Select
+                    For intCounter2 As Integer = 0 To 5
+                        row.Cells(intCounter2).Style = style
+                    Next
+                    row.Selected = False
+
+                Next
+
+
             Next
             m_boolDirty = True
+
+            SetStudentCountLabel()
+            dgvStudents.Refresh()
 
         Catch ex As Exception
             Log(ex)
@@ -523,7 +563,7 @@ Public Class Attendance2Form
             End If
 
             Dim brush As Brush
-            If m_tsCurrent.TotalSeconds < 6 AndAlso RedUnder5SecondsToolStripMenuItem.Checked Then
+            If m_tsCurrent.TotalSeconds < 10 AndAlso RedLastFewSecondsToolStripMenuItem.Checked Then
                 brush = New SolidBrush(Color.Red)
             Else
                 brush = New SolidBrush(Color.White)
@@ -683,6 +723,33 @@ Public Class Attendance2Form
         Dim obj As StudentAttendanceData = GetCurrentlySelectedStudent() 'CType(dgvStudents.CurrentRow.DataBoundItem, Student)
         If obj IsNot Nothing Then
             obj.Student.Tags &= " flag "
+        End If
+    End Sub
+
+    Private Sub dgvStudents_SelectionChanged(sender As Object, e As EventArgs) Handles dgvStudents.SelectionChanged
+        SetStudentCountLabel()
+    End Sub
+
+    Private Sub Present3MeritToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Present3MeritToolStripMenuItem.Click
+        StudentMerit(3)
+        SetStudentStatus(AttendanceStatusEnum.Present)
+    End Sub
+
+    Private Sub Present3DemeritToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Present3DemeritToolStripMenuItem.Click
+        StudentMerit(-3)
+        SetStudentStatus(AttendanceStatusEnum.Present)
+    End Sub
+    Private Sub StudentMerit(numberOfMerits As Integer)
+        If dgvStudents.SelectedRows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim obj As StudentAttendanceData = GetCurrentlySelectedStudent()
+        If obj IsNot Nothing Then
+            obj.Student.MeritPoints += numberOfMerits
+
+            m_boolDirty = True
+            SetStudentCountLabel()
         End If
     End Sub
 End Class

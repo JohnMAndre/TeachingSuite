@@ -66,7 +66,7 @@ Public Class ExportBTECGradesForMoodle
 
                     strLineToWrite = stud.StudentID & vbTab & stud.EmailAddress & vbTab & stud.StudentGroup
 
-                    '--  WARNING: It is possible that A2 is created before A1 so need to sort first, otherwise columns will not sync up
+                    '--  WARNING: It is possible that A2 is created before A1 so need to sort first, otherwise columns will not sync
                     stud.AssignmentsBTEC.Sort()
 
                     For Each stAsmt As StudentAssignmentBTEC In stud.AssignmentsBTEC
@@ -94,7 +94,9 @@ Public Class ExportBTECGradesForMoodle
                             End If
 
                             '-- Need to remove end of line chars
-                            strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+                            'strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+
+                            strLineToWrite &= GetFeedback(stAsmt, chkIncludeOverallFeedback.Checked, chkIncludeImprovementFeedback.Checked, chkIncludeRework.Checked)
 
                             intAsmtCounter += 1
                         End If
@@ -120,5 +122,39 @@ Public Class ExportBTECGradesForMoodle
 
 
     End Sub
+    Private Function GetFeedback(studAssignment As StudentAssignmentBTEC, includeOverall As Boolean, includeImprovement As Boolean, includeRework As Boolean) As String
+        Dim strFeedback As String = String.Empty
+        Dim strReturn As String
 
+        If includeOverall Then
+            strFeedback &= "First attempt overall: " & studAssignment.OverallComments & "; "
+            If includeRework Then
+                strFeedback &= "Second attempt overall: " & studAssignment.OverallCommentsRework & "; "
+            End If
+        End If
+
+        '-- Need to include the outcome by outcome feedback, if it exists
+        If chkIncludeImprovementFeedback.Checked Then
+            For Each results As OutcomeResult In studAssignment.Outcomes
+                strFeedback &= "Outcome " & results.BaseOutcome.Name & " (first attempt): " & results.FirstTryStatus.ToString() & " (" & results.FirstTryComments & ")" & "; "
+                If includeRework Then
+                    strFeedback &= "Outcome " & results.BaseOutcome.Name & " (second attempt): " & results.SecondTryStatus & " (" & results.SecondTryComments & ")" & "; "
+                End If
+            Next
+        End If
+
+
+        If includeImprovement Then
+            '-- Both overall and improvement
+            strFeedback &= "First attempt improvement: " & studAssignment.ImprovementComments & "; "
+            If includeRework Then
+                strFeedback &= "Second attempt improvement: " & studAssignment.ImprovementCommentsRework & "; "
+            End If
+        End If
+
+
+        strReturn = vbTab & strFeedback.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+
+        Return strReturn
+    End Function
 End Class

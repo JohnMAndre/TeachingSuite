@@ -1801,6 +1801,8 @@ Public Class SchoolClass
             tw.Write("DateOfBirth")
             tw.Write(DELIMITER)
             tw.Write("PeerToReview")
+            tw.Write(DELIMITER)
+            tw.Write("Standardized")
 
             tw.Write(Environment.NewLine)
 
@@ -1848,6 +1850,8 @@ Public Class SchoolClass
                 tw.Write(student.DateOfBirth.ToString("yyyy-MM-dd"))
                 tw.Write(DELIMITER)
                 tw.Write(student.StudentIDToPeerReview)
+                tw.Write(DELIMITER)
+                tw.Write(student.LocalNameLatinLetters)
 
 
                 '-- Prep for new student
@@ -1902,6 +1906,11 @@ Public Class SchoolClass
             obj.Location = xPlannedScheduleItem.GetAttribute("Location")
             obj.DurationInMinutes = ConvertToInt32(xPlannedScheduleItem.GetAttribute("DurationInMinutes"), Me.ClassGroup.SessionLength)
             obj.StudentGroup = ConvertToInt32(xPlannedScheduleItem.GetAttribute("StudentGroup"), 0)
+            Try
+                obj.SessionItemType = [Enum].Parse(GetType(ScheduleTypeEnum), xPlannedScheduleItem.GetAttribute("ScheduleType"), True)
+            Catch ex As Exception
+                obj.SessionItemType = ActualSessionItem.SessionItemTypeEnum.Unknown
+            End Try
             PlannedSchedule.Add(obj)
         Next
 
@@ -1983,6 +1992,7 @@ Public Class SchoolClass
             xPlannedScheduleItem.SetAttribute("Location", objPlannedScheduleItem.Location)
             xPlannedScheduleItem.SetAttribute("DurationInMinutes", objPlannedScheduleItem.DurationInMinutes)
             xPlannedScheduleItem.SetAttribute("StudentGroup", objPlannedScheduleItem.StudentGroup)
+            xPlannedScheduleItem.SetAttribute("ScheduleType", objPlannedScheduleItem.SessionItemType)
         Next
 
 

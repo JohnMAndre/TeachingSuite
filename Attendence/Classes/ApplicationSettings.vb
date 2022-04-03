@@ -568,8 +568,6 @@ Public Class ApplicationSettings
                 LoadAutoTextDefaults()
             End If
 
-            SetLastUpdaterCheck()
-
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error loading your settings. Please delete your settings.xml file in your Data folder.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -691,10 +689,6 @@ Public Class ApplicationSettings
         Const SETTINGS_FILENAME As String = "settings.xml"
         Return System.IO.Path.Combine(GetDataFolder(), SETTINGS_FILENAME)
     End Function
-    Private Function GetUpdaterSettingsFilename() As String
-        Const SETTINGS_FILENAME As String = "UpdaterSettings.xml"
-        Return System.IO.Path.Combine(GetDataFolder(), SETTINGS_FILENAME)
-    End Function
     Private Sub LoadAutoTexts(xDoc As Xml.XmlDocument)
         Dim xList As Xml.XmlNodeList = xDoc.SelectNodes("//AutoText")
         Dim item As New AutoTextSimple
@@ -732,21 +726,7 @@ Public Class ApplicationSettings
 
         Return root
     End Function
-    Private Sub SetLastUpdaterCheck()
-        Try
-            Dim xDoc As New Xml.XmlDocument()
-            xDoc.Load(GetUpdaterSettingsFilename())
-            Dim xElement As Xml.XmlElement = xDoc.SelectSingleNode("//DateLastChecked")
-            If xElement IsNot Nothing Then
-                m_dtLastUpdateCheck = ConvertToDateFromXML(xElement.InnerText, Date.Now)
-            Else
-                m_dtLastUpdateCheck = Date.Now.AddYears(-1)
-            End If
-        Catch ex As Exception
-            Log(ex)
-            m_dtLastUpdateCheck = Date.Now.AddYears(-1)
-        End Try
-    End Sub
+
 #Region " Public Properties "
     Public Property AttendanceMessage As String '-- Displays while taking attendance
     Public Property UserFullName As String '-- name of person doing marking, to keep track at the assignment-level

@@ -24,6 +24,7 @@ Public Class ImportAdditionalStudentData
         Public Property PeerRevieweeStudentID As String
         Public Property StudentGroup As Integer
         Public Property StudentTeam As String
+        Public Property DateOfBirth As String
     End Class
     Private m_lstImportData As List(Of ImportData)
     Private m_lstStudents As List(Of Student)
@@ -89,6 +90,10 @@ Public Class ImportAdditionalStudentData
                     If chkTeam.Checked Then
                         stud.StudentTeam = item.StudentTeam
                     End If
+
+                    If chkDob.Checked Then
+                        stud.DateOfBirth = item.DateOfBirth
+                    End If
                 End If
 
 
@@ -129,7 +134,7 @@ Public Class ImportAdditionalStudentData
                 Dim intIndexExtID As Integer
                 Dim intIndexTags As Integer
                 Dim intIndexPeerReviewStudentID As Integer
-                Dim intIndexStudentGroup, intIndexStudentTeam As Integer
+                Dim intIndexStudentGroup, intIndexStudentTeam, intIndexDoB As Integer
                 Dim intIndexes As Integer
                 Dim intCurrentIndex As Integer
 
@@ -175,6 +180,12 @@ Public Class ImportAdditionalStudentData
                     intIndexes += 1
                 End If
 
+                If chkDob.Checked Then
+                    intCurrentIndex += 1
+                    intIndexDoB = intCurrentIndex
+                    intIndexes += 1
+                End If
+
                 For intCounter As Integer = 0 To strRows.Count - 1
                     row = strRows(intCounter).Split(vbTab)
                     If row.Length < intIndexes + 1 Then
@@ -209,6 +220,9 @@ Public Class ImportAdditionalStudentData
                     End If
                     If intIndexStudentTeam > 0 Then
                         objData.StudentTeam = row(intIndexStudentTeam)
+                    End If
+                    If intIndexDoB > 0 Then
+                        objData.DateOfBirth = row(intIndexDoB)
                     End If
 
                     m_lstImportData.Add(objData)
@@ -264,6 +278,12 @@ Public Class ImportAdditionalStudentData
         Else
             colTeam.Width = 0
         End If
+
+        If chkDob.Checked Then
+            colDoB.Width = 100
+        Else
+            colDoB.Width = 0
+        End If
     End Sub
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Timer1.Stop()
@@ -303,7 +323,7 @@ Public Class ImportAdditionalStudentData
         End If
     End Function
 
-    Private Sub chk_CheckStateChanged(sender As Object, e As EventArgs) Handles chkTags.CheckStateChanged, chkPeerStudentID.CheckStateChanged, chkNickname.CheckStateChanged, chkGroup.CheckStateChanged, chkExtStudentID.CheckStateChanged, chkEmail.CheckStateChanged, chkTeam.CheckStateChanged
+    Private Sub chk_CheckStateChanged(sender As Object, e As EventArgs) Handles chkTags.CheckStateChanged, chkPeerStudentID.CheckStateChanged, chkNickname.CheckStateChanged, chkGroup.CheckStateChanged, chkExtStudentID.CheckStateChanged, chkEmail.CheckStateChanged, chkTeam.CheckStateChanged, chkDob.CheckStateChanged
         SetColumnVisibility()
     End Sub
 
@@ -315,6 +335,7 @@ Public Class ImportAdditionalStudentData
         chkPeerStudentID.Checked = False
         chkGroup.Checked = False
         chkTeam.Checked = False
+        chkDob.Checked = False
     End Sub
 
     Private Sub CheckAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckAllToolStripMenuItem.Click
@@ -325,7 +346,7 @@ Public Class ImportAdditionalStudentData
         chkPeerStudentID.Checked = True
         chkGroup.Checked = True
         chkTeam.Checked = True
+        chkDob.Checked = True
     End Sub
-
 
 End Class

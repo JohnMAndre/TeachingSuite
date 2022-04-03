@@ -411,6 +411,7 @@ Public Class BulkEmailer
             MessageBox.Show("There was an error: " & ex.Message, PRODUCT_NAME)
         End Try
     End Sub
+
 End Class
 
 Public Class BulkEmailData

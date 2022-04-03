@@ -74,6 +74,7 @@ Public Class ExportNormalGradesForMoodle
                     For Each stAsmt As StudentAssignment In stud.Assignments
                         '-- If the student has the assignment and that assignment is selected, then we write it out.
                         If lstAssignments.SelectedItems.Contains(stAsmt.BaseAssignment) Then
+
                             '-- It's selected, but we need to see if this student missed any assignments
                             '   If they did not submit A1 but did A2 and A1 and A2 are selected, we don't want A2 data under the A1 columns
 
@@ -96,31 +97,13 @@ Public Class ExportNormalGradesForMoodle
                                 strLineToWrite &= vbTab & stAsmt.FirstTryPoints
                             End If
 
-                            '-- Need to remove end of line chars
-                            If chkIncludeOverallFeedback.Checked Then
-                                If chkIncludeImprovementFeedback.Checked Then
-                                    '-- Both
-                                    Dim strFeedback As String = stAsmt.OverallComments & " # " & stAsmt.ImprovementComments
-                                    strLineToWrite &= vbTab & "" & strFeedback.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
-                                Else
-                                    '-- Just Overall
-                                    strLineToWrite &= vbTab & "" & stAsmt.OverallComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
-                                End If
-                            Else
-                                If chkIncludeImprovementFeedback.Checked Then
-                                    '-- Just improvement
-                                    strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
-                                Else
-                                    '-- Neither
-                                    '-- Do nothing
-                                End If
-                            End If
+                            strLineToWrite &= GetFeedback(stAsmt, chkIncludeOverallFeedback.Checked, chkIncludeImprovementFeedback.Checked, chkIncludeRework.Checked)
 
                             intAsmtCounter += 1
                         End If
                     Next
 
-                    '-- If student did not do the assignments at the end, we still write zeros
+                    '-- If student did not do the assignments at the end, we write "-"
                     Do Until intAsmtCounter = lstAssignments.SelectedItems.Count
                         strLineToWrite &= vbTab & "-" '-- grade
                         If chkIncludeImprovementFeedback.Checked OrElse chkIncludeOverallFeedback.Checked Then
@@ -139,8 +122,29 @@ Public Class ExportNormalGradesForMoodle
 
 
         lblStatus.Text = "OK!"
-
-
     End Sub
 
+    Private Function GetFeedback(studAssignment As StudentAssignment, includeOverall As Boolean, includeImprovement As Boolean, includeRework As Boolean) As String
+        Dim strReturn As String
+        Dim strFeedback As String = String.Empty
+
+        If includeOverall Then
+            strFeedback &= "First attempt overall: " & studAssignment.OverallComments & "; "
+            If includeRework Then
+                strFeedback &= "Second attempt overall: " & studAssignment.OverallCommentsRework & "; "
+            End If
+        End If
+
+        If includeImprovement Then
+            '-- Both overall and improvement
+            strFeedback &= "First attempt improvement: " & studAssignment.ImprovementComments & "; "
+            If includeRework Then
+                strFeedback &= "Second attempt improvement: " & studAssignment.ImprovementCommentsRework & "; "
+            End If
+        End If
+
+        strReturn = vbTab & "" & strFeedback.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+
+        Return strReturn
+    End Function
 End Class

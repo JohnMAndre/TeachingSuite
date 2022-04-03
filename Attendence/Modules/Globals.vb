@@ -193,7 +193,7 @@ Module Globals
     End Function
     Public Sub Log(ex As Exception)
         Try
-            System.IO.File.AppendAllText(GetErrorLogLocation(), Date.Now.ToString("yyyy-MM-dd") & " " & ex.Message & Environment.NewLine)
+            System.IO.File.AppendAllText(GetErrorLogLocation(), Date.Now.ToString("yyyy-MM-dd hh:mm:ss") & " " & ex.Message & Environment.NewLine)
         Catch ex1 As Exception
             MessageBox.Show("There was an error writing to the log file. Error: " & ex1.Message, Application.ProductName)
         End Try

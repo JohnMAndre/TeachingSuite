@@ -1355,55 +1355,76 @@ Friend Class StudentAssignmentDetails
     End Sub
     Private Function GenerateImprovementFeedback(late As Boolean, includeGradeHint As Boolean) As String
         Dim strImprovement As String = String.Empty
-
-        If includeGradeHint Then
-            If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
-                If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
-                    If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
-                        '- Distinction
-                        strImprovement = AppSettings.ImprovementFeedbackForDistinction
-                    Else
-                        '-- Just merit
-                        strImprovement = AppSettings.ImprovementFeedbackForMerit
-                    End If
-                Else
-                    '-- Just pass
-                    If m_try = Semester.MarkingTry.FirstTry Then
-                        If late Then
-                            strImprovement = AppSettings.LateSubmitDefaultComment
+        Dim strErrorLocation As String = "A"
+        Try
+            strErrorLocation = "B"
+            If includeGradeHint Then
+                If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
+                    strErrorLocation = "C"
+                    If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
+                        If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
+                            '- Distinction
+                            strErrorLocation = "D"
+                            strImprovement = AppSettings.ImprovementFeedbackForDistinction
                         Else
-                            strImprovement = AppSettings.ImprovementFeedbackForPassAll
+                            '-- Just merit
+                            strErrorLocation = "E"
+                            strImprovement = AppSettings.ImprovementFeedbackForMerit
                         End If
                     Else
-                        strImprovement = AppSettings.RedoPassAllDefaultComment
+                        '-- Just pass
+                        If m_try = Semester.MarkingTry.FirstTry Then
+                            If late Then
+                                strErrorLocation = "F"
+                                strImprovement = AppSettings.LateSubmitDefaultComment
+                            Else
+                                strErrorLocation = "G"
+                                strImprovement = AppSettings.ImprovementFeedbackForPassAll
+                            End If
+                        Else
+                            strErrorLocation = "H"
+                            strImprovement = AppSettings.RedoPassAllDefaultComment
+                        End If
+                    End If
+                Else
+                    '-- Not passed yet
+                    strErrorLocation = "I"
+                    Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
+                    If intAchieved > 0 Then
+                        strErrorLocation = "J"
+                        strImprovement = AppSettings.ImprovementFeedbackForFailSome
+                    Else
+                        strErrorLocation = "K"
+                        strImprovement = AppSettings.ImprovementFeedbackForFailAll
                     End If
                 End If
-            Else
-                '-- Not passed yet
-                Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
-                If intAchieved > 0 Then
-                    strImprovement = AppSettings.ImprovementFeedbackForFailSome
-                Else
-                    strImprovement = AppSettings.ImprovementFeedbackForFailAll
-                End If
             End If
-        End If
 
-        Dim strReturn As String = strImprovement
-        'rtbImprovementComments.Text = strImprovement
+            strErrorLocation = "K"
+            Dim strReturn As String = strImprovement
+            'rtbImprovementComments.Text = strImprovement
 
-        If strImprovement.Trim.Length > 0 Then
-            strReturn &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
-            'rtbImprovementComments.Text &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
-        End If
+            strErrorLocation = "L"
+            If strImprovement.Trim.Length > 0 Then
+                strReturn &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
+                'rtbImprovementComments.Text &= Environment.NewLine '-- add a break between grade hint, if there is a grade hint
+            End If
 
-        strReturn &= GetImprovementNotes()
-        strReturn = strReturn.Trim()
+            strErrorLocation = "M"
+            strReturn &= Environment.NewLine()
+            strErrorLocation = "N"
+            strReturn &= GetImprovementNotes()
+            strErrorLocation = "O"
+            strReturn = strReturn.Trim()
 
-        'rtbImprovementComments.Text &= GetImprovementNotes()
-        'rtbImprovementComments.Text = rtbImprovementComments.Text.Trim()
+            'rtbImprovementComments.Text &= GetImprovementNotes()
+            'rtbImprovementComments.Text = rtbImprovementComments.Text.Trim()
 
-        Return strReturn
+            Return strReturn
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error (loc=" & strErrorLocation & ": " & ex.Message)
+        End Try
     End Function
     Private Function GetImprovementNotes() As String
         Try
@@ -2146,14 +2167,20 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub llblAutoGenOverallFirst_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenOverallFirst.LinkClicked
+        m_try = Semester.MarkingTry.FirstTry
         rtbOverallComments.Text = GenerateOverallComments(False)
     End Sub
 
     Private Sub llblAutoGenOverallRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenOverallRework.LinkClicked
+        m_try = Semester.MarkingTry.SecondTry
         rtbOverallCommentsRework.Text = GenerateOverallComments(True)
     End Sub
 
     Private Sub llblAutoGenImprovementsRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsRework.LinkClicked
         rtbImprovementCommentsRework.Text = GenerateImprovementFeedback(False, False)
+    End Sub
+
+    Private Sub KryptonSplitContainer4_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles KryptonSplitContainer4.Panel2.Paint
+
     End Sub
 End Class

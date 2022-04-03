@@ -45,7 +45,9 @@ Public Class ImportMarkingFromOtherSemesterFile
     Private m_lstSyncResolverNormal As New List(Of SyncResolverNormalData)
     Private m_lstSyncResolverBTEC As New List(Of SyncResolverBTECData)
 
-    Private Class ReportData
+    Public Class ReportData
+        Implements IComparable(Of ReportData)
+
         Public Property Student As Student
         Public Property Assignment As StudentAssignment
         Public Property AssignmentBTEC As StudentAssignmentBTEC
@@ -79,6 +81,11 @@ Public Class ImportMarkingFromOtherSemesterFile
             End If
 
         End Sub
+
+
+        Public Function CompareTo(other As ReportData) As Integer Implements IComparable(Of ReportData).CompareTo
+            Throw New NotImplementedException()
+        End Function
 #Region " Properties "
         Public ReadOnly Property AdminNumber As Integer
             Get
@@ -146,7 +153,7 @@ Public Class ImportMarkingFromOtherSemesterFile
                 Return Student.PlagiarismSeverity
             End Get
         End Property
-        Public ReadOnly Property AssignmentScoreFirst
+        Public Property AssignmentScoreFirst As Integer
             Get
                 If Assignment IsNot Nothing Then
                     Return Assignment.FirstTryPoints
@@ -154,8 +161,15 @@ Public Class ImportMarkingFromOtherSemesterFile
                     Return -1
                 End If
             End Get
+            Set(value As Integer)
+                If Assignment IsNot Nothing Then
+                    Assignment.FirstTryPoints = value
+                Else
+                    '-- do nothing
+                End If
+            End Set
         End Property
-        Public ReadOnly Property AssignmentScoreSecond
+        Public Property AssignmentScoreSecond As Integer
             Get
                 If Assignment IsNot Nothing Then
                     Return Assignment.SecondTryPoints
@@ -163,6 +177,13 @@ Public Class ImportMarkingFromOtherSemesterFile
                     Return -1
                 End If
             End Get
+            Set(value As Integer)
+                If Assignment IsNot Nothing Then
+                    Assignment.SecondTryPoints = value
+                Else
+                    '-- do nothing
+                End If
+            End Set
         End Property
         Public ReadOnly Property Creator As String
             Get
@@ -475,176 +496,29 @@ Public Class ImportMarkingFromOtherSemesterFile
         End If
     End Function
 
-    'Private Sub ImportStudentAssignments()
-    '    Try
-    '        If MessageBox.Show("Are you sure you want to import assignments, improvement items, and changes in data for these students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3) = DialogResult.Yes Then
-    '            '-- No or cancel will stop this process
-
-    '            '-- If we get here, for each student, import:
-    '            '   This one assignment
-    '            '   Any new improvement items
-    '            '   Any changes in improvement item performance levels
-    '            '   Any changes in student's presentation, research, plagiarism
-    '            Dim baseAsmt As IClassAssignment = GetSelectedAssignment()
-    '            Dim permStud As Student '-- in the perm database (ThisSemester)
-    '            Dim permItem As StudentImprovementItem
-    '            Dim baseItem As ImprovementItem
-    '            Dim boolMatchedItem As Boolean
-    '            Dim intStudentsImported As Integer
-
-    '            Dim xDoc As New Xml.XmlDocument() '-- just for working with xmlpersistance routines
-    '            For Each stud As ReportData In m_lstCurrentListOfStudents
-    '                intStudentsImported += 1
-    '                'permStud = Student.GetByStudentID(stud.StudentID)
-    '                permStud = m_objLocalClassGroup.GetStudentByID(stud.StudentID)
-    '                If permStud Is Nothing Then
-    '                    If MessageBox.Show("Could not match student (ID:" & stud.StudentID & " - " & stud.LocalName & "). Cancel?", PRODUCT_NAME, MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
-    '                        Exit Sub
-    '                    Else
-    '                        Continue For
-    '                    End If
-    '                End If
-
-    '                '-- Student-level data
-    '                permStud.PresentationQuality = stud.PresentationQuality
-    '                permStud.ResearchQuality = stud.ResearchQuality
-    '                permStud.PlagiarismSeverity = stud.PlagiarismSeverity
-
-    '                'TODO: we should look for notes and activitylog differences and add them
-
-    '                '-- Assignment
-    '                If baseAsmt.AssignmentType = AssignmentType.Normal Then
-    '                    Dim tempAsmt As StudentAssignment
-    '                    Dim permAsmt As StudentAssignment
-
-    '                    For Each tempAsmt In stud.Student.Assignments
-    '                        If tempAsmt.BaseAssignment Is baseAsmt Then
-    '                            Exit For
-    '                        End If
-    '                    Next
-
-    '                    '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
-    '                    permAsmt = New StudentAssignment(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
-    '                    If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
-    '                        '-- Need to override the marker's name
-    '                        permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
-    '                        permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
-    '                    End If
-    '                    permStud.Assignments.Add(permAsmt)
-
-    '                    If chkMarkImportedAsProcessed.Checked Then
-    '                        permAsmt.Processed = True
-    '                    End If
-    '                Else
-    '                    '-- BTEC
-    '                    Dim tempAsmt As StudentAssignmentBTEC
-    '                    Dim permAsmt As StudentAssignmentBTEC
-
-    '                    For Each tempAsmt In stud.Student.AssignmentsBTEC
-    '                        If tempAsmt.BaseAssignment Is baseAsmt Then
-    '                            Exit For
-    '                        End If
-    '                    Next
-
-    '                    '-- It seems impossible that the assignment could be missing because it was required to load the student in the list
-    '                    permAsmt = New StudentAssignmentBTEC(tempAsmt.GetXMLElementToPersist(xDoc), permStud)
-    '                    If txtOverrideMarkerName.Text.Trim() <> String.Empty Then
-    '                        '-- Need to override the marker's name
-    '                        permAsmt.FirstUserFullName = txtOverrideMarkerName.Text.Trim()
-    '                        permAsmt.LastUserFullName = txtOverrideMarkerName.Text.Trim()
-    '                    End If
-    '                    permStud.AssignmentsBTEC.Add(permAsmt)
-
-    '                    If chkMarkImportedAsProcessed.Checked Then
-    '                        permAsmt.Processed = True
-    '                    End If
-    '                End If
-
-
-    '                '-- Now, improvement items (add/update)
-    '                For Each tempItem As StudentImprovementItem In stud.Student.ImprovementItems
-    '                    boolMatchedItem = False '-- reset
-
-    '                    For Each permItem In permStud.ImprovementItems
-    '                        If tempItem.BaseImprovementItem.ID = permItem.BaseImprovementItem.ID Then
-    '                            '-- this student already has this item, let's make sure the data is current
-    '                            boolMatchedItem = True
-    '                        End If
-    '                    Next
-    '                    If boolMatchedItem Then
-    '                        '-- just update item data
-    '                        permItem.PerformanceLevel = tempItem.PerformanceLevel
-    '                        permItem.DateLastIncluded = tempItem.DateLastIncluded '-- should update both the date and the qty given
-    '                    Else
-    '                        '-- could not match this item, need to create it
-    '                        '  add item to student
-
-    '                        '   First we must find the base improvement item
-    '                        baseItem = ImprovementItem.GetByID(tempItem.BaseImprovementItem.ID)
-    '                        If baseItem Is Nothing Then
-    '                            '-- needs to be created
-    '                            '   but first, see if there is a similar match we can use
-    '                            'TODO: Add missing base improvement item
-    '                        End If
-    '                        permItem = New StudentImprovementItem(permStud)
-    '                        permItem.BaseImprovementItem = baseItem
-    '                        permStud.ImprovementItems.Add(permItem)
-    '                        permItem.DateAdded = tempItem.DateAdded
-    '                        permItem.PerformanceLevel = tempItem.PerformanceLevel
-    '                        If permItem.PerformanceLevel = 0 Then
-    '                            permItem.PerformanceLevel = 3 '-- default to 3
-    '                        End If
-
-    '                        '-- if date included was not added
-    '                        If tempItem.DateLastIncluded = DATE_NO_DATE Then
-    '                            permItem.DateLastIncluded = tempItem.DateAdded
-    '                        Else
-    '                            permItem.DateLastIncluded = tempItem.DateLastIncluded
-    '                        End If
-    '                    End If
-    '                Next
-    '            Next
-    '            MessageBox.Show("Imported " & intStudentsImported.ToString("#,##0") & " student assignments.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information)
-    '            AddApplicationHistory("Imported " & intStudentsImported.ToString("#,##0") & " student assignments (" & baseAsmt.Name & ") from other database.")
-    '        Else
-    '            MessageBox.Show("Nothing was imported.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information)
-    '        End If
-    '    Catch ex As Exception
-    '        Log(ex)
-    '        MessageBox.Show("There was an error importing the data: " & ex.Message, PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    End Try
-    'End Sub
-
-    Private Sub ImportStudentAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportStudentAssignmentsToolStripMenuItem.Click
-        'ImportStudentAssignments()
-    End Sub
-
     Private Sub DeleteSelectedAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssignmentsToolStripMenuItem.Click
         Dim asmt As IClassAssignment = GetSelectedAssignment()
+        Dim lst As List(Of ReportData)
 
         If asmt.AssignmentType = AssignmentType.Normal Then
-            Dim lst As List(Of ReportData) = GetSelectedStudentsFromGrid()
-            For Each objData As ReportData In lst
-                m_lstCurrentListOfStudents.Remove(objData)
-            Next
+            lst = GetSelectedStudentsFromGrid()
+        Else
+            lst = GetSelectedStudentsFromBTECGrid()
+        End If
 
+        For Each objData As ReportData In lst
+            m_lstCurrentListOfStudents.Remove(objData)
+        Next
 
+        If asmt.AssignmentType = AssignmentType.Normal Then
             dgvStudentsNormal.DataSource = Nothing
             dgvStudentsNormal.DataSource = m_lstCurrentListOfStudents
-
-            lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
         Else
-            Dim lst As List(Of ReportData) = GetSelectedStudentsFromBTECGrid()
-            For Each objData As ReportData In lst
-                m_lstCurrentListOfStudents.Remove(objData)
-            Next
-
-
             dgvStudentsBTEC.DataSource = Nothing
             dgvStudentsBTEC.DataSource = m_lstCurrentListOfStudents
-
-            lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
         End If
+
+        lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
     End Sub
 
     Private Sub btnLoadSemester_Click(sender As Object, e As EventArgs) Handles btnLoadSemester.Click
@@ -1232,4 +1106,156 @@ Public Class ImportMarkingFromOtherSemesterFile
 
         Return Nothing '-- could not match regular or BTEC assignment
     End Function
+
+    Private Sub txtSemesterFile_DragOver(sender As Object, e As DragEventArgs) Handles txtSemesterFile.DragOver
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        End If
+    End Sub
+
+    Private Sub txtSemesterFile_DragDrop(sender As Object, e As DragEventArgs) Handles txtSemesterFile.DragDrop
+        Try
+            Dim boolReadyToLoad As Boolean
+            If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+                Dim objFilenames As Object = e.Data.GetData(DataFormats.FileDrop)
+                Dim strFilenames() As String = CType(objFilenames, String())
+                For Each strFilename As String In strFilenames
+                    txtSemesterFile.Text = strFilename
+                    boolReadyToLoad = True
+                    Exit For
+                Next
+            End If
+
+            If boolReadyToLoad Then
+                LoadSemesterFile()
+            End If
+
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("There was an error adding the file: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub dgvStudentsBTEC_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvStudentsBTEC.ColumnHeaderMouseClick
+        '-- not implemented yet
+    End Sub
+
+    Private Sub dgvStudentsNormal_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvStudentsNormal.ColumnHeaderMouseClick
+        Try
+            Dim col As DataGridViewColumn = dgvStudentsNormal.Columns(e.ColumnIndex)
+            Dim lst As List(Of ReportData) = dgvStudentsNormal.DataSource
+            Dim cmp As IComparer(Of ReportData)
+            Dim boolSort As Boolean = True
+
+            If col IsNot Nothing Then
+                Select Case col.DataPropertyName
+                    Case "ExtStudentID"
+                        cmp = New ReportDataComparerByExtStudentID
+                    Case "StudentID"
+                        cmp = New ReportDataComparerByStudentID
+                    Case "StudentTeam"
+                        cmp = New ReportDataComparerByStudentTeam
+                    Case "StudentGroup"
+                        cmp = New ReportDataComparerByStudentGroup
+                    Case "CountMatchingAssignmentsNormal"
+                        cmp = New ReportDataComparerByCountMatchingAssignmentsNormal
+                    Case "AssignmentScoreFirst"
+                        cmp = New ReportDataComparerByAssignmentScoreFirst
+                    Case "Tags"
+                        cmp = New ReportDataComparerByTags
+                    Case "Overall"
+                        cmp = New ReportDataComparerByOverall
+                    Case "Overall2"
+                        cmp = New ReportDataComparerByOverall2
+                    Case "Nickname"
+                        cmp = New ReportDataComparerByNickname
+                    Case "LocalName"
+                        cmp = New ReportDataComparerByLocalName
+                    Case "AltID"
+                        cmp = New ReportDataComparerByAltID
+                    Case "AdminNumber"
+                        cmp = New ReportDataComparerByAdminNumber
+                    Case "Improvement"
+                        cmp = New ReportDataComparerByImprovement
+                    Case "Improvement2"
+                        cmp = New ReportDataComparerByImprovement2
+                    Case "AssignmentScoreSecond"
+                        cmp = New ReportDataComparerByAssignmentScoreSecond
+                    Case "PresentationQuality"
+                        cmp = New ReportDataComparerByPresentationQuality
+                    Case "SchoolClass"
+                        cmp = New ReportDataComparerBySchoolClassName
+                    Case "Creator"
+                        cmp = New ReportDataComparerByCreator
+                    Case "Editor"
+                        cmp = New ReportDataComparerByEditor
+                    Case Else
+                        boolSort = False
+                End Select
+
+                If boolSort Then
+                    lst.Sort(cmp)
+                    dgvStudentsNormal.DataSource = Nothing
+                    dgvStudentsNormal.Refresh()
+                    dgvStudentsNormal.DataSource = lst
+                    dgvStudentsNormal.Refresh()
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was an error sorting: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ManagableColumnSizesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManagableColumnSizesToolStripMenuItem.Click
+        For Each col As DataGridViewColumn In dgvStudentsNormal.Columns
+            col.Width = 80
+        Next
+        For Each col As DataGridViewColumn In dgvStudentsBTEC.Columns
+            col.Width = 80
+        Next
+    End Sub
+
+    Private Sub DeleteemptyAssignmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteemptyAssignmentsToolStripMenuItem.Click
+        Dim asmt As IClassAssignment = GetSelectedAssignment()
+        Dim lstToRemove As New List(Of ReportData)
+
+        '-- assignments without feedback or grade get added to the remove list
+        If asmt.AssignmentType = AssignmentType.Normal Then
+            For Each objData As ReportData In m_lstCurrentListOfStudents
+                If objData.Improvement.Trim().Length = 0 AndAlso objData.Improvement2.Trim().Length = 0 _
+                    AndAlso objData.Overall.Trim().Length = 0 AndAlso objData.Overall2.Trim().Length = 0 _
+                    AndAlso objData.AssignmentScoreFirst = 0 AndAlso objData.AssignmentScoreSecond = 0 Then
+
+                    lstToRemove.Add(objData)
+                End If
+            Next
+        Else
+            For Each objData As ReportData In m_lstCurrentListOfStudents
+                If objData.Improvement.Trim().Length = 0 AndAlso objData.Improvement2.Trim().Length = 0 _
+                    AndAlso objData.Overall.Trim().Length = 0 AndAlso objData.Overall2.Trim().Length = 0 _
+                    AndAlso objData.AchievedPass = False Then
+
+                    lstToRemove.Add(objData)
+                End If
+            Next
+        End If
+
+        '-- Actually remove items from main list
+        For Each objData As ReportData In lstToRemove
+            m_lstCurrentListOfStudents.Remove(objData)
+        Next
+
+        '-- Reload the grid
+        If asmt.AssignmentType = AssignmentType.Normal Then
+            dgvStudentsNormal.DataSource = Nothing
+            dgvStudentsNormal.DataSource = m_lstCurrentListOfStudents
+        Else
+            dgvStudentsBTEC.DataSource = Nothing
+            dgvStudentsBTEC.DataSource = m_lstCurrentListOfStudents
+        End If
+
+
+        lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
+
+    End Sub
 End Class
