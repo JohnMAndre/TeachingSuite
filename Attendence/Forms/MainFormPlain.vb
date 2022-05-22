@@ -2473,16 +2473,18 @@ Public Class MainFormPlain
             MessageBox.Show("Please select a class to process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             If MessageBox.Show("Are you sure you want to remove all these students from this class? This cannot be undone.", "Remove all students", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) = DialogResult.Yes Then
-                Dim lst As New List(Of Student)
-                For Each stud As Student In GetSelectedClass().Students
-                    lst.Add(stud)
-                Next
+                'Dim lst As New List(Of Student)
+                'For Each stud As Student In GetSelectedClass().Students
+                '    lst.Add(stud)
+                'Next
 
-                For Each stud As Student In lst
-                    GetSelectedClass.Students.Remove(stud)
-                Next
+                'For Each stud As Student In lst
+                '    GetSelectedClass.Students.Remove(stud)
+                'Next
 
-                lst.Clear()
+                'lst.Clear()
+
+                GetSelectedClass().PurgeAllStudents()
 
                 LoadStudents() '-- refresh list
             End If
@@ -4242,5 +4244,102 @@ Public Class MainFormPlain
             Dim frm As New BTECBulkView(cls)
             frm.Show()
         End If
+    End Sub
+
+    Private Sub CopyModuleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyModuleToolStripMenuItem.Click
+        Dim objClassGroup As ClassGroup = GetSelectedClassGroup()
+        If objClassGroup Is Nothing Then
+            MessageBox.Show("Please select a module to copy.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim xDoc As New Xml.XmlDocument()
+            Dim strText As String
+            strText = objClassGroup.GetXMLElementToPersist(xDoc).OuterXml
+
+            Clipboard.SetText(strText)
+        End If
+    End Sub
+
+    Private Sub PasteModuleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasteModuleToolStripMenuItem.Click
+        Try
+            Dim xDoc As New Xml.XmlDocument()
+            xDoc.LoadXml(Clipboard.GetText)
+            Select Case xDoc.DocumentElement.Name
+                Case "ClassGroup"
+                    Dim objClassGroup As New ClassGroup(xDoc.DocumentElement, ThisSemester)
+                    Select Case MessageBox.Show("Purge existing students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+                        Case DialogResult.Yes
+                            For Each objClass As SchoolClass In objClassGroup.Classes
+                                objClass.PurgeAllStudents()
+                            Next
+                        Case DialogResult.No
+                            '-- Leave them in, do nothing
+                        Case DialogResult.Cancel
+                            Exit Sub
+                    End Select
+
+                    ThisSemester.ClassGroups.Add(objClassGroup)
+
+                    '-- Reset assignments' closed status
+                    For Each objAsmt As ClassAssignment In objClassGroup.Assignments
+                        objAsmt.ClosedFirstTry = False
+                        objAsmt.ClosedSecondTry = False
+                        objAsmt.ClosedThirdTry = False
+                        objAsmt.ID = Guid.NewGuid().ToString()
+                    Next
+                    For Each objAsmt As ClassAssignmentBTEC In objClassGroup.AssignmentsBTEC
+                        objAsmt.ClosedFirstTry = False
+                        objAsmt.ClosedSecondTry = False
+                        objAsmt.ClosedThirdTry = False
+                        objAsmt.ID = Guid.NewGuid().ToString()
+                    Next
+
+                Case Else
+                    MessageBox.Show("There is no module on the clipboard.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End Select
+            LoadClassGroups()
+        Catch ex As Exception
+            MessageBox.Show("There was an error: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub GenerateRandomAltNumbersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerateRandomAltNumbersToolStripMenuItem.Click
+        Dim rnd As New Random
+
+        Dim objClassToUse As SchoolClass
+        Dim objClass As SchoolClass = GetSelectedClass()
+        If ClassIsCombinedView(objClass) Then
+            Dim boolSetAlready As Boolean
+            For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
+                If Not boolSetAlready Then
+                    Dim grp As New ClassGroup(Nothing)
+                    grp.UseNickname = GetSelectedClassGroup.UseNickname
+                    objClassToUse = New SchoolClass(grp)
+                    objClassToUse.Name = objClass.ClassGroup.Name & " (combined view)" '-- helpful for logging 
+                    objClassToUse.Students.AddRange(objCls.Students)
+                    boolSetAlready = True
+                Else
+                    objClassToUse.Students.AddRange(objCls.Students)
+                End If
+            Next
+        Else
+            objClassToUse = objClass
+        End If
+
+        Dim dict As New Dictionary(Of Integer, Object)
+        Dim intRandom, intMin, intMax As Integer
+        intMax = objClassToUse.Students.Count + 1 '-- max never gets generated
+        intMin = 1
+
+        For Each stud As Student In objClassToUse.Students
+            intRandom = rnd.Next(intMin, intMax)
+            Do Until Not dict.ContainsKey(intRandom)
+                Application.DoEvents() '-- kill time until we find a number that has not been used
+                intRandom = rnd.Next(intMin, intMax)
+            Loop
+            dict.Add(intRandom, Nothing)
+            stud.AltNumber = intRandom
+        Next
+
+        LoadStudents()
     End Sub
 End Class

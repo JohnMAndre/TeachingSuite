@@ -2039,6 +2039,18 @@ Public Class SchoolClass
 
         Return xClassElement
     End Function
+    Public Sub PurgeAllStudents()
+        Dim lst As New List(Of Student)
+        For Each stud As Student In Me.Students
+            lst.Add(stud)
+        Next
+
+        For Each stud As Student In lst
+            Me.Students.Remove(stud)
+        Next
+
+        lst.Clear()
+    End Sub
 End Class
 Public Interface IStudentAssignment
     Property OverallComments As String
