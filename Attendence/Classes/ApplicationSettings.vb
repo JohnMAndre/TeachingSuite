@@ -269,15 +269,6 @@ Public Class ApplicationSettings
                     _mainFormStudentListViewStatePrivate = String.Empty
                 End If
 
-                'xElement = xDoc.SelectSingleNode("//MainFormStudentListViewStateAlt")
-                'If xElement IsNot Nothing Then
-                '    '-- Does not matter the details of the element, if it is there then 
-                '    '   we consider premium enabled
-                '    PremiumFeaturesEnabled = True
-                'Else
-                '    PremiumFeaturesEnabled = False
-                'End If
-
                 '-- 3 April 2016: Changed to make it completely free for everyone
                 PremiumFeaturesEnabled = True
 
@@ -505,6 +496,7 @@ Public Class ApplicationSettings
                 End If
 
                 LoadAutoTexts(xDoc)
+                LoadQuickFeedbacks(xDoc)
             Else
                 '-- Load up default values
                 LastSemesterFile = String.Empty
@@ -619,10 +611,6 @@ Public Class ApplicationSettings
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentMarkingWarning1", AssignmentMarkingWarning1.ToString()))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AssignmentMarkingWarning2", AssignmentMarkingWarning2.ToString()))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MainFormStudentListViewState", _mainFormStudentListViewStatePrivate))
-            If PremiumFeaturesEnabled Then
-                '-- If this node is present at all we consider premium features enabled
-                xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "MainFormStudentListViewStateAlt", _mainFormStudentListViewStatePrivate))
-            End If
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendanceFormStudentListViewState", _attendanceFormStudentListViewStatePrivate))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendancePublicFormStudentListViewState", _attendancePublicFormStudentListViewStatePrivate))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PassResultsText", PassResultsText))
@@ -661,6 +649,7 @@ Public Class ApplicationSettings
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
+            xDoc.DocumentElement.AppendChild(GetQuickFeedbacksSettingsNode(xDoc))
 
 
             xDoc.Save(GetSettingsFilename())
@@ -726,7 +715,28 @@ Public Class ApplicationSettings
 
         Return root
     End Function
+    Private Sub LoadQuickFeedbacks(xDoc As Xml.XmlDocument)
+        Dim xList As Xml.XmlNodeList = xDoc.SelectNodes("//QuickFeedback")
+        Dim item As New QuickFeedback
+        For Each xElement As Xml.XmlElement In xList
+            item = New QuickFeedback
+            item.Text = xElement.InnerText
 
+            QuickFeedbacks.Add(item)
+        Next
+    End Sub
+    Private Function GetQuickFeedbacksSettingsNode(xDoc As Xml.XmlDocument) As Xml.XmlElement
+        Dim root As Xml.XmlElement = xDoc.CreateElement("QuickFeedbacks")
+        Dim xElement As Xml.XmlElement
+        For Each item As QuickFeedback In Me.QuickFeedbacks
+            xElement = xDoc.CreateElement("QuickFeedback")
+            xElement.InnerText = item.Text
+
+            root.AppendChild(xElement)
+        Next
+
+        Return root
+    End Function
 #Region " Public Properties "
     Public Property AttendanceMessage As String '-- Displays while taking attendance
     Public Property UserFullName As String '-- name of person doing marking, to keep track at the assignment-level
@@ -831,5 +841,7 @@ Public Class ApplicationSettings
     Public Property NoSubmitFeedback As String
     Public Property AssignmentNotSubmittedDefaultOutcomeComment As String
     Public Property LoggingThreshold As Integer
+    Public Property QuickFeedbacks As New List(Of QuickFeedback)
+
 #End Region
 End Class

@@ -1,4 +1,4 @@
-﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+﻿'Copyright 2011-2022 John M Andre (John At JohnMAndre dot COM)
 
 'This file Is part of Teaching Suite.
 
@@ -20,6 +20,7 @@ Public Class GroupPresentationAssessment
     Private m_lstStudents As List(Of Student)
     Private m_asmt As ClassAssignment
     Private m_try As Semester.MarkingTry
+    Private m_frmQuickFeedback As GroupPresentationQuickFeedback
 
     Public Sub New(studentList As List(Of Student), asmt As ClassAssignment, attempt As Semester.MarkingTry)
 
@@ -30,6 +31,11 @@ Public Class GroupPresentationAssessment
         m_asmt = asmt
         m_try = attempt
 
+        m_frmQuickFeedback = New GroupPresentationQuickFeedback()
+        m_frmQuickFeedback.Location = Me.Location
+        m_frmQuickFeedback.Height = Me.Height * 0.9
+        m_frmQuickFeedback.Width = Me.Width * 0.9
+        Application.DoEvents()
     End Sub
     Public Sub LoadStudent(stud As Student, asmt As ClassAssignment, attempt As Semester.MarkingTry, controlSize As Size)
         Dim ctl As New IndividualMarkInGroupPresentation()
@@ -218,5 +224,21 @@ Public Class GroupPresentationAssessment
 
     Private Sub btnReloadMissing_Click(sender As Object, e As EventArgs) Handles btnReloadMissing.Click
         ReloadClosedStudents()
+    End Sub
+
+    Private Sub GroupPresentationAssessment_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        m_frmQuickFeedback.Close()
+    End Sub
+
+    Private Sub btnQuickFeedback_Click(sender As Object, e As EventArgs) Handles btnQuickFeedback.Click
+        If m_frmQuickFeedback.Visible Then
+            m_frmQuickFeedback.Hide()
+        Else
+            m_frmQuickFeedback.Location = Me.Location
+            m_frmQuickFeedback.Height = Me.Height * 0.9
+            m_frmQuickFeedback.Width = Me.Width * 0.9
+            Application.DoEvents()
+            m_frmQuickFeedback.Show()
+        End If
     End Sub
 End Class

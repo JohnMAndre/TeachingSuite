@@ -31,6 +31,7 @@ Partial Class GroupPresentationAssessment
         Me.btnSaveAllKeepOpen = New System.Windows.Forms.Button()
         Me.picMoreInfo = New System.Windows.Forms.PictureBox()
         Me.btnReloadMissing = New System.Windows.Forms.Button()
+        Me.btnQuickFeedback = New System.Windows.Forms.Button()
         CType(Me.picMoreInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -43,13 +44,13 @@ Partial Class GroupPresentationAssessment
         Me.FlowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 2)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(717, 365)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(694, 365)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'btnSave
         '
         Me.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSave.Location = New System.Drawing.Point(246, 368)
+        Me.btnSave.Location = New System.Drawing.Point(235, 368)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 26)
         Me.btnSave.TabIndex = 43
@@ -62,7 +63,7 @@ Partial Class GroupPresentationAssessment
         Me.lblTimer.AutoSize = True
         Me.lblTimer.Location = New System.Drawing.Point(12, 376)
         Me.lblTimer.Name = "lblTimer"
-        Me.lblTimer.Size = New System.Drawing.Size(40, 16)
+        Me.lblTimer.Size = New System.Drawing.Size(39, 16)
         Me.lblTimer.TabIndex = 44
         Me.lblTimer.Text = "00:00"
         '
@@ -74,7 +75,7 @@ Partial Class GroupPresentationAssessment
         'btnSaveAllKeepOpen
         '
         Me.btnSaveAllKeepOpen.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(436, 368)
+        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(425, 368)
         Me.btnSaveAllKeepOpen.Name = "btnSaveAllKeepOpen"
         Me.btnSaveAllKeepOpen.Size = New System.Drawing.Size(167, 26)
         Me.btnSaveAllKeepOpen.TabIndex = 45
@@ -85,7 +86,7 @@ Partial Class GroupPresentationAssessment
         '
         Me.picMoreInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picMoreInfo.Image = Global.Teaching.My.Resources.Resources.info_32
-        Me.picMoreInfo.Location = New System.Drawing.Point(687, 369)
+        Me.picMoreInfo.Location = New System.Drawing.Point(664, 369)
         Me.picMoreInfo.Name = "picMoreInfo"
         Me.picMoreInfo.Size = New System.Drawing.Size(30, 25)
         Me.picMoreInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -102,11 +103,22 @@ Partial Class GroupPresentationAssessment
         Me.btnReloadMissing.Text = "&Reload"
         Me.btnReloadMissing.UseVisualStyleBackColor = True
         '
+        'btnQuickFeedback
+        '
+        Me.btnQuickFeedback.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnQuickFeedback.Location = New System.Drawing.Point(616, 368)
+        Me.btnQuickFeedback.Name = "btnQuickFeedback"
+        Me.btnQuickFeedback.Size = New System.Drawing.Size(42, 26)
+        Me.btnQuickFeedback.TabIndex = 48
+        Me.btnQuickFeedback.Text = "Q&F"
+        Me.btnQuickFeedback.UseVisualStyleBackColor = True
+        '
         'GroupPresentationAssessment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(719, 396)
+        Me.ClientSize = New System.Drawing.Size(696, 396)
+        Me.Controls.Add(Me.btnQuickFeedback)
         Me.Controls.Add(Me.picMoreInfo)
         Me.Controls.Add(Me.btnSaveAllKeepOpen)
         Me.Controls.Add(Me.lblTimer)
@@ -131,4 +143,5 @@ Partial Class GroupPresentationAssessment
     Friend WithEvents btnSaveAllKeepOpen As System.Windows.Forms.Button
     Friend WithEvents picMoreInfo As PictureBox
     Friend WithEvents btnReloadMissing As Button
+    Friend WithEvents btnQuickFeedback As Button
 End Class

@@ -4808,3 +4808,6 @@ Public Class EmailRecipient
 End Class
 
 
+Public Class QuickFeedback
+    Public Property Text As String
+End Class
