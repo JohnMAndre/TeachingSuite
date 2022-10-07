@@ -59,6 +59,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.SkipAnyAssignmentWhichAlreadyExistsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteSelectedAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteemptyAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportreworkForAllExistingAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManagableColumnSizesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -121,7 +122,10 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.ImproveRW = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DeleteemptyAssignmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllWithoutOverallRWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllWithoutImprovementRWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllWithoutOverallImprovementRWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -134,7 +138,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionToolStripMenuItem, Me.ViewToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ActionToolStripMenuItem, Me.ViewToolStripMenuItem, Me.RemoveToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -198,6 +202,12 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DeleteSelectedAssignmentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
         Me.DeleteSelectedAssignmentsToolStripMenuItem.Text = "&Delete selected assignments"
+        '
+        'DeleteemptyAssignmentsToolStripMenuItem
+        '
+        Me.DeleteemptyAssignmentsToolStripMenuItem.Name = "DeleteemptyAssignmentsToolStripMenuItem"
+        Me.DeleteemptyAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.DeleteemptyAssignmentsToolStripMenuItem.Text = "Delete &empty assignments"
         '
         'ImportreworkForAllExistingAssignmentsToolStripMenuItem
         '
@@ -320,7 +330,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.llblBrowseForSemesterFile.AutoSize = True
         Me.llblBrowseForSemesterFile.Location = New System.Drawing.Point(9, 7)
         Me.llblBrowseForSemesterFile.Name = "llblBrowseForSemesterFile"
-        Me.llblBrowseForSemesterFile.Size = New System.Drawing.Size(88, 16)
+        Me.llblBrowseForSemesterFile.Size = New System.Drawing.Size(87, 16)
         Me.llblBrowseForSemesterFile.TabIndex = 6
         Me.llblBrowseForSemesterFile.TabStop = True
         Me.llblBrowseForSemesterFile.Text = "Semester file:"
@@ -534,9 +544,9 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.chkMarkImportedAsProcessed.AutoSize = True
         Me.chkMarkImportedAsProcessed.Checked = True
         Me.chkMarkImportedAsProcessed.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkMarkImportedAsProcessed.Location = New System.Drawing.Point(804, 9)
+        Me.chkMarkImportedAsProcessed.Location = New System.Drawing.Point(805, 9)
         Me.chkMarkImportedAsProcessed.Name = "chkMarkImportedAsProcessed"
-        Me.chkMarkImportedAsProcessed.Size = New System.Drawing.Size(122, 20)
+        Me.chkMarkImportedAsProcessed.Size = New System.Drawing.Size(121, 20)
         Me.chkMarkImportedAsProcessed.TabIndex = 12
         Me.chkMarkImportedAsProcessed.Text = "&Mark Processed"
         Me.chkMarkImportedAsProcessed.UseVisualStyleBackColor = True
@@ -546,7 +556,7 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(103, 16)
+        Me.Label1.Size = New System.Drawing.Size(102, 16)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Override Marker:"
         '
@@ -745,11 +755,30 @@ Partial Class ImportMarkingFromOtherSemesterFile
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         Me.DataGridViewTextBoxColumn15.ReadOnly = True
         '
-        'DeleteemptyAssignmentsToolStripMenuItem
+        'RemoveToolStripMenuItem
         '
-        Me.DeleteemptyAssignmentsToolStripMenuItem.Name = "DeleteemptyAssignmentsToolStripMenuItem"
-        Me.DeleteemptyAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
-        Me.DeleteemptyAssignmentsToolStripMenuItem.Text = "Delete &empty assignments"
+        Me.RemoveToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllWithoutOverallRWToolStripMenuItem, Me.AllWithoutImprovementRWToolStripMenuItem, Me.AllWithoutOverallImprovementRWToolStripMenuItem})
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
+        Me.RemoveToolStripMenuItem.Text = "&Remove"
+        '
+        'AllWithoutOverallRWToolStripMenuItem
+        '
+        Me.AllWithoutOverallRWToolStripMenuItem.Name = "AllWithoutOverallRWToolStripMenuItem"
+        Me.AllWithoutOverallRWToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.AllWithoutOverallRWToolStripMenuItem.Text = "All without &OverallRW"
+        '
+        'AllWithoutImprovementRWToolStripMenuItem
+        '
+        Me.AllWithoutImprovementRWToolStripMenuItem.Name = "AllWithoutImprovementRWToolStripMenuItem"
+        Me.AllWithoutImprovementRWToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.AllWithoutImprovementRWToolStripMenuItem.Text = "All without &ImproveRW"
+        '
+        'AllWithoutOverallImprovementRWToolStripMenuItem
+        '
+        Me.AllWithoutOverallImprovementRWToolStripMenuItem.Name = "AllWithoutOverallImprovementRWToolStripMenuItem"
+        Me.AllWithoutOverallImprovementRWToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.AllWithoutOverallImprovementRWToolStripMenuItem.Text = "&All without Overall && Improve RW"
         '
         'ImportMarkingFromOtherSemesterFile
         '
@@ -856,4 +885,8 @@ Partial Class ImportMarkingFromOtherSemesterFile
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ManagableColumnSizesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteemptyAssignmentsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RemoveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AllWithoutOverallRWToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AllWithoutImprovementRWToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AllWithoutOverallImprovementRWToolStripMenuItem As ToolStripMenuItem
 End Class

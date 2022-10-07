@@ -653,7 +653,7 @@ Partial Class StudentAssignmentDetails
         Me.llblFirstAttemptText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.llblFirstAttemptText.Location = New System.Drawing.Point(0, 0)
         Me.llblFirstAttemptText.Name = "llblFirstAttemptText"
-        Me.llblFirstAttemptText.Size = New System.Drawing.Size(82, 16)
+        Me.llblFirstAttemptText.Size = New System.Drawing.Size(81, 16)
         Me.llblFirstAttemptText.TabIndex = 143
         Me.llblFirstAttemptText.TabStop = True
         Me.llblFirstAttemptText.Text = "First attempt"
@@ -686,7 +686,7 @@ Partial Class StudentAssignmentDetails
         Me.llblReworkText.Font = New System.Drawing.Font("Arial", 9.75!)
         Me.llblReworkText.Location = New System.Drawing.Point(0, 0)
         Me.llblReworkText.Name = "llblReworkText"
-        Me.llblReworkText.Size = New System.Drawing.Size(51, 16)
+        Me.llblReworkText.Size = New System.Drawing.Size(50, 16)
         Me.llblReworkText.TabIndex = 0
         Me.llblReworkText.TabStop = True
         Me.llblReworkText.Text = "Rework"

@@ -15,7 +15,7 @@
 'You should have received a copy Of the GNU General Public License
 'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
 Public Class Attendance2Form
-
+    Private rnd As New Random
     Private Class StudentAttendanceData
         Public Sub New(student As Student)
             Me.Student = student
@@ -549,6 +549,10 @@ Public Class Attendance2Form
             HideTimer()
         End If
     End Sub
+    Private Function GetRandomColor() As Color
+        Return Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255))
+    End Function
+
 
     Private Delegate Sub DratTimeCallback(g As Graphics)
     Private Sub DrawTime(g As Graphics)
@@ -572,6 +576,7 @@ Public Class Attendance2Form
             g.DrawString(strText, m_fontTimer, brush, New PointF(1, 1))
 
             If MessageToolStripMenuItem.Checked Then
+                brush = New SolidBrush(GetRandomColor)
                 g.DrawString(AppSettings.AttendanceMessage, m_fontMessage, brush, m_ptMessage)
             End If
         End If

@@ -262,31 +262,66 @@ Public Class IndividualMarkInGroupPresentation
     Private Function GetImprovementNotes(includePerformanceLevel As Boolean) As String
         Try
             '-- Generate based on checked items in DGV
-            Dim strReturn As String = String.Empty
+            Dim strReturnGood As String = String.Empty
+            Dim strReturnBad As String = String.Empty
+            Dim boolIncludeGood, boolIncludeBad As Boolean
             For Each item As StudentImprovementItem In m_improvementItems
                 If item.Included Then
-                    strReturn &= "* " & item.BaseImprovementItem.Description
                     item.IncludeToday() '-- for tracking
                     If includePerformanceLevel Then
-                        strReturn &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
                         Select Case item.PerformanceLevel
                             Case 1
-                                strReturn &= "unacceptable"
+                                strReturnBad &= "* " & item.BaseImprovementItem.Description
+                                strReturnBad &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                                strReturnBad &= "unacceptable"
+                                strReturnBad &= ")" & Environment.NewLine & Environment.NewLine
+                                boolIncludeBad = True
                             Case 2
-                                strReturn &= "very weak, often incorrect"
+                                strReturnBad &= "* " & item.BaseImprovementItem.Description
+                                strReturnBad &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                                strReturnBad &= "very weak, often incorrect"
+                                strReturnBad &= ")" & Environment.NewLine & Environment.NewLine
+                                boolIncludeBad = True
                             Case 3
-                                strReturn &= "OK, but inconsistent"
+                                strReturnBad &= "* " & item.BaseImprovementItem.Description
+                                strReturnBad &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                                strReturnBad &= "OK, but inconsistent"
+                                strReturnBad &= ")" & Environment.NewLine & Environment.NewLine
+                                boolIncludeBad = True
                             Case 4
-                                strReturn &= "Good, but can improve more"
+                                strReturnGood &= "* " & item.BaseImprovementItem.Description
+                                strReturnGood &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                                strReturnGood &= "Good, but can improve more"
+                                strReturnGood &= ")" & Environment.NewLine & Environment.NewLine
+                                boolIncludeGood = True
                             Case 5
-                                strReturn &= "Already great"
+                                strReturnGood &= "* " & item.BaseImprovementItem.Description
+                                strReturnGood &= " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
+                                strReturnGood &= "Already great"
+                                strReturnGood &= ")" & Environment.NewLine & Environment.NewLine
+                                boolIncludeGood = True
                         End Select
-                        strReturn &= ")" & Environment.NewLine & Environment.NewLine
                     End If
                 End If
             Next
+            Dim strReturn As String = String.Empty
+            If boolIncludeGood Then
+                strReturn &= "Some points where you were strong:"
+                strReturn &= Environment.NewLine
+                strReturn &= strReturnGood
+            End If
 
-            Return strReturn.Trim()
+            If boolIncludeGood AndAlso boolIncludeBad Then
+                strReturn &= Environment.NewLine
+            End If
+
+            If boolIncludeBad Then
+                    strReturn &= "Some points where you can improve:"
+                    strReturn &= Environment.NewLine
+                    strReturn &= strReturnBad
+                End If
+
+                Return strReturn.Trim()
         Catch ex As Exception
             MessageBox.Show("There was an error with the improvement item list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

@@ -30,6 +30,7 @@ Partial Class ExportBTECGradesForMoodle
         Me.chkIncludeOverallFeedback = New System.Windows.Forms.CheckBox()
         Me.chkIncludeImprovementFeedback = New System.Windows.Forms.CheckBox()
         Me.chkIncludeOutcomeFeedback = New System.Windows.Forms.CheckBox()
+        Me.chkIncludeHTMLBreaks = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'lstAssignments
@@ -126,11 +127,25 @@ Partial Class ExportBTECGradesForMoodle
         Me.chkIncludeOutcomeFeedback.Text = "Include detailed outcome feedback"
         Me.chkIncludeOutcomeFeedback.UseVisualStyleBackColor = True
         '
+        'chkIncludeHTMLBreaks
+        '
+        Me.chkIncludeHTMLBreaks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkIncludeHTMLBreaks.AutoSize = True
+        Me.chkIncludeHTMLBreaks.Checked = True
+        Me.chkIncludeHTMLBreaks.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeHTMLBreaks.Location = New System.Drawing.Point(303, 222)
+        Me.chkIncludeHTMLBreaks.Name = "chkIncludeHTMLBreaks"
+        Me.chkIncludeHTMLBreaks.Size = New System.Drawing.Size(111, 22)
+        Me.chkIncludeHTMLBreaks.TabIndex = 21
+        Me.chkIncludeHTMLBreaks.Text = "Include <br>"
+        Me.chkIncludeHTMLBreaks.UseVisualStyleBackColor = True
+        '
         'ExportBTECGradesForMoodle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(426, 300)
+        Me.Controls.Add(Me.chkIncludeHTMLBreaks)
         Me.Controls.Add(Me.chkIncludeOutcomeFeedback)
         Me.Controls.Add(Me.chkIncludeRework)
         Me.Controls.Add(Me.chkIncludeOverallFeedback)
@@ -155,4 +170,5 @@ Partial Class ExportBTECGradesForMoodle
     Friend WithEvents chkIncludeOverallFeedback As CheckBox
     Friend WithEvents chkIncludeImprovementFeedback As CheckBox
     Friend WithEvents chkIncludeOutcomeFeedback As CheckBox
+    Friend WithEvents chkIncludeHTMLBreaks As CheckBox
 End Class

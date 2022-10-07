@@ -96,7 +96,7 @@ Public Class ExportBTECGradesForMoodle
                             '-- Need to remove end of line chars
                             'strLineToWrite &= vbTab & "" & stAsmt.ImprovementComments.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
 
-                            strLineToWrite &= GetFeedback(stAsmt, chkIncludeOverallFeedback.Checked, chkIncludeImprovementFeedback.Checked, chkIncludeRework.Checked)
+                            strLineToWrite &= GetFeedback(stAsmt, chkIncludeOverallFeedback.Checked, chkIncludeImprovementFeedback.Checked, chkIncludeRework.Checked, chkIncludeHTMLBreaks.Checked)
 
                             intAsmtCounter += 1
                         End If
@@ -122,7 +122,7 @@ Public Class ExportBTECGradesForMoodle
 
 
     End Sub
-    Private Function GetFeedback(studAssignment As StudentAssignmentBTEC, includeOverall As Boolean, includeImprovement As Boolean, includeRework As Boolean) As String
+    Private Function GetFeedback(studAssignment As StudentAssignmentBTEC, includeOverall As Boolean, includeImprovement As Boolean, includeRework As Boolean, includeHTMLBreaks As Boolean) As String
         Dim strFeedback As String = String.Empty
         Dim strReturn As String
 
@@ -137,8 +137,14 @@ Public Class ExportBTECGradesForMoodle
         If chkIncludeImprovementFeedback.Checked Then
             For Each results As OutcomeResult In studAssignment.Outcomes
                 strFeedback &= "Outcome " & results.BaseOutcome.Name & " (first attempt): " & results.FirstTryStatus.ToString() & " (" & results.FirstTryComments & ")" & "; "
+                If includeHTMLBreaks Then
+                    strFeedback &= " <br> "
+                End If
                 If includeRework Then
-                    strFeedback &= "Outcome " & results.BaseOutcome.Name & " (second attempt): " & results.SecondTryStatus & " (" & results.SecondTryComments & ")" & "; "
+                    strFeedback &= "Outcome " & results.BaseOutcome.Name & " (second attempt): " & results.SecondTryStatus.ToString() & " (" & results.SecondTryComments & ")" & "; "
+                    If includeHTMLBreaks Then
+                        strFeedback &= " <br> "
+                    End If
                 End If
             Next
         End If
@@ -147,8 +153,14 @@ Public Class ExportBTECGradesForMoodle
         If includeImprovement Then
             '-- Both overall and improvement
             strFeedback &= "First attempt improvement: " & studAssignment.ImprovementComments & "; "
+            If includeHTMLBreaks Then
+                strFeedback &= " <br> "
+            End If
             If includeRework Then
                 strFeedback &= "Second attempt improvement: " & studAssignment.ImprovementCommentsRework & "; "
+                If includeHTMLBreaks Then
+                    strFeedback &= " <br> "
+                End If
             End If
         End If
 

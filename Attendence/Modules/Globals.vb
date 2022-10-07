@@ -508,6 +508,5 @@ Module Globals
 
         Return strReturn
     End Function
-
 End Module
 

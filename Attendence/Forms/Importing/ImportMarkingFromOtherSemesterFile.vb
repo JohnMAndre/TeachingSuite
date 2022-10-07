@@ -1245,6 +1245,12 @@ Public Class ImportMarkingFromOtherSemesterFile
             m_lstCurrentListOfStudents.Remove(objData)
         Next
 
+        ReloadGrid(asmt)
+
+        lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
+
+    End Sub
+    Private Sub ReloadGrid(asmt As IClassAssignment)
         '-- Reload the grid
         If asmt.AssignmentType = AssignmentType.Normal Then
             dgvStudentsNormal.DataSource = Nothing
@@ -1253,9 +1259,81 @@ Public Class ImportMarkingFromOtherSemesterFile
             dgvStudentsBTEC.DataSource = Nothing
             dgvStudentsBTEC.DataSource = m_lstCurrentListOfStudents
         End If
+        ShowStudentCount()
+    End Sub
 
+    Private Sub AllWithoutOverallRWToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllWithoutOverallRWToolStripMenuItem.Click
+        Try
+            '-- Queue them up
+            Dim lstToRemove As New List(Of ReportData)
+            For Each data As ReportData In m_lstCurrentListOfStudents
+                If data.Overall2 Is Nothing OrElse data.Overall2.Trim().Length = 0 Then
+                    lstToRemove.Add(data)
+                End If
+            Next
 
-        lblStudentCount.Text = "Students: " & m_lstCurrentListOfStudents.Count.ToString("#,##0")
+            '-- Take them out
+            If lstToRemove.Count > 0 Then
+                For Each data As ReportData In lstToRemove
+                    m_lstCurrentListOfStudents.Remove(data)
+                Next
+            End If
 
+            Dim asmt As IClassAssignment = GetSelectedAssignment()
+            ReloadGrid(asmt)
+
+        Catch ex As Exception
+            MessageBox.Show("There was a problem: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub AllWithoutImprovementRWToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllWithoutImprovementRWToolStripMenuItem.Click
+        Try
+            '-- Queue them up
+            Dim lstToRemove As New List(Of ReportData)
+            For Each data As ReportData In m_lstCurrentListOfStudents
+                If data.Improvement2 Is Nothing OrElse data.Improvement2.Trim().Length = 0 Then
+                    lstToRemove.Add(data)
+                End If
+            Next
+
+            '-- Take them out
+            If lstToRemove.Count > 0 Then
+                For Each data As ReportData In lstToRemove
+                    m_lstCurrentListOfStudents.Remove(data)
+                Next
+            End If
+
+            Dim asmt As IClassAssignment = GetSelectedAssignment()
+            ReloadGrid(asmt)
+        Catch ex As Exception
+            MessageBox.Show("There was a problem: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub AllWithoutOverallImprovementRWToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllWithoutOverallImprovementRWToolStripMenuItem.Click
+        Try
+            '-- Queue them up, must satisfy both criteria
+            Dim lstToRemove As New List(Of ReportData)
+            For Each data As ReportData In m_lstCurrentListOfStudents
+                If data.Overall2 Is Nothing OrElse data.Overall2.Trim().Length = 0 Then
+                    If data.Improvement2 Is Nothing OrElse data.Improvement2.Trim().Length = 0 Then
+                        lstToRemove.Add(data)
+                    End If
+                End If
+            Next
+
+            '-- Take them out
+            If lstToRemove.Count > 0 Then
+                For Each data As ReportData In lstToRemove
+                    m_lstCurrentListOfStudents.Remove(data)
+                Next
+            End If
+
+            Dim asmt As IClassAssignment = GetSelectedAssignment()
+            ReloadGrid(asmt)
+        Catch ex As Exception
+            MessageBox.Show("There was a problem: " & ex.Message)
+        End Try
     End Sub
 End Class

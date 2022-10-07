@@ -29,6 +29,7 @@ Partial Class ExportNormalGradesForMoodle
         Me.chkIncludeImprovementFeedback = New System.Windows.Forms.CheckBox()
         Me.chkIncludeOverallFeedback = New System.Windows.Forms.CheckBox()
         Me.chkIncludeRework = New System.Windows.Forms.CheckBox()
+        Me.chkIncludeHTMLBreaks = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'lblStatus
@@ -112,11 +113,25 @@ Partial Class ExportNormalGradesForMoodle
         Me.chkIncludeRework.Text = "Include Rework (2nd try)"
         Me.chkIncludeRework.UseVisualStyleBackColor = True
         '
+        'chkIncludeHTMLBreaks
+        '
+        Me.chkIncludeHTMLBreaks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkIncludeHTMLBreaks.AutoSize = True
+        Me.chkIncludeHTMLBreaks.Checked = True
+        Me.chkIncludeHTMLBreaks.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkIncludeHTMLBreaks.Location = New System.Drawing.Point(304, 238)
+        Me.chkIncludeHTMLBreaks.Name = "chkIncludeHTMLBreaks"
+        Me.chkIncludeHTMLBreaks.Size = New System.Drawing.Size(111, 22)
+        Me.chkIncludeHTMLBreaks.TabIndex = 22
+        Me.chkIncludeHTMLBreaks.Text = "Include <br>"
+        Me.chkIncludeHTMLBreaks.UseVisualStyleBackColor = True
+        '
         'ExportNormalGradesForMoodle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(433, 306)
+        Me.Controls.Add(Me.chkIncludeHTMLBreaks)
         Me.Controls.Add(Me.chkIncludeRework)
         Me.Controls.Add(Me.chkIncludeOverallFeedback)
         Me.Controls.Add(Me.chkIncludeImprovementFeedback)
@@ -140,4 +155,5 @@ Partial Class ExportNormalGradesForMoodle
     Friend WithEvents chkIncludeImprovementFeedback As CheckBox
     Friend WithEvents chkIncludeOverallFeedback As CheckBox
     Friend WithEvents chkIncludeRework As CheckBox
+    Friend WithEvents chkIncludeHTMLBreaks As CheckBox
 End Class

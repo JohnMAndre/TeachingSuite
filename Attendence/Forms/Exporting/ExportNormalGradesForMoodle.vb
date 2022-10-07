@@ -97,7 +97,7 @@ Public Class ExportNormalGradesForMoodle
                                 strLineToWrite &= vbTab & stAsmt.FirstTryPoints
                             End If
 
-                            strLineToWrite &= GetFeedback(stAsmt, chkIncludeOverallFeedback.Checked, chkIncludeImprovementFeedback.Checked, chkIncludeRework.Checked)
+                            strLineToWrite &= GetFeedback(stAsmt, chkIncludeOverallFeedback.Checked, chkIncludeImprovementFeedback.Checked, chkIncludeRework.Checked, chkIncludeHTMLBreaks.Checked)
 
                             intAsmtCounter += 1
                         End If
@@ -124,26 +124,50 @@ Public Class ExportNormalGradesForMoodle
         lblStatus.Text = "OK!"
     End Sub
 
-    Private Function GetFeedback(studAssignment As StudentAssignment, includeOverall As Boolean, includeImprovement As Boolean, includeRework As Boolean) As String
+    Private Function GetFeedback(studAssignment As StudentAssignment, includeOverall As Boolean, includeImprovement As Boolean, includeRework As Boolean, includeHTMLBreaks As Boolean) As String
         Dim strReturn As String
         Dim strFeedback As String = String.Empty
 
         If includeOverall Then
-            strFeedback &= "First attempt overall: " & studAssignment.OverallComments & "; "
+            If includeHTMLBreaks Then
+                strFeedback &= "First attempt overall: " & studAssignment.OverallComments & "; "
+                strFeedback &= " <br> "
+            Else
+                strFeedback &= "First attempt overall: " & studAssignment.OverallComments & "; "
+            End If
             If includeRework Then
-                strFeedback &= "Second attempt overall: " & studAssignment.OverallCommentsRework & "; "
+                If includeHTMLBreaks Then
+                    strFeedback &= "Second attempt overall: " & studAssignment.OverallCommentsRework & "; "
+                    strFeedback &= " <br> "
+                Else
+                    strFeedback &= "Second attempt overall: " & studAssignment.OverallCommentsRework & "; "
+                End If
             End If
         End If
 
         If includeImprovement Then
             '-- Both overall and improvement
-            strFeedback &= "First attempt improvement: " & studAssignment.ImprovementComments & "; "
+            If includeHTMLBreaks Then
+                strFeedback &= "First attempt improvement: " & studAssignment.ImprovementComments & "; "
+                strFeedback &= " <br> "
+            Else
+                strFeedback &= "First attempt improvement: " & studAssignment.ImprovementComments & "; "
+            End If
             If includeRework Then
-                strFeedback &= "Second attempt improvement: " & studAssignment.ImprovementCommentsRework & "; "
+                If includeHTMLBreaks Then
+                    strFeedback &= "Second attempt improvement: " & studAssignment.ImprovementCommentsRework & "; "
+                    strFeedback &= " <br> "
+                Else
+                    strFeedback &= "Second attempt improvement: " & studAssignment.ImprovementCommentsRework & "; "
+                End If
             End If
         End If
 
-        strReturn = vbTab & "" & strFeedback.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbCr, "; ").Replace(vbLf, "; ") & "" '-- could have quote inside
+        If includeHTMLBreaks Then
+            strReturn = vbTab & "" & strFeedback.Replace("""", "'").Replace(vbCrLf, "<br>").Replace(vbLf, "<br>").Replace(vbCr, "<br>") & "" '-- could have quote inside
+        Else
+            strReturn = vbTab & "" & strFeedback.Replace("""", "'").Replace(vbCrLf, "; ").Replace(vbLf, "; ").Replace(vbCr, "; ") & "" '-- could have quote inside
+        End If
 
         Return strReturn
     End Function
