@@ -12,6 +12,9 @@
         '-- Singleton pattern
         If m_cache Is Nothing Then
             m_cache = New SemesterCache
+
+            '-- Use existing cached data
+            'm_cache.LoadCacheData() '-- Need to sort out if this is actually faster at run time (and it might blow through 1.5GB of ram
             m_cache.LoadData()
         End If
         Return m_cache
@@ -22,6 +25,22 @@
             Return m_semesters
         End Get
     End Property
+    Private Sub LoadCacheData()
+        '-- reload from file (for speed)
+        'Dim xMasterDoc As New Xml.XmlDocument()
+        'xMasterDoc = LoadXMLDataFromFile(GetCacheFilename())
+
+
+        'xDoc.DocumentElement.SetAttribute("LastCached", sem.LastCached.ToString(DATE_TIME_DETAILED_FORMAT_XML))
+
+
+        m_boolDirty = False
+    End Sub
+    Public Sub RecacheData()
+        '-- rebuild and save cache
+        m_cache.LoadData()
+        m_cache.SaveCache()
+    End Sub
     Public Sub SaveCache()
         '-- Save master cache back to FILENAME
         '   but only if the cache is dirty (flagged no load)
@@ -104,7 +123,7 @@
 
 
         ' This next logic does not work
-        '   because copy-and-pasting sem.datx will result in sem (copy).datx but the name of the semester will still be "sem"
+        '   because copy-and-pasting semester.datx will result in semester (copy).datx but the name of the semester will still be "sem"
         '   and the other logic in the app does not account for this, assuming that the filename is always the name of the semeter
         '   So, to clean things up, just manually delete the cache file periodically
         'For intCounter As Integer = 0 To m_semesters.Count - 1

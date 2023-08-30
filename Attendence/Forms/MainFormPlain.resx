@@ -126,6 +126,36 @@
   <metadata name="ctxmnuClassGroup.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
+  <metadata name="dgcDay.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcModule.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcClass.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcSession.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcTopic.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcLocation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcNotes.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcPrepped.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgcSent.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ctxmnuSchedule.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1002, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="llblEditAssignment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -141,7 +171,7 @@
   <data name="llblRemoveAssignment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAC7UlEQVQ4T2VT
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAC7UlEQVQ4T2VT
         S08TURTuon/BCA0JdEECIQQoArqwSoS2qIQAQY2CupAVRMGoCSzATTeuNFGXgpGdBk3YGI0JC03VokLC
         0Hc7fTAUSjszLVDH1u967lATwS85mTP3nu+8r+Ew/F6veSuZdKqK4pJTqWRma2tDzmRcUiLhFFZWzCWz
         /xEUBCMnbns92vLUBN53WrFgqcNCcx3ekf5jaoJtrQlaPBp1rrrdxhJtH2GPx5hJp+fDc7PsbVsDFh3t
@@ -160,7 +190,7 @@
   <data name="llblAddAssignment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACp0lEQVQ4T31T
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACp0lEQVQ4T31T
         3UtTYRzexf6CbqrbkUhdalctoixWgkkGmeBmgQQqCqlIHyp+dehLcn1NwpK8yEDRBYE5p7Rp7qOhW2ct
         l2W56bYz99nW5jo3T+97PI5m1AMPvPx+v+fhPb/3OZKdcC+7ZcEgx/yIxy3hWJgLR0NcLBaz+HzrjNPJ
         ysSxv+FgHdKNjSDjCnzh66fuYP/AOexSnxBIz/VTt8H63Pya18uYrCapKNsC+5GVxqJRbb99FLs1p3Bg
@@ -178,7 +208,7 @@
   <data name="llblRemoveClass.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAC7UlEQVQ4T2VT
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAC7UlEQVQ4T2VT
         S08TURTuon/BCA0JdEECIQQoArqwSoS2qIQAQY2CupAVRMGoCSzATTeuNFGXgpGdBk3YGI0JC03VokLC
         0Hc7fTAUSjszLVDH1u967lATwS85mTP3nu+8r+Ew/F6veSuZdKqK4pJTqWRma2tDzmRcUiLhFFZWzCWz
         /xEUBCMnbns92vLUBN53WrFgqcNCcx3ekf5jaoJtrQlaPBp1rrrdxhJtH2GPx5hJp+fDc7PsbVsDFh3t
@@ -197,7 +227,7 @@
   <data name="btnAddClass.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACp0lEQVQ4T31T
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACp0lEQVQ4T31T
         3UtTYRzexf6CbqrbkUhdalctoixWgkkGmeBmgQQqCqlIHyp+dehLcn1NwpK8yEDRBYE5p7Rp7qOhW2ct
         l2W56bYz99nW5jo3T+97PI5m1AMPvPx+v+fhPb/3OZKdcC+7ZcEgx/yIxy3hWJgLR0NcLBaz+HzrjNPJ
         ysSxv+FgHdKNjSDjCnzh66fuYP/AOexSnxBIz/VTt8H63Pya18uYrCapKNsC+5GVxqJRbb99FLs1p3Bg
@@ -226,7 +256,7 @@
   <data name="llblRemoveClassGroup.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAC7UlEQVQ4T2VT
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAC7UlEQVQ4T2VT
         S08TURTuon/BCA0JdEECIQQoArqwSoS2qIQAQY2CupAVRMGoCSzATTeuNFGXgpGdBk3YGI0JC03VokLC
         0Hc7fTAUSjszLVDH1u967lATwS85mTP3nu+8r+Ew/F6veSuZdKqK4pJTqWRma2tDzmRcUiLhFFZWzCWz
         /xEUBCMnbns92vLUBN53WrFgqcNCcx3ekf5jaoJtrQlaPBp1rrrdxhJtH2GPx5hJp+fDc7PsbVsDFh3t
@@ -245,7 +275,7 @@
   <data name="llblAddClassGroup.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACp0lEQVQ4T31T
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACp0lEQVQ4T31T
         3UtTYRzexf6CbqrbkUhdalctoixWgkkGmeBmgQQqCqlIHyp+dehLcn1NwpK8yEDRBYE5p7Rp7qOhW2ct
         l2W56bYz99nW5jo3T+97PI5m1AMPvPx+v+fhPb/3OZKdcC+7ZcEgx/yIxy3hWJgLR0NcLBaz+HzrjNPJ
         ysSxv+FgHdKNjSDjCnzh66fuYP/AOexSnxBIz/VTt8H63Pya18uYrCapKNsC+5GVxqJRbb99FLs1p3Bg
@@ -360,36 +390,6 @@
   </metadata>
   <metadata name="ctxmnuStudentGrid.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1143, 17</value>
-  </metadata>
-  <metadata name="dgcDay.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcModule.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcClass.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcSession.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcTopic.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcLocation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcNotes.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcPrepped.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dgcSent.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ctxmnuSchedule.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1002, 17</value>
   </metadata>
   <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

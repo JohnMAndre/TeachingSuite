@@ -94,6 +94,7 @@ Public Class OptionsForm
         End If
 
         AppSettings.AttendanceMessage = txtAttendanceMessage.Text
+        AppSettings.AttendanceMessageInterval = nudAttendanceMessageInterval.Value
 
         '-- Marking
         AppSettings.UserFullName = txtUserFullName.Text
@@ -209,6 +210,7 @@ Public Class OptionsForm
                 rdoAttendanceHighlightNothing.Checked = True
             End If
             txtAttendanceMessage.Text = AppSettings.AttendanceMessage
+            nudAttendanceMessageInterval.Value = AppSettings.AttendanceMessageInterval
 
 
             '-- Marking

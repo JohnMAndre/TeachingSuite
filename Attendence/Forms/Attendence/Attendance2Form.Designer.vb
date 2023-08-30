@@ -435,6 +435,7 @@ Partial Class Attendance2Form
         '
         'txtSessionDate
         '
+        Me.txtSessionDate.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSessionDate.Name = "txtSessionDate"
         Me.txtSessionDate.Size = New System.Drawing.Size(100, 23)
         Me.txtSessionDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -442,6 +443,7 @@ Partial Class Attendance2Form
         '
         'txtFilter
         '
+        Me.txtFilter.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtFilter.Name = "txtFilter"
         Me.txtFilter.Size = New System.Drawing.Size(100, 23)
         Me.txtFilter.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -449,6 +451,7 @@ Partial Class Attendance2Form
         '
         'txtStudentGroup
         '
+        Me.txtStudentGroup.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtStudentGroup.MaxLength = 2
         Me.txtStudentGroup.Name = "txtStudentGroup"
         Me.txtStudentGroup.Size = New System.Drawing.Size(100, 23)

@@ -23,34 +23,34 @@ Partial Class HistoricalStudentFinderPlain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle113 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle114 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle115 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle116 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle117 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle118 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle119 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle120 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle121 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle122 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle123 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle124 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle125 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle126 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle127 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle128 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle129 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle130 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle131 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle132 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle133 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle134 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle135 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle136 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle137 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle138 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle139 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle140 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.chkPartials = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -68,11 +68,6 @@ Partial Class HistoricalStudentFinderPlain
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnAddToClass = New System.Windows.Forms.Button()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.lblStudentsSearched = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.lblStudentsFound = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolAlt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -102,6 +97,11 @@ Partial Class HistoricalStudentFinderPlain
         Me.dcolOfficeHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolResearchQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dcolLastQuizScore = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblStudentsSearched = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.lblStudentsFound = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,7 +112,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.chkPartials.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkPartials.Location = New System.Drawing.Point(265, 113)
         Me.chkPartials.Name = "chkPartials"
-        Me.chkPartials.Size = New System.Drawing.Size(94, 20)
+        Me.chkPartials.Size = New System.Drawing.Size(93, 20)
         Me.chkPartials.TabIndex = 82
         Me.chkPartials.Text = "&Partials OK"
         Me.chkPartials.UseVisualStyleBackColor = True
@@ -122,7 +122,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(13, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 16)
+        Me.Label1.Size = New System.Drawing.Size(78, 16)
         Me.Label1.TabIndex = 83
         Me.Label1.Text = "Local name:"
         '
@@ -131,7 +131,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(13, 42)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(70, 16)
+        Me.Label2.Size = New System.Drawing.Size(69, 16)
         Me.Label2.TabIndex = 83
         Me.Label2.Text = "Nickname:"
         '
@@ -140,7 +140,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(12, 70)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 16)
+        Me.Label3.Size = New System.Drawing.Size(72, 16)
         Me.Label3.TabIndex = 83
         Me.Label3.Text = "Student ID:"
         '
@@ -149,7 +149,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(385, 70)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(97, 16)
+        Me.Label4.Size = New System.Drawing.Size(96, 16)
         Me.Label4.TabIndex = 84
         Me.Label4.Text = "Ext Student ID:"
         '
@@ -158,7 +158,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(386, 42)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(45, 16)
+        Me.Label5.Size = New System.Drawing.Size(44, 16)
         Me.Label5.TabIndex = 85
         Me.Label5.Text = "Email:"
         '
@@ -167,7 +167,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(386, 13)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 16)
+        Me.Label6.Size = New System.Drawing.Size(38, 16)
         Me.Label6.TabIndex = 86
         Me.Label6.Text = "Tags:"
         '
@@ -258,12 +258,275 @@ Partial Class HistoricalStudentFinderPlain
         Me.dgvStudents.Size = New System.Drawing.Size(791, 286)
         Me.dgvStudents.TabIndex = 92
         '
+        'dcolAdmin
+        '
+        Me.dcolAdmin.DataPropertyName = "AdminNumber"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
+        Me.dcolAdmin.HeaderText = "Admin"
+        Me.dcolAdmin.Name = "dcolAdmin"
+        Me.dcolAdmin.ReadOnly = True
+        '
+        'dcolAlt
+        '
+        Me.dcolAlt.DataPropertyName = "AltNumber"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dcolAlt.HeaderText = "Alt"
+        Me.dcolAlt.Name = "dcolAlt"
+        Me.dcolAlt.ReadOnly = True
+        Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dcolAlt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'dcolLocalName
+        '
+        Me.dcolLocalName.DataPropertyName = "LocalName"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dcolLocalName.HeaderText = "Name"
+        Me.dcolLocalName.Name = "dcolLocalName"
+        Me.dcolLocalName.ReadOnly = True
+        '
+        'dcolNickname
+        '
+        Me.dcolNickname.DataPropertyName = "Nickname"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle4
+        Me.dcolNickname.HeaderText = "Nickname"
+        Me.dcolNickname.Name = "dcolNickname"
+        Me.dcolNickname.ReadOnly = True
+        '
+        'dcolExtStudentID
+        '
+        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle5
+        Me.dcolExtStudentID.HeaderText = "ExtID"
+        Me.dcolExtStudentID.Name = "dcolExtStudentID"
+        Me.dcolExtStudentID.ReadOnly = True
+        '
+        'dcolStudentID
+        '
+        Me.dcolStudentID.DataPropertyName = "StudentID"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dcolStudentID.HeaderText = "StudentID"
+        Me.dcolStudentID.Name = "dcolStudentID"
+        Me.dcolStudentID.ReadOnly = True
+        '
+        'dcolAttendanceStatus
+        '
+        Me.dcolAttendanceStatus.DataPropertyName = "LatestAttendenceStatus"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dcolAttendanceStatus.HeaderText = "Status"
+        Me.dcolAttendanceStatus.Name = "dcolAttendanceStatus"
+        Me.dcolAttendanceStatus.ReadOnly = True
+        Me.dcolAttendanceStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'dcolTags
+        '
+        Me.dcolTags.DataPropertyName = "Tags"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle8
+        Me.dcolTags.HeaderText = "Tags"
+        Me.dcolTags.Name = "dcolTags"
+        Me.dcolTags.ReadOnly = True
+        '
+        'dcolTotalAbsences
+        '
+        Me.dcolTotalAbsences.DataPropertyName = "TotalAbsences"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle9
+        Me.dcolTotalAbsences.HeaderText = "Total"
+        Me.dcolTotalAbsences.Name = "dcolTotalAbsences"
+        Me.dcolTotalAbsences.ReadOnly = True
+        '
+        'dcolPresentationQuality
+        '
+        Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle10
+        Me.dcolPresentationQuality.HeaderText = "Pres"
+        Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
+        Me.dcolPresentationQuality.ReadOnly = True
+        '
+        'dcolStudentGroup
+        '
+        Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle11
+        Me.dcolStudentGroup.HeaderText = "Group"
+        Me.dcolStudentGroup.Name = "dcolStudentGroup"
+        Me.dcolStudentGroup.ReadOnly = True
+        '
+        'dcolStudentTeam
+        '
+        Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle12
+        Me.dcolStudentTeam.HeaderText = "Team"
+        Me.dcolStudentTeam.Name = "dcolStudentTeam"
+        Me.dcolStudentTeam.ReadOnly = True
+        '
+        'dcolWritingQuality
+        '
+        Me.dcolWritingQuality.DataPropertyName = "WritingQuality"
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle13
+        Me.dcolWritingQuality.HeaderText = "Write"
+        Me.dcolWritingQuality.Name = "dcolWritingQuality"
+        Me.dcolWritingQuality.ReadOnly = True
+        '
+        'dcolDateOfBirth
+        '
+        Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle14
+        Me.dcolDateOfBirth.HeaderText = "DoB"
+        Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
+        Me.dcolDateOfBirth.ReadOnly = True
+        '
+        'dcolAssignmentCount
+        '
+        Me.dcolAssignmentCount.DataPropertyName = "AssignmentCount"
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle15
+        Me.dcolAssignmentCount.HeaderText = "Asmt"
+        Me.dcolAssignmentCount.Name = "dcolAssignmentCount"
+        Me.dcolAssignmentCount.ReadOnly = True
+        '
+        'dcolProcessedAssignmentCount
+        '
+        Me.dcolProcessedAssignmentCount.DataPropertyName = "ProcessedAssignments"
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle16
+        Me.dcolProcessedAssignmentCount.HeaderText = "P.Asmt"
+        Me.dcolProcessedAssignmentCount.Name = "dcolProcessedAssignmentCount"
+        Me.dcolProcessedAssignmentCount.ReadOnly = True
+        '
+        'dcolCurrentAbsences
+        '
+        Me.dcolCurrentAbsences.DataPropertyName = "CurrentAbsences"
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle17
+        Me.dcolCurrentAbsences.HeaderText = "Abs"
+        Me.dcolCurrentAbsences.Name = "dcolCurrentAbsences"
+        Me.dcolCurrentAbsences.ReadOnly = True
+        '
+        'dcolHidden
+        '
+        Me.dcolHidden.DataPropertyName = "Hidden"
+        Me.dcolHidden.HeaderText = "Hid"
+        Me.dcolHidden.Name = "dcolHidden"
+        Me.dcolHidden.ReadOnly = True
+        '
+        'dcolMerit
+        '
+        Me.dcolMerit.DataPropertyName = "MeritPoints"
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle18
+        Me.dcolMerit.HeaderText = "Merit"
+        Me.dcolMerit.Name = "dcolMerit"
+        Me.dcolMerit.ReadOnly = True
+        '
+        'dcolEmail
+        '
+        Me.dcolEmail.DataPropertyName = "EmailAddress"
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle19
+        Me.dcolEmail.HeaderText = "Email"
+        Me.dcolEmail.Name = "dcolEmail"
+        Me.dcolEmail.ReadOnly = True
+        '
+        'dcolNameLatinLetters
+        '
+        Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle20
+        Me.dcolNameLatinLetters.HeaderText = "Standard"
+        Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
+        Me.dcolNameLatinLetters.ReadOnly = True
+        '
+        'dcolClass
+        '
+        Me.dcolClass.DataPropertyName = "SchoolClassName"
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle21
+        Me.dcolClass.HeaderText = "Class"
+        Me.dcolClass.Name = "dcolClass"
+        Me.dcolClass.ReadOnly = True
+        '
+        'dcolPlagiarismSeverity
+        '
+        Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle22
+        Me.dcolPlagiarismSeverity.HeaderText = "Plag"
+        Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
+        Me.dcolPlagiarismSeverity.ReadOnly = True
+        '
+        'dcolExcusedAbsences
+        '
+        Me.dcolExcusedAbsences.DataPropertyName = "TotalExcused"
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle23
+        Me.dcolExcusedAbsences.HeaderText = "Excu"
+        Me.dcolExcusedAbsences.Name = "dcolExcusedAbsences"
+        Me.dcolExcusedAbsences.ReadOnly = True
+        '
+        'dcolGender
+        '
+        Me.dcolGender.DataPropertyName = "Gender"
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle24
+        Me.dcolGender.HeaderText = "Gender"
+        Me.dcolGender.Name = "dcolGender"
+        Me.dcolGender.ReadOnly = True
+        Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'dcolDrafts
+        '
+        Me.dcolDrafts.DataPropertyName = "DraftsChecked"
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle25
+        Me.dcolDrafts.HeaderText = "Drafts"
+        Me.dcolDrafts.Name = "dcolDrafts"
+        Me.dcolDrafts.ReadOnly = True
+        '
+        'dcolOfficeHours
+        '
+        Me.dcolOfficeHours.DataPropertyName = "OfficeHoursVisited"
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle26
+        Me.dcolOfficeHours.HeaderText = "Office hrs"
+        Me.dcolOfficeHours.Name = "dcolOfficeHours"
+        Me.dcolOfficeHours.ReadOnly = True
+        '
+        'dcolResearchQuality
+        '
+        Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle27
+        Me.dcolResearchQuality.HeaderText = "Research"
+        Me.dcolResearchQuality.Name = "dcolResearchQuality"
+        Me.dcolResearchQuality.ReadOnly = True
+        '
+        'dcolLastQuizScore
+        '
+        Me.dcolLastQuizScore.DataPropertyName = "PerformanceLastOnlineQuiz"
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle28
+        Me.dcolLastQuizScore.HeaderText = "Quiz"
+        Me.dcolLastQuizScore.Name = "dcolLastQuizScore"
+        Me.dcolLastQuizScore.ReadOnly = True
+        '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(550, 116)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(121, 16)
+        Me.Label7.Size = New System.Drawing.Size(120, 16)
         Me.Label7.TabIndex = 93
         Me.Label7.Text = "Students searched:"
         '
@@ -272,7 +535,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.lblStudentsSearched.AutoSize = True
         Me.lblStudentsSearched.Location = New System.Drawing.Point(705, 116)
         Me.lblStudentsSearched.Name = "lblStudentsSearched"
-        Me.lblStudentsSearched.Size = New System.Drawing.Size(15, 16)
+        Me.lblStudentsSearched.Size = New System.Drawing.Size(14, 16)
         Me.lblStudentsSearched.TabIndex = 94
         Me.lblStudentsSearched.Text = "0"
         Me.lblStudentsSearched.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -287,7 +550,7 @@ Partial Class HistoricalStudentFinderPlain
         Me.lblStudentsFound.AutoSize = True
         Me.lblStudentsFound.Location = New System.Drawing.Point(705, 96)
         Me.lblStudentsFound.Name = "lblStudentsFound"
-        Me.lblStudentsFound.Size = New System.Drawing.Size(15, 16)
+        Me.lblStudentsFound.Size = New System.Drawing.Size(14, 16)
         Me.lblStudentsFound.TabIndex = 96
         Me.lblStudentsFound.Text = "0"
         Me.lblStudentsFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -297,271 +560,9 @@ Partial Class HistoricalStudentFinderPlain
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(550, 96)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(99, 16)
+        Me.Label9.Size = New System.Drawing.Size(98, 16)
         Me.Label9.TabIndex = 95
         Me.Label9.Text = "Students found:"
-        '
-        'dcolAdmin
-        '
-        Me.dcolAdmin.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle113.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle113
-        Me.dcolAdmin.HeaderText = "Admin"
-        Me.dcolAdmin.Name = "dcolAdmin"
-        Me.dcolAdmin.ReadOnly = True
-        '
-        'dcolAlt
-        '
-        Me.dcolAlt.DataPropertyName = "AltNumber"
-        DataGridViewCellStyle114.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle114
-        Me.dcolAlt.HeaderText = "Alt"
-        Me.dcolAlt.Name = "dcolAlt"
-        Me.dcolAlt.ReadOnly = True
-        Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dcolAlt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'dcolLocalName
-        '
-        Me.dcolLocalName.DataPropertyName = "LocalName"
-        DataGridViewCellStyle115.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle115
-        Me.dcolLocalName.HeaderText = "Name"
-        Me.dcolLocalName.Name = "dcolLocalName"
-        Me.dcolLocalName.ReadOnly = True
-        '
-        'dcolNickname
-        '
-        Me.dcolNickname.DataPropertyName = "Nickname"
-        DataGridViewCellStyle116.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle116
-        Me.dcolNickname.HeaderText = "Nickname"
-        Me.dcolNickname.Name = "dcolNickname"
-        Me.dcolNickname.ReadOnly = True
-        '
-        'dcolExtStudentID
-        '
-        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle117.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle117
-        Me.dcolExtStudentID.HeaderText = "ExtID"
-        Me.dcolExtStudentID.Name = "dcolExtStudentID"
-        Me.dcolExtStudentID.ReadOnly = True
-        '
-        'dcolStudentID
-        '
-        Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle118.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle118
-        Me.dcolStudentID.HeaderText = "StudentID"
-        Me.dcolStudentID.Name = "dcolStudentID"
-        Me.dcolStudentID.ReadOnly = True
-        '
-        'dcolAttendanceStatus
-        '
-        Me.dcolAttendanceStatus.DataPropertyName = "LatestAttendenceStatus"
-        DataGridViewCellStyle119.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle119
-        Me.dcolAttendanceStatus.HeaderText = "Status"
-        Me.dcolAttendanceStatus.Name = "dcolAttendanceStatus"
-        Me.dcolAttendanceStatus.ReadOnly = True
-        Me.dcolAttendanceStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'dcolTags
-        '
-        Me.dcolTags.DataPropertyName = "Tags"
-        DataGridViewCellStyle120.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle120
-        Me.dcolTags.HeaderText = "Tags"
-        Me.dcolTags.Name = "dcolTags"
-        Me.dcolTags.ReadOnly = True
-        '
-        'dcolTotalAbsences
-        '
-        Me.dcolTotalAbsences.DataPropertyName = "TotalAbsences"
-        DataGridViewCellStyle121.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle121
-        Me.dcolTotalAbsences.HeaderText = "Total"
-        Me.dcolTotalAbsences.Name = "dcolTotalAbsences"
-        Me.dcolTotalAbsences.ReadOnly = True
-        '
-        'dcolPresentationQuality
-        '
-        Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle122.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle122
-        Me.dcolPresentationQuality.HeaderText = "Pres"
-        Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
-        Me.dcolPresentationQuality.ReadOnly = True
-        '
-        'dcolStudentGroup
-        '
-        Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle123.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle123
-        Me.dcolStudentGroup.HeaderText = "Group"
-        Me.dcolStudentGroup.Name = "dcolStudentGroup"
-        Me.dcolStudentGroup.ReadOnly = True
-        '
-        'dcolStudentTeam
-        '
-        Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle124.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle124
-        Me.dcolStudentTeam.HeaderText = "Team"
-        Me.dcolStudentTeam.Name = "dcolStudentTeam"
-        Me.dcolStudentTeam.ReadOnly = True
-        '
-        'dcolWritingQuality
-        '
-        Me.dcolWritingQuality.DataPropertyName = "WritingQuality"
-        DataGridViewCellStyle125.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle125
-        Me.dcolWritingQuality.HeaderText = "Write"
-        Me.dcolWritingQuality.Name = "dcolWritingQuality"
-        Me.dcolWritingQuality.ReadOnly = True
-        '
-        'dcolDateOfBirth
-        '
-        Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
-        DataGridViewCellStyle126.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle126
-        Me.dcolDateOfBirth.HeaderText = "DoB"
-        Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
-        Me.dcolDateOfBirth.ReadOnly = True
-        '
-        'dcolAssignmentCount
-        '
-        Me.dcolAssignmentCount.DataPropertyName = "AssignmentCount"
-        DataGridViewCellStyle127.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle127
-        Me.dcolAssignmentCount.HeaderText = "Asmt"
-        Me.dcolAssignmentCount.Name = "dcolAssignmentCount"
-        Me.dcolAssignmentCount.ReadOnly = True
-        '
-        'dcolProcessedAssignmentCount
-        '
-        Me.dcolProcessedAssignmentCount.DataPropertyName = "ProcessedAssignments"
-        DataGridViewCellStyle128.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle128
-        Me.dcolProcessedAssignmentCount.HeaderText = "P.Asmt"
-        Me.dcolProcessedAssignmentCount.Name = "dcolProcessedAssignmentCount"
-        Me.dcolProcessedAssignmentCount.ReadOnly = True
-        '
-        'dcolCurrentAbsences
-        '
-        Me.dcolCurrentAbsences.DataPropertyName = "CurrentAbsences"
-        DataGridViewCellStyle129.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle129
-        Me.dcolCurrentAbsences.HeaderText = "Abs"
-        Me.dcolCurrentAbsences.Name = "dcolCurrentAbsences"
-        Me.dcolCurrentAbsences.ReadOnly = True
-        '
-        'dcolHidden
-        '
-        Me.dcolHidden.DataPropertyName = "Hidden"
-        Me.dcolHidden.HeaderText = "Hid"
-        Me.dcolHidden.Name = "dcolHidden"
-        '
-        'dcolMerit
-        '
-        Me.dcolMerit.DataPropertyName = "MeritPoints"
-        DataGridViewCellStyle130.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle130
-        Me.dcolMerit.HeaderText = "Merit"
-        Me.dcolMerit.Name = "dcolMerit"
-        Me.dcolMerit.ReadOnly = True
-        '
-        'dcolEmail
-        '
-        Me.dcolEmail.DataPropertyName = "EmailAddress"
-        DataGridViewCellStyle131.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle131
-        Me.dcolEmail.HeaderText = "Email"
-        Me.dcolEmail.Name = "dcolEmail"
-        Me.dcolEmail.ReadOnly = True
-        '
-        'dcolNameLatinLetters
-        '
-        Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
-        DataGridViewCellStyle132.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle132
-        Me.dcolNameLatinLetters.HeaderText = "Standard"
-        Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
-        Me.dcolNameLatinLetters.ReadOnly = True
-        '
-        'dcolClass
-        '
-        Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle133.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle133
-        Me.dcolClass.HeaderText = "Class"
-        Me.dcolClass.Name = "dcolClass"
-        Me.dcolClass.ReadOnly = True
-        '
-        'dcolPlagiarismSeverity
-        '
-        Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
-        DataGridViewCellStyle134.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle134
-        Me.dcolPlagiarismSeverity.HeaderText = "Plag"
-        Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
-        Me.dcolPlagiarismSeverity.ReadOnly = True
-        '
-        'dcolExcusedAbsences
-        '
-        Me.dcolExcusedAbsences.DataPropertyName = "TotalExcused"
-        DataGridViewCellStyle135.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle135
-        Me.dcolExcusedAbsences.HeaderText = "Excu"
-        Me.dcolExcusedAbsences.Name = "dcolExcusedAbsences"
-        Me.dcolExcusedAbsences.ReadOnly = True
-        '
-        'dcolGender
-        '
-        Me.dcolGender.DataPropertyName = "Gender"
-        DataGridViewCellStyle136.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle136
-        Me.dcolGender.HeaderText = "Gender"
-        Me.dcolGender.Name = "dcolGender"
-        Me.dcolGender.ReadOnly = True
-        Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'dcolDrafts
-        '
-        Me.dcolDrafts.DataPropertyName = "DraftsChecked"
-        DataGridViewCellStyle137.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle137
-        Me.dcolDrafts.HeaderText = "Drafts"
-        Me.dcolDrafts.Name = "dcolDrafts"
-        Me.dcolDrafts.ReadOnly = True
-        '
-        'dcolOfficeHours
-        '
-        Me.dcolOfficeHours.DataPropertyName = "OfficeHoursVisited"
-        DataGridViewCellStyle138.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle138
-        Me.dcolOfficeHours.HeaderText = "Office hrs"
-        Me.dcolOfficeHours.Name = "dcolOfficeHours"
-        Me.dcolOfficeHours.ReadOnly = True
-        '
-        'dcolResearchQuality
-        '
-        Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
-        DataGridViewCellStyle139.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle139
-        Me.dcolResearchQuality.HeaderText = "Research"
-        Me.dcolResearchQuality.Name = "dcolResearchQuality"
-        Me.dcolResearchQuality.ReadOnly = True
-        '
-        'dcolLastQuizScore
-        '
-        Me.dcolLastQuizScore.DataPropertyName = "PerformanceLastOnlineQuiz"
-        DataGridViewCellStyle140.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle140
-        Me.dcolLastQuizScore.HeaderText = "Quiz"
-        Me.dcolLastQuizScore.Name = "dcolLastQuizScore"
-        Me.dcolLastQuizScore.ReadOnly = True
         '
         'HistoricalStudentFinderPlain
         '

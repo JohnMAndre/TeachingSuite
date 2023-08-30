@@ -254,7 +254,15 @@ Public Class MainFormPlain
     End Sub
     Private Sub LoadSemester()
         Try
-            '-- First make a 'pre-load' backup
+
+            '-- clear old data (for user experience only)
+            lstClasses.Items.Clear()
+            lstClassGroups.Items.Clear()
+            lstAssignments.Items.Clear()
+            dgvStudents.DataSource = Nothing
+            Application.DoEvents()
+
+            '-- make a 'pre-load' backup
             MakeBackupDataFile(cboSemester.Items(cboSemester.SelectedIndex), "preload")
 
             '-- Load the selected semester from data file
@@ -264,19 +272,14 @@ Public Class MainFormPlain
             If fi IsNot Nothing Then
                 Dim frmAutoSave As New AutoSaveRecovery(strSemesterName)
                 If frmAutoSave.ShowDialog() = DialogResult.Cancel Then
-                    '-- should not load anything
+                    '-- should not load anything, just reload class groups
+                    LoadClassGroups()
                     Exit Sub
                 Else
                     '-- The autosave form did all the work
                     Application.DoEvents() '-- for breakpoint only
                 End If
             End If
-
-            '-- clear old data (for user experience only)
-            lstClasses.Items.Clear()
-            lstClassGroups.Items.Clear()
-            lstAssignments.Items.Clear()
-            dgvStudents.DataSource = Nothing
 
             ThisSemester = New Semester(strSemesterName)
             AppSettings.LastSemesterFile = cboSemester.Items(cboSemester.SelectedIndex)
@@ -4255,6 +4258,7 @@ Public Class MainFormPlain
             Dim strText As String
             strText = objClassGroup.GetXMLElementToPersist(xDoc).OuterXml
 
+
             Clipboard.SetText(strText)
         End If
     End Sub
@@ -4266,10 +4270,11 @@ Public Class MainFormPlain
             Select Case xDoc.DocumentElement.Name
                 Case "ClassGroup"
                     Dim objClassGroup As New ClassGroup(xDoc.DocumentElement, ThisSemester)
-                    Select Case MessageBox.Show("Purge existing students?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+                    Select Case MessageBox.Show("Purge existing students and class sessions?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
                         Case DialogResult.Yes
                             For Each objClass As SchoolClass In objClassGroup.Classes
                                 objClass.PurgeAllStudents()
+                                objClass.PurgeAllClassSessions()
                             Next
                         Case DialogResult.No
                             '-- Leave them in, do nothing
@@ -4341,5 +4346,16 @@ Public Class MainFormPlain
         Next
 
         LoadStudents()
+    End Sub
+
+    Private Sub SendfeedbackRequestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendfeedbackRequestToolStripMenuItem.Click
+        If dgvSchedule.CurrentRow IsNot Nothing Then
+            Dim item As ActualSessionItem = CType(dgvSchedule.CurrentRow.DataBoundItem, ActualSessionItem)
+            Using frm As New SendFeedbackRequest(item)
+                frm.ShowDialog()
+            End Using
+        Else
+            MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 End Class

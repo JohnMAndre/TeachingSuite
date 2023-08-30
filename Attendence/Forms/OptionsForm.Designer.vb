@@ -143,6 +143,9 @@ Partial Class OptionsForm
         Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.lblLanguageWeight = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPanel5 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonLabel44 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel45 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudAttendanceMessageInterval = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
         Me.pnlOuter.SuspendLayout()
         Me.tabData.SuspendLayout()
         CType(Me.pnlData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -409,6 +412,9 @@ Partial Class OptionsForm
         '
         'KryptonPanel4
         '
+        Me.KryptonPanel4.Controls.Add(Me.nudAttendanceMessageInterval)
+        Me.KryptonPanel4.Controls.Add(Me.KryptonLabel45)
+        Me.KryptonPanel4.Controls.Add(Me.KryptonLabel44)
         Me.KryptonPanel4.Controls.Add(Me.KryptonLabel42)
         Me.KryptonPanel4.Controls.Add(Me.txtAttendanceMessage)
         Me.KryptonPanel4.Controls.Add(Me.GroupBox1)
@@ -421,19 +427,22 @@ Partial Class OptionsForm
         '
         'KryptonLabel42
         '
-        Me.KryptonLabel42.Location = New System.Drawing.Point(19, 185)
+        Me.KryptonLabel42.Location = New System.Drawing.Point(19, 182)
         Me.KryptonLabel42.Name = "KryptonLabel42"
-        Me.KryptonLabel42.Size = New System.Drawing.Size(127, 20)
+        Me.KryptonLabel42.Size = New System.Drawing.Size(146, 20)
         Me.KryptonLabel42.TabIndex = 60
-        Me.KryptonLabel42.Values.Text = "Attendance message:"
+        Me.KryptonLabel42.Values.Text = "Attendance msg interval:"
         '
         'txtAttendanceMessage
         '
-        Me.txtAttendanceMessage.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtAttendanceMessage.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtAttendanceMessage.Location = New System.Drawing.Point(162, 184)
+        Me.txtAttendanceMessage.Location = New System.Drawing.Point(162, 210)
+        Me.txtAttendanceMessage.Multiline = True
         Me.txtAttendanceMessage.Name = "txtAttendanceMessage"
-        Me.txtAttendanceMessage.Size = New System.Drawing.Size(648, 23)
+        Me.txtAttendanceMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtAttendanceMessage.Size = New System.Drawing.Size(648, 247)
         Me.txtAttendanceMessage.TabIndex = 59
         '
         'GroupBox1
@@ -1405,6 +1414,34 @@ Partial Class OptionsForm
         Me.KryptonPanel5.Size = New System.Drawing.Size(829, 45)
         Me.KryptonPanel5.TabIndex = 132
         '
+        'KryptonLabel44
+        '
+        Me.KryptonLabel44.Location = New System.Drawing.Point(19, 211)
+        Me.KryptonLabel44.Name = "KryptonLabel44"
+        Me.KryptonLabel44.Size = New System.Drawing.Size(132, 20)
+        Me.KryptonLabel44.TabIndex = 61
+        Me.KryptonLabel44.Values.Text = "Attendance messages:"
+        '
+        'KryptonLabel45
+        '
+        Me.KryptonLabel45.Location = New System.Drawing.Point(239, 184)
+        Me.KryptonLabel45.Name = "KryptonLabel45"
+        Me.KryptonLabel45.Size = New System.Drawing.Size(55, 20)
+        Me.KryptonLabel45.TabIndex = 139
+        Me.KryptonLabel45.Values.Text = "seconds"
+        '
+        'nudAttendanceMessageInterval
+        '
+        Me.nudAttendanceMessageInterval.Location = New System.Drawing.Point(162, 182)
+        Me.nudAttendanceMessageInterval.Maximum = New Decimal(New Integer() {900, 0, 0, 0})
+        Me.nudAttendanceMessageInterval.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudAttendanceMessageInterval.Name = "nudAttendanceMessageInterval"
+        Me.nudAttendanceMessageInterval.Size = New System.Drawing.Size(71, 22)
+        Me.nudAttendanceMessageInterval.TabIndex = 138
+        Me.nudAttendanceMessageInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.nudAttendanceMessageInterval.ThousandsSeparator = True
+        Me.nudAttendanceMessageInterval.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        '
         'OptionsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1588,4 +1625,7 @@ Partial Class OptionsForm
     Friend WithEvents rdoAttendanceHighlightBirthdays As RadioButton
     Friend WithEvents KryptonLabel42 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents txtAttendanceMessage As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel45 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents nudAttendanceMessageInterval As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
+    Friend WithEvents KryptonLabel44 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

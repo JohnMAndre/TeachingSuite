@@ -14,8 +14,12 @@
 
 'You should have received a copy Of the GNU General Public License
 'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
+Imports System.IO
+
 Public Class Attendance2Form
     Private rnd As New Random
+    Private m_message As String = String.Empty
+
     Private Class StudentAttendanceData
         Public Sub New(student As Student)
             Me.Student = student
@@ -351,7 +355,7 @@ Public Class Attendance2Form
 
         dgvStudents.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter
         dgvStudents.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
+        MessageToolStripMenuItem.Checked = AppSettings.ShowAttendanceMessage
     End Sub
     Private Sub AllStudentsPresentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllStudentsPresentToolStripMenuItem.Click
         MarkAllStudents(AttendanceStatusEnum.Present)
@@ -577,7 +581,7 @@ Public Class Attendance2Form
 
             If MessageToolStripMenuItem.Checked Then
                 brush = New SolidBrush(GetRandomColor)
-                g.DrawString(AppSettings.AttendanceMessage, m_fontMessage, brush, m_ptMessage)
+                g.DrawString(GetNewAttendanceMessage(), m_fontMessage, brush, m_ptMessage)
             End If
         End If
     End Sub
@@ -618,7 +622,7 @@ Public Class Attendance2Form
 
             '-- set font for message
             intFontSize = 12
-            strText = AppSettings.AttendanceMessage
+            strText = m_message
             If MessageToolStripMenuItem.Checked AndAlso strText.Length > 2 Then
                 Do While True
                     m_fontMessage = New Font("Arial", intFontSize)
@@ -756,5 +760,28 @@ Public Class Attendance2Form
             m_boolDirty = True
             SetStudentCountLabel()
         End If
+    End Sub
+    Private Function GetNewAttendanceMessage() As String
+        Randomize()
+        Static rnd As New Random()
+        Static dtLastChanged As Date = Now
+        Dim ts As TimeSpan = Now - dtLastChanged
+        Static messages() As String = AppSettings.AttendanceMessage.Split(vbCr) '-- deal with LF?
+        Dim intMessage As Integer
+
+        '-- only change message every x seconds
+        If ts.TotalSeconds > AppSettings.AttendanceMessageInterval Then
+            If MessageToolStripMenuItem.Checked Then
+                intMessage = rnd.Next(0, messages.Length - 1)
+                m_message = messages(intMessage).Trim()
+                SetFontSize()
+                dtLastChanged = Now
+            End If
+        End If
+
+        Return m_message
+    End Function
+    Private Sub MessageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MessageToolStripMenuItem.Click
+        AppSettings.ShowAttendanceMessage = MessageToolStripMenuItem.Checked
     End Sub
 End Class

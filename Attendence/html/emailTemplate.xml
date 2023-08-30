@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Message MessageID="" SendAfter="" Read="True" KeepCopyAfterSend="True" ZipAttachments="False" MessageTypeID="dcc232ee-4b59-4742-9b72-c667cc235702" EncryptedEmail="ClearText" Encrypted="False" RequestReturnReceipt="False" SMTPAccount="7a033fe1-2f78-446d-a682-99d2b7cf423d" MessageSize="1000">
+  <Subject></Subject>
+  <Recipients>
+    <Recipient RoleID="e9688fad-d3ff-405e-aa11-1761de0834e6" Address="" FullName="" RecipientID="NEW GUID" />
+  </Recipients>
+
+  <Body Format="PlainText">
+    
+    Best regards,
+    Your Teacher
+  </Body>
+
+  <Tags>
+
+  </Tags>
+
+</Message>

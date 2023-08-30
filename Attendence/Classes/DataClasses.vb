@@ -2051,6 +2051,18 @@ Public Class SchoolClass
 
         lst.Clear()
     End Sub
+    Public Sub PurgeAllClassSessions()
+        Dim lst As New List(Of ClassSession)
+        For Each obj As ClassSession In Me.ClassSessions
+            lst.Add(obj)
+        Next
+
+        For Each obj As ClassSession In lst
+            Me.ClassSessions.Remove(obj)
+        Next
+
+        lst.Clear()
+    End Sub
 End Class
 Public Interface IStudentAssignment
     Property OverallComments As String

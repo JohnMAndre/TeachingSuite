@@ -327,4 +327,13 @@ Public Class HistoricalStudentFinderPlain
             End Using
         End If
     End Sub
+
+    Private Sub HistoricalStudentFinderPlain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '-- Do nothing here, do on timer_tick for lazy cross threading
+    End Sub
+
+    Private Sub HistoricalStudentFinderPlain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        'disabled this because we are not (yet) using the cache file
+        ''m_objSemesterCache.SaveCache()
+    End Sub
 End Class

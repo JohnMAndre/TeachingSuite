@@ -494,6 +494,20 @@ Public Class ApplicationSettings
                 Else
                     AttendanceMessage = String.Empty '-- not set
                 End If
+                xElement = xDoc.SelectSingleNode("//ShowAttendanceMessage")
+                If xElement IsNot Nothing Then
+                    ShowAttendanceMessage = ConvertToBool(xElement.InnerText, False)
+                Else
+                    ShowAttendanceMessage = False '-- not set
+                End If
+                xElement = xDoc.SelectSingleNode("//AttendanceMessageInterval")
+                If xElement IsNot Nothing Then
+                    AttendanceMessageInterval = ConvertToInt32(xElement.InnerText, 10)
+                Else
+                    AttendanceMessageInterval = 10 '-- in seconds
+                End If
+
+
 
                 LoadAutoTexts(xDoc)
                 LoadQuickFeedbacks(xDoc)
@@ -646,6 +660,8 @@ Public Class ApplicationSettings
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "GroupPresentationUpdatesPresentationAndResearchPerformanceLevel", GroupPresentationUpdatesPresentationAndResearchPerformanceLevel))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UserFullName", UserFullName))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendanceMessage", AttendanceMessage))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "ShowAttendanceMessage", ShowAttendanceMessage))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendanceMessageInterval", AttendanceMessageInterval))
 
 
             xDoc.DocumentElement.AppendChild(GetAutoTextSettingsNode(xDoc))
@@ -738,6 +754,8 @@ Public Class ApplicationSettings
         Return root
     End Function
 #Region " Public Properties "
+    Public Property AttendanceMessageInterval As Integer '-- in seconds
+    Public Property ShowAttendanceMessage As Boolean
     Public Property AttendanceMessage As String '-- Displays while taking attendance
     Public Property UserFullName As String '-- name of person doing marking, to keep track at the assignment-level
     Public Property GroupPresentationUpdatesPresentationAndResearchPerformanceLevel As Boolean
