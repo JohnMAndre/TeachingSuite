@@ -713,8 +713,6 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.olvcolPerformanceLevel.AspectName = "PerformanceLevel"
         Me.olvcolPerformanceLevel.DisplayIndex = 1
-        Me.olvcolPerformanceLevel.MaximumWidth = 100
-        Me.olvcolPerformanceLevel.MinimumWidth = 50
         Me.olvcolPerformanceLevel.Text = "Perf"
         Me.olvcolPerformanceLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolPerformanceLevel.ToolTipText = "Performance level (0-5)"

@@ -619,7 +619,11 @@ Friend Class StudentAssignmentNormalDetails
         If selItem IsNot Nothing Then
             If e.KeyCode = Keys.Add Then
                 selItem.PerformanceLevel += 1
+            ElseIf e.KeyCode = Keys.Oemplus Then
+                selItem.PerformanceLevel += 1
             ElseIf e.KeyCode = Keys.Subtract Then
+                selItem.PerformanceLevel -= 1
+            ElseIf e.KeyCode = Keys.OemMinus Then
                 selItem.PerformanceLevel -= 1
             End If
         End If

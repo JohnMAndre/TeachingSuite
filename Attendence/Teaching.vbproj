@@ -118,10 +118,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="BaseAssignmentSelector.Designer.vb">
+    <Compile Include="Forms\Assignments\BaseAssignmentSelector.Designer.vb">
       <DependentUpon>BaseAssignmentSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="BaseAssignmentSelector.vb">
+    <Compile Include="Forms\Assignments\BaseAssignmentSelector.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\ApplicationSettings.vb" />
@@ -674,7 +674,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BaseAssignmentSelector.resx">
+    <EmbeddedResource Include="Forms\Assignments\BaseAssignmentSelector.resx">
       <DependentUpon>BaseAssignmentSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutBox.resx">
