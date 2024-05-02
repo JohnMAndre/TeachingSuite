@@ -1804,6 +1804,8 @@ Public Class SchoolClass
             tw.Write("PeerToReview")
             tw.Write(DELIMITER)
             tw.Write("Standardized")
+            tw.Write(DELIMITER)
+            tw.Write("AverageRow")
 
             tw.Write(Environment.NewLine)
 
@@ -1853,6 +1855,8 @@ Public Class SchoolClass
                 tw.Write(student.StudentIDToPeerReview)
                 tw.Write(DELIMITER)
                 tw.Write(student.LocalNameLatinLetters)
+                tw.Write(DELIMITER)
+                tw.Write(student.GetAverageRowSeat())
 
 
                 '-- Prep for new student
@@ -3158,6 +3162,31 @@ Public Class Student
     End Enum
 
     Public Property SupressChangeTracking As Boolean '-- Not persisted and generally used for things like exporting tutor database so clearing tags in export does not trigger student history data change
+    ''' <summary>
+    ''' Returns the average row student sat in, ignoring any with row zero
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function GetAverageRowSeat() As Integer
+        Try
+            Dim intRowSum, intRowCount As Integer
+            For Each sess As TeachingSession In Me.TeachingSessions
+                If sess.SeatedInRow > 0 Then
+                    intRowSum += sess.SeatedInRow
+                    intRowCount += 1
+                End If
+            Next
+
+            If intRowCount > 0 Then
+                Return CType(intRowSum / intRowCount, Integer)
+            Else
+                Return 0
+            End If
+        Catch ex As Exception
+            Log(ex)
+            Throw ex
+        End Try
+    End Function
+
     ''' <summary>
     ''' Only works for Normal assignments (not BTEC)
     ''' </summary>
