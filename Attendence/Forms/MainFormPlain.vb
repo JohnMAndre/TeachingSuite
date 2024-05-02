@@ -432,7 +432,6 @@ Public Class MainFormPlain
         Dim objClass As SchoolClass = GetSelectedClass()
         dgvStudents.AutoGenerateColumns = False
         If objClass Is Nothing Then
-            'olvStudents.ClearObjects()
             dgvStudents.DataSource = Nothing
         Else
             If ClassIsCombinedView(objClass) Then
@@ -441,17 +440,14 @@ Public Class MainFormPlain
                 For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
                     If Not boolSetAlready Then
                         m_lstCurrentListOfStudents.AddRange(objCls.Students)
-                        'olvStudents.SetObjects(objCls.Students)
                         boolSetAlready = True
                     Else
                         '-- Need to ensure all students in all classes in this module are loaded
                         m_lstCurrentListOfStudents.AddRange(objCls.Students)
-                        'olvStudents.AddObjects(objCls.Students)
                     End If
                 Next
                 dgvStudents.DataSource = m_lstCurrentListOfStudents
             Else
-                'olvStudents.SetObjects(objClass.Students)
                 m_lstCurrentListOfStudents = objClass.Students
                 dgvStudents.DataSource = m_lstCurrentListOfStudents
             End If
@@ -4358,4 +4354,5 @@ Public Class MainFormPlain
             MessageBox.Show("Please select a schedule item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+
 End Class

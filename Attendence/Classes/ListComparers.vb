@@ -19,7 +19,11 @@ Public Class StudentComparerByStudentID
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.StudentID.CompareTo(y.StudentID)
+        If x.StudentID Is Nothing Then
+            Return -1
+        Else
+            Return x.StudentID.CompareTo(y.StudentID)
+        End If
     End Function
 End Class
 
@@ -27,7 +31,11 @@ Public Class StudentComparerByExtStudentID
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.ExtStudentID.CompareTo(y.ExtStudentID)
+        If x.ExtStudentID Is Nothing Then
+            Return -1
+        Else
+            Return x.ExtStudentID.CompareTo(y.ExtStudentID)
+        End If
     End Function
 End Class
 
@@ -43,7 +51,11 @@ Public Class StudentComparerByStudentTeam
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.StudentTeam.CompareTo(y.StudentTeam)
+        If x.StudentTeam Is Nothing Then
+            Return -1
+        Else
+            Return x.StudentTeam.CompareTo(y.StudentTeam)
+        End If
     End Function
 End Class
 Public Class StudentComparerByDateOfBirth
@@ -64,7 +76,11 @@ Public Class StudentComparerByTags
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.Tags.CompareTo(y.Tags)
+        If x.Tags Is Nothing Then
+            Return -1
+        Else
+            Return x.Tags.CompareTo(y.Tags)
+        End If
     End Function
 End Class
 Public Class StudentComparerByLatestAttendenceStatus
@@ -78,14 +94,22 @@ Public Class StudentComparerByNickname
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.Nickname.CompareTo(y.Nickname)
+        If x.Nickname Is Nothing Then
+            Return -1
+        Else
+            Return x.Nickname.CompareTo(y.Nickname)
+        End If
     End Function
 End Class
 Public Class StudentComparerByLocalName
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.LocalName.CompareTo(y.LocalName)
+        If x.LocalName Is Nothing Then
+            Return -1
+        Else
+            Return x.LocalName.CompareTo(y.LocalName)
+        End If
     End Function
 End Class
 Public Class StudentComparerByAltNumber
@@ -144,13 +168,6 @@ Public Class StudentComparerByProcessedAssignments
         Return x.ProcessedAssignments.CompareTo(y.ProcessedAssignments)
     End Function
 End Class
-Public Class StudentComparerBy
-    Implements IComparer(Of Student)
-
-    Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.AdminNumber.CompareTo(y.AdminNumber)
-    End Function
-End Class
 Public Class StudentComparerByHidden
     Implements IComparer(Of Student)
 
@@ -204,7 +221,11 @@ Public Class StudentComparerByLocalNameLatinLetters
     Implements IComparer(Of Student)
 
     Public Function Compare(x As Student, y As Student) As Integer Implements IComparer(Of Student).Compare
-        Return x.LocalNameLatinLetters.CompareTo(y.LocalNameLatinLetters)
+        If x.LocalNameLatinLetters Is Nothing Then
+            Return -1
+        Else
+            Return x.LocalNameLatinLetters.CompareTo(y.LocalNameLatinLetters)
+        End If
     End Function
 End Class
 
@@ -214,7 +235,11 @@ Public Class ReportDataComparerByStudentID
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.StudentID.CompareTo(y.StudentID)
+        If x.StudentID Is Nothing Then
+            Return -1
+        Else
+            Return x.StudentID.CompareTo(y.StudentID)
+        End If
     End Function
 End Class
 Public Class ReportDataComparerByAdminNumber
@@ -229,7 +254,11 @@ Public Class ReportDataComparerByLocalName
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.LocalName.CompareTo(y.LocalName)
+        If x.LocalName Is Nothing Then
+            Return -1
+        Else
+            Return x.LocalName.CompareTo(y.LocalName)
+        End If
     End Function
 End Class
 
@@ -237,7 +266,11 @@ Public Class ReportDataComparerByNickname
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Nickname.CompareTo(y.Nickname)
+        If x.Nickname Is Nothing Then
+            Return -1
+        Else
+            Return x.Nickname.CompareTo(y.Nickname)
+        End If
     End Function
 End Class
 
@@ -245,7 +278,11 @@ Public Class ReportDataComparerByExtStudentID
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.ExtStudentID.CompareTo(y.ExtStudentID)
+        If x.ExtStudentID Is Nothing Then
+            Return -1
+        Else
+            Return x.ExtStudentID.CompareTo(y.ExtStudentID)
+        End If
     End Function
 End Class
 
@@ -253,7 +290,11 @@ Public Class ReportDataComparerByTags
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Tags.CompareTo(y.Tags)
+        If x.Tags Is Nothing Then
+            Return -1
+        Else
+            Return x.Tags.CompareTo(y.Tags)
+        End If
     End Function
 End Class
 
@@ -277,7 +318,11 @@ Public Class ReportDataComparerByStudentTeam
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.StudentTeam.CompareTo(y.StudentTeam)
+        If x.StudentTeam Is Nothing Then
+            Return -1
+        Else
+            Return x.StudentTeam.CompareTo(y.StudentTeam)
+        End If
     End Function
 End Class
 
@@ -293,7 +338,11 @@ Public Class ReportDataComparerBySchoolClassName
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.SchoolClass.CompareTo(y.SchoolClass)
+        If x.SchoolClass Is Nothing Then
+            Return -1
+        Else
+            Return x.SchoolClass.CompareTo(y.SchoolClass)
+        End If
     End Function
 End Class
 
@@ -317,7 +366,11 @@ Public Class ReportDataComparerByOverall
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Overall.CompareTo(y.Overall)
+        If x.Overall Is Nothing Then
+            Return -1
+        Else
+            Return x.Overall.CompareTo(y.Overall)
+        End If
     End Function
 End Class
 
@@ -325,7 +378,11 @@ Public Class ReportDataComparerByImprovement
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Improvement.CompareTo(y.Improvement)
+        If x.Improvement Is Nothing Then
+            Return -1
+        Else
+            Return x.Improvement.CompareTo(y.Improvement)
+        End If
     End Function
 End Class
 
@@ -341,7 +398,11 @@ Public Class ReportDataComparerByOverall2
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Overall2.CompareTo(y.Overall2)
+        If x.Overall2 Is Nothing Then
+            Return -1
+        Else
+            Return x.Overall2.CompareTo(y.Overall2)
+        End If
     End Function
 End Class
 
@@ -349,7 +410,11 @@ Public Class ReportDataComparerByImprovement2
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Improvement2.CompareTo(y.Improvement2)
+        If x.Improvement2 Is Nothing Then
+            Return -1
+        Else
+            Return x.Improvement2.CompareTo(y.Improvement2)
+        End If
     End Function
 End Class
 
@@ -357,7 +422,11 @@ Public Class ReportDataComparerByCreator
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Creator.CompareTo(y.Creator)
+        If x.Creator Is Nothing Then
+            Return -1
+        Else
+            Return x.Creator.CompareTo(y.Creator)
+        End If
     End Function
 End Class
 
@@ -365,6 +434,10 @@ Public Class ReportDataComparerByEditor
     Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData)
 
     Public Function Compare(x As ImportMarkingFromOtherSemesterFile.ReportData, y As ImportMarkingFromOtherSemesterFile.ReportData) As Integer Implements IComparer(Of ImportMarkingFromOtherSemesterFile.ReportData).Compare
-        Return x.Editor.CompareTo(y.Editor)
+        If x.Editor Is Nothing Then
+            Return -1
+        Else
+            Return x.Editor.CompareTo(y.Editor)
+        End If
     End Function
 End Class
