@@ -94,9 +94,7 @@ Partial Class StudentAssignmentDetails
         Me.llblExistingAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.llblDeleteAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblCopyAssignmentFromCD = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblEjectCD = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.txtTimer = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.llblToggleTimer = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.llblResetTimer = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
@@ -373,9 +371,7 @@ Partial Class StudentAssignmentDetails
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblExistingAssignment)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.btnOK)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblDeleteAssignment)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblCopyAssignmentFromCD)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel9)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblEjectCD)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtTimer)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblToggleTimer)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblResetTimer)
@@ -1082,18 +1078,6 @@ Partial Class StudentAssignmentDetails
         Me.llblDeleteAssignment.Values.ImageTransparentColor = System.Drawing.Color.White
         Me.llblDeleteAssignment.Values.Text = ""
         '
-        'llblCopyAssignmentFromCD
-        '
-        Me.llblCopyAssignmentFromCD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llblCopyAssignmentFromCD.Location = New System.Drawing.Point(313, 20)
-        Me.llblCopyAssignmentFromCD.Name = "llblCopyAssignmentFromCD"
-        Me.llblCopyAssignmentFromCD.Size = New System.Drawing.Size(38, 34)
-        Me.llblCopyAssignmentFromCD.TabIndex = 80
-        Me.ToolTip1.SetToolTip(Me.llblCopyAssignmentFromCD, "Copy assignment from CD")
-        Me.llblCopyAssignmentFromCD.Values.Image = Global.Teaching.My.Resources.Resources.download_32
-        Me.llblCopyAssignmentFromCD.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblCopyAssignmentFromCD.Values.Text = ""
-        '
         'KryptonLabel9
         '
         Me.KryptonLabel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -1102,18 +1086,6 @@ Partial Class StudentAssignmentDetails
         Me.KryptonLabel9.Size = New System.Drawing.Size(44, 20)
         Me.KryptonLabel9.TabIndex = 97
         Me.KryptonLabel9.Values.Text = "Timer:"
-        '
-        'llblEjectCD
-        '
-        Me.llblEjectCD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llblEjectCD.Location = New System.Drawing.Point(352, 17)
-        Me.llblEjectCD.Name = "llblEjectCD"
-        Me.llblEjectCD.Size = New System.Drawing.Size(38, 34)
-        Me.llblEjectCD.TabIndex = 88
-        Me.ToolTip1.SetToolTip(Me.llblEjectCD, "Eject CD")
-        Me.llblEjectCD.Values.Image = Global.Teaching.My.Resources.Resources.eject_32
-        Me.llblEjectCD.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblEjectCD.Values.Text = ""
         '
         'txtTimer
         '
@@ -1698,9 +1670,7 @@ Partial Class StudentAssignmentDetails
     Private WithEvents llblExistingAssignment As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents btnOK As ComponentFactory.Krypton.Toolkit.KryptonButton
     Private WithEvents llblDeleteAssignment As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Private WithEvents llblCopyAssignmentFromCD As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents KryptonLabel9 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Private WithEvents llblEjectCD As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents txtTimer As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Private WithEvents llblToggleTimer As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
     Private WithEvents llblResetTimer As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel

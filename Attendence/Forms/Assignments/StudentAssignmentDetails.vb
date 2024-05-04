@@ -735,279 +735,288 @@ Friend Class StudentAssignmentDetails
 
     Public Sub PrepareMarkingPage(save As Boolean)
         Try
-            If Not SaveChanges() Then
-                Exit Sub
-            End If
+            'If Not SaveChanges() Then
+            '    Exit Sub
+            'End If
 
 
-            If m_studentAssignment.BaseAssignment.AssignmentBriefFilename.Trim.Length = 0 Then
-                MessageBox.Show("There is no document related to this assignment. Please fix this problem and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End If
+            'If m_studentAssignment.BaseAssignment.AssignmentBriefFilename.Trim.Length = 0 Then
+            '    MessageBox.Show("There is no document related to this assignment. Please fix this problem and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            '    Exit Sub
+            'End If
 
-            If rtbImprovementComments.Text.Trim.Length = 0 Then
-                MessageBox.Show("You must fill out overall and improvement comments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End If
-
-
-
-            Dim oWord As Word.Application
-            Dim oDoc As Word.Document
-
-            oWord = CreateObject("Word.Application")
-            oWord.Visible = True
-
-            '-- copy template over to new file, in case user accidentally saves it
-            Dim strTemplateFilename As String = System.IO.Path.Combine(GetMarkingFolder(), m_studentAssignment.BaseAssignment.AssignmentBriefFilename)
-            Dim strWorkingFilename As String = System.IO.Path.Combine(GetMarkingFolder(), "~temp1.docx")
-            If System.IO.File.Exists(strWorkingFilename) Then
-                System.IO.File.Delete(strWorkingFilename)
-            End If
-            System.IO.File.Copy(strTemplateFilename, strWorkingFilename)
-            oDoc = oWord.Documents.Open(strWorkingFilename)
-
-            Const CHECKMARK_FONT_NAME As String = "Wingdings"
-            Const CHECKMARK As String = "ü"
-            Const XMARK As String = "û"
-            Const BLANK_FONT_NAME As String = "Ariel"
-            Const BLANK As String = " "
-
-            '-- refresh module results (may use many times)
-            m_studentModuleResults = m_student.ModuleResults(True)
-
-            Dim objFirstColumnMark As OutcomeResultStatusEnum '-- Pass=check; fail=X; unknown=blank
-            Dim objSecondColumnMark As OutcomeResultStatusEnum
-
-
-            For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
-                '-- reset varliables
-                objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-
-                '-- Feedback comments for each outcome
-                With oWord.Selection.Find
-                    .Text = "[[[OUTCOME" & outcome.BaseOutcome.Name & "COMMENTS]]]"
-                    Select Case m_try
-                        Case Semester.MarkingTry.FirstTry
-                            Select Case outcome.FirstTryStatus
-                                '-- Changed in 2.0. Now we will show results for this assignment only
-                                '   Potential issue: If one outcome is on multiple assignments (P1 or M1, does not matter)
-                                '   We will only show the results for this assignment on this assignment
-                                '   Previously, if this assignment failed 1.1 but previous assignment passed 1.1 we would 
-                                '   say that it Passed Previously but now we will say Fail (exactly the results for this assignment)
-                                '   This seems reasonable because the assignment marking sheet is not designed to convey module
-                                '   results, it is designed to convey assignment results (that's why we say MERIT when only M1 
-                                '   was achieved and M2 was not because M2 was not on this assignment). This is more consistent
-                                Case OutcomeResultStatusEnum.Achieved
-                                    objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    .Replacement.Text = outcome.FirstTryComments
-                                Case OutcomeResultStatusEnum.NotAchieved
-                                    objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    .Replacement.Text = outcome.FirstTryComments
-                                Case Else
-                                    '-- Unknown
-                                    objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    .Replacement.Text = AppSettings.NoSubmitFeedback
-                            End Select
-                        Case Semester.MarkingTry.SecondTry
-                            Select Case outcome.SecondTryStatus
-                                Case OutcomeResultStatusEnum.Achieved
-                                    '-- passing on rework does not mean fail before
-                                    '   could mean passed before and now improving for higher mark
-                                    '   Although in 2017 Peason forbids that behavior, we don't know the future
-                                    .Replacement.Text = outcome.SecondTryComments
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Achieved
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                    Else
-                                        '-- Changing this for 2015 BTEC forms so first column will be blank if passed in second submission (so there are not 2 symbols in same box)
-                                        'objFirstColumnMark = OutcomeResultStatusEnum.Fail
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                    End If
-                                Case OutcomeResultStatusEnum.NotAchieved
-                                    objSecondColumnMark = OutcomeResultStatusEnum.NotAchieved
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                    Else
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                        .Replacement.Text = outcome.SecondTryComments
-                                    End If
-                                Case Else
-                                    '-- unknown = non-submit
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                    ElseIf outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
-                                        .Replacement.Text = outcome.FirstTryComments
-                                    Else
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                        .Replacement.Text = AppSettings.NoSubmitFeedback
-                                    End If
-                            End Select
-                        Case Semester.MarkingTry.ThirdTry
-                            Select Case outcome.ThirdTryStatus
-                                Case OutcomeResultStatusEnum.Achieved
-                                    '-- passing on rework does not mean fail before
-                                    '   could mean passed before and now improving for higher mark
-                                    '   Although in 2017 Peason forbids that behavior, we don't know the future
-                                    .Replacement.Text = outcome.ThirdTryComments
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Achieved
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved '-- achieved previously, could be 1st or 2nd submit
-                                    Else
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                    End If
-                                Case OutcomeResultStatusEnum.NotAchieved
-                                    objSecondColumnMark = OutcomeResultStatusEnum.NotAchieved
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                    ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                    Else
-                                        objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
-                                        .Replacement.Text = outcome.ThirdTryComments
-                                    End If
-                                Case OutcomeResultStatusEnum.Unknown
-                                    '-- unknown = non-submit
-                                    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
-                                    If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                    ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
-                                        .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
-                                    Else
-                                        objFirstColumnMark = OutcomeResultStatusEnum.Unknown
-                                        .Replacement.Text = AppSettings.NoSubmitFeedback
-                                    End If
-                            End Select
-                    End Select
-                    .Forward = True
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Format = False
-                    .MatchCase = False
-                    .MatchWholeWord = False
-                    .MatchWildcards = False
-                    .MatchSoundsLike = False
-                    .MatchAllWordForms = False
-                End With
-                oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
-                '-- First submit in first column
-                With oWord.Selection.Find
-                    .Text = "[" & outcome.BaseOutcome.Name & "]"
-                    Select Case objFirstColumnMark
-                        Case OutcomeResultStatusEnum.Achieved
-                            '-- check mark
-                            .Replacement.ClearFormatting()
-                            .Replacement.Text = CHECKMARK
-                            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                        Case OutcomeResultStatusEnum.NotAchieved
-                            '-- X mark
-                            .Replacement.ClearFormatting()
-                            .Replacement.Text = XMARK
-                            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                        Case OutcomeResultStatusEnum.Unknown
-                            .Replacement.ClearFormatting()
-                            .Replacement.Text = BLANK
-                            .Replacement.Font.Name = BLANK_FONT_NAME
-                    End Select
-
-
-                    .Forward = True
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Format = True
-                    .MatchCase = False
-                    .MatchWholeWord = False
-                    .MatchKashida = False
-                    .MatchDiacritics = False
-                    .MatchAlefHamza = False
-                    .MatchControl = False
-                    .MatchByte = False
-                    .MatchWildcards = False
-                    .MatchSoundsLike = False
-                    .MatchAllWordForms = False
-                End With
-                oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            'If rtbImprovementComments.Text.Trim.Length = 0 Then
+            '    MessageBox.Show("You must fill out overall and improvement comments.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            '    Exit Sub
+            'End If
 
 
 
-                '-- Redo submit in second column
-                With oWord.Selection.Find
-                    .Text = "[" & outcome.BaseOutcome.Name & "R]"
-                    Select Case objSecondColumnMark
-                        Case OutcomeResultStatusEnum.Achieved
-                            '-- check mark
-                            .Replacement.ClearFormatting()
-                            .Replacement.Text = CHECKMARK
-                            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                        Case OutcomeResultStatusEnum.NotAchieved
-                            '-- X mark
-                            .Replacement.ClearFormatting()
-                            .Replacement.Text = XMARK
-                            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-                        Case OutcomeResultStatusEnum.Unknown
-                            .Replacement.ClearFormatting()
-                            .Replacement.Text = BLANK
-                            .Replacement.Font.Name = BLANK_FONT_NAME
-                    End Select
+            'Dim oWord As Word.Application
+            'Dim oDoc As Word.Document
+
+            'oWord = CreateObject("Word.Application")
+            'oWord.Visible = True
+
+            ''-- copy template over to new file, in case user accidentally saves it
+            'Dim strTemplateFilename As String = System.IO.Path.Combine(GetMarkingFolder(), m_studentAssignment.BaseAssignment.AssignmentBriefFilename)
+            'Dim strWorkingFilename As String = System.IO.Path.Combine(GetMarkingFolder(), "~temp1.docx")
+            'If System.IO.File.Exists(strWorkingFilename) Then
+            '    System.IO.File.Delete(strWorkingFilename)
+            'End If
+            'System.IO.File.Copy(strTemplateFilename, strWorkingFilename)
+            'oDoc = oWord.Documents.Open(strWorkingFilename)
+
+            'Const CHECKMARK_FONT_NAME As String = "Wingdings"
+            'Const CHECKMARK As String = "ü"
+            'Const XMARK As String = "û"
+            'Const BLANK_FONT_NAME As String = "Ariel"
+            'Const BLANK As String = " "
+
+            ''-- refresh module results (may use many times)
+            'm_studentModuleResults = m_student.ModuleResults(True)
+
+            'Dim objFirstColumnMark As OutcomeResultStatusEnum '-- Pass=check; fail=X; unknown=blank
+            'Dim objSecondColumnMark As OutcomeResultStatusEnum
 
 
-                    .Forward = True
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Format = True
-                    .MatchCase = False
-                    .MatchWholeWord = False
-                    .MatchKashida = False
-                    .MatchDiacritics = False
-                    .MatchAlefHamza = False
-                    .MatchControl = False
-                    .MatchByte = False
-                    .MatchWildcards = False
-                    .MatchSoundsLike = False
-                    .MatchAllWordForms = False
-                End With
-                oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            'For Each outcome As OutcomeResult In m_studentAssignment.Outcomes
+            '    '-- reset varliables
+            '    objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+            '    objSecondColumnMark = OutcomeResultStatusEnum.Unknown
 
-            Next
+            '    '-- Feedback comments for each outcome
+            '    With oWord.Selection.Find
+            '        .Text = "[[[OUTCOME" & outcome.BaseOutcome.Name & "COMMENTS]]]"
+            '        Select Case m_try
+            '            Case Semester.MarkingTry.FirstTry
+            '                Select Case outcome.FirstTryStatus
+            '                    '-- Changed in 2.0. Now we will show results for this assignment only
+            '                    '   Potential issue: If one outcome is on multiple assignments (P1 or M1, does not matter)
+            '                    '   We will only show the results for this assignment on this assignment
+            '                    '   Previously, if this assignment failed 1.1 but previous assignment passed 1.1 we would 
+            '                    '   say that it Passed Previously but now we will say Fail (exactly the results for this assignment)
+            '                    '   This seems reasonable because the assignment marking sheet is not designed to convey module
+            '                    '   results, it is designed to convey assignment results (that's why we say MERIT when only M1 
+            '                    '   was achieved and M2 was not because M2 was not on this assignment). This is more consistent
+            '                    Case OutcomeResultStatusEnum.Achieved
+            '                        objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        .Replacement.Text = outcome.FirstTryComments
+            '                    Case OutcomeResultStatusEnum.NotAchieved
+            '                        objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        .Replacement.Text = outcome.FirstTryComments
+            '                    Case Else
+            '                        '-- Unknown
+            '                        objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        .Replacement.Text = AppSettings.NoSubmitFeedback
+            '                End Select
+            '            Case Semester.MarkingTry.SecondTry
+            '                Select Case outcome.SecondTryStatus
+            '                    Case OutcomeResultStatusEnum.Achieved
+            '                        '-- passing on rework does not mean fail before
+            '                        '   could mean passed before and now improving for higher mark
+            '                        '   Although in 2017 Peason forbids that behavior, we don't know the future
+            '                        .Replacement.Text = outcome.SecondTryComments
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Achieved
+            '                        If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                        Else
+            '                            '-- Changing this for 2015 BTEC forms so first column will be blank if passed in second submission (so there are not 2 symbols in same box)
+            '                            'objFirstColumnMark = OutcomeResultStatusEnum.Fail
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        End If
+            '                    Case OutcomeResultStatusEnum.NotAchieved
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.NotAchieved
+            '                        If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                            .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+            '                        Else
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+            '                            .Replacement.Text = outcome.SecondTryComments
+            '                        End If
+            '                    Case Else
+            '                        '-- unknown = non-submit
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                            .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+            '                        ElseIf outcome.FirstTryStatus = OutcomeResultStatusEnum.NotAchieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
+            '                            .Replacement.Text = outcome.FirstTryComments
+            '                        Else
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+            '                            .Replacement.Text = AppSettings.NoSubmitFeedback
+            '                        End If
+            '                End Select
+            '            Case Semester.MarkingTry.ThirdTry
+            '                Select Case outcome.ThirdTryStatus
+            '                    Case OutcomeResultStatusEnum.Achieved
+            '                        '-- passing on rework does not mean fail before
+            '                        '   could mean passed before and now improving for higher mark
+            '                        '   Although in 2017 Peason forbids that behavior, we don't know the future
+            '                        .Replacement.Text = outcome.ThirdTryComments
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Achieved
+            '                        If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved OrElse outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved '-- achieved previously, could be 1st or 2nd submit
+            '                        Else
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        End If
+            '                    Case OutcomeResultStatusEnum.NotAchieved
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.NotAchieved
+            '                        If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                            .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+            '                        ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+            '                        Else
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.NotAchieved
+            '                            .Replacement.Text = outcome.ThirdTryComments
+            '                        End If
+            '                    Case OutcomeResultStatusEnum.Unknown
+            '                        '-- unknown = non-submit
+            '                        objSecondColumnMark = OutcomeResultStatusEnum.Unknown
+            '                        If outcome.FirstTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                            .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+            '                        ElseIf outcome.SecondTryStatus = OutcomeResultStatusEnum.Achieved Then
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Achieved
+            '                            .Replacement.Text = AppSettings.FeedbackTextPreviouslyPassed
+            '                        Else
+            '                            objFirstColumnMark = OutcomeResultStatusEnum.Unknown
+            '                            .Replacement.Text = AppSettings.NoSubmitFeedback
+            '                        End If
+            '                End Select
+            '        End Select
+            '        .Forward = True
+            '        .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '        .Format = False
+            '        .MatchCase = False
+            '        .MatchWholeWord = False
+            '        .MatchWildcards = False
+            '        .MatchSoundsLike = False
+            '        .MatchAllWordForms = False
+            '    End With
+            '    oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+
+            '    '-- First submit in first column
+            '    With oWord.Selection.Find
+            '        .Text = "[" & outcome.BaseOutcome.Name & "]"
+            '        Select Case objFirstColumnMark
+            '            Case OutcomeResultStatusEnum.Achieved
+            '                '-- check mark
+            '                .Replacement.ClearFormatting()
+            '                .Replacement.Text = CHECKMARK
+            '                .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '            Case OutcomeResultStatusEnum.NotAchieved
+            '                '-- X mark
+            '                .Replacement.ClearFormatting()
+            '                .Replacement.Text = XMARK
+            '                .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '            Case OutcomeResultStatusEnum.Unknown
+            '                .Replacement.ClearFormatting()
+            '                .Replacement.Text = BLANK
+            '                .Replacement.Font.Name = BLANK_FONT_NAME
+            '        End Select
+
+
+            '        .Forward = True
+            '        .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '        .Format = True
+            '        .MatchCase = False
+            '        .MatchWholeWord = False
+            '        .MatchKashida = False
+            '        .MatchDiacritics = False
+            '        .MatchAlefHamza = False
+            '        .MatchControl = False
+            '        .MatchByte = False
+            '        .MatchWildcards = False
+            '        .MatchSoundsLike = False
+            '        .MatchAllWordForms = False
+            '    End With
+            '    oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+
+
+            '    '-- Redo submit in second column
+            '    With oWord.Selection.Find
+            '        .Text = "[" & outcome.BaseOutcome.Name & "R]"
+            '        Select Case objSecondColumnMark
+            '            Case OutcomeResultStatusEnum.Achieved
+            '                '-- check mark
+            '                .Replacement.ClearFormatting()
+            '                .Replacement.Text = CHECKMARK
+            '                .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '            Case OutcomeResultStatusEnum.NotAchieved
+            '                '-- X mark
+            '                .Replacement.ClearFormatting()
+            '                .Replacement.Text = XMARK
+            '                .Replacement.Font.Name = CHECKMARK_FONT_NAME
+            '            Case OutcomeResultStatusEnum.Unknown
+            '                .Replacement.ClearFormatting()
+            '                .Replacement.Text = BLANK
+            '                .Replacement.Font.Name = BLANK_FONT_NAME
+            '        End Select
+
+
+            '        .Forward = True
+            '        .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '        .Format = True
+            '        .MatchCase = False
+            '        .MatchWholeWord = False
+            '        .MatchKashida = False
+            '        .MatchDiacritics = False
+            '        .MatchAlefHamza = False
+            '        .MatchControl = False
+            '        .MatchByte = False
+            '        .MatchWildcards = False
+            '        .MatchSoundsLike = False
+            '        .MatchAllWordForms = False
+            '    End With
+            '    oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+            'Next
+
 
             'With oWord.Selection.Find
-            '    .Text = "@M1"
-            '    .ClearFormatting()
-            '    If m_studentAssignment.BaseAssignment.M1Available Then
-            '        If chkM1.Checked Then
-            '            '-- check mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = CHECKMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        Else
-            '            '-- X mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = XMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        End If
-            '    Else
-            '        .Replacement.Text = String.Empty
-            '    End If
+            '    .Text = "[[StudentID]]"
+            '    .Replacement.Text = m_student.StudentID
             '    .Forward = True
             '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-            '    .Format = True
+            '    .Format = False
             '    .MatchCase = False
             '    .MatchWholeWord = False
-            '    .MatchKashida = False
-            '    .MatchDiacritics = False
-            '    .MatchAlefHamza = False
-            '    .MatchControl = False
-            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+            'With oWord.Selection.Find
+            '    .Text = "[[NickName]]"
+            '    .Replacement.Text = m_student.Nickname
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = False
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+            'With oWord.Selection.Find
+            '    .Text = "[[StudentName]]"
+            '    .Replacement.Text = m_student.LocalName
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = False
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
             '    .MatchWildcards = False
             '    .MatchSoundsLike = False
             '    .MatchAllWordForms = False
@@ -1016,32 +1025,27 @@ Friend Class StudentAssignmentDetails
 
 
             'With oWord.Selection.Find
-            '    .Text = "@D1"
-            '    If m_studentAssignment.BaseAssignment.D1Available Then
-            '        If chkD1.Checked Then
-            '            '-- check mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = CHECKMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        Else
-            '            '-- X mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = XMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        End If
-            '    Else
-            '        .Replacement.Text = String.Empty
-            '    End If
+            '    .Text = "[[ExtStudentID]]"
+            '    .Replacement.Text = m_student.ExtStudentID
             '    .Forward = True
             '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-            '    .Format = True
+            '    .Format = False
             '    .MatchCase = False
             '    .MatchWholeWord = False
-            '    .MatchKashida = False
-            '    .MatchDiacritics = False
-            '    .MatchAlefHamza = False
-            '    .MatchControl = False
-            '    .MatchByte = False
+            '    .MatchWildcards = False
+            '    .MatchSoundsLike = False
+            '    .MatchAllWordForms = False
+            'End With
+            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+
+            'With oWord.Selection.Find
+            '    .Text = "[[AltNumber]]"
+            '    .Replacement.Text = m_student.AltNumber
+            '    .Forward = True
+            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+            '    .Format = False
+            '    .MatchCase = False
+            '    .MatchWholeWord = False
             '    .MatchWildcards = False
             '    .MatchSoundsLike = False
             '    .MatchAllWordForms = False
@@ -1050,32 +1054,18 @@ Friend Class StudentAssignmentDetails
 
 
             'With oWord.Selection.Find
-            '    .Text = "@M2"
-            '    If m_studentAssignment.BaseAssignment.M2Available Then
-            '        If chkM2.Checked Then
-            '            '-- check mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = CHECKMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        Else
-            '            '-- X mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = XMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        End If
-            '    Else
-            '        .Replacement.Text = String.Empty
-            '    End If
+            '    .Text = "[[[OVERALL]]]"
+
+            '    '-- Change this in 2018 because Overall CAN get quite long (in some tests)
+            '    '.Replacement.Text = rtbOverallComments.Text
+            '    Clipboard.SetText(rtbOverallComments.Text)
+            '    .Replacement.Text = "^c"
+
             '    .Forward = True
             '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-            '    .Format = True
+            '    .Format = False
             '    .MatchCase = False
             '    .MatchWholeWord = False
-            '    .MatchKashida = False
-            '    .MatchDiacritics = False
-            '    .MatchAlefHamza = False
-            '    .MatchControl = False
-            '    .MatchByte = False
             '    .MatchWildcards = False
             '    .MatchSoundsLike = False
             '    .MatchAllWordForms = False
@@ -1084,256 +1074,58 @@ Friend Class StudentAssignmentDetails
 
 
             'With oWord.Selection.Find
-            '    .Text = "@D2"
-            '    If m_studentAssignment.BaseAssignment.D2Available Then
-            '        If chkD2.Checked Then
-            '            '-- check mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = CHECKMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        Else
-            '            '-- X mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = XMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        End If
-            '    Else
-            '        .Replacement.Text = String.Empty
-            '    End If
+            '    .Text = "[[[IMPROVEMENTS]]]"
+            '    Clipboard.SetText(rtbImprovementComments.Text)
+            '    .Replacement.Text = "^c"
             '    .Forward = True
             '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-            '    .Format = True
+            '    .Format = False
             '    .MatchCase = False
             '    .MatchWholeWord = False
-            '    .MatchKashida = False
-            '    .MatchDiacritics = False
-            '    .MatchAlefHamza = False
-            '    .MatchControl = False
-            '    .MatchByte = False
             '    .MatchWildcards = False
             '    .MatchSoundsLike = False
             '    .MatchAllWordForms = False
             'End With
             'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
 
 
             'With oWord.Selection.Find
-            '    .Text = "@M3"
-            '    If m_studentAssignment.BaseAssignment.M3Available Then
-            '        If chkM3.Checked Then
-            '            '-- check mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = CHECKMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        Else
-            '            '-- X mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = XMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        End If
-            '    Else
-            '        .Replacement.Text = String.Empty
-            '    End If
+            '    .Text = "[[[DATE]]]"
+            '    Clipboard.SetText(rtbImprovementComments.Text)
+            '    .Replacement.Text = Date.Today.ToString("dd / MMM / yyyy")
             '    .Forward = True
             '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-            '    .Format = True
+            '    .Format = False
             '    .MatchCase = False
             '    .MatchWholeWord = False
-            '    .MatchKashida = False
-            '    .MatchDiacritics = False
-            '    .MatchAlefHamza = False
-            '    .MatchControl = False
-            '    .MatchByte = False
             '    .MatchWildcards = False
             '    .MatchSoundsLike = False
             '    .MatchAllWordForms = False
             'End With
             'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
 
+            'If save Then
+            '    '-- Save in print folder but sub-folder for each module
+            '    Dim strDestination As String = GetMarkingPageFilename()
+            '    oDoc.SaveAs2(strDestination)
+            '    oDoc.Close()
+            '    oWord.Quit()
+            'Else
+            '    oDoc.Save() '-- to prevent future prompt
 
+            '    'oDoc.PrintOut(ManualDuplexPrint:=True)
+            '    'oDoc.PrintOut(False, False, Nothing, Nothing,   1, 5, Nothing, 1, Nothing, Nothing, False, False, Nothing, True)
+            'End If
 
-
-            'With oWord.Selection.Find
-            '    .Text = "@D3"
-            '    If m_studentAssignment.BaseAssignment.D3Available Then
-            '        If chkD3.Checked Then
-            '            '-- check mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = CHECKMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        Else
-            '            '-- X mark
-            '            .Replacement.ClearFormatting()
-            '            .Replacement.Text = XMARK
-            '            .Replacement.Font.Name = CHECKMARK_FONT_NAME
-            '        End If
-            '    Else
-            '        .Replacement.Text = String.Empty
-            '    End If
-            '    .Forward = True
-            '    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-            '    .Format = True
-            '    .MatchCase = False
-            '    .MatchWholeWord = False
-            '    .MatchKashida = False
-            '    .MatchDiacritics = False
-            '    .MatchAlefHamza = False
-            '    .MatchControl = False
-            '    .MatchByte = False
-            '    .MatchWildcards = False
-            '    .MatchSoundsLike = False
-            '    .MatchAllWordForms = False
-            'End With
-            'oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
-            With oWord.Selection.Find
-                .Text = "[[StudentID]]"
-                .Replacement.Text = m_student.StudentID
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-            With oWord.Selection.Find
-                .Text = "[[NickName]]"
-                .Replacement.Text = m_student.Nickname
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-            With oWord.Selection.Find
-                .Text = "[[StudentName]]"
-                .Replacement.Text = m_student.LocalName
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
-            With oWord.Selection.Find
-                .Text = "[[ExtStudentID]]"
-                .Replacement.Text = m_student.ExtStudentID
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-            With oWord.Selection.Find
-                .Text = "[[AltNumber]]"
-                .Replacement.Text = m_student.AltNumber
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
-            With oWord.Selection.Find
-                .Text = "[[[OVERALL]]]"
-
-                '-- Change this in 2018 because Overall CAN get quite long (in some tests)
-                '.Replacement.Text = rtbOverallComments.Text
-                Clipboard.SetText(rtbOverallComments.Text)
-                .Replacement.Text = "^c"
-
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
-            With oWord.Selection.Find
-                .Text = "[[[IMPROVEMENTS]]]"
-                Clipboard.SetText(rtbImprovementComments.Text)
-                .Replacement.Text = "^c"
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-
-            With oWord.Selection.Find
-                .Text = "[[[DATE]]]"
-                Clipboard.SetText(rtbImprovementComments.Text)
-                .Replacement.Text = Date.Today.ToString("dd / MMM / yyyy")
-                .Forward = True
-                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                .Format = False
-                .MatchCase = False
-                .MatchWholeWord = False
-                .MatchWildcards = False
-                .MatchSoundsLike = False
-                .MatchAllWordForms = False
-            End With
-            oWord.Selection.Find.Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-
-            If save Then
-                '-- Save in print folder but sub-folder for each module
-                Dim strDestination As String = GetMarkingPageFilename()
-                oDoc.SaveAs2(strDestination)
-                oDoc.Close()
-                oWord.Quit()
-            Else
-                oDoc.Save() '-- to prevent future prompt
-
-                'oDoc.PrintOut(ManualDuplexPrint:=True)
-                'oDoc.PrintOut(False, False, Nothing, Nothing,   1, 5, Nothing, 1, Nothing, Nothing, False, False, Nothing, True)
-            End If
-
-            chkProcessed.Checked = True
-            Select Case m_try
-                Case Semester.MarkingTry.FirstTry
-                    m_studentAssignment.FirstTryPrintDate = Date.Now
-                Case (Semester.MarkingTry.SecondTry)
-                    m_studentAssignment.SecondTryPrintDate = Date.Now
-                Case Semester.MarkingTry.ThirdTry
-                    m_studentAssignment.ThirdTryPrintDate = Date.Now
-            End Select
+            'chkProcessed.Checked = True
+            'Select Case m_try
+            '    Case Semester.MarkingTry.FirstTry
+            '        m_studentAssignment.FirstTryPrintDate = Date.Now
+            '    Case (Semester.MarkingTry.SecondTry)
+            '        m_studentAssignment.SecondTryPrintDate = Date.Now
+            '    Case Semester.MarkingTry.ThirdTry
+            '        m_studentAssignment.ThirdTryPrintDate = Date.Now
+            'End Select
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message)
         End Try
@@ -1616,72 +1408,6 @@ Friend Class StudentAssignmentDetails
 
 
     End Function
-    Private Sub llblCopyAssignmentFromCD_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblCopyAssignmentFromCD.LinkClicked
-        Try
-            If AppSettings.CDDrive.Length = 0 Then
-                MessageBox.Show("Please set the CD-ROM drive.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                Dim strFileToProcess As String = String.Empty
-                Dim files() As String = System.IO.Directory.GetFiles(AppSettings.CDDrive, "*.doc*", IO.SearchOption.AllDirectories)
-                If files.Length = 1 Then
-                    strFileToProcess = files(0)
-                ElseIf files.Length = 0 Then
-                    MessageBox.Show("There are no .doc or .docx files on the CD (Drive: " & AppSettings.CDDrive & ").", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                Else
-                    '-- choose
-                    Using frm As New AssignmentDocumentSelector(files)
-                        If frm.ShowDialog(Me) = DialogResult.OK Then
-                            strFileToProcess = frm.SelectedFilename
-                        Else
-                            Exit Sub
-                        End If
-                    End Using
-                End If
-
-                'Dim strLocalDirectory As String = m_studentAssignment.BaseAssignment.SavedAssignmentsFolder '"C:\Teaching\Teaching Business\Mine\Assignments\OB Assignment\2012 Fall\A1"
-                'Dim strLocalFilePrefix As String = m_studentAssignment.BaseAssignment.Name & " "
-
-                If strFileToProcess.Length > 0 Then
-                    Dim strDestination As String = GetSavedAssignmentFilename() 'System.IO.Path.Combine(strLocalDirectory, strLocalFilePrefix & m_student.StudentID & ".docx")
-
-                    If System.IO.Path.GetExtension(strFileToProcess).ToLower() = ".docx" Then
-                        '-- just copy
-                        System.IO.File.Copy(strFileToProcess, strDestination)
-                    Else
-                        '-- Convert, using Word
-                        Dim oWord As Word.Application
-                        Dim oDoc As Word.Document
-
-                        oWord = CreateObject("Word.Application")
-                        oWord.Visible = True
-                        oDoc = oWord.Documents.Open(strFileToProcess)
-
-                        oDoc.SaveAs2(strDestination, 16) 'FileFormat:=WdSaveFormat.wdFormatDocumentDefault)
-                        'Application.DoEvents()
-                        'MessageBox.Show("Please manually check the conversion process.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        'MessageBox.Show("Conversion via Word not implemented yet. You must manually convert (filename copied to clipboard already).", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        'Clipboard.SetText(strDestination)
-                        'System.Diagnostics.Process.Start(strFileToProcess)
-                        Exit Sub
-                    End If
-
-                    '-- remove any readonly (or other) attributes
-                    System.IO.File.SetAttributes(strDestination, IO.FileAttributes.Normal)
-
-                    '-- Now open for user to edit, if necessary
-                    System.Diagnostics.Process.Start(strDestination)
-
-                    '-- finally, hide the icon
-                    llblCopyAssignmentFromCD.Visible = False
-                End If
-
-            End If
-        Catch ex As Exception
-            MessageBox.Show("There was an error copying (drive: " & AppSettings.CDDrive & ") the assignment: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-    End Sub
 
     Private Sub ApplyFeedback()
         If olvAutoFeedback.SelectedIndex = -1 Then
@@ -1723,21 +1449,12 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Declare Function mciSendString Lib "winmm.dll" _
-    Alias "mciSendStringA" ( _
-        ByVal lpstrCommand As String, _
-        ByVal lpstrReturnString As String, _
-        ByVal uReturnLength As Integer, _
+    Alias "mciSendStringA" (
+        ByVal lpstrCommand As String,
+        ByVal lpstrReturnString As String,
+        ByVal uReturnLength As Integer,
         ByVal hwndCallback As Integer) _
     As Integer
-    Private Sub llblEjectCD_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblEjectCD.LinkClicked
-        'Dim ret As String
-        'ret = New String(CChar(" "), 255)
-        'mciSendString("Set CDAudio Door Open Wait", ret, 0&, 0&)
-
-        mciSendString("open " & AppSettings.CDDrive.Substring(0, 1) & ": type CDAudio alias driveCD", Nothing, 0, IntPtr.Zero)
-        mciSendString("set driveCD door open", Nothing, 0, IntPtr.Zero)
-        llblEjectCD.Hide()
-    End Sub
 
     Private Sub llblEditStudent_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblEditStudent.LinkClicked
         Using frm As New StudentDetail(m_student)

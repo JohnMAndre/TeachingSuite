@@ -654,4 +654,6 @@ Friend Class StudentAssignmentNormalDetails
     Private Sub llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework_LinkClicked(sender As Object, e As EventArgs) Handles llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.LinkClicked
         AutoGenImprovementComments(False, True)
     End Sub
+
+
 End Class

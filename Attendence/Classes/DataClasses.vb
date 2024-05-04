@@ -56,6 +56,7 @@ Public Class Semester
         Exam
         Portfolio
         PresentationContentOnly
+        ReportNoBookReference
     End Enum
 
     ''' <summary>

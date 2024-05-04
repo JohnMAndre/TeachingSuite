@@ -75,7 +75,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.olvcolDateRemoved = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolPerformanceLevel = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvColumn2 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.olvcolPrevPerformance = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.KryptonLabel19 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.llblWarningNotice = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
         Me.KryptonLabel20 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
@@ -653,11 +653,11 @@ Partial Class StudentAssignmentNormalDetails
         Me.olvImprovementItems.AllColumns.Add(Me.olvcolDateRemoved)
         Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn5)
         Me.olvImprovementItems.AllColumns.Add(Me.olvcolPerformanceLevel)
-        Me.olvImprovementItems.AllColumns.Add(Me.OlvColumn2)
+        Me.olvImprovementItems.AllColumns.Add(Me.olvcolPrevPerformance)
         Me.olvImprovementItems.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick
         Me.olvImprovementItems.CellEditUseWholeCell = False
         Me.olvImprovementItems.CheckBoxes = True
-        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.olvcolDataAdded, Me.olvcolDateRemoved, Me.OlvColumn5, Me.olvcolPerformanceLevel, Me.OlvColumn2})
+        Me.olvImprovementItems.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.OlvColumn1, Me.olvcolDataAdded, Me.olvcolDateRemoved, Me.OlvColumn5, Me.olvcolPerformanceLevel, Me.olvcolPrevPerformance})
         Me.olvImprovementItems.CopySelectionOnControlC = False
         Me.olvImprovementItems.CopySelectionOnControlCUsesDragSource = False
         Me.olvImprovementItems.Cursor = System.Windows.Forms.Cursors.Default
@@ -713,18 +713,21 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.olvcolPerformanceLevel.AspectName = "PerformanceLevel"
         Me.olvcolPerformanceLevel.DisplayIndex = 1
+        Me.olvcolPerformanceLevel.MaximumWidth = 65
         Me.olvcolPerformanceLevel.Text = "Perf"
         Me.olvcolPerformanceLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolPerformanceLevel.ToolTipText = "Performance level (0-5)"
         Me.olvcolPerformanceLevel.Width = 65
         '
-        'OlvColumn2
+        'olvcolPrevPerformance
         '
-        Me.OlvColumn2.AspectName = "PreviousPerformanceLevel"
-        Me.OlvColumn2.DisplayIndex = 2
-        Me.OlvColumn2.IsEditable = False
-        Me.OlvColumn2.Text = "Prev"
-        Me.OlvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolPrevPerformance.AspectName = "PreviousPerformanceLevel"
+        Me.olvcolPrevPerformance.DisplayIndex = 2
+        Me.olvcolPrevPerformance.IsEditable = False
+        Me.olvcolPrevPerformance.MaximumWidth = 65
+        Me.olvcolPrevPerformance.Text = "Prev"
+        Me.olvcolPrevPerformance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.olvcolPrevPerformance.Width = 65
         '
         'KryptonLabel19
         '
@@ -1133,7 +1136,7 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents txtGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel18 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonLabel17 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents OlvColumn2 As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents olvcolPrevPerformance As BrightIdeasSoftware.OLVColumn
     Private WithEvents KryptonLabel19 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents KryptonLabel20 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Private WithEvents txtLastUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
