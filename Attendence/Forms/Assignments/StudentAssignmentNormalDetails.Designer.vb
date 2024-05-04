@@ -118,13 +118,11 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer2.Panel1.SuspendLayout()
         CType(Me.KryptonSplitContainer2.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer2.Panel2.SuspendLayout()
-        Me.KryptonSplitContainer2.SuspendLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel1.SuspendLayout()
         CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel2.SuspendLayout()
-        Me.KryptonSplitContainer1.SuspendLayout()
         CType(Me.spltOveralFirstReworkText, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spltOveralFirstReworkText.Panel1.SuspendLayout()
         Me.spltOveralFirstReworkText.Panel2.SuspendLayout()
@@ -334,11 +332,11 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer2.Name = "KryptonSplitContainer2"
         Me.KryptonSplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
-        'KryptonSplitContainer2.Panel1
+        '
         '
         Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.KryptonSplitContainer1)
         '
-        'KryptonSplitContainer2.Panel2
+        '
         '
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel19)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblWarningNotice)
@@ -368,7 +366,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonSplitContainer1.Name = "KryptonSplitContainer1"
         '
-        'KryptonSplitContainer1.Panel1
+        '
         '
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.spltOveralFirstReworkText)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lblFirstTryPercent)
@@ -390,7 +388,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsRework)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsFirst)
         '
-        'KryptonSplitContainer1.Panel2
+        '
         '
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.olvImprovementItems)
         Me.KryptonSplitContainer1.Size = New System.Drawing.Size(1045, 394)
@@ -760,7 +758,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(363, 35)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(90, 25)
         Me.btnCancel.TabIndex = 62
         Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
         Me.btnCancel.Values.Text = "&Cancel"
@@ -786,7 +783,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnOK.Location = New System.Drawing.Point(490, 35)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(90, 25)
         Me.btnOK.TabIndex = 63
         Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
         Me.btnOK.Values.Text = "&OK"
@@ -857,12 +853,10 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.chkProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
-        Me.chkProcessed.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl
         Me.chkProcessed.Location = New System.Drawing.Point(839, 34)
         Me.chkProcessed.Name = "chkProcessed"
         Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
         Me.chkProcessed.TabIndex = 48
-        Me.chkProcessed.Text = "&Processed:"
         Me.chkProcessed.Values.Text = "&Processed:"
         '
         'btnPrintMarkingSheet
@@ -1046,14 +1040,12 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer2.Panel2.ResumeLayout(False)
         Me.KryptonSplitContainer2.Panel2.PerformLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonSplitContainer2.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.Panel1.ResumeLayout(False)
         Me.KryptonSplitContainer1.Panel1.PerformLayout()
         CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonSplitContainer1.ResumeLayout(False)
         Me.spltOveralFirstReworkText.Panel1.ResumeLayout(False)
         Me.spltOveralFirstReworkText.Panel1.PerformLayout()
         Me.spltOveralFirstReworkText.Panel2.ResumeLayout(False)
