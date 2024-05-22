@@ -72,7 +72,7 @@ Partial Class MainFormPlain
         Me.txtSemesterNotes = New System.Windows.Forms.TextBox()
         Me.cboSemester = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.llblSemesterLabel = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.llblSemesterLabel = New System.Windows.Forms.LinkLabel()
         Me.splitOverall = New System.Windows.Forms.SplitContainer()
         Me.lstAssignments = New System.Windows.Forms.ListBox()
         Me.ctxmnuAssignment = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -608,8 +608,7 @@ Partial Class MainFormPlain
         Me.llblSemesterLabel.Name = "llblSemesterLabel"
         Me.llblSemesterLabel.Size = New System.Drawing.Size(64, 20)
         Me.llblSemesterLabel.TabIndex = 37
-        Me.llblSemesterLabel.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblSemesterLabel.Values.Text = "Semester:"
+        Me.llblSemesterLabel.Text = "Semester:"
         '
         'splitOverall
         '
@@ -3031,7 +3030,7 @@ Partial Class MainFormPlain
     Friend WithEvents ExportBTECGradesForMoodleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportAllGradeDataToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AttendanceForClassToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents llblSemesterLabel As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblSemesterLabel As System.Windows.Forms.LinkLabel
     Friend WithEvents StudentAssignmentErrorsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportsForResearchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AttendanceDataForAllSemestersToolStripMenuItem As ToolStripMenuItem

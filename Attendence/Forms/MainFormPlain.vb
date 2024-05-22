@@ -3235,7 +3235,9 @@ Public Class MainFormPlain
 
             Dim lstFiltered As List(Of Student)
             If strTeam.Trim.Length = 0 Then
-                lstFiltered = GetSelectedClass.Students.Where(Function(x) x.StudentID.ToLower.Equals(stud.StudentID.ToLower())).ToList()
+                lstFiltered = New List(Of Student) From {
+                    stud
+                }
             Else
                 If ClassIsCombinedView(GetSelectedClass) Then
                     Dim lst As New List(Of Student)
@@ -3254,7 +3256,7 @@ Public Class MainFormPlain
                 End If
             End If
 
-            AddApplicationHistory("Group presentation marking (" & strTeam & ").")
+            AddApplicationHistory("Group presentation marking (Team: " & strTeam & ").")
 
 
             Dim asmt As ClassAssignment = CType(GetSelectedAssignment(), ClassAssignment)

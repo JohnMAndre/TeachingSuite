@@ -33,15 +33,15 @@ Partial Class StudentAssignmentNormalDetails
         Me.AutogenImprovementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.txtPeerStudentID = New System.Windows.Forms.TextBox()
-        Me.KryptonLabel21 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel21 = New System.Windows.Forms.Label()
         Me.txtTeam = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtGroup = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.nudPlagiarismSeverity = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.nudWritingQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.nudAltNumber = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.nudPresentationQuality = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel18 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel17 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.nudPlagiarismSeverity = New System.Windows.Forms.NumericUpDown()
+        Me.nudWritingQuality = New System.Windows.Forms.NumericUpDown()
+        Me.nudAltNumber = New System.Windows.Forms.NumericUpDown()
+        Me.nudPresentationQuality = New System.Windows.Forms.NumericUpDown()
+        Me.KryptonLabel18 = New System.Windows.Forms.Label()
+        Me.KryptonLabel17 = New System.Windows.Forms.Label()
         Me.KryptonSplitContainer2 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.spltOveralFirstReworkText = New System.Windows.Forms.SplitContainer()
@@ -51,24 +51,24 @@ Partial Class StudentAssignmentNormalDetails
         Me.rtbImprovementCommentsRework = New System.Windows.Forms.RichTextBox()
         Me.rtbOverallCommentsRework = New System.Windows.Forms.RichTextBox()
         Me.llblReworkText = New System.Windows.Forms.LinkLabel()
-        Me.lblFirstTryPercent = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblAutoCalcScore = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.lblMaxPoints = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel16 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel15 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel14 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudThirdTryPoints = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudSecondTryPoints = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel5 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.nudFirstTryPoints = New ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown()
-        Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAutoGenImprovementsRework = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAutoGenImprovementsFirst = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.lblFirstTryPercent = New System.Windows.Forms.Label()
+        Me.llblAutoCalcScore = New System.Windows.Forms.LinkLabel()
+        Me.lblMaxPoints = New System.Windows.Forms.Label()
+        Me.KryptonLabel16 = New System.Windows.Forms.Label()
+        Me.KryptonLabel15 = New System.Windows.Forms.Label()
+        Me.KryptonLabel14 = New System.Windows.Forms.Label()
+        Me.nudThirdTryPoints = New System.Windows.Forms.NumericUpDown()
+        Me.KryptonLabel13 = New System.Windows.Forms.Label()
+        Me.nudSecondTryPoints = New System.Windows.Forms.NumericUpDown()
+        Me.KryptonLabel5 = New System.Windows.Forms.Label()
+        Me.nudFirstTryPoints = New System.Windows.Forms.NumericUpDown()
+        Me.KryptonLabel2 = New System.Windows.Forms.Label()
+        Me.KryptonLabel3 = New System.Windows.Forms.Label()
+        Me.KryptonLabel4 = New System.Windows.Forms.Label()
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework = New System.Windows.Forms.LinkLabel()
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout = New System.Windows.Forms.LinkLabel()
+        Me.llblAutoGenImprovementsRework = New System.Windows.Forms.LinkLabel()
+        Me.llblAutoGenImprovementsFirst = New System.Windows.Forms.LinkLabel()
         Me.olvImprovementItems = New BrightIdeasSoftware.ObjectListView()
         Me.OlvColumn1 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolDataAdded = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -76,38 +76,38 @@ Partial Class StudentAssignmentNormalDetails
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolPerformanceLevel = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolPrevPerformance = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.KryptonLabel19 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblWarningNotice = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel20 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.btnCancel = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonLabel19 = New System.Windows.Forms.Label()
+        Me.llblWarningNotice = New System.Windows.Forms.LinkLabel()
+        Me.KryptonLabel20 = New System.Windows.Forms.Label()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.txtLastUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtFirstUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.btnOK = New ComponentFactory.Krypton.Toolkit.KryptonButton()
-        Me.llblDeleteAssignment = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.btnOK = New System.Windows.Forms.Button()
+        Me.llblDeleteAssignment = New System.Windows.Forms.LinkLabel()
+        Me.KryptonLabel9 = New System.Windows.Forms.Label()
         Me.txtTimer = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.llblToggleTimer = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblResetTimer = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblOpenSavedMarkingPage = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.chkProcessed = New ComponentFactory.Krypton.Toolkit.KryptonCheckBox()
-        Me.btnPrintMarkingSheet = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblSaveFeedbackSheet = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.llblToggleTimer = New System.Windows.Forms.LinkLabel()
+        Me.llblResetTimer = New System.Windows.Forms.LinkLabel()
+        Me.llblOpenSavedMarkingPage = New System.Windows.Forms.LinkLabel()
+        Me.chkProcessed = New System.Windows.Forms.CheckBox()
+        Me.btnPrintMarkingSheet = New System.Windows.Forms.LinkLabel()
+        Me.llblSaveFeedbackSheet = New System.Windows.Forms.LinkLabel()
+        Me.KryptonLabel12 = New System.Windows.Forms.Label()
+        Me.KryptonLabel10 = New System.Windows.Forms.Label()
         Me.txtSchoolClass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblEditStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonLabel6 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonLabel11 = New System.Windows.Forms.Label()
+        Me.llblEditStudent = New System.Windows.Forms.LinkLabel()
+        Me.KryptonLabel8 = New System.Windows.Forms.Label()
+        Me.KryptonLabel7 = New System.Windows.Forms.Label()
+        Me.KryptonLabel6 = New System.Windows.Forms.Label()
         Me.txtAssignmentName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.txtNickName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.llblOpenStudent = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblClearImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblRemoveImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
-        Me.llblAddImprovementItem = New ComponentFactory.Krypton.Toolkit.KryptonLinkLabel()
+        Me.KryptonLabel1 = New System.Windows.Forms.Label()
+        Me.llblOpenStudent = New System.Windows.Forms.LinkLabel()
+        Me.llblClearImprovementItem = New System.Windows.Forms.LinkLabel()
+        Me.llblRemoveImprovementItem = New System.Windows.Forms.LinkLabel()
+        Me.llblAddImprovementItem = New System.Windows.Forms.LinkLabel()
         Me.tmrTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip1.SuspendLayout()
@@ -242,7 +242,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel21.Name = "KryptonLabel21"
         Me.KryptonLabel21.Size = New System.Drawing.Size(37, 20)
         Me.KryptonLabel21.TabIndex = 131
-        Me.KryptonLabel21.Values.Text = "Peer:"
+        Me.KryptonLabel21.Text = "Peer:"
         '
         'txtTeam
         '
@@ -311,7 +311,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel18.Name = "KryptonLabel18"
         Me.KryptonLabel18.Size = New System.Drawing.Size(43, 20)
         Me.KryptonLabel18.TabIndex = 129
-        Me.KryptonLabel18.Values.Text = "Team:"
+        Me.KryptonLabel18.Text = "Team:"
         '
         'KryptonLabel17
         '
@@ -319,7 +319,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel17.Name = "KryptonLabel17"
         Me.KryptonLabel17.Size = New System.Drawing.Size(47, 20)
         Me.KryptonLabel17.TabIndex = 127
-        Me.KryptonLabel17.Values.Text = "Group:"
+        Me.KryptonLabel17.Text = "Group:"
         '
         'KryptonSplitContainer2
         '
@@ -490,7 +490,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.lblFirstTryPercent.Name = "lblFirstTryPercent"
         Me.lblFirstTryPercent.Size = New System.Drawing.Size(6, 2)
         Me.lblFirstTryPercent.TabIndex = 139
-        Me.lblFirstTryPercent.Values.Text = ""
+        Me.lblFirstTryPercent.Text = ""
         '
         'llblAutoCalcScore
         '
@@ -500,7 +500,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoCalcScore.TabIndex = 138
         Me.ToolTip1.SetToolTip(Me.llblAutoCalcScore, "Automatically calculate the number of points from the text (each lines ends in 10" &
         "/15)")
-        Me.llblAutoCalcScore.Values.Text = "Auto-calc"
+        Me.llblAutoCalcScore.Text = "Auto-calc"
         '
         'lblMaxPoints
         '
@@ -508,7 +508,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.lblMaxPoints.Name = "lblMaxPoints"
         Me.lblMaxPoints.Size = New System.Drawing.Size(105, 20)
         Me.lblMaxPoints.TabIndex = 136
-        Me.lblMaxPoints.Values.Text = "Maximum points: "
+        Me.lblMaxPoints.Text = "Maximum points: "
         '
         'KryptonLabel16
         '
@@ -516,7 +516,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel16.Name = "KryptonLabel16"
         Me.KryptonLabel16.Size = New System.Drawing.Size(44, 20)
         Me.KryptonLabel16.TabIndex = 135
-        Me.KryptonLabel16.Values.Text = "points"
+        Me.KryptonLabel16.Text = "points"
         '
         'KryptonLabel15
         '
@@ -524,7 +524,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel15.Name = "KryptonLabel15"
         Me.KryptonLabel15.Size = New System.Drawing.Size(44, 20)
         Me.KryptonLabel15.TabIndex = 134
-        Me.KryptonLabel15.Values.Text = "points"
+        Me.KryptonLabel15.Text = "points"
         '
         'KryptonLabel14
         '
@@ -532,7 +532,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel14.Name = "KryptonLabel14"
         Me.KryptonLabel14.Size = New System.Drawing.Size(44, 20)
         Me.KryptonLabel14.TabIndex = 133
-        Me.KryptonLabel14.Values.Text = "points"
+        Me.KryptonLabel14.Text = "points"
         '
         'nudThirdTryPoints
         '
@@ -551,7 +551,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel13.Name = "KryptonLabel13"
         Me.KryptonLabel13.Size = New System.Drawing.Size(59, 20)
         Me.KryptonLabel13.TabIndex = 131
-        Me.KryptonLabel13.Values.Text = "Third try:"
+        Me.KryptonLabel13.Text = "Third try:"
         '
         'nudSecondTryPoints
         '
@@ -570,7 +570,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel5.Name = "KryptonLabel5"
         Me.KryptonLabel5.Size = New System.Drawing.Size(71, 20)
         Me.KryptonLabel5.TabIndex = 129
-        Me.KryptonLabel5.Values.Text = "Second try:"
+        Me.KryptonLabel5.Text = "Second try:"
         '
         'nudFirstTryPoints
         '
@@ -589,7 +589,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel2.Name = "KryptonLabel2"
         Me.KryptonLabel2.Size = New System.Drawing.Size(54, 20)
         Me.KryptonLabel2.TabIndex = 127
-        Me.KryptonLabel2.Values.Text = "First try:"
+        Me.KryptonLabel2.Text = "First try:"
         '
         'KryptonLabel3
         '
@@ -597,7 +597,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel3.Name = "KryptonLabel3"
         Me.KryptonLabel3.Size = New System.Drawing.Size(51, 20)
         Me.KryptonLabel3.TabIndex = 64
-        Me.KryptonLabel3.Values.Text = "Overall:"
+        Me.KryptonLabel3.Text = "Overall:"
         '
         'KryptonLabel4
         '
@@ -605,7 +605,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel4.Name = "KryptonLabel4"
         Me.KryptonLabel4.Size = New System.Drawing.Size(87, 20)
         Me.KryptonLabel4.TabIndex = 65
-        Me.KryptonLabel4.Values.Text = "Improvement:"
+        Me.KryptonLabel4.Text = "Improvement:"
         '
         'llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework
         '
@@ -613,7 +613,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Name = "llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework"
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Size = New System.Drawing.Size(87, 20)
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.TabIndex = 140
-        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Values.Text = "Gen (RW w/o)"
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Text = "Gen (RW w/o)"
         '
         'llblAutoGenImprovementsWithoutPerformanceLevelWithout
         '
@@ -623,7 +623,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.TabIndex = 140
         Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout, "Automatically generate improvement comments based on checked improvement items (w" &
         "ithout performance level)")
-        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Values.Text = "Gen (1st w/o)"
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Text = "Gen (1st w/o)"
         '
         'llblAutoGenImprovementsRework
         '
@@ -631,7 +631,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsRework.Name = "llblAutoGenImprovementsRework"
         Me.llblAutoGenImprovementsRework.Size = New System.Drawing.Size(75, 20)
         Me.llblAutoGenImprovementsRework.TabIndex = 137
-        Me.llblAutoGenImprovementsRework.Values.Text = "Gen (RW w)"
+        Me.llblAutoGenImprovementsRework.Text = "Gen (RW w)"
         '
         'llblAutoGenImprovementsFirst
         '
@@ -641,7 +641,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsFirst.TabIndex = 137
         Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsFirst, "Automatically generate improvement comments based on checked improvement items (w" &
         "ith performance level)")
-        Me.llblAutoGenImprovementsFirst.Values.Text = "Gen (1st w)"
+        Me.llblAutoGenImprovementsFirst.Text = "Gen (1st w)"
         '
         'olvImprovementItems
         '
@@ -733,7 +733,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel19.Name = "KryptonLabel19"
         Me.KryptonLabel19.Size = New System.Drawing.Size(71, 20)
         Me.KryptonLabel19.TabIndex = 136
-        Me.KryptonLabel19.Values.Text = "Last editor:"
+        Me.KryptonLabel19.Text = "Last editor:"
         '
         'llblWarningNotice
         '
@@ -742,7 +742,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblWarningNotice.Name = "llblWarningNotice"
         Me.llblWarningNotice.Size = New System.Drawing.Size(6, 2)
         Me.llblWarningNotice.TabIndex = 123
-        Me.llblWarningNotice.Values.Text = ""
+        Me.llblWarningNotice.Text = ""
         '
         'KryptonLabel20
         '
@@ -750,7 +750,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel20.Name = "KryptonLabel20"
         Me.KryptonLabel20.Size = New System.Drawing.Size(72, 20)
         Me.KryptonLabel20.TabIndex = 137
-        Me.KryptonLabel20.Values.Text = "First editor:"
+        Me.KryptonLabel20.Text = "First editor:"
         '
         'btnCancel
         '
@@ -759,8 +759,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnCancel.Location = New System.Drawing.Point(363, 35)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.TabIndex = 62
-        Me.btnCancel.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.btnCancel.Values.Text = "&Cancel"
+        Me.btnCancel.Text = "&Cancel"
         '
         'txtLastUserFullName
         '
@@ -784,8 +783,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnOK.Location = New System.Drawing.Point(490, 35)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.TabIndex = 63
-        Me.btnOK.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnOK.Values.Text = "&OK"
+        Me.btnOK.Text = "&OK"
         '
         'llblDeleteAssignment
         '
@@ -794,9 +792,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblDeleteAssignment.Name = "llblDeleteAssignment"
         Me.llblDeleteAssignment.Size = New System.Drawing.Size(38, 34)
         Me.llblDeleteAssignment.TabIndex = 72
-        Me.llblDeleteAssignment.Values.Image = Global.Teaching.My.Resources.Resources.erase_32
-        Me.llblDeleteAssignment.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblDeleteAssignment.Values.Text = ""
+        Me.llblDeleteAssignment.Text = "XX"
         '
         'KryptonLabel9
         '
@@ -805,7 +801,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel9.Name = "KryptonLabel9"
         Me.KryptonLabel9.Size = New System.Drawing.Size(44, 20)
         Me.KryptonLabel9.TabIndex = 97
-        Me.KryptonLabel9.Values.Text = "Timer:"
+        Me.KryptonLabel9.Text = "Timer:"
         '
         'txtTimer
         '
@@ -825,8 +821,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblToggleTimer.Name = "llblToggleTimer"
         Me.llblToggleTimer.Size = New System.Drawing.Size(38, 34)
         Me.llblToggleTimer.TabIndex = 96
-        Me.llblToggleTimer.Values.Image = Global.Teaching.My.Resources.Resources.Pause_32
-        Me.llblToggleTimer.Values.Text = ""
+        Me.llblToggleTimer.Text = "P"
         '
         'llblResetTimer
         '
@@ -835,8 +830,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblResetTimer.Name = "llblResetTimer"
         Me.llblResetTimer.Size = New System.Drawing.Size(38, 34)
         Me.llblResetTimer.TabIndex = 98
-        Me.llblResetTimer.Values.Image = Global.Teaching.My.Resources.Resources.backup_32
-        Me.llblResetTimer.Values.Text = ""
+        Me.llblResetTimer.Text = "Reset"
         '
         'llblOpenSavedMarkingPage
         '
@@ -845,19 +839,16 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblOpenSavedMarkingPage.Name = "llblOpenSavedMarkingPage"
         Me.llblOpenSavedMarkingPage.Size = New System.Drawing.Size(22, 18)
         Me.llblOpenSavedMarkingPage.TabIndex = 124
-        Me.llblOpenSavedMarkingPage.Values.Image = Global.Teaching.My.Resources.Resources.notes_16
-        Me.llblOpenSavedMarkingPage.Values.ImageTransparentColor = System.Drawing.Color.White
-        Me.llblOpenSavedMarkingPage.Values.Text = ""
+        Me.llblOpenSavedMarkingPage.Text = "Note"
         '
         'chkProcessed
         '
         Me.chkProcessed.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkProcessed.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right
         Me.chkProcessed.Location = New System.Drawing.Point(839, 34)
         Me.chkProcessed.Name = "chkProcessed"
         Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
         Me.chkProcessed.TabIndex = 48
-        Me.chkProcessed.Values.Text = "&Processed:"
+        Me.chkProcessed.Text = "&Processed:"
         '
         'btnPrintMarkingSheet
         '
@@ -866,8 +857,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnPrintMarkingSheet.Name = "btnPrintMarkingSheet"
         Me.btnPrintMarkingSheet.Size = New System.Drawing.Size(38, 34)
         Me.btnPrintMarkingSheet.TabIndex = 65
-        Me.btnPrintMarkingSheet.Values.Image = Global.Teaching.My.Resources.Resources.print_32
-        Me.btnPrintMarkingSheet.Values.Text = ""
+        Me.btnPrintMarkingSheet.Text = "Print"
         '
         'llblSaveFeedbackSheet
         '
@@ -876,8 +866,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblSaveFeedbackSheet.Name = "llblSaveFeedbackSheet"
         Me.llblSaveFeedbackSheet.Size = New System.Drawing.Size(38, 34)
         Me.llblSaveFeedbackSheet.TabIndex = 122
-        Me.llblSaveFeedbackSheet.Values.Image = Global.Teaching.My.Resources.Resources.save_32
-        Me.llblSaveFeedbackSheet.Values.Text = ""
+        Me.llblSaveFeedbackSheet.Text = "Save"
         '
         'KryptonLabel12
         '
@@ -885,7 +874,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel12.Name = "KryptonLabel12"
         Me.KryptonLabel12.Size = New System.Drawing.Size(53, 20)
         Me.KryptonLabel12.TabIndex = 114
-        Me.KryptonLabel12.Values.Text = "Writing:"
+        Me.KryptonLabel12.Text = "Writing:"
         '
         'KryptonLabel10
         '
@@ -893,7 +882,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel10.Name = "KryptonLabel10"
         Me.KryptonLabel10.Size = New System.Drawing.Size(69, 20)
         Me.KryptonLabel10.TabIndex = 113
-        Me.KryptonLabel10.Values.Text = "Plagiarism:"
+        Me.KryptonLabel10.Text = "Plagiarism:"
         '
         'txtSchoolClass
         '
@@ -909,7 +898,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel11.Name = "KryptonLabel11"
         Me.KryptonLabel11.Size = New System.Drawing.Size(41, 20)
         Me.KryptonLabel11.TabIndex = 110
-        Me.KryptonLabel11.Values.Text = "Class:"
+        Me.KryptonLabel11.Text = "Class:"
         '
         'llblEditStudent
         '
@@ -917,8 +906,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblEditStudent.Name = "llblEditStudent"
         Me.llblEditStudent.Size = New System.Drawing.Size(22, 18)
         Me.llblEditStudent.TabIndex = 89
-        Me.llblEditStudent.Values.Image = Global.Teaching.My.Resources.Resources.AutoText_16
-        Me.llblEditStudent.Values.Text = ""
+        Me.llblEditStudent.Text = "AutoTxt"
         '
         'KryptonLabel8
         '
@@ -926,7 +914,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel8.Name = "KryptonLabel8"
         Me.KryptonLabel8.Size = New System.Drawing.Size(39, 20)
         Me.KryptonLabel8.TabIndex = 78
-        Me.KryptonLabel8.Values.Text = "Alt #:"
+        Me.KryptonLabel8.Text = "Alt #:"
         '
         'KryptonLabel7
         '
@@ -934,7 +922,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel7.Name = "KryptonLabel7"
         Me.KryptonLabel7.Size = New System.Drawing.Size(81, 20)
         Me.KryptonLabel7.TabIndex = 74
-        Me.KryptonLabel7.Values.Text = "Presentation:"
+        Me.KryptonLabel7.Text = "Presentation:"
         '
         'KryptonLabel6
         '
@@ -942,7 +930,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel6.Name = "KryptonLabel6"
         Me.KryptonLabel6.Size = New System.Drawing.Size(77, 20)
         Me.KryptonLabel6.TabIndex = 71
-        Me.KryptonLabel6.Values.Text = "Assignment:"
+        Me.KryptonLabel6.Text = "Assignment:"
         '
         'txtAssignmentName
         '
@@ -974,7 +962,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel1.Name = "KryptonLabel1"
         Me.KryptonLabel1.Size = New System.Drawing.Size(70, 20)
         Me.KryptonLabel1.TabIndex = 56
-        Me.KryptonLabel1.Values.Text = "NickName:"
+        Me.KryptonLabel1.Text = "NickName:"
         '
         'llblOpenStudent
         '
@@ -982,7 +970,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblOpenStudent.Name = "llblOpenStudent"
         Me.llblOpenStudent.Size = New System.Drawing.Size(71, 20)
         Me.llblOpenStudent.TabIndex = 120
-        Me.llblOpenStudent.Values.Text = "Student ID:"
+        Me.llblOpenStudent.Text = "Student ID:"
         '
         'llblClearImprovementItem
         '
@@ -991,8 +979,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblClearImprovementItem.Name = "llblClearImprovementItem"
         Me.llblClearImprovementItem.Size = New System.Drawing.Size(22, 18)
         Me.llblClearImprovementItem.TabIndex = 126
-        Me.llblClearImprovementItem.Values.Image = Global.Teaching.My.Resources.Resources.no_16
-        Me.llblClearImprovementItem.Values.Text = ""
+        Me.llblClearImprovementItem.Text = "Del"
         '
         'llblRemoveImprovementItem
         '
@@ -1001,8 +988,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblRemoveImprovementItem.Name = "llblRemoveImprovementItem"
         Me.llblRemoveImprovementItem.Size = New System.Drawing.Size(22, 18)
         Me.llblRemoveImprovementItem.TabIndex = 125
-        Me.llblRemoveImprovementItem.Values.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.llblRemoveImprovementItem.Values.Text = ""
+        Me.llblRemoveImprovementItem.Text = "Rem"
         '
         'llblAddImprovementItem
         '
@@ -1011,8 +997,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAddImprovementItem.Name = "llblAddImprovementItem"
         Me.llblAddImprovementItem.Size = New System.Drawing.Size(22, 18)
         Me.llblAddImprovementItem.TabIndex = 124
-        Me.llblAddImprovementItem.Values.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.llblAddImprovementItem.Values.Text = ""
+        Me.llblAddImprovementItem.Text = "Yes"
         '
         'tmrTimer
         '
@@ -1061,80 +1046,80 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents llblClearImprovementItem As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblRemoveImprovementItem As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblAddImprovementItem As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblClearImprovementItem As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblRemoveImprovementItem As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblAddImprovementItem As System.Windows.Forms.LinkLabel
     Friend WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
     Friend WithEvents KryptonSplitContainer1 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
-    Friend WithEvents llblOpenSavedMarkingPage As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblWarningNotice As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents chkProcessed As ComponentFactory.Krypton.Toolkit.KryptonCheckBox
-    Friend WithEvents btnPrintMarkingSheet As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblSaveFeedbackSheet As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents btnCancel As ComponentFactory.Krypton.Toolkit.KryptonButton
-    Friend WithEvents btnOK As ComponentFactory.Krypton.Toolkit.KryptonButton
-    Friend WithEvents llblDeleteAssignment As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents KryptonLabel9 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents llblOpenSavedMarkingPage As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblWarningNotice As System.Windows.Forms.LinkLabel
+    Friend WithEvents chkProcessed As System.Windows.Forms.CheckBox
+    Friend WithEvents btnPrintMarkingSheet As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblSaveFeedbackSheet As System.Windows.Forms.LinkLabel
+    Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents btnOK As System.Windows.Forms.Button
+    Friend WithEvents llblDeleteAssignment As System.Windows.Forms.LinkLabel
+    Friend WithEvents KryptonLabel9 As System.Windows.Forms.Label
     Friend WithEvents txtTimer As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents llblToggleTimer As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblResetTimer As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents nudWritingQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudPlagiarismSeverity As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents llblToggleTimer As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblResetTimer As System.Windows.Forms.LinkLabel
+    Friend WithEvents nudWritingQuality As System.Windows.Forms.NumericUpDown
+    Friend WithEvents KryptonLabel12 As System.Windows.Forms.Label
+    Friend WithEvents nudPlagiarismSeverity As System.Windows.Forms.NumericUpDown
+    Friend WithEvents KryptonLabel10 As System.Windows.Forms.Label
     Friend WithEvents txtSchoolClass As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel11 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudAltNumber As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents nudPresentationQuality As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents llblEditStudent As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel6 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonLabel11 As System.Windows.Forms.Label
+    Friend WithEvents nudAltNumber As System.Windows.Forms.NumericUpDown
+    Friend WithEvents nudPresentationQuality As System.Windows.Forms.NumericUpDown
+    Friend WithEvents llblEditStudent As System.Windows.Forms.LinkLabel
+    Friend WithEvents KryptonLabel8 As System.Windows.Forms.Label
+    Friend WithEvents KryptonLabel7 As System.Windows.Forms.Label
+    Friend WithEvents KryptonLabel6 As System.Windows.Forms.Label
     Friend WithEvents txtAssignmentName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents txtStudentID As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents txtNickName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents llblOpenStudent As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents KryptonLabel3 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonLabel1 As System.Windows.Forms.Label
+    Friend WithEvents llblOpenStudent As System.Windows.Forms.LinkLabel
+    Friend WithEvents KryptonLabel3 As System.Windows.Forms.Label
+    Friend WithEvents KryptonLabel4 As System.Windows.Forms.Label
     Friend WithEvents olvImprovementItems As BrightIdeasSoftware.ObjectListView
     Friend WithEvents OlvColumn1 As BrightIdeasSoftware.OLVColumn
     Friend WithEvents olvcolDataAdded As BrightIdeasSoftware.OLVColumn
     Friend WithEvents olvcolDateRemoved As BrightIdeasSoftware.OLVColumn
     Friend WithEvents OlvColumn5 As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents KryptonLabel16 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel15 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel14 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudThirdTryPoints As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel13 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudSecondTryPoints As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel5 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents nudFirstTryPoints As ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown
-    Friend WithEvents KryptonLabel2 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents lblMaxPoints As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonLabel16 As System.Windows.Forms.Label
+    Friend WithEvents KryptonLabel15 As System.Windows.Forms.Label
+    Friend WithEvents KryptonLabel14 As System.Windows.Forms.Label
+    Friend WithEvents nudThirdTryPoints As System.Windows.Forms.NumericUpDown
+    Friend WithEvents KryptonLabel13 As System.Windows.Forms.Label
+    Friend WithEvents nudSecondTryPoints As System.Windows.Forms.NumericUpDown
+    Friend WithEvents KryptonLabel5 As System.Windows.Forms.Label
+    Friend WithEvents nudFirstTryPoints As System.Windows.Forms.NumericUpDown
+    Friend WithEvents KryptonLabel2 As System.Windows.Forms.Label
+    Friend WithEvents lblMaxPoints As System.Windows.Forms.Label
     Friend WithEvents tmrTimer As System.Windows.Forms.Timer
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents llblAutoGenImprovementsFirst As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblAutoCalcScore As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents lblFirstTryPercent As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents llblAutoGenImprovementsFirst As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblAutoCalcScore As System.Windows.Forms.LinkLabel
+    Friend WithEvents lblFirstTryPercent As System.Windows.Forms.Label
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReduceSizeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AutocalcScoreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AutogenImprovementsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithout As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithout As System.Windows.Forms.LinkLabel
     Friend WithEvents txtTeam As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents txtGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents KryptonLabel18 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel17 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonLabel18 As System.Windows.Forms.Label
+    Friend WithEvents KryptonLabel17 As System.Windows.Forms.Label
     Friend WithEvents olvcolPrevPerformance As BrightIdeasSoftware.OLVColumn
-    Private WithEvents KryptonLabel19 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Private WithEvents KryptonLabel20 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Private WithEvents KryptonLabel19 As System.Windows.Forms.Label
+    Private WithEvents KryptonLabel20 As System.Windows.Forms.Label
     Private WithEvents txtLastUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Private WithEvents txtFirstUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents txtPeerStudentID As TextBox
-    Friend WithEvents KryptonLabel21 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonLabel21 As System.Windows.Forms.Label
     Friend WithEvents rtbOverallComments As RichTextBox
     Friend WithEvents rtbImprovementComments As RichTextBox
     Friend WithEvents spltOveralFirstReworkText As SplitContainer
@@ -1142,6 +1127,6 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents rtbImprovementCommentsRework As RichTextBox
     Friend WithEvents rtbOverallCommentsRework As RichTextBox
     Friend WithEvents llblReworkText As LinkLabel
-    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
-    Friend WithEvents llblAutoGenImprovementsRework As ComponentFactory.Krypton.Toolkit.KryptonLinkLabel
+    Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblAutoGenImprovementsRework As System.Windows.Forms.LinkLabel
 End Class

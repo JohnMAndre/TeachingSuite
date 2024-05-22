@@ -264,9 +264,9 @@ Friend Class StudentAssignmentNormalDetails
         If m_boolTimerRunning Then
             '-- Just switched to running, so need to update the base time
             m_dtTimerStart = Date.Now - m_tsTimer
-            llblToggleTimer.Values.Image = My.Resources.Pause_32
+            'llblToggleTimer.Values.Image = My.Resources.Pause_32
         Else
-            llblToggleTimer.Values.Image = My.Resources.play_32
+            'llblToggleTimer.Values.Image = My.Resources.play_32
         End If
         DrawTimer()
     End Sub
@@ -284,11 +284,11 @@ Friend Class StudentAssignmentNormalDetails
         txtTimer.Text = m_tsTimer.Hours.ToString("00") & ":" & m_tsTimer.Minutes.ToString("00") & ":" & m_tsTimer.Seconds.ToString("00")
 
         If m_tsTimer.TotalMinutes >= AppSettings.AssignmentMarkingWarning2 Then
-            llblWarningNotice.Values.Image = My.Resources.redball_32
+            'llblWarningNotice.Values.Image = My.Resources.redball_32
         ElseIf m_tsTimer.TotalMinutes >= AppSettings.AssignmentMarkingWarning1 Then
-            llblWarningNotice.Values.Image = My.Resources.yellowball_32
+            'llblWarningNotice.Values.Image = My.Resources.yellowball_32
         Else
-            llblWarningNotice.Values.Image = Nothing
+            'llblWarningNotice.Values.Image = Nothing
         End If
     End Sub
 

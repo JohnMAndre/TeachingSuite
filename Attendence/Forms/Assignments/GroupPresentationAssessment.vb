@@ -31,16 +31,17 @@ Public Class GroupPresentationAssessment
         m_asmt = asmt
         m_try = attempt
 
-        m_frmQuickFeedback = New GroupPresentationQuickFeedback()
-        m_frmQuickFeedback.Location = Me.Location
-        m_frmQuickFeedback.Height = Me.Height * 0.9
-        m_frmQuickFeedback.Width = Me.Width * 0.9
+        m_frmQuickFeedback = New GroupPresentationQuickFeedback With {
+            .Location = Me.Location,
+            .Height = Me.Height * 0.9,
+            .Width = Me.Width * 0.9
+        }
         Application.DoEvents()
     End Sub
     Public Sub LoadStudent(stud As Student, asmt As ClassAssignment, attempt As Semester.MarkingTry, controlSize As Size)
         Dim ctl As New IndividualMarkInGroupPresentation()
         ctl.Size = controlSize
-        Me.FlowLayoutPanel1.Controls.Add(ctl)
+        FlowLayoutPanel1.Controls.Add(ctl)
         ctl.LoadStudent(stud, asmt, attempt)
         ctl.BackColor = Color.White
         AddHandler ctl.RequestRemoval, AddressOf Student_RequestRemoval
@@ -77,39 +78,6 @@ Public Class GroupPresentationAssessment
 
     Private Sub GroupPresentationAssessment_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            'Dim intBoarderSpace As Integer = 8
-            'Dim intHeight As Integer
-            'Dim intWidth As Integer
-
-            '-- 
-            'Me.HorizontalScroll.Visible = False
-            'Me.VerticalScroll.Value = False
-            'Select Case m_lstStudents.Count
-            '    Case 0
-            '        '-- nobody in this group? This should never happen
-            '        Me.Text = "Group is empty"
-            '    Case 1
-            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 5))  '-- full verticle
-            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 5)) '-- full horizontal
-            '    Case 2
-            '        '-- special case for just two. Here take up full vertical and 1/2 horizontal
-            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 3))   '-- full verticle
-            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 3) '-- not more than 2 wide
-            '    Case 3, 4
-            '        '-- this should be the norm - either 3 or 4 team members
-            '        '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
-            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 2) - (intBoarderSpace * 3) '-- do not worry about more than 2 high
-            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 3) '-- not more than 2 wide
-            '    Case Else
-            '        '-- Need to shrink the height of each control a bit
-            '        '   so user can easily see that there are more than 4 controls
-            '        Me.VerticalScroll.Value = True
-            '        intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2)) / 2 '-- slightly less high so user can see they need to scroll
-            '        intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - intBoarderSpace) / 2 '-- not more than 2 wide
-
-            'End Select
-
-            'Dim sz As New Size(intWidth, intHeight)
             Dim sz As New Size(100, 100)
 
 

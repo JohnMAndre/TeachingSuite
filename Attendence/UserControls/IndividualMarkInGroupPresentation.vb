@@ -51,7 +51,10 @@ Public Class IndividualMarkInGroupPresentation
                 nudFirstGrade.Value = m_studentAssignment.FirstTryPoints
                 nudSecondGrade.Value = m_studentAssignment.SecondTryPoints
                 txtOverall.Text = m_studentAssignment.OverallComments
-                txtImprovement.Text = m_studentAssignment.ImprovementComments
+
+                If Not m_studentAssignment.ImprovementComments.Contains(vbCrLf) Then
+                    txtImprovement.Text = m_studentAssignment.ImprovementComments.Replace(vbLf, Environment.NewLine)
+                End If
                 Exit For
             End If
         Next
