@@ -250,28 +250,28 @@ Friend Class StudentAssignmentNormalDetails
         End Try
 
     End Sub
-    Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As EventArgs) Handles llblDeleteAssignment.LinkClicked
+    Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As EventArgs) Handles picDeleteAssignment.Click
         If MessageBox.Show("Are you sure you want to delete this student's assignment?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
-        m_student.Assignments.Remove(m_studentAssignment)
+            m_student.Assignments.Remove(m_studentAssignment)
             MessageBox.Show("Assignment was removed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Close()
         End If
     End Sub
 
-    Private Sub llblToggleTimer_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblToggleTimer.LinkClicked
+    Private Sub llblToggleTimer_LinkClicked(sender As System.Object, e As System.EventArgs) Handles picToggleTimer.Click
         m_boolTimerRunning = Not m_boolTimerRunning
         Me.tmrTimer.Enabled = m_boolTimerRunning
         If m_boolTimerRunning Then
             '-- Just switched to running, so need to update the base time
             m_dtTimerStart = Date.Now - m_tsTimer
-            'llblToggleTimer.Values.Image = My.Resources.Pause_32
+            picToggleTimer.Image = My.Resources.Pause_32
         Else
-            'llblToggleTimer.Values.Image = My.Resources.play_32
+            picToggleTimer.Image = My.Resources.play_32
         End If
         DrawTimer()
     End Sub
 
-    Private Sub llblResetTimer_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblResetTimer.LinkClicked
+    Private Sub llblResetTimer_LinkClicked(sender As System.Object, e As System.EventArgs) Handles picResetTimer.Click
         m_dtTimerStart = Date.Now
         DrawTimer()
     End Sub
@@ -284,11 +284,11 @@ Friend Class StudentAssignmentNormalDetails
         txtTimer.Text = m_tsTimer.Hours.ToString("00") & ":" & m_tsTimer.Minutes.ToString("00") & ":" & m_tsTimer.Seconds.ToString("00")
 
         If m_tsTimer.TotalMinutes >= AppSettings.AssignmentMarkingWarning2 Then
-            'llblWarningNotice.Values.Image = My.Resources.redball_32
+            picWarningNotice.Image = My.Resources.redball_32
         ElseIf m_tsTimer.TotalMinutes >= AppSettings.AssignmentMarkingWarning1 Then
-            'llblWarningNotice.Values.Image = My.Resources.yellowball_32
+            picWarningNotice.Image = My.Resources.yellowball_32
         Else
-            'llblWarningNotice.Values.Image = Nothing
+            picWarningNotice.Image = Nothing
         End If
     End Sub
 
@@ -475,7 +475,7 @@ Friend Class StudentAssignmentNormalDetails
         End Try
     End Function
 
-    Private Sub llblAddImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles llblAddImprovementItem.LinkClicked
+    Private Sub llblAddImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles picAddImprovementItem.Click
         AddSelectedImprovementItem()
     End Sub
     Private Sub AddSelectedImprovementItem()
@@ -496,7 +496,7 @@ Friend Class StudentAssignmentNormalDetails
             AutoSizeColumns(olvImprovementItems)
         End If
     End Sub
-    Private Sub llblRemoveImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles llblRemoveImprovementItem.LinkClicked
+    Private Sub llblRemoveImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles picRemoveImprovementItem.Click
         Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
         If selItem Is Nothing Then
             MessageBox.Show("Please select an improvement item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -508,7 +508,7 @@ Friend Class StudentAssignmentNormalDetails
         End If
     End Sub
 
-    Private Sub llblClearImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles llblClearImprovementItem.LinkClicked
+    Private Sub llblClearImprovementItem_LinkClicked(sender As Object, e As EventArgs) Handles picClearImprovementItem.Click
         Dim selItem As StudentImprovementItem = olvImprovementItems.SelectedObject
         If selItem Is Nothing Then
             MessageBox.Show("Please select an improvement item first.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -588,9 +588,9 @@ Friend Class StudentAssignmentNormalDetails
     Private Sub ReduceSizeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReduceSizeToolStripMenuItem.Click
         Try
             KryptonSplitContainer1.Panel2Collapsed = Not KryptonSplitContainer1.Panel2Collapsed
-            llblAddImprovementItem.Visible = Not KryptonSplitContainer1.Panel2Collapsed
-            llblRemoveImprovementItem.Visible = Not KryptonSplitContainer1.Panel2Collapsed
-            llblClearImprovementItem.Visible = Not KryptonSplitContainer1.Panel2Collapsed
+            picAddImprovementItem.Visible = Not KryptonSplitContainer1.Panel2Collapsed
+            picRemoveImprovementItem.Visible = Not KryptonSplitContainer1.Panel2Collapsed
+            picClearImprovementItem.Visible = Not KryptonSplitContainer1.Panel2Collapsed
         Catch ex As Exception
             Log(ex)
             MessageBox.Show("There was an error reducing the form size: " & ex.Message)
@@ -605,7 +605,7 @@ Friend Class StudentAssignmentNormalDetails
         AutoGenImprovementComments(True, False)
     End Sub
 
-    Private Sub llblEditStudent_LinkClicked(sender As Object, e As EventArgs) Handles llblEditStudent.LinkClicked
+    Private Sub llblEditStudent_LinkClicked(sender As Object, e As EventArgs) Handles picEditStudent.Click
         Using frm As New StudentDetail(m_student)
             frm.ShowDialog(Me)
         End Using
@@ -655,5 +655,7 @@ Friend Class StudentAssignmentNormalDetails
         AutoGenImprovementComments(False, True)
     End Sub
 
+    Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
 
+    End Sub
 End Class

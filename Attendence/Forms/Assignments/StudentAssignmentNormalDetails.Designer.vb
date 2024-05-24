@@ -31,19 +31,23 @@ Partial Class StudentAssignmentNormalDetails
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutocalcScoreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutogenImprovementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.KryptonPanel = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonPanel = New System.Windows.Forms.Panel()
+        Me.picEditStudent = New System.Windows.Forms.PictureBox()
+        Me.picClearImprovementItem = New System.Windows.Forms.PictureBox()
+        Me.picAddImprovementItem = New System.Windows.Forms.PictureBox()
+        Me.picRemoveImprovementItem = New System.Windows.Forms.PictureBox()
         Me.txtPeerStudentID = New System.Windows.Forms.TextBox()
         Me.KryptonLabel21 = New System.Windows.Forms.Label()
-        Me.txtTeam = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtGroup = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtTeam = New System.Windows.Forms.TextBox()
+        Me.txtGroup = New System.Windows.Forms.TextBox()
         Me.nudPlagiarismSeverity = New System.Windows.Forms.NumericUpDown()
         Me.nudWritingQuality = New System.Windows.Forms.NumericUpDown()
         Me.nudAltNumber = New System.Windows.Forms.NumericUpDown()
         Me.nudPresentationQuality = New System.Windows.Forms.NumericUpDown()
         Me.KryptonLabel18 = New System.Windows.Forms.Label()
         Me.KryptonLabel17 = New System.Windows.Forms.Label()
-        Me.KryptonSplitContainer2 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
-        Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
+        Me.KryptonSplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.KryptonSplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.spltOveralFirstReworkText = New System.Windows.Forms.SplitContainer()
         Me.rtbImprovementComments = New System.Windows.Forms.RichTextBox()
         Me.rtbOverallComments = New System.Windows.Forms.RichTextBox()
@@ -76,58 +80,64 @@ Partial Class StudentAssignmentNormalDetails
         Me.OlvColumn5 = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolPerformanceLevel = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.olvcolPrevPerformance = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.picResetTimer = New System.Windows.Forms.PictureBox()
+        Me.picDeleteAssignment = New System.Windows.Forms.PictureBox()
+        Me.picToggleTimer = New System.Windows.Forms.PictureBox()
         Me.KryptonLabel19 = New System.Windows.Forms.Label()
         Me.llblWarningNotice = New System.Windows.Forms.LinkLabel()
         Me.KryptonLabel20 = New System.Windows.Forms.Label()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.txtLastUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtFirstUserFullName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtLastUserFullName = New System.Windows.Forms.TextBox()
+        Me.txtFirstUserFullName = New System.Windows.Forms.TextBox()
         Me.btnOK = New System.Windows.Forms.Button()
-        Me.llblDeleteAssignment = New System.Windows.Forms.LinkLabel()
         Me.KryptonLabel9 = New System.Windows.Forms.Label()
-        Me.txtTimer = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.llblToggleTimer = New System.Windows.Forms.LinkLabel()
-        Me.llblResetTimer = New System.Windows.Forms.LinkLabel()
-        Me.llblOpenSavedMarkingPage = New System.Windows.Forms.LinkLabel()
+        Me.txtTimer = New System.Windows.Forms.TextBox()
         Me.chkProcessed = New System.Windows.Forms.CheckBox()
-        Me.btnPrintMarkingSheet = New System.Windows.Forms.LinkLabel()
-        Me.llblSaveFeedbackSheet = New System.Windows.Forms.LinkLabel()
         Me.KryptonLabel12 = New System.Windows.Forms.Label()
         Me.KryptonLabel10 = New System.Windows.Forms.Label()
-        Me.txtSchoolClass = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtSchoolClass = New System.Windows.Forms.TextBox()
         Me.KryptonLabel11 = New System.Windows.Forms.Label()
-        Me.llblEditStudent = New System.Windows.Forms.LinkLabel()
         Me.KryptonLabel8 = New System.Windows.Forms.Label()
         Me.KryptonLabel7 = New System.Windows.Forms.Label()
         Me.KryptonLabel6 = New System.Windows.Forms.Label()
-        Me.txtAssignmentName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtStudentID = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.txtNickName = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.txtAssignmentName = New System.Windows.Forms.TextBox()
+        Me.txtStudentID = New System.Windows.Forms.TextBox()
+        Me.txtNickName = New System.Windows.Forms.TextBox()
         Me.KryptonLabel1 = New System.Windows.Forms.Label()
         Me.llblOpenStudent = New System.Windows.Forms.LinkLabel()
-        Me.llblClearImprovementItem = New System.Windows.Forms.LinkLabel()
-        Me.llblRemoveImprovementItem = New System.Windows.Forms.LinkLabel()
-        Me.llblAddImprovementItem = New System.Windows.Forms.LinkLabel()
         Me.tmrTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.picWarningNotice = New System.Windows.Forms.PictureBox()
         Me.MenuStrip1.SuspendLayout()
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel.SuspendLayout()
+        CType(Me.picEditStudent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picClearImprovementItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picAddImprovementItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picRemoveImprovementItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudPlagiarismSeverity, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudWritingQuality, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudAltNumber, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudPresentationQuality, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonSplitContainer2.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer2.Panel1.SuspendLayout()
-        CType(Me.KryptonSplitContainer2.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer2.Panel2.SuspendLayout()
+        Me.KryptonSplitContainer2.SuspendLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel1.SuspendLayout()
-        CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel2.SuspendLayout()
+        Me.KryptonSplitContainer1.SuspendLayout()
         CType(Me.spltOveralFirstReworkText, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spltOveralFirstReworkText.Panel1.SuspendLayout()
         Me.spltOveralFirstReworkText.Panel2.SuspendLayout()
         Me.spltOveralFirstReworkText.SuspendLayout()
+        CType(Me.nudThirdTryPoints, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudSecondTryPoints, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudFirstTryPoints, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picResetTimer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picDeleteAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picToggleTimer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picWarningNotice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -193,6 +203,10 @@ Partial Class StudentAssignmentNormalDetails
         '
         'KryptonPanel
         '
+        Me.KryptonPanel.Controls.Add(Me.picEditStudent)
+        Me.KryptonPanel.Controls.Add(Me.picClearImprovementItem)
+        Me.KryptonPanel.Controls.Add(Me.picAddImprovementItem)
+        Me.KryptonPanel.Controls.Add(Me.picRemoveImprovementItem)
         Me.KryptonPanel.Controls.Add(Me.txtPeerStudentID)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel21)
         Me.KryptonPanel.Controls.Add(Me.txtTeam)
@@ -208,7 +222,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel10)
         Me.KryptonPanel.Controls.Add(Me.txtSchoolClass)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel11)
-        Me.KryptonPanel.Controls.Add(Me.llblEditStudent)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel8)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel7)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel6)
@@ -217,14 +230,54 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonPanel.Controls.Add(Me.txtNickName)
         Me.KryptonPanel.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel.Controls.Add(Me.llblOpenStudent)
-        Me.KryptonPanel.Controls.Add(Me.llblClearImprovementItem)
-        Me.KryptonPanel.Controls.Add(Me.llblRemoveImprovementItem)
-        Me.KryptonPanel.Controls.Add(Me.llblAddImprovementItem)
         Me.KryptonPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel.Location = New System.Drawing.Point(0, 24)
         Me.KryptonPanel.Name = "KryptonPanel"
         Me.KryptonPanel.Size = New System.Drawing.Size(1045, 518)
         Me.KryptonPanel.TabIndex = 1
+        '
+        'picEditStudent
+        '
+        Me.picEditStudent.Image = Global.Teaching.My.Resources.Resources.AutoText_16
+        Me.picEditStudent.Location = New System.Drawing.Point(234, 4)
+        Me.picEditStudent.Name = "picEditStudent"
+        Me.picEditStudent.Size = New System.Drawing.Size(16, 16)
+        Me.picEditStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picEditStudent.TabIndex = 140
+        Me.picEditStudent.TabStop = False
+        '
+        'picClearImprovementItem
+        '
+        Me.picClearImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picClearImprovementItem.Image = Global.Teaching.My.Resources.Resources.no_16
+        Me.picClearImprovementItem.Location = New System.Drawing.Point(1019, 35)
+        Me.picClearImprovementItem.Name = "picClearImprovementItem"
+        Me.picClearImprovementItem.Size = New System.Drawing.Size(16, 16)
+        Me.picClearImprovementItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picClearImprovementItem.TabIndex = 139
+        Me.picClearImprovementItem.TabStop = False
+        '
+        'picAddImprovementItem
+        '
+        Me.picAddImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picAddImprovementItem.Image = Global.Teaching.My.Resources.Resources.checkmark_16
+        Me.picAddImprovementItem.Location = New System.Drawing.Point(963, 35)
+        Me.picAddImprovementItem.Name = "picAddImprovementItem"
+        Me.picAddImprovementItem.Size = New System.Drawing.Size(16, 16)
+        Me.picAddImprovementItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picAddImprovementItem.TabIndex = 139
+        Me.picAddImprovementItem.TabStop = False
+        '
+        'picRemoveImprovementItem
+        '
+        Me.picRemoveImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picRemoveImprovementItem.Image = Global.Teaching.My.Resources.Resources.erase_32
+        Me.picRemoveImprovementItem.Location = New System.Drawing.Point(991, 35)
+        Me.picRemoveImprovementItem.Name = "picRemoveImprovementItem"
+        Me.picRemoveImprovementItem.Size = New System.Drawing.Size(16, 16)
+        Me.picRemoveImprovementItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picRemoveImprovementItem.TabIndex = 139
+        Me.picRemoveImprovementItem.TabStop = False
         '
         'txtPeerStudentID
         '
@@ -249,7 +302,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtTeam.Location = New System.Drawing.Point(698, 27)
         Me.txtTeam.Name = "txtTeam"
         Me.txtTeam.ReadOnly = True
-        Me.txtTeam.Size = New System.Drawing.Size(88, 23)
+        Me.txtTeam.Size = New System.Drawing.Size(88, 20)
         Me.txtTeam.TabIndex = 130
         '
         'txtGroup
@@ -257,7 +310,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtGroup.Location = New System.Drawing.Point(590, 26)
         Me.txtGroup.Name = "txtGroup"
         Me.txtGroup.ReadOnly = True
-        Me.txtGroup.Size = New System.Drawing.Size(60, 23)
+        Me.txtGroup.Size = New System.Drawing.Size(60, 20)
         Me.txtGroup.TabIndex = 128
         '
         'nudPlagiarismSeverity
@@ -265,7 +318,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudPlagiarismSeverity.Location = New System.Drawing.Point(354, 25)
         Me.nudPlagiarismSeverity.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPlagiarismSeverity.Name = "nudPlagiarismSeverity"
-        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(59, 22)
+        Me.nudPlagiarismSeverity.Size = New System.Drawing.Size(59, 20)
         Me.nudPlagiarismSeverity.TabIndex = 112
         Me.nudPlagiarismSeverity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPlagiarismSeverity.ThousandsSeparator = True
@@ -276,7 +329,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudWritingQuality.Location = New System.Drawing.Point(213, 25)
         Me.nudWritingQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudWritingQuality.Name = "nudWritingQuality"
-        Me.nudWritingQuality.Size = New System.Drawing.Size(68, 22)
+        Me.nudWritingQuality.Size = New System.Drawing.Size(68, 20)
         Me.nudWritingQuality.TabIndex = 115
         Me.nudWritingQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudWritingQuality.ThousandsSeparator = True
@@ -288,7 +341,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudAltNumber.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
         Me.nudAltNumber.Minimum = New Decimal(New Integer() {100000, 0, 0, -2147483648})
         Me.nudAltNumber.Name = "nudAltNumber"
-        Me.nudAltNumber.Size = New System.Drawing.Size(82, 22)
+        Me.nudAltNumber.Size = New System.Drawing.Size(82, 20)
         Me.nudAltNumber.TabIndex = 100
         Me.nudAltNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudAltNumber.ThousandsSeparator = True
@@ -299,7 +352,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudPresentationQuality.Location = New System.Drawing.Point(90, 25)
         Me.nudPresentationQuality.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.nudPresentationQuality.Name = "nudPresentationQuality"
-        Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 22)
+        Me.nudPresentationQuality.Size = New System.Drawing.Size(68, 20)
         Me.nudPresentationQuality.TabIndex = 99
         Me.nudPresentationQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudPresentationQuality.ThousandsSeparator = True
@@ -332,12 +385,15 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer2.Name = "KryptonSplitContainer2"
         Me.KryptonSplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
-        '
+        'KryptonSplitContainer2.Panel1
         '
         Me.KryptonSplitContainer2.Panel1.Controls.Add(Me.KryptonSplitContainer1)
         '
+        'KryptonSplitContainer2.Panel2
         '
-        '
+        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.picResetTimer)
+        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.picDeleteAssignment)
+        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.picToggleTimer)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel19)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblWarningNotice)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel20)
@@ -345,15 +401,10 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtLastUserFullName)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtFirstUserFullName)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.btnOK)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblDeleteAssignment)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonLabel9)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.txtTimer)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblToggleTimer)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblResetTimer)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblOpenSavedMarkingPage)
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.chkProcessed)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.btnPrintMarkingSheet)
-        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.llblSaveFeedbackSheet)
+        Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.picWarningNotice)
         Me.KryptonSplitContainer2.Size = New System.Drawing.Size(1045, 465)
         Me.KryptonSplitContainer2.SplitterDistance = 394
         Me.KryptonSplitContainer2.TabIndex = 123
@@ -366,7 +417,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonSplitContainer1.Name = "KryptonSplitContainer1"
         '
-        '
+        'KryptonSplitContainer1.Panel1
         '
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.spltOveralFirstReworkText)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.lblFirstTryPercent)
@@ -388,7 +439,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsRework)
         Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.llblAutoGenImprovementsFirst)
         '
-        '
+        'KryptonSplitContainer1.Panel2
         '
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.olvImprovementItems)
         Me.KryptonSplitContainer1.Size = New System.Drawing.Size(1045, 394)
@@ -490,7 +541,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.lblFirstTryPercent.Name = "lblFirstTryPercent"
         Me.lblFirstTryPercent.Size = New System.Drawing.Size(6, 2)
         Me.lblFirstTryPercent.TabIndex = 139
-        Me.lblFirstTryPercent.Text = ""
         '
         'llblAutoCalcScore
         '
@@ -498,9 +548,10 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoCalcScore.Name = "llblAutoCalcScore"
         Me.llblAutoCalcScore.Size = New System.Drawing.Size(63, 20)
         Me.llblAutoCalcScore.TabIndex = 138
+        Me.llblAutoCalcScore.TabStop = True
+        Me.llblAutoCalcScore.Text = "Auto-calc"
         Me.ToolTip1.SetToolTip(Me.llblAutoCalcScore, "Automatically calculate the number of points from the text (each lines ends in 10" &
         "/15)")
-        Me.llblAutoCalcScore.Text = "Auto-calc"
         '
         'lblMaxPoints
         '
@@ -539,7 +590,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudThirdTryPoints.Location = New System.Drawing.Point(295, 33)
         Me.nudThirdTryPoints.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudThirdTryPoints.Name = "nudThirdTryPoints"
-        Me.nudThirdTryPoints.Size = New System.Drawing.Size(68, 22)
+        Me.nudThirdTryPoints.Size = New System.Drawing.Size(68, 20)
         Me.nudThirdTryPoints.TabIndex = 132
         Me.nudThirdTryPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudThirdTryPoints.ThousandsSeparator = True
@@ -558,7 +609,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudSecondTryPoints.Location = New System.Drawing.Point(90, 31)
         Me.nudSecondTryPoints.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudSecondTryPoints.Name = "nudSecondTryPoints"
-        Me.nudSecondTryPoints.Size = New System.Drawing.Size(68, 22)
+        Me.nudSecondTryPoints.Size = New System.Drawing.Size(68, 20)
         Me.nudSecondTryPoints.TabIndex = 130
         Me.nudSecondTryPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudSecondTryPoints.ThousandsSeparator = True
@@ -577,7 +628,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.nudFirstTryPoints.Location = New System.Drawing.Point(90, 3)
         Me.nudFirstTryPoints.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.nudFirstTryPoints.Name = "nudFirstTryPoints"
-        Me.nudFirstTryPoints.Size = New System.Drawing.Size(68, 22)
+        Me.nudFirstTryPoints.Size = New System.Drawing.Size(68, 20)
         Me.nudFirstTryPoints.TabIndex = 128
         Me.nudFirstTryPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.nudFirstTryPoints.ThousandsSeparator = True
@@ -613,6 +664,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Name = "llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework"
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Size = New System.Drawing.Size(87, 20)
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.TabIndex = 140
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.TabStop = True
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework.Text = "Gen (RW w/o)"
         '
         'llblAutoGenImprovementsWithoutPerformanceLevelWithout
@@ -621,9 +673,10 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Name = "llblAutoGenImprovementsWithoutPerformanceLevelWithout"
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Size = New System.Drawing.Size(84, 20)
         Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.TabIndex = 140
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.TabStop = True
+        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Text = "Gen (1st w/o)"
         Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout, "Automatically generate improvement comments based on checked improvement items (w" &
         "ithout performance level)")
-        Me.llblAutoGenImprovementsWithoutPerformanceLevelWithout.Text = "Gen (1st w/o)"
         '
         'llblAutoGenImprovementsRework
         '
@@ -631,6 +684,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsRework.Name = "llblAutoGenImprovementsRework"
         Me.llblAutoGenImprovementsRework.Size = New System.Drawing.Size(75, 20)
         Me.llblAutoGenImprovementsRework.TabIndex = 137
+        Me.llblAutoGenImprovementsRework.TabStop = True
         Me.llblAutoGenImprovementsRework.Text = "Gen (RW w)"
         '
         'llblAutoGenImprovementsFirst
@@ -639,9 +693,10 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblAutoGenImprovementsFirst.Name = "llblAutoGenImprovementsFirst"
         Me.llblAutoGenImprovementsFirst.Size = New System.Drawing.Size(72, 20)
         Me.llblAutoGenImprovementsFirst.TabIndex = 137
+        Me.llblAutoGenImprovementsFirst.TabStop = True
+        Me.llblAutoGenImprovementsFirst.Text = "Gen (1st w)"
         Me.ToolTip1.SetToolTip(Me.llblAutoGenImprovementsFirst, "Automatically generate improvement comments based on checked improvement items (w" &
         "ith performance level)")
-        Me.llblAutoGenImprovementsFirst.Text = "Gen (1st w)"
         '
         'olvImprovementItems
         '
@@ -669,7 +724,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.olvImprovementItems.ShowGroups = False
         Me.olvImprovementItems.ShowImagesOnSubItems = True
         Me.olvImprovementItems.ShowItemToolTips = True
-        Me.olvImprovementItems.Size = New System.Drawing.Size(599, 394)
+        Me.olvImprovementItems.Size = New System.Drawing.Size(600, 394)
         Me.olvImprovementItems.TabIndex = 92
         Me.olvImprovementItems.UseCompatibleStateImageBehavior = False
         Me.olvImprovementItems.UseFiltering = True
@@ -727,6 +782,37 @@ Partial Class StudentAssignmentNormalDetails
         Me.olvcolPrevPerformance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.olvcolPrevPerformance.Width = 65
         '
+        'picResetTimer
+        '
+        Me.picResetTimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.picResetTimer.Image = Global.Teaching.My.Resources.Resources.backup_32
+        Me.picResetTimer.Location = New System.Drawing.Point(176, 5)
+        Me.picResetTimer.Name = "picResetTimer"
+        Me.picResetTimer.Size = New System.Drawing.Size(32, 32)
+        Me.picResetTimer.TabIndex = 138
+        Me.picResetTimer.TabStop = False
+        '
+        'picDeleteAssignment
+        '
+        Me.picDeleteAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.picDeleteAssignment.Image = Global.Teaching.My.Resources.Resources.erase_32
+        Me.picDeleteAssignment.Location = New System.Drawing.Point(4, 34)
+        Me.picDeleteAssignment.Name = "picDeleteAssignment"
+        Me.picDeleteAssignment.Size = New System.Drawing.Size(32, 32)
+        Me.picDeleteAssignment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picDeleteAssignment.TabIndex = 138
+        Me.picDeleteAssignment.TabStop = False
+        '
+        'picToggleTimer
+        '
+        Me.picToggleTimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.picToggleTimer.Image = Global.Teaching.My.Resources.Resources.Pause_32
+        Me.picToggleTimer.Location = New System.Drawing.Point(139, 4)
+        Me.picToggleTimer.Name = "picToggleTimer"
+        Me.picToggleTimer.Size = New System.Drawing.Size(32, 32)
+        Me.picToggleTimer.TabIndex = 138
+        Me.picToggleTimer.TabStop = False
+        '
         'KryptonLabel19
         '
         Me.KryptonLabel19.Location = New System.Drawing.Point(480, 8)
@@ -742,7 +828,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblWarningNotice.Name = "llblWarningNotice"
         Me.llblWarningNotice.Size = New System.Drawing.Size(6, 2)
         Me.llblWarningNotice.TabIndex = 123
-        Me.llblWarningNotice.Text = ""
         '
         'KryptonLabel20
         '
@@ -758,6 +843,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(363, 35)
         Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 62
         Me.btnCancel.Text = "&Cancel"
         '
@@ -766,7 +852,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtLastUserFullName.Location = New System.Drawing.Point(567, 8)
         Me.txtLastUserFullName.Name = "txtLastUserFullName"
         Me.txtLastUserFullName.ReadOnly = True
-        Me.txtLastUserFullName.Size = New System.Drawing.Size(147, 23)
+        Me.txtLastUserFullName.Size = New System.Drawing.Size(147, 20)
         Me.txtLastUserFullName.TabIndex = 134
         '
         'txtFirstUserFullName
@@ -774,7 +860,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtFirstUserFullName.Location = New System.Drawing.Point(298, 8)
         Me.txtFirstUserFullName.Name = "txtFirstUserFullName"
         Me.txtFirstUserFullName.ReadOnly = True
-        Me.txtFirstUserFullName.Size = New System.Drawing.Size(147, 23)
+        Me.txtFirstUserFullName.Size = New System.Drawing.Size(147, 20)
         Me.txtFirstUserFullName.TabIndex = 135
         '
         'btnOK
@@ -782,17 +868,9 @@ Partial Class StudentAssignmentNormalDetails
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnOK.Location = New System.Drawing.Point(490, 35)
         Me.btnOK.Name = "btnOK"
+        Me.btnOK.Size = New System.Drawing.Size(75, 23)
         Me.btnOK.TabIndex = 63
         Me.btnOK.Text = "&OK"
-        '
-        'llblDeleteAssignment
-        '
-        Me.llblDeleteAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llblDeleteAssignment.Location = New System.Drawing.Point(1, 28)
-        Me.llblDeleteAssignment.Name = "llblDeleteAssignment"
-        Me.llblDeleteAssignment.Size = New System.Drawing.Size(38, 34)
-        Me.llblDeleteAssignment.TabIndex = 72
-        Me.llblDeleteAssignment.Text = "XX"
         '
         'KryptonLabel9
         '
@@ -806,40 +884,13 @@ Partial Class StudentAssignmentNormalDetails
         'txtTimer
         '
         Me.txtTimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtTimer.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTimer.Location = New System.Drawing.Point(67, 8)
         Me.txtTimer.Name = "txtTimer"
         Me.txtTimer.ReadOnly = True
-        Me.txtTimer.Size = New System.Drawing.Size(71, 23)
-        Me.txtTimer.StateNormal.Content.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTimer.Size = New System.Drawing.Size(71, 26)
         Me.txtTimer.TabIndex = 95
         Me.txtTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'llblToggleTimer
-        '
-        Me.llblToggleTimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llblToggleTimer.Location = New System.Drawing.Point(137, 0)
-        Me.llblToggleTimer.Name = "llblToggleTimer"
-        Me.llblToggleTimer.Size = New System.Drawing.Size(38, 34)
-        Me.llblToggleTimer.TabIndex = 96
-        Me.llblToggleTimer.Text = "P"
-        '
-        'llblResetTimer
-        '
-        Me.llblResetTimer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llblResetTimer.Location = New System.Drawing.Point(171, 0)
-        Me.llblResetTimer.Name = "llblResetTimer"
-        Me.llblResetTimer.Size = New System.Drawing.Size(38, 34)
-        Me.llblResetTimer.TabIndex = 98
-        Me.llblResetTimer.Text = "Reset"
-        '
-        'llblOpenSavedMarkingPage
-        '
-        Me.llblOpenSavedMarkingPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblOpenSavedMarkingPage.Location = New System.Drawing.Point(949, 3)
-        Me.llblOpenSavedMarkingPage.Name = "llblOpenSavedMarkingPage"
-        Me.llblOpenSavedMarkingPage.Size = New System.Drawing.Size(22, 18)
-        Me.llblOpenSavedMarkingPage.TabIndex = 124
-        Me.llblOpenSavedMarkingPage.Text = "Note"
         '
         'chkProcessed
         '
@@ -849,24 +900,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.chkProcessed.Size = New System.Drawing.Size(81, 20)
         Me.chkProcessed.TabIndex = 48
         Me.chkProcessed.Text = "&Processed:"
-        '
-        'btnPrintMarkingSheet
-        '
-        Me.btnPrintMarkingSheet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnPrintMarkingSheet.Location = New System.Drawing.Point(1003, 26)
-        Me.btnPrintMarkingSheet.Name = "btnPrintMarkingSheet"
-        Me.btnPrintMarkingSheet.Size = New System.Drawing.Size(38, 34)
-        Me.btnPrintMarkingSheet.TabIndex = 65
-        Me.btnPrintMarkingSheet.Text = "Print"
-        '
-        'llblSaveFeedbackSheet
-        '
-        Me.llblSaveFeedbackSheet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblSaveFeedbackSheet.Location = New System.Drawing.Point(943, 26)
-        Me.llblSaveFeedbackSheet.Name = "llblSaveFeedbackSheet"
-        Me.llblSaveFeedbackSheet.Size = New System.Drawing.Size(38, 34)
-        Me.llblSaveFeedbackSheet.TabIndex = 122
-        Me.llblSaveFeedbackSheet.Text = "Save"
         '
         'KryptonLabel12
         '
@@ -889,7 +922,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtSchoolClass.Location = New System.Drawing.Point(544, 3)
         Me.txtSchoolClass.Name = "txtSchoolClass"
         Me.txtSchoolClass.ReadOnly = True
-        Me.txtSchoolClass.Size = New System.Drawing.Size(84, 23)
+        Me.txtSchoolClass.Size = New System.Drawing.Size(84, 20)
         Me.txtSchoolClass.TabIndex = 111
         '
         'KryptonLabel11
@@ -899,14 +932,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel11.Size = New System.Drawing.Size(41, 20)
         Me.KryptonLabel11.TabIndex = 110
         Me.KryptonLabel11.Text = "Class:"
-        '
-        'llblEditStudent
-        '
-        Me.llblEditStudent.Location = New System.Drawing.Point(234, 3)
-        Me.llblEditStudent.Name = "llblEditStudent"
-        Me.llblEditStudent.Size = New System.Drawing.Size(22, 18)
-        Me.llblEditStudent.TabIndex = 89
-        Me.llblEditStudent.Text = "AutoTxt"
         '
         'KryptonLabel8
         '
@@ -937,7 +962,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtAssignmentName.Location = New System.Drawing.Point(729, 3)
         Me.txtAssignmentName.Name = "txtAssignmentName"
         Me.txtAssignmentName.ReadOnly = True
-        Me.txtAssignmentName.Size = New System.Drawing.Size(147, 23)
+        Me.txtAssignmentName.Size = New System.Drawing.Size(147, 20)
         Me.txtAssignmentName.TabIndex = 70
         '
         'txtStudentID
@@ -945,7 +970,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtStudentID.Location = New System.Drawing.Point(344, 3)
         Me.txtStudentID.Name = "txtStudentID"
         Me.txtStudentID.ReadOnly = True
-        Me.txtStudentID.Size = New System.Drawing.Size(147, 23)
+        Me.txtStudentID.Size = New System.Drawing.Size(147, 20)
         Me.txtStudentID.TabIndex = 58
         '
         'txtNickName
@@ -953,7 +978,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.txtNickName.Location = New System.Drawing.Point(90, 3)
         Me.txtNickName.Name = "txtNickName"
         Me.txtNickName.ReadOnly = True
-        Me.txtNickName.Size = New System.Drawing.Size(138, 23)
+        Me.txtNickName.Size = New System.Drawing.Size(138, 20)
         Me.txtNickName.TabIndex = 57
         '
         'KryptonLabel1
@@ -970,39 +995,22 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblOpenStudent.Name = "llblOpenStudent"
         Me.llblOpenStudent.Size = New System.Drawing.Size(71, 20)
         Me.llblOpenStudent.TabIndex = 120
+        Me.llblOpenStudent.TabStop = True
         Me.llblOpenStudent.Text = "Student ID:"
-        '
-        'llblClearImprovementItem
-        '
-        Me.llblClearImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblClearImprovementItem.Location = New System.Drawing.Point(1013, 32)
-        Me.llblClearImprovementItem.Name = "llblClearImprovementItem"
-        Me.llblClearImprovementItem.Size = New System.Drawing.Size(22, 18)
-        Me.llblClearImprovementItem.TabIndex = 126
-        Me.llblClearImprovementItem.Text = "Del"
-        '
-        'llblRemoveImprovementItem
-        '
-        Me.llblRemoveImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveImprovementItem.Location = New System.Drawing.Point(985, 32)
-        Me.llblRemoveImprovementItem.Name = "llblRemoveImprovementItem"
-        Me.llblRemoveImprovementItem.Size = New System.Drawing.Size(22, 18)
-        Me.llblRemoveImprovementItem.TabIndex = 125
-        Me.llblRemoveImprovementItem.Text = "Rem"
-        '
-        'llblAddImprovementItem
-        '
-        Me.llblAddImprovementItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblAddImprovementItem.Location = New System.Drawing.Point(957, 32)
-        Me.llblAddImprovementItem.Name = "llblAddImprovementItem"
-        Me.llblAddImprovementItem.Size = New System.Drawing.Size(22, 18)
-        Me.llblAddImprovementItem.TabIndex = 124
-        Me.llblAddImprovementItem.Text = "Yes"
         '
         'tmrTimer
         '
         Me.tmrTimer.Enabled = True
         Me.tmrTimer.Interval = 200
+        '
+        'picWarningNotice
+        '
+        Me.picWarningNotice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.picWarningNotice.Location = New System.Drawing.Point(161, 32)
+        Me.picWarningNotice.Name = "picWarningNotice"
+        Me.picWarningNotice.Size = New System.Drawing.Size(32, 32)
+        Me.picWarningNotice.TabIndex = 139
+        Me.picWarningNotice.TabStop = False
         '
         'StudentAssignmentNormalDetails
         '
@@ -1016,28 +1024,39 @@ Partial Class StudentAssignmentNormalDetails
         Me.Text = "Student Assignment Details"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.KryptonPanel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel.ResumeLayout(False)
         Me.KryptonPanel.PerformLayout()
-        CType(Me.KryptonSplitContainer2.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picEditStudent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picClearImprovementItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picAddImprovementItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picRemoveImprovementItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudPlagiarismSeverity, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudWritingQuality, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudAltNumber, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudPresentationQuality, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer2.Panel1.ResumeLayout(False)
-        CType(Me.KryptonSplitContainer2.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer2.Panel2.ResumeLayout(False)
         Me.KryptonSplitContainer2.Panel2.PerformLayout()
         CType(Me.KryptonSplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.KryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonSplitContainer2.ResumeLayout(False)
         Me.KryptonSplitContainer1.Panel1.ResumeLayout(False)
-        Me.KryptonSplitContainer1.Panel1.PerformLayout()
-        CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonSplitContainer1.ResumeLayout(False)
         Me.spltOveralFirstReworkText.Panel1.ResumeLayout(False)
         Me.spltOveralFirstReworkText.Panel1.PerformLayout()
         Me.spltOveralFirstReworkText.Panel2.ResumeLayout(False)
         Me.spltOveralFirstReworkText.Panel2.PerformLayout()
         CType(Me.spltOveralFirstReworkText, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spltOveralFirstReworkText.ResumeLayout(False)
+        CType(Me.nudThirdTryPoints, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudSecondTryPoints, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudFirstTryPoints, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.olvImprovementItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picResetTimer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picDeleteAssignment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picToggleTimer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picWarningNotice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1045,39 +1064,29 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents KryptonPanel As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents llblClearImprovementItem As System.Windows.Forms.LinkLabel
-    Friend WithEvents llblRemoveImprovementItem As System.Windows.Forms.LinkLabel
-    Friend WithEvents llblAddImprovementItem As System.Windows.Forms.LinkLabel
-    Friend WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
-    Friend WithEvents KryptonSplitContainer1 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
-    Friend WithEvents llblOpenSavedMarkingPage As System.Windows.Forms.LinkLabel
+    Friend WithEvents KryptonPanel As System.Windows.Forms.Panel
+    Friend WithEvents KryptonSplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents KryptonSplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents llblWarningNotice As System.Windows.Forms.LinkLabel
     Friend WithEvents chkProcessed As System.Windows.Forms.CheckBox
-    Friend WithEvents btnPrintMarkingSheet As System.Windows.Forms.LinkLabel
-    Friend WithEvents llblSaveFeedbackSheet As System.Windows.Forms.LinkLabel
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents btnOK As System.Windows.Forms.Button
-    Friend WithEvents llblDeleteAssignment As System.Windows.Forms.LinkLabel
     Friend WithEvents KryptonLabel9 As System.Windows.Forms.Label
-    Friend WithEvents txtTimer As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents llblToggleTimer As System.Windows.Forms.LinkLabel
-    Friend WithEvents llblResetTimer As System.Windows.Forms.LinkLabel
+    Friend WithEvents txtTimer As System.Windows.Forms.TextBox
     Friend WithEvents nudWritingQuality As System.Windows.Forms.NumericUpDown
     Friend WithEvents KryptonLabel12 As System.Windows.Forms.Label
     Friend WithEvents nudPlagiarismSeverity As System.Windows.Forms.NumericUpDown
     Friend WithEvents KryptonLabel10 As System.Windows.Forms.Label
-    Friend WithEvents txtSchoolClass As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents txtSchoolClass As System.Windows.Forms.TextBox
     Friend WithEvents KryptonLabel11 As System.Windows.Forms.Label
     Friend WithEvents nudAltNumber As System.Windows.Forms.NumericUpDown
     Friend WithEvents nudPresentationQuality As System.Windows.Forms.NumericUpDown
-    Friend WithEvents llblEditStudent As System.Windows.Forms.LinkLabel
     Friend WithEvents KryptonLabel8 As System.Windows.Forms.Label
     Friend WithEvents KryptonLabel7 As System.Windows.Forms.Label
     Friend WithEvents KryptonLabel6 As System.Windows.Forms.Label
-    Friend WithEvents txtAssignmentName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtStudentID As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtNickName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents txtAssignmentName As System.Windows.Forms.TextBox
+    Friend WithEvents txtStudentID As System.Windows.Forms.TextBox
+    Friend WithEvents txtNickName As System.Windows.Forms.TextBox
     Friend WithEvents KryptonLabel1 As System.Windows.Forms.Label
     Friend WithEvents llblOpenStudent As System.Windows.Forms.LinkLabel
     Friend WithEvents KryptonLabel3 As System.Windows.Forms.Label
@@ -1109,15 +1118,15 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents AutogenImprovementsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents olvcolPerformanceLevel As BrightIdeasSoftware.OLVColumn
     Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithout As System.Windows.Forms.LinkLabel
-    Friend WithEvents txtTeam As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Friend WithEvents txtGroup As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents txtTeam As System.Windows.Forms.TextBox
+    Friend WithEvents txtGroup As System.Windows.Forms.TextBox
     Friend WithEvents KryptonLabel18 As System.Windows.Forms.Label
     Friend WithEvents KryptonLabel17 As System.Windows.Forms.Label
     Friend WithEvents olvcolPrevPerformance As BrightIdeasSoftware.OLVColumn
     Private WithEvents KryptonLabel19 As System.Windows.Forms.Label
     Private WithEvents KryptonLabel20 As System.Windows.Forms.Label
-    Private WithEvents txtLastUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
-    Private WithEvents txtFirstUserFullName As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Private WithEvents txtLastUserFullName As System.Windows.Forms.TextBox
+    Private WithEvents txtFirstUserFullName As System.Windows.Forms.TextBox
     Friend WithEvents txtPeerStudentID As TextBox
     Friend WithEvents KryptonLabel21 As System.Windows.Forms.Label
     Friend WithEvents rtbOverallComments As RichTextBox
@@ -1129,4 +1138,12 @@ Partial Class StudentAssignmentNormalDetails
     Friend WithEvents llblReworkText As LinkLabel
     Friend WithEvents llblAutoGenImprovementsWithoutPerformanceLevelWithoutRework As System.Windows.Forms.LinkLabel
     Friend WithEvents llblAutoGenImprovementsRework As System.Windows.Forms.LinkLabel
+    Friend WithEvents picResetTimer As PictureBox
+    Friend WithEvents picDeleteAssignment As PictureBox
+    Friend WithEvents picToggleTimer As PictureBox
+    Friend WithEvents picEditStudent As PictureBox
+    Friend WithEvents picClearImprovementItem As PictureBox
+    Friend WithEvents picAddImprovementItem As PictureBox
+    Friend WithEvents picRemoveImprovementItem As PictureBox
+    Friend WithEvents picWarningNotice As PictureBox
 End Class
