@@ -150,12 +150,6 @@
     <Compile Include="Forms\Assignments\GroupPresentationQuickFeedback.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Attendence\AttendanceVerify.Designer.vb">
-      <DependentUpon>AttendanceVerify.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Attendence\AttendanceVerify.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\BuildGroups.Designer.vb">
       <DependentUpon>BuildGroups.vb</DependentUpon>
     </Compile>
@@ -689,9 +683,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assignments\GroupPresentationQuickFeedback.resx">
       <DependentUpon>GroupPresentationQuickFeedback.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Attendence\AttendanceVerify.resx">
-      <DependentUpon>AttendanceVerify.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BuildGroups.resx">
       <DependentUpon>BuildGroups.vb</DependentUpon>
