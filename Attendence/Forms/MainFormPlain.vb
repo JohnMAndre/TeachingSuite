@@ -569,7 +569,7 @@ Public Class MainFormPlain
 
     Private Sub TakeAttendenceToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles TakeAttendenceToolStripMenuItem.Click
         If GetSelectedClass() IsNot Nothing Then
-            Using frm As New AttendenceForm(GetSelectedClass())
+            Using frm As New Attendance2Form(GetSelectedClass(), False)
                 If frm.ShowDialog() = DialogResult.OK Then
                     '-- trigger autosave to capture attendance
                     AutoSave()
@@ -2853,10 +2853,10 @@ Public Class MainFormPlain
         frm.ShowDialog()
     End Sub
 
-    Private Sub Attendance2FromSchedule()
+    Private Sub Attendance2FromSchedule(verify As Boolean)
         If dgvSchedule.CurrentRow IsNot Nothing Then
             Dim item As ActualSessionItem = CType(dgvSchedule.CurrentRow.DataBoundItem, ActualSessionItem)
-            Using frm As New Attendance2Form(item)
+            Using frm As New Attendance2Form(item, verify)
                 frm.ShowDialog()
             End Using
         Else
@@ -2918,7 +2918,7 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub ScheduleTakeAttendanceMenuItem_Click(sender As Object, e As EventArgs) Handles ScheduleTakeAttendanceMenuItem.Click
-        Attendance2FromSchedule()
+        Attendance2FromSchedule(False)
     End Sub
 
     Private Sub ScheduleSkipSessionMenuItem_Click(sender As Object, e As EventArgs) Handles ScheduleSkipSessionMenuItem.Click
@@ -2943,7 +2943,10 @@ Public Class MainFormPlain
     End Sub
 
     Private Sub dgvSchedule_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSchedule.CellDoubleClick
-        Attendance2FromSchedule()
+        Attendance2FromSchedule(False)
+    End Sub
+    Private Sub VerifyAttendanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerifyAttendanceToolStripMenuItem.Click
+        Attendance2FromSchedule(True)
     End Sub
 
     Private Sub EmailStudentGridToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmailStudentGridToolStripMenuItem.Click

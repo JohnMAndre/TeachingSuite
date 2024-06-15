@@ -89,21 +89,23 @@ Public Class Attendance2Form
     Private m_ptMessage As PointF
     Private m_tsCurrent As TimeSpan
     Private m_strActualSessionID As String
+    Private m_verify As Boolean
 
-    Public Sub New(schoolClass As SchoolClass)
+    Public Sub New(schoolClass As SchoolClass, verify As Boolean)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         m_class = schoolClass
         txtStudentGroup.Text = 0
+        m_verify = verify
     End Sub
     ''' <summary>
     ''' Pass in an ActualSessionItem and only take attendence for students in that session (useful for workshop sessions)
     ''' </summary>
-    ''' <param name="item"></param>
-    ''' <remarks></remarks>
-    Public Sub New(item As ActualSessionItem)
+    ''' <param name="item">scheduled class to process</param>
+    ''' <param name="verify">if true, only students who are present will be processed</param>
+    Public Sub New(item As ActualSessionItem, verify As Boolean)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -113,6 +115,7 @@ Public Class Attendance2Form
         txtStudentGroup.Text = item.StudentGroup
         m_dtStartTime = item.StartDateTime
         m_strActualSessionID = item.UniqueID
+        m_verify = verify
 
     End Sub
 
@@ -122,7 +125,11 @@ Public Class Attendance2Form
 
     Private Sub SaveAndCloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAndCloseToolStripMenuItem.Click
         If AllAreMarked() OrElse MessageBox.Show("Not all students have been marked. Are you sure you want to save and close?", PRODUCT_NAME, MessageBoxButtons.YesNoCancel) = DialogResult.Yes Then
-            SaveSessionStatuses()
+            If m_verify Then
+                ProcessVerifyAttendance()
+            Else
+                SaveSessionStatuses()
+            End If
             Close()
         End If
     End Sub
@@ -136,6 +143,27 @@ Public Class Attendance2Form
         Return True
     End Function
 
+    Private Sub ProcessVerifyAttendance()
+        Try
+            '-- Create new class session for each student
+            For Each stu As StudentAttendanceData In m_lstStudents
+                If stu.AttendanceStatus <> AttendanceStatusEnum.Unknown Then
+                    Dim session As TeachingSession = stu.Student.TeachingSessions(stu.Student.TeachingSessions.Count - 1)
+                    session.AttendenceStatus = stu.AttendanceStatus
+                    stu.Student.Notes &= vbNewLine & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL) & " Attendance verified as " & stu.AttendanceStatus.ToString()
+                End If
+            Next
+
+            m_boolDirty = False
+
+            AddApplicationHistory("Verified attendance (" & m_class.ToString() & ").")
+
+            Me.DialogResult = DialogResult.OK
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub SaveSessionStatuses()
         Try
             Dim dtSessionDate As Date = Date.Parse(txtSessionDate.Text)
@@ -190,10 +218,10 @@ Public Class Attendance2Form
                 End Select
             Next
 
-            lblStudentsPresent.Text = "P: " & intStudentsPresent.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
-            lblStudentsExcused.Text = "E: " & intStudentsExcused.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
-            lblStudentsLate.Text = "L: " & intStudentsLate.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
-            lblStudentsAbsent.Text = "A: " & intStudentsAbsent.ToString("#,##0") & " of " & m_class.Students.Count.ToString("#,##0")
+            lblStudentsPresent.Text = "P: " & intStudentsPresent.ToString("#,##0") & " of " & m_lstStudents.Count.ToString("#,##0")
+            lblStudentsExcused.Text = "E: " & intStudentsExcused.ToString("#,##0") & " of " & m_lstStudents.Count.ToString("#,##0")
+            lblStudentsLate.Text = "L: " & intStudentsLate.ToString("#,##0") & " of " & m_lstStudents.Count.ToString("#,##0")
+            lblStudentsAbsent.Text = "A: " & intStudentsAbsent.ToString("#,##0") & " of " & m_lstStudents.Count.ToString("#,##0")
         End If
     End Sub
     Private Sub IncreaseFontToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IncreaseFontToolStripMenuItem.Click
@@ -657,7 +685,13 @@ Public Class Attendance2Form
 
             For Each stud As Student In m_class.Students
                 If m_intStudentGroup = 0 OrElse stud.StudentGroup = m_intStudentGroup Then
-                    m_lstStudents.Add(New StudentAttendanceData(stud))
+                    If m_verify Then
+                        If stud.LatestAttendenceStatus = AttendanceStatusEnum.Present Then
+                            m_lstStudents.Add(New StudentAttendanceData(stud))
+                        End If
+                    Else
+                        m_lstStudents.Add(New StudentAttendanceData(stud))
+                    End If
                 End If
                 stud.TempTag = rnd.Next
             Next
