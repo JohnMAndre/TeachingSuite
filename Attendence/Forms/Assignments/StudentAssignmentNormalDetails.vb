@@ -24,6 +24,7 @@ Friend Class StudentAssignmentNormalDetails
     Private m_studentModuleResults As Student.StudentModuleResult
     Private m_boolAssignmentCreated As Boolean
     Private m_try As Semester.MarkingTry
+    Private m_boolWarnedAboutTry As Boolean
     Private m_dtTimerStart As Date = Date.Now
     Private m_boolTimerRunning As Boolean = True
     Private m_tsTimer As TimeSpan
@@ -111,10 +112,17 @@ Friend Class StudentAssignmentNormalDetails
 
         chkProcessed.Checked = m_studentAssignment.Processed
 
+        '-- stop warning from showing
+        m_boolWarnedAboutTry = True
+
         rtbOverallComments.Text = m_studentAssignment.OverallComments
         rtbImprovementComments.Text = m_studentAssignment.ImprovementComments
         rtbOverallCommentsRework.Text = m_studentAssignment.OverallCommentsRework
         rtbImprovementCommentsRework.Text = m_studentAssignment.ImprovementCommentsRework
+
+        '-- reset on load
+        m_boolWarnedAboutTry = False
+
 
         txtNickName.Text = m_student.Nickname
         txtStudentID.Text = m_student.StudentID
@@ -657,5 +665,23 @@ Friend Class StudentAssignmentNormalDetails
 
     Private Sub llblDeleteAssignment_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
 
+    End Sub
+
+    Private Sub rtbImprovementComments_TextChanged(sender As Object, e As EventArgs) Handles rtbImprovementComments.TextChanged
+        If m_try <> Semester.MarkingTry.FirstTry AndAlso Not m_boolWarnedAboutTry Then
+            MessageBox.Show("Normally, you should not change the first attempt text except during the first attempt.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            m_boolWarnedAboutTry = True
+        Else
+            '-- do nothing
+        End If
+    End Sub
+
+    Private Sub rtbOverallComments_TextChanged(sender As Object, e As EventArgs) Handles rtbOverallComments.TextChanged
+        If m_try <> Semester.MarkingTry.FirstTry AndAlso Not m_boolWarnedAboutTry Then
+            MessageBox.Show("Normally, you should not change the first attempt text except during the first attempt.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            m_boolWarnedAboutTry = True
+        Else
+            '-- do nothing
+        End If
     End Sub
 End Class

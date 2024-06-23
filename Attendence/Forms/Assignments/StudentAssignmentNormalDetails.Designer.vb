@@ -93,6 +93,7 @@ Partial Class StudentAssignmentNormalDetails
         Me.KryptonLabel9 = New System.Windows.Forms.Label()
         Me.txtTimer = New System.Windows.Forms.TextBox()
         Me.chkProcessed = New System.Windows.Forms.CheckBox()
+        Me.picWarningNotice = New System.Windows.Forms.PictureBox()
         Me.KryptonLabel12 = New System.Windows.Forms.Label()
         Me.KryptonLabel10 = New System.Windows.Forms.Label()
         Me.txtSchoolClass = New System.Windows.Forms.TextBox()
@@ -107,7 +108,6 @@ Partial Class StudentAssignmentNormalDetails
         Me.llblOpenStudent = New System.Windows.Forms.LinkLabel()
         Me.tmrTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.picWarningNotice = New System.Windows.Forms.PictureBox()
         Me.MenuStrip1.SuspendLayout()
         Me.KryptonPanel.SuspendLayout()
         CType(Me.picEditStudent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -901,6 +901,15 @@ Partial Class StudentAssignmentNormalDetails
         Me.chkProcessed.TabIndex = 48
         Me.chkProcessed.Text = "&Processed:"
         '
+        'picWarningNotice
+        '
+        Me.picWarningNotice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.picWarningNotice.Location = New System.Drawing.Point(161, 32)
+        Me.picWarningNotice.Name = "picWarningNotice"
+        Me.picWarningNotice.Size = New System.Drawing.Size(32, 32)
+        Me.picWarningNotice.TabIndex = 139
+        Me.picWarningNotice.TabStop = False
+        '
         'KryptonLabel12
         '
         Me.KryptonLabel12.Location = New System.Drawing.Point(162, 26)
@@ -1002,15 +1011,6 @@ Partial Class StudentAssignmentNormalDetails
         '
         Me.tmrTimer.Enabled = True
         Me.tmrTimer.Interval = 200
-        '
-        'picWarningNotice
-        '
-        Me.picWarningNotice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.picWarningNotice.Location = New System.Drawing.Point(161, 32)
-        Me.picWarningNotice.Name = "picWarningNotice"
-        Me.picWarningNotice.Size = New System.Drawing.Size(32, 32)
-        Me.picWarningNotice.TabIndex = 139
-        Me.picWarningNotice.TabStop = False
         '
         'StudentAssignmentNormalDetails
         '

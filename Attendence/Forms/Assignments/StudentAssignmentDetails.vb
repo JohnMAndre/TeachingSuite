@@ -16,13 +16,6 @@
 'along with Teaching Suite.  If Not, see < https: //www.gnu.org/licenses/>.
 
 
-Imports Microsoft.Office.Interop
-
-Imports System.IO
-Imports System.Text.RegularExpressions
-Imports DocumentFormat.OpenXml.Packaging
-Imports DocumentFormat.OpenXml.Wordprocessing
-
 Friend Class StudentAssignmentDetails
 
     Private m_student As Student
@@ -30,13 +23,13 @@ Friend Class StudentAssignmentDetails
     Private m_studentModuleResults As Student.StudentModuleResult
     Private m_boolAssignmentCreated As Boolean
     Private m_try As Semester.MarkingTry
+    Private m_boolWarnedAboutTry As Boolean
     Private m_dtTimerStart As Date = Date.Now
     Private m_boolTimerRunning As Boolean = True
     Private m_tsTimer As TimeSpan
     Private m_improvementItems As New List(Of StudentImprovementItem) '-- include those assigned to the student and those not
     Private m_strStudentTagsOriginal As String '-- to track if tags changed while form is open (we don't want to overwrite other changes)
     Private m_lstAutoFeedbackToRemove As New List(Of AutoFeedbackToRemove)
-
     Private Class AutoFeedbackToRemove
         Public Property BaseOutcome As AssignmentOutcome
         Public Property Text As String
@@ -103,11 +96,17 @@ Friend Class StudentAssignmentDetails
         '-- set the outcomes
         olvOutcomes.SetObjects(m_studentAssignment.Outcomes)
 
+        '-- stop warning from showing
+        m_boolWarnedAboutTry = True
+
         rtbOverallComments.Text = m_studentAssignment.OverallComments
         rtbImprovementComments.Text = m_studentAssignment.ImprovementComments
         rtbOverallCommentsRework.Text = m_studentAssignment.OverallCommentsRework
         rtbImprovementCommentsRework.Text = m_studentAssignment.ImprovementCommentsRework
         rtbObservationComments.Text = m_studentAssignment.ObservationComments
+
+        '-- reset on load
+        m_boolWarnedAboutTry = False
 
         txtNickName.Text = m_student.Nickname
         txtStudentID.Text = m_student.StudentID
@@ -363,33 +362,6 @@ Friend Class StudentAssignmentDetails
         Return False
     End Function
     Private Sub btnGenerateOverallComments_LinkClicked(sender As System.Object, e As System.EventArgs) Handles btnGenerateOverallComments.LinkClicked
-        ''   The new rules are:
-        ''   "Achieved Pass" requires all outcomes with gradegroup of pass to be achieved, and number of outcomes @ pass > 0
-        ''   "Achieved Merit" requires "Achieve Pass" and all outcomes with gradegroup of merit to be achieved, and number of outcomes @ merit > 0
-        ''   "Achieved Distinction" requires "Achieve Pass" and "Achieve Merit" and all outcomes with gradegroup of distinction to be achieved, and number of outcomes @ distinction > 0
-        'If AchievedAllAtGrade(BTECGradeGroup.Pass) Then
-        '    If AchievedAllAtGrade(BTECGradeGroup.Merit) Then
-        '        If AchievedAllAtGrade(BTECGradeGroup.Distinction) Then
-        '            '- Distinction
-        '            rtbOverallComments.Text = "Achieved all PASS and MERIT and DISTINCTION outcomes."
-        '        Else
-        '            '-- Just merit
-        '            rtbOverallComments.Text = "Achieved all PASS and MERIT outcomes."
-        '        End If
-        '    Else
-        '        '-- Just pass
-        '        rtbOverallComments.Text = "Achieved all PASS outcomes"
-        '    End If
-        'Else
-        '    '-- Not passed yet
-        '    Dim intAvailable As Integer = OutcomesAtGrade(BTECGradeGroup.Pass)
-        '    Dim intAchieved As Integer = AchievedOutcomesAtGrade(BTECGradeGroup.Pass)
-        '    Dim intReferral As Integer = intAvailable - intAchieved
-        '    rtbOverallComments.Text = "Achieved " & intAchieved.ToString() & " of " & intAvailable.ToString() & " PASS outcomes (referral outcomes: "
-        '    rtbOverallComments.Text &= ListReferralOutcomes(BTECGradeGroup.Pass)
-        '    rtbOverallComments.Text &= ")."
-        'End If
-
         rtbOverallComments.Text = GenerateOverallComments(False)
     End Sub
     Private Function GenerateOverallComments(rework As Boolean) As String
@@ -1218,34 +1190,7 @@ Friend Class StudentAssignmentDetails
             MessageBox.Show("There was an error (loc=" & strErrorLocation & ": " & ex.Message)
         End Try
     End Function
-    'Private Function GetImprovementNotes() As String
-    '    '-- original version
-    '    Try
-    '        Dim strReturn As String = String.Empty
 
-    '        For Each item As StudentImprovementItem In olvImprovementItems.CheckedObjects
-    '            strReturn &= "* " & item.BaseImprovementItem.Description & " (your performance level: " & item.PerformanceLevel & " out of 5 -- "
-    '            Select Case item.PerformanceLevel
-    '                Case 1
-    '                    strReturn &= "unacceptable"
-    '                Case 2
-    '                    strReturn &= "very weak, often incorrect"
-    '                Case 3
-    '                    strReturn &= "OK, but inconsistent"
-    '                Case 4
-    '                    strReturn &= "Good, but can improve more"
-    '                Case 5
-    '                    strReturn &= "Already great"
-    '            End Select
-    '            strReturn &= ")" & Environment.NewLine & Environment.NewLine
-    '        Next
-
-    '        Return strReturn.Trim()
-    '    Catch ex As Exception
-    '        Log(ex)
-    '        MessageBox.Show("There was an error with the improvement note list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    End Try
-    'End Function
     Private Function GetImprovementNotes(includePerformanceLevel As Boolean) As String
         Try
             '-- Generate based on checked items in DGV
@@ -1546,7 +1491,12 @@ Friend Class StudentAssignmentDetails
     End Sub
 
     Private Sub rtbImprovementComments_TextChanged(sender As System.Object, e As System.EventArgs) Handles rtbImprovementComments.TextChanged
-        lblImprovementCharCount.Text = rtbImprovementComments.TextLength.ToString("#,##0")
+        If m_try <> Semester.MarkingTry.FirstTry AndAlso Not m_boolWarnedAboutTry Then
+            MessageBox.Show("Normally, you should not change the first attempt text except during the first attempt.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            m_boolWarnedAboutTry = True
+        Else
+            lblImprovementCharCount.Text = rtbImprovementComments.TextLength.ToString("#,##0")
+        End If
     End Sub
 
     Private Sub llblExistingAssignment_LinkClicked(sender As System.Object, e As System.EventArgs) Handles llblExistingAssignment.LinkClicked
@@ -1964,5 +1914,14 @@ Friend Class StudentAssignmentDetails
 
     Private Sub KryptonSplitContainer4_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles KryptonSplitContainer4.Panel2.Paint
 
+    End Sub
+
+    Private Sub rtbOverallComments_TextChanged(sender As Object, e As EventArgs) Handles rtbOverallComments.TextChanged
+        If m_try <> Semester.MarkingTry.FirstTry AndAlso Not m_boolWarnedAboutTry Then
+            MessageBox.Show("Normally, you should not change the first attempt text except during the first attempt.", PRODUCT_NAME, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            m_boolWarnedAboutTry = True
+        Else
+            '-- do nothing
+        End If
     End Sub
 End Class
