@@ -3032,6 +3032,8 @@ Public Class MainFormPlain
                             lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.Tags.ToLower.Contains(strSearchFor.ToLower)).ToList()
                         Case "nickname"
                             lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.Nickname.ToLower.Contains(strSearchFor.ToLower)).ToList()
+                        Case "asmt"
+                            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.AssignmentCount = ConvertToInt32(strSearchFor.ToLower, 0)).ToList()
                     End Select
 
                 Else
