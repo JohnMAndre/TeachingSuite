@@ -54,6 +54,8 @@ Public Class IndividualMarkInGroupPresentation
 
                 If Not m_studentAssignment.ImprovementComments.Contains(vbCrLf) Then
                     txtImprovement.Text = m_studentAssignment.ImprovementComments.Replace(vbLf, Environment.NewLine)
+                Else
+                    txtImprovement.Text = m_studentAssignment.ImprovementComments
                 End If
                 Exit For
             End If
