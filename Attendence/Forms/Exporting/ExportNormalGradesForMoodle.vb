@@ -42,8 +42,8 @@ Public Class ExportNormalGradesForMoodle
 
         Dim sfd As New SaveFileDialog()
         sfd.OverwritePrompt = True
-        sfd.DefaultExt = ".tab"
-        sfd.Filter = "Tab-delimited files|*.tab"
+        sfd.DefaultExt = ".csv"
+        sfd.Filter = "csv files|*.csv"
 
         If sfd.ShowDialog() = DialogResult.OK Then
             Dim strLineToWrite As String
