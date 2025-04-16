@@ -3831,6 +3831,22 @@ Public Class Student
             End If
         End Set
     End Property
+    Public Property LatestAttendenceRow As Integer
+        Get
+            If TeachingSessions.Count > 0 Then
+                Return TeachingSessions(TeachingSessions.Count - 1).SeatedInRow
+            Else
+                Return -1
+            End If
+        End Get
+        Set(value As Integer)
+            If TeachingSessions.Count > 0 Then
+                TeachingSessions(TeachingSessions.Count - 1).SeatedInRow = value
+            Else
+                Application.DoEvents() '-- just ignore
+            End If
+        End Set
+    End Property
     Public Property Photo As Image
         Get
             If EmailAddress IsNot Nothing Then

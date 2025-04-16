@@ -23,6 +23,8 @@ Partial Class MainFormPlain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainFormPlain))
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -52,8 +54,9 @@ Partial Class MainFormPlain
         Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainFormPlain))
         Me.pnlSelectSemester = New System.Windows.Forms.Panel()
+        Me.llblCloseSemesterPanel = New System.Windows.Forms.PictureBox()
+        Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
         Me.dtpSemesterEndCurrent = New System.Windows.Forms.DateTimePicker()
         Me.dtpSemesterEnd = New System.Windows.Forms.DateTimePicker()
         Me.dtpSemesterStartCurrent = New System.Windows.Forms.DateTimePicker()
@@ -89,9 +92,14 @@ Partial Class MainFormPlain
         Me.AssignmentMoveUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignmentMoveDownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.picImportAssignmentsFromPreviousSemester = New System.Windows.Forms.PictureBox()
+        Me.llblEditAssignment = New System.Windows.Forms.PictureBox()
+        Me.llblRemoveAssignment = New System.Windows.Forms.PictureBox()
+        Me.llblAddAssignment = New System.Windows.Forms.PictureBox()
         Me.lstClasses = New System.Windows.Forms.ListBox()
         Me.ctxmnuClasses = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator()
         Me.StatisticsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,7 +107,11 @@ Partial Class MainFormPlain
         Me.VisibleStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator()
         Me.RemoveAllStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmailclassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.llblRemoveClass = New System.Windows.Forms.PictureBox()
+        Me.btnAddClass = New System.Windows.Forms.PictureBox()
+        Me.btnEditClass = New System.Windows.Forms.PictureBox()
         Me.lstClassGroups = New System.Windows.Forms.ListBox()
         Me.ctxmnuClassGroup = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.MoveClassGroupUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -107,41 +119,23 @@ Partial Class MainFormPlain
         Me.CopyModuleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteModuleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.llblRemoveClassGroup = New System.Windows.Forms.PictureBox()
+        Me.llblAddClassGroup = New System.Windows.Forms.PictureBox()
+        Me.llblEditClassGroup = New System.Windows.Forms.PictureBox()
         Me.txtTag = New System.Windows.Forms.TextBox()
         Me.txtStudentFilter = New System.Windows.Forms.TextBox()
+        Me.picSearch = New System.Windows.Forms.PictureBox()
+        Me.llblAddTag = New System.Windows.Forms.PictureBox()
         Me.lblStudentCount = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.btnEditStudent = New System.Windows.Forms.PictureBox()
+        Me.btnRemoveStudent = New System.Windows.Forms.PictureBox()
+        Me.llblRemoveStudent = New System.Windows.Forms.PictureBox()
+        Me.llblAddStudent = New System.Windows.Forms.PictureBox()
+        Me.llblMoveStudent = New System.Windows.Forms.PictureBox()
+        Me.llblClearFilter = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.dgvStudents = New System.Windows.Forms.DataGridView()
-        Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolAlt = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolExtStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolAttendanceStatus = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.dcolTags = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolTotalAbsences = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolPresentationQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolStudentGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolStudentTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolWritingQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolDateOfBirth = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolAssignmentCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolProcessedAssignmentCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolCurrentAbsences = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolHidden = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.dcolMerit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolNameLatinLetters = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolPlagiarismSeverity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolExcusedAbsences = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolGender = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.dcolDrafts = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolOfficeHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolResearchQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dcolLastQuizScore = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ctxmnuStudentGrid = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CopyCellContentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditStudentGridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -152,7 +146,9 @@ Partial Class MainFormPlain
         Me.MarkAssessment2GridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkAssessment3GridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator()
+        Me.EmailStudentGridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlStudentSchedulePanel = New System.Windows.Forms.Panel()
+        Me.picStudent = New System.Windows.Forms.PictureBox()
         Me.dgvSchedule = New System.Windows.Forms.DataGridView()
         Me.dgcDay = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgcStarts = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -165,12 +161,16 @@ Partial Class MainFormPlain
         Me.dgcPrepped = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.dgcSent = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ctxmnuSchedule = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ScheduleSkipSessionMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ScheduleTakeAttendanceMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerifyAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ScheduleLoadClassMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendfeedbackRequestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlNotes = New System.Windows.Forms.Panel()
         Me.lblStopwatchDuration = New System.Windows.Forms.Label()
         Me.txtNotes = New System.Windows.Forms.TextBox()
+        Me.llblStartPauseStopwatch = New System.Windows.Forms.PictureBox()
+        Me.llblClearNotes = New System.Windows.Forms.PictureBox()
         Me.pnlScheduleControls = New System.Windows.Forms.Panel()
         Me.llblRefreshSchedule = New System.Windows.Forms.LinkLabel()
         Me.llblScheduleNextUnprepped = New System.Windows.Forms.LinkLabel()
@@ -202,6 +202,7 @@ Partial Class MainFormPlain
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.MarkSelectedAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailAssignmentResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendBulkEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailOnlineQuizResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FormGroupsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
@@ -245,6 +246,7 @@ Partial Class MainFormPlain
         Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator()
         Me.SessionprepStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AssignmentProcessingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ScheduledSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentQualityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StudentGradesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SemesterStatisticsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -265,6 +267,7 @@ Partial Class MainFormPlain
         Me.ImportStudentsFromTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportStudentsFromOtherSemesterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportEmailAddressesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportStudentAssignmentScoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportImprovementItemsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
@@ -272,6 +275,7 @@ Partial Class MainFormPlain
         Me.StandardSpreadsheetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UnisoftSpreadsheetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportTutorDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportBTECGradesForMoodleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportModuleResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsFirstSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -282,9 +286,11 @@ Partial Class MainFormPlain
         Me.ExportMarkingResultsIsolatedSecondSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMarkingResultsIsolatedThirdSubmitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportStudentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportStudentsForMoodleImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportAllStudentAssignmentDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportStudentGradesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportModuleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportScheduleAsICalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportAllGradeDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEntireSemesterAsXMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportAllSemestersForResearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -321,68 +327,56 @@ Partial Class MainFormPlain
         Me.NewBTECAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNormalAssignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrStopwatch = New System.Windows.Forms.Timer(Me.components)
-        Me.picImportAssignmentsFromPreviousSemester = New System.Windows.Forms.PictureBox()
-        Me.llblEditAssignment = New System.Windows.Forms.PictureBox()
-        Me.llblRemoveAssignment = New System.Windows.Forms.PictureBox()
-        Me.llblAddAssignment = New System.Windows.Forms.PictureBox()
-        Me.DeleteClassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EmailclassToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.llblRemoveClass = New System.Windows.Forms.PictureBox()
-        Me.btnAddClass = New System.Windows.Forms.PictureBox()
-        Me.btnEditClass = New System.Windows.Forms.PictureBox()
-        Me.llblRemoveClassGroup = New System.Windows.Forms.PictureBox()
-        Me.llblAddClassGroup = New System.Windows.Forms.PictureBox()
-        Me.llblEditClassGroup = New System.Windows.Forms.PictureBox()
-        Me.picSearch = New System.Windows.Forms.PictureBox()
-        Me.llblAddTag = New System.Windows.Forms.PictureBox()
-        Me.btnEditStudent = New System.Windows.Forms.PictureBox()
-        Me.btnRemoveStudent = New System.Windows.Forms.PictureBox()
-        Me.llblRemoveStudent = New System.Windows.Forms.PictureBox()
-        Me.llblAddStudent = New System.Windows.Forms.PictureBox()
-        Me.llblMoveStudent = New System.Windows.Forms.PictureBox()
-        Me.llblClearFilter = New System.Windows.Forms.PictureBox()
-        Me.EmailStudentGridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.picStudent = New System.Windows.Forms.PictureBox()
-        Me.ScheduleSkipSessionMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.llblStartPauseStopwatch = New System.Windows.Forms.PictureBox()
-        Me.llblClearNotes = New System.Windows.Forms.PictureBox()
-        Me.llblCloseSemesterPanel = New System.Windows.Forms.PictureBox()
-        Me.btnLoadSemester = New System.Windows.Forms.PictureBox()
-        Me.SendBulkEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ScheduledSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportEmailAddressesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportBTECGradesForMoodleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportStudentsForMoodleImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportScheduleAsICalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VerifyAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dcolAdmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolAlt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolLocalName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolNickname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolExtStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolStudentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolAttendanceStatus = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.dcolLatestRow = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolTags = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolTotalAbsences = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolPresentationQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolStudentGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolStudentTeam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolWritingQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolDateOfBirth = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolAssignmentCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolProcessedAssignmentCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolCurrentAbsences = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolHidden = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.dcolMerit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolNameLatinLetters = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolPlagiarismSeverity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolExcusedAbsences = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolGender = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.dcolDrafts = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolOfficeHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolResearchQuality = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dcolLastQuizScore = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlSelectSemester.SuspendLayout()
+        CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.splitOverall, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.splitOverall.Panel1.SuspendLayout()
         Me.splitOverall.Panel2.SuspendLayout()
         Me.splitOverall.SuspendLayout()
         Me.ctxmnuAssignment.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
-        Me.ctxmnuClasses.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.ctxmnuClassGroup.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ctxmnuStudentGrid.SuspendLayout()
-        Me.pnlStudentSchedulePanel.SuspendLayout()
-        CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ctxmnuSchedule.SuspendLayout()
-        Me.pnlNotes.SuspendLayout()
-        Me.pnlScheduleControls.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.ctxmnuNewAssignment.SuspendLayout()
         CType(Me.picImportAssignmentsFromPreviousSemester, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblEditAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblRemoveAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblAddAssignment, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuClasses.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.llblRemoveClass, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnAddClass, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnEditClass, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuClassGroup.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.llblRemoveClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblAddClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblEditClassGroup, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -394,11 +388,19 @@ Partial Class MainFormPlain
         CType(Me.llblAddStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblMoveStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblClearFilter, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuStudentGrid.SuspendLayout()
+        Me.pnlStudentSchedulePanel.SuspendLayout()
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ctxmnuSchedule.SuspendLayout()
+        Me.pnlNotes.SuspendLayout()
         CType(Me.llblStartPauseStopwatch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.llblClearNotes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlScheduleControls.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
+        Me.ctxmnuNewAssignment.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlSelectSemester
@@ -428,6 +430,26 @@ Partial Class MainFormPlain
         Me.pnlSelectSemester.Name = "pnlSelectSemester"
         Me.pnlSelectSemester.Size = New System.Drawing.Size(1040, 100)
         Me.pnlSelectSemester.TabIndex = 0
+        '
+        'llblCloseSemesterPanel
+        '
+        Me.llblCloseSemesterPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblCloseSemesterPanel.Image = Global.Teaching.My.Resources.Resources.simpleX_16
+        Me.llblCloseSemesterPanel.Location = New System.Drawing.Point(1014, 6)
+        Me.llblCloseSemesterPanel.Name = "llblCloseSemesterPanel"
+        Me.llblCloseSemesterPanel.Size = New System.Drawing.Size(23, 21)
+        Me.llblCloseSemesterPanel.TabIndex = 18
+        Me.llblCloseSemesterPanel.TabStop = False
+        '
+        'btnLoadSemester
+        '
+        Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnLoadSemester.Image = Global.Teaching.My.Resources.Resources.checkmark_16
+        Me.btnLoadSemester.Location = New System.Drawing.Point(470, 10)
+        Me.btnLoadSemester.Name = "btnLoadSemester"
+        Me.btnLoadSemester.Size = New System.Drawing.Size(23, 21)
+        Me.btnLoadSemester.TabIndex = 8
+        Me.btnLoadSemester.TabStop = False
         '
         'dtpSemesterEndCurrent
         '
@@ -742,6 +764,47 @@ Partial Class MainFormPlain
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Assessments"
         '
+        'picImportAssignmentsFromPreviousSemester
+        '
+        Me.picImportAssignmentsFromPreviousSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picImportAssignmentsFromPreviousSemester.Image = Global.Teaching.My.Resources.Resources.again_32
+        Me.picImportAssignmentsFromPreviousSemester.Location = New System.Drawing.Point(107, 9)
+        Me.picImportAssignmentsFromPreviousSemester.Name = "picImportAssignmentsFromPreviousSemester"
+        Me.picImportAssignmentsFromPreviousSemester.Size = New System.Drawing.Size(20, 16)
+        Me.picImportAssignmentsFromPreviousSemester.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picImportAssignmentsFromPreviousSemester.TabIndex = 28
+        Me.picImportAssignmentsFromPreviousSemester.TabStop = False
+        '
+        'llblEditAssignment
+        '
+        Me.llblEditAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblEditAssignment.Image = CType(resources.GetObject("llblEditAssignment.Image"), System.Drawing.Image)
+        Me.llblEditAssignment.Location = New System.Drawing.Point(133, 9)
+        Me.llblEditAssignment.Name = "llblEditAssignment"
+        Me.llblEditAssignment.Size = New System.Drawing.Size(20, 16)
+        Me.llblEditAssignment.TabIndex = 27
+        Me.llblEditAssignment.TabStop = False
+        '
+        'llblRemoveAssignment
+        '
+        Me.llblRemoveAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblRemoveAssignment.Image = CType(resources.GetObject("llblRemoveAssignment.Image"), System.Drawing.Image)
+        Me.llblRemoveAssignment.Location = New System.Drawing.Point(185, 9)
+        Me.llblRemoveAssignment.Name = "llblRemoveAssignment"
+        Me.llblRemoveAssignment.Size = New System.Drawing.Size(20, 16)
+        Me.llblRemoveAssignment.TabIndex = 25
+        Me.llblRemoveAssignment.TabStop = False
+        '
+        'llblAddAssignment
+        '
+        Me.llblAddAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblAddAssignment.Image = CType(resources.GetObject("llblAddAssignment.Image"), System.Drawing.Image)
+        Me.llblAddAssignment.Location = New System.Drawing.Point(159, 9)
+        Me.llblAddAssignment.Name = "llblAddAssignment"
+        Me.llblAddAssignment.Size = New System.Drawing.Size(20, 16)
+        Me.llblAddAssignment.TabIndex = 26
+        Me.llblAddAssignment.TabStop = False
+        '
         'lstClasses
         '
         Me.lstClasses.ContextMenuStrip = Me.ctxmnuClasses
@@ -765,6 +828,13 @@ Partial Class MainFormPlain
         Me.EditClassToolStripMenuItem.Name = "EditClassToolStripMenuItem"
         Me.EditClassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.EditClassToolStripMenuItem.Text = "&Edit class..."
+        '
+        'DeleteClassToolStripMenuItem
+        '
+        Me.DeleteClassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.erase_16
+        Me.DeleteClassToolStripMenuItem.Name = "DeleteClassToolStripMenuItem"
+        Me.DeleteClassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.DeleteClassToolStripMenuItem.Text = "&Delete class"
         '
         'ToolStripSeparator13
         '
@@ -807,6 +877,13 @@ Partial Class MainFormPlain
         Me.RemoveAllStudentsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.RemoveAllStudentsToolStripMenuItem.Text = "Remove all students"
         '
+        'EmailclassToolStripMenuItem
+        '
+        Me.EmailclassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
+        Me.EmailclassToolStripMenuItem.Name = "EmailclassToolStripMenuItem"
+        Me.EmailclassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.EmailclassToolStripMenuItem.Text = "Email &class..."
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.llblRemoveClass)
@@ -819,6 +896,36 @@ Partial Class MainFormPlain
         Me.GroupBox2.TabIndex = 28
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Classes"
+        '
+        'llblRemoveClass
+        '
+        Me.llblRemoveClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblRemoveClass.Image = CType(resources.GetObject("llblRemoveClass.Image"), System.Drawing.Image)
+        Me.llblRemoveClass.Location = New System.Drawing.Point(183, 8)
+        Me.llblRemoveClass.Name = "llblRemoveClass"
+        Me.llblRemoveClass.Size = New System.Drawing.Size(20, 16)
+        Me.llblRemoveClass.TabIndex = 22
+        Me.llblRemoveClass.TabStop = False
+        '
+        'btnAddClass
+        '
+        Me.btnAddClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddClass.Image = CType(resources.GetObject("btnAddClass.Image"), System.Drawing.Image)
+        Me.btnAddClass.Location = New System.Drawing.Point(157, 8)
+        Me.btnAddClass.Name = "btnAddClass"
+        Me.btnAddClass.Size = New System.Drawing.Size(20, 16)
+        Me.btnAddClass.TabIndex = 23
+        Me.btnAddClass.TabStop = False
+        '
+        'btnEditClass
+        '
+        Me.btnEditClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEditClass.Image = CType(resources.GetObject("btnEditClass.Image"), System.Drawing.Image)
+        Me.btnEditClass.Location = New System.Drawing.Point(131, 8)
+        Me.btnEditClass.Name = "btnEditClass"
+        Me.btnEditClass.Size = New System.Drawing.Size(20, 16)
+        Me.btnEditClass.TabIndex = 24
+        Me.btnEditClass.TabStop = False
         '
         'lstClassGroups
         '
@@ -875,6 +982,36 @@ Partial Class MainFormPlain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Modules"
         '
+        'llblRemoveClassGroup
+        '
+        Me.llblRemoveClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblRemoveClassGroup.Image = CType(resources.GetObject("llblRemoveClassGroup.Image"), System.Drawing.Image)
+        Me.llblRemoveClassGroup.Location = New System.Drawing.Point(180, 9)
+        Me.llblRemoveClassGroup.Name = "llblRemoveClassGroup"
+        Me.llblRemoveClassGroup.Size = New System.Drawing.Size(20, 16)
+        Me.llblRemoveClassGroup.TabIndex = 19
+        Me.llblRemoveClassGroup.TabStop = False
+        '
+        'llblAddClassGroup
+        '
+        Me.llblAddClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblAddClassGroup.Image = CType(resources.GetObject("llblAddClassGroup.Image"), System.Drawing.Image)
+        Me.llblAddClassGroup.Location = New System.Drawing.Point(154, 9)
+        Me.llblAddClassGroup.Name = "llblAddClassGroup"
+        Me.llblAddClassGroup.Size = New System.Drawing.Size(20, 16)
+        Me.llblAddClassGroup.TabIndex = 20
+        Me.llblAddClassGroup.TabStop = False
+        '
+        'llblEditClassGroup
+        '
+        Me.llblEditClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblEditClassGroup.Image = CType(resources.GetObject("llblEditClassGroup.Image"), System.Drawing.Image)
+        Me.llblEditClassGroup.Location = New System.Drawing.Point(128, 9)
+        Me.llblEditClassGroup.Name = "llblEditClassGroup"
+        Me.llblEditClassGroup.Size = New System.Drawing.Size(20, 16)
+        Me.llblEditClassGroup.TabIndex = 21
+        Me.llblEditClassGroup.TabStop = False
+        '
         'txtTag
         '
         Me.txtTag.Location = New System.Drawing.Point(379, -1)
@@ -888,6 +1025,24 @@ Partial Class MainFormPlain
         Me.txtStudentFilter.Name = "txtStudentFilter"
         Me.txtStudentFilter.Size = New System.Drawing.Size(126, 22)
         Me.txtStudentFilter.TabIndex = 19
+        '
+        'picSearch
+        '
+        Me.picSearch.Image = Global.Teaching.My.Resources.Resources.detective_16
+        Me.picSearch.Location = New System.Drawing.Point(192, 2)
+        Me.picSearch.Name = "picSearch"
+        Me.picSearch.Size = New System.Drawing.Size(17, 17)
+        Me.picSearch.TabIndex = 62
+        Me.picSearch.TabStop = False
+        '
+        'llblAddTag
+        '
+        Me.llblAddTag.Image = Global.Teaching.My.Resources.Resources.add_icon_16
+        Me.llblAddTag.Location = New System.Drawing.Point(507, 2)
+        Me.llblAddTag.Name = "llblAddTag"
+        Me.llblAddTag.Size = New System.Drawing.Size(17, 17)
+        Me.llblAddTag.TabIndex = 58
+        Me.llblAddTag.TabStop = False
         '
         'lblStudentCount
         '
@@ -907,6 +1062,65 @@ Partial Class MainFormPlain
         Me.Label13.TabIndex = 56
         Me.Label13.Text = "Tag:"
         '
+        'btnEditStudent
+        '
+        Me.btnEditStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEditStudent.Image = Global.Teaching.My.Resources.Resources.AutoText_16
+        Me.btnEditStudent.Location = New System.Drawing.Point(733, 2)
+        Me.btnEditStudent.Name = "btnEditStudent"
+        Me.btnEditStudent.Size = New System.Drawing.Size(17, 17)
+        Me.btnEditStudent.TabIndex = 55
+        Me.btnEditStudent.TabStop = False
+        '
+        'btnRemoveStudent
+        '
+        Me.btnRemoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRemoveStudent.Image = Global.Teaching.My.Resources.Resources.anchor_16
+        Me.btnRemoveStudent.Location = New System.Drawing.Point(679, 2)
+        Me.btnRemoveStudent.Name = "btnRemoveStudent"
+        Me.btnRemoveStudent.Size = New System.Drawing.Size(17, 17)
+        Me.btnRemoveStudent.TabIndex = 53
+        Me.btnRemoveStudent.TabStop = False
+        '
+        'llblRemoveStudent
+        '
+        Me.llblRemoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblRemoveStudent.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
+        Me.llblRemoveStudent.Location = New System.Drawing.Point(805, 1)
+        Me.llblRemoveStudent.Name = "llblRemoveStudent"
+        Me.llblRemoveStudent.Size = New System.Drawing.Size(17, 17)
+        Me.llblRemoveStudent.TabIndex = 52
+        Me.llblRemoveStudent.TabStop = False
+        '
+        'llblAddStudent
+        '
+        Me.llblAddStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblAddStudent.Image = Global.Teaching.My.Resources.Resources.add_icon_16
+        Me.llblAddStudent.Location = New System.Drawing.Point(783, 1)
+        Me.llblAddStudent.Name = "llblAddStudent"
+        Me.llblAddStudent.Size = New System.Drawing.Size(17, 17)
+        Me.llblAddStudent.TabIndex = 51
+        Me.llblAddStudent.TabStop = False
+        '
+        'llblMoveStudent
+        '
+        Me.llblMoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblMoveStudent.Image = Global.Teaching.My.Resources.Resources.Arrow_left_16
+        Me.llblMoveStudent.Location = New System.Drawing.Point(759, 1)
+        Me.llblMoveStudent.Name = "llblMoveStudent"
+        Me.llblMoveStudent.Size = New System.Drawing.Size(17, 17)
+        Me.llblMoveStudent.TabIndex = 50
+        Me.llblMoveStudent.TabStop = False
+        '
+        'llblClearFilter
+        '
+        Me.llblClearFilter.Image = Global.Teaching.My.Resources.Resources.simpleX_16
+        Me.llblClearFilter.Location = New System.Drawing.Point(172, 2)
+        Me.llblClearFilter.Name = "llblClearFilter"
+        Me.llblClearFilter.Size = New System.Drawing.Size(17, 17)
+        Me.llblClearFilter.TabIndex = 49
+        Me.llblClearFilter.TabStop = False
+        '
         'Panel3
         '
         Me.Panel3.Controls.Add(Me.dgvStudents)
@@ -922,7 +1136,7 @@ Partial Class MainFormPlain
         Me.dgvStudents.AllowUserToDeleteRows = False
         Me.dgvStudents.AllowUserToOrderColumns = True
         Me.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolAlt, Me.dcolLocalName, Me.dcolNickname, Me.dcolExtStudentID, Me.dcolStudentID, Me.dcolAttendanceStatus, Me.dcolTags, Me.dcolTotalAbsences, Me.dcolPresentationQuality, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.dcolWritingQuality, Me.dcolDateOfBirth, Me.dcolAssignmentCount, Me.dcolProcessedAssignmentCount, Me.dcolCurrentAbsences, Me.dcolHidden, Me.dcolMerit, Me.dcolEmail, Me.dcolNameLatinLetters, Me.dcolClass, Me.dcolPlagiarismSeverity, Me.dcolExcusedAbsences, Me.dcolGender, Me.dcolDrafts, Me.dcolOfficeHours, Me.dcolResearchQuality, Me.dcolLastQuizScore})
+        Me.dgvStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dcolAdmin, Me.dcolAlt, Me.dcolLocalName, Me.dcolNickname, Me.dcolExtStudentID, Me.dcolStudentID, Me.dcolAttendanceStatus, Me.dcolLatestRow, Me.dcolTags, Me.dcolTotalAbsences, Me.dcolPresentationQuality, Me.dcolStudentGroup, Me.dcolStudentTeam, Me.dcolWritingQuality, Me.dcolDateOfBirth, Me.dcolAssignmentCount, Me.dcolProcessedAssignmentCount, Me.dcolCurrentAbsences, Me.dcolHidden, Me.dcolMerit, Me.dcolEmail, Me.dcolNameLatinLetters, Me.dcolClass, Me.dcolPlagiarismSeverity, Me.dcolExcusedAbsences, Me.dcolGender, Me.dcolDrafts, Me.dcolOfficeHours, Me.dcolResearchQuality, Me.dcolLastQuizScore})
         Me.dgvStudents.ContextMenuStrip = Me.ctxmnuStudentGrid
         Me.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvStudents.Location = New System.Drawing.Point(0, 0)
@@ -931,245 +1145,6 @@ Partial Class MainFormPlain
         Me.dgvStudents.ShowCellToolTips = False
         Me.dgvStudents.Size = New System.Drawing.Size(829, 211)
         Me.dgvStudents.TabIndex = 5
-        '
-        'dcolAdmin
-        '
-        Me.dcolAdmin.DataPropertyName = "AdminNumber"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
-        Me.dcolAdmin.HeaderText = "Admin"
-        Me.dcolAdmin.Name = "dcolAdmin"
-        '
-        'dcolAlt
-        '
-        Me.dcolAlt.DataPropertyName = "AltNumber"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dcolAlt.HeaderText = "Alt"
-        Me.dcolAlt.Name = "dcolAlt"
-        Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dcolAlt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'dcolLocalName
-        '
-        Me.dcolLocalName.DataPropertyName = "LocalName"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle3
-        Me.dcolLocalName.HeaderText = "Name"
-        Me.dcolLocalName.Name = "dcolLocalName"
-        '
-        'dcolNickname
-        '
-        Me.dcolNickname.DataPropertyName = "Nickname"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle4
-        Me.dcolNickname.HeaderText = "Nickname"
-        Me.dcolNickname.Name = "dcolNickname"
-        '
-        'dcolExtStudentID
-        '
-        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle5
-        Me.dcolExtStudentID.HeaderText = "ExtID"
-        Me.dcolExtStudentID.Name = "dcolExtStudentID"
-        '
-        'dcolStudentID
-        '
-        Me.dcolStudentID.DataPropertyName = "StudentID"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle6
-        Me.dcolStudentID.HeaderText = "StudentID"
-        Me.dcolStudentID.Name = "dcolStudentID"
-        '
-        'dcolAttendanceStatus
-        '
-        Me.dcolAttendanceStatus.DataPropertyName = "LatestAttendenceStatus"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle7
-        Me.dcolAttendanceStatus.HeaderText = "Status"
-        Me.dcolAttendanceStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Excused", "Late"})
-        Me.dcolAttendanceStatus.Name = "dcolAttendanceStatus"
-        Me.dcolAttendanceStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dcolAttendanceStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'dcolTags
-        '
-        Me.dcolTags.DataPropertyName = "Tags"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle8
-        Me.dcolTags.HeaderText = "Tags"
-        Me.dcolTags.Name = "dcolTags"
-        '
-        'dcolTotalAbsences
-        '
-        Me.dcolTotalAbsences.DataPropertyName = "TotalAbsences"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle9
-        Me.dcolTotalAbsences.HeaderText = "Total"
-        Me.dcolTotalAbsences.Name = "dcolTotalAbsences"
-        '
-        'dcolPresentationQuality
-        '
-        Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle10
-        Me.dcolPresentationQuality.HeaderText = "Pres"
-        Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
-        '
-        'dcolStudentGroup
-        '
-        Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle11
-        Me.dcolStudentGroup.HeaderText = "Group"
-        Me.dcolStudentGroup.Name = "dcolStudentGroup"
-        '
-        'dcolStudentTeam
-        '
-        Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle12
-        Me.dcolStudentTeam.HeaderText = "Team"
-        Me.dcolStudentTeam.Name = "dcolStudentTeam"
-        '
-        'dcolWritingQuality
-        '
-        Me.dcolWritingQuality.DataPropertyName = "WritingQuality"
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle13
-        Me.dcolWritingQuality.HeaderText = "Write"
-        Me.dcolWritingQuality.Name = "dcolWritingQuality"
-        '
-        'dcolDateOfBirth
-        '
-        Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle14
-        Me.dcolDateOfBirth.HeaderText = "DoB"
-        Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
-        '
-        'dcolAssignmentCount
-        '
-        Me.dcolAssignmentCount.DataPropertyName = "AssignmentCount"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle15
-        Me.dcolAssignmentCount.HeaderText = "Asmt"
-        Me.dcolAssignmentCount.Name = "dcolAssignmentCount"
-        '
-        'dcolProcessedAssignmentCount
-        '
-        Me.dcolProcessedAssignmentCount.DataPropertyName = "ProcessedAssignments"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle16
-        Me.dcolProcessedAssignmentCount.HeaderText = "P.Asmt"
-        Me.dcolProcessedAssignmentCount.Name = "dcolProcessedAssignmentCount"
-        '
-        'dcolCurrentAbsences
-        '
-        Me.dcolCurrentAbsences.DataPropertyName = "CurrentAbsences"
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle17
-        Me.dcolCurrentAbsences.HeaderText = "Abs"
-        Me.dcolCurrentAbsences.Name = "dcolCurrentAbsences"
-        '
-        'dcolHidden
-        '
-        Me.dcolHidden.DataPropertyName = "Hidden"
-        Me.dcolHidden.HeaderText = "Hid"
-        Me.dcolHidden.Name = "dcolHidden"
-        '
-        'dcolMerit
-        '
-        Me.dcolMerit.DataPropertyName = "MeritPoints"
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle18
-        Me.dcolMerit.HeaderText = "Merit"
-        Me.dcolMerit.Name = "dcolMerit"
-        '
-        'dcolEmail
-        '
-        Me.dcolEmail.DataPropertyName = "EmailAddress"
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle19
-        Me.dcolEmail.HeaderText = "Email"
-        Me.dcolEmail.Name = "dcolEmail"
-        Me.dcolEmail.ReadOnly = True
-        '
-        'dcolNameLatinLetters
-        '
-        Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle20
-        Me.dcolNameLatinLetters.HeaderText = "Standard"
-        Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
-        '
-        'dcolClass
-        '
-        Me.dcolClass.DataPropertyName = "SchoolClassName"
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle21
-        Me.dcolClass.HeaderText = "Class"
-        Me.dcolClass.Name = "dcolClass"
-        Me.dcolClass.ReadOnly = True
-        '
-        'dcolPlagiarismSeverity
-        '
-        Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle22
-        Me.dcolPlagiarismSeverity.HeaderText = "Plag"
-        Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
-        '
-        'dcolExcusedAbsences
-        '
-        Me.dcolExcusedAbsences.DataPropertyName = "TotalExcused"
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle23
-        Me.dcolExcusedAbsences.HeaderText = "Excu"
-        Me.dcolExcusedAbsences.Name = "dcolExcusedAbsences"
-        '
-        'dcolGender
-        '
-        Me.dcolGender.DataPropertyName = "Gender"
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle24
-        Me.dcolGender.HeaderText = "Gender"
-        Me.dcolGender.Name = "dcolGender"
-        Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dcolGender.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'dcolDrafts
-        '
-        Me.dcolDrafts.DataPropertyName = "DraftsChecked"
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle25
-        Me.dcolDrafts.HeaderText = "Drafts"
-        Me.dcolDrafts.Name = "dcolDrafts"
-        '
-        'dcolOfficeHours
-        '
-        Me.dcolOfficeHours.DataPropertyName = "OfficeHoursVisited"
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle26
-        Me.dcolOfficeHours.HeaderText = "Office hrs"
-        Me.dcolOfficeHours.Name = "dcolOfficeHours"
-        '
-        'dcolResearchQuality
-        '
-        Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle27
-        Me.dcolResearchQuality.HeaderText = "Research"
-        Me.dcolResearchQuality.Name = "dcolResearchQuality"
-        '
-        'dcolLastQuizScore
-        '
-        Me.dcolLastQuizScore.DataPropertyName = "PerformanceLastOnlineQuiz"
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle28
-        Me.dcolLastQuizScore.HeaderText = "Quiz"
-        Me.dcolLastQuizScore.Name = "dcolLastQuizScore"
         '
         'ctxmnuStudentGrid
         '
@@ -1230,6 +1205,13 @@ Partial Class MainFormPlain
         Me.ToolStripSeparator20.Name = "ToolStripSeparator20"
         Me.ToolStripSeparator20.Size = New System.Drawing.Size(190, 6)
         '
+        'EmailStudentGridToolStripMenuItem
+        '
+        Me.EmailStudentGridToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
+        Me.EmailStudentGridToolStripMenuItem.Name = "EmailStudentGridToolStripMenuItem"
+        Me.EmailStudentGridToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.EmailStudentGridToolStripMenuItem.Text = "Email &student"
+        '
         'pnlStudentSchedulePanel
         '
         Me.pnlStudentSchedulePanel.Controls.Add(Me.picStudent)
@@ -1241,6 +1223,16 @@ Partial Class MainFormPlain
         Me.pnlStudentSchedulePanel.Name = "pnlStudentSchedulePanel"
         Me.pnlStudentSchedulePanel.Size = New System.Drawing.Size(829, 194)
         Me.pnlStudentSchedulePanel.TabIndex = 4
+        '
+        'picStudent
+        '
+        Me.picStudent.Location = New System.Drawing.Point(473, 0)
+        Me.picStudent.Name = "picStudent"
+        Me.picStudent.Size = New System.Drawing.Size(178, 195)
+        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picStudent.TabIndex = 50
+        Me.picStudent.TabStop = False
+        Me.picStudent.Visible = False
         '
         'dgvSchedule
         '
@@ -1269,8 +1261,8 @@ Partial Class MainFormPlain
         'dgcStarts
         '
         Me.dgcStarts.DataPropertyName = "StartDateTime"
-        DataGridViewCellStyle29.Format = "dd-MMM-yy HH:mm"
-        Me.dgcStarts.DefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle30.Format = "dd-MMM-yy HH:mm"
+        Me.dgcStarts.DefaultCellStyle = DataGridViewCellStyle30
         Me.dgcStarts.HeaderText = "Starts"
         Me.dgcStarts.Name = "dgcStarts"
         Me.dgcStarts.ReadOnly = True
@@ -1333,13 +1325,26 @@ Partial Class MainFormPlain
         Me.ctxmnuSchedule.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ctxmnuSchedule.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ScheduleSkipSessionMenuItem, Me.ScheduleTakeAttendanceMenuItem, Me.VerifyAttendanceToolStripMenuItem, Me.ScheduleLoadClassMenuItem, Me.SendfeedbackRequestToolStripMenuItem})
         Me.ctxmnuSchedule.Name = "ctxmnuPlannedSchedule"
-        Me.ctxmnuSchedule.Size = New System.Drawing.Size(194, 136)
+        Me.ctxmnuSchedule.Size = New System.Drawing.Size(194, 114)
+        '
+        'ScheduleSkipSessionMenuItem
+        '
+        Me.ScheduleSkipSessionMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
+        Me.ScheduleSkipSessionMenuItem.Name = "ScheduleSkipSessionMenuItem"
+        Me.ScheduleSkipSessionMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ScheduleSkipSessionMenuItem.Text = "Skip selected session"
         '
         'ScheduleTakeAttendanceMenuItem
         '
         Me.ScheduleTakeAttendanceMenuItem.Name = "ScheduleTakeAttendanceMenuItem"
         Me.ScheduleTakeAttendanceMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.ScheduleTakeAttendanceMenuItem.Text = "Take &attendance..."
+        '
+        'VerifyAttendanceToolStripMenuItem
+        '
+        Me.VerifyAttendanceToolStripMenuItem.Name = "VerifyAttendanceToolStripMenuItem"
+        Me.VerifyAttendanceToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.VerifyAttendanceToolStripMenuItem.Text = "&Verify attendance..."
         '
         'ScheduleLoadClassMenuItem
         '
@@ -1388,6 +1393,25 @@ Partial Class MainFormPlain
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtNotes.Size = New System.Drawing.Size(178, 159)
         Me.txtNotes.TabIndex = 46
+        '
+        'llblStartPauseStopwatch
+        '
+        Me.llblStartPauseStopwatch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.llblStartPauseStopwatch.Image = Global.Teaching.My.Resources.Resources.play_32
+        Me.llblStartPauseStopwatch.Location = New System.Drawing.Point(41, 1)
+        Me.llblStartPauseStopwatch.Name = "llblStartPauseStopwatch"
+        Me.llblStartPauseStopwatch.Size = New System.Drawing.Size(33, 34)
+        Me.llblStartPauseStopwatch.TabIndex = 48
+        Me.llblStartPauseStopwatch.TabStop = False
+        '
+        'llblClearNotes
+        '
+        Me.llblClearNotes.Image = Global.Teaching.My.Resources.Resources.simpleX_16
+        Me.llblClearNotes.Location = New System.Drawing.Point(3, 3)
+        Me.llblClearNotes.Name = "llblClearNotes"
+        Me.llblClearNotes.Size = New System.Drawing.Size(17, 17)
+        Me.llblClearNotes.TabIndex = 47
+        Me.llblClearNotes.TabStop = False
         '
         'pnlScheduleControls
         '
@@ -1636,6 +1660,13 @@ Partial Class MainFormPlain
         Me.EmailAssignmentResultsToolStripMenuItem.Name = "EmailAssignmentResultsToolStripMenuItem"
         Me.EmailAssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.EmailAssignmentResultsToolStripMenuItem.Text = "Email &module results..."
+        '
+        'SendBulkEmailToolStripMenuItem
+        '
+        Me.SendBulkEmailToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
+        Me.SendBulkEmailToolStripMenuItem.Name = "SendBulkEmailToolStripMenuItem"
+        Me.SendBulkEmailToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.SendBulkEmailToolStripMenuItem.Text = "Send &bulk email..."
         '
         'EmailOnlineQuizResultsToolStripMenuItem
         '
@@ -1910,6 +1941,13 @@ Partial Class MainFormPlain
         Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AssignmentProcessingToolStripMenuItem.Text = "Assignment processing"
         '
+        'ScheduledSessionsToolStripMenuItem
+        '
+        Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
+        Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
+        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
+        '
         'StudentQualityToolStripMenuItem
         '
         Me.StudentQualityToolStripMenuItem.Name = "StudentQualityToolStripMenuItem"
@@ -2035,6 +2073,13 @@ Partial Class MainFormPlain
         Me.ImportAttendanceToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ImportAttendanceToolStripMenuItem.Text = "Import &attendance from other database..."
         '
+        'ImportEmailAddressesToolStripMenuItem
+        '
+        Me.ImportEmailAddressesToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.add_icon_16
+        Me.ImportEmailAddressesToolStripMenuItem.Name = "ImportEmailAddressesToolStripMenuItem"
+        Me.ImportEmailAddressesToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ImportEmailAddressesToolStripMenuItem.Text = "Import additional student &data..."
+        '
         'ImportStudentAssignmentScoresToolStripMenuItem
         '
         Me.ImportStudentAssignmentScoresToolStripMenuItem.Name = "ImportStudentAssignmentScoresToolStripMenuItem"
@@ -2077,6 +2122,13 @@ Partial Class MainFormPlain
         Me.ExportTutorDatabaseToolStripMenuItem.Name = "ExportTutorDatabaseToolStripMenuItem"
         Me.ExportTutorDatabaseToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportTutorDatabaseToolStripMenuItem.Text = "Export tutor database..."
+        '
+        'ExportBTECGradesForMoodleToolStripMenuItem
+        '
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.MoodleIcon
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Name = "ExportBTECGradesForMoodleToolStripMenuItem"
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportBTECGradesForMoodleToolStripMenuItem.Text = "Export &BTEC / normal grades for Moodle"
         '
         'ExportModuleResultsToolStripMenuItem
         '
@@ -2155,6 +2207,13 @@ Partial Class MainFormPlain
         Me.ExportStudentsToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportStudentsToolStripMenuItem.Text = "Export st&udents..."
         '
+        'ExportStudentsForMoodleImportToolStripMenuItem
+        '
+        Me.ExportStudentsForMoodleImportToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.MoodleIcon
+        Me.ExportStudentsForMoodleImportToolStripMenuItem.Name = "ExportStudentsForMoodleImportToolStripMenuItem"
+        Me.ExportStudentsForMoodleImportToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportStudentsForMoodleImportToolStripMenuItem.Text = "Export students for Moodle import..."
+        '
         'ExportAllStudentAssignmentDetailsToolStripMenuItem
         '
         Me.ExportAllStudentAssignmentDetailsToolStripMenuItem.Name = "ExportAllStudentAssignmentDetailsToolStripMenuItem"
@@ -2175,6 +2234,13 @@ Partial Class MainFormPlain
         Me.ExportModuleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportModuleToolStripMenuItem.Text = "Export student grades (normal)..."
         Me.ExportModuleToolStripMenuItem.Visible = False
+        '
+        'ExportScheduleAsICalToolStripMenuItem
+        '
+        Me.ExportScheduleAsICalToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.calendar_16
+        Me.ExportScheduleAsICalToolStripMenuItem.Name = "ExportScheduleAsICalToolStripMenuItem"
+        Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExportScheduleAsICalToolStripMenuItem.Text = "Export schedule as iCalendar..."
         '
         'ExportAllGradeDataToolStripMenuItem
         '
@@ -2397,308 +2463,253 @@ Partial Class MainFormPlain
         '
         Me.tmrStopwatch.Interval = 1000
         '
-        'picImportAssignmentsFromPreviousSemester
-        '
-        Me.picImportAssignmentsFromPreviousSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.picImportAssignmentsFromPreviousSemester.Image = Global.Teaching.My.Resources.Resources.again_32
-        Me.picImportAssignmentsFromPreviousSemester.Location = New System.Drawing.Point(107, 9)
-        Me.picImportAssignmentsFromPreviousSemester.Name = "picImportAssignmentsFromPreviousSemester"
-        Me.picImportAssignmentsFromPreviousSemester.Size = New System.Drawing.Size(20, 16)
-        Me.picImportAssignmentsFromPreviousSemester.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picImportAssignmentsFromPreviousSemester.TabIndex = 28
-        Me.picImportAssignmentsFromPreviousSemester.TabStop = False
-        '
-        'llblEditAssignment
-        '
-        Me.llblEditAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblEditAssignment.Image = CType(resources.GetObject("llblEditAssignment.Image"), System.Drawing.Image)
-        Me.llblEditAssignment.Location = New System.Drawing.Point(133, 9)
-        Me.llblEditAssignment.Name = "llblEditAssignment"
-        Me.llblEditAssignment.Size = New System.Drawing.Size(20, 16)
-        Me.llblEditAssignment.TabIndex = 27
-        Me.llblEditAssignment.TabStop = False
-        '
-        'llblRemoveAssignment
-        '
-        Me.llblRemoveAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveAssignment.Image = CType(resources.GetObject("llblRemoveAssignment.Image"), System.Drawing.Image)
-        Me.llblRemoveAssignment.Location = New System.Drawing.Point(185, 9)
-        Me.llblRemoveAssignment.Name = "llblRemoveAssignment"
-        Me.llblRemoveAssignment.Size = New System.Drawing.Size(20, 16)
-        Me.llblRemoveAssignment.TabIndex = 25
-        Me.llblRemoveAssignment.TabStop = False
-        '
-        'llblAddAssignment
-        '
-        Me.llblAddAssignment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblAddAssignment.Image = CType(resources.GetObject("llblAddAssignment.Image"), System.Drawing.Image)
-        Me.llblAddAssignment.Location = New System.Drawing.Point(159, 9)
-        Me.llblAddAssignment.Name = "llblAddAssignment"
-        Me.llblAddAssignment.Size = New System.Drawing.Size(20, 16)
-        Me.llblAddAssignment.TabIndex = 26
-        Me.llblAddAssignment.TabStop = False
-        '
-        'DeleteClassToolStripMenuItem
-        '
-        Me.DeleteClassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.erase_16
-        Me.DeleteClassToolStripMenuItem.Name = "DeleteClassToolStripMenuItem"
-        Me.DeleteClassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
-        Me.DeleteClassToolStripMenuItem.Text = "&Delete class"
-        '
-        'EmailclassToolStripMenuItem
-        '
-        Me.EmailclassToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
-        Me.EmailclassToolStripMenuItem.Name = "EmailclassToolStripMenuItem"
-        Me.EmailclassToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
-        Me.EmailclassToolStripMenuItem.Text = "Email &class..."
-        '
-        'llblRemoveClass
-        '
-        Me.llblRemoveClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveClass.Image = CType(resources.GetObject("llblRemoveClass.Image"), System.Drawing.Image)
-        Me.llblRemoveClass.Location = New System.Drawing.Point(183, 8)
-        Me.llblRemoveClass.Name = "llblRemoveClass"
-        Me.llblRemoveClass.Size = New System.Drawing.Size(20, 16)
-        Me.llblRemoveClass.TabIndex = 22
-        Me.llblRemoveClass.TabStop = False
-        '
-        'btnAddClass
-        '
-        Me.btnAddClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddClass.Image = CType(resources.GetObject("btnAddClass.Image"), System.Drawing.Image)
-        Me.btnAddClass.Location = New System.Drawing.Point(157, 8)
-        Me.btnAddClass.Name = "btnAddClass"
-        Me.btnAddClass.Size = New System.Drawing.Size(20, 16)
-        Me.btnAddClass.TabIndex = 23
-        Me.btnAddClass.TabStop = False
-        '
-        'btnEditClass
-        '
-        Me.btnEditClass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEditClass.Image = CType(resources.GetObject("btnEditClass.Image"), System.Drawing.Image)
-        Me.btnEditClass.Location = New System.Drawing.Point(131, 8)
-        Me.btnEditClass.Name = "btnEditClass"
-        Me.btnEditClass.Size = New System.Drawing.Size(20, 16)
-        Me.btnEditClass.TabIndex = 24
-        Me.btnEditClass.TabStop = False
-        '
-        'llblRemoveClassGroup
-        '
-        Me.llblRemoveClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveClassGroup.Image = CType(resources.GetObject("llblRemoveClassGroup.Image"), System.Drawing.Image)
-        Me.llblRemoveClassGroup.Location = New System.Drawing.Point(180, 9)
-        Me.llblRemoveClassGroup.Name = "llblRemoveClassGroup"
-        Me.llblRemoveClassGroup.Size = New System.Drawing.Size(20, 16)
-        Me.llblRemoveClassGroup.TabIndex = 19
-        Me.llblRemoveClassGroup.TabStop = False
-        '
-        'llblAddClassGroup
-        '
-        Me.llblAddClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblAddClassGroup.Image = CType(resources.GetObject("llblAddClassGroup.Image"), System.Drawing.Image)
-        Me.llblAddClassGroup.Location = New System.Drawing.Point(154, 9)
-        Me.llblAddClassGroup.Name = "llblAddClassGroup"
-        Me.llblAddClassGroup.Size = New System.Drawing.Size(20, 16)
-        Me.llblAddClassGroup.TabIndex = 20
-        Me.llblAddClassGroup.TabStop = False
-        '
-        'llblEditClassGroup
-        '
-        Me.llblEditClassGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblEditClassGroup.Image = CType(resources.GetObject("llblEditClassGroup.Image"), System.Drawing.Image)
-        Me.llblEditClassGroup.Location = New System.Drawing.Point(128, 9)
-        Me.llblEditClassGroup.Name = "llblEditClassGroup"
-        Me.llblEditClassGroup.Size = New System.Drawing.Size(20, 16)
-        Me.llblEditClassGroup.TabIndex = 21
-        Me.llblEditClassGroup.TabStop = False
-        '
-        'picSearch
-        '
-        Me.picSearch.Image = Global.Teaching.My.Resources.Resources.detective_16
-        Me.picSearch.Location = New System.Drawing.Point(192, 2)
-        Me.picSearch.Name = "picSearch"
-        Me.picSearch.Size = New System.Drawing.Size(17, 17)
-        Me.picSearch.TabIndex = 62
-        Me.picSearch.TabStop = False
-        '
-        'llblAddTag
-        '
-        Me.llblAddTag.Image = Global.Teaching.My.Resources.Resources.add_icon_16
-        Me.llblAddTag.Location = New System.Drawing.Point(507, 2)
-        Me.llblAddTag.Name = "llblAddTag"
-        Me.llblAddTag.Size = New System.Drawing.Size(17, 17)
-        Me.llblAddTag.TabIndex = 58
-        Me.llblAddTag.TabStop = False
-        '
-        'btnEditStudent
-        '
-        Me.btnEditStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEditStudent.Image = Global.Teaching.My.Resources.Resources.AutoText_16
-        Me.btnEditStudent.Location = New System.Drawing.Point(733, 2)
-        Me.btnEditStudent.Name = "btnEditStudent"
-        Me.btnEditStudent.Size = New System.Drawing.Size(17, 17)
-        Me.btnEditStudent.TabIndex = 55
-        Me.btnEditStudent.TabStop = False
-        '
-        'btnRemoveStudent
-        '
-        Me.btnRemoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRemoveStudent.Image = Global.Teaching.My.Resources.Resources.anchor_16
-        Me.btnRemoveStudent.Location = New System.Drawing.Point(679, 2)
-        Me.btnRemoveStudent.Name = "btnRemoveStudent"
-        Me.btnRemoveStudent.Size = New System.Drawing.Size(17, 17)
-        Me.btnRemoveStudent.TabIndex = 53
-        Me.btnRemoveStudent.TabStop = False
-        '
-        'llblRemoveStudent
-        '
-        Me.llblRemoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblRemoveStudent.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
-        Me.llblRemoveStudent.Location = New System.Drawing.Point(805, 1)
-        Me.llblRemoveStudent.Name = "llblRemoveStudent"
-        Me.llblRemoveStudent.Size = New System.Drawing.Size(17, 17)
-        Me.llblRemoveStudent.TabIndex = 52
-        Me.llblRemoveStudent.TabStop = False
-        '
-        'llblAddStudent
-        '
-        Me.llblAddStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblAddStudent.Image = Global.Teaching.My.Resources.Resources.add_icon_16
-        Me.llblAddStudent.Location = New System.Drawing.Point(783, 1)
-        Me.llblAddStudent.Name = "llblAddStudent"
-        Me.llblAddStudent.Size = New System.Drawing.Size(17, 17)
-        Me.llblAddStudent.TabIndex = 51
-        Me.llblAddStudent.TabStop = False
-        '
-        'llblMoveStudent
-        '
-        Me.llblMoveStudent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblMoveStudent.Image = Global.Teaching.My.Resources.Resources.Arrow_left_16
-        Me.llblMoveStudent.Location = New System.Drawing.Point(759, 1)
-        Me.llblMoveStudent.Name = "llblMoveStudent"
-        Me.llblMoveStudent.Size = New System.Drawing.Size(17, 17)
-        Me.llblMoveStudent.TabIndex = 50
-        Me.llblMoveStudent.TabStop = False
-        '
-        'llblClearFilter
-        '
-        Me.llblClearFilter.Image = Global.Teaching.My.Resources.Resources.simpleX_16
-        Me.llblClearFilter.Location = New System.Drawing.Point(172, 2)
-        Me.llblClearFilter.Name = "llblClearFilter"
-        Me.llblClearFilter.Size = New System.Drawing.Size(17, 17)
-        Me.llblClearFilter.TabIndex = 49
-        Me.llblClearFilter.TabStop = False
-        '
-        'EmailStudentGridToolStripMenuItem
-        '
-        Me.EmailStudentGridToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
-        Me.EmailStudentGridToolStripMenuItem.Name = "EmailStudentGridToolStripMenuItem"
-        Me.EmailStudentGridToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.EmailStudentGridToolStripMenuItem.Text = "Email &student"
-        '
-        'picStudent
-        '
-        Me.picStudent.Location = New System.Drawing.Point(473, 0)
-        Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(178, 195)
-        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picStudent.TabIndex = 50
-        Me.picStudent.TabStop = False
-        Me.picStudent.Visible = False
-        '
-        'ScheduleSkipSessionMenuItem
-        '
-        Me.ScheduleSkipSessionMenuItem.Image = Global.Teaching.My.Resources.Resources.remove_icon_16
-        Me.ScheduleSkipSessionMenuItem.Name = "ScheduleSkipSessionMenuItem"
-        Me.ScheduleSkipSessionMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.ScheduleSkipSessionMenuItem.Text = "Skip selected session"
-        '
-        'llblStartPauseStopwatch
-        '
-        Me.llblStartPauseStopwatch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblStartPauseStopwatch.Image = Global.Teaching.My.Resources.Resources.play_32
-        Me.llblStartPauseStopwatch.Location = New System.Drawing.Point(41, 1)
-        Me.llblStartPauseStopwatch.Name = "llblStartPauseStopwatch"
-        Me.llblStartPauseStopwatch.Size = New System.Drawing.Size(33, 34)
-        Me.llblStartPauseStopwatch.TabIndex = 48
-        Me.llblStartPauseStopwatch.TabStop = False
-        '
-        'llblClearNotes
-        '
-        Me.llblClearNotes.Image = Global.Teaching.My.Resources.Resources.simpleX_16
-        Me.llblClearNotes.Location = New System.Drawing.Point(3, 3)
-        Me.llblClearNotes.Name = "llblClearNotes"
-        Me.llblClearNotes.Size = New System.Drawing.Size(17, 17)
-        Me.llblClearNotes.TabIndex = 47
-        Me.llblClearNotes.TabStop = False
-        '
-        'llblCloseSemesterPanel
-        '
-        Me.llblCloseSemesterPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.llblCloseSemesterPanel.Image = Global.Teaching.My.Resources.Resources.simpleX_16
-        Me.llblCloseSemesterPanel.Location = New System.Drawing.Point(1014, 6)
-        Me.llblCloseSemesterPanel.Name = "llblCloseSemesterPanel"
-        Me.llblCloseSemesterPanel.Size = New System.Drawing.Size(23, 21)
-        Me.llblCloseSemesterPanel.TabIndex = 18
-        Me.llblCloseSemesterPanel.TabStop = False
-        '
-        'btnLoadSemester
-        '
-        Me.btnLoadSemester.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnLoadSemester.Image = Global.Teaching.My.Resources.Resources.checkmark_16
-        Me.btnLoadSemester.Location = New System.Drawing.Point(470, 10)
-        Me.btnLoadSemester.Name = "btnLoadSemester"
-        Me.btnLoadSemester.Size = New System.Drawing.Size(23, 21)
-        Me.btnLoadSemester.TabIndex = 8
-        Me.btnLoadSemester.TabStop = False
-        '
-        'SendBulkEmailToolStripMenuItem
-        '
-        Me.SendBulkEmailToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.e_mail_16
-        Me.SendBulkEmailToolStripMenuItem.Name = "SendBulkEmailToolStripMenuItem"
-        Me.SendBulkEmailToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.SendBulkEmailToolStripMenuItem.Text = "Send &bulk email..."
-        '
-        'ScheduledSessionsToolStripMenuItem
-        '
-        Me.ScheduledSessionsToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.address_book_16
-        Me.ScheduledSessionsToolStripMenuItem.Name = "ScheduledSessionsToolStripMenuItem"
-        Me.ScheduledSessionsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.ScheduledSessionsToolStripMenuItem.Text = "Scheduled sessions..."
-        '
-        'ImportEmailAddressesToolStripMenuItem
-        '
-        Me.ImportEmailAddressesToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.add_icon_16
-        Me.ImportEmailAddressesToolStripMenuItem.Name = "ImportEmailAddressesToolStripMenuItem"
-        Me.ImportEmailAddressesToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ImportEmailAddressesToolStripMenuItem.Text = "Import additional student &data..."
-        '
-        'ExportBTECGradesForMoodleToolStripMenuItem
-        '
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.MoodleIcon
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Name = "ExportBTECGradesForMoodleToolStripMenuItem"
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportBTECGradesForMoodleToolStripMenuItem.Text = "Export &BTEC / normal grades for Moodle"
-        '
-        'ExportStudentsForMoodleImportToolStripMenuItem
-        '
-        Me.ExportStudentsForMoodleImportToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.MoodleIcon
-        Me.ExportStudentsForMoodleImportToolStripMenuItem.Name = "ExportStudentsForMoodleImportToolStripMenuItem"
-        Me.ExportStudentsForMoodleImportToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportStudentsForMoodleImportToolStripMenuItem.Text = "Export students for Moodle import..."
-        '
-        'ExportScheduleAsICalToolStripMenuItem
-        '
-        Me.ExportScheduleAsICalToolStripMenuItem.Image = Global.Teaching.My.Resources.Resources.calendar_16
-        Me.ExportScheduleAsICalToolStripMenuItem.Name = "ExportScheduleAsICalToolStripMenuItem"
-        Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.ExportScheduleAsICalToolStripMenuItem.Text = "Export schedule as iCalendar..."
-        '
-        'VerifyAttendanceToolStripMenuItem
-        '
-        Me.VerifyAttendanceToolStripMenuItem.Name = "VerifyAttendanceToolStripMenuItem"
-        Me.VerifyAttendanceToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.VerifyAttendanceToolStripMenuItem.Text = "&Verify attendance..."
+        'dcolAdmin
+        '
+        Me.dcolAdmin.DataPropertyName = "AdminNumber"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAdmin.DefaultCellStyle = DataGridViewCellStyle1
+        Me.dcolAdmin.HeaderText = "Admin"
+        Me.dcolAdmin.Name = "dcolAdmin"
+        '
+        'dcolAlt
+        '
+        Me.dcolAlt.DataPropertyName = "AltNumber"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAlt.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dcolAlt.HeaderText = "Alt"
+        Me.dcolAlt.Name = "dcolAlt"
+        Me.dcolAlt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dcolAlt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'dcolLocalName
+        '
+        Me.dcolLocalName.DataPropertyName = "LocalName"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolLocalName.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dcolLocalName.HeaderText = "Name"
+        Me.dcolLocalName.Name = "dcolLocalName"
+        '
+        'dcolNickname
+        '
+        Me.dcolNickname.DataPropertyName = "Nickname"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNickname.DefaultCellStyle = DataGridViewCellStyle4
+        Me.dcolNickname.HeaderText = "Nickname"
+        Me.dcolNickname.Name = "dcolNickname"
+        '
+        'dcolExtStudentID
+        '
+        Me.dcolExtStudentID.DataPropertyName = "ExtStudentID"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExtStudentID.DefaultCellStyle = DataGridViewCellStyle5
+        Me.dcolExtStudentID.HeaderText = "ExtID"
+        Me.dcolExtStudentID.Name = "dcolExtStudentID"
+        '
+        'dcolStudentID
+        '
+        Me.dcolStudentID.DataPropertyName = "StudentID"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentID.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dcolStudentID.HeaderText = "StudentID"
+        Me.dcolStudentID.Name = "dcolStudentID"
+        '
+        'dcolAttendanceStatus
+        '
+        Me.dcolAttendanceStatus.DataPropertyName = "LatestAttendenceStatus"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAttendanceStatus.DefaultCellStyle = DataGridViewCellStyle7
+        Me.dcolAttendanceStatus.HeaderText = "Status"
+        Me.dcolAttendanceStatus.Items.AddRange(New Object() {"Unknown", "Present", "Absent", "Excused", "Late"})
+        Me.dcolAttendanceStatus.Name = "dcolAttendanceStatus"
+        Me.dcolAttendanceStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dcolAttendanceStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'dcolLatestRow
+        '
+        Me.dcolLatestRow.DataPropertyName = "LatestAttendenceRow"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolLatestRow.DefaultCellStyle = DataGridViewCellStyle8
+        Me.dcolLatestRow.HeaderText = "Row"
+        Me.dcolLatestRow.Name = "dcolLatestRow"
+        Me.dcolLatestRow.Width = 60
+        '
+        'dcolTags
+        '
+        Me.dcolTags.DataPropertyName = "Tags"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolTags.DefaultCellStyle = DataGridViewCellStyle9
+        Me.dcolTags.HeaderText = "Tags"
+        Me.dcolTags.Name = "dcolTags"
+        '
+        'dcolTotalAbsences
+        '
+        Me.dcolTotalAbsences.DataPropertyName = "TotalAbsences"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolTotalAbsences.DefaultCellStyle = DataGridViewCellStyle10
+        Me.dcolTotalAbsences.HeaderText = "Total"
+        Me.dcolTotalAbsences.Name = "dcolTotalAbsences"
+        '
+        'dcolPresentationQuality
+        '
+        Me.dcolPresentationQuality.DataPropertyName = "PresentationQuality"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPresentationQuality.DefaultCellStyle = DataGridViewCellStyle11
+        Me.dcolPresentationQuality.HeaderText = "Pres"
+        Me.dcolPresentationQuality.Name = "dcolPresentationQuality"
+        '
+        'dcolStudentGroup
+        '
+        Me.dcolStudentGroup.DataPropertyName = "StudentGroup"
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentGroup.DefaultCellStyle = DataGridViewCellStyle12
+        Me.dcolStudentGroup.HeaderText = "Group"
+        Me.dcolStudentGroup.Name = "dcolStudentGroup"
+        '
+        'dcolStudentTeam
+        '
+        Me.dcolStudentTeam.DataPropertyName = "StudentTeam"
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolStudentTeam.DefaultCellStyle = DataGridViewCellStyle13
+        Me.dcolStudentTeam.HeaderText = "Team"
+        Me.dcolStudentTeam.Name = "dcolStudentTeam"
+        '
+        'dcolWritingQuality
+        '
+        Me.dcolWritingQuality.DataPropertyName = "WritingQuality"
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolWritingQuality.DefaultCellStyle = DataGridViewCellStyle14
+        Me.dcolWritingQuality.HeaderText = "Write"
+        Me.dcolWritingQuality.Name = "dcolWritingQuality"
+        '
+        'dcolDateOfBirth
+        '
+        Me.dcolDateOfBirth.DataPropertyName = "DateOfBirth"
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDateOfBirth.DefaultCellStyle = DataGridViewCellStyle15
+        Me.dcolDateOfBirth.HeaderText = "DoB"
+        Me.dcolDateOfBirth.Name = "dcolDateOfBirth"
+        '
+        'dcolAssignmentCount
+        '
+        Me.dcolAssignmentCount.DataPropertyName = "AssignmentCount"
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolAssignmentCount.DefaultCellStyle = DataGridViewCellStyle16
+        Me.dcolAssignmentCount.HeaderText = "Asmt"
+        Me.dcolAssignmentCount.Name = "dcolAssignmentCount"
+        '
+        'dcolProcessedAssignmentCount
+        '
+        Me.dcolProcessedAssignmentCount.DataPropertyName = "ProcessedAssignments"
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolProcessedAssignmentCount.DefaultCellStyle = DataGridViewCellStyle17
+        Me.dcolProcessedAssignmentCount.HeaderText = "P.Asmt"
+        Me.dcolProcessedAssignmentCount.Name = "dcolProcessedAssignmentCount"
+        '
+        'dcolCurrentAbsences
+        '
+        Me.dcolCurrentAbsences.DataPropertyName = "CurrentAbsences"
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolCurrentAbsences.DefaultCellStyle = DataGridViewCellStyle18
+        Me.dcolCurrentAbsences.HeaderText = "Abs"
+        Me.dcolCurrentAbsences.Name = "dcolCurrentAbsences"
+        '
+        'dcolHidden
+        '
+        Me.dcolHidden.DataPropertyName = "Hidden"
+        Me.dcolHidden.HeaderText = "Hid"
+        Me.dcolHidden.Name = "dcolHidden"
+        '
+        'dcolMerit
+        '
+        Me.dcolMerit.DataPropertyName = "MeritPoints"
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolMerit.DefaultCellStyle = DataGridViewCellStyle19
+        Me.dcolMerit.HeaderText = "Merit"
+        Me.dcolMerit.Name = "dcolMerit"
+        '
+        'dcolEmail
+        '
+        Me.dcolEmail.DataPropertyName = "EmailAddress"
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolEmail.DefaultCellStyle = DataGridViewCellStyle20
+        Me.dcolEmail.HeaderText = "Email"
+        Me.dcolEmail.Name = "dcolEmail"
+        Me.dcolEmail.ReadOnly = True
+        '
+        'dcolNameLatinLetters
+        '
+        Me.dcolNameLatinLetters.DataPropertyName = "LocalNameLatinLetters"
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.dcolNameLatinLetters.DefaultCellStyle = DataGridViewCellStyle21
+        Me.dcolNameLatinLetters.HeaderText = "Standard"
+        Me.dcolNameLatinLetters.Name = "dcolNameLatinLetters"
+        '
+        'dcolClass
+        '
+        Me.dcolClass.DataPropertyName = "SchoolClassName"
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolClass.DefaultCellStyle = DataGridViewCellStyle22
+        Me.dcolClass.HeaderText = "Class"
+        Me.dcolClass.Name = "dcolClass"
+        Me.dcolClass.ReadOnly = True
+        '
+        'dcolPlagiarismSeverity
+        '
+        Me.dcolPlagiarismSeverity.DataPropertyName = "PlagiarismSeverity"
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolPlagiarismSeverity.DefaultCellStyle = DataGridViewCellStyle23
+        Me.dcolPlagiarismSeverity.HeaderText = "Plag"
+        Me.dcolPlagiarismSeverity.Name = "dcolPlagiarismSeverity"
+        '
+        'dcolExcusedAbsences
+        '
+        Me.dcolExcusedAbsences.DataPropertyName = "TotalExcused"
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolExcusedAbsences.DefaultCellStyle = DataGridViewCellStyle24
+        Me.dcolExcusedAbsences.HeaderText = "Excu"
+        Me.dcolExcusedAbsences.Name = "dcolExcusedAbsences"
+        '
+        'dcolGender
+        '
+        Me.dcolGender.DataPropertyName = "Gender"
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolGender.DefaultCellStyle = DataGridViewCellStyle25
+        Me.dcolGender.HeaderText = "Gender"
+        Me.dcolGender.Name = "dcolGender"
+        Me.dcolGender.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dcolGender.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'dcolDrafts
+        '
+        Me.dcolDrafts.DataPropertyName = "DraftsChecked"
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolDrafts.DefaultCellStyle = DataGridViewCellStyle26
+        Me.dcolDrafts.HeaderText = "Drafts"
+        Me.dcolDrafts.Name = "dcolDrafts"
+        '
+        'dcolOfficeHours
+        '
+        Me.dcolOfficeHours.DataPropertyName = "OfficeHoursVisited"
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolOfficeHours.DefaultCellStyle = DataGridViewCellStyle27
+        Me.dcolOfficeHours.HeaderText = "Office hrs"
+        Me.dcolOfficeHours.Name = "dcolOfficeHours"
+        '
+        'dcolResearchQuality
+        '
+        Me.dcolResearchQuality.DataPropertyName = "ResearchQuality"
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolResearchQuality.DefaultCellStyle = DataGridViewCellStyle28
+        Me.dcolResearchQuality.HeaderText = "Research"
+        Me.dcolResearchQuality.Name = "dcolResearchQuality"
+        '
+        'dcolLastQuizScore
+        '
+        Me.dcolLastQuizScore.DataPropertyName = "PerformanceLastOnlineQuiz"
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        Me.dcolLastQuizScore.DefaultCellStyle = DataGridViewCellStyle29
+        Me.dcolLastQuizScore.HeaderText = "Quiz"
+        Me.dcolLastQuizScore.Name = "dcolLastQuizScore"
         '
         'MainFormPlain
         '
@@ -2714,6 +2725,8 @@ Partial Class MainFormPlain
         Me.Text = "Teaching"
         Me.pnlSelectSemester.ResumeLayout(False)
         Me.pnlSelectSemester.PerformLayout()
+        CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splitOverall.Panel1.ResumeLayout(False)
         Me.splitOverall.Panel2.ResumeLayout(False)
         Me.splitOverall.Panel2.PerformLayout()
@@ -2721,30 +2734,17 @@ Partial Class MainFormPlain
         Me.splitOverall.ResumeLayout(False)
         Me.ctxmnuAssignment.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
-        Me.ctxmnuClasses.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.ctxmnuClassGroup.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ctxmnuStudentGrid.ResumeLayout(False)
-        Me.pnlStudentSchedulePanel.ResumeLayout(False)
-        CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ctxmnuSchedule.ResumeLayout(False)
-        Me.pnlNotes.ResumeLayout(False)
-        Me.pnlNotes.PerformLayout()
-        Me.pnlScheduleControls.ResumeLayout(False)
-        Me.pnlScheduleControls.PerformLayout()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.ctxmnuNewAssignment.ResumeLayout(False)
         CType(Me.picImportAssignmentsFromPreviousSemester, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblEditAssignment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblRemoveAssignment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblAddAssignment, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuClasses.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
         CType(Me.llblRemoveClass, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnAddClass, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnEditClass, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuClassGroup.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
         CType(Me.llblRemoveClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblAddClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblEditClassGroup, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2756,11 +2756,22 @@ Partial Class MainFormPlain
         CType(Me.llblAddStudent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblMoveStudent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblClearFilter, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        CType(Me.dgvStudents, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuStudentGrid.ResumeLayout(False)
+        Me.pnlStudentSchedulePanel.ResumeLayout(False)
         CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ctxmnuSchedule.ResumeLayout(False)
+        Me.pnlNotes.ResumeLayout(False)
+        Me.pnlNotes.PerformLayout()
         CType(Me.llblStartPauseStopwatch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.llblClearNotes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.llblCloseSemesterPanel, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnLoadSemester, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlScheduleControls.ResumeLayout(False)
+        Me.pnlScheduleControls.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
+        Me.ctxmnuNewAssignment.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2987,35 +2998,6 @@ Partial Class MainFormPlain
     Friend WithEvents ToolStripSeparator20 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents EmailStudentGridToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents picSearch As System.Windows.Forms.PictureBox
-    Friend WithEvents dcolAdmin As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolAlt As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolLocalName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolNickname As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolExtStudentID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolStudentID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolAttendanceStatus As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents dcolTags As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolTotalAbsences As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolPresentationQuality As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolStudentGroup As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolStudentTeam As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolWritingQuality As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolDateOfBirth As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolAssignmentCount As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolProcessedAssignmentCount As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolCurrentAbsences As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolHidden As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents dcolMerit As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolEmail As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolNameLatinLetters As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolClass As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolPlagiarismSeverity As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolExcusedAbsences As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolGender As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents dcolDrafts As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolOfficeHours As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolResearchQuality As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dcolLastQuizScore As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents StudentAssessmentcompletionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ClearTeamForTheseStudentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ConvertLocalNamesToStandardnondiacriticToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3067,4 +3049,34 @@ Partial Class MainFormPlain
     Friend WithEvents GenerateRandomAltNumbersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SendfeedbackRequestToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerifyAttendanceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents dcolAdmin As DataGridViewTextBoxColumn
+    Friend WithEvents dcolAlt As DataGridViewTextBoxColumn
+    Friend WithEvents dcolLocalName As DataGridViewTextBoxColumn
+    Friend WithEvents dcolNickname As DataGridViewTextBoxColumn
+    Friend WithEvents dcolExtStudentID As DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentID As DataGridViewTextBoxColumn
+    Friend WithEvents dcolAttendanceStatus As DataGridViewComboBoxColumn
+    Friend WithEvents dcolLatestRow As DataGridViewTextBoxColumn
+    Friend WithEvents dcolTags As DataGridViewTextBoxColumn
+    Friend WithEvents dcolTotalAbsences As DataGridViewTextBoxColumn
+    Friend WithEvents dcolPresentationQuality As DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentGroup As DataGridViewTextBoxColumn
+    Friend WithEvents dcolStudentTeam As DataGridViewTextBoxColumn
+    Friend WithEvents dcolWritingQuality As DataGridViewTextBoxColumn
+    Friend WithEvents dcolDateOfBirth As DataGridViewTextBoxColumn
+    Friend WithEvents dcolAssignmentCount As DataGridViewTextBoxColumn
+    Friend WithEvents dcolProcessedAssignmentCount As DataGridViewTextBoxColumn
+    Friend WithEvents dcolCurrentAbsences As DataGridViewTextBoxColumn
+    Friend WithEvents dcolHidden As DataGridViewCheckBoxColumn
+    Friend WithEvents dcolMerit As DataGridViewTextBoxColumn
+    Friend WithEvents dcolEmail As DataGridViewTextBoxColumn
+    Friend WithEvents dcolNameLatinLetters As DataGridViewTextBoxColumn
+    Friend WithEvents dcolClass As DataGridViewTextBoxColumn
+    Friend WithEvents dcolPlagiarismSeverity As DataGridViewTextBoxColumn
+    Friend WithEvents dcolExcusedAbsences As DataGridViewTextBoxColumn
+    Friend WithEvents dcolGender As DataGridViewComboBoxColumn
+    Friend WithEvents dcolDrafts As DataGridViewTextBoxColumn
+    Friend WithEvents dcolOfficeHours As DataGridViewTextBoxColumn
+    Friend WithEvents dcolResearchQuality As DataGridViewTextBoxColumn
+    Friend WithEvents dcolLastQuizScore As DataGridViewTextBoxColumn
 End Class
