@@ -2096,7 +2096,7 @@ Public Class StudentAssignment
     Public Property SecondTryPoints As Integer
     Public Property ThirdTryPoints As Integer
     Public Property OverallComments As String Implements IStudentAssignment.OverallComments
-    Public Property ImprovementComments As String Implements IStudentAssignment.ImprovementComments
+    Public Property ImprovementComments As String = String.Empty Implements IStudentAssignment.ImprovementComments
     Public Property OverallCommentsRework As String Implements IStudentAssignment.OverallCommentsRework
     Public Property ImprovementCommentsRework As String Implements IStudentAssignment.ImprovementCommentsRework
 

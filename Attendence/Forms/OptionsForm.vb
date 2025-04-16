@@ -266,9 +266,18 @@ Public Class OptionsForm
             chkPromptWhenMarkingAssignmentProcessedWithoutFullText.Checked = AppSettings.PromptWhenMarkingAssignmentProcessedWithoutOverallAndImprovements
             chkGroupPresentationUpdatesPresentationAndResearchPerformanceLevel.Checked = AppSettings.GroupPresentationUpdatesPresentationAndResearchPerformanceLevel
 
+            '-- Problems with Krypton changing designer in weird ways, so going to change the designer code manually here
+            nudContentWeight.Minimum = 0
+            nudContentWeight.Maximum = 100
+            nudPresentationWeight.Minimum = 0
+            nudPresentationWeight.Maximum = 100
+            nudLanguageWeight.Minimum = 0
+            nudLanguageWeight.Maximum = 100
+
             nudContentWeight.Value = AppSettings.PresentationContentWeight
             nudPresentationWeight.Value = AppSettings.PresentationPresentationWeight
             nudLanguageWeight.Value = AppSettings.PresentationLanguageWeight
+
 
 
 

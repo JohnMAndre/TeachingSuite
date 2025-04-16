@@ -241,11 +241,21 @@ Public Class IndividualMarkInGroupPresentation
                 '-- ignore for now
         End Select
 
-        Dim strOverall As String = "Content (" & AppSettings.PresentationContentWeight.ToString() & "%): " & m_intContentGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine &
-            "Presentation (" & AppSettings.PresentationPresentationWeight.ToString() & "%): " & m_intPresentationGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine &
-            "Language (" & AppSettings.PresentationLanguageWeight.ToString() & "%): " & m_intLanguageGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine &
-            "-----------------------" & Environment.NewLine &
-            "Total: " & m_intTotalGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints
+        Dim strOverall As String = String.Empty
+
+        If AppSettings.PresentationContentWeight > 0 Then
+            strOverall &= "Content (" & AppSettings.PresentationContentWeight.ToString() & "%): " & m_intContentGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
+        End If
+
+        If AppSettings.PresentationPresentationWeight > 0 Then
+            strOverall &= "Presentation (" & AppSettings.PresentationPresentationWeight.ToString() & "%): " & m_intPresentationGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
+        End If
+
+        If AppSettings.PresentationLanguageWeight > 0 Then
+            strOverall &= "Language (" & AppSettings.PresentationLanguageWeight.ToString() & "%): " & m_intLanguageGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
+        End If
+        strOverall &= "-----------------------" & Environment.NewLine
+        strOverall &= "Total: " & m_intTotalGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints
 
         txtOverall.Text = strOverall
     End Sub
@@ -255,6 +265,28 @@ Public Class IndividualMarkInGroupPresentation
             lblContentWeight.Text = AppSettings.PresentationContentWeight.ToString() & "%"
             lblPresentationWeight.Text = AppSettings.PresentationPresentationWeight.ToString() & "%"
             lblLanguageWeight.Text = AppSettings.PresentationLanguageWeight.ToString() & "%"
+
+            If AppSettings.PresentationContentWeight = 0 Then
+                '-- hide it
+                picContentMark.Visible = False
+                lblContentGrade.Visible = False
+                lblContentWeight.Visible = False
+                lblContentLabel.Visible = False
+            End If
+            If AppSettings.PresentationPresentationWeight = 0 Then
+                '-- hide it
+                picPresentationMark.Visible = False
+                lblPresentationGrade.Visible = False
+                lblPresentationWeight.Visible = False
+                lblPresentationLabel.Visible = False
+            End If
+            If AppSettings.PresentationLanguageWeight = 0 Then
+                '-- hide it
+                picLanguageMark.Visible = False
+                lblLanguageGrade.Visible = False
+                lblLanguageWeight.Visible = False
+                lblLanguageLabel.Visible = False
+            End If
         End If
     End Sub
 

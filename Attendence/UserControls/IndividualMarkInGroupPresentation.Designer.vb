@@ -24,9 +24,9 @@ Partial Class IndividualMarkInGroupPresentation
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IndividualMarkInGroupPresentation))
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblContentLabel = New System.Windows.Forms.Label()
+        Me.lblPresentationLabel = New System.Windows.Forms.Label()
+        Me.lblLanguageLabel = New System.Windows.Forms.Label()
         Me.txtOverall = New System.Windows.Forms.TextBox()
         Me.txtImprovement = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -89,32 +89,32 @@ Partial Class IndividualMarkInGroupPresentation
         CType(Me.picContentMark, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblContentLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(5, 113)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(57, 16)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Content:"
+        Me.lblContentLabel.AutoSize = True
+        Me.lblContentLabel.Location = New System.Drawing.Point(5, 113)
+        Me.lblContentLabel.Name = "lblContentLabel"
+        Me.lblContentLabel.Size = New System.Drawing.Size(56, 16)
+        Me.lblContentLabel.TabIndex = 1
+        Me.lblContentLabel.Text = "Content:"
         '
-        'Label2
+        'lblPresentationLabel
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(5, 137)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 16)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Pres:"
+        Me.lblPresentationLabel.AutoSize = True
+        Me.lblPresentationLabel.Location = New System.Drawing.Point(5, 137)
+        Me.lblPresentationLabel.Name = "lblPresentationLabel"
+        Me.lblPresentationLabel.Size = New System.Drawing.Size(38, 16)
+        Me.lblPresentationLabel.TabIndex = 3
+        Me.lblPresentationLabel.Text = "Pres:"
         '
-        'Label3
+        'lblLanguageLabel
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(5, 161)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(40, 16)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Lang:"
+        Me.lblLanguageLabel.AutoSize = True
+        Me.lblLanguageLabel.Location = New System.Drawing.Point(5, 161)
+        Me.lblLanguageLabel.Name = "lblLanguageLabel"
+        Me.lblLanguageLabel.Size = New System.Drawing.Size(39, 16)
+        Me.lblLanguageLabel.TabIndex = 5
+        Me.lblLanguageLabel.Text = "Lang:"
         '
         'txtOverall
         '
@@ -124,7 +124,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.txtOverall.Multiline = True
         Me.txtOverall.Name = "txtOverall"
         Me.txtOverall.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtOverall.Size = New System.Drawing.Size(211, 54)
+        Me.txtOverall.Size = New System.Drawing.Size(211, 102)
         Me.txtOverall.TabIndex = 6
         '
         'txtImprovement
@@ -132,11 +132,11 @@ Partial Class IndividualMarkInGroupPresentation
         Me.txtImprovement.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtImprovement.Location = New System.Drawing.Point(96, 235)
+        Me.txtImprovement.Location = New System.Drawing.Point(96, 284)
         Me.txtImprovement.Multiline = True
         Me.txtImprovement.Name = "txtImprovement"
         Me.txtImprovement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtImprovement.Size = New System.Drawing.Size(211, 68)
+        Me.txtImprovement.Size = New System.Drawing.Size(211, 19)
         Me.txtImprovement.TabIndex = 7
         '
         'Label4
@@ -144,7 +144,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(5, 185)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(51, 16)
+        Me.Label4.Size = New System.Drawing.Size(50, 16)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Overall:"
         '
@@ -153,7 +153,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(5, 238)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(56, 16)
+        Me.Label5.Size = New System.Drawing.Size(55, 16)
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Improve:"
         '
@@ -163,7 +163,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label6.BackColor = System.Drawing.Color.Red
         Me.Label6.Location = New System.Drawing.Point(87, 90)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(16, 16)
+        Me.Label6.Size = New System.Drawing.Size(15, 16)
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "F"
         '
@@ -173,7 +173,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label7.BackColor = System.Drawing.Color.DarkOrange
         Me.Label7.Location = New System.Drawing.Point(134, 90)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(17, 16)
+        Me.Label7.Size = New System.Drawing.Size(16, 16)
         Me.Label7.TabIndex = 11
         Me.Label7.Text = "R"
         '
@@ -183,7 +183,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label8.BackColor = System.Drawing.Color.Gold
         Me.Label8.Location = New System.Drawing.Point(180, 90)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(17, 16)
+        Me.Label8.Size = New System.Drawing.Size(16, 16)
         Me.Label8.TabIndex = 12
         Me.Label8.Text = "P"
         '
@@ -193,7 +193,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label9.BackColor = System.Drawing.Color.GreenYellow
         Me.Label9.Location = New System.Drawing.Point(228, 90)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(19, 16)
+        Me.Label9.Size = New System.Drawing.Size(18, 16)
         Me.Label9.TabIndex = 13
         Me.Label9.Text = "M"
         '
@@ -203,7 +203,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label10.BackColor = System.Drawing.Color.LimeGreen
         Me.Label10.Location = New System.Drawing.Point(277, 90)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(17, 16)
+        Me.Label10.Size = New System.Drawing.Size(16, 16)
         Me.Label10.TabIndex = 14
         Me.Label10.Text = "D"
         '
@@ -212,7 +212,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblContentGrade.AutoSize = True
         Me.lblContentGrade.Location = New System.Drawing.Point(312, 113)
         Me.lblContentGrade.Name = "lblContentGrade"
-        Me.lblContentGrade.Size = New System.Drawing.Size(16, 16)
+        Me.lblContentGrade.Size = New System.Drawing.Size(15, 16)
         Me.lblContentGrade.TabIndex = 21
         Me.lblContentGrade.Text = "--"
         '
@@ -221,7 +221,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblPresentationGrade.AutoSize = True
         Me.lblPresentationGrade.Location = New System.Drawing.Point(312, 137)
         Me.lblPresentationGrade.Name = "lblPresentationGrade"
-        Me.lblPresentationGrade.Size = New System.Drawing.Size(16, 16)
+        Me.lblPresentationGrade.Size = New System.Drawing.Size(15, 16)
         Me.lblPresentationGrade.TabIndex = 22
         Me.lblPresentationGrade.Text = "--"
         '
@@ -230,7 +230,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblLanguageGrade.AutoSize = True
         Me.lblLanguageGrade.Location = New System.Drawing.Point(312, 161)
         Me.lblLanguageGrade.Name = "lblLanguageGrade"
-        Me.lblLanguageGrade.Size = New System.Drawing.Size(16, 16)
+        Me.lblLanguageGrade.Size = New System.Drawing.Size(15, 16)
         Me.lblLanguageGrade.TabIndex = 23
         Me.lblLanguageGrade.Text = "--"
         '
@@ -240,7 +240,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblAverageGrade.AutoSize = True
         Me.lblAverageGrade.Location = New System.Drawing.Point(312, 185)
         Me.lblAverageGrade.Name = "lblAverageGrade"
-        Me.lblAverageGrade.Size = New System.Drawing.Size(16, 16)
+        Me.lblAverageGrade.Size = New System.Drawing.Size(15, 16)
         Me.lblAverageGrade.TabIndex = 24
         Me.lblAverageGrade.Text = "--"
         '
@@ -249,7 +249,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblLanguageWeight.AutoSize = True
         Me.lblLanguageWeight.Location = New System.Drawing.Point(334, 161)
         Me.lblLanguageWeight.Name = "lblLanguageWeight"
-        Me.lblLanguageWeight.Size = New System.Drawing.Size(16, 16)
+        Me.lblLanguageWeight.Size = New System.Drawing.Size(15, 16)
         Me.lblLanguageWeight.TabIndex = 27
         Me.lblLanguageWeight.Text = "--"
         '
@@ -258,7 +258,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblPresentationWeight.AutoSize = True
         Me.lblPresentationWeight.Location = New System.Drawing.Point(334, 137)
         Me.lblPresentationWeight.Name = "lblPresentationWeight"
-        Me.lblPresentationWeight.Size = New System.Drawing.Size(16, 16)
+        Me.lblPresentationWeight.Size = New System.Drawing.Size(15, 16)
         Me.lblPresentationWeight.TabIndex = 26
         Me.lblPresentationWeight.Text = "--"
         '
@@ -267,7 +267,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblContentWeight.AutoSize = True
         Me.lblContentWeight.Location = New System.Drawing.Point(334, 113)
         Me.lblContentWeight.Name = "lblContentWeight"
-        Me.lblContentWeight.Size = New System.Drawing.Size(16, 16)
+        Me.lblContentWeight.Size = New System.Drawing.Size(15, 16)
         Me.lblContentWeight.TabIndex = 25
         Me.lblContentWeight.Text = "--"
         '
@@ -341,7 +341,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.chkNominate.AutoSize = True
         Me.chkNominate.Location = New System.Drawing.Point(4, 209)
         Me.chkNominate.Name = "chkNominate"
-        Me.chkNominate.Size = New System.Drawing.Size(82, 20)
+        Me.chkNominate.Size = New System.Drawing.Size(81, 20)
         Me.chkNominate.TabIndex = 29
         Me.chkNominate.Text = "Nominate"
         Me.chkNominate.UseVisualStyleBackColor = True
@@ -366,7 +366,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label18.AutoSize = True
         Me.Label18.Location = New System.Drawing.Point(219, 3)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(38, 16)
+        Me.Label18.Size = New System.Drawing.Size(37, 16)
         Me.Label18.TabIndex = 33
         Me.Label18.Text = "Nick:"
         '
@@ -382,7 +382,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label21.AutoSize = True
         Me.Label21.Location = New System.Drawing.Point(3, 45)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(39, 16)
+        Me.Label21.Size = New System.Drawing.Size(38, 16)
         Me.Label21.TabIndex = 39
         Me.Label21.Text = "Tags:"
         '
@@ -407,7 +407,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label22.AutoSize = True
         Me.Label22.Location = New System.Drawing.Point(3, 24)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(24, 16)
+        Me.Label22.Size = New System.Drawing.Size(23, 16)
         Me.Label22.TabIndex = 41
         Me.Label22.Text = "ID:"
         '
@@ -416,7 +416,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label23.AutoSize = True
         Me.Label23.Location = New System.Drawing.Point(219, 24)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(44, 16)
+        Me.Label23.Size = New System.Drawing.Size(43, 16)
         Me.Label23.TabIndex = 44
         Me.Label23.Text = "ExtID:"
         '
@@ -433,7 +433,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label24.AutoSize = True
         Me.Label24.Location = New System.Drawing.Point(2, 64)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(30, 16)
+        Me.Label24.Size = New System.Drawing.Size(29, 16)
         Me.Label24.TabIndex = 46
         Me.Label24.Text = "1st:"
         '
@@ -442,7 +442,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label25.AutoSize = True
         Me.Label25.Location = New System.Drawing.Point(88, 66)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(33, 16)
+        Me.Label25.Size = New System.Drawing.Size(32, 16)
         Me.Label25.TabIndex = 48
         Me.Label25.Text = "2nd:"
         '
@@ -459,7 +459,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label26.AutoSize = True
         Me.Label26.Location = New System.Drawing.Point(270, 66)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(46, 16)
+        Me.Label26.Size = New System.Drawing.Size(45, 16)
         Me.Label26.TabIndex = 52
         Me.Label26.Text = "Rsrch:"
         '
@@ -477,7 +477,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Label27.AutoSize = True
         Me.Label27.Location = New System.Drawing.Point(176, 66)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(39, 16)
+        Me.Label27.Size = New System.Drawing.Size(38, 16)
         Me.Label27.TabIndex = 50
         Me.Label27.Text = "Pres:"
         '
@@ -496,7 +496,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblGenerateImprovements.AutoSize = True
         Me.llblGenerateImprovements.Location = New System.Drawing.Point(313, 247)
         Me.llblGenerateImprovements.Name = "llblGenerateImprovements"
-        Me.llblGenerateImprovements.Size = New System.Drawing.Size(52, 16)
+        Me.llblGenerateImprovements.Size = New System.Drawing.Size(51, 16)
         Me.llblGenerateImprovements.TabIndex = 53
         Me.llblGenerateImprovements.TabStop = True
         Me.llblGenerateImprovements.Text = "<< Gen"
@@ -506,7 +506,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblAbsent.AutoSize = True
         Me.llblAbsent.Location = New System.Drawing.Point(2, 90)
         Me.llblAbsent.Name = "llblAbsent"
-        Me.llblAbsent.Size = New System.Drawing.Size(49, 16)
+        Me.llblAbsent.Size = New System.Drawing.Size(48, 16)
         Me.llblAbsent.TabIndex = 54
         Me.llblAbsent.TabStop = True
         Me.llblAbsent.Text = "Absent"
@@ -517,7 +517,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.lblImprovementCharCount.AutoSize = True
         Me.lblImprovementCharCount.Location = New System.Drawing.Point(310, 268)
         Me.lblImprovementCharCount.Name = "lblImprovementCharCount"
-        Me.lblImprovementCharCount.Size = New System.Drawing.Size(15, 16)
+        Me.lblImprovementCharCount.Size = New System.Drawing.Size(14, 16)
         Me.lblImprovementCharCount.TabIndex = 55
         Me.lblImprovementCharCount.Text = "0"
         '
@@ -564,7 +564,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblClearChecks.AutoSize = True
         Me.llblClearChecks.Location = New System.Drawing.Point(317, 284)
         Me.llblClearChecks.Name = "llblClearChecks"
-        Me.llblClearChecks.Size = New System.Drawing.Size(49, 16)
+        Me.llblClearChecks.Size = New System.Drawing.Size(48, 16)
         Me.llblClearChecks.TabIndex = 56
         Me.llblClearChecks.TabStop = True
         Me.llblClearChecks.Text = "Clear X"
@@ -586,7 +586,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblStudentName.AutoSize = True
         Me.llblStudentName.Location = New System.Drawing.Point(0, 3)
         Me.llblStudentName.Name = "llblStudentName"
-        Me.llblStudentName.Size = New System.Drawing.Size(42, 16)
+        Me.llblStudentName.Size = New System.Drawing.Size(41, 16)
         Me.llblStudentName.TabIndex = 58
         Me.llblStudentName.TabStop = True
         Me.llblStudentName.Text = "Name"
@@ -596,7 +596,7 @@ Partial Class IndividualMarkInGroupPresentation
         Me.llblSaveClose.AutoSize = True
         Me.llblSaveClose.Location = New System.Drawing.Point(2, 258)
         Me.llblSaveClose.Name = "llblSaveClose"
-        Me.llblSaveClose.Size = New System.Drawing.Size(73, 16)
+        Me.llblSaveClose.Size = New System.Drawing.Size(72, 16)
         Me.llblSaveClose.TabIndex = 54
         Me.llblSaveClose.TabStop = True
         Me.llblSaveClose.Text = "Save/Close"
@@ -636,11 +636,11 @@ Partial Class IndividualMarkInGroupPresentation
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtImprovement)
         Me.Controls.Add(Me.txtOverall)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.lblLanguageLabel)
         Me.Controls.Add(Me.picLanguageMark)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.lblPresentationLabel)
         Me.Controls.Add(Me.picPresentationMark)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblContentLabel)
         Me.Controls.Add(Me.picContentMark)
         Me.Controls.Add(Me.chkNominate)
         Me.Controls.Add(Me.Label5)
@@ -670,10 +670,10 @@ Partial Class IndividualMarkInGroupPresentation
 
     End Sub
     Friend WithEvents picContentMark As System.Windows.Forms.PictureBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblContentLabel As System.Windows.Forms.Label
+    Friend WithEvents lblPresentationLabel As System.Windows.Forms.Label
     Friend WithEvents picPresentationMark As System.Windows.Forms.PictureBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents lblLanguageLabel As System.Windows.Forms.Label
     Friend WithEvents picLanguageMark As System.Windows.Forms.PictureBox
     Friend WithEvents txtOverall As System.Windows.Forms.TextBox
     Friend WithEvents txtImprovement As System.Windows.Forms.TextBox
