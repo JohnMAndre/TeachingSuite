@@ -775,12 +775,12 @@ Public Class Attendance2Form
 
     Private Sub Present3MeritToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Present3MeritToolStripMenuItem.Click
         StudentMerit(3)
-        SetStudentStatus(AttendanceStatusEnum.Present)
+        'SetStudentStatus(AttendanceStatusEnum.Present)
     End Sub
 
     Private Sub Present3DemeritToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Present3DemeritToolStripMenuItem.Click
         StudentMerit(-3)
-        SetStudentStatus(AttendanceStatusEnum.Present)
+        'SetStudentStatus(AttendanceStatusEnum.Present)
     End Sub
     Private Sub StudentMerit(numberOfMerits As Integer)
         If dgvStudents.SelectedRows.Count = 0 Then
