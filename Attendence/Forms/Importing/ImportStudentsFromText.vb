@@ -105,61 +105,16 @@ Public Class ImportStudentsFromText
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Timer1.Stop()
         Try
-            'Dim strReport As String = String.Empty
-            'Dim strReportPrevious As String = String.Empty
-            'Dim swReport1 As New Stopwatch()
-            'Dim swReport2 As New Stopwatch()
-
             Dim ht As New Hashtable() '-- key  = studentID, value = student object
             Dim strBaseHistoryLable As String = lblLoadingHistoricalStudents.Text
             Dim intStudentsAdded, intStudentsSearched As Integer
             Dim lstSemesters As List(Of String) = Semester.ListExistingSemesters()
             Dim semCurrent As Semester
-            'Dim strFilename As String
 
             lblLoadingHistoricalStudents.Text = "Populating cache, please wait..."
             Application.DoEvents()
 
             Dim objCache As SemesterCache = SemesterCache.GetCache
-
-            'Do
-            '    For intCounter As Integer = lstSemesters.Count - 1 To 0 Step -1 '-- want to use most recent file first
-            '        strFilename = lstSemesters(intCounter)
-            '        'swReport2.Restart()
-            '        semCurrent = New Semester(strFilename)
-            '        'strReport &= "Loading " & semCurrent.Name & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
-            '        'swReport2.Stop()
-
-            '        lblLoadingHistoricalStudents.Text = strBaseHistoryLable & semCurrent.Name
-            '        Application.DoEvents()
-            '        For Each clsgrp As ClassGroup In semCurrent.ClassGroups
-            '            'If strReportPrevious.Length > 0 Then
-            '            '    strReport &= strReportPrevious & "  " & swReport1.Elapsed.Seconds.ToString("#,##0") & " seconds" & Environment.NewLine
-            '            'End If
-            '            'swReport1.Restart()
-            '            'strReportPrevious = "Sem: " & semCurrent.Name & "; Module: " & clsgrp.Name
-
-            '            For Each clas As SchoolClass In clsgrp.Classes
-            '                For Each stud In clas.Students
-            '                    intStudentsSearched += 1
-            '                    '-- add to collection, only if there IS a student ID
-            '                    If Not m_dictHistoricalStudents.ContainsKey(stud.StudentID.ToUpper()) AndAlso stud.StudentID.Trim.Length > 0 Then
-            '                        m_dictHistoricalStudents.Add(stud.StudentID.ToUpper, stud)
-            '                        intStudentsAdded += 1
-            '                    End If
-
-            '                    lblStudentsSearched.Text = intStudentsSearched.ToString("#,##0")
-            '                    lblStudentsLoaded.Text = intStudentsAdded.ToString("#,##0")
-            '                    If m_boolCancel Then
-            '                        Exit Do
-            '                    End If
-            '                    Application.DoEvents()
-            '                Next
-            '            Next
-            '        Next
-            '    Next
-            '    Exit Do
-            'Loop While True
 
             '-- Changing to use Cache
             Do
@@ -259,18 +214,11 @@ Public Class ImportStudentsFromText
                     Continue For '-- skip this row, it has no data
                 End If
                 row = strRows(intCounter).Split(vbTab)
-                'If row.Length < 8 Then
-                '    If m_lstStudents.Count > 0 Then
-                '        '-- we are done
-                '        Exit For
-                '    Else
-                '        MessageBox.Show("There should be 8 columns of data: Admin, Alt, StudentID, Local name, Nickname, Email, ExtID, and Date of Birth (the clipboard has " & row.Length & ").")
-                '    End If
-                'End If
                 objStud = New Student(objClass)
                 If IsNumeric(row(0)) Then
                     objStud.AdminNumber = row(0)
                 Else
+                    Continue For '-- skip this row, must be a header row
                     objStud.AdminNumber = 0
                 End If
                 If IsNumeric(row(1)) Then
@@ -382,8 +330,13 @@ Public Class ImportStudentsFromText
             If strOutput.Length > 0 Then
                 strOutput &= vbTab
             End If
+
             strOutput &= col.HeaderText
         Next
+
+        '-- now remove the final column (standard name) since it is calculated and cannot be imported
+        Dim intPos As Integer = strOutput.LastIndexOf(vbTab)
+        strOutput = strOutput.Substring(0, intPos)
         Clipboard.SetText(strOutput)
     End Sub
 End Class
