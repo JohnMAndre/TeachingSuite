@@ -162,8 +162,8 @@ Public Class GroupPresentationAssessment
             Case Else
                 '-- Need to shrink the height of each control a bit
                 '   so user can easily see that there are more than 4 controls
-                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 2)) / 2 '-- slightly less high so user can see they need to scroll
-                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - intBoarderSpace) / 2 '-- not more than 2 wide
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height - (intBoarderSpace * 4)) / 2 '-- slightly less high so user can see they need to scroll
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width - (intBoarderSpace * 4)) / 2 '-- not more than 2 wide
         End Select
 
         Dim sz As New Size(intWidth, intHeight)
