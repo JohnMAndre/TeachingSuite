@@ -4362,4 +4362,44 @@ Public Class MainFormPlain
         End If
     End Sub
 
+    Private Sub AssignNEUEmailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignNEUEmailToolStripMenuItem.Click
+        Try
+            Dim lst As List(Of Student) = GetStudentsFromSelectedClass()
+            Dim strEmail As String
+            For Each stud As Student In lst
+                strEmail = stud.StudentID '-- full student ID
+                strEmail &= "@st.neu.edu.vn"
+                stud.EmailAddress = strEmail.ToLower()  '-- should become like 10250430@st.neu.edu.vn
+            Next
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub AssignISMENEUOverComplexlyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignISMENEUOverComplexlyToolStripMenuItem.Click
+        Try
+            Dim lst As List(Of Student) = GetStudentsFromSelectedClass()
+            Dim strEmail As String
+            Dim strTemp As String
+            For Each stud As Student In lst
+                If Convert.ToInt32(stud.StudentID.Substring(0, 4)) >= 1025 Then
+                    '-- Over 1025... get neu emai
+                    strEmail = stud.StudentID '-- full student ID
+                    strEmail &= "@st.neu.edu.vn"
+                Else
+                    '-- under 1025 gets isneu email
+                    strEmail = stud.StudentID.Substring(2) '-- skip first 2 chars
+                    strTemp = stud.LocalNameLatinLetters.Substring(0, stud.LocalNameLatinLetters.IndexOf(" ")) '-- first element
+                    strEmail &= strTemp
+                    strTemp = stud.LocalNameLatinLetters.Substring(stud.LocalNameLatinLetters.LastIndexOf(" ") + 1) '-- final element
+                    strEmail &= "." & strTemp & "@isneu.org"
+                End If
+                stud.EmailAddress = strEmail.ToLower()
+            Next
+        Catch ex As Exception
+            Log(ex)
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
 End Class
