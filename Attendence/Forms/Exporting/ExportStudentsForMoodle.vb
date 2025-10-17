@@ -13,7 +13,7 @@
             Dim sfd As New SaveFileDialog()
             sfd.Title = "Select export location"
             sfd.AddExtension = True
-            sfd.Filter = "Text files (*.txt)|*.txt"
+            sfd.Filter = "Text files (*.txt)|*.csv"
             sfd.OverwritePrompt = True
             sfd.FileName = m_class.ClassGroup.Name & "-" & m_class.Name & " Student Export for Moodle"
             If sfd.ShowDialog = DialogResult.OK Then

@@ -155,7 +155,7 @@ Public Class ExportToTeachingAppExportFile
         sfd.AddExtension = True
         Select Case cboExportType.SelectedIndex
             Case 0
-                sfd.Filter = "Text files (*.txt)|*.txt"
+                sfd.Filter = "Text files (*.txt)|*.csv"
             Case 1
                 sfd.Filter = "Export-Import files (*" & FILE_EXTENSION_FOR_IMPORT & ")|*" & FILE_EXTENSION_FOR_IMPORT
         End Select
@@ -174,7 +174,7 @@ Public Class ExportToTeachingAppExportFile
                 btnAddAttendanceDate.Enabled = False
                 If txtOutputFile.Text.Trim.Length > 0 Then
                     '-- change file extension
-                    txtOutputFile.Text = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(txtOutputFile.Text), System.IO.Path.GetFileNameWithoutExtension(txtOutputFile.Text) & ".txt")
+                    txtOutputFile.Text = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(txtOutputFile.Text), System.IO.Path.GetFileNameWithoutExtension(txtOutputFile.Text) & ".csv")
                 End If
             Case 1
                 lstAvailableAttendanceDates.Enabled = True

@@ -167,7 +167,7 @@ Public Class EmailQuizResults
 
 
             '-- write to file
-            Dim strFilename As String = System.IO.Path.Combine(GetQuizResultsFolder, m_schoolClass.Name & " " & txtQuizName.Text & " " & Date.Now.ToString(DATE_TIME_FORMAT_FILENAME) & ".txt")
+            Dim strFilename As String = System.IO.Path.Combine(GetQuizResultsFolder, m_schoolClass.Name & " " & txtQuizName.Text & " " & Date.Now.ToString(DATE_TIME_FORMAT_FILENAME) & ".csv")
             System.IO.File.WriteAllText(strFilename, sbFileContents.ToString())
 
             EmailStudents()

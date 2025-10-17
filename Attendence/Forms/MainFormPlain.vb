@@ -1245,7 +1245,7 @@ Public Class MainFormPlain
             Dim sfd As New SaveFileDialog()
             sfd.Title = "Select export location"
             sfd.AddExtension = True
-            sfd.Filter = "Text files (*.txt)|*.txt"
+            sfd.Filter = "Text files (*.txt)|*.csv"
             sfd.OverwritePrompt = True
             sfd.FileName = GetSelectedClassGroup.Name & " Module Results Export"
             If sfd.ShowDialog = DialogResult.OK Then
@@ -1481,7 +1481,7 @@ Public Class MainFormPlain
                 Dim sfd As New SaveFileDialog()
                 sfd.Title = "Select export location"
                 sfd.AddExtension = True
-                sfd.Filter = "Text files (*.txt)|*.txt"
+                sfd.Filter = "Text files (*.txt)|*.csv"
                 sfd.OverwritePrompt = True
                 sfd.FileName = GetSelectedClassGroup.Name & "-" & GetSelectedClass.Name & " Student Export"
                 If sfd.ShowDialog = DialogResult.OK Then
@@ -2149,7 +2149,7 @@ Public Class MainFormPlain
         Dim sfd As New SaveFileDialog()
         sfd.Title = "Select export location"
         sfd.AddExtension = True
-        sfd.Filter = "Text files (*.txt)|*.txt"
+        sfd.Filter = "Text files (*.txt)|*.csv"
         sfd.OverwritePrompt = True
         sfd.FileName = GetSelectedClassGroup.Name & " Marking Results Export"
         If sfd.ShowDialog = DialogResult.OK Then
@@ -2392,7 +2392,7 @@ Public Class MainFormPlain
                 Dim sfd As New SaveFileDialog()
                 sfd.Title = "Select export location"
                 sfd.AddExtension = True
-                sfd.Filter = "Text files (*.txt)|*.txt"
+                sfd.Filter = "Text files (*.txt)|*.csv"
                 sfd.OverwritePrompt = True
                 sfd.FileName = GetSelectedClass.Name & " Student Grade Export"
                 If sfd.ShowDialog = DialogResult.OK Then
@@ -2731,7 +2731,7 @@ Public Class MainFormPlain
         Dim sfd As New SaveFileDialog()
         sfd.Title = "Select export location"
         sfd.AddExtension = True
-        sfd.Filter = "Text files (*.txt)|*.txt"
+        sfd.Filter = "Text files (*.txt)|*.csv"
         sfd.OverwritePrompt = True
         sfd.FileName = GetSelectedClassGroup.Name & " Marking Results (isolated) Export"
         If sfd.ShowDialog = DialogResult.OK Then
@@ -3374,7 +3374,7 @@ Public Class MainFormPlain
             Dim strFilename As String
             Dim intCounter As Integer
             For Each stud As Student In lst
-                strFilename = AppSettings.MarkingPageSaveFolder & System.IO.Path.DirectorySeparatorChar & strFolderName & System.IO.Path.DirectorySeparatorChar & stud.StudentID & ".txt"
+                strFilename = AppSettings.MarkingPageSaveFolder & System.IO.Path.DirectorySeparatorChar & strFolderName & System.IO.Path.DirectorySeparatorChar & stud.StudentID & ".csv"
                 stud.ExportStudentAssignmentDetails(strFilename)
                 intCounter += 1
             Next
@@ -3660,7 +3660,7 @@ Public Class MainFormPlain
                 Dim sfd As New SaveFileDialog()
                 sfd.Title = "Select export location"
                 sfd.AddExtension = True
-                sfd.Filter = "Text files (*.txt)|*.txt"
+                sfd.Filter = "Text files (*.csv)|*.csv"
                 sfd.OverwritePrompt = True
                 sfd.FileName = objGroup.Name & " All Grade Data Export"
                 If sfd.ShowDialog = DialogResult.OK Then
@@ -3818,7 +3818,7 @@ Public Class MainFormPlain
         Try
             '-- Export all attendance data
             Dim sfd As New SaveFileDialog()
-            sfd.Filter = "Text files|*.txt"
+            sfd.Filter = "Text files|*.csv"
             Dim strFilename As String
             If sfd.ShowDialog = DialogResult.OK Then
                 strFilename = sfd.FileName
@@ -4096,7 +4096,7 @@ Public Class MainFormPlain
             Dim sfd As New SaveFileDialog()
             sfd.Title = "Select export location"
             sfd.AddExtension = True
-            sfd.Filter = "Text files (*.txt)|*.txt"
+            sfd.Filter = "Text files (*.csv)|*.csv"
             sfd.OverwritePrompt = True
             sfd.FileName = GetSelectedClass.Name & " Export"
             If sfd.ShowDialog = DialogResult.OK Then
@@ -4143,7 +4143,7 @@ Public Class MainFormPlain
             Dim sfd As New SaveFileDialog()
             sfd.Title = "Select export location"
             sfd.AddExtension = True
-            sfd.Filter = "Text files (*.txt)|*.txt"
+            sfd.Filter = "Text files (*.csv)|*.csv"
             sfd.OverwritePrompt = True
             sfd.FileName = objClassToUse.Name & " Export"
             If sfd.ShowDialog = DialogResult.OK Then

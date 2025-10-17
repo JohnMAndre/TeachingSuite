@@ -62,7 +62,7 @@ Public Class AssignWorkshopGroups
         '   WS (1-6), Student Group (1-2), Evaluator Student ID & Name, Evaluatee Student ID & Name
         Dim sfd As New SaveFileDialog()
         sfd.OverwritePrompt = True
-        sfd.Filter = "Text files|*.txt"
+        sfd.Filter = "Text files|*.csv"
         If sfd.ShowDialog() = Windows.Forms.DialogResult.OK Then
             Dim tw As System.IO.TextWriter = System.IO.File.CreateText(sfd.FileName)
             tw.WriteLine("StudentGroup,Workshop,WorkshopGroup,PresentorStudentID,EvaluatorStudentID")
