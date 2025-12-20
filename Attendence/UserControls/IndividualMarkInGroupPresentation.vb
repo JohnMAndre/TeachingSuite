@@ -1,4 +1,4 @@
-﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+﻿'Copyright 2011-2025 John M Andre (John At JohnMAndre dot COM)
 
 'This file Is part of Teaching Suite.
 
@@ -33,7 +33,6 @@ Public Class IndividualMarkInGroupPresentation
         m_student = stud
         txtNickname.Text = m_student.Nickname
         txtLocalName.Text = m_student.LocalNameLatinLetters
-        txtExtID.Text = m_student.ExtStudentID
         txtStudentID.Text = m_student.StudentID
         txtTags.Text = m_student.Tags
         nudPresentationQuality.Value = m_student.PresentationQuality
@@ -146,10 +145,6 @@ Public Class IndividualMarkInGroupPresentation
 
         AddSelectedImprovementItemsToStudent()
 
-        If chkNominate.Checked Then
-            MainFormReference.Notes = m_student.LocalNameLatinLetters & " (" & m_student.StudentID & "-" & m_student.StudentTeam & ") nominated @ " & Date.Now.ToString(DATE_TIME_FORMAT_DETAIL) & Environment.NewLine & MainFormReference.Notes
-        End If
-
     End Sub
     Private Sub picContentMark_MouseDown(sender As Object, e As MouseEventArgs) Handles picContentMark.MouseDown, picPresentationMark.MouseDown, picLanguageMark.MouseDown
         Dim pic As PictureBox = CType(sender, PictureBox)
@@ -244,15 +239,15 @@ Public Class IndividualMarkInGroupPresentation
         Dim strOverall As String = String.Empty
 
         If AppSettings.PresentationContentWeight > 0 Then
-            strOverall &= "Content (" & AppSettings.PresentationContentWeight.ToString() & "%): " & m_intContentGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
+            strOverall &= AppSettings.PresentationContentLabel & " (" & AppSettings.PresentationContentWeight.ToString() & "%): " & m_intContentGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
         End If
 
         If AppSettings.PresentationPresentationWeight > 0 Then
-            strOverall &= "Presentation (" & AppSettings.PresentationPresentationWeight.ToString() & "%): " & m_intPresentationGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
+            strOverall &= AppSettings.PresentationPresentationLabel & " (" & AppSettings.PresentationPresentationWeight.ToString() & "%): " & m_intPresentationGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
         End If
 
         If AppSettings.PresentationLanguageWeight > 0 Then
-            strOverall &= "Language (" & AppSettings.PresentationLanguageWeight.ToString() & "%): " & m_intLanguageGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
+            strOverall &= AppSettings.PresentationLanguageLabel & " (" & AppSettings.PresentationLanguageWeight.ToString() & "%): " & m_intLanguageGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints & Environment.NewLine
         End If
         strOverall &= "-----------------------" & Environment.NewLine
         strOverall &= "Total: " & m_intTotalGrade.ToString() & "/" & m_studentAssignment.BaseAssignment.MaxPoints
@@ -353,12 +348,12 @@ Public Class IndividualMarkInGroupPresentation
             End If
 
             If boolIncludeBad Then
-                    strReturn &= "Some points where you can improve:"
-                    strReturn &= Environment.NewLine
-                    strReturn &= strReturnBad
-                End If
+                strReturn &= "Some points where you can improve:"
+                strReturn &= Environment.NewLine
+                strReturn &= strReturnBad
+            End If
 
-                Return strReturn.Trim()
+            Return strReturn.Trim()
         Catch ex As Exception
             MessageBox.Show("There was an error with the improvement item list: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -500,4 +495,5 @@ Public Class IndividualMarkInGroupPresentation
             txtImprovement.SelectAll()
         End If
     End Sub
+
 End Class

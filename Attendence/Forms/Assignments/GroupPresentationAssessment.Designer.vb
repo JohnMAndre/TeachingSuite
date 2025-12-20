@@ -29,9 +29,10 @@ Partial Class GroupPresentationAssessment
         Me.lblTimer = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.btnSaveAllKeepOpen = New System.Windows.Forms.Button()
-        Me.picMoreInfo = New System.Windows.Forms.PictureBox()
         Me.btnReloadMissing = New System.Windows.Forms.Button()
         Me.btnQuickFeedback = New System.Windows.Forms.Button()
+        Me.btnOptions = New System.Windows.Forms.Button()
+        Me.picMoreInfo = New System.Windows.Forms.PictureBox()
         CType(Me.picMoreInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -50,7 +51,7 @@ Partial Class GroupPresentationAssessment
         'btnSave
         '
         Me.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSave.Location = New System.Drawing.Point(235, 368)
+        Me.btnSave.Location = New System.Drawing.Point(183, 368)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 26)
         Me.btnSave.TabIndex = 43
@@ -75,23 +76,12 @@ Partial Class GroupPresentationAssessment
         'btnSaveAllKeepOpen
         '
         Me.btnSaveAllKeepOpen.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(425, 368)
+        Me.btnSaveAllKeepOpen.Location = New System.Drawing.Point(278, 368)
         Me.btnSaveAllKeepOpen.Name = "btnSaveAllKeepOpen"
         Me.btnSaveAllKeepOpen.Size = New System.Drawing.Size(167, 26)
         Me.btnSaveAllKeepOpen.TabIndex = 45
         Me.btnSaveAllKeepOpen.Text = "Sa&ve (keep marking)"
         Me.btnSaveAllKeepOpen.UseVisualStyleBackColor = True
-        '
-        'picMoreInfo
-        '
-        Me.picMoreInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.picMoreInfo.Image = Global.Teaching.My.Resources.Resources.info_32
-        Me.picMoreInfo.Location = New System.Drawing.Point(664, 369)
-        Me.picMoreInfo.Name = "picMoreInfo"
-        Me.picMoreInfo.Size = New System.Drawing.Size(30, 25)
-        Me.picMoreInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picMoreInfo.TabIndex = 46
-        Me.picMoreInfo.TabStop = False
         '
         'btnReloadMissing
         '
@@ -113,11 +103,33 @@ Partial Class GroupPresentationAssessment
         Me.btnQuickFeedback.Text = "Q&F"
         Me.btnQuickFeedback.UseVisualStyleBackColor = True
         '
+        'btnOptions
+        '
+        Me.btnOptions.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnOptions.Location = New System.Drawing.Point(539, 368)
+        Me.btnOptions.Name = "btnOptions"
+        Me.btnOptions.Size = New System.Drawing.Size(71, 26)
+        Me.btnOptions.TabIndex = 49
+        Me.btnOptions.Text = "&Options"
+        Me.btnOptions.UseVisualStyleBackColor = True
+        '
+        'picMoreInfo
+        '
+        Me.picMoreInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picMoreInfo.Image = Global.Teaching.My.Resources.Resources.info_32
+        Me.picMoreInfo.Location = New System.Drawing.Point(664, 369)
+        Me.picMoreInfo.Name = "picMoreInfo"
+        Me.picMoreInfo.Size = New System.Drawing.Size(30, 25)
+        Me.picMoreInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picMoreInfo.TabIndex = 46
+        Me.picMoreInfo.TabStop = False
+        '
         'GroupPresentationAssessment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(696, 396)
+        Me.Controls.Add(Me.btnOptions)
         Me.Controls.Add(Me.btnQuickFeedback)
         Me.Controls.Add(Me.picMoreInfo)
         Me.Controls.Add(Me.btnSaveAllKeepOpen)
@@ -144,4 +156,5 @@ Partial Class GroupPresentationAssessment
     Friend WithEvents picMoreInfo As PictureBox
     Friend WithEvents btnReloadMissing As Button
     Friend WithEvents btnQuickFeedback As Button
+    Friend WithEvents btnOptions As Button
 End Class

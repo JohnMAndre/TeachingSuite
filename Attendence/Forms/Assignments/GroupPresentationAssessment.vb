@@ -1,4 +1,4 @@
-﻿'Copyright 2011-2022 John M Andre (John At JohnMAndre dot COM)
+﻿'Copyright 2011-2025 John M Andre (John At JohnMAndre dot COM)
 
 'This file Is part of Teaching Suite.
 
@@ -159,6 +159,11 @@ Public Class GroupPresentationAssessment
                 '   for 4, the controls should exactly take up all the space of the flowcontrol's client area
                 intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 2) - (intBoarderSpace * 2) '-- do not worry about more than 2 high
                 intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
+            Case 5, 6
+                '-- this is for larger groups - either 5 or 6 team members
+                '   for 6, the controls should exactly take up all the space of the flowcontrol's client area (3 wide, 2 high)
+                intHeight = (Me.FlowLayoutPanel1.ClientSize.Height / 3) - (intBoarderSpace * 2) '-- do not worry about more than 3 high
+                intWidth = (Me.FlowLayoutPanel1.ClientSize.Width / 2) - (intBoarderSpace * 2) '-- not more than 2 wide
             Case Else
                 '-- Need to shrink the height of each control a bit
                 '   so user can easily see that there are more than 4 controls
@@ -210,4 +215,9 @@ Public Class GroupPresentationAssessment
         End If
     End Sub
 
+    Private Sub btnOptions_Click(sender As Object, e As EventArgs) Handles btnOptions.Click
+        Dim frm As New GroupPresentationOptions()
+        frm.ShowDialog()
+        '-- expect form to do everything
+    End Sub
 End Class

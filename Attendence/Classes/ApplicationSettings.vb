@@ -475,6 +475,27 @@ Public Class ApplicationSettings
                     PresentationLanguageWeight = 33
                 End If
 
+                xElement = xDoc.SelectSingleNode("//PresentationContentLabel")
+                If xElement IsNot Nothing Then
+                    PresentationContentLabel = xElement.InnerText
+                Else
+                    PresentationContentLabel = "Content"
+                End If
+
+                xElement = xDoc.SelectSingleNode("//PresentationPresentationLabel")
+                If xElement IsNot Nothing Then
+                    PresentationPresentationLabel = xElement.InnerText
+                Else
+                    PresentationPresentationLabel = "Presentation"
+                End If
+
+                xElement = xDoc.SelectSingleNode("//PresentationLanguageLabel")
+                If xElement IsNot Nothing Then
+                    PresentationLanguageLabel = xElement.InnerText
+                Else
+                    PresentationLanguageLabel = "Language"
+                End If
+
                 xElement = xDoc.SelectSingleNode("//GroupPresentationUpdatesPresentationAndResearchPerformanceLevel")
                 If xElement IsNot Nothing Then
                     GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = ConvertToBool(xElement.InnerText, False)
@@ -567,6 +588,10 @@ Public Class ApplicationSettings
                 PresentationContentWeight = 34
                 PresentationPresentationWeight = 33
                 PresentationLanguageWeight = 33
+                PresentationContentLabel = "Content"
+                PresentationPresentationLabel = "Presentation"
+                PresentationLanguageLabel = "Language"
+
                 GroupPresentationUpdatesPresentationAndResearchPerformanceLevel = True
                 UserFullName = String.Empty
                 AttendanceMessage = String.Empty
@@ -657,6 +682,9 @@ Public Class ApplicationSettings
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationContentWeight", PresentationContentWeight))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationPresentationWeight", PresentationPresentationWeight))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationLanguageWeight", PresentationLanguageWeight))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationContentLabel", PresentationContentLabel))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationPresentationLabel", PresentationPresentationLabel))
+            xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "PresentationLanguageLabel", PresentationLanguageLabel))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "GroupPresentationUpdatesPresentationAndResearchPerformanceLevel", GroupPresentationUpdatesPresentationAndResearchPerformanceLevel))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "UserFullName", UserFullName))
             xDoc.DocumentElement.AppendChild(GetSettingsNode(xDoc, "AttendanceMessage", AttendanceMessage))
@@ -762,6 +790,9 @@ Public Class ApplicationSettings
     Public Property PresentationContentWeight As Integer
     Public Property PresentationPresentationWeight As Integer
     Public Property PresentationLanguageWeight As Integer
+    Public Property PresentationContentLabel As String
+    Public Property PresentationPresentationLabel As String
+    Public Property PresentationLanguageLabel As String
     Public Property LoadSemesterCacheOnStartup As Boolean
     Public Property EnableStudentDataHistory As Boolean
     Public Property ApplicationHistoryMaxFileSize As PerformanceCounterInstanceLifetime '-- size in bytes
