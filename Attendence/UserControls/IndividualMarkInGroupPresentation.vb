@@ -261,6 +261,10 @@ Public Class IndividualMarkInGroupPresentation
             lblPresentationWeight.Text = AppSettings.PresentationPresentationWeight.ToString() & "%"
             lblLanguageWeight.Text = AppSettings.PresentationLanguageWeight.ToString() & "%"
 
+            lblContentLabel.Text = AppSettings.PresentationContentLabel
+            lblPresentationLabel.Text = AppSettings.PresentationPresentationLabel
+            lblLanguageLabel.Text = AppSettings.PresentationLanguageLabel
+
             If AppSettings.PresentationContentWeight = 0 Then
                 '-- hide it
                 picContentMark.Visible = False
