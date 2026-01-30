@@ -3946,14 +3946,16 @@ Public Class MainFormPlain
 
     Private Sub AutoAssignNickname(includeStudentsWithNickname As Boolean, useFirstElementOfLocalName As Boolean)
 
-        Dim cls As SchoolClass = GetSelectedClass()
-        If cls Is Nothing Then
-            MessageBox.Show("Please select a class to convert and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
-        End If
+        'Dim cls As SchoolClass = GetSelectedClass()
+        'If cls Is Nothing Then
+        '    MessageBox.Show("Please select a class to convert and try again.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        '    Exit Sub
+        'End If
         Dim strNewNickname As String
         Dim intPos As Integer
-        For Each stud As Student In cls.Students
+
+        Dim lst As List(Of Student) = GetStudentsFromSelectedClass()
+        For Each stud As Student In lst
             stud.LocalName = stud.LocalName.Trim() '-- make sure no leading or trailing spaces
             If useFirstElementOfLocalName Then
                 intPos = stud.LocalName.IndexOf(" ")
@@ -4417,4 +4419,5 @@ Public Class MainFormPlain
             MessageBox.Show("Error: " & ex.Message)
         End Try
     End Sub
+
 End Class
