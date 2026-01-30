@@ -4172,8 +4172,10 @@ Public Class MainFormPlain
                     For Each objCls As SchoolClass In GetSelectedClassGroup.Classes
                         If Not boolSetAlready Then
                             Dim grp As New ClassGroup(Nothing)
+                            grp.Name = "Combined"
                             grp.UseNickname = GetSelectedClassGroup.UseNickname
                             objClassToSend = New SchoolClass(grp)
+                            objClassToSend.Name = GetSelectedClassGroup().Name
                             objClassToSend.Students.AddRange(objCls.Students)
                             boolSetAlready = True
                         Else
