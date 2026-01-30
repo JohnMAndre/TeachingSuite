@@ -4379,23 +4379,38 @@ Public Class MainFormPlain
 
     Private Sub AssignISMENEUOverComplexlyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssignISMENEUOverComplexlyToolStripMenuItem.Click
         Try
+            Dim boolSkipThoseWithEmailAddressAlready As Boolean
+            Select Case MessageBox.Show("Apply to all students?" & vbNewLine & "Yes = all" & vbNewLine & "No = Only those without email address" & vbNewLine & "Cancel = Do nothing", Application.ProductName, MessageBoxButtons.YesNoCancel)
+                Case DialogResult.Cancel
+                    '-- do nothing
+                    Return
+                Case DialogResult.No
+                    boolSkipThoseWithEmailAddressAlready = True
+                Case DialogResult.Yes
+                    boolSkipThoseWithEmailAddressAlready = False
+            End Select
+
             Dim lst As List(Of Student) = GetStudentsFromSelectedClass()
             Dim strEmail As String
             Dim strTemp As String
             For Each stud As Student In lst
-                If Convert.ToInt32(stud.StudentID.Substring(0, 4)) >= 1025 Then
-                    '-- Over 1025... get neu emai
-                    strEmail = stud.StudentID '-- full student ID
-                    strEmail &= "@st.neu.edu.vn"
+                If boolSkipThoseWithEmailAddressAlready AndAlso (stud.EmailAddress IsNot Nothing AndAlso stud.EmailAddress.Trim().Length > 0) Then
+                    '-- skip it
                 Else
-                    '-- under 1025 gets isneu email
-                    strEmail = stud.StudentID.Substring(2) '-- skip first 2 chars
-                    strTemp = stud.LocalNameLatinLetters.Substring(0, stud.LocalNameLatinLetters.IndexOf(" ")) '-- first element
-                    strEmail &= strTemp
-                    strTemp = stud.LocalNameLatinLetters.Substring(stud.LocalNameLatinLetters.LastIndexOf(" ") + 1) '-- final element
-                    strEmail &= "." & strTemp & "@isneu.org"
+                    If Convert.ToInt32(stud.StudentID.Substring(0, 4)) >= 1025 Then
+                        '-- Over 1025... get neu emai
+                        strEmail = stud.StudentID '-- full student ID
+                        strEmail &= "@st.neu.edu.vn"
+                    Else
+                        '-- under 1025 gets isneu email
+                        strEmail = stud.StudentID.Substring(2) '-- skip first 2 chars
+                        strTemp = stud.LocalNameLatinLetters.Substring(0, stud.LocalNameLatinLetters.IndexOf(" ")) '-- first element
+                        strEmail &= strTemp
+                        strTemp = stud.LocalNameLatinLetters.Substring(stud.LocalNameLatinLetters.LastIndexOf(" ") + 1) '-- final element
+                        strEmail &= "." & strTemp & "@isneu.org"
+                    End If
+                    stud.EmailAddress = strEmail.ToLower()
                 End If
-                stud.EmailAddress = strEmail.ToLower()
             Next
         Catch ex As Exception
             Log(ex)

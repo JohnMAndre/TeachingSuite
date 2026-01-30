@@ -1,4 +1,4 @@
-﻿'Copyright 2011-2020 John M Andre (John At JohnMAndre dot COM)
+﻿'Copyright 2011-2026 John M Andre (John At JohnMAndre dot COM)
 
 'This file Is part of Teaching Suite.
 
