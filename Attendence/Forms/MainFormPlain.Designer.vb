@@ -1824,7 +1824,7 @@ Partial Class MainFormPlain
         'ClassSelectorsToolStripMenuItem
         '
         Me.ClassSelectorsToolStripMenuItem.Name = "ClassSelectorsToolStripMenuItem"
-        Me.ClassSelectorsToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.ClassSelectorsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ClassSelectorsToolStripMenuItem.Text = "Class selectors"
         '
         'ViewScheduleToolStripMenuItem
@@ -1834,14 +1834,14 @@ Partial Class MainFormPlain
         Me.ViewScheduleToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ViewScheduleToolStripMenuItem.Name = "ViewScheduleToolStripMenuItem"
         Me.ViewScheduleToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.ViewScheduleToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewScheduleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewScheduleToolStripMenuItem.Text = "&Schedule"
         '
         'StudentphotoToolStripMenuItem
         '
         Me.StudentphotoToolStripMenuItem.CheckOnClick = True
         Me.StudentphotoToolStripMenuItem.Name = "StudentphotoToolStripMenuItem"
-        Me.StudentphotoToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.StudentphotoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.StudentphotoToolStripMenuItem.Text = "Student &photo"
         '
         'NotesToolStripMenuItem
@@ -1851,7 +1851,7 @@ Partial Class MainFormPlain
         Me.NotesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.NotesToolStripMenuItem.Name = "NotesToolStripMenuItem"
         Me.NotesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NotesToolStripMenuItem.Text = "Notes"
         '
         'ActionsToolStripMenuItem
@@ -1876,23 +1876,27 @@ Partial Class MainFormPlain
             Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
         Me.LoadCurrentClassToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.LoadCurrentClassToolStripMenuItem.Text = "&Load current class"
+        Me.LoadCurrentClassToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(262, 6)
+        Me.ToolStripSeparator3.Visible = False
         '
         'ExamToolStripMenuItem
         '
         Me.ExamToolStripMenuItem.Name = "ExamToolStripMenuItem"
         Me.ExamToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.ExamToolStripMenuItem.Text = "Oral &Exam (1st)..."
+        Me.ExamToolStripMenuItem.Visible = False
         '
         'ExamRedoToolStripMenuItem
         '
         Me.ExamRedoToolStripMenuItem.Name = "ExamRedoToolStripMenuItem"
         Me.ExamRedoToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.ExamRedoToolStripMenuItem.Text = "Oral Exam &Redo..."
+        Me.ExamRedoToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator4
         '
@@ -1924,6 +1928,7 @@ Partial Class MainFormPlain
         Me.EmailOnlineQuizResultsToolStripMenuItem.Name = "EmailOnlineQuizResultsToolStripMenuItem"
         Me.EmailOnlineQuizResultsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.EmailOnlineQuizResultsToolStripMenuItem.Text = "Email online &quiz results..."
+        Me.EmailOnlineQuizResultsToolStripMenuItem.Visible = False
         '
         'FormGroupsToolStripMenuItem
         '
@@ -1942,6 +1947,7 @@ Partial Class MainFormPlain
         Me.BatchSaveMarkingSheetsToolStripMenuItem.Name = "BatchSaveMarkingSheetsToolStripMenuItem"
         Me.BatchSaveMarkingSheetsToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.BatchSaveMarkingSheetsToolStripMenuItem.Text = "Batch &save marking sheets"
+        Me.BatchSaveMarkingSheetsToolStripMenuItem.Visible = False
         '
         'FirstTryToolStripMenuItem
         '
@@ -2051,6 +2057,7 @@ Partial Class MainFormPlain
         Me.CaptureStudentImageFromClipboardToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
         Me.CaptureStudentImageFromClipboardToolStripMenuItem.Size = New System.Drawing.Size(314, 22)
         Me.CaptureStudentImageFromClipboardToolStripMenuItem.Text = "Capture student image from clipboard"
+        Me.CaptureStudentImageFromClipboardToolStripMenuItem.Visible = False
         '
         'EditStudentToolStripMenuItem1
         '
@@ -2169,47 +2176,55 @@ Partial Class MainFormPlain
         Me.AssignmentResultsToolStripMenuItem.Name = "AssignmentResultsToolStripMenuItem"
         Me.AssignmentResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AssignmentResultsToolStripMenuItem.Text = "Assignment &Results (BTEC)..."
+        Me.AssignmentResultsToolStripMenuItem.Visible = False
         '
         'ModuleResultsToolStripMenuItem
         '
         Me.ModuleResultsToolStripMenuItem.Name = "ModuleResultsToolStripMenuItem"
         Me.ModuleResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ModuleResultsToolStripMenuItem.Text = "&Module Results (BTEC)..."
+        Me.ModuleResultsToolStripMenuItem.Visible = False
         '
         'FailedoutcomesToolStripMenuItem
         '
         Me.FailedoutcomesToolStripMenuItem.Name = "FailedoutcomesToolStripMenuItem"
         Me.FailedoutcomesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.FailedoutcomesToolStripMenuItem.Text = "Failed &outcomes (BTEC)..."
+        Me.FailedoutcomesToolStripMenuItem.Visible = False
         '
         'ModuleFeedbackCheckToolStripMenuItem
         '
         Me.ModuleFeedbackCheckToolStripMenuItem.Name = "ModuleFeedbackCheckToolStripMenuItem"
         Me.ModuleFeedbackCheckToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ModuleFeedbackCheckToolStripMenuItem.Text = "Module &Feedback Check (BTEC)..."
+        Me.ModuleFeedbackCheckToolStripMenuItem.Visible = False
         '
         'StudentOutcomeResultsToolStripMenuItem
         '
         Me.StudentOutcomeResultsToolStripMenuItem.Name = "StudentOutcomeResultsToolStripMenuItem"
         Me.StudentOutcomeResultsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentOutcomeResultsToolStripMenuItem.Text = "Student outcome results (BTEC)..."
+        Me.StudentOutcomeResultsToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator18
         '
         Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
         Me.ToolStripSeparator18.Size = New System.Drawing.Size(267, 6)
+        Me.ToolStripSeparator18.Visible = False
         '
         'SessionprepStatusToolStripMenuItem
         '
         Me.SessionprepStatusToolStripMenuItem.Name = "SessionprepStatusToolStripMenuItem"
         Me.SessionprepStatusToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.SessionprepStatusToolStripMenuItem.Text = "Session &prep status"
+        Me.SessionprepStatusToolStripMenuItem.Visible = False
         '
         'AssignmentProcessingToolStripMenuItem
         '
         Me.AssignmentProcessingToolStripMenuItem.Name = "AssignmentProcessingToolStripMenuItem"
         Me.AssignmentProcessingToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AssignmentProcessingToolStripMenuItem.Text = "Assignment processing"
+        Me.AssignmentProcessingToolStripMenuItem.Visible = False
         '
         'ScheduledSessionsToolStripMenuItem
         '
@@ -2223,60 +2238,70 @@ Partial Class MainFormPlain
         Me.StudentQualityToolStripMenuItem.Name = "StudentQualityToolStripMenuItem"
         Me.StudentQualityToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentQualityToolStripMenuItem.Text = "Student quality..."
+        Me.StudentQualityToolStripMenuItem.Visible = False
         '
         'StudentGradesToolStripMenuItem
         '
         Me.StudentGradesToolStripMenuItem.Name = "StudentGradesToolStripMenuItem"
         Me.StudentGradesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentGradesToolStripMenuItem.Text = "Student grades..."
+        Me.StudentGradesToolStripMenuItem.Visible = False
         '
         'SemesterStatisticsToolStripMenuItem
         '
         Me.SemesterStatisticsToolStripMenuItem.Name = "SemesterStatisticsToolStripMenuItem"
         Me.SemesterStatisticsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.SemesterStatisticsToolStripMenuItem.Text = "Semester statistics..."
+        Me.SemesterStatisticsToolStripMenuItem.Visible = False
         '
         'ExcessiveAbsencesToolStripMenuItem
         '
         Me.ExcessiveAbsencesToolStripMenuItem.Name = "ExcessiveAbsencesToolStripMenuItem"
         Me.ExcessiveAbsencesToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ExcessiveAbsencesToolStripMenuItem.Text = "Excessive absences..."
+        Me.ExcessiveAbsencesToolStripMenuItem.Visible = False
         '
         'MissingGradeDataToolStripMenuItem
         '
         Me.MissingGradeDataToolStripMenuItem.Name = "MissingGradeDataToolStripMenuItem"
         Me.MissingGradeDataToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.MissingGradeDataToolStripMenuItem.Text = "&Missing grade data..."
+        Me.MissingGradeDataToolStripMenuItem.Visible = False
         '
         'ImprovementItemsToolStripMenuItem
         '
         Me.ImprovementItemsToolStripMenuItem.Name = "ImprovementItemsToolStripMenuItem"
         Me.ImprovementItemsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ImprovementItemsToolStripMenuItem.Text = "&Improvement items..."
+        Me.ImprovementItemsToolStripMenuItem.Visible = False
         '
         'StudentAssessmentcompletionToolStripMenuItem
         '
         Me.StudentAssessmentcompletionToolStripMenuItem.Name = "StudentAssessmentcompletionToolStripMenuItem"
         Me.StudentAssessmentcompletionToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentAssessmentcompletionToolStripMenuItem.Text = "Student assessment &completion..."
+        Me.StudentAssessmentcompletionToolStripMenuItem.Visible = False
         '
         'StudentsWithSelectedAssignmentsToolStripMenuItem
         '
         Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Name = "StudentsWithSelectedAssignmentsToolStripMenuItem"
         Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Text = "Students with selected assignments..."
+        Me.StudentsWithSelectedAssignmentsToolStripMenuItem.Visible = False
         '
         'AttendanceAssessmentStatusToolStripMenuItem
         '
         Me.AttendanceAssessmentStatusToolStripMenuItem.Name = "AttendanceAssessmentStatusToolStripMenuItem"
         Me.AttendanceAssessmentStatusToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AttendanceAssessmentStatusToolStripMenuItem.Text = "Attendance && assessment status..."
+        Me.AttendanceAssessmentStatusToolStripMenuItem.Visible = False
         '
         'AttendanceForClassToolStripMenuItem
         '
         Me.AttendanceForClassToolStripMenuItem.Name = "AttendanceForClassToolStripMenuItem"
         Me.AttendanceForClassToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.AttendanceForClassToolStripMenuItem.Text = "Attendance for class..."
+        Me.AttendanceForClassToolStripMenuItem.Visible = False
         '
         'ReportsForResearchToolStripMenuItem
         '
@@ -2284,6 +2309,7 @@ Partial Class MainFormPlain
         Me.ReportsForResearchToolStripMenuItem.Name = "ReportsForResearchToolStripMenuItem"
         Me.ReportsForResearchToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.ReportsForResearchToolStripMenuItem.Text = "Reports for research"
+        Me.ReportsForResearchToolStripMenuItem.Visible = False
         '
         'AttendanceDataForAllSemestersToolStripMenuItem
         '
@@ -2296,6 +2322,7 @@ Partial Class MainFormPlain
         Me.BTECBulkViewToolStripMenuItem.Name = "BTECBulkViewToolStripMenuItem"
         Me.BTECBulkViewToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.BTECBulkViewToolStripMenuItem.Text = "BTEC Bulk View..."
+        Me.BTECBulkViewToolStripMenuItem.Visible = False
         '
         'DataToolStripMenuItem
         '
@@ -2511,6 +2538,7 @@ Partial Class MainFormPlain
         Me.ExportScheduleAsICalToolStripMenuItem.Name = "ExportScheduleAsICalToolStripMenuItem"
         Me.ExportScheduleAsICalToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExportScheduleAsICalToolStripMenuItem.Text = "Export schedule as iCalendar..."
+        Me.ExportScheduleAsICalToolStripMenuItem.Visible = False
         '
         'ExportAllGradeDataToolStripMenuItem
         '
@@ -2619,12 +2647,14 @@ Partial Class MainFormPlain
         Me.EitherOrToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.EitherOrToolStripMenuItem.Text = "&Either or attendance tool..."
         Me.EitherOrToolStripMenuItem.ToolTipText = "Allow students to be in one session or the other to get attendance for both"
+        Me.EitherOrToolStripMenuItem.Visible = False
         '
         'SpecialAttendanceToolToolStripMenuItem
         '
         Me.SpecialAttendanceToolToolStripMenuItem.Name = "SpecialAttendanceToolToolStripMenuItem"
         Me.SpecialAttendanceToolToolStripMenuItem.Size = New System.Drawing.Size(324, 22)
         Me.SpecialAttendanceToolToolStripMenuItem.Text = "&Attendance from assessment..."
+        Me.SpecialAttendanceToolToolStripMenuItem.Visible = False
         '
         'ConvertLocalNamesToStandardnondiacriticToolStripMenuItem
         '
@@ -2672,37 +2702,38 @@ Partial Class MainFormPlain
         'CheckForupdatesToolStripMenuItem
         '
         Me.CheckForupdatesToolStripMenuItem.Name = "CheckForupdatesToolStripMenuItem"
-        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CheckForupdatesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CheckForupdatesToolStripMenuItem.Text = "Check for &updates..."
+        Me.CheckForupdatesToolStripMenuItem.Visible = False
         '
         'UpgradeToolStripMenuItem
         '
         Me.UpgradeToolStripMenuItem.Name = "UpgradeToolStripMenuItem"
-        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.UpgradeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UpgradeToolStripMenuItem.Text = "&Upgrade..."
-        Me.UpgradeToolStripMenuItem.Visible = False
         '
         'ToolStripSeparator16
         '
         Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(176, 6)
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator16.Visible = False
         '
         'ViewLogFileToolStripMenuItem
         '
         Me.ViewLogFileToolStripMenuItem.Name = "ViewLogFileToolStripMenuItem"
-        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ViewLogFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewLogFileToolStripMenuItem.Text = "&View log file..."
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "&About..."
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(179, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
         Me.ToolStripMenuItem2.Text = "Test...do not use"
         Me.ToolStripMenuItem2.Visible = False
         '
